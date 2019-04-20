@@ -1,12 +1,9 @@
-# ONI-Mods
+# Pholith's Mods for Oxygen Not Included
 
-# Pholith's Mods for Oxygen Not Included <!-- omit in toc -->
-
-# List of mods
-## Mods
-| **Name**                            | **Description**                                                                                                                                                                                                                                                                      | **Preview**                                   |
-| :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| :-------:									 |
-| Always 3 Interests                  | Make the duplicants from the Printer always have 3 job interests.                                                                                                                                                                                                                    |  [click](/src/Always3Interests/Preview.md)    |
+## List of mods
+| **Name**                            | **Description**                                                                                                                                                                                                                                                                      | **Preview**                                           |
+| :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| :-------:									         |
+| Always 3 Interests                  | Make the duplicants from the Printer always have 3 job interests.                                                                                                                                                                                                                    |  [click](/src/Always3Interests/Preview/Preview.md)    |
 
 # Instructions
 ## Download
