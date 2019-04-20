@@ -1,6 +1,6 @@
 ![image](screen.png)
 
-# Always 3 Interests
+# Old Steam Turbine
 
 ## About
 You can now build the Old Steam Turbine.
