@@ -4,6 +4,7 @@
 | **Name**                            | **Description**                                                                                                                                                                                                                                                                      | **Preview**                                           |
 | :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| :-------:									         |
 | Always 3 Interests                  | Make the duplicants from the Printer always have 3 job interests.                                                                                                                                                                                                                    |  [click](/src/Always3Interests/Preview/Preview.md)    |
+| Old Steam Turbine                   | Enable you to build the old steam turbine                                                                                                                                                                                                                                            |  [click](/src/OldSteamTurbine/Preview/Preview.md)     |
 
 # Instructions
 ## Installation
