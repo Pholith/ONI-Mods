@@ -8,6 +8,10 @@
 # Instructions
 ## Download
 To download the mods, you need to click on "Clone or download" and "Doawnload ZIP".
+
+To use the mods **you need to install ONI-ModLoader** using instructions available [here](https://github.com/javisar/ONI-Modloader#installation)
+Or you can install the mods by Steam.
+
 ## Installation
 Unzip the downloaded mod archives, then place the mods (in their respective folders) inside the Mods folder in the game root directory.
 The directory tree should look like this:
