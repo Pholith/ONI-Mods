@@ -1,4 +1,4 @@
-![image](./Preview/screen.png)
+![image](.screen.png)
 
 # Always 3 Interests
 
