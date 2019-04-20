@@ -6,14 +6,24 @@
 | Always 3 Interests                  | Make the duplicants from the Printer always have 3 job interests.                                                                                                                                                                                                                    |  [click](/src/Always3Interests/Preview/Preview.md)    |
 
 # Instructions
-## Download
+## Installation
 To download the mods, you need to click on "Clone or download" and "Doawnload ZIP".
 
-To use the mods **you need to install ONI-ModLoader** using instructions available [here](https://github.com/javisar/ONI-Modloader#installation)
-Or you can install the mods by Steam.
+### Without the Modloader (faster)
+Place the mods in the folder: Documents/Klei/OxygenNotIncluded/mods/local/
+If the folder doesn't exist, create it.
+* .../Documents/Klei/OxygenNotIncluded/mods/
+  * local/
+    * SomeMod/
+      * SomeMod.dll
+    * AnotherMod/
+      * AnotherMod.dll
 
-## Installation
-Unzip the downloaded mod archives, then place the mods (in their respective folders) inside the Mods folder in the game root directory.
+### With Steam
+You can install the mods by Steam just by click on "subscribe".
+
+### With the Modloader (deprecated)
+To use the mods you need to install ONI-ModLoader using instructions available [here](https://github.com/javisar/ONI-Modloader#installation)
 The directory tree should look like this:
 * .../OxygenNotIncluded/
   * Mods/
