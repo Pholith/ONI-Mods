@@ -5,6 +5,8 @@
 | :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| :-------:									         |
 | Always 3 Interests                  | Make the duplicants from the Printer always have 3 job interests.                                                                                                                                                                                                                    |  [click](/src/Always3Interests/Preview/Preview.md)    |
 | Old Steam Turbine                   | Allows you to build the Old Steam Turbine.                                                                                                                                                                                                                                           |  [click](/src/OldSteamTurbine/Preview/Preview.md)     |
+# My Steam Page
+https://steamcommunity.com/profiles/76561198263471888/myworkshopfiles/?
 
 # Instructions
 ## Installation
