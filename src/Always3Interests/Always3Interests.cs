@@ -53,7 +53,7 @@ namespace Always3Interests
             var codes = new List<CodeInstruction>(instructions);
 
             codes[12].opcode = OpCodes.Ldc_I4;
-            Debug.Log(Config.StateManager.State.bonusStats);
+            //Debug.Log(Config.StateManager.State.bonusStats);
             codes[12].operand = Config.StateManager.State.bonusStats;
 
             if (Config.StateManager.State.moreBadTraits)
@@ -68,7 +68,7 @@ namespace Always3Interests
             }
             for (int i = 0; i < codes.Count; i++)
             {
-                Debug.Log("here " + i + " " + codes[i].ToString());
+                //Debug.Log("here " + i + " " + codes[i].ToString());
             }
             return codes.AsEnumerable();
         }
