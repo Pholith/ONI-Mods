@@ -2,73 +2,56 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
-using ONI_Common.Json;
+using TUNING;
 using UnityEngine;
+using Pholib;
 
 namespace Always3Interests
 {
-    
-    public class Config
-    {
-        public static BaseStateManager<Config> StateManager = new BaseStateManager<Config>("Always3Interests");
-        public int numberOfInterests { get; set; } = 3;
-        public bool moreGoodTraits { get; set; } = false;
-        public bool moreBadTraits { get; set; } = false;
-        public int bonusStats { get; set; } = 0;
-    }
 
-
-    [HarmonyPatch(typeof(MinionStartingStats), "GenerateAptitudes")]
-    public class GenerateAptitudes
+    [HarmonyPatch(typeof(Db), "Initialize")]
+    class TuningConfigPatch
     {
-        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        public static JsonReader config;
+
+        public static void Prefix()
         {
-        int numberOfInterests = Config.StateManager.State.numberOfInterests;
-        
-        var codes = new List<CodeInstruction>(instructions);
-            for (int i = 0; i < codes.Count; i++)
-            {
-                if (codes[i].opcode == OpCodes.Ldc_I4_1 || codes[i].opcode == OpCodes.Ldc_I4_4)
-                {
-                    codes[i].opcode = OpCodes.Ldc_I4;
-                    codes[i].operand = numberOfInterests;
-                }
-                if (i > 3) break;
 
-            }
-            /*for (int i = 0; i < codes.Count; i++)
-            {
-                Debug.Log("here " + codes[i].ToString());
-            }*/
+            config = new JsonReader();
 
-            return codes.AsEnumerable();
+            var custom1 = config.GetProperty<int>("pointsWhen1Interest");
+            var custom2 = config.GetProperty<int>("pointsWhen2Interest");
+            var custom3 = config.GetProperty<int>("pointsWhen3Interest");
+
+            var customAttributes = new int[] { custom1, custom2, custom3 };
+            Traverse.Create<DUPLICANTSTATS>().Field("APTITUDE_ATTRIBUTE_BONUSES").SetValue(customAttributes);
         }
     }
-    [HarmonyPatch(typeof(MinionStartingStats), "GenerateTraits")]
-    public class GenerateTraits
+
+    [HarmonyPatch(typeof(MinionStartingStats), "GenerateAptitudes")]
+    public class GenerateAttributesPatch
     {
-        //[HarmonyTranspiler]
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             var codes = new List<CodeInstruction>(instructions);
 
-            codes[12].opcode = OpCodes.Ldc_I4;
-            //Debug.Log(Config.StateManager.State.bonusStats);
-            codes[12].operand = Config.StateManager.State.bonusStats;
+            JsonReader config = new JsonReader();
 
-            if (Config.StateManager.State.moreBadTraits)
+            var numberOfInterests = config.GetProperty<int>("numberOfInterests");
+
+            for (int i = 0; i < 5; i++)
             {
-                codes[63].opcode = OpCodes.Ldc_I4;
-                codes[63].operand = -3;
-            }
-            if (Config.StateManager.State.moreGoodTraits)
-            {
-                codes[86].opcode = OpCodes.Ldc_I4;
-                codes[86].operand = -3;
-            }
-            for (int i = 0; i < codes.Count; i++)
-            {
-                //Debug.Log("here " + i + " " + codes[i].ToString());
+                if (codes[i].opcode == OpCodes.Ldc_I4_1)
+                {
+                    codes[i].opcode = OpCodes.Ldc_I4;
+                    codes[i].operand = numberOfInterests;
+                }
+                if (codes[i].opcode == OpCodes.Ldc_I4_4)
+                {
+                    codes[i].opcode = OpCodes.Ldc_I4;
+                    codes[i].operand = numberOfInterests;
+                }
+                //Debug.Log("test= " + codes[i].ToString());
             }
             return codes.AsEnumerable();
         }
