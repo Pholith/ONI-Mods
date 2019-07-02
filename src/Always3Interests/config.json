@@ -1,7 +1,7 @@
 {
-  "numberOfInterests": "2",
+  "numberOfInterests": "1",
 
-  "pointsWhen3Interest": "1",
-  "pointsWhen2Interest": "3",
-  "pointsWhen1Interest": "7"
+  "pointsWhen3Interest": "5",
+  "pointsWhen2Interest": "6",
+  "pointsWhen1Interest": "14"
 }

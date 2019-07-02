@@ -8,8 +8,13 @@ You no longer have to re-mix for half an hour to get strong duplicants!
 
 ## Details
 CUSTOMIZE:
-You can change the number of interests of new duplicants by modifying the file: 
-steamapps\common\OxygenNotIncluded\Mods\Always3Interests\Config\Always3InterestsState.json
-Open it with a text editor (notepad or others) and change the value of 3.
-Do not put a value greater than 5.
+You can chance some configuration in the duplicant generation by modifying the file: 
+
+Documents\Klei\OxygenNotIncluded\mods\Steam\1717999057\config.json
+
+Open it with a text editor (notepad or others) and change the value like in the screenshoot of the mod presentation.
+
+
+If you have a problem loading the mod, you must delete the folder in and restart:
+C:\Users\Name ****\Documents\Klei\OxygenNotIncluded\mods\Steam\1717999057
 

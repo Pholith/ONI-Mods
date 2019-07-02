@@ -19,9 +19,9 @@ namespace Always3Interests
 
             config = new JsonReader();
 
-            var custom1 = config.GetProperty<int>("pointsWhen1Interest");
-            var custom2 = config.GetProperty<int>("pointsWhen2Interest");
-            var custom3 = config.GetProperty<int>("pointsWhen3Interest");
+            var custom1 = config.GetProperty<int>("pointsWhen1Interest", 7);
+            var custom2 = config.GetProperty<int>("pointsWhen2Interest", 3);
+            var custom3 = config.GetProperty<int>("pointsWhen3Interest", 1);
 
             var customAttributes = new int[] { custom1, custom2, custom3 };
             Traverse.Create<DUPLICANTSTATS>().Field("APTITUDE_ATTRIBUTE_BONUSES").SetValue(customAttributes);
@@ -29,7 +29,7 @@ namespace Always3Interests
     }
 
     [HarmonyPatch(typeof(MinionStartingStats), "GenerateAptitudes")]
-    public class GenerateAttributesPatch
+    public class GenerateAptitudesPatch
     {
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
@@ -37,7 +37,7 @@ namespace Always3Interests
 
             JsonReader config = new JsonReader();
 
-            var numberOfInterests = config.GetProperty<int>("numberOfInterests");
+            var numberOfInterests = config.GetProperty<int>("numberOfInterests", 3);
 
             for (int i = 0; i < 5; i++)
             {
