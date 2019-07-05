@@ -1,3 +1,4 @@
+
 # Pholith's Mods for Oxygen Not Included
 
 ## List of mods
@@ -10,10 +11,15 @@
 https://steamcommunity.com/profiles/76561198263471888/myworkshopfiles/?
 
 # Instructions
-## Installation
-To download the mods, you need to click on "Clone or download" and "Doawnload ZIP".
 
-### Without the Modloader (faster)
+#### With Steam
+You can install the mods by Steam just by click on "subscribe".
+
+#### Manually
+To download the mods, you need to click on "Clone or download" and "Download ZIP".
+
+
+If the mod is not on Steam or don't works for mystical reason, you can try this.
 Place the mods in the folder: Documents/Klei/OxygenNotIncluded/mods/local/
 If the folder doesn't exist, create it.
 * .../Documents/Klei/OxygenNotIncluded/mods/
@@ -23,19 +29,23 @@ If the folder doesn't exist, create it.
     * AnotherMod/
       * AnotherMod.dll
 
-### With Steam
-You can install the mods by Steam just by click on "subscribe".
+ On MAC, the path looks like: `/Users/****(username)/Library/Application Support/unity.Klei.Oxygen Not Included/mods/?????????`
+ 
+ On Linux, the path is: `~/config/unity3d/Klei/Oxygen Not Included/mods/Dev/`
 
-### With the Modloader (deprecated)
-To use the mods you need to install ONI-ModLoader using instructions available [here](https://github.com/javisar/ONI-Modloader#installation)
+### ~~With the Modloader (DEPRECATED)~~
+~~To use the mods you need to install ONI-ModLoader using instructions available [here](https://github.com/javisar/ONI-Modloader#installation)~~
 The directory tree should look like this:
 * .../OxygenNotIncluded/
   * Mods/
     * SomeMod/
       * SomeMod.dll
     * AnotherMod/
-      * AnotherMod.dll
+      * AnotherMod.dll~~
 
+## Feedbacks , suggestions, bugs and help
+If you have some problems, suggestions etc with my mods you can ask me and see more informations on my discord server:
+https://discord.gg/cmZUWYT
 
 # Special thanks
 To [@pardeike](https://github.com/pardeike), creator of [Harmony](https://github.com/pardeike/Harmony), the library that made oni modding possible.  

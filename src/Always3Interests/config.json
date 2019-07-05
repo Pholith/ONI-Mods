@@ -1,7 +1,11 @@
 {
+  "randomNumberOfInterests": "false",
   "numberOfInterests": "1",
 
-  "pointsWhen3Interest": "5",
-  "pointsWhen2Interest": "6",
-  "pointsWhen1Interest": "14"
+  "pointsWhen3Interest": "1",
+  "pointsWhen2Interest": "3",
+  "pointsWhen1Interest": "7",
+
+  "numberOfGoodTraits": "1",
+  "numberOfBadTraits": "1"
 }

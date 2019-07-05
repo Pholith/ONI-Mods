@@ -33,7 +33,6 @@ namespace MoreWorldSettings
             , "Default", "128", 20480, 5, false, true);*/
             //CustomGameSettingConfigs.CarePackages = 
 
-            
 
         }
     }
