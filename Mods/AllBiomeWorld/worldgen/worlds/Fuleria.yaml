@@ -16,13 +16,14 @@ subworldFiles:
   - name: subworlds/forest/ForestStart
   - name: subworlds/forest/ForestMiniWater
   - name: subworlds/forest/ForestMiniOxy
-  - name: subworlds/forest/ForestMiniMetal
+  - name: subworlds/frozen/Frozen
+  - name: subworlds/frozen/CO2Lakes
   - name: subworlds/forest/Forest
   - name: subworlds/marsh/HotMarsh
   - name: subworlds/jungle/Jungle
-  - name: subworlds/frozen/Frozen
   - name: subworlds/Impenetrable
   - name: subworlds/magma/Bottom
+  - name: subworlds/magma/VolcanoHole
   - name: subworlds/oil/OilPatch
   - name: subworlds/space/Space
   - name: subworlds/space/Surface
@@ -72,7 +73,7 @@ unknownCellsAllowedSubworlds:
     subworldNames:
       - subworlds/marsh/HotMarsh
       - subworlds/jungle/Jungle
-      - subworlds/ocean/Ocean
+      - subworlds/frozen/Frozen
       - subworlds/rust/Rust
       - subworlds/oil/OilPatch
   - tagcommand: DistanceFromTag
@@ -81,17 +82,19 @@ unknownCellsAllowedSubworlds:
     maxDistance: 999
     command: Replace
     subworldNames:
-      - subworlds/marsh/HotMarsh
       - subworlds/jungle/Jungle
       - subworlds/ocean/Ocean
       - subworlds/rust/Rust
-      - subworlds/forest/ForestStart
+      - subworlds/frozen/Frozen
+      - subworlds/oil/oilPockets
       - subworlds/oil/OilPatch
   - tagcommand: AtTag
     tag: AtDepths
     command: Replace
     subworldNames:
       - subworlds/magma/Bottom
+      - subworlds/magma/VolcanoHole
+
   - tagcommand: AtTag
     tag: AtSurface
     command: Replace
