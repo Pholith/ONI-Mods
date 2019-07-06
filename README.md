@@ -1,12 +1,16 @@
 
+
 # Pholith's Mods for Oxygen Not Included
 
 ## List of mods
 | **Name**                            | **Description**                                                                                                                                                                                                                                                                      | **Preview**                                           |
 | :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| :-------:									                               |
-| Always 3 Interests                  | Make the duplicants from the Printer always have 3 job interests.                                                                                                                                                                                                                    |  [click](/src/Always3Interests/Preview/Preview.md)       |
-| Old Steam Turbine                   | Allows you to build the Old Steam Turbine.                                                                                                                                                                                                                                           |  [click](/src/OldSteamTurbine/Preview/Preview.md)        |
-| Polluted Electrolyzer               | Add a new Electrolyzer that produce polluted oxygen and hydrogen from dirty water.                                                                                                                                                                                                   |  [click](/src/PollutedElectrolyzer/Preview/Preview.md)   |
+| Always 3 Interests                  | Make the duplicants from the Printer always have 3 job interests.  You can config others starting stats.                                                                                                                                                                                                                  |![image](/src/Always3Interests/Preview/screen.png)|
+| Old Steam Turbine                   | Allows you to build the Old Steam Turbine.                                                                                                                                                                                                                                           |![image](/src/OldSteamTurbine/Preview/screen.png)|
+| Polluted Electrolyzer               | Add a new Electrolyzer that produce polluted oxygen and hydrogen from dirty water.                                                                                                                                                                                                   |![image](/src/PollutedElectrolyzer/Preview/screen.png)|
+| AllBiomeWorld - Fuleria| Fuleria is a small asteroid that contains all the biomes. This world will be pleasant and easy to live in for your duplicants. But be careful, they will also have to get used to the small size of the asteroid.                                                                                                                                                                                                   |![image](/src/AllBiomeWorld/screen.png)|
+
+
 # My Steam Page
 https://steamcommunity.com/profiles/76561198263471888/myworkshopfiles/?
 

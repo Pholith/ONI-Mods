@@ -28,6 +28,7 @@ namespace Pholib
             try
             {
                 StreamWriter writer = File.AppendText(logsPath);
+                writer.WriteLine();
                 writer.WriteLine("== Game Launched with Pholib " + version + "  " + DateTime.Now);
                 writer.Close();
             }
@@ -35,7 +36,6 @@ namespace Pholib
             {
                 Debug.Log("Pholib: Error to log" + e.ToString());
             }
-            Debug.Log("Pholib: static log.");
             initiated = true;
         }
 
