@@ -58,42 +58,37 @@ namespace PollutedElectrolyzer
             };
             elementConverter.outputElements = new ElementConverter.OutputElement[]
             {
-                new ElementConverter.OutputElement(0.888f, SimHashes.ContaminatedOxygen, OXYGEN_TEMPERATURE, false, 0f, 1f, false, 1f, byte.MaxValue, 0),
-                new ElementConverter.OutputElement(0.111999989f, SimHashes.Hydrogen, OXYGEN_TEMPERATURE, false, 0f, 1f, false, 1f, byte.MaxValue, 0)
+                new ElementConverter.OutputElement(0.888f, SimHashes.ContaminatedOxygen, OXYGEN_TEMPERATURE),
+                new ElementConverter.OutputElement(0.111999989f, SimHashes.Hydrogen, OXYGEN_TEMPERATURE)
             };
             Prioritizable.AddRef(go);
         }
-        // Token: 0x0600547A RID: 21626 RVA: 0x0018C787 File Offset: 0x0018AB87
         public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
         {
             GeneratedBuildings.RegisterLogicPorts(go, LogicOperationalController.INPUT_PORTS_1_1);
         }
 
-        // Token: 0x0600547B RID: 21627 RVA: 0x0018C794 File Offset: 0x0018AB94
         public override void DoPostConfigureUnderConstruction(GameObject go)
         {
             GeneratedBuildings.RegisterLogicPorts(go, LogicOperationalController.INPUT_PORTS_1_1);
         }
 
-        // Token: 0x0600547C RID: 21628 RVA: 0x0018C7A1 File Offset: 0x0018ABA1
         public override void DoPostConfigureComplete(GameObject go)
         {
             GeneratedBuildings.RegisterLogicPorts(go, LogicOperationalController.INPUT_PORTS_1_1);
             go.AddOrGet<LogicOperationalController>();
             go.AddOrGetDef<PoweredActiveController.Def>();
         }
-        // Token: 0x04005BE1 RID: 23521
         public const string ID = "PollutedElectrolyzer";
 
-        // Token: 0x04005BE2 RID: 23522
         public const float WATER2OXYGEN_RATIO = 0.888f;
-
-        // Token: 0x04005BE3 RID: 23523
         public const float OXYGEN_TEMPERATURE = 313.15f; // 343.15f original
     }
 
+
+    //ColorPatch
     [HarmonyPatch(typeof(BuildingComplete), "OnSpawn")]
-    public class Class1
+    public class ColorPatch
     {
         public static void Postfix(BuildingComplete __instance)
         {
@@ -143,7 +138,7 @@ namespace PollutedElectrolyzer
 
     }
     [HarmonyPatch(typeof(Db), "Initialize")]
-    public class PollutedElectrolyserDb
+    public class DbPatch
     {
         public static void Prefix()
         {
