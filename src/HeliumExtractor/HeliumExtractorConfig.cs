@@ -24,12 +24,13 @@ namespace HeliumExtractor
             BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, tier, all_METALS, melting_point, build_location_rule, BUILDINGS.DECOR.PENALTY.TIER2, tier2, 0.2f);
             buildingDef.RequiresPowerInput = true;
             buildingDef.PowerInputOffset = new CellOffset(1, 0);
-            buildingDef.EnergyConsumptionWhenActive = 1200f;
-            buildingDef.SelfHeatKilowattsWhenActive = 24f;
+            buildingDef.EnergyConsumptionWhenActive = 600f;
+            buildingDef.SelfHeatKilowattsWhenActive = 12f;
             buildingDef.AudioCategory = "HollowMetal";
             buildingDef.ViewMode = OverlayModes.GasConduits.ID;
             buildingDef.InputConduitType = ConduitType.Gas;
             buildingDef.OutputConduitType = ConduitType.Gas;
+            
             buildingDef.UtilityInputOffset = new CellOffset(-1, 1);
             buildingDef.UtilityOutputOffset = new CellOffset(1, 0);
             buildingDef.ModifiesTemperature = false;
@@ -50,6 +51,7 @@ namespace HeliumExtractor
             conduitConsumer.wrongElementResult = ConduitConsumer.WrongElementResult.Dump;
             conduitConsumer.capacityKG = 10f;
             conduitConsumer.forceAlwaysSatisfied = true;
+
             ConduitDispenser conduitDispenser = go.AddOrGet<ConduitDispenser>();
             conduitDispenser.conduitType = ConduitType.Gas;
             conduitDispenser.invertElementFilter = true;
@@ -57,6 +59,7 @@ namespace HeliumExtractor
             {
                 SimHashes.Methane
             };
+            
             Storage storage = go.AddOrGet<Storage>();
             storage.showInUI = true;
             ElementConverter elementConverter = go.AddOrGet<ElementConverter>();
@@ -68,15 +71,15 @@ namespace HeliumExtractor
             {
                 new ElementConverter.OutputElement(heliumConversionRate, SimHashes.Sulfur, 350.15f, false, false),
                 new ElementConverter.OutputElement(heliumConversionRate, SimHashes.Helium, 80.15f, false, true),
-                new ElementConverter.OutputElement(propaneConverssionRate, SimHashes.LiquidPropane, 80.15f, false, false, 1f, 1f)
+                new ElementConverter.OutputElement(propaneConversionRate, SimHashes.LiquidPropane, 80.15f, false, false, 1f, 1f)
             };
             Prioritizable.AddRef(go);
         }
 
         public static float totalConversion = 0.5f; // 500 g (input of pipes)
         public static float heliumConversionRate = 0.05f / 2; // 5% of 1kg
-        public static float sulfureConverssionRate = 0.05f / 2; // 5% of 1kg
-        public static float propaneConverssionRate = totalConversion - heliumConversionRate - sulfureConverssionRate; // the rest
+        public static float sulfureConversionRate = 0.05f / 2; // 5% of 1kg
+        public static float propaneConversionRate = totalConversion - heliumConversionRate - sulfureConversionRate; // the rest
 
         public override void DoPostConfigureComplete(GameObject go)
         {
