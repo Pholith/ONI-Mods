@@ -15,7 +15,7 @@ namespace HeliumExtractor
             int height = 4;
             string anim = "algae_distillery_kanim";
             int hitpoints = 30;
-            float construction_time = 60f;
+            float construction_time = 30f;
             float[] tier = BUILDINGS.CONSTRUCTION_MASS_KG.TIER3;
             string[] all_METALS = MATERIALS.ALL_METALS;
             float melting_point = 800f;
@@ -43,7 +43,7 @@ namespace HeliumExtractor
             go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
             go.AddOrGet<BuildingComplete>().isManuallyOperated = true;
             HeliumExtractor heliumExtractor = go.AddOrGet<HeliumExtractor>();
-            heliumExtractor.overpressureMass = 5f;
+            heliumExtractor.overpressureMass = 10f;
             ConduitConsumer conduitConsumer = go.AddOrGet<ConduitConsumer>();
             conduitConsumer.conduitType = ConduitType.Gas;
             conduitConsumer.consumptionRate = totalConversion;
