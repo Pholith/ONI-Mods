@@ -78,47 +78,79 @@ namespace Always3Interests
 
             Traits component = go.GetComponent<Traits>();
             component.Clear();
-
-            if (numberOfBadTraits <= 0)
-            {
-                foreach (var trait in __instance.Traits)
-                {
-                    if (trait.PositiveTrait)
-                    {
-                        component.Add(trait);
-                    }
-                }
-            }
-            else if (numberOfGoodTraits <= 0)
-            {
-                foreach (var trait in __instance.Traits)
-                {
-                    if (!trait.PositiveTrait)
-                    {
-                        component.Add(trait);
-                    }
-                }
-            } else
-            {
-                foreach (var trait in __instance.Traits)
-                {
-                    component.Add(trait);
-                }
-            }
-
             
-            for (int i = 0; i < numberOfGoodTraits - 1; i++)
+            
+            Stack<Trait> stackOfGoodsTraits = new Stack<Trait>();
+            Stack<Trait> stackOfBadsTraits = new Stack<Trait>();
+
+            // Filling stacks
+            foreach (var trait in __instance.Traits)
             {
-                string id = DUPLICANTSTATS.GOODTRAITS.GetRandom<TraitVal>().id;
-                component.Add(Db.Get().traits.TryGet(id));
+                if (trait.PositiveTrait)
+                {
+                    stackOfGoodsTraits.Push(trait);
+                } else
+                {
+                    stackOfBadsTraits.Push(trait);
+                }
             }
+            Logs.Log("numberOfGoodTraits: " + numberOfGoodTraits);
+            Logs.Log("numberOfBadTraits: " + numberOfBadTraits);
 
 
-            for (int i = 0; i < numberOfBadTraits - 1; i++)
+            for (int i = 0; i < numberOfGoodTraits ; i++)
             {
-                string id = DUPLICANTSTATS.BADTRAITS.GetRandom<TraitVal>().id;
-                component.Add(Db.Get().traits.TryGet(id));
+                // Check if stack is empty or not
+                if (stackOfGoodsTraits.Count > 0)
+                {
+                    component.Add(stackOfGoodsTraits.Pop());
+                }
+                else
+                {
+                    string id;
+                    Trait t;
+                    do
+                    {
+                        id = DUPLICANTSTATS.GOODTRAITS.GetRandom().id;
+                        t = Db.Get().traits.TryGet(id);
+
+                    } while (component.HasTrait(id)); // Don't add a actual same trait
+                    component.Add(t);
+                }
             }
+            Logs.Log(component.TraitList.Count + "");
+
+            for (int i = 0; i < numberOfBadTraits ; i++)
+            {
+                // Check if stack is empty or not
+                if (stackOfBadsTraits.Count > 0)
+                {
+                    component.Add(stackOfBadsTraits.Pop());
+                }
+                else
+                {
+                    string id;
+                    Trait t;
+                    do
+                    {
+                        id = DUPLICANTSTATS.BADTRAITS.GetRandom().id;
+                        t = Db.Get().traits.TryGet(id);
+
+                    } while (component.HasTrait(id)); // Don't add a actual same trait
+                    component.Add(t);
+                }
+            }
+            Logs.Log(component.TraitList.Count + "");
+
+            // vanilla code
+            component.Add(__instance.stressTrait);
+            if (__instance.congenitaltrait != null)
+            {
+                component.Add(__instance.congenitaltrait);
+            }
+            go.GetComponent<MinionIdentity>().SetName(__instance.Name);
+            go.GetComponent<MinionIdentity>().SetGender(__instance.GenderStringKey);
+
 
         }
     }
