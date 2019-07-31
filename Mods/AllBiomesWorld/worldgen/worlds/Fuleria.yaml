@@ -1,9 +1,9 @@
 name: STRINGS.WORLDS.FULERIA.NAME
 description: STRINGS.WORLDS.FULERIA.DESCRIPTION
-spriteName: Asteroid_lushforest
-coordinatePrefix: FUL-PHO-A
-difficulty: 0
-tier: 0
+spriteName: Asteroid_Fuleria
+coordinatePrefix: FUL-PHO
+difficulty: 2
+tier: 2
 
 worldsize:
   X: 256

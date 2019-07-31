@@ -66,7 +66,7 @@ namespace Always3Interests
         }
     }
 
-    [HarmonyPatch(typeof(MinionStartingStats), "ApplyTraits")]
+    /*[HarmonyPatch(typeof(MinionStartingStats), "ApplyTraits")]
     public class ApplyPatch
     {
         public static void Postfix(ref MinionStartingStats __instance, GameObject go)
@@ -78,25 +78,12 @@ namespace Always3Interests
 
             Traits component = go.GetComponent<Traits>();
             component.Clear();
-            
-            
+
+
             Stack<Trait> stackOfGoodsTraits = new Stack<Trait>();
             Stack<Trait> stackOfBadsTraits = new Stack<Trait>();
 
             // Filling stacks
-            foreach (var trait in __instance.Traits)
-            {
-                if (trait.PositiveTrait)
-                {
-                    stackOfGoodsTraits.Push(trait);
-                } else
-                {
-                    stackOfBadsTraits.Push(trait);
-                }
-            }
-            Logs.Log("numberOfGoodTraits: " + numberOfGoodTraits);
-            Logs.Log("numberOfBadTraits: " + numberOfBadTraits);
-
 
             for (int i = 0; i < numberOfGoodTraits ; i++)
             {
@@ -140,18 +127,12 @@ namespace Always3Interests
                     component.Add(t);
                 }
             }
-            Logs.Log(component.TraitList.Count + "");
+
 
             // vanilla code
-            component.Add(__instance.stressTrait);
-            if (__instance.congenitaltrait != null)
-            {
-                component.Add(__instance.congenitaltrait);
-            }
-            go.GetComponent<MinionIdentity>().SetName(__instance.Name);
-            go.GetComponent<MinionIdentity>().SetGender(__instance.GenderStringKey);
-
+            //go.GetComponent<MinionIdentity>().SetName(__instance.Name);
+            //go.GetComponent<MinionIdentity>().SetGender(__instance.GenderStringKey);
 
         }
-    }
+    }*/
 }

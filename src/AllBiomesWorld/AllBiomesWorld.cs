@@ -16,7 +16,6 @@ namespace AllBiomeWorld
             Strings.Add($"STRINGS.WORLDS.FULERIA.DESCRIPTION", DESCRIPTION);
 
             ModUtil.RegisterForTranslation(typeof(AllBiomeWorldPatch));
-
         }
     }
 }
