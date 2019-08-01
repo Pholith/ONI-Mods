@@ -39,7 +39,7 @@ namespace PollutedElectrolyzer
         // Big copy paste of the game code 
         public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
         {
-            go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery);
+            go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
             Electrolyzer electrolyzer = go.AddOrGet<Electrolyzer>();
             electrolyzer.maxMass = 1.8f;
             electrolyzer.hasMeter = true;
