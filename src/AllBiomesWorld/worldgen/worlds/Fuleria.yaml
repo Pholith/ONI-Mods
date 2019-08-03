@@ -4,6 +4,7 @@ spriteName: Asteroid_Fuleria
 coordinatePrefix: FUL-PHO
 difficulty: 2
 tier: 2
+disableWorldTraits: true
 
 worldsize:
   X: 256
@@ -16,6 +17,8 @@ subworldFiles:
   - name: subworlds/forest/ForestStart
   - name: subworlds/forest/ForestMiniWater
   - name: subworlds/forest/ForestMiniOxy
+    weight: 0.3
+  - name: subworlds/forest/ForestMiniMetal
   - name: subworlds/sandstone/SandstoneMiniAlgae
   - name: subworlds/frozen/Frozen
   - name: subworlds/frozen/CO2Lakes
@@ -25,11 +28,16 @@ subworldFiles:
   - name: subworlds/Impenetrable
   - name: subworlds/magma/Bottom
   - name: subworlds/magma/VolcanoHole
-  - name: subworlds/oil/OilPatch
+  - name: subworlds/oil/OilPockets
+  - name: subworlds/sandstone/Desert
+    weight: 0.7
   - name: subworlds/space/Space
   - name: subworlds/space/Surface
   - name: subworlds/ocean/Ocean
   - name: subworlds/rust/Rust
+  - name: subworlds/barren/BarrenGranite
+    weight: 0.3
+
 
 startSubworldName: subworlds/forest/ForestStart
 startingBaseTemplate: forestBase
@@ -65,30 +73,30 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - subworlds/marsh/HotMarsh
+      - subworlds/jungle/Jungle
       - subworlds/ocean/Ocean
+      
   - tagcommand: DistanceFromTag
     tag: AtStart
     minDistance: 3
     maxDistance: 3
     command: Replace
     subworldNames:
-      - subworlds/marsh/HotMarsh
-      - subworlds/jungle/Jungle
       - subworlds/frozen/Frozen
       - subworlds/rust/Rust
-      - subworlds/oil/OilPatch
+      - subworlds/barren/BarrenGranite
+      - subworlds/space/Space
+
   - tagcommand: DistanceFromTag
     tag: AtStart
     minDistance: 4
     maxDistance: 999
     command: Replace
     subworldNames:
-      - subworlds/jungle/Jungle
-      - subworlds/ocean/Ocean
       - subworlds/rust/Rust
       - subworlds/frozen/Frozen
-      - subworlds/oil/oilPockets
-      - subworlds/oil/OilPatch
+      - subworlds/sandstone/Desert
+
   - tagcommand: AtTag
     tag: AtDepths
     command: Replace
@@ -101,6 +109,15 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - subworlds/space/Space
+  
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 1
+    maxDistance: 1
+    command: Replace
+    subworldNames:
+      - subworlds/oil/OilPockets
+
   - tagcommand: DistanceFromTag
     tag: AtSurface
     minDistance: 1
