@@ -1,0 +1,87 @@
+name: STRINGS.WORLDS.EMPTERA.NAME
+description: STRINGS.WORLDS.EMPTERA.DESCRIPTION
+spriteName: Asteroid_Emptera
+coordinatePrefix: EMP-PHO
+difficulty: 6
+tier: 3
+disableWorldTraits: true
+
+worldsize:
+  X: 256
+  Y: 384
+layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
+#                                in order to use this.
+
+# List all the zone files to load
+subworldFiles:
+  - name: PholithWorld/subworlds/forest/ForestStartModified
+  - name: subworlds/forest/ForestMiniWater
+  - name: subworlds/forest/ForestMiniOxy
+    weight: 0.7
+  - name: subworlds/forest/ForestMiniMetal
+  - name: subworlds/marsh/HotMarsh
+  - name: subworlds/Impenetrable
+  - name: subworlds/space/Space
+  - name: PholithWorld/subworlds/space/SpaceGeyser
+  - name: subworlds/space/Surface
+
+
+startSubworldName: PholithWorld/subworlds/forest/ForestStartModified
+startingBaseTemplate: forestBase
+
+globalFeatureTemplates:
+  feature_geyser_generic: 12
+
+
+# Rivers:
+#   - water
+#   - fatWater
+#   - oilygoodness
+
+# When we are converting unknown cells, this will give us the options, processed in this order, the effects are cumlative
+unknownCellsAllowedSubworlds: 
+  - tagcommand: Default
+    command: Replace
+    subworldNames:
+      - PholithWorld/subworlds/forest/ForestStartModified
+      
+  - tagcommand: DistanceFromTag
+    tag: AtStart
+    minDistance: 2
+    maxDistance: 999
+    command: Replace
+    subworldNames:
+      - subworlds/marsh/HotMarsh
+
+  - tagcommand: DistanceFromTag
+    tag: AtSurface
+    minDistance: 2
+    maxDistance: 999
+    command: Replace
+    subworldNames:
+      - PholithWorld/subworlds/space/SpaceGeyser
+
+  - tagcommand: DistanceFromTag
+    tag: AtStart
+    minDistance: 1
+    maxDistance: 1
+    command: Replace
+    subworldNames:
+      - subworlds/forest/ForestMiniOxy
+      - subworlds/forest/ForestMiniWater
+      - subworlds/forest/ForestMiniMetal
+
+  - tagcommand: DistanceFromTag
+    tag: AtSurface
+    minDistance: 1
+    maxDistance: 2
+    command: Replace
+    subworldNames:
+      - subworlds/space/Surface
+
+     
+  - tagcommand: AtTag
+    tag: AtSurface
+    command: Replace
+    subworldNames:
+      - subworlds/space/Surface

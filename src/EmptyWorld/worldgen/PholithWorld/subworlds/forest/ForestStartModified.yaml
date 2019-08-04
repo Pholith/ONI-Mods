@@ -1,0 +1,70 @@
+biomeNoise: noise/subworldForest
+temperatureRange: Room
+pdWeight: 2
+density:
+  min: 20
+  max: 25
+avoidRadius: 130.0
+minChildCount: 10
+dontRelaxChildren: true
+sampleBehaviour: UniformCircle
+borderOverride: rocky
+
+biomes:
+  - name: biomes/Forest/BasicOxy
+    weight: 2
+    tags:
+      - Oxyfern
+      - Hatch
+      - ForestTree     
+      - BasicSingleHarvestPlant
+      - BasicSingleHarvestPlantSeed
+      - ForestForagePlantPlanted
+      - LightBug
+      - LeafyPlant        
+      - LeafyPlantSeed
+      - Squirrel          
+
+  - name: biomes/Forest/Basic
+    weight: 2
+    tags:
+      - Oxyfern
+      - Puft
+      - Pacu
+      - BulbPlant
+      - MushroomPlant
+      - BasicFabricMaterialPlantSeed
+      - ForestTree     
+      - BasicSingleHarvestPlant
+      - BasicSingleHarvestPlantSeed
+      - ForestForagePlantPlanted
+      - LightBug
+      - LeafyPlant        
+      - LeafyPlantSeed
+
+      - Squirrel          
+  - name: biomes/Forest/Metal
+    weight: 2
+    tags:
+      - Oxyfern
+      - Drecko
+      - Glom
+      - LeafyPlant        
+      - LeafyPlantSeed
+      - BasicSingleHarvestPlantSeed
+      - ForestForagePlantPlanted
+
+tags:
+  - StartWorld
+  - IgnoreCaveOverride
+  - NoGlobalFeatureSpawning
+centralFeature:
+  type: features/generic/StartLocation
+features:
+  - type: features/forest/SmallLake
+  - type: features/forest/OxyfernCave
+  - type: features/forest/PhosphoriteLump
+featureTemplates:
+  feature_geyser_generic: 1
+
+zoneType: Forest

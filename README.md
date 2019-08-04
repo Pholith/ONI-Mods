@@ -10,6 +10,7 @@
 | Polluted Electrolyzer               | Add a new Electrolyzer that produce polluted oxygen and hydrogen from dirty water.                                                                                                                                                                                                   |![image](/src/PollutedElectrolyzer/screen.png)|
 | AllBiomesWorld - Fuleria| Fuleria is a small asteroid that contains all the biomes. This world will be pleasant and easy to live in for your duplicants. But be careful, they will also have to get used to the small size of the asteroid.                                                                                 |![image](/src/AllBiomesWorld/screen.png)|
 | Helium Extractor | This mod adds a helium extractor that transforms natural gas into helium, propane and sulphur.                                                                                                                                                                                                          |![image](/src/HeliumExtractor/screen.png)|
+| EmptyWorldChallenge - Emptera| Emptera is a very difficult empty asteroid. Resources are limited and you will have to take advantage of your geysers to get them.                                                                                 |![image](/src/EmptyWorld/screen1.png)|
 
 
 # My Steam Page
