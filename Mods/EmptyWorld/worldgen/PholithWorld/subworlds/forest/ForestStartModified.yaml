@@ -4,17 +4,16 @@ pdWeight: 2
 density:
   min: 20
   max: 25
-avoidRadius: 130.0
+avoidRadius: 140.0
 minChildCount: 10
 dontRelaxChildren: true
 sampleBehaviour: UniformCircle
 borderOverride: rocky
 
 biomes:
-  - name: biomes/Forest/BasicOxy
+  - name: PholithWorld/biomes/CustomForest/Basic
     weight: 2
     tags:
-      - Oxyfern
       - Hatch
       - ForestTree     
       - BasicSingleHarvestPlant
@@ -25,14 +24,12 @@ biomes:
       - LeafyPlantSeed
       - Squirrel          
 
-  - name: biomes/Forest/Basic
+  - name: PholithWorld/biomes/CustomForest/Basic
     weight: 2
     tags:
-      - Oxyfern
       - Puft
       - Pacu
       - BulbPlant
-      - MushroomPlant
       - BasicFabricMaterialPlantSeed
       - ForestTree     
       - BasicSingleHarvestPlant
@@ -41,9 +38,7 @@ biomes:
       - LightBug
       - LeafyPlant        
       - LeafyPlantSeed
-
-      - Squirrel          
-  - name: biomes/Forest/Metal
+  - name: PholithWorld/biomes/CustomForest/Basic
     weight: 2
     tags:
       - Oxyfern
@@ -65,6 +60,6 @@ features:
   - type: features/forest/OxyfernCave
   - type: features/forest/PhosphoriteLump
 featureTemplates:
-  feature_geyser_generic: 1
+  feature_geyser_generic2: 2
 
 zoneType: Forest

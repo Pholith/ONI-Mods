@@ -23,7 +23,7 @@ subworldFiles:
   - name: subworlds/Impenetrable
   - name: subworlds/space/Space
   - name: PholithWorld/subworlds/space/SpaceGeyser
-  - name: PholithWorld/subworlds/oil/OilPocketsWells
+  - name: PholithWorld/subworlds/space/SpaceWell
   - name: subworlds/space/Surface
 
 
@@ -31,7 +31,8 @@ startSubworldName: PholithWorld/subworlds/forest/ForestStartModified
 startingBaseTemplate: forestBase
 
 globalFeatureTemplates:
-  feature_geyser_generic: 13
+  feature_geyser_generic: 2
+  feature_geyser_generic2: 14
 
 
 # Rivers:
@@ -91,4 +92,4 @@ unknownCellsAllowedSubworlds:
     tag: AtDepths
     command: Replace
     subworldNames:
-      - PholithWorld/subworlds/oil/OilPocketsWells
+      - PholithWorld/subworlds/space/SpaceWell
