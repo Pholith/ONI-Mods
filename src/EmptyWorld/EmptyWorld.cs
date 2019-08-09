@@ -9,7 +9,7 @@ namespace EmptyWorld
     {
 
         public static LocString NAME = "Emptera";
-        public static LocString DESCRIPTION = "Emptera is a very difficult world made up essentially of emptiness. Resources are limited and you will have to take advantage of your geysers to get them.\n\n<smallcaps> Colonizing Emptera will be one of the most difficult experiences you've ever had. However, this asteroid has some advantages with its vacuum. </smallcaps>\n\n";
+        public static LocString DESCRIPTION = "Emptera is a difficult empty asteroid. Resources are limited and you will have to take advantage of your geysers to get them.\n\n<smallcaps> Colonizing Emptera will be a difficult experiences you've ever had. However, this asteroid has some advantages with its vacuum. </smallcaps>\n\n";
 
         public static void Prefix()
         {

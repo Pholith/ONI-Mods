@@ -2,8 +2,8 @@ name: STRINGS.WORLDS.EMPTERA.NAME
 description: STRINGS.WORLDS.EMPTERA.DESCRIPTION
 spriteName: Asteroid_Emptera
 coordinatePrefix: EMP-PHO
-difficulty: 6
-tier: 3
+difficulty: 4
+tier: 2
 disableWorldTraits: true
 
 worldsize:

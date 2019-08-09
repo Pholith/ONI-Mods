@@ -23,4 +23,6 @@ TerrainBiomeLookupTable:
     - content: Oxygen
       bandSize: 0.35
     - content: Algae
-      bandSize: 0.25
+      bandSize: 0.15
+    - content: IgneousRock
+      bandSize: 0.05

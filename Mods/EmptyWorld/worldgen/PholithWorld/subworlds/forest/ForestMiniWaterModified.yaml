@@ -9,7 +9,7 @@ minChildCount: 2
 sampleBehaviour: PoissonDisk
 borderOverride: rocky
 biomes:
-  - name: biomes/Forest/Basic
+  - name: PholithWorld/biomes/CustomForest/Basic
     weight: 2
     tags:
       - Oxyfern

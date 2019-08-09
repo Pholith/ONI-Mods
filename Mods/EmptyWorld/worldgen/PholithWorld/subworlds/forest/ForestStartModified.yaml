@@ -21,7 +21,6 @@ biomes:
       - ForestForagePlantPlanted
       - LightBug
       - LeafyPlant        
-      - LeafyPlantSeed
       - Squirrel          
 
   - name: PholithWorld/biomes/CustomForest/Basic
@@ -30,21 +29,17 @@ biomes:
       - Puft
       - Pacu
       - BulbPlant
-      - BasicFabricMaterialPlantSeed
       - ForestTree     
       - BasicSingleHarvestPlant
       - BasicSingleHarvestPlantSeed
       - ForestForagePlantPlanted
-      - LightBug
       - LeafyPlant        
-      - LeafyPlantSeed
   - name: PholithWorld/biomes/CustomForest/Basic
     weight: 2
     tags:
       - Oxyfern
       - Drecko
       - LeafyPlant        
-      - LeafyPlantSeed
       - BasicSingleHarvestPlantSeed
       - ForestForagePlantPlanted
 
