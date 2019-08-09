@@ -15,10 +15,8 @@ layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 # List all the zone files to load
 subworldFiles:
   - name: PholithWorld/subworlds/forest/ForestStartModified
-  - name: subworlds/forest/ForestMiniWater
-  - name: subworlds/forest/ForestMiniOxy
-    weight: 0.7
-  - name: subworlds/forest/ForestMiniMetal
+  - name: PholithWorld/subworlds/forest/ForestMiniWaterModified
+    weight: 1.5
   - name: subworlds/marsh/HotMarsh
   - name: subworlds/Impenetrable
   - name: subworlds/space/Space
@@ -31,9 +29,7 @@ startSubworldName: PholithWorld/subworlds/forest/ForestStartModified
 startingBaseTemplate: forestBase
 
 globalFeatureTemplates:
-  feature_geyser_generic: 2
-  feature_geyser_generic2: 14
-
+  feature_geyser_generic: 1
 
 # Rivers:
 #   - water
@@ -64,16 +60,6 @@ unknownCellsAllowedSubworlds:
       - PholithWorld/subworlds/space/SpaceGeyser
 
   - tagcommand: DistanceFromTag
-    tag: AtStart
-    minDistance: 1
-    maxDistance: 1
-    command: Replace
-    subworldNames:
-      - subworlds/forest/ForestMiniOxy
-      - subworlds/forest/ForestMiniWater
-      - subworlds/forest/ForestMiniMetal
-
-  - tagcommand: DistanceFromTag
     tag: AtSurface
     minDistance: 1
     maxDistance: 2
@@ -81,7 +67,15 @@ unknownCellsAllowedSubworlds:
     subworldNames:
       - subworlds/space/Surface
 
-     
+  - tagcommand: DistanceFromTag
+    tag: AtStart
+    minDistance: 1
+    maxDistance: 1
+    command: Replace
+    subworldNames:
+      - PholithWorld/subworlds/forest/ForestMiniWaterModified
+      - PholithWorld/subworlds/space/SpaceGeyser
+
   - tagcommand: AtTag
     tag: AtSurface
     command: Replace

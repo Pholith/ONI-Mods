@@ -2,8 +2,8 @@ biomeNoise: noise/Generic
 temperatureRange: VeryCold
 minChildCount: 4
 density:
-  min: 35
-  max: 45
+  min: 25
+  max: 35
 avoidRadius: 50.0
 sampleBehaviour: PoissonDisk
 biomes:
@@ -16,6 +16,6 @@ tags:
   - IgnoreCaveOverride
   - NoGlobalFeatureSpawning
 featureTemplates:
-	feature_geyser_generic2: 10
+	feature_geyser_generic2: 13
 
 zoneType: Space

@@ -2,10 +2,10 @@ biomeNoise: noise/subworldForest
 temperatureRange: Room
 pdWeight: 2
 density:
-  min: 20
-  max: 25
-avoidRadius: 140.0
-minChildCount: 10
+  min: 5
+  max: 15
+avoidRadius: 90.0
+minChildCount: 2
 dontRelaxChildren: true
 sampleBehaviour: UniformCircle
 borderOverride: rocky
@@ -43,7 +43,6 @@ biomes:
     tags:
       - Oxyfern
       - Drecko
-      - Glom
       - LeafyPlant        
       - LeafyPlantSeed
       - BasicSingleHarvestPlantSeed
@@ -55,11 +54,9 @@ tags:
   - NoGlobalFeatureSpawning
 centralFeature:
   type: features/generic/StartLocation
+
 features:
   - type: features/forest/SmallLake
-  - type: features/forest/OxyfernCave
-  - type: features/forest/PhosphoriteLump
-featureTemplates:
-  feature_geyser_generic2: 2
+
 
 zoneType: Forest
