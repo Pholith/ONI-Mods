@@ -26,6 +26,10 @@ pointsOfInterest:
   bunker_skyblock:
     - poi_bunker_skyblock
 
+tags:
+  - IgnoreCaveOverride
+  - NoGlobalFeatureSpawning
+
 centralFeature:
   type: features/forest/SmallLake
 features: []
