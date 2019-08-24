@@ -4,5 +4,10 @@
 
   "pointsWhen3Interest": "1",
   "pointsWhen2Interest": "3",
-  "pointsWhen1Interest": "7"
+  "pointsWhen1Interest": "7",
+
+  "startingLevelOnPrintingPod": "1",
+
+  "numberOfGoodTraits": "1",
+  "numberOfBadTraits": "1"
 }

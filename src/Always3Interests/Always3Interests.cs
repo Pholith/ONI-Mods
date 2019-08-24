@@ -8,7 +8,6 @@ using System.Linq;
 using System.Reflection.Emit;
 using TUNING;
 using UnityEngine;
-using static TUNING.DUPLICANTSTATS;
 
 namespace Always3Interests
 {
@@ -65,74 +64,154 @@ namespace Always3Interests
             return codes.AsEnumerable();
         }
     }
-
-    /*[HarmonyPatch(typeof(MinionStartingStats), "ApplyTraits")]
-    public class ApplyPatch
+    [HarmonyPatch(typeof(MinionStartingStats))]
+    [HarmonyPatch("GenerateTraits")]
+    public class TraitPatch
     {
-        public static void Postfix(ref MinionStartingStats __instance, GameObject go)
+        public static bool Prefix(MinionStartingStats __instance, List<ChoreGroup> disabled_chore_groups)
         {
-            JsonReader config = new JsonReader();
+            DUPLICANTSTATS.MAX_TRAITS = 10;
 
-            int numberOfGoodTraits = config.GetProperty<int>("numberOfGoodTraits", 1);
-            int numberOfBadTraits = config.GetProperty<int>("numberOfBadTraits", 1);
-
-            Traits component = go.GetComponent<Traits>();
-            component.Clear();
-
-
-            Stack<Trait> stackOfGoodsTraits = new Stack<Trait>();
-            Stack<Trait> stackOfBadsTraits = new Stack<Trait>();
-
-            // Filling stacks
-
-            for (int i = 0; i < numberOfGoodTraits ; i++)
+            List<string> selectedTraits = new List<string>();
+            System.Random randSeed = new System.Random();
+            Trait trait = Db.Get().traits.Get(__instance.personality.stresstrait);
+            __instance.stressTrait = trait;
+            Trait trait2 = Db.Get().traits.Get(__instance.personality.congenitaltrait);
+            if (trait2.Name == "None")
             {
-                // Check if stack is empty or not
-                if (stackOfGoodsTraits.Count > 0)
+                __instance.congenitaltrait = null;
+            }
+            else
+            {
+                __instance.congenitaltrait = trait2;
+            }
+            Func<List<DUPLICANTSTATS.TraitVal>, bool> func = delegate (List<DUPLICANTSTATS.TraitVal> traitPossibilities)
+            {
+                if (__instance.Traits.Count > DUPLICANTSTATS.MAX_TRAITS)
                 {
-                    component.Add(stackOfGoodsTraits.Pop());
+                    return false;
                 }
-                else
+                float num2 = Util.GaussianRandom(0f, 1f);
+                List<DUPLICANTSTATS.TraitVal> list = new List<DUPLICANTSTATS.TraitVal>(traitPossibilities);
+                list.ShuffleSeeded(randSeed);
+                list.Sort((DUPLICANTSTATS.TraitVal t1, DUPLICANTSTATS.TraitVal t2) => -t1.probability.CompareTo(t2.probability));
+                foreach (DUPLICANTSTATS.TraitVal traitVal in list)
                 {
-                    string id;
-                    Trait t;
-                    do
+                    if (!selectedTraits.Contains(traitVal.id))
                     {
-                        id = DUPLICANTSTATS.GOODTRAITS.GetRandom().id;
-                        t = Db.Get().traits.TryGet(id);
+                        if (traitVal.requiredNonPositiveAptitudes != null)
+                        {
+                            bool flag2 = false;
+                            foreach (KeyValuePair<SkillGroup, float> keyValuePair in __instance.skillAptitudes)
+                            {
+                                if (flag2)
+                                {
+                                    break;
+                                }
+                                foreach (HashedString x in traitVal.requiredNonPositiveAptitudes)
+                                {
+                                    if (x == keyValuePair.Key.IdHash && keyValuePair.Value > 0f)
+                                    {
+                                        flag2 = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (flag2)
+                            {
+                                continue;
+                            }
+                        }
+                        if (traitVal.mutuallyExclusiveTraits != null)
+                        {
+                            bool flag3 = false;
+                            foreach (string item in selectedTraits)
+                            {
+                                flag3 = traitVal.mutuallyExclusiveTraits.Contains(item);
+                                if (flag3)
+                                {
+                                    break;
+                                }
+                            }
+                            if (flag3)
+                            {
+                                continue;
+                            }
+                        }
+                        if (num2 > traitVal.probability)
+                        {
+                            Trait trait3 = Db.Get().traits.TryGet(traitVal.id);
+                            if (trait3 == null)
+                            {
+                                global::Debug.LogWarning("Trying to add nonexistent trait: " + traitVal.id);
+                            }
+                            else if (trait3.ValidStarterTrait)
+                            {
+                                selectedTraits.Add(traitVal.id);
+                                __instance.Traits.Add(trait3);
+                                if (trait3.disabledChoreGroups != null)
+                                {
+                                    for (int k = 0; k < trait3.disabledChoreGroups.Length; k++)
+                                    {
+                                        disabled_chore_groups.Add(trait3.disabledChoreGroups[k]);
+                                    }
+                                }
+                                return true;
+                            }
 
-                    } while (component.HasTrait(id)); // Don't add a actual same trait
-                    component.Add(t);
+                        }
+                    }
+                }
+                return false;
+            };
+
+
+            int numberOfGoodTraits = TuningConfigPatch.config.GetProperty<int>("numberOfGoodTraits", 1);
+            int numberOfBadTraits = TuningConfigPatch.config.GetProperty<int>("numberOfBadTraits", 1);
+
+            if (numberOfGoodTraits > 5)
+            {
+                numberOfGoodTraits = 5;
+            }
+            if (numberOfBadTraits > 5)
+            {
+                numberOfBadTraits = 5;
+            }
+
+            for (int i = 0; i < numberOfBadTraits; i++)
+            {
+                bool isTraitAdded = false;
+                while (!isTraitAdded)
+                {
+                    isTraitAdded = func(DUPLICANTSTATS.BADTRAITS);
                 }
             }
-            Logs.Log(component.TraitList.Count + "");
-
-            for (int i = 0; i < numberOfBadTraits ; i++)
+            for (int i = 0; i < numberOfGoodTraits; i++)
             {
-                // Check if stack is empty or not
-                if (stackOfBadsTraits.Count > 0)
+                bool isTraitAdded = false;
+                while (!isTraitAdded)
                 {
-                    component.Add(stackOfBadsTraits.Pop());
-                }
-                else
-                {
-                    string id;
-                    Trait t;
-                    do
-                    {
-                        id = DUPLICANTSTATS.BADTRAITS.GetRandom().id;
-                        t = Db.Get().traits.TryGet(id);
-
-                    } while (component.HasTrait(id)); // Don't add a actual same trait
-                    component.Add(t);
+                    isTraitAdded = func(DUPLICANTSTATS.GOODTRAITS);
                 }
             }
-
-
-            // vanilla code
-            //go.GetComponent<MinionIdentity>().SetName(__instance.Name);
-            //go.GetComponent<MinionIdentity>().SetGender(__instance.GenderStringKey);
+            return false;
 
         }
-    }*/
+    }
+    [HarmonyPatch(typeof(HeadquartersConfig))]
+    [HarmonyPatch("ConfigureBuildingTemplate")]
+    public class SkillPointPatch
+    {
+        public static void Postfix(GameObject go)
+        {
+            int startingLevel = TuningConfigPatch.config.GetProperty<int>("startingLevelOnPrintingPod", 1);
+
+            Telepad telepad = go.AddOrGet<Telepad>();
+            telepad.startingSkillPoints = startingLevel;
+
+            Logs.Log("test lib 2");
+
+        }
+    }
+
 }
