@@ -25,8 +25,9 @@ namespace Always3Interests
             var custom1 = config.GetProperty<int>("pointsWhen1Interest", 7);
             var custom2 = config.GetProperty<int>("pointsWhen2Interest", 3);
             var custom3 = config.GetProperty<int>("pointsWhen3Interest", 1);
+            var custom4 = config.GetProperty<int>("pointsWhenMoreThan3Interest", 0);
 
-            var customAttributes = new int[] { custom1, custom2, custom3 };
+            var customAttributes = new int[] { custom1, custom2, custom3, custom4, custom4, custom4, custom4, custom4, custom4, custom4 , custom4};
             Traverse.Create<DUPLICANTSTATS>().Field("APTITUDE_ATTRIBUTE_BONUSES").SetValue(customAttributes);
         }
     }

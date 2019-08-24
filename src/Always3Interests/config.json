@@ -2,6 +2,7 @@
   "randomNumberOfInterests": "false",
   "numberOfInterests": "3",
 
+  "pointsWhenMoreThan3Interest": "0",
   "pointsWhen3Interest": "1",
   "pointsWhen2Interest": "3",
   "pointsWhen1Interest": "7",
