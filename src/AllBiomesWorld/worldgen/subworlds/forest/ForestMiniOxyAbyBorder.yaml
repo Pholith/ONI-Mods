@@ -1,0 +1,31 @@
+biomeNoise: noise/subworldForest
+temperatureRange: Room
+pdWeight: 0.5
+density:
+  min: 10
+  max: 15
+avoidRadius: 5
+minChildCount: 4
+sampleBehaviour: PoissonDisk
+borderOverride: hardToDig
+biomes:
+  - name: biomes/Forest/BasicOxy
+    weight: 2
+    tags:
+      - Oxyfern
+      - ForestTree     
+      - BasicSingleHarvestPlant
+      - BasicSingleHarvestPlantSeed
+      - ForestForagePlantPlanted
+      - LightBug
+      - LeafyPlant        
+      - LeafyPlantSeed
+      - Squirrel          
+tags:
+  - StartWorld
+  - IgnoreCaveOverride
+  - NoGlobalFeatureSpawning
+centralFeature:
+features:
+  - type: features/forest/PhosphoriteLump
+zoneType: Forest

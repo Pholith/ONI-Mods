@@ -15,11 +15,11 @@ layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 # List all the zone files to load
 subworldFiles:
   - name: subworlds/forest/ForestStart
-  - name: subworlds/forest/ForestMiniWater
-  - name: subworlds/forest/ForestMiniOxy
+  - name: subworlds/forest/ForestMiniWaterAbyBorder
+  - name: subworlds/forest/ForestMiniOxyAbyBorder
     weight: 0.3
-  - name: subworlds/forest/ForestMiniMetal
-  - name: subworlds/sandstone/SandstoneMiniAlgae
+  - name: subworlds/forest/ForestMiniMetalAbyBorder
+  - name: subworlds/sandstone/SandstoneMiniAlgaeAbyBorder
   - name: subworlds/frozen/Frozen
   - name: subworlds/frozen/CO2Lakes
   - name: subworlds/forest/Forest
@@ -29,8 +29,9 @@ subworldFiles:
   - name: subworlds/magma/Bottom
   - name: subworlds/magma/VolcanoHole
   - name: subworlds/oil/OilPockets
+    weight: 0.8
   - name: subworlds/sandstone/Desert
-    weight: 0.7
+    weight: 0.5
   - name: subworlds/space/Space
   - name: subworlds/space/Surface
   - name: subworlds/ocean/Ocean
@@ -63,9 +64,9 @@ unknownCellsAllowedSubworlds:
     maxDistance: 1
     command: Replace
     subworldNames:
-      - subworlds/sandstone/SandstoneMiniAlgae
-      - subworlds/forest/ForestMiniWater
-      - subworlds/forest/ForestMiniMetal
+      - subworlds/sandstone/SandstoneMiniAlgaeAbyBorder
+      - subworlds/forest/ForestMiniWaterAbyBorder
+      - subworlds/forest/ForestMiniMetalAbyBorder
   - tagcommand: DistanceFromTag
     tag: AtStart
     minDistance: 2
@@ -97,12 +98,6 @@ unknownCellsAllowedSubworlds:
       - subworlds/frozen/Frozen
       - subworlds/sandstone/Desert
 
-  - tagcommand: AtTag
-    tag: AtDepths
-    command: Replace
-    subworldNames:
-      - subworlds/magma/Bottom
-      - subworlds/magma/VolcanoHole
 
   - tagcommand: AtTag
     tag: AtSurface
@@ -117,6 +112,17 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - subworlds/oil/OilPockets
+      - subworlds/barren/BarrenGranite
+      - subworlds/sandstone/Desert
+
+  - tagcommand: AtTag
+    tag: AtDepths
+    command: Replace
+    subworldNames:
+      - subworlds/oil/OilPockets
+      - subworlds/magma/Bottom
+      - subworlds/magma/VolcanoHole
+
 
   - tagcommand: DistanceFromTag
     tag: AtSurface
