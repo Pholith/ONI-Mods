@@ -73,7 +73,7 @@ namespace ILoveSlicksters
 
         public const SimHashes EMIT_ELEMENT = SimHashes.LiquidOxygen;
 
-        private static float KG_ORE_EATEN_PER_CYCLE = 20f;
+        private static float KG_ORE_EATEN_PER_CYCLE = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH;
 
         private static float CALORIES_PER_KG_OF_ORE = OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / KG_ORE_EATEN_PER_CYCLE;
 

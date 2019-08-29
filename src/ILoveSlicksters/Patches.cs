@@ -10,20 +10,20 @@ namespace ILoveSlicksters
 
     class Patches
     {
-
+        // Egg chance patches
         public static void OnLoad()
         {
 
             // Add the temperature modifier for decor oilfloater
             Type[] parameters_type = new Type[] { typeof(string), typeof(Tag), typeof(float), typeof(float), typeof(float), typeof(bool) };
-            object[] paramaters = new object[] { "EthanolOilfloater", "EthanolOilfloaterEgg".ToTag(), 253.15f, 313.15f, CUSTOM_TUNINGS.EGG_MODIFIER_PER_SECOND.NORMAL, false };
+            object[] paramaters = new object[] { "EthanolOilfloater", "EthanolOilfloaterEgg".ToTag(), 253.15f, 313.15f, PHO_TUNING.EGG_MODIFIER_PER_SECOND.NORMAL, false };
 
             CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
                 Traverse.Create<CREATURES.EGG_CHANCE_MODIFIERS>().Method("CreateTemperatureModifier", parameters_type).GetValue<System.Action>(paramaters)
             );
 
             // Add the temperature modifier for molten oilfloater
-            object[] paramaters2 = new object[] { "RobotOilfloater", "RobotOilfloaterEgg".ToTag(), 393.15f, 543.15f, CUSTOM_TUNINGS.EGG_MODIFIER_PER_SECOND.NORMAL, false };
+            object[] paramaters2 = new object[] { "RobotOilfloater", "RobotOilfloaterEgg".ToTag(), 393.15f, 543.15f, PHO_TUNING.EGG_MODIFIER_PER_SECOND.NORMAL, false };
 
             CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
                 Traverse.Create<CREATURES.EGG_CHANCE_MODIFIERS>().Method("CreateTemperatureModifier", parameters_type).GetValue<System.Action>(paramaters2)
@@ -47,7 +47,7 @@ namespace ILoveSlicksters
             });
             // Add the light modifier for leafy oilfloater
             CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
-                CUSTOM_TUNINGS.CreateLightModifier("LeafyOilfloater", "LeafyOilfloaterEgg".ToTag(), CUSTOM_TUNINGS.EGG_MODIFIER_PER_SECOND.NORMAL, false)
+                PHO_TUNING.CreateLightModifier("LeafyOilfloater", "LeafyOilfloaterEgg".ToTag(), PHO_TUNING.EGG_MODIFIER_PER_SECOND.NORMAL, false)
             );
 
 
@@ -67,11 +67,28 @@ namespace ILoveSlicksters
 
         }
     }
+    // Kg eaten patch
+    [HarmonyPatch(typeof(Db))]
+    [HarmonyPatch("Initialize")]
+    public class KG_Eaten_Patch
+    {
+        public static void OnLoad()
+        {
+            Traverse.Create<OilFloaterConfig>().Field<float>("KG_ORE_EATEN_PER_CYCLE").Value = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2;
+
+            float CALORIES_PER_KG_OF_ORE = OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2;
+
+            Traverse.Create<OilFloaterConfig>().Field<float>("CALORIES_PER_KG_OF_ORE").Value = CALORIES_PER_KG_OF_ORE;
+            Traverse.Create<OilFloaterHighTempConfig>().Field<float>("CALORIES_PER_KG_OF_ORE").Value = CALORIES_PER_KG_OF_ORE;
+
+        }
+    }
+
 
     // add the OwO effect
     [HarmonyPatch(typeof(Db))]
     [HarmonyPatch("Initialize")]
-    class OwO_EffectPatch
+    public class OwO_EffectPatch
     {
         public static void Postfix(Db __instance)
         {

@@ -2,9 +2,19 @@
 
 namespace ILoveSlicksters
 {
-    public class CUSTOM_TUNINGS
+    public class PHO_TUNING
     {
+        public static class OILFLOATER
+        {
+            public static class KG_ORE_EATEN_PER_CYCLE
+            {
+                public static float LOW = 10f;
+                public static float ORIGINAL = 20f;
+                public static float HIGH = 40f;
+                public static float HIGH2 = 60f;
 
+            }
+        }
         public static class EGG_MODIFIER_PER_SECOND
         {
             private static float EGG_CONVERTER = 600 * 100;
