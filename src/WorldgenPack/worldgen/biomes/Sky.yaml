@@ -1,0 +1,10 @@
+TerrainBiomeLookupTable:
+  # keys to remove from in-memory structure when this file is loaded
+  remove: [] 
+  # elements to add from in-memory structure when this file is loaded
+  add:
+    Basic:
+    - content: Hydrogen
+      bandSize: 0.1
+    - content: Oxygen
+      bandSize: 0.9

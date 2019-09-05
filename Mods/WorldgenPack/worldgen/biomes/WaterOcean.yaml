@@ -1,0 +1,10 @@
+TerrainBiomeLookupTable:
+  # keys to remove from in-memory structure when this file is loaded
+  remove: [] 
+  # elements to add from in-memory structure when this file is loaded
+  add:
+    Basic:
+    - content: Water
+      bandSize: 0.5
+      overrides:
+        massMultiplier: 1.15

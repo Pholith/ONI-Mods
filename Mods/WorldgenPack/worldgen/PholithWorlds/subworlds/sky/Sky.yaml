@@ -1,0 +1,22 @@
+biomeNoise: noise/Generic
+temperatureRange: Cold
+pdWeight: 0.8
+density:
+  min: 25
+  max: 15
+avoidRadius: 50.0
+sampleBehaviour: PoissonDisk
+
+biomes:
+  - name: biomes/Sky/Basic
+    weight: 1
+    #overrides:
+    #  massMultiplier: 50
+    tags:
+      - PuftBleachstone
+
+pointsOfInterest:
+tags:
+  - IgnoreCaveOverride
+zoneType: Ocean
+

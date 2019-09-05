@@ -1,0 +1,44 @@
+shape: Splat
+borders:
+  - 1
+  - 2
+blobSize:
+  min: 2
+  max: 5
+internalMobs:
+   - type: SeaLettuce
+     count:
+       min: 1
+       max: 2
+   - type: Pacu
+     count:
+       min: 0
+       max: 1
+   - type: SeaLettuceSeed
+     count:
+       min: 1
+       max: 2
+ElementChoiceGroups:
+  RoomCenterElements:
+    selectionMethod: WeightedResample
+    choices:
+      - element: Algae
+      - element: Sand
+  RoomBorderChoices0:
+    selectionMethod: WeightedResample
+    choices:
+      - element: Sand
+        weight: 0.2
+      - element: SedimentaryRock
+        weight: 1
+      - element: Algae
+        weight: 0.5
+      - element: Water
+        overrides:
+          massOverride: 0.5
+  RoomBorderChoices1:
+    selectionMethod: WeightedResample
+    choices:
+      - element: Water
+        overrides:
+          massOverride: 0.5

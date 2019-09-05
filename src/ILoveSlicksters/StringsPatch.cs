@@ -89,7 +89,7 @@ namespace ILoveSlicksters
                 "Robot Slicksters are slimy critters that consume ",
                 UI.FormatAsLink("Carbon Dioxide", "CARBONDIOXIDE"),
                 " and exude ",
-                UI.FormatAsLink("Charcoal", "CARBON"),
+                UI.FormatAsLink("Steel", "STEEL"),
                 "."
             });
 

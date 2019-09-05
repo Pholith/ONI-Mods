@@ -14,6 +14,9 @@ namespace ILoveSlicksters
         public static void OnLoad()
         {
 
+            ModUtil.RegisterForTranslation(typeof(StringsPatch));
+
+
             // Add the temperature modifier for decor oilfloater
             Type[] parameters_type = new Type[] { typeof(string), typeof(Tag), typeof(float), typeof(float), typeof(float), typeof(bool) };
             object[] paramaters = new object[] { "EthanolOilfloater", "EthanolOilfloaterEgg".ToTag(), 253.15f, 313.15f, PHO_TUNING.EGG_MODIFIER_PER_SECOND.NORMAL, false };
@@ -23,7 +26,7 @@ namespace ILoveSlicksters
             );
 
             // Add the temperature modifier for molten oilfloater
-            object[] paramaters2 = new object[] { "RobotOilfloater", "RobotOilfloaterEgg".ToTag(), 393.15f, 543.15f, PHO_TUNING.EGG_MODIFIER_PER_SECOND.NORMAL, false };
+            object[] paramaters2 = new object[] { "RobotOilfloater", "RobotOilfloaterEgg".ToTag(), 523.15f, 743.15f, PHO_TUNING.EGG_MODIFIER_PER_SECOND.NORMAL, false };
 
             CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
                 Traverse.Create<CREATURES.EGG_CHANCE_MODIFIERS>().Method("CreateTemperatureModifier", parameters_type).GetValue<System.Action>(paramaters2)

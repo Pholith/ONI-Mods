@@ -12,7 +12,7 @@ namespace ILoveSlicksters
 
         public GameObject CreatePrefab()
         {
-            GameObject gameObject = CreateOilFloater(ID, StringsPatch.VARIANT_OWO.NAME, StringsPatch.VARIANT_OWO.DESC, "custom_oilfloater_anim", false);
+            GameObject gameObject = CreateOilFloater(ID, StringsPatch.VARIANT_OWO.NAME, StringsPatch.VARIANT_OWO.DESC, "custom_oilfloater_kanim", false);
 
             DecorProvider decorProvider = gameObject.AddOrGet<DecorProvider>();
             decorProvider.SetValues(TUNING.DECOR.BONUS.TIER5);
@@ -27,7 +27,7 @@ namespace ILoveSlicksters
                 EGG_ID, 
                 StringsPatch.VARIANT_OWO.EGG_NAME, 
                 StringsPatch.VARIANT_OWO.DESC, 
-                "egg_oilfloater", 
+                "egg_oilfloater_kanim", 
                 OilFloaterTuning.EGG_MASS, 
                 "OwO_OilfloaterBaby", 
                 60.0000038f, 20f, 

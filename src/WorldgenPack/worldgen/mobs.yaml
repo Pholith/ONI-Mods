@@ -1,0 +1,14 @@
+#MobLookupTable:
+  # keys to remove from in-memory structure when this file is loaded
+  #remove:
+  #  - PuftBleachstone
+  # elements to add from in-memory structure when this file is loaded
+  #add:
+  #  PuftBleachstone:
+  #    location: Air
+  #    selectMethod: Centroid
+  #    density:
+  #      min: 0.002
+  #      max: 0.002
+  #    width: 1
+  #    height: 1

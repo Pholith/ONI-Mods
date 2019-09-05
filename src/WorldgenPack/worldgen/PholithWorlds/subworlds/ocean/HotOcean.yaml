@@ -1,0 +1,17 @@
+biomeNoise: noise/Generic
+temperatureRange: HumanHot
+minChildCount: 2
+density:
+  min: 55
+  max: 65
+avoidRadius: 50.0
+sampleBehaviour: PoissonDisk
+biomes:
+  - name: biomes/WaterOcean/Basic
+    weight: 1
+    #overrides:
+    #  massMultiplier: 50
+pointsOfInterest:
+tags:
+  - IgnoreCaveOverride
+zoneType: Forest

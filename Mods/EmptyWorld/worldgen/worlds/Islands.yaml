@@ -1,0 +1,132 @@
+name: STRINGS.WORLDS.ISLANDS.NAME
+description: STRINGS.WORLDS.ISLANDS.DESCRIPTION
+spriteName: Asteroid_Islands
+coordinatePrefix: ISD-PHO
+difficulty: 3
+tier: 2
+disableWorldTraits: false
+
+worldsize:
+  X: 256
+  Y: 384
+layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
+#                                in order to use this.
+
+# List all the zone files to load
+subworldFiles:
+  - name: PholithWorld/subworlds/forest/ForestStartModified
+  - name: PholithWorld/subworlds/forest/ForestMiniWaterModified
+    weight: 2
+  - name: subworlds/marsh/HotMarsh
+  - name: subworlds/Impenetrable
+  - name: subworlds/space/Space
+    weight: 4
+  - name: PholithWorld/subworlds/space/NormalSpacePOI
+  - name: subworlds/space/Surface
+
+  - name: subworlds/frozen/Frozen
+  - name: subworlds/marsh/HotMarsh
+  - name: subworlds/jungle/Jungle
+  - name: subworlds/magma/MagmaVent
+    weight: 0.2
+  - name: subworlds/magma/Bottom
+    weight: 0.5
+  - name: subworlds/oil/OilPatch
+  - name: subworlds/space/Surface
+  - name: subworlds/ocean/Ocean
+  - name: subworlds/rust/Rust
+  - name: subworlds/barren/BarrenGranite
+    weight: 0.3
+
+
+
+startSubworldName: PholithWorld/subworlds/forest/ForestStartModified
+startingBaseTemplate: forestBase
+
+globalFeatureTemplates:
+  feature_geyser_generic: 12
+
+# Rivers:
+#   - water
+#   - fatWater
+#   - oilygoodness
+
+# When we are converting unknown cells, this will give us the options, processed in this order, the effects are cumlative
+unknownCellsAllowedSubworlds: 
+  - tagcommand: Default
+    command: Replace
+    subworldNames:
+      - PholithWorld/subworlds/forest/ForestStartModified
+      
+  - tagcommand: DistanceFromTag
+    tag: AtStart
+    minDistance: 2
+    maxDistance: 999
+    command: Replace
+    subworldNames:
+      - subworlds/marsh/HotMarsh
+
+  - tagcommand: DistanceFromTag
+    tag: AtSurface
+    minDistance: 2
+    maxDistance: 999
+    command: Replace
+    subworldNames:
+      - subworlds/space/Space
+
+  - tagcommand: DistanceFromTag
+    tag: AtStart
+    minDistance: 1
+    maxDistance: 1
+    command: Replace
+    subworldNames:
+      - PholithWorld/subworlds/forest/ForestMiniWaterModified
+      - subworlds/space/Space
+
+  - tagcommand: DistanceFromTag
+    tag: AtStart
+    minDistance: 2
+    maxDistance: 2
+    command: UnionWith
+    subworldNames:
+	  - subworlds/marsh/HotMarsh
+	  - subworlds/space/Space
+	  - subworlds/jungle/Jungle
+
+  - tagcommand: DistanceFromTag
+    tag: AtStart
+    minDistance: 3
+    maxDistance: 3
+    command: UnionWith
+    subworldNames:
+      - subworlds/frozen/Frozen
+	  - subworlds/ocean/Ocean
+	  - subworlds/rust/Rust
+      - PholithWorld/subworlds/space/NormalSpacePOI
+
+  - tagcommand: DistanceFromTag
+    tag: AtStart
+    minDistance: 4
+    maxDistance: 999
+    command: UnionWith
+    subworldNames:
+      - subworlds/magma/MagmaVent
+	  - subworlds/oil/OilPatch
+	  - subworlds/barren/BarrenGranite
+      - subworlds/frozen/Frozen
+	  - subworlds/jungle/Jungle
+      - PholithWorld/subworlds/space/NormalSpacePOI
+      - subworlds/magma/Bottom
+	  	  
+  - tagcommand: DistanceFromTag
+    tag: AtSurface
+    minDistance: 1
+    maxDistance: 2
+    command: Replace
+    subworldNames:
+      - subworlds/space/Surface
+  - tagcommand: AtTag
+    tag: AtSurface
+    command: Replace
+    subworldNames:
+      - subworlds/space/Surface

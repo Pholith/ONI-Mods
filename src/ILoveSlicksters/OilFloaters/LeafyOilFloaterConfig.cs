@@ -9,7 +9,7 @@ namespace ILoveSlicksters
     {
         public GameObject CreatePrefab()
         {
-            GameObject gameObject = CreateOilfloater(ID, StringsPatch.VARIANT_LEAFY.NAME, StringsPatch.VARIANT_LEAFY.DESC, "custom_oilfloater_anim", false);
+            GameObject gameObject = CreateOilfloater(ID, StringsPatch.VARIANT_LEAFY.NAME, StringsPatch.VARIANT_LEAFY.DESC, "oilfloater_kanim", false);
 
             gameObject.AddOrGetDef<CreatureLightMonitor.Def>();
 
@@ -18,7 +18,7 @@ namespace ILoveSlicksters
                 EGG_ID, 
                 StringsPatch.VARIANT_LEAFY.EGG_NAME, 
                 StringsPatch.VARIANT_LEAFY.DESC, 
-                "egg_oilfloater", 
+                "egg_oilfloater_kanim", 
                 OilFloaterTuning.EGG_MASS,
                 "LeafyOilfloaterBaby",
                 60.0000038f, 20f, 

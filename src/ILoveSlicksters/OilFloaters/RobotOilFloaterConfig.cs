@@ -9,14 +9,14 @@ namespace ILoveSlicksters
     {
         public GameObject CreatePrefab()
         {
-            GameObject gameObject = CreateOilfloater(ID, StringsPatch.VARIANT_ROBOT.NAME, StringsPatch.VARIANT_ROBOT.DESC, "custom_oilfloater_anim", false);
+            GameObject gameObject = CreateOilfloater(ID, StringsPatch.VARIANT_ROBOT.NAME, StringsPatch.VARIANT_ROBOT.DESC, "custom_oilfloater_kanim", false);
 
             EntityTemplates.ExtendEntityToFertileCreature(
                 gameObject, 
                 EGG_ID, 
                 StringsPatch.VARIANT_ROBOT.EGG_NAME, 
                 StringsPatch.VARIANT_ROBOT.DESC, 
-                "egg_oilfloater", 
+                "egg_oilfloater_kanim", 
                 OilFloaterTuning.EGG_MASS,
                 "RobotOilfloaterBaby",
                 60.0000038f, 20f,
@@ -28,7 +28,7 @@ namespace ILoveSlicksters
 
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 393.15f, 543.15f, is_baby, "hot_");
+            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 523.15f, 743.15f, is_baby, "hot_");
             EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE, LIFESPAN.TIER3);
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
@@ -74,7 +74,7 @@ namespace ILoveSlicksters
 
         public const SimHashes CONSUME_ELEMENT = SimHashes.CarbonDioxide;
 
-        public const SimHashes EMIT_ELEMENT = SimHashes.Carbon;
+        public const SimHashes EMIT_ELEMENT = SimHashes.MoltenSteel;
 
         private static float KG_ORE_EATEN_PER_CYCLE = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2;
 
