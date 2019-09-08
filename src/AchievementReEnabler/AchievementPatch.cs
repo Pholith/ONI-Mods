@@ -15,8 +15,6 @@ namespace AchievementReEnabler
         public static void Postfix(Game __instance)
         {
             __instance.debugWasUsed = false;
-
-            Logs.Log("test pholib");
         }
     }
 

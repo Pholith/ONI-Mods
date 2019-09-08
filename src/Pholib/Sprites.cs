@@ -1,11 +1,12 @@
 ﻿using System.IO;
 using UnityEngine;
 
-namespace Utilities
+namespace Pholib
 {
-    class Sprites
+    public class Sprites
     {
-        // Thanks Mayall mod for this
+        // Thanks Mayall for this
+        // Load a incorporated sprite
         public static Sprite CreateSpriteDXT5(Stream inputStream, int width, int height)
         {
             byte[] array = new byte[inputStream.Length - 128L];
