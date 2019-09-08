@@ -103,6 +103,30 @@ namespace ILoveSlicksters
             }
 
         }
+        public static class VARIANT_POLAR
+        {
+
+            public static LocString NAME = UI.FormatAsLink("Polar Slickster", "POLAROILFLOATER");
+
+            public static LocString DESC = string.Concat(new string[]
+            {
+                "Polar Slicksters are slimy critters that consume ",
+                UI.FormatAsLink("Carbon Dioxide", "CARBONDIOXIDE"),
+                " and exude ",
+                UI.FormatAsLink("Ice", "ICE"),
+                "."
+            });
+
+            public static LocString EGG_NAME = UI.FormatAsLink("Polar Slickster Egg", "POLAROILFLOATER");
+
+            public static class BABY
+            {
+                public static LocString NAME = UI.FormatAsLink("Polar Larva", "POLAROILFLOATER");
+
+                public static LocString DESC = "A goopy little Polar Larva.\n\nOne day it will grow into an adult Slickster morph, the " + UI.FormatAsLink("Polar Slickster", "POLAROILFLOATER") + ".";
+            }
+
+        }
 
         public static class FERTILITY_MODIFIERS
         {
@@ -110,7 +134,7 @@ namespace ILoveSlicksters
             {
                 public static LocString NAME = "Light";
 
-                public static LocString DESC = "In the light";
+                public static LocString DESC = "Is in the light";
             }
         }
     }

@@ -5,19 +5,17 @@ using static TUNING.CREATURES;
 
 namespace ILoveSlicksters
 {
-    public class LeafyOilfloaterConfig : IEntityConfig
+    public class PolarOilfloaterConfig : IEntityConfig
     {
         public GameObject CreatePrefab()
         {
-            GameObject gameObject = CreateOilfloater(ID, StringsPatch.VARIANT_LEAFY.NAME, StringsPatch.VARIANT_LEAFY.DESC, base_kanim_id, false);
-
-            gameObject.AddOrGetDef<CreatureLightMonitor.Def>();
+            GameObject gameObject = CreateOilfloater(ID, StringsPatch.VARIANT_POLAR.NAME, StringsPatch.VARIANT_POLAR.DESC, base_kanim_id, false);
 
             EntityTemplates.ExtendEntityToFertileCreature(
                 gameObject, 
                 EGG_ID, 
-                StringsPatch.VARIANT_LEAFY.EGG_NAME, 
-                StringsPatch.VARIANT_LEAFY.DESC,
+                StringsPatch.VARIANT_POLAR.EGG_NAME, 
+                StringsPatch.VARIANT_POLAR.DESC,
                 egg_kanim_id, 
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
@@ -37,7 +35,7 @@ namespace ILoveSlicksters
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.deltaAttribute.Id, -OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / 600f, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.HitPoints.maxAttribute.Id, HITPOINTS.TIER1, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, LIFESPAN.TIER3, name, false, false, true));
-            return BaseOilFloaterConfig.SetupDiet(prefab, CONSUME_ELEMENT.CreateTag(), EMIT_ELEMENT.CreateTag(), CALORIES_PER_KG_OF_ORE, CONVERSION_EFFICIENCY.GOOD_3, null, 0f, MIN_POOP_SIZE_IN_KG);
+            return BaseOilFloaterConfig.SetupDiet(prefab, CONSUME_ELEMENT.CreateTag(), EMIT_ELEMENT.CreateTag(), CALORIES_PER_KG_OF_ORE, CONVERSION_EFFICIENCY.GOOD_1, null, 0f, MIN_POOP_SIZE_IN_KG);
         }
 
         public void OnPrefabInit(GameObject inst)
@@ -52,7 +50,7 @@ namespace ILoveSlicksters
         {
             new FertilityMonitor.BreedingChance
             {
-                egg = "LeafyOilfloaterEgg".ToTag(),
+                egg = "PolarOilfloaterEgg".ToTag(),
                 weight = 0.66f
             },
             new FertilityMonitor.BreedingChance
@@ -64,20 +62,20 @@ namespace ILoveSlicksters
 
         public const string base_kanim_id = "custom_oilfloater2_kanim";
         public const string egg_kanim_id = "egg_oilfloater_kanim";
-        public const string variantSprite = "hot_";
+        public const string variantSprite = "oxy_";
 
 
-        public const string ID = "LeafyOilfloater";
+        public const string ID = "PolarOilfloater";
 
-        public const string BASE_TRAIT_ID = "LeafyOilfloaterBaseTrait";
+        public const string BASE_TRAIT_ID = "PolarOilfloaterBaseTrait";
 
-        public const string EGG_ID = "LeafyOilfloaterEgg";
+        public const string EGG_ID = "PolarOilfloaterEgg";
 
         public const SimHashes CONSUME_ELEMENT = SimHashes.CarbonDioxide;
 
-        public const SimHashes EMIT_ELEMENT = SimHashes.LiquidOxygen;
+        public const SimHashes EMIT_ELEMENT = SimHashes.Ice;
 
-        private static float KG_ORE_EATEN_PER_CYCLE = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH;
+        private static float KG_ORE_EATEN_PER_CYCLE = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2;
 
         private static float CALORIES_PER_KG_OF_ORE = OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / KG_ORE_EATEN_PER_CYCLE;
 
