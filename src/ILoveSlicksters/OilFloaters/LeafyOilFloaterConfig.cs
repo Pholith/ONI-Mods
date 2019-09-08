@@ -63,7 +63,7 @@ namespace ILoveSlicksters
         };
 
         public const string base_kanim_id = "custom_oilfloater2_kanim";
-        public const string egg_kanim_id = "egg_oilfloater_kanim";
+        public const string egg_kanim_id = "custom_egg_oilfloater_kanim";
         public const string variantSprite = "hot_";
 
 

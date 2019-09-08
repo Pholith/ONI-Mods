@@ -61,7 +61,7 @@ namespace ILoveSlicksters
         };
 
         public const string base_kanim_id = "custom_oilfloater2_kanim";
-        public const string egg_kanim_id = "egg_oilfloater_kanim";
+        public const string egg_kanim_id = "custom_egg_oilfloater_kanim";
         public const string variantSprite = "oxy_";
 
 
@@ -73,7 +73,7 @@ namespace ILoveSlicksters
 
         public const SimHashes CONSUME_ELEMENT = SimHashes.CarbonDioxide;
 
-        public const SimHashes EMIT_ELEMENT = SimHashes.Ice;
+        public static SimHashes EMIT_ELEMENT = Ethylen_Glycol.SimHash;
 
         private static float KG_ORE_EATEN_PER_CYCLE = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2;
 

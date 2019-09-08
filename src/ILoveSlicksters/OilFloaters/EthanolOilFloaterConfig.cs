@@ -9,14 +9,14 @@ namespace ILoveSlicksters
     {
         public GameObject CreatePrefab()
         {
-            GameObject gameObject = CreateOilfloater(ID, StringsPatch.VARIANT_ETHANOL.NAME, StringsPatch.VARIANT_ETHANOL.DESC, "custom_oilfloater_kanim", false);
+            GameObject gameObject = CreateOilfloater(ID, StringsPatch.VARIANT_ETHANOL.NAME, StringsPatch.VARIANT_ETHANOL.DESC, base_kanim_id, false);
             EntityTemplates.ExtendEntityToFertileCreature(gameObject, 
                 EGG_ID, 
                 StringsPatch.VARIANT_ETHANOL.EGG_NAME, 
-                StringsPatch.VARIANT_ETHANOL.DESC, 
-                "egg_oilfloater_kanim", 
+                StringsPatch.VARIANT_ETHANOL.DESC,
+                egg_kanim_id, 
                 OilFloaterTuning.EGG_MASS, 
-                "EthanolOilfloaterBaby", 
+                ID + "Baby", 
                 60.0000038f, 20f, 
                 EGG_CHANCES_ETHANOL, 
                 EGG_SORT_ORDER, 
@@ -27,7 +27,7 @@ namespace ILoveSlicksters
 
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 263.15f, 313.15f, is_baby, "oxy_");
+            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 263.15f, 313.15f, is_baby, variantSprite);
             EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE, LIFESPAN.TIER3);
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
@@ -63,6 +63,10 @@ namespace ILoveSlicksters
                 weight = 0.02f
             }
         };
+
+        public const string base_kanim_id = "custom_oilfloater_kanim";
+        public const string egg_kanim_id = "custom_egg_oilfloater_kanim";
+        public const string variantSprite = "oxy_";
 
 
         public const string ID = "EthanolOilfloater";

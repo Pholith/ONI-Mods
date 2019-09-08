@@ -84,6 +84,8 @@ namespace ILoveSlicksters
             Traverse.Create<OilFloaterConfig>().Field<float>("CALORIES_PER_KG_OF_ORE").Value = CALORIES_PER_KG_OF_ORE;
             Traverse.Create<OilFloaterHighTempConfig>().Field<float>("CALORIES_PER_KG_OF_ORE").Value = CALORIES_PER_KG_OF_ORE;
 
+
+
         }
     }
 
@@ -112,4 +114,5 @@ namespace ILoveSlicksters
             __result.AddOrGet<LightVulnerable>();
         }
     }
+
 }

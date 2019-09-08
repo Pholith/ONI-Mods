@@ -26,10 +26,10 @@ namespace ILoveSlicksters
             EntityTemplates.ExtendEntityToFertileCreature(gameObject, 
                 EGG_ID, 
                 StringsPatch.VARIANT_OWO.EGG_NAME, 
-                StringsPatch.VARIANT_OWO.DESC, 
-                "egg_oilfloater_kanim", 
+                StringsPatch.VARIANT_OWO.DESC,
+                egg_kanim_id, 
                 OilFloaterTuning.EGG_MASS, 
-                "OwO_OilfloaterBaby", 
+                ID + "Baby", 
                 60.0000038f, 20f, 
                 EGG_CHANCES_OWO, 
                 EGG_SORT_ORDER, 
@@ -41,7 +41,7 @@ namespace ILoveSlicksters
 
         public static GameObject CreateOilFloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 263.15f, 313.15f, is_baby, null);
+            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 263.15f, 313.15f, is_baby, variantSprite);
             EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE, LIFESPAN.TIER3);
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
@@ -77,6 +77,11 @@ namespace ILoveSlicksters
                 weight = 0.02f
             }
         };
+
+        public const string base_kanim_id = "custom_oilfloater_kanim";
+        public const string egg_kanim_id = "custom_egg_oilfloater_kanim";
+        public const string variantSprite = null;
+
 
         public const string ID = "OwO_Oilfloater";
 
