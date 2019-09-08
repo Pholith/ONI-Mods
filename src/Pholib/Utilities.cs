@@ -14,7 +14,11 @@ namespace Pholib
         }
         public static bool IsOnWorld(string worldName)
         {
-            Logs.Log(CustomGameSettings.Instance.name);
+            if (CustomGameSettings.Instance == null)
+            {
+                return false;
+            }
+            Logs.LogIfDebugging(CustomGameSettings.Instance.name);
             return CustomGameSettings.Instance.name == worldName;
         }
 

@@ -10,11 +10,10 @@ namespace WorldgenPack
 
         public static void OnLoad()
         {
-            Logs.Log(Utilities.IsOnWorld("Fuleria").ToString());
-
+            //Logs.DebugLog = true;
             Utilities.addWorldYaml(NAME, DESCRIPTION, null, typeof(WorldAdds));
-        }
 
+        }
     }
 }
 
