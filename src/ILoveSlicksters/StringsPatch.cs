@@ -17,7 +17,7 @@ namespace ILoveSlicksters
                 UI.FormatAsLink("Carbon Dioxide", "CARBONDIOXIDE"),
                 " and exude ",
                 UI.FormatAsLink("Ethanol", "ETHANOL"),
-                "."
+                ".\n\nThe ethanol slickster has adapted to a cold environment rich in carbon dioxide unlike its cousin the hairy slickster."
             });
 
             public static LocString EGG_NAME = UI.FormatAsLink("Ethanol Slickster Egg", "ETHANOLOILFLOATER");
@@ -41,7 +41,7 @@ namespace ILoveSlicksters
                 UI.FormatAsLink("Oxygen", "OXYGEN"),
                 " and exude ",
                 UI.FormatAsLink("Hydrogen", "HYDROGEN"),
-                "."
+                ".\n\nThe OwO Slicksters are extremely cute creatures that will delight your duplicants."
             });
 
             public static LocString EGG_NAME = UI.FormatAsLink("OwO Slickster Egg", "OWO_OILFLOATER");
@@ -66,7 +66,7 @@ namespace ILoveSlicksters
                 UI.FormatAsLink("Carbon Dioxide", "CARBONDIOXIDE"),
                 " and exude ",
                 UI.FormatAsLink("Oxygen", "OXYGEN"),
-                ".\nLeafy Slicksters need light to live."
+                ".\n\nThe leafy slickster has adapted to its environment and uses photosynthesis to feed on carbon.\nLeafy Slicksters need light to live."
             });
 
             public static LocString EGG_NAME = UI.FormatAsLink("Leafy Slickster Egg", "LEAFYOILFLOATER");
@@ -90,7 +90,7 @@ namespace ILoveSlicksters
                 UI.FormatAsLink("Carbon Dioxide", "CARBONDIOXIDE"),
                 " and exude ",
                 UI.FormatAsLink("Steel", "STEEL"),
-                "."
+                ".\n\nThe robot slickster is a slime that has been technologically improved by Gravitas to meet our heavy metal needs."
             });
 
             public static LocString EGG_NAME = UI.FormatAsLink("Robot Slickster Egg", "ROBOTOILFLOATER");
@@ -113,8 +113,8 @@ namespace ILoveSlicksters
                 "Polar Slicksters are slimy critters that consume ",
                 UI.FormatAsLink("Carbon Dioxide", "CARBONDIOXIDE"),
                 " and exude ",
-                UI.FormatAsLink("Ice", "ICE"),
-                "."
+                UI.FormatAsLink("Antigel", "ANTIGEL"),
+                ".\n\nThe polar slickster is a distant variant of the slickster in a very cold environment, it produces a liquid appreciated by our engineers."
             });
 
             public static LocString EGG_NAME = UI.FormatAsLink("Polar Slickster Egg", "POLAROILFLOATER");
@@ -125,7 +125,6 @@ namespace ILoveSlicksters
 
                 public static LocString DESC = "A goopy little Polar Larva.\n\nOne day it will grow into an adult Slickster morph, the " + UI.FormatAsLink("Polar Slickster", "POLAROILFLOATER") + ".";
             }
-
         }
 
         public static class FERTILITY_MODIFIERS
@@ -134,7 +133,19 @@ namespace ILoveSlicksters
             {
                 public static LocString NAME = "Light";
 
-                public static LocString DESC = "Is in the light";
+                public static LocString DESC = "Is in the light.";
+            }
+            public static class PRESSURE
+            {
+                public static LocString NAME = "Pressure";
+
+                public static LocString DESC = "Is in air pressure below {0} g.";
+            }
+            public static class ELEMENT
+            {
+                public static LocString NAME = "Element";
+
+                public static LocString DESC = "Is immersed in {0}.";
             }
         }
     }

@@ -12,7 +12,7 @@ namespace ILoveSlicksters
 
         public GameObject CreatePrefab()
         {
-            GameObject gameObject = CreateOilFloater(ID, StringsPatch.VARIANT_OWO.NAME, StringsPatch.VARIANT_OWO.DESC, "custom_oilfloater_kanim", false);
+            GameObject gameObject = CreateOilFloater(ID, StringsPatch.VARIANT_OWO.NAME, StringsPatch.VARIANT_OWO.DESC, base_kanim_id, false);
 
             DecorProvider decorProvider = gameObject.AddOrGet<DecorProvider>();
             decorProvider.SetValues(TUNING.DECOR.BONUS.TIER5);
@@ -95,7 +95,7 @@ namespace ILoveSlicksters
 
         private static float KG_ORE_EATEN_PER_CYCLE = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2;
 
-        private static float CALORIES_PER_KG_OF_ORE = OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / KG_ORE_EATEN_PER_CYCLE;
+        private static float CALORIES_PER_KG_OF_ORE = PHO_TUNING.OILFLOATER.STANDARD_CALORIES_PER_CYCLE / KG_ORE_EATEN_PER_CYCLE;
 
         private static float MIN_POOP_SIZE_IN_KG = 0.5f;
 

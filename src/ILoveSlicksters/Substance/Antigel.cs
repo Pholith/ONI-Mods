@@ -7,10 +7,10 @@ using UnityEngine;
 
 namespace ILoveSlicksters
 {
-    class Ethylen_Glycol
+    class Antigel
     {
         public const string Data = @"elements:
-  - elementId: Ethylen_Glycol
+  - elementId: Antigel
     maxMass: 1000
     liquidCompression: 1.01
     speed: 110
@@ -28,19 +28,19 @@ namespace ILoveSlicksters
     defaultTemperature: 312.5
     defaultMass: 1000
     molarMass: 30
-    toxicity: 0.1
-    lightAbsorptionFactor: 0.6
+    toxicity: 0.5
+    lightAbsorptionFactor: 0.3
     isDisabled: false
     state: Liquid
-    localizationID: STRINGS.ELEMENTS.DIRTYWATER.NAME
+    localizationID: STRINGS.ELEMENTS.ANTIGEL.NAME
 ";
 
 
-        public const string Id = "Ethylen_Glycol";
+        public const string Id = "Antigel";
         public static readonly SimHashes SimHash = (SimHashes)Hash.SDBMLower(Id);
-        public static string Name = UI.FormatAsLink("Ethylen Glycol", Id.ToUpper());
-        public static string Description = $"A mixture of water and Ethylen Glycol.";
-        public static Color32 color = new Color32(99, 22, 222, 255);
+        public static string Name = UI.FormatAsLink("Antigel", Id.ToUpper());
+        public static string Description = $"A mixture of water(H<sub>2</sub>O) and Ethylen Glycol (C<sub>2</sub>H<sub>6</sub>O<sub>2</sub>).\n\nIt has been designed by engineers to be a good heat transfer fluid that does not freeze or vaporize easily.";
+        public static Color32 color = new Color32(190, 220, 160, 255);
 
         public static Substance CreateSubstance(Substance source)
         {
@@ -54,6 +54,5 @@ namespace ILoveSlicksters
               conduit_colour: color
             );
         }
-
     }
 }

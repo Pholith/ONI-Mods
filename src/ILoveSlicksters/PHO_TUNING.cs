@@ -12,8 +12,8 @@ namespace ILoveSlicksters
                 public static float ORIGINAL = 20f;
                 public static float HIGH = 40f;
                 public static float HIGH2 = 60f;
-
             }
+            public static float STANDARD_CALORIES_PER_CYCLE = 120000f * 3;
         }
         public static class EGG_MODIFIER_PER_SECOND
         {
@@ -21,6 +21,7 @@ namespace ILoveSlicksters
             public static float SLOW = 2f / EGG_CONVERTER;
             public static float NORMAL = 5f / EGG_CONVERTER;
             public static float FAST = 10f / EGG_CONVERTER;
+            public static float FAST2 = 20f / EGG_CONVERTER;
         }
 
 
@@ -34,43 +35,130 @@ namespace ILoveSlicksters
                 Db.Get().CreateFertilityModifier(id, eggTag, name, "description test", (string src) => string.Format(
                     StringsPatch.FERTILITY_MODIFIERS.LIGHT.DESC),
                         delegate (FertilityMonitor.Instance inst, Tag eggType)
-                {
-
-                    LightVulnerable component = inst.master.GetComponent<LightVulnerable>();
-                    if (component != null)
-                    {
-
-                        component.OnLight += delegate (float dt)
                         {
 
-                            // get light intensity on the creature
-                            int lux = Grid.LightIntensity[Grid.PosToCell(inst.transform.position)];
-                            if (lux > 0)
+                            LightVulnerable component = inst.master.GetComponent<LightVulnerable>();
+                            if (component != null)
                             {
-                                inst.AddBreedingChance(eggType, dt * modifierPerSecond);
+
+                                component.OnLight += delegate (float dt)
+                                {
+
+                                    // get light intensity on the creature
+                                    int lux = Grid.LightIntensity[Grid.PosToCell(inst.transform.position)];
+                                    if (lux > 0)
+                                    {
+                                        inst.AddBreedingChance(eggType, dt * modifierPerSecond);
+                                    }
+                                    else if (alsoInvert)
+                                    {
+                                        inst.AddBreedingChance(eggType, dt * -modifierPerSecond);
+                                    }
+                                };
                             }
-                            else if (alsoInvert)
+                            else
                             {
-                                inst.AddBreedingChance(eggType, dt * -modifierPerSecond);
-                            }
-                        };
-                    }
-                    else
-                    {
-                        DebugUtil.LogErrorArgs(new object[]
-                        {
+                                DebugUtil.LogErrorArgs(new object[]
+                                {
                                     "Ack! Trying to add light modifier",
                                     id,
                                     "to",
                                     inst.master.name,
                                     "but it's not light vulnerable!"
+                                });
+                            }
                         });
-                    }
-                });
+            };
+        }
+
+        public static System.Action CreatePressureModifier(string id, Tag eggTag, float maxPressure, float modifierPerSecond, bool alsoInvert)
+        {
+            return delegate ()
+            {
+                string name = StringsPatch.FERTILITY_MODIFIERS.PRESSURE.NAME;
+                Db.Get().CreateFertilityModifier(id, eggTag, name, "description test", (string src) => string.Format(
+                    StringsPatch.FERTILITY_MODIFIERS.PRESSURE.DESC, maxPressure),
+                        delegate (FertilityMonitor.Instance inst, Tag eggType)
+                        {
+
+                            SimplePressureVulnerable component = inst.master.GetComponent<SimplePressureVulnerable>();
+                            if (component != null)
+                            {
+
+                                component.OnLowPressure += delegate (float dt)
+                                {
+
+                                    // get light intensity on the creature
+                                    float pressure = Grid.Pressure[Grid.PosToCell(inst.transform.position)];
+                                    if (pressure < maxPressure / 10)
+                                    {
+                                        inst.AddBreedingChance(eggType, dt * modifierPerSecond);
+                                    }
+                                    else if (alsoInvert)
+                                    {
+                                        inst.AddBreedingChance(eggType, dt * -modifierPerSecond);
+                                    }
+                                };
+                            }
+                            else
+                            {
+                                DebugUtil.LogErrorArgs(new object[]
+                                    {
+                                    "Ack! Trying to add pressure modifier",
+                                    id,
+                                    "to",
+                                    inst.master.name,
+                                    "but it's not pressure vulnerable!"
+                        });
+                            }
+                        });
+            };
+        }
+
+        public static System.Action CreateElementModifier(string id, Tag eggTag, SimHashes element, float modifierPerSecond, bool alsoInvert)
+        {
+            return delegate ()
+            {
+                string name = StringsPatch.FERTILITY_MODIFIERS.ELEMENT.NAME;
+                Db.Get().CreateFertilityModifier(id, eggTag, name, "description test", (string src) => string.Format(
+                    StringsPatch.FERTILITY_MODIFIERS.ELEMENT.DESC, element),
+                        delegate (FertilityMonitor.Instance inst, Tag eggType)
+                        {
+
+                            ElementVulnerable component = inst.master.GetComponent<ElementVulnerable>();
+                            if (component != null)
+                            {
+
+                                component.InElement += delegate (float dt)
+                                {
+
+                                    // get light intensity on the creature
+                                    Element pressure = Grid.Element[Grid.PosToCell(inst.transform.position)];
+                                    if (pressure.substance.elementID == element)
+                                    {
+                                        inst.AddBreedingChance(eggType, dt * modifierPerSecond);
+                                    }
+                                    else if (alsoInvert)
+                                    {
+                                        inst.AddBreedingChance(eggType, dt * -modifierPerSecond);
+                                    }
+                                };
+                            }
+                            else
+                            {
+                                DebugUtil.LogErrorArgs(new object[]
+                                    {
+                                    "Ack! Trying to add element modifier",
+                                    id,
+                                    "to",
+                                    inst.master.name,
+                                    "but it's not element vulnerable!"
+                        });
+                            }
+                        });
             };
         }
     }
-
 
     //adapted from temperature vulnerable
     public class LightVulnerable : StateMachineComponent<TemperatureVulnerable.StatesInstance>, ISim1000ms
@@ -87,6 +175,35 @@ namespace ILoveSlicksters
             }
             OnLight?.Invoke(dt);
         }
+    }
+    public class SimplePressureVulnerable : StateMachineComponent<TemperatureVulnerable.StatesInstance>, ISim1000ms
+    {
+        public event Action<float> OnLowPressure;
 
+        public void Sim1000ms(float dt)
+        {
+            int cell = Grid.PosToCell(gameObject);
+
+            if (!Grid.IsValidCell(cell))
+            {
+                return;
+            }
+            OnLowPressure?.Invoke(dt);
+        }
+    }
+    public class ElementVulnerable : StateMachineComponent<TemperatureVulnerable.StatesInstance>, ISim1000ms
+    {
+        public event Action<float> InElement;
+
+        public void Sim1000ms(float dt)
+        {
+            int cell = Grid.PosToCell(gameObject);
+
+            if (!Grid.IsValidCell(cell))
+            {
+                return;
+            }
+            InElement?.Invoke(dt);
+        }
     }
 }
