@@ -1,0 +1,52 @@
+biomeNoise: noise/OilPockets
+temperatureRange: Hot
+minChildCount: 2
+density:
+  min: 35
+  max: 45
+avoidRadius: 50.0
+sampleBehaviour: PoissonDisk
+biomes:
+  - name: biomes/Oil/OilPockets
+    weight: 1
+    tags:
+      # - OilEater
+      - OilFloater
+      - OilFloaterHighTemp
+      - CactusPlant
+      - CactusPlantSeed
+      - EvilFlower
+      - EvilFlowerSeed
+    #overrides:
+    #  massMultiplier: 50
+features:
+  - type: PholithWorld/features/OilFloaterHighTempCage
+  - type: features/oilpockets/CavityPond
+  - type: features/oilpockets/DiamondClump 
+pointsOfInterest:
+ geysers_a:
+  - poi_oilpockets_geyser_a
+  - poi_oilpockets_geyser_b
+  - poi_oilpockets_geyser_c    
+ ruins_a:
+  - poi_oil_switchdoor
+  - poi_oil_six_switch_door
+ geysers_b:
+  - poi_oilpockets_geyser_d
+  - poi_oilpockets_geyser_e
+  - poi_oilpockets_geyser_f
+ ruins_b:
+  - poi_oil_switchdoor
+  - poi_oil_six_switch_door
+ geysers_c:
+  - poi_oilpockets_geyser_a
+  - poi_oilpockets_geyser_b
+  - poi_oilpockets_geyser_c
+  - poi_oilpockets_geyser_d
+  - poi_oilpockets_geyser_e
+  - poi_oilpockets_geyser_f
+tags:
+  - IgnoreCaveOverride
+featureTemplates:
+  # feature_geyser_generic: 2
+zoneType: OilField

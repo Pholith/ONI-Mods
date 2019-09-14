@@ -1,5 +1,4 @@
 ﻿using Harmony;
-using System.Collections.Generic;
 using TUNING;
 using System;
 using Klei.AI;
@@ -13,8 +12,7 @@ namespace ILoveSlicksters
         // Egg chance patches
         public static void OnLoad()
         {
-
-            ModUtil.RegisterForTranslation(typeof(StringsPatch));
+            Pholib.Utilities.addWorldYaml(StringsPatch.WORLDGEN.NAME, StringsPatch.WORLDGEN.DESC, null, typeof(StringsPatch));
 
 
             // Add the temperature modifier for ethanol oilfloater
@@ -80,7 +78,6 @@ namespace ILoveSlicksters
                 egg = "OwO_OilfloaterEgg".ToTag(),
                 weight = 0.20f
             });
-
         }
     }
     // Kg eaten patch

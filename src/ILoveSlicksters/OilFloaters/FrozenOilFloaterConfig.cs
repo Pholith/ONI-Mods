@@ -5,22 +5,22 @@ using static TUNING.CREATURES;
 
 namespace ILoveSlicksters
 {
-    public class PolarOilfloaterConfig : IEntityConfig
+    public class FrozenOilfloaterConfig : IEntityConfig
     {
         public GameObject CreatePrefab()
         {
-            GameObject gameObject = CreateOilfloater(ID, StringsPatch.VARIANT_POLAR.NAME, StringsPatch.VARIANT_POLAR.DESC, base_kanim_id, false);
+            GameObject gameObject = CreateOilfloater(ID, StringsPatch.VARIANT_FROZEN.NAME, StringsPatch.VARIANT_FROZEN.DESC, base_kanim_id, false);
 
             EntityTemplates.ExtendEntityToFertileCreature(
                 gameObject, 
                 EGG_ID, 
-                StringsPatch.VARIANT_POLAR.EGG_NAME, 
-                StringsPatch.VARIANT_POLAR.DESC,
+                StringsPatch.VARIANT_FROZEN.EGG_NAME, 
+                StringsPatch.VARIANT_FROZEN.DESC,
                 egg_kanim_id, 
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
                 60.0000038f, 20f,
-                EGG_CHANCES_POLAR, 
+                EGG_CHANCES_FROZEN, 
                 EGG_SORT_ORDER);
 
             return gameObject;
@@ -46,11 +46,11 @@ namespace ILoveSlicksters
         {
         }
 
-        public static List<FertilityMonitor.BreedingChance> EGG_CHANCES_POLAR = new List<FertilityMonitor.BreedingChance>
+        public static List<FertilityMonitor.BreedingChance> EGG_CHANCES_FROZEN = new List<FertilityMonitor.BreedingChance>
         {
             new FertilityMonitor.BreedingChance
             {
-                egg = "PolarOilfloaterEgg".ToTag(),
+                egg = "FrozenOilfloaterEgg".ToTag(),
                 weight = 0.66f
             },
             new FertilityMonitor.BreedingChance
@@ -65,11 +65,11 @@ namespace ILoveSlicksters
         public const string variantSprite = "oxy_";
 
 
-        public const string ID = "PolarOilfloater";
+        public const string ID = "FrozenOilfloater";
 
-        public const string BASE_TRAIT_ID = "PolarOilfloaterBaseTrait";
+        public const string BASE_TRAIT_ID = "FrozenOilfloaterBaseTrait";
 
-        public const string EGG_ID = "PolarOilfloaterEgg";
+        public const string EGG_ID = "FrozenOilfloaterEgg";
 
         public const SimHashes CONSUME_ELEMENT = SimHashes.CarbonDioxide;
 

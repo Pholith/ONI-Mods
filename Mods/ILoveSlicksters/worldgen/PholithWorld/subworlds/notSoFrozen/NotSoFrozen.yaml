@@ -1,0 +1,56 @@
+biomeNoise: noise/subworldFrozen
+temperatureRange: Cold
+minChildCount: 4
+density:
+  min: 10
+  max: 20
+avoidRadius: 20.0
+sampleBehaviour: PoissonDisk
+biomes:
+  - name: PholithWorld/biomes/NotSoFrozen/Basic
+    tags:
+      - FrozenOilfloater
+      - FrozenOilfloaterEgg
+      - ColdWheat
+      - ColdWheatSeed
+      - ColdBreather
+
+features:
+  - type: PholithWorld/features/AntigelBubble
+  - type: features/frozen/SandGeode
+tags:
+  - IgnoreCaveOverride
+pointsOfInterest:
+   heatsinks_a:
+    - poi_ice_heatsink_a
+    - poi_ice_heatsink_b
+    - poi_ice_heatsink_c
+    - poi_ice_heatsink_d
+   ruins_a:
+    - poi_ice_lab_basement
+    - poi_ice_lab_splitroom
+    - poi_ice_frag_vendingmachine
+    - poi_ice_frag_lockers
+   heatsinks_b:
+    - poi_ice_heatsink_a
+    - poi_ice_heatsink_b
+    - poi_ice_heatsink_c
+    - poi_ice_heatsink_d
+   ruins_b:
+    - poi_ice_lab_basement
+    - poi_ice_lab_splitroom
+    - poi_ice_frag_vendingmachine
+    - poi_ice_frag_lockers
+   heatsinks_c:
+    - poi_ice_heatsink_a
+    - poi_ice_heatsink_b
+    - poi_ice_heatsink_c
+    - poi_ice_heatsink_d
+   ruins_c:
+    - poi_ice_lab_basement
+    - poi_ice_lab_splitroom
+    - poi_ice_frag_vendingmachine
+    - poi_ice_frag_lockers
+# featureTemplates:
+  # feature_geyser_generic: 2
+zoneType: FrozenWastes

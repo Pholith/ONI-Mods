@@ -1,0 +1,127 @@
+name: STRINGS.WORLDS.SLICKSTERIA.NAME
+description: STRINGS.WORLDS.SLICKSTERIA.DESCRIPTION
+spriteName: Asteroid_sandstone
+coordinatePrefix: SLK-PHO
+difficulty: 2
+tier: 2
+
+worldsize:
+  X: 256
+  Y: 256
+layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
+#                                in order to use this.
+
+# List all the zone files to load
+subworldFiles:
+  - name: PholithWorld/subworlds/slicksterForest/SlicksterForestStart
+  - name: PholithWorld/subworlds/slicksterForest/SlicksterForestMiniWater
+    weight: 0.5
+  - name: PholithWorld/subworlds/slicksterForest/SlicksterForestMiniOxy
+  - name: PholithWorld/subworlds/slicksterForest/SlicksterForestMiniMetal
+  - name: subworlds/jungle/Jungle
+    weight: 0.6
+  - name: PholithWorld/subworlds/notSoFrozen/notSoFrozen
+  - name: PholithWorld/subworlds/hydrogenOcean/HydrogenOcean
+  - name: PholithWorld/subworlds/steelCaves/SteelCaves
+    weight: 0.3
+  - name: PholithWorld/subworlds/rust/Rust
+  - name: subworlds/Impenetrable
+  - name: subworlds/magma/Bottom
+  - name: PholithWorld/subworlds/oil/OilPockets
+  - name: subworlds/space/Space
+    weight: 0.5
+  - name: subworlds/space/Surface
+
+startSubworldName: PholithWorld/subworlds/slicksterForest/SlicksterForestStart
+startingBaseTemplate: forestBase
+
+globalFeatureTemplates:
+  feature_geyser_generic: 7
+  feature_geyser_chlorine: 1
+  feature_geyser_co2: 2
+  feature_geyser_slush: 1
+  feature_geyser_methane: 1
+
+# Rivers:
+#   - water
+#   - fatWater
+#   - oilygoodness
+
+# When we are converting unknown cells, this will give us the options, processed in this order, the effects are cumlative
+unknownCellsAllowedSubworlds: 
+  - tagcommand: Default
+    command: Replace
+    subworldNames:
+      - PholithWorld/subworlds/slicksterForest/SlicksterForestStart
+  - tagcommand: DistanceFromTag
+    tag: AtStart
+    minDistance: 1
+    maxDistance: 1
+    command: Replace
+    subworldNames:
+      - PholithWorld/subworlds/slicksterForest/SlicksterForestMiniOxy
+      - PholithWorld/subworlds/slicksterForest/SlicksterForestMiniWater
+      - PholithWorld/subworlds/slicksterForest/SlicksterForestMiniMetal
+  - tagcommand: DistanceFromTag
+    tag: AtStart
+    minDistance: 2
+    maxDistance: 2
+    command: Replace
+    subworldNames:
+      - subworlds/jungle/Jungle
+      - PholithWorld/subworlds/rust/Rust
+  - tagcommand: DistanceFromTag
+    tag: AtStart
+    minDistance: 3
+    maxDistance: 3
+    command: Replace
+    subworldNames:
+      - subworlds/jungle/Jungle
+      - PholithWorld/subworlds/hydrogenOcean/HydrogenOcean
+      - PholithWorld/subworlds/notSoFrozen/notSoFrozen
+      - subworlds/rust/Rust
+  - tagcommand: DistanceFromTag
+    tag: AtStart
+    minDistance: 4
+    maxDistance: 4
+    command: Replace
+    subworldNames:
+      - subworlds/jungle/Jungle
+      - PholithWorld/subworlds/notSoFrozen/notSoFrozen
+      - PholithWorld/subworlds/rust/Rust
+      - subworlds/space/Space
+  - tagcommand: DistanceFromTag
+    tag: AtStart
+    minDistance: 5
+    maxDistance: 999
+    command: Replace
+    subworldNames:
+      - subworlds/jungle/Jungle
+      - PholithWorld/subworlds/hydrogenOcean/HydrogenOcean
+      - PholithWorld/subworlds/rust/Rust
+      - PholithWorld/subworlds/notSoFrozen/notSoFrozen
+  - tagcommand: AtTag
+    tag: AtDepths
+    command: Replace
+    subworldNames:
+      - subworlds/magma/Bottom
+      - PholithWorld/subworlds/steelCaves/SteelCaves
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 1
+    maxDistance: 1
+    command: Replace
+    subworldNames:
+      - PholithWorld/subworlds/oil/OilPockets
+  - tagcommand: AtTag
+    tag: AtSurface
+    command: Replace
+    subworldNames:
+      - subworlds/space/Space
+  - tagcommand: DistanceFromTag
+    tag: AtSurface
+    minDistance: 1
+    maxDistance: 1
+    command: Replace
+    subworldNames:
+      - subworlds/space/Surface

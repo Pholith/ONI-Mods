@@ -1,0 +1,28 @@
+tags:
+  - AllowExceedNodeBorders
+shape: Square
+borders:
+  - 1
+internalMobs:
+   - type: FrozenOilfloater
+     count:
+       min: 0
+       max: 1
+blobSize:
+  min: 4
+  max: 6
+ElementChoiceGroups:
+  RoomCenterElements:
+    selectionMethod: WeightedResample
+    choices:
+      - element: Antigel
+        weight: 3
+      - element: CarbonDioxide
+        weight: 1
+  RoomBorderChoices0:
+    selectionMethod: WeightedResample
+    choices:
+      - element: Wolframite
+        weight: 1
+      - element: Granite
+        weight: 4

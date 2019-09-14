@@ -1,0 +1,41 @@
+biomeNoise: noise/subworldRust
+temperatureRange: Cool
+density:
+  min: 10
+  max: 15
+avoidRadius: 20.0
+minChildCount: 4
+sampleBehaviour: PoissonDisk
+biomes:
+  - name: biomes/Rust/Basic
+    weight: 2
+    tags:
+      - EthanolOilfloater
+      - EthanolOilfloaterEgg
+      - BeanPlant
+      - BeanPlantSeed
+      - SaltPlant
+      - SaltPlantSeed
+      - PuftBleachstone
+features:
+  - type: features/rust/BigRock
+  - type: features/rust/BigRock
+  - type: features/rust/BigRock
+  - type: features/rust/MiniBleachBall
+  - type: features/rust/SaltDeposit
+  - type: features/rust/EthanolLake
+tags:
+  - IgnoreCaveOverride
+pointsOfInterest:
+  ruins_a:
+    - poi_broken_farm
+    - poi_old_pool
+  ruins_b:
+    - poi_dupe_sensor_puzzle
+  spiral_a:
+    - poi_salt_spiral
+    - poi_salt_spiral_2
+    - poi_salt_spiral_3
+featureTemplates:
+  # feature_geyser_generic: 2
+zoneType: Rust
