@@ -11,7 +11,7 @@
 | Polluted Electrolyzer               | Add a new Electrolyzer that produce polluted oxygen and hydrogen from dirty water.                                                                                                                                                                                                   |![image](/src/PollutedElectrolyzer/screen.png)|
 | AllBiomesWorld - Fuleria| Fuleria is a small asteroid that contains all the biomes. This world will be pleasant and easy to live in for your duplicants. But be careful, they will also have to get used to the small size of the asteroid.                                                                                 |![image](/src/AllBiomesWorld/screen.png)|
 | Helium Extractor | This mod adds a helium extractor that transforms natural gas into helium, propane and sulphur.                                                                                                                                                                                                          |![image](/src/HeliumExtractor/screen.png)|
-| EmptyWorldChallenge - Emptera| Emptera is a very difficult empty asteroid. Resources are limited and you will have to take advantage of your geysers to get them.                                                                                 |![image](/src/EmptyWorld/screen1.png)|
+| EmptyWorlds (Skyblock)| Emptera is a very difficult empty asteroid. Resources are limited and you will have to take advantage of your geysers to get them.                                                                                 |![image](/src/EmptyWorld/screen1.png)|
 | I Love Slicksters - Variants | Add some Slicksters variant.                                                                                 |![image](/src/ILoveSlicksters/screen1.png)|
 
 
@@ -24,11 +24,11 @@ https://steamcommunity.com/profiles/76561198263471888/myworkshopfiles/?
 #### With Steam
 You can install the mods by Steam just by click on "subscribe".
 
-#### Manually
+#### Manually (Epic)
 To download the mods, you need to click on "Clone or download" and "Download ZIP".
+For Epic users, you can also download mods on Steam from Pour tous les joueurs sur Epic qui souhaitent ajouter des mods à leur jeu http://steamworkshop.download/
 
-
-If the mod is not on Steam or don't works for mystical reason, you can try this.
+If the mod is not on Steam and you want to manually install it, you can try this.
 Place the mods in the folder: Documents/Klei/OxygenNotIncluded/mods/local/
 If the folder doesn't exist, create it.
 * .../Documents/Klei/OxygenNotIncluded/mods/
@@ -41,16 +41,6 @@ If the folder doesn't exist, create it.
  On MAC, the path looks like: `/Users/****(username)/Library/Application Support/unity.Klei.Oxygen Not Included/mods/?????????`
  
  On Linux, the path is: `~/config/unity3d/Klei/Oxygen Not Included/mods/Dev/`
-
-### ~~With the Modloader (DEPRECATED)~~
-~~To use the mods you need to install ONI-ModLoader using instructions available [here](https://github.com/javisar/ONI-Modloader#installation)~~
-The directory tree should look like this:
-* .../OxygenNotIncluded/
-  * Mods/
-    * SomeMod/
-      * SomeMod.dll
-    * AnotherMod/
-      * AnotherMod.dll~~
 
 ## Feedbacks , suggestions, bugs and help
 If you have some problems, suggestions etc with my mods you can ask me and see more informations on my discord server:
