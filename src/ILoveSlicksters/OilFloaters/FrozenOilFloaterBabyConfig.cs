@@ -19,7 +19,7 @@ namespace ILoveSlicksters
         {
         }
 
-        private const string kanim_id = "baby_oilfloater_kanim";
+        private const string kanim_id = "custom_baby_oilfloater2_kanim";
         public const string ID = "FrozenOilfloaterBaby";
 
     }
