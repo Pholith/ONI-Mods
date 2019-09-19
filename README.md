@@ -26,7 +26,7 @@ You can install the mods by Steam just by click on "subscribe".
 
 #### Manually (Epic)
 To download the mods, you need to click on "Clone or download" and "Download ZIP".
-For Epic users, you can also download mods on Steam from Pour tous les joueurs sur Epic qui souhaitent ajouter des mods à leur jeu http://steamworkshop.download/
+For Epic users, you can also download mods on Steam from http://steamworkshop.download/
 
 If the mod is not on Steam and you want to manually install it, you can try this.
 Place the mods in the folder: Documents/Klei/OxygenNotIncluded/mods/local/
