@@ -29,8 +29,8 @@ namespace ILoveSlicksters
                 Traverse.Create<CREATURES.EGG_CHANCE_MODIFIERS>().Method("CreateTemperatureModifier", parameters_type).GetValue<System.Action>(paramaters2)
             );
 
-            // Add the temperature modifier for polar oilfloater
-            object[] paramaters3 = new object[] { "PolarOilfloater", "PolarOilfloaterEgg".ToTag(), 213.15f, 283.15f, PHO_TUNING.EGG_MODIFIER_PER_SECOND.NORMAL, false };
+            // Add the temperature modifier for frozen oilfloater
+            object[] paramaters3 = new object[] { "FrozenOilfloater", "FrozenOilfloaterEgg".ToTag(), 213.15f, 283.15f, PHO_TUNING.EGG_MODIFIER_PER_SECOND.NORMAL, false };
 
             CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
                 Traverse.Create<CREATURES.EGG_CHANCE_MODIFIERS>().Method("CreateTemperatureModifier", parameters_type).GetValue<System.Action>(paramaters3)
