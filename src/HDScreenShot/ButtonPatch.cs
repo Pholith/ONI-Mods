@@ -18,8 +18,8 @@ namespace HDScreenShot
         var buttonsList = buttons.ToList();
         Instance = __instance;
 
-            buttonsList.Insert(buttonsList.Count - 2, new KButtonMenu.ButtonInfo("HD ScreenShots", Action.NumActions,
-                () => { PopupFeedback.CreateScreen(Instance); }));
+            buttonsList.Insert(buttonsList.Count - 2, new KButtonMenu.ButtonInfo("Take a HD Screenshot", Action.NumActions,
+                () => { CustomTilapser.CreateScreen(Instance); }));
 
             instance.Field("buttons").SetValue(buttonsList.ToArray());
         }
