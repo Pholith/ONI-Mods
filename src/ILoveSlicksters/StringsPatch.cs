@@ -152,7 +152,7 @@ namespace ILoveSlicksters
         public static class WORLDGEN
         {
             public static LocString NAME = "Slicksteria";
-            public static LocString DESC = "";
+            public static LocString DESC = "Slicksteria is an asteroid very close to Verdante but which has the particularity of containing a great diversity of slicksters, the conditions on this asteroid are perfect for their development and these small bugs will help your colony to survive.\n\n";
         }
     }
 }

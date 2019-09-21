@@ -24,6 +24,7 @@ namespace Pholib
 
         /// <summary>
         /// Add strings and icon for a world
+        /// Don't call this method OnLoad ! 
         /// </summary>
         /// <param name="NAME"> Name of the world </param>
         /// <param name="DESCRIPTION"> Description of the world </param>
@@ -31,7 +32,7 @@ namespace Pholib
         /// <param name="className"> Class containing the locstrings </param>
         public static void addWorldYaml(string NAME, string DESCRIPTION, string iconName, Type className)
         {
-            // Add strings used in Fuleria.yaml
+            // Add strings used in ****.yaml
             Strings.Add($"STRINGS.WORLDS." + NAME.ToUpper() + ".NAME", NAME);
             Strings.Add($"STRINGS.WORLDS." + NAME.ToUpper() + ".DESCRIPTION", DESCRIPTION);
 
@@ -42,16 +43,18 @@ namespace Pholib
 
             if (!iconName.IsNullOrWhiteSpace())
             {
-                //Load the sprite from Asteroid_Fuleria.dds (converted online from png) and set "generation action" to incorporated ressources
+                //Load the sprite from Asteroid_****.dds (converted online from png) and set "generation action" to incorporated ressources
                 try
                 {
-                    Sprite sprite = Sprites.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream(className.AssemblyQualifiedName + "." + iconName + ".dds"), 512, 512);
+                    Logs.LogIfDebugging("Loading Sprite: " + className.Assembly.GetName().Name + "." + iconName + ".dds");
+                    Sprite sprite = Sprites.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream(className.Assembly.GetName().Name + "." + iconName + ".dds"), 512, 512);
+                    Logs.LogIfDebugging((Assets.Sprites == null).ToString());
                     Assets.Sprites.Add(iconName, sprite);
 
                 }
                 catch (Exception e)
                 {
-                    Logs.Log(e.ToString());
+                    Logs.Log("SpriteException: " + e.ToString());
                     throw new ArgumentException();
                 }
             }

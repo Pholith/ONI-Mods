@@ -27,7 +27,10 @@
         public static void LogIfDebugging(string informations)
         {
             InitIfNot();
-            Debug.Log("Pholib: " + informations);
+            if (DebugLog)
+            {
+                Debug.Log("Pholib: " + informations);
+            }
         }
     }
 }

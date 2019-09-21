@@ -3,6 +3,7 @@ using TUNING;
 using System;
 using Klei.AI;
 using UnityEngine;
+using System.Reflection;
 
 namespace ILoveSlicksters
 {
@@ -12,8 +13,6 @@ namespace ILoveSlicksters
         // Egg chance patches
         public static void OnLoad()
         {
-            Pholib.Utilities.addWorldYaml(StringsPatch.WORLDGEN.NAME, StringsPatch.WORLDGEN.DESC, null, typeof(StringsPatch));
-
 
             // Add the temperature modifier for ethanol oilfloater
             Type[] parameters_type = new Type[] { typeof(string), typeof(Tag), typeof(float), typeof(float), typeof(float), typeof(bool) };
@@ -81,12 +80,11 @@ namespace ILoveSlicksters
         }
     }
     // Kg eaten patch
-    [HarmonyPatch(typeof(Db))]
-    [HarmonyPatch("Initialize")]
     public class KG_Eaten_Patch
     {
         public static void OnLoad()
         {
+
             Traverse.Create<OilFloaterConfig>().Field<float>("KG_ORE_EATEN_PER_CYCLE").Value = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2;
 
             float CALORIES_PER_KG_OF_ORE = PHO_TUNING.OILFLOATER.STANDARD_CALORIES_PER_CYCLE / PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2;
@@ -106,6 +104,9 @@ namespace ILoveSlicksters
     {
         public static void Postfix(Db __instance)
         {
+            Pholib.Utilities.addWorldYaml(StringsPatch.WORLDGEN.NAME, StringsPatch.WORLDGEN.DESC, "Asteroid_Slicksteria", typeof(StringsPatch));
+
+
             Effect OwO_Effect = new Effect("OwO_effect", " OwO Effect", "This duplicant saw something so cute that he can't think of anything else.", 300f, true, true, false, null, 10f);
             OwO_Effect.Add(new AttributeModifier(Db.Get().Amounts.Stress.deltaAttribute.Id, - DUPLICANTSTATS.QOL_STRESS.BELOW_EXPECTATIONS.HARD, "OwO Effect"));
             __instance.effects.Add(OwO_Effect);
