@@ -10,8 +10,8 @@ namespace ILoveSlicksters
             {
                 public static float LOW = 10f;
                 public static float ORIGINAL = 20f;
-                public static float HIGH = 40f;
-                public static float HIGH2 = 60f;
+                public static float HIGH = 30f;
+                public static float HIGH2 = 40f;
             }
             public static float STANDARD_CALORIES_PER_CYCLE = 120000f;
         }
