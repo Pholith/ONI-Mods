@@ -3,8 +3,8 @@ TerrainBiomeLookupTable:
   remove: [] 
   # elements to add from in-memory structure when this file is loaded
   add:
-    Basic:
-    - content: Dirt
-      bandSize: 0.1
-    - content: Oxygen
-      bandSize: 0.9
+    Ocean:
+    - content: SaltWater
+      bandSize: 0.6
+    - content: Ice
+      bandSize: 0.2

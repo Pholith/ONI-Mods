@@ -1,4 +1,4 @@
-biomeNoise: noise/Generic
+biomeNoise: noise/subworldSky
 temperatureRange: Cold
 pdWeight: 0.8
 density:

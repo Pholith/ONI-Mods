@@ -40,9 +40,9 @@ primitives:
 filters:
   DefaultBaseFilter:
     filter: Voronoi
-    frequency: 32
+    frequency: 30
     lacunarity: 2
-    octaves: 3
+    octaves: 2
     offset: 1
     gain: 1
     exponent: 1.5

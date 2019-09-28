@@ -4,7 +4,7 @@ TerrainBiomeLookupTable:
   # elements to add from in-memory structure when this file is loaded
   add:
     Basic:
-    - content: Hydrogen
-      bandSize: 0.1
-    - content: Oxygen
-      bandSize: 0.9
+    - content: Water
+      bandSize: 0.5
+      overrides:
+        massMultiplier: 1.15

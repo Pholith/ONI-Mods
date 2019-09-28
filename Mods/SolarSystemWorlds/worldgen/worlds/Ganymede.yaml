@@ -1,7 +1,7 @@
-name: STRINGS.WORLDS.AQUARIA.NAME
-description: STRINGS.WORLDS.AQUARIA.DESCRIPTION
-spriteName: Asteroid_Aquaria
-coordinatePrefix: AQU-PHO
+name: STRINGS.WORLDS.GANYMEDE.NAME
+description: STRINGS.WORLDS.GANYMEDE.DESCRIPTION
+spriteName: Asteroid_Ganymede
+coordinatePrefix: GMD-PHO
 difficulty: 2
 tier: 2
 disableWorldTraits: true
@@ -68,20 +68,6 @@ unknownCellsAllowedSubworlds:
       - PholithWorlds/subworlds/ocean/Ocean
       - PholithWorlds/subworlds/ocean/EmptyOcean
 
-  - tagcommand: AtTag
-    tag: AtEdge
-    command: Replace
-    subworldNames:
-      - subworlds/ocean/Ocean
-
-  - tagcommand: DistanceFromTag
-    tag: AtEdge
-    minDistance: 1
-    maxDistance: 1
-    command: Replace
-    subworldNames:
-      - subworlds/ocean/Ocean
-      - PholithWorlds/subworlds/ocean/Ocean
 
   - tagcommand: DistanceFromTag
     tag: AtSurface

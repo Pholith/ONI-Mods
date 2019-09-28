@@ -1,5 +1,8 @@
 ﻿using Harmony;
+using Klei.CustomSettings;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using UnityEngine;
 
@@ -18,10 +21,16 @@ namespace Pholib
             {
                 return false;
             }
-            Logs.LogIfDebugging(CustomGameSettings.Instance.name);
-            return CustomGameSettings.Instance.name == worldName;
+            Dictionary<string, string> dict = Traverse.Create(CustomGameSettings.Instance).Field<Dictionary<string, string>>("CurrentQualityLevelsBySetting").Value;
+            if (dict == null || dict["World"] == null) return false;
+
+            Logs.LogIfDebugging(dict["World"]);
+            Logs.LogIfDebugging(dict["World"].Replace("worlds/", ""));
+
+            return dict["World"].Replace("worlds/", "") == worldName;
         }
 
+        private static HashSet<Type> alreadyLoaded = new HashSet<Type>();
         /// <summary>
         /// Add strings and icon for a world
         /// Don't call this method OnLoad ! 
@@ -37,9 +46,13 @@ namespace Pholib
             Strings.Add($"STRINGS.WORLDS." + NAME.ToUpper() + ".DESCRIPTION", DESCRIPTION);
 
             Logs.LogIfDebugging("Strings added at: " + "STRINGS.WORLDS." + NAME.ToUpper() + ".NAME");
-            
-            // Generate a translation .pot 
-            ModUtil.RegisterForTranslation(className);
+
+            // Generate a translation .pot
+            if (!alreadyLoaded.Contains(className))
+            {
+                ModUtil.RegisterForTranslation(className);
+            }
+            alreadyLoaded.Add(className);
 
             if (!iconName.IsNullOrWhiteSpace())
             {
@@ -47,7 +60,7 @@ namespace Pholib
                 try
                 {
                     Logs.LogIfDebugging("Loading Sprite: " + className.Assembly.GetName().Name + "." + iconName + ".dds");
-                    Sprite sprite = Sprites.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream(className.Assembly.GetName().Name + "." + iconName + ".dds"), 512, 512);
+                    Sprite sprite = CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream(className.Assembly.GetName().Name + "." + iconName + ".dds"), 512, 512);
                     Logs.LogIfDebugging((Assets.Sprites == null).ToString());
                     Assets.Sprites.Add(iconName, sprite);
 
@@ -58,6 +71,31 @@ namespace Pholib
                     throw new ArgumentException();
                 }
             }
+        }
+
+        // Thanks Mayall for his search
+        // Load a incorporated sprite
+        public static Sprite CreateSpriteDXT5(Stream inputStream, int width, int height)
+        {
+            byte[] array = new byte[inputStream.Length - 128L];
+            inputStream.Seek(128L, SeekOrigin.Current);
+            inputStream.Read(array, 0, array.Length);
+            Texture2D texture2D = new Texture2D(width, height, TextureFormat.DXT5, false);
+            texture2D.LoadRawTextureData(array);
+            texture2D.Apply(false, true);
+            return Sprite.Create(texture2D, new Rect(0f, 0f, (float)width, (float)height), new Vector2((float)(width / 2), (float)(height / 2)));
+        }
+
+        public static Texture2D CreateTextureDXT5(Stream inputStream, int width, int height)
+        {
+            byte[] array = new byte[inputStream.Length - 128L];
+            inputStream.Seek(128L, SeekOrigin.Current);
+            inputStream.Read(array, 0, array.Length);
+            Texture2D texture = new Texture2D(width, height, TextureFormat.DXT5, false);
+            texture.LoadRawTextureData(array);
+            texture.Apply(false, true);
+            Debug.Assert(texture != null);
+            return texture;
         }
     }
 }
