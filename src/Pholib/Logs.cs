@@ -1,4 +1,6 @@
-﻿namespace Pholib
+﻿using System;
+
+namespace Pholib
 {
     public class Logs
     {
@@ -22,6 +24,11 @@
         {
             InitIfNot();
             Debug.Log("Pholib: " + informations);
+        }
+        public static void Log(Object informations)
+        {
+            InitIfNot();
+            Debug.Log("Pholib: " + informations.ToString());
         }
 
         public static void LogIfDebugging(string informations)

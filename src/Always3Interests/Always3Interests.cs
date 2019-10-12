@@ -1,33 +1,114 @@
 ﻿using Database;
 using Harmony;
 using Klei.AI;
-using Pholib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
 using TUNING;
 using UnityEngine;
+using PeterHan.PLib.Options;
+using Newtonsoft.Json;
+using PeterHan.PLib;
 
 namespace Always3Interests
 {
-    
-    [HarmonyPatch(typeof(Db), "Initialize")]
+    public class Always3InterestsSettings
+    {
+        [Option("number Of Interests", "The number of interests.")]
+        [Limit(1, 10)]
+        [JsonProperty]
+        public int numberOfInterests { get; set; }
+
+        [Option("random Number Of Interests", "Active it to disable the interest modification.")]
+        [JsonProperty]
+        public bool randomNumberOfInterests { get; set; }
+
+
+        [Option("points When 1 Interest", "")]
+        [Limit(1, 50)]
+        [JsonProperty]
+        public int pointsWhen1Interest { get; set; }
+
+        [Option("points When 2 Interest", "")]
+        [Limit(1, 50)]
+        [JsonProperty]
+        public int pointsWhen2Interest { get; set; }
+
+        [Option("points When 3 Interest", "")]
+        [Limit(1, 50)]
+        [JsonProperty]
+        public int pointsWhen3Interest { get; set; }
+
+        [Option("points When More Than 3 Interest", "")]
+        [Limit(1, 50)]
+        [JsonProperty]
+        public int pointsWhenMoreThan3Interest { get; set; }
+
+        [Option("number Of Good Traits", "")]
+        [Limit(1, 10)]
+        [JsonProperty]
+        public int numberOfGoodTraits { get; set; }
+
+        [Option("number Of Bad Traits", "")]
+        [Limit(1, 5)]
+        [JsonProperty]
+        public int numberOfBadTraits { get; set; }
+
+        [Option("starting Level On Printing Pod", "Set the experience of in game printed dups.")]
+        [Limit(1, 5)]
+        [JsonProperty]
+        public int startingLevelOnPrintingPod { get; set; }
+
+        
+
+        public Always3InterestsSettings()
+        {
+            pointsWhen1Interest = 7;
+            pointsWhen2Interest = 3;
+            pointsWhen3Interest = 1;
+
+            pointsWhenMoreThan3Interest = 1;
+
+            numberOfInterests = 3;
+            randomNumberOfInterests = false;
+
+            numberOfGoodTraits = 1;
+            numberOfBadTraits = 1;
+
+            startingLevelOnPrintingPod = 1;
+        }
+    }
+
     class TuningConfigPatch
     {
-        public static JsonReader config;
 
-        public static void Prefix()
+        public static Always3InterestsSettings settings;
+
+        public static void OnLoad()
         {
+            PUtil.InitLibrary();
+            POptions.RegisterOptions(typeof(Always3InterestsSettings));
 
-            config = new JsonReader();
+            settings = POptions.ReadSettings<Always3InterestsSettings>();
+            if (settings == null)
+            {
+                settings = new Always3InterestsSettings();
+            }
 
-            var custom1 = config.GetProperty<int>("pointsWhen1Interest", 7);
-            var custom2 = config.GetProperty<int>("pointsWhen2Interest", 3);
-            var custom3 = config.GetProperty<int>("pointsWhen3Interest", 1);
-            var custom4 = config.GetProperty<int>("pointsWhenMoreThan3Interest", 0);
-
-            var customAttributes = new int[] { custom1, custom2, custom3, custom4, custom4, custom4, custom4, custom4, custom4, custom4 , custom4};
+            var customAttributes = new int[] {
+                settings.pointsWhen1Interest ,
+                settings.pointsWhen2Interest,
+                settings.pointsWhen3Interest,
+                settings.pointsWhenMoreThan3Interest,
+                settings.pointsWhenMoreThan3Interest, 
+                settings.pointsWhenMoreThan3Interest, 
+                settings.pointsWhenMoreThan3Interest, 
+                settings.pointsWhenMoreThan3Interest, 
+                settings.pointsWhenMoreThan3Interest, 
+                settings.pointsWhenMoreThan3Interest,
+                settings.pointsWhenMoreThan3Interest
+            };
             Traverse.Create<DUPLICANTSTATS>().Field("APTITUDE_ATTRIBUTE_BONUSES").SetValue(customAttributes);
         }
     }
@@ -37,13 +118,16 @@ namespace Always3Interests
     {
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            Logs.InitIfNot();
             var codes = new List<CodeInstruction>(instructions);
-            
-            JsonReader config = new JsonReader();
 
-            var numberOfInterests = config.GetProperty<int>("numberOfInterests", 3);
-            bool randomInterests = config.GetProperty<bool>("randomNumberOfInterests", false);
+            Always3InterestsSettings settings = POptions.ReadSettings<Always3InterestsSettings>();
+            if (settings == null)
+            {
+                settings = new Always3InterestsSettings();
+            }
+
+            var numberOfInterests = settings.numberOfInterests;
+            bool randomInterests = settings.randomNumberOfInterests;
 
             if (!randomInterests)
             {
@@ -167,8 +251,8 @@ namespace Always3Interests
             };
 
 
-            int numberOfGoodTraits = TuningConfigPatch.config.GetProperty<int>("numberOfGoodTraits", 1);
-            int numberOfBadTraits = TuningConfigPatch.config.GetProperty<int>("numberOfBadTraits", 1);
+            int numberOfGoodTraits = TuningConfigPatch.settings.numberOfGoodTraits; //TuningConfigPatch.config.GetProperty<int>("numberOfGoodTraits", 1);
+            int numberOfBadTraits = TuningConfigPatch.settings.numberOfBadTraits; //TuningConfigPatch.config.GetProperty<int>("numberOfBadTraits", 1);
 
             if (numberOfGoodTraits > 5)
             {
@@ -205,14 +289,11 @@ namespace Always3Interests
     {
         public static void Postfix(GameObject go)
         {
-            int startingLevel = TuningConfigPatch.config.GetProperty<int>("startingLevelOnPrintingPod", 1);
+            int startingLevel = TuningConfigPatch.settings.startingLevelOnPrintingPod;// .GetProperty<int>("startingLevelOnPrintingPod", 1);
 
             Telepad telepad = go.AddOrGet<Telepad>();
             telepad.startingSkillPoints = startingLevel;
 
-            Logs.Log("test lib 2");
-
         }
     }
-
 }

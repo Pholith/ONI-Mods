@@ -17,8 +17,41 @@ namespace WorldgenPack
             if (Utilities.IsOnWorld(WorldAdds.G_NAME))
             {
                 __instance.starsMaterial.SetTexture("_Tex0", Utilities.CreateTextureDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("SolarSystemWorlds" + "." + spriteName + ".dds"), 1024, 1024));
-            }
 
+            }
+        }
+    }
+    [HarmonyPatch(typeof(BackgroundEarthConfig))]
+    [HarmonyPatch("CreatePrefab")]
+    class BgEarthConfig_CreatePrefab_Patch
+    {
+        public static KBatchedAnimController earthAnimController;
+        public static void Postfix(GameObject __result)
+        {
+            earthAnimController = __result.AddOrGet<KBatchedAnimController>();
+
+        }
+    }
+
+
+    [HarmonyPatch(typeof(Game))]
+    [HarmonyPatch("Load")]
+    class AfterGameLoad_Patch
+    {
+        public static void Postfix()
+        {
+            if (Utilities.IsOnWorld(WorldAdds.G_NAME))
+            {
+                // Patch the earth
+                if (BgEarthConfig_CreatePrefab_Patch.earthAnimController != null)
+                {
+                    BgEarthConfig_CreatePrefab_Patch.earthAnimController.AnimFiles = new KAnimFile[]
+                    {
+                        Assets.GetAnim("saturn_kanim")
+                    };
+                    BgEarthConfig_CreatePrefab_Patch.earthAnimController.animScale = BgEarthConfig_CreatePrefab_Patch.earthAnimController.animScale * 3;
+                }
+            }
         }
     }
 
