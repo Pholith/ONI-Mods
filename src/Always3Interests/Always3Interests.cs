@@ -16,7 +16,7 @@ namespace Always3Interests
     public class Always3InterestsSettings
     {
         [Option("number Of Interests", "The number of interests.")]
-        [Limit(1, 10)]
+        [Limit(0, 10)]
         [JsonProperty]
         public int numberOfInterests { get; set; }
 
@@ -26,37 +26,37 @@ namespace Always3Interests
 
 
         [Option("points When 1 Interest", "")]
-        [Limit(1, 50)]
+        [Limit(0, 50)]
         [JsonProperty]
         public int pointsWhen1Interest { get; set; }
 
         [Option("points When 2 Interest", "")]
-        [Limit(1, 50)]
+        [Limit(0, 50)]
         [JsonProperty]
         public int pointsWhen2Interest { get; set; }
 
         [Option("points When 3 Interest", "")]
-        [Limit(1, 50)]
+        [Limit(0, 50)]
         [JsonProperty]
         public int pointsWhen3Interest { get; set; }
 
         [Option("points When More Than 3 Interest", "")]
-        [Limit(1, 50)]
+        [Limit(0, 50)]
         [JsonProperty]
         public int pointsWhenMoreThan3Interest { get; set; }
 
         [Option("number Of Good Traits", "")]
-        [Limit(1, 10)]
+        [Limit(0, 5)]
         [JsonProperty]
         public int numberOfGoodTraits { get; set; }
 
         [Option("number Of Bad Traits", "")]
-        [Limit(1, 5)]
+        [Limit(0, 5)]
         [JsonProperty]
         public int numberOfBadTraits { get; set; }
 
         [Option("starting Level On Printing Pod", "Set the experience of in game printed dups.")]
-        [Limit(1, 5)]
+        [Limit(0, 5)]
         [JsonProperty]
         public int startingLevelOnPrintingPod { get; set; }
 
