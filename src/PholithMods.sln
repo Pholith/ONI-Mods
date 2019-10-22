@@ -1,0 +1,114 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29020.237
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Always3Interests", "Always3Interests\Always3Interests.csproj", "{EE0F4C31-4491-402C-8AB7-1D6C3AC1D956}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldSteamTurbine", "OldSteamTurbine\OldSteamTurbine.csproj", "{61CA783C-F65E-479E-9F7A-C9A939204173}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pholib", "Pholib\Pholib.csproj", "{93619BC2-E4E6-4B15-937C-7548A9ADA084}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PollutedElectrolyzer", "PollutedElectrolyzer\PollutedElectrolyzer.csproj", "{2EE78DA1-C034-4538-B6CD-F6C12D91512F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeliumExtractor", "HeliumExtractor\HeliumExtractor.csproj", "{BA759E8D-DA6E-437B-B895-6F5BD645CB66}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{88231F22-E76E-4B32-A8DF-4E64723C0FC3}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+		HDScreenShot\HDScreenShot.csproj = HDScreenShot\HDScreenShot.csproj
+		..\..\..\Klei\OxygenNotIncluded\mods\mods.json = ..\..\..\Klei\OxygenNotIncluded\mods\mods.json
+		..\..\..\..\AppData\LocalLow\Klei\Oxygen Not Included\output_log.txt = ..\..\..\..\AppData\LocalLow\Klei\Oxygen Not Included\output_log.txt
+		..\README.md = ..\README.md
+	EndProjectSection
+	ProjectSection(FolderGlobals) = preProject
+		C_5_4Users_4Vincent Buisset_4Documents_4Klei_4OxygenNotIncluded_4mods_4mods_1json__JsonSchema = http://json.schemastore.org/babelrc
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILoveSlicksters", "ILoveSlicksters\ILoveSlicksters.csproj", "{9045D35E-DD73-4462-B9C7-50E91F737544}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllBiomesWorld", "AllBiomesWorld\AllBiomesWorld.csproj", "{B26EF9D9-018D-422B-9D73-6308AA31AA38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmptyWorld", "EmptyWorld\EmptyWorld.csproj", "{16F6003B-39BA-43BE-AC9B-15FA1F787F7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AchievementReEnabler", "AchievementReEnabler\AchievementReEnabler.csproj", "{A34620F3-66BF-4228-BBFE-358E74A09008}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolarSystemWorlds", "SolarSystemWorlds\SolarSystemWorlds.csproj", "{C7881127-59D7-44F7-8C47-502B526B947B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameLib", "GameLib", "{68F18AEE-279F-466A-9BCA-5FF332482FA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "GameLib\Assembly-CSharp-firstpass\Assembly-CSharp-firstpass.csproj", "{F50FD656-1E7A-4349-AA3D-57039F2C8F23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HDScreenShot", "HDScreenShot\HDScreenShot.csproj", "{D2236A7F-025C-4ED6-814E-A3123998DD2B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLib", "..\..\..\..\Downloads\ONIMods-master\PLib\PLib.csproj", "{10033C35-4461-4B05-B0EE-389C9FE36F95}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE0F4C31-4491-402C-8AB7-1D6C3AC1D956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE0F4C31-4491-402C-8AB7-1D6C3AC1D956}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE0F4C31-4491-402C-8AB7-1D6C3AC1D956}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE0F4C31-4491-402C-8AB7-1D6C3AC1D956}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61CA783C-F65E-479E-9F7A-C9A939204173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61CA783C-F65E-479E-9F7A-C9A939204173}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61CA783C-F65E-479E-9F7A-C9A939204173}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61CA783C-F65E-479E-9F7A-C9A939204173}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93619BC2-E4E6-4B15-937C-7548A9ADA084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93619BC2-E4E6-4B15-937C-7548A9ADA084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93619BC2-E4E6-4B15-937C-7548A9ADA084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93619BC2-E4E6-4B15-937C-7548A9ADA084}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EE78DA1-C034-4538-B6CD-F6C12D91512F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EE78DA1-C034-4538-B6CD-F6C12D91512F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EE78DA1-C034-4538-B6CD-F6C12D91512F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EE78DA1-C034-4538-B6CD-F6C12D91512F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA759E8D-DA6E-437B-B895-6F5BD645CB66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA759E8D-DA6E-437B-B895-6F5BD645CB66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA759E8D-DA6E-437B-B895-6F5BD645CB66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA759E8D-DA6E-437B-B895-6F5BD645CB66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9045D35E-DD73-4462-B9C7-50E91F737544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9045D35E-DD73-4462-B9C7-50E91F737544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9045D35E-DD73-4462-B9C7-50E91F737544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9045D35E-DD73-4462-B9C7-50E91F737544}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B26EF9D9-018D-422B-9D73-6308AA31AA38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B26EF9D9-018D-422B-9D73-6308AA31AA38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B26EF9D9-018D-422B-9D73-6308AA31AA38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B26EF9D9-018D-422B-9D73-6308AA31AA38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16F6003B-39BA-43BE-AC9B-15FA1F787F7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16F6003B-39BA-43BE-AC9B-15FA1F787F7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16F6003B-39BA-43BE-AC9B-15FA1F787F7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16F6003B-39BA-43BE-AC9B-15FA1F787F7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A34620F3-66BF-4228-BBFE-358E74A09008}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A34620F3-66BF-4228-BBFE-358E74A09008}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A34620F3-66BF-4228-BBFE-358E74A09008}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A34620F3-66BF-4228-BBFE-358E74A09008}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7881127-59D7-44F7-8C47-502B526B947B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7881127-59D7-44F7-8C47-502B526B947B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7881127-59D7-44F7-8C47-502B526B947B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7881127-59D7-44F7-8C47-502B526B947B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F50FD656-1E7A-4349-AA3D-57039F2C8F23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F50FD656-1E7A-4349-AA3D-57039F2C8F23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F50FD656-1E7A-4349-AA3D-57039F2C8F23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F50FD656-1E7A-4349-AA3D-57039F2C8F23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2236A7F-025C-4ED6-814E-A3123998DD2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2236A7F-025C-4ED6-814E-A3123998DD2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2236A7F-025C-4ED6-814E-A3123998DD2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2236A7F-025C-4ED6-814E-A3123998DD2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10033C35-4461-4B05-B0EE-389C9FE36F95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10033C35-4461-4B05-B0EE-389C9FE36F95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10033C35-4461-4B05-B0EE-389C9FE36F95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10033C35-4461-4B05-B0EE-389C9FE36F95}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F50FD656-1E7A-4349-AA3D-57039F2C8F23} = {68F18AEE-279F-466A-9BCA-5FF332482FA6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {01589006-950A-4D6F-AA91-3E1837FA98D1}
+	EndGlobalSection
+EndGlobal

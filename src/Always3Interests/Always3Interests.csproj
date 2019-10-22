@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\ILRepack.2.0.18\build\ILRepack.props" Condition="Exists('..\packages\ILRepack.2.0.18\build\ILRepack.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EE0F4C31-4491-402C-8AB7-1D6C3AC1D956}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Always3Interests</RootNamespace>
+    <AssemblyName>Always3Interests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Mods\Always3Interests\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>none</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Mods\Always3Interests\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net35\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Pholib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Pholib\bin\Release\Pholib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.SpriteShapeModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.TerrainModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\ExtensionMethods.cs">
+      <Link>ExtensionMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\KeyBindings\PAction.cs">
+      <Link>KeyBindings\PAction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\KeyBindings\PActionManager.cs">
+      <Link>KeyBindings\PActionManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\KeyBindings\PKeyBinding.cs">
+      <Link>KeyBindings\PKeyBinding.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\Lighting\LightingArgs.cs">
+      <Link>Lighting\LightingArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\Lighting\OctantBuilder.cs">
+      <Link>Lighting\OctantBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\Lighting\PLightManager.cs">
+      <Link>Lighting\PLightManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\Lighting\PLightShape.cs">
+      <Link>Lighting\PLightShape.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\Options\CheckboxOptionsEntry.cs">
+      <Link>Options\CheckboxOptionsEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\Options\FloatOptionsEntry.cs">
+      <Link>Options\FloatOptionsEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\Options\IntegerOptionsEntry.cs">
+      <Link>Options\IntegerOptionsEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\Options\LimitAttribute.cs">
+      <Link>Options\LimitAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\Options\OptionAttribute.cs">
+      <Link>Options\OptionAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\Options\OptionsDialog.cs">
+      <Link>Options\OptionsDialog.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\Options\OptionsEntry.cs">
+      <Link>Options\OptionsEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\Options\POptions.cs">
+      <Link>Options\POptions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\Options\SelectOneOptionsEntry.cs">
+      <Link>Options\SelectOneOptionsEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\Options\StringOptionsEntry.cs">
+      <Link>Options\StringOptionsEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\PLibPatches.cs">
+      <Link>PLibPatches.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\PRegistry.cs">
+      <Link>PRegistry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\PSharedData.cs">
+      <Link>PSharedData.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\PToolMode.cs">
+      <Link>PToolMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\PUtil.cs">
+      <Link>PUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\PVersion.cs">
+      <Link>PVersion.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\BoxLayoutGroup.cs">
+      <Link>UI\BoxLayoutGroup.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\IDynamicSizable.cs">
+      <Link>UI\IDynamicSizable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\ImageTransform.cs">
+      <Link>UI\ImageTransform.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\ISettableFlexSize.cs">
+      <Link>UI\ISettableFlexSize.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\IUIComponent.cs">
+      <Link>UI\IUIComponent.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\LayoutSizes.cs">
+      <Link>UI\LayoutSizes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\PButton.cs">
+      <Link>UI\PButton.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\PCheckBox.cs">
+      <Link>UI\PCheckBox.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\PDialog.cs">
+      <Link>UI\PDialog.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\PLabel.cs">
+      <Link>UI\PLabel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\PPanel.cs">
+      <Link>UI\PPanel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\PScrollPane.cs">
+      <Link>UI\PScrollPane.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\PSpacer.cs">
+      <Link>UI\PSpacer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\PTextComponent.cs">
+      <Link>UI\PTextComponent.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\PTextField.cs">
+      <Link>UI\PTextField.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\PToggle.cs">
+      <Link>UI\PToggle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\PUIDelegates.cs">
+      <Link>UI\PUIDelegates.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\PUIElements.cs">
+      <Link>UI\PUIElements.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\PUITuning.cs">
+      <Link>UI\PUITuning.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Downloads\ONIMods-master\PLib\UI\PUIUtils.cs">
+      <Link>UI\PUIUtils.cs</Link>
+    </Compile>
+    <Compile Include="Always3Interests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\..\..\..\..\..\Program Files %28x86%29\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll" />
+    <Analyzer Include="..\..\..\..\..\..\..\Program Files %28x86%29\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp.dll" />
+    <Analyzer Include="..\..\..\..\..\..\..\Program Files %28x86%29\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\ModLoader.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="config.json" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+rmdir /Q/S "C:\Users\Vincent Buisset\Documents\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)"
+
+xcopy "$(TargetDir.TrimEnd('\'))" "C:\Users\Vincent Buisset\Documents\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)" /E /I /Q</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>rmdir /Q/S $(TargetDir)</PreBuildEvent>
+  </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\ILRepack.2.0.18\build\ILRepack.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILRepack.2.0.18\build\ILRepack.props'))" />
+  </Target>
+</Project>
