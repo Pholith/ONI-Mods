@@ -35,10 +35,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AchievementReEnabler", "Ach
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolarSystemWorlds", "SolarSystemWorlds\SolarSystemWorlds.csproj", "{C7881127-59D7-44F7-8C47-502B526B947B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameLib", "GameLib", "{68F18AEE-279F-466A-9BCA-5FF332482FA6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "GameLib\Assembly-CSharp-firstpass\Assembly-CSharp-firstpass.csproj", "{F50FD656-1E7A-4349-AA3D-57039F2C8F23}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HDScreenShot", "HDScreenShot\HDScreenShot.csproj", "{D2236A7F-025C-4ED6-814E-A3123998DD2B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLib", "..\..\..\..\Downloads\ONIMods-master\PLib\PLib.csproj", "{10033C35-4461-4B05-B0EE-389C9FE36F95}"
@@ -89,10 +85,6 @@ Global
 		{C7881127-59D7-44F7-8C47-502B526B947B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7881127-59D7-44F7-8C47-502B526B947B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7881127-59D7-44F7-8C47-502B526B947B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F50FD656-1E7A-4349-AA3D-57039F2C8F23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F50FD656-1E7A-4349-AA3D-57039F2C8F23}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F50FD656-1E7A-4349-AA3D-57039F2C8F23}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F50FD656-1E7A-4349-AA3D-57039F2C8F23}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D2236A7F-025C-4ED6-814E-A3123998DD2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D2236A7F-025C-4ED6-814E-A3123998DD2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2236A7F-025C-4ED6-814E-A3123998DD2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -104,9 +96,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{F50FD656-1E7A-4349-AA3D-57039F2C8F23} = {68F18AEE-279F-466A-9BCA-5FF332482FA6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {01589006-950A-4D6F-AA91-3E1837FA98D1}

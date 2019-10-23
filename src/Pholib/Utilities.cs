@@ -30,7 +30,7 @@ namespace Pholib
             return dict["World"].Replace("worlds/", "") == worldName;
         }
 
-        private static HashSet<Type> alreadyLoaded = new HashSet<Type>();
+        private static List<Type> alreadyLoaded = new List<Type>();
         /// <summary>
         /// Add strings and icon for a world
         /// Don't call this method OnLoad ! 

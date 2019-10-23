@@ -36,7 +36,7 @@ namespace WorldgenPack
 
     [HarmonyPatch(typeof(Game))]
     [HarmonyPatch("Load")]
-    class AfterGameLoad_Patch
+    public class AfterGameLoad_Patch
     {
         public static void Postfix()
         {
@@ -51,6 +51,9 @@ namespace WorldgenPack
                     };
                     BgEarthConfig_CreatePrefab_Patch.earthAnimController.animScale = BgEarthConfig_CreatePrefab_Patch.earthAnimController.animScale * 3;
                 }
+            } else
+            {
+                Logs.Log(BgEarthConfig_CreatePrefab_Patch.earthAnimController.AnimFiles[0]);
             }
         }
     }
