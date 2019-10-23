@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace WorldgenPack
 {
-    [HarmonyPatch(typeof(TerrainBG))]
+    /*[HarmonyPatch(typeof(TerrainBG))]
     [HarmonyPatch("OnSpawn")]
     class Test
     {
@@ -17,19 +17,19 @@ namespace WorldgenPack
             if (Utilities.IsOnWorld(WorldAdds.G_NAME))
             {
                 __instance.starsMaterial.SetTexture("_Tex0", Utilities.CreateTextureDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("SolarSystemWorlds" + "." + spriteName + ".dds"), 1024, 1024));
-
             }
         }
-    }
+    }*/
+
+
     [HarmonyPatch(typeof(BackgroundEarthConfig))]
     [HarmonyPatch("CreatePrefab")]
-    class BgEarthConfig_CreatePrefab_Patch
+    class BgEarthConfig_Prefab_Patch
     {
         public static KBatchedAnimController earthAnimController;
         public static void Postfix(GameObject __result)
         {
             earthAnimController = __result.AddOrGet<KBatchedAnimController>();
-
         }
     }
 
@@ -38,22 +38,41 @@ namespace WorldgenPack
     [HarmonyPatch("Load")]
     public class AfterGameLoad_Patch
     {
+        private const int sizeScale = 6;
+        private static KAnimFile[] originalAnim = null;
+
         public static void Postfix()
         {
             if (Utilities.IsOnWorld(WorldAdds.G_NAME))
             {
-                // Patch the earth
-                if (BgEarthConfig_CreatePrefab_Patch.earthAnimController != null)
+
+                GameObject g = GameObject.Instantiate(BgEarthConfig_Prefab_Patch.earthAnimController.gameObject);
+                g.transform.position = new Vector2(g.transform.position.x / 2, g.transform.position.y);
+                Component c = g.GetComponent<KBatchedAnimController>();
+                Logs.Log("c = " + c);
+                Logs.Log("g = " + g);
+                // Patch the moon
+                if (BgEarthConfig_Prefab_Patch.earthAnimController != null)
                 {
-                    BgEarthConfig_CreatePrefab_Patch.earthAnimController.AnimFiles = new KAnimFile[]
+                    // save original anim
+                    originalAnim = BgEarthConfig_Prefab_Patch.earthAnimController.AnimFiles;
+                    // replace the anim
+                    BgEarthConfig_Prefab_Patch.earthAnimController.AnimFiles = new KAnimFile[]
                     {
                         Assets.GetAnim("saturn_kanim")
                     };
-                    BgEarthConfig_CreatePrefab_Patch.earthAnimController.animScale = BgEarthConfig_CreatePrefab_Patch.earthAnimController.animScale * 3;
+                    BgEarthConfig_Prefab_Patch.earthAnimController.animScale = BgEarthConfig_Prefab_Patch.earthAnimController.animScale * sizeScale;
                 }
-            } else
+            } else 
             {
-                Logs.Log(BgEarthConfig_CreatePrefab_Patch.earthAnimController.AnimFiles[0]);
+                // if someone load a other game from a Ganymede game -> reset changes
+                if (BgEarthConfig_Prefab_Patch.earthAnimController.AnimFiles[0] == Assets.GetAnim("saturn_kanim"))
+                {
+                    // reset the moon
+                    Debug.Assert(originalAnim != null, "Original anim should not be null.");
+                    BgEarthConfig_Prefab_Patch.earthAnimController.AnimFiles = originalAnim;
+                    BgEarthConfig_Prefab_Patch.earthAnimController.animScale = BgEarthConfig_Prefab_Patch.earthAnimController.animScale / sizeScale;
+                }
             }
         }
     }
