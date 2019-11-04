@@ -15,47 +15,47 @@ namespace Always3Interests
 {
     public class Always3InterestsSettings
     {
-        [Option("number Of Interests", "The number of interests.")]
+        [Option("Number of interests", "The number of interests.")]
         [Limit(0, 10)]
         [JsonProperty]
         public int numberOfInterests { get; set; }
 
-        [Option("random Number Of Interests", "Active it to disable the interest modification.")]
+        [Option("Random number of interests", "Active it to disable the interest modification.")]
         [JsonProperty]
         public bool randomNumberOfInterests { get; set; }
 
 
-        [Option("points When 1 Interest", "")]
+        [Option("Points when 1 interest", "")]
         [Limit(0, 50)]
         [JsonProperty]
         public int pointsWhen1Interest { get; set; }
 
-        [Option("points When 2 Interest", "")]
+        [Option("Points when 2 interest", "")]
         [Limit(0, 50)]
         [JsonProperty]
         public int pointsWhen2Interest { get; set; }
 
-        [Option("points When 3 Interest", "")]
+        [Option("Points when 3 interest", "")]
         [Limit(0, 50)]
         [JsonProperty]
         public int pointsWhen3Interest { get; set; }
 
-        [Option("points When More Than 3 Interest", "")]
+        [Option("Points when more than 3 interest", "")]
         [Limit(0, 50)]
         [JsonProperty]
         public int pointsWhenMoreThan3Interest { get; set; }
 
-        [Option("number Of Good Traits", "")]
+        [Option("Number of Good traits", "")]
         [Limit(0, 5)]
         [JsonProperty]
         public int numberOfGoodTraits { get; set; }
 
-        [Option("number Of Bad Traits", "")]
+        [Option("Number of Bad traits", "")]
         [Limit(0, 5)]
         [JsonProperty]
         public int numberOfBadTraits { get; set; }
 
-        [Option("starting Level On Printing Pod", "Set the experience of in game printed dups.")]
+        [Option("Starting level on printing pod", "Set the experience of in game printed dups.")]
         [Limit(0, 5)]
         [JsonProperty]
         public int startingLevelOnPrintingPod { get; set; }

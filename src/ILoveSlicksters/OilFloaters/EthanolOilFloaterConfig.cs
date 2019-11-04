@@ -64,7 +64,7 @@ namespace ILoveSlicksters
             },
             new FertilityMonitor.BreedingChance
             {
-                egg = "PolarOilFloaterEgg".ToTag(),
+                egg = "FrozenOilfloaterEgg".ToTag(),
                 weight = 0.02f
             }
         };
