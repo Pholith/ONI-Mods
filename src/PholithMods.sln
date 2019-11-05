@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLib", "..\..\..\..\Downloa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomizeYourPaints", "CustomizeYourPaints\CustomizeYourPaints.csproj", "{3E28EF1C-4DBD-4722-B847-82B5DCB9ABDB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Void", "Void\Void.csproj", "{5F617825-0DCB-42ED-A9ED-FB75FF00DF7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{3E28EF1C-4DBD-4722-B847-82B5DCB9ABDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E28EF1C-4DBD-4722-B847-82B5DCB9ABDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E28EF1C-4DBD-4722-B847-82B5DCB9ABDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F617825-0DCB-42ED-A9ED-FB75FF00DF7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F617825-0DCB-42ED-A9ED-FB75FF00DF7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F617825-0DCB-42ED-A9ED-FB75FF00DF7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F617825-0DCB-42ED-A9ED-FB75FF00DF7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
