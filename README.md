@@ -13,6 +13,8 @@
 | Helium Extractor | This mod adds a helium extractor that transforms natural gas into helium, propane and sulphur.                                                                                                                                                                                                          |![image](/src/HeliumExtractor/screen.png)|
 | EmptyWorlds (Skyblock)| Emptera is a very difficult empty asteroid. Resources are limited and you will have to take advantage of your geysers to get them.                                                                                 |![image](/src/EmptyWorld/screen1.png)|
 | I Love Slicksters - Variants | Add some Slicksters variant.                                                                                 |![image](/src/ILoveSlicksters/screen1.png)|
+| AchievementReEnabler | Reenable achievement on map loading and unlock you your map achievements							|![image](/src/AchievementReEnabler/screen1.png)|
+| Customize Your Paints | Enable the user to use custom textures for paintings												|![image](/src/CustomizeYourPaints/screen1.png)|
 
 
 # My Steam Page
