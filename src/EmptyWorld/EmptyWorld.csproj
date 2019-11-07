@@ -94,16 +94,24 @@
     <None Include="worldgen\PholithWorld\subworlds\forest\ForestMiniWaterModified.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorld\subworlds\forest\ForestStartModified.yaml" />
-    <None Include="worldgen\PholithWorld\subworlds\oil\OilPocketsWells.yaml" />
+    <None Include="worldgen\PholithWorld\subworlds\forest\ForestStartModified.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorld\subworlds\oil\OilPocketsWells.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="worldgen\PholithWorld\subworlds\space\NormalSpacePOI.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorld\subworlds\space\SpaceGeyser.yaml" />
+    <None Include="worldgen\PholithWorld\subworlds\space\SpaceGeyser.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="worldgen\PholithWorld\subworlds\space\SpaceWell.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\worlds\Emptera.yaml" />
+    <None Include="worldgen\worlds\Emptera.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="worldgen\worlds\Islands.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

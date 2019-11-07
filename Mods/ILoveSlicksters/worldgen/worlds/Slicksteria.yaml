@@ -7,7 +7,7 @@ tier: 2
 
 worldsize:
   X: 256
-  Y: 256
+  Y: 288
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
 
