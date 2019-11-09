@@ -1,0 +1,22 @@
+﻿biomeNoise: noise/subworldFrozen
+temperatureRange: Cold
+pdWeight: 1.3
+density:
+  min: 10
+  max: 15
+avoidRadius: 50.0
+sampleBehaviour: PoissonDisk
+biomes:
+  - name: biomes/Ganymede/Surface
+    weight: 1
+    tags:
+      - Mole
+    #overrides:
+    #  massMultiplier: 50
+tags:
+  - StartWorld
+  - IgnoreCaveOverride
+  - NoGlobalFeatureSpawning
+centralFeature:
+  type: features/generic/StartLocation
+zoneType: Ocean

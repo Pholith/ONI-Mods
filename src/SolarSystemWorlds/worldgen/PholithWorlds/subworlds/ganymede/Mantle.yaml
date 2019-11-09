@@ -1,0 +1,18 @@
+﻿biomeNoise: noise/DefaultDensity
+temperatureRange: Hot
+minChildCount: 2
+density:
+  min: 35
+  max: 45
+avoidRadius: 50.0
+sampleBehaviour: PoissonDisk
+biomes:
+  - name: biomes/Ganymede/Mantle
+    weight: 1
+features: []
+pointsOfInterest:
+tags:
+  - IgnoreCaveOverride
+# featureTemplates:
+  # feature_geyser_generic: 2
+zoneType: Ocean

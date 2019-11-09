@@ -7,33 +7,24 @@ tier: 2
 disableWorldTraits: true
 
 worldsize:
-  X: 256
-  Y: 384
+  X: 224
+  Y: 288
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
 
 # List all the zone files to load
 subworldFiles:
-  - name: subworlds/forest/ForestStart
-  - name: subworlds/forest/ForestMiniWater
-    weight: 1.5
   - name: subworlds/Impenetrable
   - name: subworlds/space/Space
-  - name: subworlds/marsh/HotMarsh
-  - name: subworlds/ocean/Ocean
-    weight: 0.6
-  - name: PholithWorlds/subworlds/ocean/Ocean
-  - name: PholithWorlds/subworlds/ocean/EmptyOcean
-    weight: 1.5
-  - name: PholithWorlds/subworlds/ocean/DeepOcean
-  - name: PholithWorlds/subworlds/ocean/HotOcean
-    weight: 2
-  - name: PholithWorlds/subworlds/sky/Sky
-  - name: subworlds/space/Surface
-  - name: subworlds/magma/Bottom
-  - name: subworlds/oil/OilPockets
+  - name: PholithWorlds/subworlds/ganymede/Core
+  - name: PholithWorlds/subworlds/ganymede/IceVI
+  - name: PholithWorlds/subworlds/ganymede/Mantle
+  - name: PholithWorlds/subworlds/ganymede/Mantle2
+  - name: PholithWorlds/subworlds/ganymede/Ocean
+  - name: PholithWorlds/subworlds/ganymede/Surface
+  - name: PholithWorlds/subworlds/ganymede/SurfaceStart
 
-startSubworldName: subworlds/forest/ForestStart
+startSubworldName: PholithWorlds/subworlds/ganymede/SurfaceStart
 startingBaseTemplate: forestBase
 
 startingBasePositionHorizontal:
@@ -57,40 +48,40 @@ unknownCellsAllowedSubworlds:
   - tagcommand: Default
     command: Replace
     subworldNames:
-      - subworlds/forest/ForestStart
+      - PholithWorlds/subworlds/ganymede/Surface
 
   - tagcommand: DistanceFromTag
     tag: AtSurface
-    minDistance: 2
-    maxDistance: 4
+    minDistance: 0
+    maxDistance: 3
     command: Replace
     subworldNames:
-      - PholithWorlds/subworlds/ocean/Ocean
-      - PholithWorlds/subworlds/ocean/EmptyOcean
+      - subworlds/space/Space
 
+
+  - tagcommand: DistanceFromTag
+    tag: AtSurface
+    minDistance: 3
+    maxDistance: 3
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/ganymede/Surface
 
   - tagcommand: DistanceFromTag
     tag: AtSurface
     minDistance: 4
-    maxDistance: 999
+    maxDistance: 4
     command: Replace
     subworldNames:
-      - PholithWorlds/subworlds/ocean/Ocean
-      - PholithWorlds/subworlds/ocean/EmptyOcean
+      - PholithWorlds/subworlds/ganymede/Ocean
 
   - tagcommand: DistanceFromTag
     tag: AtSurface
-    minDistance: 1
-    maxDistance: 1
+    minDistance: 5
+    maxDistance: 5
     command: Replace
     subworldNames:
-      - PholithWorlds/subworlds/sky/Sky
-
-  - tagcommand: AtTag
-    tag: AtSurface
-    command: Replace
-    subworldNames:
-      - subworlds/space/Surface
+      - PholithWorlds/subworlds/ganymede/Mantle
 
   - tagcommand: DistanceFromTag
     tag: AtDepths
@@ -98,13 +89,10 @@ unknownCellsAllowedSubworlds:
     maxDistance: 1
     command: Replace
     subworldNames:
-      - subworlds/oil/OilPockets
-      - PholithWorlds/subworlds/ocean/HotOcean
-      - subworlds/marsh/HotMarsh
+      - PholithWorlds/subworlds/ganymede/Mantle2
 
   - tagcommand: AtTag
     tag: AtDepths
     command: Replace
     subworldNames:
-      - subworlds/magma/Bottom
-      - subworlds/oil/OilPockets
+      - PholithWorlds/subworlds/ganymede/Core

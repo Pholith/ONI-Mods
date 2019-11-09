@@ -53,7 +53,8 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="CarePackagesMod">
-      <HintPath>..\..\..\..\Klei\OxygenNotIncluded\mods\Steam\1833878154\CarePackagesMod.dll</HintPath>
+      <HintPath>CarePackageMod\CarePackagesMod.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\System.dll</HintPath>

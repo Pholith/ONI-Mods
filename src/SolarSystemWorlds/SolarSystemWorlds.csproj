@@ -69,7 +69,25 @@
     <None Include="worldgen\PholithWorlds\features\ocean\SeaLettuceBlocks.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorlds\subworlds\ganimede\Ocean.yaml">
+    <None Include="worldgen\PholithWorlds\subworlds\ganymede\Core.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorlds\subworlds\ganymede\IceVI.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorlds\subworlds\ganymede\Mantle.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorlds\subworlds\ganymede\Mantle2.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorlds\subworlds\ganymede\Ocean.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorlds\subworlds\ganymede\Surface.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorlds\subworlds\ganymede\SurfaceStart.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="worldgen\PholithWorlds\subworlds\ocean\DeepOcean.yaml">

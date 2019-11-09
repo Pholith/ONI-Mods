@@ -1,0 +1,16 @@
+biomeNoise: noise/Sandstone
+temperatureRange: Cool
+density:
+  min: 20
+  max: 25
+avoidRadius: 50.0
+sampleBehaviour: PoissonDisk
+#borderOverride: hardToDig
+
+biomes:
+  - name: biomes/Ganymede/Ocean
+    weight: 4
+tags:
+  - IgnoreCaveOverride
+pointsOfInterest:
+zoneType: Ocean

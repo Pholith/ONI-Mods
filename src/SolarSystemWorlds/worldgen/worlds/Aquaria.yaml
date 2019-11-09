@@ -71,7 +71,7 @@ unknownCellsAllowedSubworlds:
 
   - tagcommand: AtTag
     tag: AtEdge
-    command: Replace
+    command: UnionWith
     subworldNames:
       - subworlds/ocean/Ocean
 

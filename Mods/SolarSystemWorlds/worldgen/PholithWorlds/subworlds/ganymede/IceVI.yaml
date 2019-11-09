@@ -1,16 +1,14 @@
-biomeNoise: noise/Sandstone
+﻿biomeNoise: noise/Default
 temperatureRange: Cool
 density:
   min: 20
   max: 25
 avoidRadius: 50.0
-doAvoidPoints: false
-dontRelaxChildren: true
 sampleBehaviour: PoissonDisk
 #borderOverride: hardToDig
 
 biomes:
-  - name: biomes/Ganymede/Ocean
+  - name: biomes/Ganymede/IceVI
     weight: 4
 tags:
   - IgnoreCaveOverride

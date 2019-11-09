@@ -8,3 +8,50 @@ TerrainBiomeLookupTable:
       bandSize: 0.6
     - content: Ice
       bandSize: 0.2
+    IceVI:
+    - content: Ice
+      bandSize: 0.5
+    - content: SaltWater
+      bandSize: 0.2
+    - content: Ice
+      bandSize: 0.4
+    Surface:
+    - content: Regolith
+      bandSize: 0.5
+    - content: MaficRock
+      bandSize: 0.4
+    - content: Rust
+      bandSize: 0.6
+    - content: Cuprite
+      bandSize: 0.3
+    - content: IgneousRock
+      bandSize: 0.3
+    - content: Ice
+      bandSize: 0.8
+    Mantle:
+    - content: Granite
+      bandSize: 0.3
+    - content: IgneousRock
+      bandSize: 0.6
+    - content: IronOre
+      bandSize: 0.2
+    Mantle2:
+    - content: IgneousRock
+      bandSize: 0.6
+    - content: SedimentaryRock
+      bandSize: 0.4
+    - content: Iron
+      bandSize: 0.5
+    - content: Obsidian
+      bandSize: 0.2
+    Core:
+    - content: MoltenIron
+      bandSize: 0.8
+      overrides:
+        massOverride: 8500
+    - content: Obsidian
+      bandSize: 0.2
+    - content: MoltenIron
+      bandSize: 0.2
+      overrides:
+        massOverride: 8500

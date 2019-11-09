@@ -1,0 +1,6 @@
+Hi, I changed location of the config file. Please look here:
+
+%userprofile%\documents\Klei\OxygenNotIncluded\mods\Care Package Manager.json
+
+The fallback path (in case there are problems with special characters of you are playing on MacOS/Linux):
+Steam\SteamApps\common\OxygenNotIncluded\ModsCare Package Manager\Config\Care Package Manager.json
