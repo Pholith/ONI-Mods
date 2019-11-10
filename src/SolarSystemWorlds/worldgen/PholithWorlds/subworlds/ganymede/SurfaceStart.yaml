@@ -1,22 +1,25 @@
 ﻿biomeNoise: noise/subworldFrozen
 temperatureRange: Cold
-pdWeight: 1.3
+#pdWeight: 1.2
 density:
   min: 10
   max: 15
 avoidRadius: 50.0
 sampleBehaviour: PoissonDisk
+borderOverride: rocky
+
 biomes:
   - name: biomes/Ganymede/Surface
     weight: 1
-    tags:
-      - Mole
     #overrides:
     #  massMultiplier: 50
 tags:
   - StartWorld
   - IgnoreCaveOverride
   - NoGlobalFeatureSpawning
+  - ErodePointToWorldTop
+  - DistFunctionPointCentroid
+
 centralFeature:
   type: features/generic/StartLocation
-zoneType: Ocean
+zoneType: Space

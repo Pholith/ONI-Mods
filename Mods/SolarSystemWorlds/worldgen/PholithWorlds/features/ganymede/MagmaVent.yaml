@@ -1,0 +1,35 @@
+shape: Splat
+borders:
+  - 1
+  - 1
+blobSize:
+  min: 1
+  max: 2
+
+ElementChoiceGroups:
+  RoomCenterElements:
+    selectionMethod: WeightedResample
+    choices:
+      - element: Magma
+        overrides:
+          temperatureOverride: 2100
+
+  RoomBorderChoices0:
+    selectionMethod: WeightedResample
+    choices:
+      - element: Magma
+        weight: 1
+        overrides:
+          temperatureOverride: 2100
+      - element: Katairite
+        weight: 1
+      - element: IgneousRock
+        weight: 0.2
+
+  RoomBorderChoices1:
+    selectionMethod: WeightedResample
+    choices:
+      - element: Obsidian
+        weight: 0.5
+      - element: Katairite
+        weight: 1

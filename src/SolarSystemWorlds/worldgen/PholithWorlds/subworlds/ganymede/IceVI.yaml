@@ -1,16 +1,19 @@
-﻿biomeNoise: noise/Default
-temperatureRange: Cool
+﻿biomeNoise: noise/subworldFrozen
+temperatureRange: Cold
 density:
   min: 20
   max: 25
 avoidRadius: 50.0
 sampleBehaviour: PoissonDisk
-#borderOverride: hardToDig
+borderOverride: rocky
 
 biomes:
   - name: biomes/Ganymede/IceVI
     weight: 4
 tags:
   - IgnoreCaveOverride
+features:
+  - type: PholithWorlds/features/ganymede/BioSphere
+
 pointsOfInterest:
-zoneType: Ocean
+zoneType: Sandstone

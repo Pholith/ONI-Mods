@@ -1,23 +1,21 @@
 ﻿biomeNoise: noise/subworldFrozen
-temperatureRange: ExtremelyCold
+temperatureRange: VeryCold
 minChildCount: 1
 density:
   min: 70
   max: 70
 avoidRadius: 50.0
 sampleBehaviour: PoissonDisk
-borderOverride: rocky
-
 biomes:
-  - name: biomes/Ganymede/Surface
+  - name: biomes/Misc/Surface
     weight: 1
     tags:
       - Mole
     #overrides:
     #  massMultiplier: 50
-
 tags:
   - IgnoreCaveOverride
+# - ErodePointToBorderInv
   - ErodePointToWorldTop
   - NoGlobalFeatureSpawning
-zoneType: Rust
+zoneType: Space

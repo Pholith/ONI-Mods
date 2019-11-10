@@ -1,0 +1,32 @@
+﻿shape: Square
+borders:
+  - 1
+  - 2
+blobSize:
+  min: 2
+  max: 3
+
+ElementChoiceGroups:
+  RoomCenterElements:
+    selectionMethod: PickOneWeighted
+    choices:
+      - element: GoldAmalgam
+        weight: 0.5
+      - element: Lead
+        weight: 0.5
+      - element: Isoresin
+        weight: 0.4
+  RoomBorderChoices0:
+    selectionMethod: WeightedResample
+    choices:
+      - element: IgneousRock
+        weight: 1
+      - element: Obsidian
+        weight: 1
+  RoomBorderChoices1:
+    selectionMethod: WeightedResample
+    choices:
+      - element: Granite
+        weight: 1
+      - element: IgneousRock
+        weight: 1

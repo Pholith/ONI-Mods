@@ -1,5 +1,5 @@
-biomeNoise: noise/subworldJungle
-temperatureRange: Cold
+﻿biomeNoise: noise/subworldFrozen
+temperatureRange: VeryCold
 density:
   min: 20
   max: 25
@@ -8,9 +8,11 @@ sampleBehaviour: PoissonDisk
 borderOverride: rocky
 
 biomes:
-  - name: biomes/Ganymede/Ocean
+  - name: biomes/Ganymede/Ice1h
     weight: 4
 tags:
   - IgnoreCaveOverride
 pointsOfInterest:
-zoneType: Ocean
+  home:
+    - pipHome
+zoneType: Rust

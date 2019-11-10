@@ -1,0 +1,40 @@
+﻿shape: ShortWide
+borders:
+  - 1
+  - 2
+blobSize:
+  min: 2
+  max: 4
+internalMobs:
+   - type: SeaLettuce
+     count:
+       min: 2
+       max: 3
+   - type: PacuEgg
+     count:
+       min: 2
+       max: 3
+   - type: SeaLettuceSeed
+     count:
+       min: 2
+       max: 3
+ElementChoiceGroups:
+  RoomCenterElements:
+    selectionMethod: WeightedResample
+    choices:
+      - element: SaltWater
+        weight: 2
+  RoomBorderChoices0:
+    selectionMethod: WeightedResample
+    choices:
+      - element: Algae
+        weight: 1
+      - element: Dirt
+        weight: 1
+  RoomBorderChoices1:
+    selectionMethod: WeightedResample
+    choices:
+      - element: Fossil
+        weight: 1
+      - element: Algae
+        weight: 0.2

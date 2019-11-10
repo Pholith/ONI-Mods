@@ -9,8 +9,12 @@ sampleBehaviour: PoissonDisk
 biomes:
   - name: biomes/Ganymede/Mantle2
     weight: 1
-features: []
+features:
+  - type: PholithWorlds/features/ganymede/MagmaVent
+
 pointsOfInterest:
+  home:
+    - oilfloaterHome 
 tags:
   - IgnoreCaveOverride
 # featureTemplates:
