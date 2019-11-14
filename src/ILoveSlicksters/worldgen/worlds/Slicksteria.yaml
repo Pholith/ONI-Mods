@@ -20,7 +20,7 @@ subworldFiles:
   - name: PholithWorld/subworlds/slicksterForest/SlicksterForestMiniMetal
   - name: subworlds/jungle/Jungle
     weight: 0.6
-  - name: PholithWorld/subworlds/notSoFrozen/notSoFrozen
+  - name: PholithWorld/subworlds/notSoFrozen/NotSoFrozen
   - name: PholithWorld/subworlds/hydrogenOcean/HydrogenOcean
   - name: PholithWorld/subworlds/steelCaves/SteelCaves
     weight: 0.3
@@ -78,7 +78,7 @@ unknownCellsAllowedSubworlds:
     subworldNames:
       - subworlds/jungle/Jungle
       - PholithWorld/subworlds/hydrogenOcean/HydrogenOcean
-      - PholithWorld/subworlds/notSoFrozen/notSoFrozen
+      - PholithWorld/subworlds/notSoFrozen/NotSoFrozen
       - subworlds/rust/Rust
   - tagcommand: DistanceFromTag
     tag: AtStart
@@ -87,7 +87,7 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - subworlds/jungle/Jungle
-      - PholithWorld/subworlds/notSoFrozen/notSoFrozen
+      - PholithWorld/subworlds/notSoFrozen/NotSoFrozen
       - PholithWorld/subworlds/rust/Rust
       - subworlds/space/Space
   - tagcommand: DistanceFromTag
@@ -99,7 +99,7 @@ unknownCellsAllowedSubworlds:
       - subworlds/jungle/Jungle
       - PholithWorld/subworlds/hydrogenOcean/HydrogenOcean
       - PholithWorld/subworlds/rust/Rust
-      - PholithWorld/subworlds/notSoFrozen/notSoFrozen
+      - PholithWorld/subworlds/notSoFrozen/NotSoFrozen
   - tagcommand: AtTag
     tag: AtDepths
     command: Replace
