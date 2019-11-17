@@ -70,7 +70,10 @@ namespace ILoveSlicksters
                 Strings.Add($"STRINGS.ELEMENTS.{ToUpperSnakeCase(Antigel.Id)}.NAME", Antigel.Name);
                 Strings.Add($"STRINGS.ELEMENTS.{ToUpperSnakeCase(Antigel.Id)}.DESC", Antigel.Description);
 
-                __result.AddRange(YamlIO.Parse<ElementLoader.ElementEntryCollection>(Antigel.Data, null).elements);
+                FileHandle nullFile = new FileHandle();
+                nullFile.full_path = null;
+                nullFile.source = null;
+                __result.AddRange(YamlIO.Parse<ElementLoader.ElementEntryCollection>(Antigel.Data, nullFile).elements);
             }
         }
         [HarmonyPatch(typeof(ElementLoader), "Load")]
