@@ -161,6 +161,8 @@ namespace Always3Interests
             System.Random randSeed = new System.Random();
             Trait trait = Db.Get().traits.Get(__instance.personality.stresstrait);
             __instance.stressTrait = trait;
+            Trait joytrait = Db.Get().traits.Get(__instance.personality.joyTrait);
+            __instance.joyTrait = joytrait;
             Trait trait2 = Db.Get().traits.Get(__instance.personality.congenitaltrait);
             if (trait2.Name == "None")
             {
