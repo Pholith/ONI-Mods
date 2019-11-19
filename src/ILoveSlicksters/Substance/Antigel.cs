@@ -16,13 +16,13 @@ namespace ILoveSlicksters
     speed: 110
     minHorizontalFlow: 0.1
     minVerticalFlow: 0.1
-    specificHeatCapacity: 4.179
+    specificHeatCapacity: 5.179
     thermalConductivity: 0.8
     solidSurfaceAreaMultiplier: 1
     liquidSurfaceAreaMultiplier: 25
     gasSurfaceAreaMultiplier: 1
-    lowTemp: 208.15
-    highTemp: 470.15
+    lowTemp: 188.15
+    highTemp: 480.15
     lowTempTransitionTarget: DirtyIce
     highTempTransitionTarget: Steam
     defaultTemperature: 312.5
