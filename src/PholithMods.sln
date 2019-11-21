@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomizeYourPaints", "Cust
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Void", "Void\Void.csproj", "{5F617825-0DCB-42ED-A9ED-FB75FF00DF7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuplicantRoomSensor", "DuplicantRoomSensor\DuplicantRoomSensor.csproj", "{9A017F9C-0D78-4E0F-9AE8-17F9F4554CCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{5F617825-0DCB-42ED-A9ED-FB75FF00DF7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F617825-0DCB-42ED-A9ED-FB75FF00DF7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F617825-0DCB-42ED-A9ED-FB75FF00DF7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A017F9C-0D78-4E0F-9AE8-17F9F4554CCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A017F9C-0D78-4E0F-9AE8-17F9F4554CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A017F9C-0D78-4E0F-9AE8-17F9F4554CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A017F9C-0D78-4E0F-9AE8-17F9F4554CCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
