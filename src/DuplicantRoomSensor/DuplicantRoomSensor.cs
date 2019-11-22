@@ -42,11 +42,10 @@ namespace DuplicantRoomSensor
             Room roomOfGameObject = Game.Instance.roomProber.GetRoomOfGameObject(base.gameObject);
             if (roomOfGameObject != null)
             {
-                this.currentCount = roomOfGameObject.cavity.creatures.Count;
-                if (this.countEggs)
-                {
-                    this.currentCount += roomOfGameObject.cavity.eggs.Count;
-                }
+                if (CavityInfoDuplicants.map.ContainsKey(roomOfGameObject.cavity))// CavityInfoDuplicants.map.Add(roomOfGameObject.cavity, new List<KPrefabID>());
+                    currentCount = CavityInfoDuplicants.map[roomOfGameObject.cavity].Count;
+                else currentCount = 0;
+
                 bool state = (!this.activateOnGreaterThan) ? (this.currentCount < this.countThreshold) : (this.currentCount > this.countThreshold);
                 this.SetState(state);
                 if (this.selectable.HasStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom))
@@ -155,7 +154,7 @@ namespace DuplicantRoomSensor
         {
             get
             {
-                return UI.UISIDESCREENS.CRITTER_COUNT_SIDE_SCREEN.TITLE;
+                return PHO_STRINGS.DUP_CRITTER_COUNT_SIDE_SCREEN.TITLE;
             }
         }
 
@@ -163,7 +162,7 @@ namespace DuplicantRoomSensor
         {
             get
             {
-                return UI.UISIDESCREENS.CRITTER_COUNT_SIDE_SCREEN.VALUE_NAME;
+                return STRINGS.UI.UISIDESCREENS.CRITTER_COUNT_SIDE_SCREEN.VALUE_NAME+"test";
             }
         }
 
@@ -171,7 +170,7 @@ namespace DuplicantRoomSensor
         {
             get
             {
-                return UI.UISIDESCREENS.CRITTER_COUNT_SIDE_SCREEN.TOOLTIP_ABOVE;
+                return PHO_STRINGS.DUP_CRITTER_COUNT_SIDE_SCREEN.TOOLTIP_ABOVE;
             }
         }
 
@@ -179,7 +178,7 @@ namespace DuplicantRoomSensor
         {
             get
             {
-                return UI.UISIDESCREENS.CRITTER_COUNT_SIDE_SCREEN.TOOLTIP_BELOW;
+                return PHO_STRINGS.DUP_CRITTER_COUNT_SIDE_SCREEN.TOOLTIP_BELOW;
             }
         }
 
@@ -228,8 +227,6 @@ namespace DuplicantRoomSensor
         }
 
         private bool wasOn;
-
-        private bool countEggs = true;
 
         [Serialize]
         public int countThreshold;

@@ -3,10 +3,10 @@ using Harmony;
 using STRINGS;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace DuplicantRoomSensor
 {
-
 
     [HarmonyPatch(typeof(GeneratedBuildings), "LoadGeneratedBuildings")]
     public static class DupRoomSensorStringsPatch
@@ -30,7 +30,6 @@ namespace DuplicantRoomSensor
                    DuplicantRoomSensorConfig.EFFECT
             });
             ModUtil.AddBuildingToPlanScreen("Automation", DuplicantRoomSensorConfig.ID);
-
         }
     }
 
@@ -43,6 +42,21 @@ namespace DuplicantRoomSensor
             List<string> list = new List<string>(Techs.TECH_GROUPING[techName]);
             list.Add(DuplicantRoomSensorConfig.ID);
             Techs.TECH_GROUPING[techName] = list.ToArray();
+        }
+    }
+
+    public static class CavityInfoDuplicants
+    {
+        public static Dictionary<CavityInfo, List<KPrefabID>> map = new Dictionary<CavityInfo, List<KPrefabID>>();
+    }
+
+    [HarmonyPatch(typeof(MinionConfig))]
+    [HarmonyPatch("CreatePrefab")]
+    public static class MinionConfigPatch
+    {
+        public static void Postfix(GameObject  __result)
+        {
+            __result.AddOrGetDef<DuplicantMonitor.Def>();
         }
     }
 }
