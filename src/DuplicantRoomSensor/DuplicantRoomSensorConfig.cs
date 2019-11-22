@@ -32,26 +32,26 @@ namespace DuplicantRoomSensor
             buildingDef.SceneLayer = Grid.SceneLayer.Building;
             SoundEventVolumeCache.instance.AddVolume("switchgaspressure_kanim", "PowerSwitch_on", NOISE_POLLUTION.NOISY.TIER3);
             SoundEventVolumeCache.instance.AddVolume("switchgaspressure_kanim", "PowerSwitch_off", NOISE_POLLUTION.NOISY.TIER3);
-            GeneratedBuildings.RegisterWithOverlay(OverlayModes.Logic.HighlightItemIDs, LogicCritterCountSensorConfig.ID);
+            GeneratedBuildings.RegisterWithOverlay(OverlayModes.Logic.HighlightItemIDs, ID);
             return buildingDef;
         }
 
         public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
         {
-            GeneratedBuildings.RegisterLogicPorts(go, LogicCritterCountSensorConfig.OUTPUT_PORT);
+            GeneratedBuildings.RegisterLogicPorts(go, OUTPUT_PORT);
         }
 
         public override void DoPostConfigureUnderConstruction(GameObject go)
         {
-            GeneratedBuildings.RegisterLogicPorts(go, LogicCritterCountSensorConfig.OUTPUT_PORT);
+            GeneratedBuildings.RegisterLogicPorts(go, OUTPUT_PORT);
         }
 
         public override void DoPostConfigureComplete(GameObject go)
         {
             GeneratedBuildings.MakeBuildingAlwaysOperational(go);
-            GeneratedBuildings.RegisterLogicPorts(go, LogicCritterCountSensorConfig.OUTPUT_PORT);
-            LogicDuplicantCountSensor logicCritterCountSensor = go.AddOrGet<LogicDuplicantCountSensor>();
-            logicCritterCountSensor.manuallyControlled = false;
+            GeneratedBuildings.RegisterLogicPorts(go, OUTPUT_PORT);
+            LogicDuplicantCountSensor sensor = go.AddOrGet<LogicDuplicantCountSensor>();
+            sensor.manuallyControlled = false;
         }
 
         public static string ID = "DuplicantRoomSensor";
@@ -60,7 +60,5 @@ namespace DuplicantRoomSensor
         public static string DESC = "1.2";
         public static string EFFECT = "";
     }
-
-
 
 }

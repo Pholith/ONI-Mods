@@ -1,106 +1,92 @@
 ﻿using KSerialization;
-using STRINGS;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace DuplicantRoomSensor
 {
+    [SerializationConfig(MemberSerialization.OptIn)]
     public class LogicDuplicantCountSensor : Switch, ISaveLoadable, IThresholdSwitch, ISim200ms
     {
         protected override void OnPrefabInit()
         {
             base.OnPrefabInit();
-            this.selectable = base.GetComponent<KSelectable>();
-            base.Subscribe<LogicDuplicantCountSensor>(-905833192, LogicDuplicantCountSensor.OnCopySettingsDelegate);
-        }
-
-        private void OnCopySettings(object data)
-        {
-            GameObject gameObject = (GameObject)data;
-            LogicDuplicantCountSensor component = gameObject.GetComponent<LogicDuplicantCountSensor>();
-            if (component != null)
-            {
-                this.countThreshold = component.countThreshold;
-                this.activateOnGreaterThan = component.activateOnGreaterThan;
-            }
+            selectable = GetComponent<KSelectable>();
+            //Subscribe((int)GameHashes.CopySettings, OnCopySettingsDelegate);
         }
 
         protected override void OnSpawn()
         {
             base.OnSpawn();
-            base.OnToggle += this.OnSwitchToggled;
-            this.UpdateLogicCircuit();
-            this.UpdateVisualState(true);
-            this.wasOn = this.switchedOn;
+            OnToggle += OnSwitchToggled;
+            UpdateLogicCircuit();
+            UpdateVisualState(true);
+            wasOn = switchedOn;
         }
 
         public void Sim200ms(float dt)
         {
-            Room roomOfGameObject = Game.Instance.roomProber.GetRoomOfGameObject(base.gameObject);
+            Room roomOfGameObject = Game.Instance.roomProber.GetRoomOfGameObject(gameObject);
             if (roomOfGameObject != null)
             {
                 if (CavityInfoDuplicants.map.ContainsKey(roomOfGameObject.cavity))// CavityInfoDuplicants.map.Add(roomOfGameObject.cavity, new List<KPrefabID>());
                     currentCount = CavityInfoDuplicants.map[roomOfGameObject.cavity].Count;
                 else currentCount = 0;
 
-                bool state = (!this.activateOnGreaterThan) ? (this.currentCount < this.countThreshold) : (this.currentCount > this.countThreshold);
-                this.SetState(state);
-                if (this.selectable.HasStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom))
+                bool state = (!activateOnGreaterThan) ? (currentCount < countThreshold) : (currentCount > countThreshold);
+                SetState(state);
+                if (selectable.HasStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom))
                 {
-                    this.selectable.RemoveStatusItem(this.roomStatusGUID, false);
+                    selectable.RemoveStatusItem(roomStatusGUID, false);
                 }
             }
             else
             {
-                if (!this.selectable.HasStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom))
+                if (!selectable.HasStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom))
                 {
-                    this.roomStatusGUID = this.selectable.AddStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom, null);
+                    roomStatusGUID = selectable.AddStatusItem(Db.Get().BuildingStatusItems.NotInAnyRoom, null);
                 }
-                this.SetState(false);
+                SetState(false);
             }
         }
 
         private void OnSwitchToggled(bool toggled_on)
         {
-            this.UpdateLogicCircuit();
-            this.UpdateVisualState(false);
+            UpdateLogicCircuit();
+            UpdateVisualState(false);
         }
 
         private void UpdateLogicCircuit()
         {
-            LogicPorts component = base.GetComponent<LogicPorts>();
-            component.SendSignal(LogicSwitch.PORT_ID, (!this.switchedOn) ? 0 : 1);
+            LogicPorts component = GetComponent<LogicPorts>();
+            component.SendSignal(LogicSwitch.PORT_ID, (!switchedOn) ? 0 : 1);
         }
 
         private void UpdateVisualState(bool force = false)
         {
-            if (this.wasOn != this.switchedOn || force)
+            if (wasOn != switchedOn || force)
             {
-                this.wasOn = this.switchedOn;
-                KBatchedAnimController component = base.GetComponent<KBatchedAnimController>();
-                component.Play((!this.switchedOn) ? "on_pst" : "on_pre", KAnim.PlayMode.Once, 1f, 0f);
-                component.Queue((!this.switchedOn) ? "off" : "on", KAnim.PlayMode.Once, 1f, 0f);
+                wasOn = switchedOn;
+                KBatchedAnimController component = GetComponent<KBatchedAnimController>();
+                component.Play((!switchedOn) ? "on_pst" : "on_pre", KAnim.PlayMode.Once, 1f, 0f);
+                component.Queue((!switchedOn) ? "off" : "on", KAnim.PlayMode.Once, 1f, 0f);
             }
         }
 
         protected override void UpdateSwitchStatus()
         {
-            StatusItem status_item = (!this.switchedOn) ? Db.Get().BuildingStatusItems.LogicSensorStatusInactive : Db.Get().BuildingStatusItems.LogicSensorStatusActive;
-            base.GetComponent<KSelectable>().SetStatusItem(Db.Get().StatusItemCategories.Power, status_item, null);
+            StatusItem status_item = (!switchedOn) ? Db.Get().BuildingStatusItems.LogicSensorStatusInactive : Db.Get().BuildingStatusItems.LogicSensorStatusActive;
+            GetComponent<KSelectable>().SetStatusItem(Db.Get().StatusItemCategories.Power, status_item, null);
         }
 
         public float Threshold
         {
             get
             {
-                return (float)this.countThreshold;
+                return (float)countThreshold;
             }
             set
             {
-                this.countThreshold = (int)value;
+                countThreshold = (int)value;
             }
         }
 
@@ -108,79 +94,31 @@ namespace DuplicantRoomSensor
         {
             get
             {
-                return this.activateOnGreaterThan;
+                return activateOnGreaterThan;
             }
             set
             {
-                this.activateOnGreaterThan = value;
+                activateOnGreaterThan = value;
             }
         }
 
-        public float CurrentValue
-        {
-            get
-            {
-                return (float)this.currentCount;
-            }
-        }
+        public float CurrentValue => currentCount;
 
-        public float RangeMin
-        {
-            get
-            {
-                return 0f;
-            }
-        }
+        public float RangeMin => 0f;
 
-        public float RangeMax
-        {
-            get
-            {
-                return 64f;
-            }
-        }
+        public float RangeMax => 64f;
 
-        public float GetRangeMinInputField()
-        {
-            return this.RangeMin;
-        }
+        public float GetRangeMinInputField() => RangeMin;
 
-        public float GetRangeMaxInputField()
-        {
-            return this.RangeMax;
-        }
+        public float GetRangeMaxInputField() => RangeMax;
 
-        public LocString Title
-        {
-            get
-            {
-                return PHO_STRINGS.DUP_CRITTER_COUNT_SIDE_SCREEN.TITLE;
-            }
-        }
+        public LocString Title => PHO_STRINGS.DUP_CRITTER_COUNT_SIDE_SCREEN.TITLE;
 
-        public LocString ThresholdValueName
-        {
-            get
-            {
-                return STRINGS.UI.UISIDESCREENS.CRITTER_COUNT_SIDE_SCREEN.VALUE_NAME+"test";
-            }
-        }
+        public LocString ThresholdValueName => STRINGS.UI.UISIDESCREENS.CRITTER_COUNT_SIDE_SCREEN.VALUE_NAME + "test";
 
-        public string AboveToolTip
-        {
-            get
-            {
-                return PHO_STRINGS.DUP_CRITTER_COUNT_SIDE_SCREEN.TOOLTIP_ABOVE;
-            }
-        }
+        public string AboveToolTip => PHO_STRINGS.DUP_CRITTER_COUNT_SIDE_SCREEN.TOOLTIP_ABOVE;
 
-        public string BelowToolTip
-        {
-            get
-            {
-                return PHO_STRINGS.DUP_CRITTER_COUNT_SIDE_SCREEN.TOOLTIP_BELOW;
-            }
-        }
+        public string BelowToolTip => PHO_STRINGS.DUP_CRITTER_COUNT_SIDE_SCREEN.TOOLTIP_BELOW;
 
         public string Format(float value, bool units)
         {
@@ -202,29 +140,11 @@ namespace DuplicantRoomSensor
             return string.Empty;
         }
 
-        public ThresholdScreenLayoutType LayoutType
-        {
-            get
-            {
-                return ThresholdScreenLayoutType.SliderBar;
-            }
-        }
+        public ThresholdScreenLayoutType LayoutType => ThresholdScreenLayoutType.SliderBar;
 
-        public int IncrementScale
-        {
-            get
-            {
-                return 1;
-            }
-        }
+        public int IncrementScale => 1;
 
-        public NonLinearSlider.Range[] GetRanges
-        {
-            get
-            {
-                return NonLinearSlider.GetDefaultRange(this.RangeMax);
-            }
-        }
+        public NonLinearSlider.Range[] GetRanges => NonLinearSlider.GetDefaultRange(RangeMax);
 
         private bool wasOn;
 
@@ -240,12 +160,5 @@ namespace DuplicantRoomSensor
 
         private Guid roomStatusGUID;
 
-        [MyCmpAdd]
-        private CopyBuildingSettings copyBuildingSettings;
-
-        private static readonly EventSystem.IntraObjectHandler<LogicDuplicantCountSensor> OnCopySettingsDelegate = new EventSystem.IntraObjectHandler<LogicDuplicantCountSensor>(delegate (LogicDuplicantCountSensor component, object data)
-        {
-            component.OnCopySettings(data);
-        });
     }
 }

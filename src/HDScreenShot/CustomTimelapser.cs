@@ -13,7 +13,7 @@ namespace HDScreenShot
         {
             if (timelapser == null)
             {
-                timelapser = GameObject.Instantiate(GetTimeLapser.trueTimeLapser);
+                timelapser = Object.Instantiate(GetTimeLapser.trueTimeLapser);
             }
             Traverse.Create(timelapser).Field<RenderTexture>("bufferRenderTexture").Value =new RenderTexture(2048, 2304, 32, RenderTextureFormat.ARGB32);
             //Traverse.Create(timelapser).Field("screenshotPending").SetValue(true);

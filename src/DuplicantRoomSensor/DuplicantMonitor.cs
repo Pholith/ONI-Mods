@@ -9,9 +9,9 @@ namespace DuplicantRoomSensor
         {
             default_state = this.root;
             GameStateMachine<DuplicantMonitor, DuplicantMonitor.Instance, IStateMachineTarget, DuplicantMonitor.Def>.State root = this.root;
-            if (DuplicantMonitor.action == null) DuplicantMonitor.action = new Action<DuplicantMonitor.Instance, float>(DuplicantMonitor.UpdateState);
+            if (action == null) action = new Action<DuplicantMonitor.Instance, float>(UpdateState);
 
-            root.Update(DuplicantMonitor.action, UpdateRate.SIM_1000ms, true);
+            root.Update(action, UpdateRate.SIM_1000ms, true);
         }
 
         private static Action<DuplicantMonitor.Instance, float> action;
@@ -42,7 +42,7 @@ namespace DuplicantRoomSensor
 
         private static void UpdateState(DuplicantMonitor.Instance smi, float dt)
         {
-            DuplicantMonitor.UpdateCavity(smi, dt);
+            UpdateCavity(smi, dt);
         }
 
         public new class Instance : GameStateMachine<DuplicantMonitor, DuplicantMonitor.Instance, IStateMachineTarget, DuplicantMonitor.Def>.GameInstance

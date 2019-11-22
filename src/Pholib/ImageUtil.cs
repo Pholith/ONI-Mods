@@ -116,7 +116,7 @@ namespace Pholib
 
             int outputImageHeight = firstImage.Height + secondImage.Height + 1;
 
-            Bitmap outputImage = new Bitmap(outputImageWidth, outputImageHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            Bitmap outputImage = new Bitmap(outputImageWidth, outputImageHeight, PixelFormat.Format32bppArgb);
 
             using (Graphics graphics = Graphics.FromImage(outputImage))
             {

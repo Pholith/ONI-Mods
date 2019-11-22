@@ -1,4 +1,5 @@
 ﻿using Harmony;
+using PeterHan.PLib;
 using Pholib;
 using System;
 using System.Reflection;
@@ -47,7 +48,7 @@ namespace WorldgenPack
             if (Utilities.IsOnWorld(WorldAdds.G_NAME))
             {
 
-                GameObject g = GameObject.Instantiate(EarthConfigPatch.earthAnimController.gameObject);
+                GameObject g = UnityEngine.Object.Instantiate(EarthConfigPatch.earthAnimController.gameObject);
                 g.transform.position = new Vector2(g.transform.position.x / 2, g.transform.position.y);
                 Component c = g.GetComponent<KBatchedAnimController>();
                 Logs.Log("c = " + c);
@@ -93,6 +94,8 @@ namespace WorldgenPack
 
         public static void OnLoad()
         {
+            PPatchTools.LogAllFailedAsserts();
+
             Logs.DebugLog = true;
             Utilities.addWorldYaml(A_NAME, A_DESCRIPTION, null, typeof(WorldAdds));
             Utilities.addWorldYaml(G_NAME, G_DESCRIPTION, null, typeof(WorldAdds));
