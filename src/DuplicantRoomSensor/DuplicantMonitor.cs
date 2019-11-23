@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace DuplicantRoomSensor
 {
@@ -19,6 +20,8 @@ namespace DuplicantRoomSensor
         private static void UpdateCavity(DuplicantMonitor.Instance smi, float dt)
         {
             CavityInfo cavityForCell = Game.Instance.roomProber.GetCavityForCell(Grid.PosToCell(smi));
+
+            // If duplicant changed of cavity
             if (cavityForCell != smi.cavity)
             {
                 KPrefabID component = smi.GetComponent<KPrefabID>();
@@ -26,18 +29,31 @@ namespace DuplicantRoomSensor
                 {
                     if (!CavityInfoDuplicants.map.ContainsKey(smi.cavity)) CavityInfoDuplicants.map.Add(cavityForCell, new List<KPrefabID>());
                     CavityInfoDuplicants.map[smi.cavity].Remove(component);
-                    //OvercrowdingMonitor.GetCreatureCollection(smi, smi.cavity).Remove(component);
                     Game.Instance.roomProber.UpdateRoom(cavityForCell);
                 }
                 smi.cavity = cavityForCell;
                 if (smi.cavity != null)
                 {
                     if (!CavityInfoDuplicants.map.ContainsKey(smi.cavity)) CavityInfoDuplicants.map.Add(cavityForCell, new List<KPrefabID>());
+
+                    // don't add the duplicant if he's dead
+                    if (smi.deathMonitor == null) smi.deathMonitor = smi.GetSMI<DeathMonitor.Instance>();
+                    if (smi.deathMonitor != null && smi.deathMonitor.IsDead()) return;
+
                     CavityInfoDuplicants.map[smi.cavity].Add(component);
-                    //OvercrowdingMonitor.GetCreatureCollection(smi, smi.cavity).Add(component);
                     Game.Instance.roomProber.UpdateRoom(smi.cavity);
                 }
             }
+            // Remove the duplicant if he died in this room
+            /*else {
+                if (smi.deathMonitor == null) smi.deathMonitor = smi.GetSMI<DeathMonitor.Instance>();
+                if (smi.deathMonitor != null && smi.deathMonitor.IsDead()) {
+                    KPrefabID component = smi.GetComponent<KPrefabID>();
+                    Debug.Log(component.name);
+                    if (!CavityInfoDuplicants.map.ContainsKey(smi.cavity)) CavityInfoDuplicants.map.Add(smi.cavity, new List<KPrefabID>());
+                    if (CavityInfoDuplicants.map[smi.cavity].Contains(component)) CavityInfoDuplicants.map[smi.cavity].Remove(component);
+                }
+            }*/
         }
 
         private static void UpdateState(DuplicantMonitor.Instance smi, float dt)
@@ -51,6 +67,7 @@ namespace DuplicantRoomSensor
             {
             }
             public CavityInfo cavity;
+            public DeathMonitor.Instance deathMonitor;
         }
 
         public class Def : StateMachine.BaseDef

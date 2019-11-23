@@ -1,4 +1,5 @@
 ﻿using KSerialization;
+using STRINGS;
 using System;
 using UnityEngine;
 
@@ -103,21 +104,14 @@ namespace DuplicantRoomSensor
         }
 
         public float CurrentValue => currentCount;
-
         public float RangeMin => 0f;
-
         public float RangeMax => 64f;
-
         public float GetRangeMinInputField() => RangeMin;
-
         public float GetRangeMaxInputField() => RangeMax;
 
         public LocString Title => PHO_STRINGS.DUP_CRITTER_COUNT_SIDE_SCREEN.TITLE;
-
-        public LocString ThresholdValueName => STRINGS.UI.UISIDESCREENS.CRITTER_COUNT_SIDE_SCREEN.VALUE_NAME + "test";
-
+        public LocString ThresholdValueName => UI.FRONTEND.LOADSCREEN.DUPLICANTS_ALIVE;
         public string AboveToolTip => PHO_STRINGS.DUP_CRITTER_COUNT_SIDE_SCREEN.TOOLTIP_ABOVE;
-
         public string BelowToolTip => PHO_STRINGS.DUP_CRITTER_COUNT_SIDE_SCREEN.TOOLTIP_BELOW;
 
         public string Format(float value, bool units)

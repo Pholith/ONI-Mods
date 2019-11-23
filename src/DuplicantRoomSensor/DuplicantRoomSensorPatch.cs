@@ -1,10 +1,7 @@
 ﻿using Database;
 using Harmony;
-using PeterHan.PLib;
 using STRINGS;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 namespace DuplicantRoomSensor
@@ -39,7 +36,7 @@ namespace DuplicantRoomSensor
     {
         public static void Prefix()
         {
-            String techName = "LogicControl";
+            string techName = "LogicControl";
             List<string> list = new List<string>(Techs.TECH_GROUPING[techName]);
             list.Add(DuplicantRoomSensorConfig.ID);
             Techs.TECH_GROUPING[techName] = list.ToArray();
@@ -55,7 +52,7 @@ namespace DuplicantRoomSensor
     [HarmonyPatch("CreatePrefab")]
     public static class MinionConfigPatch
     {
-        public static void Postfix(GameObject  __result)
+        public static void Postfix(GameObject __result)
         {
             __result.AddOrGetDef<DuplicantMonitor.Def>();
         }

@@ -15,7 +15,7 @@ namespace DuplicantRoomSensor
             string id = ID;
             int width = 1;
             int height = 1;
-            string anim = "critter_sensor_kanim";
+            string anim = "duplicant_room_sensor_kanim";
             int hitpoints = 30;
             float construction_time = 30f;
             float[] tier = TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER0;
