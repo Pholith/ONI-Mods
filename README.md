@@ -3,6 +3,10 @@
 
 # Pholith's Mods for Oxygen Not Included
 
+# My Steam Page
+There are more details on the mods on my steam page:
+https://steamcommunity.com/profiles/76561198263471888/myworkshopfiles/?
+
 ## List of mods
 | **Name**                            | **Description**                                                                                                                                                                                                                                                                      | **Preview**                                           |
 | :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| :-------:									                               |
@@ -15,20 +19,17 @@
 | I Love Slicksters - Variants | Add some Slicksters variant.                                                                                 |![image](/src/ILoveSlicksters/screen1.png)|
 | AchievementReEnabler | Reenable achievement on map loading and unlock you your map achievements							|![image](/src/AchievementReEnabler/screen1.png)|
 | Customize Your Paints | Enable the user to use custom textures for paintings												|![image](/src/CustomizeYourPaints/screen1.png)|
+| Duplicant Room Sensor | Add a sensor to count duplicants												|![image](/src/DuplicantRoomSensor/screen1.png)|
 
-
-# My Steam Page
-There are more details on the mods on my steam page:
-https://steamcommunity.com/profiles/76561198263471888/myworkshopfiles/?
 
 # Instructions
 
 #### With Steam
 You can install the mods by Steam just by click on "subscribe".
 
-#### Manually (Epic)
+#### Manually (Epic users can only do this)
 To download the mods, you need to click on "Clone or download" and "Download ZIP".
-For Epic users, you can also download mods on Steam from http://steamworkshop.download/
+You can also download mods on Steam from http://steamworkshop.download/
 
 If the mod is not on Steam and you want to manually install it, you can try this.
 Place the mods in the folder: Documents/Klei/OxygenNotIncluded/mods/local/
