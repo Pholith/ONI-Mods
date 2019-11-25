@@ -56,9 +56,16 @@ namespace DuplicantRoomSensor
 
         public static string ID = "DuplicantRoomSensor";
         public static readonly LogicPorts.Port OUTPUT_PORT = LogicPorts.Port.OutputPort(LogicSwitch.PORT_ID, new CellOffset(0, 0), STRINGS.BUILDINGS.PREFABS.LOGICCRITTERCOUNTSENSOR.LOGIC_PORT, STRINGS.BUILDINGS.PREFABS.LOGICCRITTERCOUNTSENSOR.LOGIC_PORT_ACTIVE,STRINGS.BUILDINGS.PREFABS.LOGICCRITTERCOUNTSENSOR.LOGIC_PORT_INACTIVE,true, false);
-        public static string NAME = "Duplicant Room Sensor";
-        public static string DESC = "1.2";
-        public static string EFFECT = "";
+        public static string NAME = UI.FormatAsLink("Duplicant Room Sensor", "DUPLICANTROOMSENSOR");
+        public static string DESC = "Detecting duplicant populations can help adjust their automated needs.";
+        public static string EFFECT = string.Concat(new string[]
+                {
+                    "Sends a ",
+                    UI.FormatAsAutomationState("Green Signal", UI.AutomationState.Active),
+                    " or a ",
+                    UI.FormatAsAutomationState("Red Signal", UI.AutomationState.Standby),
+                    " based on the number of duplicants in a room."
+                });
     }
 
 }
