@@ -22,18 +22,17 @@ public class CarePackageModifier
 
         // public CarePackageContainer(string ID, float amount, int? onlyAfterCycle = null, int? onlyUntilCycle = null)
         // Tag, KG, first cycle, last cycle (note that the game starts at cycle 0), null will always return true on that condition
-        List<CarePackageContainer> carePackages = new List<CarePackageContainer>();
-        carePackages.Add(new CarePackageContainer("ColdBreatherSeed", 2f, 0, 10));
-        carePackages.Add(new CarePackageContainer("ColdBreatherSeed", 2f, 10));
-        carePackages.Add(new CarePackageContainer("ColdBreatherSeed", 2f));
+        List<CarePackageMod.CarePackageContainer> carePackages = new List<CarePackageMod.CarePackageContainer>();
+        carePackages.Add(new CarePackageMod.CarePackageContainer("ColdBreatherSeed", 2f, 0, 10));
+        carePackages.Add(new CarePackageMod.CarePackageContainer("ColdBreatherSeed", 2f, 10));
+        carePackages.Add(new CarePackageMod.CarePackageContainer("ColdBreatherSeed", 2f));
         CarePackageAPI.OverridePackages(carePackages.ToArray());
-        
 
         // or
 
-        CarePackageAPI.OverridePackages(new CarePackageContainer[] {
-            new CarePackageContainer("ColdBreatherSeed", 100f, 0, 10),
-            new CarePackageContainer("Diamond", 300f, 10)
+        CarePackageAPI.OverridePackages(new CarePackageMod.CarePackageContainer[] {
+            new CarePackageMod.CarePackageContainer("ColdBreatherSeed", 100f, 0, 10),
+            new CarePackageMod.CarePackageContainer("Diamond", 300f, 10)
         });
 
         // other options
