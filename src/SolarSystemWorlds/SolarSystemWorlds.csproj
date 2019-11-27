@@ -54,6 +54,9 @@
     <None Include="templates\poi\drekoHome.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="templates\poi\hatchHome.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="templates\poi\oilfloaterHome.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

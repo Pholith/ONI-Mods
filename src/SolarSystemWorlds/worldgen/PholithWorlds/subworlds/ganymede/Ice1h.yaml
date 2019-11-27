@@ -15,4 +15,6 @@ tags:
 pointsOfInterest:
   home:
     - pipHome
+  home2:
+    - hatchHome
 zoneType: Rust
