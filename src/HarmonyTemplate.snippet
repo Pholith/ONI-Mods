@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title> hpatch </Title>
+      <Author>Pholith</Author>
+      <Description>
+	  	[HarmonyPatch(typeof($CLASS$))]
+		[HarmonyPatch("$FUNCTION$")]
+		class $CLASSNAME$
+		{
+			public static void Postfix($TYPE$ $PARAMETER$)
+			{
+				$CODE$
+			}
+		}
+
+      </Description>
+      <Shortcut>hpatch</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[    
+		[HarmonyPatch(typeof($CLASS$))]
+		[HarmonyPatch("$FUNCTION$")]
+		class $CLASSNAME$
+		{
+			public static void Postfix($TYPE$ $PARAMETER$)
+			{
+				$CODE$
+			}
+		}
+		]]>
+      </Code>
+      <Declarations>
+        <Literal>
+          <ID>CLASS</ID>
+          <Default>Class</Default>
+        </Literal>
+        <Literal>
+          <ID>FUNCTION</ID>
+          <Default>FunctionName</Default>
+        </Literal>
+        <Literal>
+          <ID>CLASSNAME</ID>
+          <Default>Patch</Default>
+        </Literal>
+        <Literal>
+          <ID>TYPE</ID>
+          <Default>Type</Default>
+        </Literal>
+        <Literal>
+          <ID>PARAMETER</ID>
+          <Default>parameter</Default>
+        </Literal>
+        <Literal>
+          <ID>CODE</ID>
+          <Default>//code</Default>
+        </Literal>
+      </Declarations>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

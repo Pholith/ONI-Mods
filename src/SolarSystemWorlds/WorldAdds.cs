@@ -21,8 +21,7 @@ namespace WorldgenPack
             }
         }
     }*/
-
-
+       
     [HarmonyPatch(typeof(BackgroundEarthConfig))]
     [HarmonyPatch("CreatePrefab")]
     class EarthConfigPatch
@@ -33,7 +32,6 @@ namespace WorldgenPack
             earthAnimController = __result.AddOrGet<KBatchedAnimController>();
         }
     }
-
 
     [HarmonyPatch(typeof(Game))]
     [HarmonyPatch("OnSpawn")]

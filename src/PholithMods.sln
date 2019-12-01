@@ -16,6 +16,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{88231F22-E76E-4B32-A8DF-4E64723C0FC3}"
 	ProjectSection(SolutionItems) = preProject
 		..\.gitignore = ..\.gitignore
+		HarmonyTemplate.snippet = HarmonyTemplate.snippet
 		HDScreenShot\HDScreenShot.csproj = HDScreenShot\HDScreenShot.csproj
 		..\..\..\Klei\OxygenNotIncluded\mods\mods.json = ..\..\..\Klei\OxygenNotIncluded\mods\mods.json
 		..\..\..\..\AppData\LocalLow\Klei\Oxygen Not Included\output_log.txt = ..\..\..\..\AppData\LocalLow\Klei\Oxygen Not Included\output_log.txt
