@@ -3,6 +3,7 @@ using Klei.CustomSettings;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
@@ -15,6 +16,12 @@ namespace Pholib
         {
             return Traverse.Create<Game.SavedInfo>().Field("discoveredSurface").GetValue<bool>();
         }
+
+        public static bool CycleCondition(int cycle)
+        {
+            return GameClock.Instance.GetCycle() >= cycle;
+        }
+
         public static bool IsOnWorld(string worldName)
         {
             if (CustomGameSettings.Instance == null)
@@ -29,6 +36,16 @@ namespace Pholib
 
             return dict["World"].Replace("worlds/", "") == worldName;
         }
+
+
+        public static void AddCarePackage(ref Immigration immigration, string objectId, float amount, Func<bool> requirement = null)
+        {
+            var field = Traverse.Create(immigration).Field("carePackages");
+            var list = field.GetValue<CarePackageInfo[]>().ToList();
+            list.Add(new CarePackageInfo(objectId, amount, requirement));
+            field.SetValue(list.ToArray());
+        }
+
 
         private static List<Type> alreadyLoaded = new List<Type>();
         /// <summary>
@@ -85,6 +102,7 @@ namespace Pholib
             texture2D.Apply(false, true);
             return Sprite.Create(texture2D, new Rect(0f, 0f, (float)width, (float)height), new Vector2((float)(width / 2), (float)(height / 2)));
         }
+
 
         public static Texture2D CreateTextureDXT5(Stream inputStream, int width, int height)
         {

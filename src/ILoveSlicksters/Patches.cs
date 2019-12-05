@@ -4,6 +4,7 @@ using System;
 using Klei.AI;
 using UnityEngine;
 using System.Reflection;
+using static Pholib.Utilities;
 
 namespace ILoveSlicksters
 {
@@ -124,6 +125,26 @@ namespace ILoveSlicksters
             __result.AddOrGet<LightVulnerable>();
             __result.AddOrGet<SimplePressureVulnerable>();
             __result.AddOrGet<ElementVulnerable>();
+        }
+    }
+
+    [HarmonyPatch(typeof(Immigration))]
+    [HarmonyPatch("ConfigureCarePackages")]
+    public static class Immigration_ConfigureCarePackages_Patch
+    {
+        public static void Postfix(ref Immigration __instance)
+        {
+            AddCarePackage(ref __instance, EthanolOilfloaterBabyConfig.ID, 1f, () => CycleCondition(48));
+            AddCarePackage(ref __instance, LeafyOilfloaterBabyConfig.ID, 1f, () => CycleCondition(48));
+            AddCarePackage(ref __instance, OwO_OilFloaterBabyConfig.ID, 1f, () => CycleCondition(126));
+            AddCarePackage(ref __instance, FrozenOilfloaterBabyConfig.ID, 1f, () => CycleCondition(126));
+            AddCarePackage(ref __instance, RobotOilfloaterBabyConfig.ID, 1f, () => CycleCondition(256));
+
+            AddCarePackage(ref __instance, EthanolOilfloaterConfig.EGG_ID, 3f, () => CycleCondition(48));
+            AddCarePackage(ref __instance, LeafyOilfloaterConfig.EGG_ID, 3f, () => CycleCondition(48));
+            AddCarePackage(ref __instance, OwO_OilFloaterConfig.EGG_ID, 2f, () => CycleCondition(48));
+            AddCarePackage(ref __instance, FrozenOilfloaterConfig.EGG_ID, 1f, () => CycleCondition(96));
+            AddCarePackage(ref __instance, RobotOilfloaterConfig.EGG_ID, 1f, () => CycleCondition(96));
         }
     }
 }
