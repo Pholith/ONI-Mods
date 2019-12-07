@@ -105,7 +105,7 @@ namespace ILoveSlicksters
     {
         public static void Postfix(Db __instance)
         {
-            Pholib.Utilities.addWorldYaml(StringsPatch.WORLDGEN.NAME, StringsPatch.WORLDGEN.DESC, "Asteroid_Slicksteria", typeof(StringsPatch));
+            Pholib.Utilities.AddWorldYaml(StringsPatch.WORLDGEN.NAME, StringsPatch.WORLDGEN.DESC, "Asteroid_Slicksteria", typeof(StringsPatch));
 
 
             Effect OwO_Effect = new Effect("OwO_effect", " OwO Effect", "This duplicant saw something so cute that he can't think of anything else.", 300f, true, true, false, null, 10f);

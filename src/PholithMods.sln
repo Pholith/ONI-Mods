@@ -17,10 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		..\.gitignore = ..\.gitignore
 		HarmonyTemplate.snippet = HarmonyTemplate.snippet
-		HDScreenShot\HDScreenShot.csproj = HDScreenShot\HDScreenShot.csproj
 		..\..\..\Klei\OxygenNotIncluded\mods\mods.json = ..\..\..\Klei\OxygenNotIncluded\mods\mods.json
 		..\..\..\..\AppData\LocalLow\Klei\Oxygen Not Included\output_log.txt = ..\..\..\..\AppData\LocalLow\Klei\Oxygen Not Included\output_log.txt
 		..\README.md = ..\README.md
+		StaticMethod.snippet = StaticMethod.snippet
 	EndProjectSection
 	ProjectSection(FolderGlobals) = preProject
 		C_5_4Users_4Vincent Buisset_4Documents_4Klei_4OxygenNotIncluded_4mods_4mods_1json__JsonSchema = http://json.schemastore.org/babelrc
@@ -45,6 +45,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuplicantRoomSensor", "DuplicantRoomSensor\DuplicantRoomSensor.csproj", "{9A017F9C-0D78-4E0F-9AE8-17F9F4554CCA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLib", "..\..\..\..\Downloads\PLib\PLib.csproj", "{FB7A6AF8-B8D5-4D10-8707-29C4537FD8C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundAlarm", "SoundAlarm\SoundAlarm.csproj", "{45F6C6F6-FABE-4E99-AF9C-5D9BB2AE16A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -112,6 +114,10 @@ Global
 		{FB7A6AF8-B8D5-4D10-8707-29C4537FD8C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB7A6AF8-B8D5-4D10-8707-29C4537FD8C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB7A6AF8-B8D5-4D10-8707-29C4537FD8C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45F6C6F6-FABE-4E99-AF9C-5D9BB2AE16A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45F6C6F6-FABE-4E99-AF9C-5D9BB2AE16A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45F6C6F6-FABE-4E99-AF9C-5D9BB2AE16A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45F6C6F6-FABE-4E99-AF9C-5D9BB2AE16A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

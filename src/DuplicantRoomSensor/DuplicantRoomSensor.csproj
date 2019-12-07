@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\Pholib\Logs.cs">
+      <Link>Logs.cs</Link>
+    </Compile>
+    <Compile Include="..\Pholib\Utilities.cs">
+      <Link>Utilities.cs</Link>
+    </Compile>
     <Compile Include="DuplicantMonitor.cs" />
     <Compile Include="DuplicantRoomSensor.cs" />
     <Compile Include="DuplicantRoomSensorConfig.cs" />

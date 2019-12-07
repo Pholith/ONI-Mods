@@ -1,4 +1,4 @@
-﻿biomeNoise: noise/subworldFrozen
+biomeNoise: noise/subworldFrozen
 temperatureRange: VeryCold
 minChildCount: 1
 density:
@@ -15,7 +15,7 @@ biomes:
     #  massMultiplier: 50
 tags:
   - IgnoreCaveOverride
-# - ErodePointToBorderInv
+  - ErodePointToBorderInv
   - ErodePointToWorldTop
   - NoGlobalFeatureSpawning
 zoneType: Space

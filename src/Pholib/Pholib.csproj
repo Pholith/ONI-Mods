@@ -70,9 +70,7 @@
   <ItemGroup>
     <Compile Include="ImageUtil.cs" />
     <Compile Include="JsonReader.cs" />
-    <Compile Include="Logs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sprites.cs" />
     <Compile Include="Utilities.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

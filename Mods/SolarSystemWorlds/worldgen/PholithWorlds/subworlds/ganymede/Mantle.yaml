@@ -1,4 +1,4 @@
-﻿biomeNoise: noise/DefaultCave
+biomeNoise: noise/DefaultCave
 temperatureRange: Hot
 minChildCount: 2
 density:

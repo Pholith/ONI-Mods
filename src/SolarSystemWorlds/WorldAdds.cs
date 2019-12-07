@@ -1,8 +1,5 @@
 ﻿using Harmony;
-using PeterHan.PLib;
 using Pholib;
-using System;
-using System.Reflection;
 using UnityEngine;
 
 namespace WorldgenPack
@@ -21,7 +18,7 @@ namespace WorldgenPack
             }
         }
     }*/
-       
+
     [HarmonyPatch(typeof(BackgroundEarthConfig))]
     [HarmonyPatch("CreatePrefab")]
     class EarthConfigPatch
@@ -45,12 +42,6 @@ namespace WorldgenPack
         {
             if (Utilities.IsOnWorld(WorldAdds.G_NAME))
             {
-
-                GameObject g = UnityEngine.Object.Instantiate(EarthConfigPatch.earthAnimController.gameObject);
-                g.transform.position = new Vector2(g.transform.position.x / 2, g.transform.position.y);
-                Component c = g.GetComponent<KBatchedAnimController>();
-                Logs.Log("c = " + c);
-                Logs.Log("g = " + g);
                 // Patch the moon
                 if (EarthConfigPatch.earthAnimController != null)
                 {
@@ -67,7 +58,8 @@ namespace WorldgenPack
                         EarthConfigPatch.earthAnimController.animScale = EarthConfigPatch.earthAnimController.animScale * sizeScale;
                     }
                 }
-            } else 
+            }
+            else
             {
                 // if someone load a other game from a Ganymede game -> reset changes
                 if (EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("saturn_kanim"))
@@ -81,37 +73,21 @@ namespace WorldgenPack
         }
     }
 
-
+    [HarmonyPatch(typeof(Db))]
+    [HarmonyPatch("Initialize")]
     public class WorldAdds
     {
         public static LocString A_NAME = "Aquaria";
         public static LocString A_DESCRIPTION = "Test \n\n";
 
         public static LocString G_NAME = "Ganymede";
-        public static LocString G_DESCRIPTION = "Test \n\n";
+        public static LocString G_DESCRIPTION = "Ganymede is the 2nd moon of Jupiter, and the largest moon in the entire solar system. It contains a lot of water under its surface.\n\nGanymede will be the most difficult experience you have ever had, to help you in your planetary conquest, you have your habitable rocket that will provide you with valuable resources\n";
 
-        public static void OnLoad()
+
+        public static void Postfix()
         {
-            PPatchTools.LogAllFailedAsserts();
-
-            Logs.DebugLog = true;
-            Utilities.addWorldYaml(A_NAME, A_DESCRIPTION, null, typeof(WorldAdds));
-            Utilities.addWorldYaml(G_NAME, G_DESCRIPTION, null, typeof(WorldAdds));
-
-            try
-            {
-                /*foreach (var item in Assets.Textures)
-                {
-                    Debug.Log("here " + item.name);
-                }*/
-
-            }
-            catch (System.Exception e)
-            {
-                Debug.Log(e.ToString());
-                throw;
-            }
-
+            Utilities.AddWorldYaml(A_NAME, A_DESCRIPTION, null, typeof(WorldAdds));
+            Utilities.AddWorldYaml(G_NAME, G_DESCRIPTION, "Asteroid_Ganymede", typeof(WorldAdds));
         }
     }
 }

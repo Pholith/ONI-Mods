@@ -2,19 +2,16 @@ name: STRINGS.WORLDS.GANYMEDE.NAME
 description: STRINGS.WORLDS.GANYMEDE.DESCRIPTION
 spriteName: Asteroid_Ganymede
 coordinatePrefix: GMD-PHO
-difficulty: 5
+difficulty: 6
 tier: 2
 disableWorldTraits: true
 
 worldsize:
-  X: 192
-  Y: 320
+  X: 160
+  Y: 352
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
 
-#defaultsOverrides:
-#  data:
-#    SubWorldHeight: 256
 
 # List all the zone files to load
 subworldFiles:
@@ -35,8 +32,8 @@ startSubworldName: PholithWorlds/subworlds/ganymede/SurfaceStart
 startingBaseTemplate: spaceBase
 
 startingBasePositionHorizontal:
-  min: 0.3
-  max: 0.7
+  min: 0.35
+  max: 0.65
 startingBasePositionVertical:
   min: 0.75
   max: 0.75

@@ -1,5 +1,6 @@
-﻿using Harmony;
-using Klei.CustomSettings;
+﻿using Database;
+using Harmony;
+using STRINGS;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -31,8 +32,8 @@ namespace Pholib
             Dictionary<string, string> dict = Traverse.Create(CustomGameSettings.Instance).Field<Dictionary<string, string>>("CurrentQualityLevelsBySetting").Value;
             if (dict == null || dict["World"] == null) return false;
 
-            Logs.LogIfDebugging(dict["World"]);
-            Logs.LogIfDebugging(dict["World"].Replace("worlds/", ""));
+            //Logs.LogIfDebugging(dict["World"]);
+            //Logs.LogIfDebugging(dict["World"].Replace("worlds/", ""));
 
             return dict["World"].Replace("worlds/", "") == worldName;
         }
@@ -51,12 +52,13 @@ namespace Pholib
         /// <summary>
         /// Add strings and icon for a world
         /// Don't call this method OnLoad ! 
+        /// To call at Db.Initialize
         /// </summary>
         /// <param name="NAME"> Name of the world </param>
         /// <param name="DESCRIPTION"> Description of the world </param>
         /// <param name="iconName"> DDS icon name (incorporated ressources only) </param>
         /// <param name="className"> Class containing the locstrings </param>
-        public static void addWorldYaml(string NAME, string DESCRIPTION, string iconName, Type className)
+        public static void AddWorldYaml(string NAME, string DESCRIPTION, string iconName, Type className)
         {
             // Add strings used in ****.yaml
             Strings.Add($"STRINGS.WORLDS." + NAME.ToUpper() + ".NAME", NAME);
@@ -68,29 +70,23 @@ namespace Pholib
             if (!alreadyLoaded.Contains(className))
             {
                 ModUtil.RegisterForTranslation(className);
+                alreadyLoaded.Add(className);
             }
-            alreadyLoaded.Add(className);
 
             if (!iconName.IsNullOrWhiteSpace())
             {
                 //Load the sprite from Asteroid_****.dds (converted online from png) and set "generation action" to incorporated ressources
-                try
+                Logs.LogIfDebugging("Loading Sprite: " + className.Assembly.GetName().Name + "." + iconName + ".dds");
+                Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(className.Assembly.GetName().Name + "." + iconName + ".dds");
+                if (stream == null)
                 {
-                    Logs.LogIfDebugging("Loading Sprite: " + className.Assembly.GetName().Name + "." + iconName + ".dds");
-                    Sprite sprite = CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream(className.Assembly.GetName().Name + "." + iconName + ".dds"), 512, 512);
-                    Logs.LogIfDebugging((Assets.Sprites == null).ToString());
-                    Assets.Sprites.Add(iconName, sprite);
-
+                    throw new ArgumentException("Sprite name is not valid.");
                 }
-                catch (Exception e)
-                {
-                    Logs.Log("SpriteException: " + e.ToString());
-                    throw new ArgumentException();
-                }
+                Sprite sprite = CreateSpriteDXT5(stream, 512, 512);
+                Assets.Sprites.Add(iconName, sprite);
             }
         }
 
-        // Thanks Mayall for his search
         // Load a incorporated sprite
         public static Sprite CreateSpriteDXT5(Stream inputStream, int width, int height)
         {
@@ -115,5 +111,76 @@ namespace Pholib
             Debug.Assert(texture != null);
             return texture;
         }
+
+        public static void AddBuilding(string category, string id, string name, string desc, string effect)
+        {
+            string upperCaseID = id.ToUpperInvariant();
+            Strings.Add(new string[]
+                {
+                "STRINGS.BUILDINGS.PREFABS." + upperCaseID + ".NAME",
+                UI.FormatAsLink(name, id)
+            });
+            Strings.Add(new string[]
+            {
+                "STRINGS.BUILDINGS.PREFABS." + upperCaseID + ".DESC",
+                   desc
+            });
+            Strings.Add(new string[]
+            {
+                "STRINGS.BUILDINGS.PREFABS." + upperCaseID + ".EFFECT",
+                   effect
+            });
+            ModUtil.AddBuildingToPlanScreen(category, id);
+        }
+
+        public static void AddBuildingTech(string techName, string id)
+        {
+            List<string> list = new List<string>(Techs.TECH_GROUPING[techName]);
+            list.Add(id);
+            Techs.TECH_GROUPING[techName] = list.ToArray();
+        }
     }
+
+
+
+    public class Logs
+    {
+        private static readonly string version = "1.2.0";
+
+        public static bool DebugLog = false;
+        private static bool initiated = false;
+
+        public static void InitIfNot()
+        {
+            if (initiated)
+            {
+                return;
+            }
+            Debug.Log("== Game Launched with Pholib " + version + "  " + System.DateTime.Now);
+            initiated = true;
+        }
+
+
+        public static void Log(string informations)
+        {
+            InitIfNot();
+            Debug.Log("Pholib: " + informations);
+        }
+        public static void Log(object informations)
+        {
+            InitIfNot();
+            Debug.Log("Pholib: " + informations.ToString());
+        }
+
+
+        public static void LogIfDebugging(string informations)
+        {
+            InitIfNot();
+            if (DebugLog)
+            {
+                Debug.Log("Pholib: " + informations);
+            }
+        }
+    }
+
 }

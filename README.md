@@ -20,7 +20,7 @@ https://steamcommunity.com/profiles/76561198263471888/myworkshopfiles/?
 | AchievementReEnabler | Reenable achievement on map loading and unlock you your map achievements							|![image](/src/AchievementReEnabler/screen1.png)|
 | Customize Your Paints | Enable the user to use custom textures for paintings												|![image](/src/CustomizeYourPaints/screen1.png)|
 | Duplicant Room Sensor | Add a sensor to count duplicants												|![image](/src/DuplicantRoomSensor/screen1.png)|
-
+| Solar System Worlds |Add more worlds based on the solar system planets and moons   |![image](/src/SolarSystemWorlds/screen1.png)|
 
 # Instructions
 

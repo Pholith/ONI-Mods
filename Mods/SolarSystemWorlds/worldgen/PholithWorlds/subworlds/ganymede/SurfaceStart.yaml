@@ -1,4 +1,4 @@
-﻿biomeNoise: noise/subworldFrozen
+biomeNoise: noise/subworldFrozen
 temperatureRange: Cold
 #pdWeight: 1.2
 density:
@@ -17,8 +17,8 @@ tags:
   - StartWorld
   - IgnoreCaveOverride
   - NoGlobalFeatureSpawning
-  - ErodePointToWorldTop
-  - DistFunctionPointCentroid
+  #- ErodePointToWorldTop
+  #- DistFunctionPointCentroid
 
 centralFeature:
   type: features/generic/StartLocation

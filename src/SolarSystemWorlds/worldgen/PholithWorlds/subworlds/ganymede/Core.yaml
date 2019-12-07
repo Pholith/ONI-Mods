@@ -1,4 +1,4 @@
-﻿biomeNoise: noise/MagmaVent
+biomeNoise: noise/MagmaVent
 temperatureRange: ExtremelyHot
 minChildCount: 4
 density:

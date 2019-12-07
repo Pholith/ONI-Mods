@@ -1,4 +1,4 @@
-﻿biomeNoise: noise/Default
+biomeNoise: noise/Default
 temperatureRange: VeryHot
 minChildCount: 2
 density:

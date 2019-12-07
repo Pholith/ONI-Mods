@@ -3,6 +3,7 @@ using Harmony;
 using STRINGS;
 using System.Collections.Generic;
 using UnityEngine;
+using static Pholib.Utilities;
 
 namespace DuplicantRoomSensor
 {
@@ -11,23 +12,7 @@ namespace DuplicantRoomSensor
     {
         public static void Prefix()
         {
-            string upperCaseID = DuplicantRoomSensorConfig.ID.ToUpperInvariant();
-            Strings.Add(new string[]
-            {
-                "STRINGS.BUILDINGS.PREFABS." + upperCaseID + ".NAME",
-                UI.FormatAsLink(DuplicantRoomSensorConfig.NAME, DuplicantRoomSensorConfig.ID)
-            });
-            Strings.Add(new string[]
-            {
-                "STRINGS.BUILDINGS.PREFABS." + upperCaseID + ".DESC",
-                   DuplicantRoomSensorConfig.DESC
-            });
-            Strings.Add(new string[]
-            {
-                "STRINGS.BUILDINGS.PREFABS." + upperCaseID + ".EFFECT",
-                   DuplicantRoomSensorConfig.EFFECT
-            });
-            ModUtil.AddBuildingToPlanScreen("Automation", DuplicantRoomSensorConfig.ID);
+            AddBuilding("Automation", DuplicantRoomSensorConfig.ID, DuplicantRoomSensorConfig.NAME, DuplicantRoomSensorConfig.DESC, DuplicantRoomSensorConfig.EFFECT);
         }
     }
 
@@ -36,10 +21,7 @@ namespace DuplicantRoomSensor
     {
         public static void Prefix()
         {
-            string techName = "LogicControl";
-            List<string> list = new List<string>(Techs.TECH_GROUPING[techName]);
-            list.Add(DuplicantRoomSensorConfig.ID);
-            Techs.TECH_GROUPING[techName] = list.ToArray();
+            AddBuildingTech("LogicControl", DuplicantRoomSensorConfig.ID);
         }
     }
 

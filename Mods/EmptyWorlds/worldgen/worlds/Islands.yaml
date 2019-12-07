@@ -2,7 +2,7 @@ name: STRINGS.WORLDS.ISLANDS.NAME
 description: STRINGS.WORLDS.ISLANDS.DESCRIPTION
 spriteName: Asteroid_Islands
 coordinatePrefix: ISD-PHO
-difficulty: 3
+difficulty: 4
 tier: 2
 disableWorldTraits: false
 

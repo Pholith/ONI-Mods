@@ -7,8 +7,8 @@
     <ProjectGuid>{16F6003B-39BA-43BE-AC9B-15FA1F787F7B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EmptyWorld</RootNamespace>
-    <AssemblyName>EmptyWorld</AssemblyName>
+    <RootNamespace>EmptyWorlds</RootNamespace>
+    <AssemblyName>EmptyWorlds</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -18,7 +18,7 @@
     <DebugSymbols>false</DebugSymbols>
     <DebugType>none</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Mods\EmptyWorld\</OutputPath>
+    <OutputPath>..\..\Mods\EmptyWorlds\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>none</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -26,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Mods\EmptyWorld\</OutputPath>
+    <OutputPath>..\..\Mods\EmptyWorlds\</OutputPath>
     <DefineConstants>
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -66,9 +66,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmptyWorld.cs" />
+    <Compile Include="..\Pholib\Utilities.cs">
+      <Link>Utilities.cs</Link>
+    </Compile>
+    <Compile Include="EmptyWorlds.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sprites.cs" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\..\..\..\..\..\Program Files %28x86%29\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll" />
