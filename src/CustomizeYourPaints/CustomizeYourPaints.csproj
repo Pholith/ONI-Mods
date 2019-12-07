@@ -37,8 +37,8 @@
     <Compile Include="..\Pholib\ImageUtil.cs">
       <Link>ImageUtil.cs</Link>
     </Compile>
-    <Compile Include="..\Pholib\Logs.cs">
-      <Link>Logs.cs</Link>
+    <Compile Include="..\Pholib\Utilities.cs">
+      <Link>Utilities.cs</Link>
     </Compile>
     <Compile Include="ImageBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -240,6 +240,12 @@
     <None Include="config.json" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Downloads\PLib\PLib.csproj">
+      <Project>{fb7a6af8-b8d5-4d10-8707-29c4537fd8c4}</Project>
+      <Name>PLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
