@@ -87,7 +87,7 @@
     <None Include="worldgen\features\bunker_skyblock.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorld\biomes\customForest.yaml">
+    <None Include="worldgen\PholithWorld\biomes\CustomForest.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="worldgen\PholithWorld\features\OilWell2.yaml">

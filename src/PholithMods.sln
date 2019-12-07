@@ -30,8 +30,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILoveSlicksters", "ILoveSli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllBiomesWorld", "AllBiomesWorld\AllBiomesWorld.csproj", "{B26EF9D9-018D-422B-9D73-6308AA31AA38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmptyWorld", "EmptyWorld\EmptyWorld.csproj", "{16F6003B-39BA-43BE-AC9B-15FA1F787F7B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AchievementReEnabler", "AchievementReEnabler\AchievementReEnabler.csproj", "{A34620F3-66BF-4228-BBFE-358E74A09008}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolarSystemWorlds", "SolarSystemWorlds\SolarSystemWorlds.csproj", "{C7881127-59D7-44F7-8C47-502B526B947B}"
@@ -47,6 +45,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLib", "..\..\..\..\Downloads\PLib\PLib.csproj", "{FB7A6AF8-B8D5-4D10-8707-29C4537FD8C4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundAlarm", "SoundAlarm\SoundAlarm.csproj", "{45F6C6F6-FABE-4E99-AF9C-5D9BB2AE16A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmptyWorlds", "EmptyWorlds\EmptyWorlds.csproj", "{16F6003B-39BA-43BE-AC9B-15FA1F787F7B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -82,10 +82,6 @@ Global
 		{B26EF9D9-018D-422B-9D73-6308AA31AA38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B26EF9D9-018D-422B-9D73-6308AA31AA38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B26EF9D9-018D-422B-9D73-6308AA31AA38}.Release|Any CPU.Build.0 = Release|Any CPU
-		{16F6003B-39BA-43BE-AC9B-15FA1F787F7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{16F6003B-39BA-43BE-AC9B-15FA1F787F7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{16F6003B-39BA-43BE-AC9B-15FA1F787F7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{16F6003B-39BA-43BE-AC9B-15FA1F787F7B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A34620F3-66BF-4228-BBFE-358E74A09008}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A34620F3-66BF-4228-BBFE-358E74A09008}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A34620F3-66BF-4228-BBFE-358E74A09008}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -118,6 +114,10 @@ Global
 		{45F6C6F6-FABE-4E99-AF9C-5D9BB2AE16A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45F6C6F6-FABE-4E99-AF9C-5D9BB2AE16A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45F6C6F6-FABE-4E99-AF9C-5D9BB2AE16A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16F6003B-39BA-43BE-AC9B-15FA1F787F7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16F6003B-39BA-43BE-AC9B-15FA1F787F7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16F6003B-39BA-43BE-AC9B-15FA1F787F7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16F6003B-39BA-43BE-AC9B-15FA1F787F7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
