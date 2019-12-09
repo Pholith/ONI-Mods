@@ -81,9 +81,15 @@
     <EmbeddedResource Include="Asteroid_Emptera.dds" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="templates\features\feature_geyser_generic2.yaml" />
-    <None Include="templates\poi\poi_bunker_skyblock.yaml" />
-    <None Include="templates\poi\poi_mob_lab.yaml" />
+    <None Include="templates\features\feature_geyser_generic2.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="templates\poi\poi_bunker_skyblock.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="templates\poi\poi_mob_lab.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="worldgen\features\bunker_skyblock.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
