@@ -1,0 +1,25 @@
+biomeNoise: noise/DefaultCave
+temperatureRange: Hot
+minChildCount: 2
+density:
+  min: 35
+  max: 45
+avoidRadius: 50.0
+sampleBehaviour: PoissonDisk
+borderOverride: rocky
+
+biomes:
+  - name: biomes/Ganymede/Mantle
+    weight: 1
+
+pointsOfInterest:
+  home:
+    - drekoHome 
+features:
+  - type: PholithWorlds/features/ganymede/Geode
+
+tags:
+  - IgnoreCaveOverride
+# featureTemplates:
+  # feature_geyser_generic: 2
+zoneType: Rust

@@ -68,6 +68,7 @@
     <None Include="worldgen\biomes\Sky.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="worldgen\biomes\Titan.yaml" />
     <None Include="worldgen\biomes\WaterOcean.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -90,6 +91,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="worldgen\PholithWorlds\features\ocean\SeaLettuceBlocks.yaml" />
+    <None Include="worldgen\PholithWorlds\features\titan\BioSphere.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorlds\features\titan\Geode.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorlds\features\titan\MagmaVent.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="worldgen\PholithWorlds\subworlds\ganymede\Core.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -132,10 +142,22 @@
     <None Include="worldgen\PholithWorlds\subworlds\sky\Sky.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="worldgen\PholithWorlds\subworlds\titan\Mantle.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorlds\subworlds\titan\Mantle2.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorlds\subworlds\titan\Surface.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="worldgen\worlds\Ganymede.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="worldgen\worlds\Aquaria.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\worlds\Titan.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

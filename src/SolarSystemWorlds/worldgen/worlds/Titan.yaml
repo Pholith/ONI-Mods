@@ -1,0 +1,125 @@
+name: STRINGS.WORLDS.GANYMEDE.NAME
+description: STRINGS.WORLDS.GANYMEDE.DESCRIPTION
+spriteName: Asteroid_Ganymede
+coordinatePrefix: GMD-PHO
+difficulty: 6
+tier: 2
+disableWorldTraits: true
+skip: true
+
+worldsize:
+  X: 160
+  Y: 352
+layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
+#                                in order to use this.
+
+
+# List all the zone files to load
+subworldFiles:
+  - name: subworlds/Impenetrable
+  - name: subworlds/space/Space
+  - name: subworlds/space/Surface
+  - name: PholithWorlds/subworlds/ganymede/Core
+  - name: PholithWorlds/subworlds/ganymede/Ice1h
+  - name: PholithWorlds/subworlds/ganymede/IceVI
+  - name: PholithWorlds/subworlds/ganymede/Mantle
+  - name: PholithWorlds/subworlds/ganymede/Mantle2
+  - name: PholithWorlds/subworlds/ganymede/Ocean
+  - name: PholithWorlds/subworlds/ganymede/Surface
+  - name: PholithWorlds/subworlds/ganymede/SurfaceStart
+  - name: PholithWorlds/subworlds/ganymede/SurfaceNoGravitas
+
+startSubworldName: PholithWorlds/subworlds/ganymede/SurfaceStart
+startingBaseTemplate: spaceBase
+
+startingBasePositionHorizontal:
+  min: 0.35
+  max: 0.65
+startingBasePositionVertical:
+  min: 0.75
+  max: 0.75
+
+globalFeatureTemplates:
+  feature_geyser_generic: 12
+
+# Rivers:
+#   - water
+#   - fatWater
+#   - oilygoodness
+
+# When we are converting unknown cells, this will give us the options, processed in this order, the effects are cumlative
+unknownCellsAllowedSubworlds: 
+  - tagcommand: Default
+    command: Replace
+    subworldNames:
+      - subworlds/space/Space
+
+  - tagcommand: AtTag
+    tag: AtDepths
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/ganymede/Core
+
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 1
+    maxDistance: 1
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/ganymede/Mantle2
+
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 2
+    maxDistance: 2
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/ganymede/Mantle
+
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 3
+    maxDistance: 3
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/ganymede/IceVI
+
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 4
+    maxDistance: 5
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/ganymede/Ocean
+      
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 6
+    maxDistance: 6
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/ganymede/Ice1h
+  
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 7
+    maxDistance: 7
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/ganymede/Surface
+
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 8
+    maxDistance: 8
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/ganymede/SurfaceNoGravitas
+
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 9
+    maxDistance: 99
+    command: Replace
+    subworldNames:
+      - subworlds/space/Space
