@@ -82,12 +82,16 @@ namespace WorldgenPack
 
         public static LocString G_NAME = "Ganymede";
         public static LocString G_DESCRIPTION = "Ganymede is the 2nd moon of Jupiter, and the largest moon in the entire solar system. It contains a lot of water under its surface.\n\nGanymede will be the most difficult experience you have ever had, to help you in your planetary conquest, you have your habitable rocket that will provide you with valuable resources\n";
+        
+        public static LocString T_NAME = "Titan";
+        public static LocString T_DESCRIPTION = "\n";
 
 
         public static void Postfix()
         {
             Utilities.AddWorldYaml(A_NAME, A_DESCRIPTION, null, typeof(WorldAdds));
             Utilities.AddWorldYaml(G_NAME, G_DESCRIPTION, "Asteroid_Ganymede", typeof(WorldAdds));
+            Utilities.AddWorldYaml(T_NAME, T_DESCRIPTION, "Asteroid_Titan", typeof(WorldAdds));
         }
     }
 }
