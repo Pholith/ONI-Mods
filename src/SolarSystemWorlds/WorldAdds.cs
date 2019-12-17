@@ -40,7 +40,7 @@ namespace WorldgenPack
 
         public static void Postfix()
         {
-            if (Utilities.IsOnWorld(WorldAdds.G_NAME))
+            if (Utilities.IsOnWorld(WorldAdds.G_NAME) || Utilities.IsOnWorld(WorldAdds.T_NAME))
             {
                 // Patch the moon
                 if (EarthConfigPatch.earthAnimController != null)

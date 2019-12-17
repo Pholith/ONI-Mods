@@ -11,19 +11,12 @@ TerrainBiomeLookupTable:
       bandSize: 0.2
     - content: IgneousRock
       bandSize: 0.1
-    - content: LiquidMethane
+    - content: Vacuum
       bandSize: 0.03
-    - content: SolidOxygen
-      bandSize: 0.5
+    - content: Hydrogen
+      bandSize: 0.2
       overrides:
-        temperatureOverride: 20
-        massOverride: 1
-    - content: Cuprite
-      bandSize: 0.1
-    - content: SolidMethane
-      bandSize: 0.3
-      overrides:
-        temperatureOverride: 30
+        massMultiplier: 2.5
     - content: Cuprite
       bandSize: 0.1
 
@@ -31,15 +24,19 @@ TerrainBiomeLookupTable:
     - content: Regolith
       bandSize: 0.1
     - content: BrineIce
+      bandSize: 0.5
+    - content: Hydrogen
       bandSize: 0.3
+      overrides:
+        massMultiplier: 2.5
     - content: IgneousRock
       bandSize: 0.2
-    - content: SolidMethane
-      bandSize: 0.6
-    - content: IgneousRock
-      bandSize: 0.2
-    - content: SolidMethane
+    - content: Methane
       bandSize: 0.01
+      overrides:
+        massMultiplier: 2.5
+    - content: IgneousRock
+      bandSize: 0.2
 
     Ocean:
     - content: Granite

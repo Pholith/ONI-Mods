@@ -4,8 +4,5 @@ remove: []
 add:
 #between very hot and extremely hot
   ExtremelyCold2:
-    min: 1
-    max: 1
-  #ExtremelyCold2:
-   #min: 50.0
-    #max: 100.0
+    min: 50
+    max: 100

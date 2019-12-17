@@ -5,7 +5,8 @@ borders:
 blobSize:
   min: 15
   max: 25
-
+tags:
+  - AllowExceedNodeBorders
 ElementChoiceGroups:
   RoomCenterElements:
     selectionMethod: WeightedResample

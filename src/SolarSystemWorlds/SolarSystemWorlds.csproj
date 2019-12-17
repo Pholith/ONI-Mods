@@ -100,7 +100,14 @@
     <None Include="worldgen\PholithWorlds\features\titan\Geode.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorlds\features\titan\MagmaVent.yaml">
+    <None Include="worldgen\PholithWorlds\features\titan\OxygenLack - Copie %282%29.yaml" />
+    <None Include="worldgen\PholithWorlds\features\titan\LittleLack.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorlds\features\titan\OxygenLack.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorlds\features\titan\SolidOxygen.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="worldgen\PholithWorlds\subworlds\ganymede\Core.yaml">
@@ -143,6 +150,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="worldgen\PholithWorlds\subworlds\sky\Sky.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorlds\subworlds\titan\Ice1h.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="worldgen\PholithWorlds\subworlds\titan\Mantle.yaml">

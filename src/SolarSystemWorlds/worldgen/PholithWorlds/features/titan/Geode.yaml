@@ -5,7 +5,8 @@ borders:
 blobSize:
   min: 2
   max: 3
-
+tags:
+  - AllowExceedNodeBorders
 ElementChoiceGroups:
   RoomCenterElements:
     selectionMethod: PickOneWeighted

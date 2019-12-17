@@ -1,0 +1,24 @@
+biomeNoise: noise/subworldHotMarsh
+temperatureRange: VeryCold
+density:
+  min: 20
+  max: 25
+avoidRadius: 50.0
+sampleBehaviour: PoissonDisk
+borderOverride: rocky
+
+biomes:
+  - name: biomes/Titan/Ice1h
+tags:
+  - IgnoreCaveOverride
+pointsOfInterest:
+  home:
+    - pipHome
+  home2:
+    - hatchHome
+
+features:
+  - type: PholithWorlds/features/titan/LittleLack
+  - type: PholithWorlds/features/titan/LittleLack
+
+zoneType: Rust

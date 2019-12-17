@@ -20,8 +20,7 @@ subworldFiles:
   - name: subworlds/space/Space
   - name: subworlds/space/Surface
   - name: PholithWorlds/subworlds/ganymede/Core
-  - name: PholithWorlds/subworlds/ganymede/Ice1h
-  - name: PholithWorlds/subworlds/ganymede/IceVI
+  - name: PholithWorlds/subworlds/titan/Ice1h
   - name: PholithWorlds/subworlds/titan/Mantle
   - name: PholithWorlds/subworlds/titan/Mantle2
   - name: PholithWorlds/subworlds/ganymede/Ocean
@@ -36,8 +35,8 @@ startingBasePositionHorizontal:
   min: 0.35
   max: 0.65
 startingBasePositionVertical:
-  min: 0.75
-  max: 0.75
+  min: 0.6
+  max: 0.6
 
 globalFeatureTemplates:
   feature_geyser_generic: 12
@@ -71,54 +70,46 @@ unknownCellsAllowedSubworlds:
   - tagcommand: DistanceFromTag
     tag: AtDepths
     minDistance: 2
-    maxDistance: 2
+    maxDistance: 3
     command: Replace
     subworldNames:
       - PholithWorlds/subworlds/titan/Mantle
 
   - tagcommand: DistanceFromTag
     tag: AtDepths
-    minDistance: 3
-    maxDistance: 3
-    command: Replace
-    subworldNames:
-      - PholithWorlds/subworlds/ganymede/IceVI
-
-  - tagcommand: DistanceFromTag
-    tag: AtDepths
     minDistance: 4
-    maxDistance: 5
+    maxDistance: 4
     command: Replace
     subworldNames:
       - PholithWorlds/subworlds/ganymede/Ocean
       
   - tagcommand: DistanceFromTag
     tag: AtDepths
-    minDistance: 6
-    maxDistance: 6
+    minDistance: 5
+    maxDistance: 5
     command: Replace
     subworldNames:
-      - PholithWorlds/subworlds/ganymede/Ice1h
+      - PholithWorlds/subworlds/titan/Ice1h
   
   - tagcommand: DistanceFromTag
     tag: AtDepths
-    minDistance: 7
-    maxDistance: 7
+    minDistance: 6
+    maxDistance: 6
     command: Replace
     subworldNames:
       - PholithWorlds/subworlds/titan/Surface
 
   - tagcommand: DistanceFromTag
     tag: AtDepths
-    minDistance: 8
-    maxDistance: 8
+    minDistance: 7
+    maxDistance: 7
     command: Replace
     subworldNames:
       - PholithWorlds/subworlds/ganymede/SurfaceNoGravitas
 
   - tagcommand: DistanceFromTag
     tag: AtDepths
-    minDistance: 9
+    minDistance: 8
     maxDistance: 99
     command: Replace
     subworldNames:

@@ -1,0 +1,37 @@
+shape: Square
+borders:
+  - 2
+  - 2
+blobSize:
+  min: 4
+  max: 5
+
+ElementChoiceGroups:
+  RoomCenterElements:
+    selectionMethod: WeightedResample
+    choices:
+      - element: LiquidOxygen
+        overrides:
+          temperatureOverride: 55
+
+  RoomBorderChoices0:
+    selectionMethod: WeightedResample
+    choices:
+      - element: LiquidOxygen
+        weight: 1
+        overrides:
+          temperatureOverride: 55
+      - element: SolidCarbonDioxide
+        weight: 1
+      - element: IgneousRock
+        weight: 0.2
+
+  RoomBorderChoices1:
+    selectionMethod: WeightedResample
+    choices:
+      - element: Vaccum
+        weight: 0.5
+      - element: SolidMethane
+        weight: 1
+        overrides:
+          temperatureOverride: 90

@@ -16,6 +16,8 @@ biomes:
 
 features:
   - type: PholithWorlds/features/titan/MethaneLack
+  - type: PholithWorlds/features/titan/OxygenLack
+  - type: PholithWorlds/features/titan/SolidOxygen
 
 tags:
   - IgnoreCaveOverride
