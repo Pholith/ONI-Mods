@@ -161,6 +161,9 @@
     <None Include="worldgen\PholithWorlds\subworlds\titan\Mantle2.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="worldgen\PholithWorlds\subworlds\titan\Ocean.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="worldgen\PholithWorlds\subworlds\titan\Surface.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

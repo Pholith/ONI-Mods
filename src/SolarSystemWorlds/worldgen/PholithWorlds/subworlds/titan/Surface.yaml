@@ -11,8 +11,6 @@ borderOverride: rocky
 biomes:
   - name: biomes/Titan/Surface
     weight: 1
-    tags:
-      - Mole
 
 features:
   - type: PholithWorlds/features/titan/MethaneLack

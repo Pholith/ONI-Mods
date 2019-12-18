@@ -11,8 +11,6 @@ borderOverride: rocky
 biomes:
   - name: biomes/Ganymede/Surface
     weight: 1
-    tags:
-      - Mole
     #overrides:
     #  massMultiplier: 50
 
