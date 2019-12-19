@@ -134,17 +134,11 @@ namespace ILoveSlicksters
     {
         public static void Postfix(ref Immigration __instance)
         {
-            AddCarePackage(ref __instance, EthanolOilfloaterBabyConfig.ID, 1f, () => CycleCondition(48));
-            AddCarePackage(ref __instance, LeafyOilfloaterBabyConfig.ID, 1f, () => CycleCondition(48));
-            AddCarePackage(ref __instance, OwO_OilFloaterBabyConfig.ID, 1f, () => CycleCondition(126));
-            AddCarePackage(ref __instance, FrozenOilfloaterBabyConfig.ID, 1f, () => CycleCondition(126));
-            AddCarePackage(ref __instance, RobotOilfloaterBabyConfig.ID, 1f, () => CycleCondition(256));
-
-            AddCarePackage(ref __instance, EthanolOilfloaterConfig.EGG_ID, 3f, () => CycleCondition(48));
-            AddCarePackage(ref __instance, LeafyOilfloaterConfig.EGG_ID, 3f, () => CycleCondition(48));
-            AddCarePackage(ref __instance, OwO_OilFloaterConfig.EGG_ID, 2f, () => CycleCondition(48));
-            AddCarePackage(ref __instance, FrozenOilfloaterConfig.EGG_ID, 1f, () => CycleCondition(96));
-            AddCarePackage(ref __instance, RobotOilfloaterConfig.EGG_ID, 1f, () => CycleCondition(96));
+            AddCarePackage(ref __instance, EthanolOilfloaterConfig.EGG_ID, 2f, () => CycleCondition(400));
+            AddCarePackage(ref __instance, LeafyOilfloaterConfig.EGG_ID, 2f, () => CycleCondition(600));
+            AddCarePackage(ref __instance, OwO_OilFloaterConfig.EGG_ID, 2f, () => CycleCondition(600));
+            AddCarePackage(ref __instance, FrozenOilfloaterConfig.EGG_ID, 1f, () => CycleCondition(900));
+            AddCarePackage(ref __instance, RobotOilfloaterConfig.EGG_ID, 1f, () => CycleCondition(900));
         }
     }
 }
