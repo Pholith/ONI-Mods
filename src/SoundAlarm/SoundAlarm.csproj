@@ -84,9 +84,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>rmdir /Q/S "C:\Users\Vincent Buisset\Documents\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)"
-
-xcopy "$(TargetDir.TrimEnd('\'))" "C:\Users\Vincent Buisset\Documents\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)" /E /I /Q</PostBuildEvent>
+    <PostBuildEvent>echo running script...
+rmdir /Q /S "$(SolutionDir)\..\..\..\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)"
+xcopy "$(TargetDir.TrimEnd('\'))" "$(SolutionDir)\..\..\..\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)" /E /I /Q
+</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>rmdir /Q/S $(TargetDir)</PreBuildEvent>

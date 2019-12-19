@@ -36,7 +36,7 @@ namespace PollutedElectrolyzer
             buildingDef.UtilityInputOffset = new CellOffset(0, 0);
             return buildingDef;
         }
-        // Big copy paste of the game code 
+        // Big copy paste of the game code
         public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
         {
             go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
