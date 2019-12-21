@@ -5,7 +5,7 @@ density:
   max: 25
 avoidRadius: 50.0
 sampleBehaviour: PoissonDisk
-borderOverride: rocky
+borderOverride: hardToDig
 
 biomes:
   - name: biomes/Ganymede/IceVI

@@ -14,7 +14,9 @@ biomes:
 
 pointsOfInterest:
   home:
-    - drekoHome 
+    - drekoHome
+  ruin:
+    - poi_ladder_tunnel
 features:
   - type: PholithWorlds/features/ganymede/Geode
 

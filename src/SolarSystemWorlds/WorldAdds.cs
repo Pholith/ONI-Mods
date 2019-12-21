@@ -30,10 +30,18 @@ namespace WorldgenPack
         }
     }
 
+
     [HarmonyPatch(typeof(Game))]
     [HarmonyPatch("OnSpawn")]
     public class AfterGameLoad_Patch
     {
+        private static KAnimFile getWorldAnim()
+        {
+            if (Utilities.IsOnWorld(WorldAdds.T_NAME)) return Assets.GetAnim("saturn_kanim");
+            if (Utilities.IsOnWorld(WorldAdds.G_NAME)) return Assets.GetAnim("jupiter_kanim");
+            return null;
+        }
+
         private const int sizeScale = 7;
         private static KAnimFile[] originalAnim = null;
         private static float normalSize = 0;
@@ -50,7 +58,7 @@ namespace WorldgenPack
                     // replace the anim
                     EarthConfigPatch.earthAnimController.AnimFiles = new KAnimFile[]
                     {
-                        Assets.GetAnim("saturn_kanim")
+                        getWorldAnim()
                     };
                     if (normalSize == 0 || EarthConfigPatch.earthAnimController.animScale < normalSize)
                     {
@@ -62,7 +70,8 @@ namespace WorldgenPack
             else
             {
                 // if someone load a other game from a Ganymede game -> reset changes
-                if (EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("saturn_kanim"))
+                if (EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("jupiter_kanim") || 
+                    EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("saturn_kanim"))
                 {
                     // reset the moon
                     Debug.Assert(originalAnim != null, "Original anim should not be null.");
@@ -81,10 +90,10 @@ namespace WorldgenPack
         public static LocString A_DESCRIPTION = "Test \n\n";
 
         public static LocString G_NAME = "Ganymede";
-        public static LocString G_DESCRIPTION = "Ganymede is the 2nd moon of Jupiter, and the largest moon in the entire solar system. It contains a lot of water under its surface.\n\nGanymede will be the most difficult experience you have ever had, to help you in your planetary conquest, you have your habitable rocket that will provide you with valuable resources\n";
+        public static LocString G_DESCRIPTION = "Ganymede is a moon of Jupiter, the largest moon in the entire solar system. It contains a lot of water under its surface.\n\nGanymede will be a difficult experience, to help you in your planetary conquest, you have your habitable rocket that will provide you with valuable resources\n\n";
         
         public static LocString T_NAME = "Titan";
-        public static LocString T_DESCRIPTION = "\n";
+        public static LocString T_DESCRIPTION = "Titan is one of Saturn's moons, the second largest moon in the solar system and the only planet other than Earth that has liquid oceans. Oceans... of methane\n\nTitan is an extremely cold planet, to help you in your planetary conquest, you have your habitable rocket that will provide you with valuable resources\n\n";
 
 
         public static void Postfix()

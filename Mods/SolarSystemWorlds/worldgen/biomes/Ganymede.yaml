@@ -4,23 +4,27 @@ TerrainBiomeLookupTable:
   # elements to add from in-memory structure when this file is loaded
   add:
 
-    Surface:
+    SurfaceStart:
     - content: Vacuum
-      bandSize: 0.05
+      bandSize: 0.1
     - content: Regolith
-      bandSize: 0.2
+      bandSize: 0.05
     - content: MaficRock
       bandSize: 0.2
     - content: IgneousRock
       bandSize: 0.1
-    - content: Rust
+    
+    Surface:
+    - content: Vacuum
       bandSize: 0.05
-    - content: Cuprite
-      bandSize: 0.1
     - content: Regolith
-      bandSize: 0.1
+      bandSize: 0.05
+    - content: MaficRock
+      bandSize: 0.15
     - content: Rust
-      bandSize: 0.3
+      bandSize: 0.15
+    - content: IgneousRock
+      bandSize: 0.2
     - content: Cuprite
       bandSize: 0.1
 

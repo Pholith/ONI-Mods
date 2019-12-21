@@ -1,5 +1,6 @@
 biomeNoise: noise/subworldOceanDeep
 temperatureRange: ExtremelyCold2
+pdWeight: 1.5
 minChildCount: 1
 density:
   min: 70

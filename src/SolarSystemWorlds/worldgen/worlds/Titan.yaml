@@ -39,7 +39,7 @@ startingBasePositionVertical:
   max: 0.75
 
 globalFeatureTemplates:
-  feature_geyser_generic: 12
+  feature_geyser_generic: 10
 
 # Rivers:
 #   - water

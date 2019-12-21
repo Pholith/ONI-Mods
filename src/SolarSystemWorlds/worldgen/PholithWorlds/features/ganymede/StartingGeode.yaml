@@ -1,0 +1,20 @@
+shape: Square
+borders:
+  - 1
+blobSize:
+  min: 2
+  max: 3
+
+ElementChoiceGroups:
+  RoomCenterElements:
+    selectionMethod: PickOneWeighted
+    choices:
+      - element: Cuprite
+        weight: 1
+      - element: Rust
+        weight: 0.5
+  RoomBorderChoices0:
+    selectionMethod: WeightedResample
+    choices:
+      - element: IgneousRock
+        weight: 1

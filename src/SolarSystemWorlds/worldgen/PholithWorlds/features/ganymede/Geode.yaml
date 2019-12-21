@@ -3,9 +3,10 @@ borders:
   - 1
   - 2
 blobSize:
-  min: 2
-  max: 3
-
+  min: 3
+  max: 4
+tags:
+  - AllowExceedNodeBorders
 ElementChoiceGroups:
   RoomCenterElements:
     selectionMethod: PickOneWeighted
@@ -16,6 +17,8 @@ ElementChoiceGroups:
         weight: 0.5
       - element: Isoresin
         weight: 0.4
+        overrides:
+          temperatureOverride: 50
   RoomBorderChoices0:
     selectionMethod: WeightedResample
     choices:
@@ -26,7 +29,7 @@ ElementChoiceGroups:
   RoomBorderChoices1:
     selectionMethod: WeightedResample
     choices:
-      - element: Granite
-        weight: 1
+      - element: Katairite
+        weight: 5
       - element: IgneousRock
         weight: 1

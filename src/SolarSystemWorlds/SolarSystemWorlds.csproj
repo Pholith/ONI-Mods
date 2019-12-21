@@ -42,13 +42,22 @@
     <Compile Include="WorldGenPatches.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="anim\saturn\saturn\earth_anim.bytes">
+    <None Include="anim\earth_anims\jupiter\earth_anim.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="anim\saturn\saturn\earth_build.bytes">
+    <None Include="anim\earth_anims\jupiter\earth_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\earth_anims\saturn\earth_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\earth_anims\saturn\earth_build.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="templates\bases\spaceBase.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="templates\features\feature_geyser_ironvolcano.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="templates\poi\drekoHome.yaml">
@@ -93,14 +102,13 @@
     <None Include="worldgen\PholithWorlds\features\ganymede\MagmaVent.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="worldgen\PholithWorlds\features\ganymede\StartingGeode.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="worldgen\PholithWorlds\features\ocean\SeaLettuceBlocks.yaml" />
     <None Include="worldgen\PholithWorlds\features\titan\MethaneLack.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorlds\features\titan\Geode.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="worldgen\PholithWorlds\features\titan\OxygenLack - Copie %282%29.yaml" />
     <None Include="worldgen\PholithWorlds\features\titan\LittleLack.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -222,11 +230,17 @@
     <EmbeddedResource Include="space_00.dds" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="anim\saturn\saturn\earth_0.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <EmbeddedResource Include="Asteroid_Titan.dds" />
     <EmbeddedResource Include="Asteroid_Ganymede.dds" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="anim\earth_anims\jupiter\earth_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="anim\earth_anims\saturn\earth_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

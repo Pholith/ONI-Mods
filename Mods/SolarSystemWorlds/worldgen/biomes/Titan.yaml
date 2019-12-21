@@ -51,20 +51,16 @@ TerrainBiomeLookupTable:
       bandSize: 0.02
 
     Mantle:
+    - content: CarbonDioxide
+      bandSize: 0.01
     - content: IgneousRock
-      bandSize: 0.3
-    - content: Carbon
-      bandSize: 0.05
-    - content: Rust
       bandSize: 0.3
     - content: Granite
       bandSize: 0.3
-    - content: Rust
-      bandSize: 0.05
     - content: IronOre
-      bandSize: 0.2
+      bandSize: 0.3
     - content: IgneousRock
-      bandSize: 0.6
+      bandSize: 0.5
 
     Mantle2:
     - content: IgneousRock

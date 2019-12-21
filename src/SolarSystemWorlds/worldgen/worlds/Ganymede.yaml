@@ -7,7 +7,7 @@ tier: 2
 disableWorldTraits: true
 
 worldsize:
-  X: 160
+  X: 192
   Y: 352
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
