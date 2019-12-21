@@ -14,31 +14,38 @@ ElementChoiceGroups:
         weight: 1
         overrides:
           temperatureOverride: 50
-          massMultiplier: 1.5
+          massMultiplier: 2
       - element: LiquidMethane
         weight: 1
         overrides:
-          temperatureOverride: 80
+          temperatureOverride: 60
           massMultiplier: 1.5
       - element: SolidCarbonDioxide
         weight: 1
       - element: SolidMethane
         weight: 1
         overrides:
-          temperatureOverride: 60
+          temperatureOverride: 20
           massMultiplier: 3
-
+      - element: SolidHydrogen
+        weight: 0.01
+        overrides:
+          temperatureOverride: 5
+          massMultiplier: 1.5
   RoomBorderChoices0:
+    selectionMethod: WeightedResample
+    choices:
+      - element: Katairite
+        weight: 1
+        overrides:
+          temperatureOverride: 50
+
+  RoomBorderChoices1:
     selectionMethod: WeightedResample
     choices:
       - element: SolidCarbonDioxide
         weight: 1
         overrides:
-          temperatureOverride: 80
+          temperatureOverride: 30
       - element: IgneousRock
         weight: 0.5
-
-  RoomBorderChoices1:
-    selectionMethod: WeightedResample
-    choices:
-      - element: BrineIce

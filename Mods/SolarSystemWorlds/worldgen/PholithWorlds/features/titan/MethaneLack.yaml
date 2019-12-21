@@ -14,7 +14,7 @@ ElementChoiceGroups:
       - element: LiquidMethane
         weight: 2
         overrides:
-          temperatureOverride: 90
+          temperatureOverride: 60
           massMultiplier: 2.5
   RoomBorderChoices0:
     selectionMethod: WeightedResample

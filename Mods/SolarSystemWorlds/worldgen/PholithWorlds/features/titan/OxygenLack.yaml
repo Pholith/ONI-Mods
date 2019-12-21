@@ -13,7 +13,7 @@ ElementChoiceGroups:
     choices:
       - element: LiquidOxygen
         overrides:
-          temperatureOverride: 60
+          temperatureOverride: 50
           massMultiplier: 1.5
 
   RoomBorderChoices0:
@@ -22,10 +22,12 @@ ElementChoiceGroups:
       - element: LiquidOxygen
         weight: 1
         overrides:
-          temperatureOverride: 60
+          temperatureOverride: 50
           massMultiplier: 1.5
       - element: SolidCarbonDioxide
         weight: 1
+        overrides:
+          temperatureOverride: 20
       - element: IgneousRock
         weight: 0.2
 
@@ -37,5 +39,5 @@ ElementChoiceGroups:
       - element: SolidMethane
         weight: 1
         overrides:
-          temperatureOverride: 60
+          temperatureOverride: 20
           massMultiplier: 2
