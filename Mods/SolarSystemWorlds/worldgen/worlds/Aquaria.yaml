@@ -8,8 +8,8 @@ disableWorldTraits: true
 skip: true
 
 worldsize:
-  X: 256
-  Y: 256
+  X: 224
+  Y: 320
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
 

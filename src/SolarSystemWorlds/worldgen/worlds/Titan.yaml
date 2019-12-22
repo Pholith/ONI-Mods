@@ -9,7 +9,7 @@ disableWorldTraits: true
 
 worldsize:
   X: 224
-  Y: 288
+  Y: 320
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
 
@@ -19,32 +19,29 @@ subworldFiles:
   - name: subworlds/Impenetrable
   - name: subworlds/space/Space
   - name: subworlds/space/Surface
-  - name: PholithWorlds/subworlds/ganymede/Core
+  - name: PholithWorlds/subworlds/titan/Core
+  - name: PholithWorlds/subworlds/titan/Space
   - name: PholithWorlds/subworlds/titan/Ice1h
   - name: PholithWorlds/subworlds/titan/Mantle
   - name: PholithWorlds/subworlds/titan/Mantle2
   - name: PholithWorlds/subworlds/titan/Ocean
   - name: PholithWorlds/subworlds/titan/Surface
-  - name: PholithWorlds/subworlds/ganymede/SurfaceStart
-  - name: PholithWorlds/subworlds/ganymede/SurfaceNoGravitas
+  - name: PholithWorlds/subworlds/titan/SurfaceStart
+  - name: PholithWorlds/subworlds/titan/SurfaceNoGravitas
+  - name: PholithWorlds/subworlds/titan/Sky
 
-startSubworldName: PholithWorlds/subworlds/ganymede/SurfaceStart
+startSubworldName: PholithWorlds/subworlds/titan/SurfaceStart
 startingBaseTemplate: spaceBase
 
 startingBasePositionHorizontal:
   min: 0.35
   max: 0.65
 startingBasePositionVertical:
-  min: 0.75
-  max: 0.75
+  min: 0.65
+  max: 0.65
 
 globalFeatureTemplates:
   feature_geyser_generic: 10
-
-# Rivers:
-#   - water
-#   - fatWater
-#   - oilygoodness
 
 # When we are converting unknown cells, this will give us the options, processed in this order, the effects are cumlative
 unknownCellsAllowedSubworlds: 
@@ -57,7 +54,7 @@ unknownCellsAllowedSubworlds:
     tag: AtDepths
     command: Replace
     subworldNames:
-      - PholithWorlds/subworlds/ganymede/Core
+      - PholithWorlds/subworlds/titan/Core
 
   - tagcommand: DistanceFromTag
     tag: AtDepths
@@ -70,34 +67,42 @@ unknownCellsAllowedSubworlds:
   - tagcommand: DistanceFromTag
     tag: AtDepths
     minDistance: 2
-    maxDistance: 3
+    maxDistance: 2
     command: Replace
     subworldNames:
       - PholithWorlds/subworlds/titan/Mantle
 
   - tagcommand: DistanceFromTag
     tag: AtDepths
-    minDistance: 4
-    maxDistance: 4
+    minDistance: 3
+    maxDistance: 3
     command: Replace
     subworldNames:
       - PholithWorlds/subworlds/titan/Ocean
       
   - tagcommand: DistanceFromTag
     tag: AtDepths
-    minDistance: 5
-    maxDistance: 5
+    minDistance: 4
+    maxDistance: 4
     command: Replace
     subworldNames:
       - PholithWorlds/subworlds/titan/Ice1h
   
   - tagcommand: DistanceFromTag
     tag: AtDepths
+    minDistance: 5
+    maxDistance: 5
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/titan/Surface
+
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
     minDistance: 6
     maxDistance: 6
     command: Replace
     subworldNames:
-      - PholithWorlds/subworlds/titan/Surface
+      - PholithWorlds/subworlds/titan/SurfaceNoGravitas
 
   - tagcommand: DistanceFromTag
     tag: AtDepths
@@ -105,7 +110,7 @@ unknownCellsAllowedSubworlds:
     maxDistance: 7
     command: Replace
     subworldNames:
-      - PholithWorlds/subworlds/ganymede/SurfaceNoGravitas
+      - PholithWorlds/subworlds/titan/Sky
 
   - tagcommand: DistanceFromTag
     tag: AtDepths
@@ -113,4 +118,4 @@ unknownCellsAllowedSubworlds:
     maxDistance: 99
     command: Replace
     subworldNames:
-      - subworlds/space/Space
+      - PholithWorlds/subworlds/titan/Space

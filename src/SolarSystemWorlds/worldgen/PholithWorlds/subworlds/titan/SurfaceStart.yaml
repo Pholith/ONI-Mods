@@ -1,0 +1,24 @@
+biomeNoise: noise/subworldFrozen
+temperatureRange: Cool
+#pdWeight: 1.2
+density:
+  min: 30
+  max: 40
+avoidRadius: 50.0
+sampleBehaviour: PoissonDisk
+borderOverride: rocky
+
+biomes:
+  - name: biomes/Ganymede/SurfaceStart
+    weight: 1
+    #overrides:
+    #  massMultiplier: 50
+tags:
+  - StartWorld
+  - IgnoreCaveOverride
+  - NoGlobalFeatureSpawning
+ # - ErodePointToWorldTop
+  #- DistFunctionPointCentroid
+centralFeature:
+  type: features/generic/StartLocation
+zoneType: Rust

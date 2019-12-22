@@ -3,8 +3,8 @@ borders:
   - 1
   - 1
 blobSize:
-  min: 15
-  max: 25
+  min: 10
+  max: 18
 tags:
   - AllowExceedNodeBorders
 ElementChoiceGroups:
@@ -14,7 +14,7 @@ ElementChoiceGroups:
       - element: LiquidMethane
         weight: 2
         overrides:
-          temperatureOverride: 60
+          temperatureOverride: 95
           massMultiplier: 2.5
   RoomBorderChoices0:
     selectionMethod: WeightedResample

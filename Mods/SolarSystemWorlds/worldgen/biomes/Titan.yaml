@@ -4,6 +4,12 @@ TerrainBiomeLookupTable:
   # elements to add from in-memory structure when this file is loaded
   add:
 
+    Sky:
+    - content: Methane
+      bandSize: 1
+      overrides:
+        massMultiplier: 2
+
     Surface:
     - content: Regolith
       bandSize: 0.2

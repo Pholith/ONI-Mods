@@ -1,0 +1,18 @@
+biomeNoise: noise/MagmaVent
+temperatureRange: ExtremelyHot
+minChildCount: 3
+pdWeight: 0.7
+density:
+  min: 35
+  max: 45
+avoidRadius: 50.0
+sampleBehaviour: PoissonDisk
+biomes:
+  - name: biomes/Ganymede/Core
+    weight: 1
+    #overrides:
+    #  massMultiplier: 50
+tags:
+  - IgnoreCaveOverride
+  - NoGlobalFeatureSpawning
+zoneType: MagmaCore

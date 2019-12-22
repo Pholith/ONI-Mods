@@ -2,8 +2,8 @@ shape: Square
 borders:
   - 1
 blobSize:
-  min: 2
-  max: 3
+  min: 3
+  max: 5
 
 ElementChoiceGroups:
   RoomCenterElements:
@@ -18,3 +18,5 @@ ElementChoiceGroups:
     choices:
       - element: IgneousRock
         weight: 1
+      - element: Regolith
+        weight: 0.5
