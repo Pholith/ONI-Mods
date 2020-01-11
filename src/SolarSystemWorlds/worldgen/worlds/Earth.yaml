@@ -1,0 +1,121 @@
+name: SolarSystemWorlds.WorldAdds.E_NAME
+description: SolarSystemWorlds.WorldAdds.E_DESC
+spriteName: Asteroid_T
+coordinatePrefix: ERT-PHO
+difficulty: 3
+tier: 2
+disableWorldTraits: true
+skip: true
+
+worldsize:
+  X: 224
+  Y: 320
+layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
+#                                in order to use this.
+
+
+# List all the zone files to load
+subworldFiles:
+  - name: subworlds/Impenetrable
+  - name: subworlds/space/Space
+  - name: subworlds/space/Surface
+  - name: PholithWorlds/subworlds/earth/Core
+  - name: PholithWorlds/subworlds/earth/Space
+  - name: PholithWorlds/subworlds/earth/Asthenosphere
+  - name: PholithWorlds/subworlds/earth/Mantle
+  - name: PholithWorlds/subworlds/earth/Mantle2
+  - name: PholithWorlds/subworlds/earth/Ocean
+  - name: PholithWorlds/subworlds/earth/Surface
+  - name: PholithWorlds/subworlds/earth/SurfaceStart
+  - name: PholithWorlds/subworlds/earth/SurfaceNoGravitas
+  - name: PholithWorlds/subworlds/earth/Sky
+
+startSubworldName: PholithWorlds/subworlds/earth/SurfaceStart
+startingBaseTemplate: spaceBase
+
+startingBasePositionHorizontal:
+  min: 0.4
+  max: 0.7
+startingBasePositionVertical:
+  min: 0.65
+  max: 0.65
+
+globalFeatureTemplates:
+  feature_geyser_generic: 10
+
+# When we are converting unknown cells, this will give us the options, processed in this order, the effects are cumlative
+unknownCellsAllowedSubworlds: 
+  - tagcommand: Default
+    command: Replace
+    subworldNames:
+      - subworlds/space/Space
+
+  - tagcommand: AtTag
+    tag: AtDepths
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/earth/Core
+
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 1
+    maxDistance: 1
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/earth/Mantle2
+
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 2
+    maxDistance: 2
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/earth/Mantle
+
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 3
+    maxDistance: 3
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/earth/Asthenosphere
+      
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 4
+    maxDistance: 4
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/earth/Ice1h
+  
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 5
+    maxDistance: 5
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/earth/Surface
+
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 6
+    maxDistance: 6
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/earth/SurfaceNoGravitas
+
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 7
+    maxDistance: 7
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/earth/Sky
+
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 8
+    maxDistance: 99
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/earth/Space

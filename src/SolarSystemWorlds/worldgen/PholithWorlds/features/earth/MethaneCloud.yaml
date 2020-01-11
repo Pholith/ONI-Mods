@@ -1,0 +1,15 @@
+shape: Circle
+borders: []
+blobSize:
+  min: 6
+  max: 10
+
+ElementChoiceGroups:
+  RoomCenterElements:
+    selectionMethod: PickOneWeighted
+    choices:
+      - element: LiquidMethane
+        weight: 1
+        overrides:
+          temperatureOverride: 90
+          massMultiplier: 4

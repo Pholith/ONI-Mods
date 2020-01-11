@@ -1,0 +1,83 @@
+TerrainBiomeLookupTable:
+  # keys to remove from in-memory structure when this file is loaded
+  remove: [] 
+  # elements to add from in-memory structure when this file is loaded
+  add:
+
+    Sky:
+    - content: Oxygen
+      bandSize: 1
+      overrides:
+        massMultiplier: 2
+
+    Surface:
+    - content: Dirt
+      bandSize: 0.2
+    - content: SedimentaryRock
+      bandSize: 0.2
+    - content: Dirt
+      bandSize: 0.1
+    - content: Algae
+      bandSize: 0.03
+    - content: CarbonDioxide
+      bandSize: 0.2
+    - content: Cuprite
+      bandSize: 0.1
+
+    Ocean:
+    - content: SaltWater
+      bandSize: 0.5
+
+    Asthenosphere:
+    - content: Regolith
+      bandSize: 0.1
+    - content: IgneousRock
+      bandSize: 0.3
+    - content: BrineIce
+      bandSize: 0.5
+    - content: Hydrogen
+      bandSize: 0.15
+      overrides:
+        massMultiplier: 15
+    - content: IgneousRock
+      bandSize: 0.2
+
+    Mantle:
+    - content: CarbonDioxide
+      bandSize: 0.01
+    - content: IgneousRock
+      bandSize: 0.3
+    - content: Granite
+      bandSize: 0.3
+    - content: IronOre
+      bandSize: 0.3
+    - content: IgneousRock
+      bandSize: 0.5
+
+    Mantle2:
+    - content: IgneousRock
+      bandSize: 0.4
+    - content: SedimentaryRock
+      bandSize: 0.3
+    - content: Iron
+      bandSize: 0.2
+    - content: Carbon
+      bandSize: 0.05
+    - content: IgneousRock
+      bandSize: 0.4
+    - content: Obsidian
+      bandSize: 0.4
+
+    Core:
+    - content: Obsidian
+      bandSize: 0.5
+    - content: MoltenIron
+      bandSize: 0.4
+      overrides:
+        massOverride: 8500
+    - content: Obsidian
+      bandSize: 0.3
+    - content: MoltenIron
+      bandSize: 0.2
+      overrides:
+        massOverride: 8500

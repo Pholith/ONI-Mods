@@ -1,22 +1,19 @@
-biomeNoise: noise/subworldSky
+biomeNoise: noise/Generic
 temperatureRange: Cold
-pdWeight: 0.8
+minChildCount: 4
 density:
-  min: 25
-  max: 15
+  min: 35
+  max: 45
 avoidRadius: 50.0
 sampleBehaviour: PoissonDisk
-
+borderOverride: titanBorder
 biomes:
-  - name: biomes/Sky/Basic
+  - name: biomes/Misc/Space
     weight: 1
     #overrides:
     #  massMultiplier: 50
-    tags:
-      - PuftBleachstone
-
 pointsOfInterest:
 tags:
   - IgnoreCaveOverride
-zoneType: Ocean
-
+  - NoGlobalFeatureSpawning
+zoneType: Space

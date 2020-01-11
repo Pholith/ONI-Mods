@@ -1,0 +1,38 @@
+shape: Square
+borders:
+  - 2
+  - 2
+blobSize:
+  min: 4
+  max: 5
+tags:
+  - AllowExceedNodeBorders
+ElementChoiceGroups:
+  RoomCenterElements:
+    selectionMethod: WeightedResample
+    choices:
+      - element: SolidOxygen
+        overrides:
+          temperatureOverride: 20
+          massMultiplier: 3
+
+  RoomBorderChoices0:
+    selectionMethod: WeightedResample
+    choices:
+      - element: SolidOxygen
+        weight: 1
+        overrides:
+          temperatureOverride: 20
+          massMultiplier: 3
+      - element: SolidCarbonDioxide
+        weight: 1
+      - element: IgneousRock
+        weight: 0.2
+
+  RoomBorderChoices1:
+    selectionMethod: WeightedResample
+    choices:
+      - element: IgneousRock
+        weight: 0.5
+      - element: MaficRock
+        weight: 1

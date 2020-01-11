@@ -1,0 +1,24 @@
+biomeNoise: noise/subworldOceanDeep
+temperatureRange: ExtremelyCold2
+pdWeight: 1
+density:
+  min: 20
+  max: 30
+avoidRadius: 20.0
+sampleBehaviour: PoissonDisk
+
+biomes:
+  - name: biomes/Titan/Sky
+    weight: 1
+
+features:
+  - type: PholithWorlds/features/titan/MethaneCloud
+ # - type: PholithWorlds/features/titan/MethaneLack
+  #- type: PholithWorlds/features/titan/OxygenLack
+  #- type: PholithWorlds/features/titan/SolidOxygen
+
+tags:
+  - IgnoreCaveOverride
+ # - ErodePointToWorldTop
+  - NoGlobalFeatureSpawning
+zoneType: Ocean

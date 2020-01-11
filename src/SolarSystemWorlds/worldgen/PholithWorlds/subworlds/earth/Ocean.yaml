@@ -1,16 +1,15 @@
-biomeNoise: noise/Sandstone
-temperatureRange: HumanWarm
+biomeNoise: noise/subworldJungle
+temperatureRange: Cold
+pdWeight: 0.6
 density:
   min: 20
   max: 25
 avoidRadius: 50.0
-doAvoidPoints: false
-dontRelaxChildren: true
 sampleBehaviour: PoissonDisk
-#borderOverride: hardToDig
+borderOverride: rocky
 
 biomes:
-  - name: biomes/WaterOcean/Basic
+  - name: biomes/Titan/Ocean
     weight: 4
 tags:
   - IgnoreCaveOverride
