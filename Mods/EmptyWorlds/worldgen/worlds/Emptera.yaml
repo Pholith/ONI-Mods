@@ -1,5 +1,5 @@
-name: STRINGS.WORLDS.EMPTERA.NAME
-description: STRINGS.WORLDS.EMPTERA.DESCRIPTION
+name: EmptyWorlds.WorldsPatches.E_NAME
+description: EmptyWorlds.WorldsPatches.E_DESCRIPTION
 spriteName: Asteroid_Emptera
 coordinatePrefix: EMP-PHO
 difficulty: 5

@@ -31,9 +31,9 @@ namespace ILoveSlicksters
         {
             return delegate ()
             {
-                string name = StringsPatch.FERTILITY_MODIFIERS.LIGHT.NAME;
+                string name = PHO_STRINGS.FERTILITY_MODIFIERS.LIGHT.NAME;
                 Db.Get().CreateFertilityModifier(id, eggTag, name, "description test", (string src) => string.Format(
-                    StringsPatch.FERTILITY_MODIFIERS.LIGHT.DESC),
+                    PHO_STRINGS.FERTILITY_MODIFIERS.LIGHT.DESC),
                         delegate (FertilityMonitor.Instance inst, Tag eggType)
                         {
 
@@ -75,9 +75,9 @@ namespace ILoveSlicksters
         {
             return delegate ()
             {
-                string name = StringsPatch.FERTILITY_MODIFIERS.PRESSURE.NAME;
+                string name = PHO_STRINGS.FERTILITY_MODIFIERS.PRESSURE.NAME;
                 Db.Get().CreateFertilityModifier(id, eggTag, name, "description test", (string src) => string.Format(
-                    StringsPatch.FERTILITY_MODIFIERS.PRESSURE.DESC, maxPressure),
+                    PHO_STRINGS.FERTILITY_MODIFIERS.PRESSURE.DESC, maxPressure),
                         delegate (FertilityMonitor.Instance inst, Tag eggType)
                         {
 
@@ -119,9 +119,9 @@ namespace ILoveSlicksters
         {
             return delegate ()
             {
-                string name = StringsPatch.FERTILITY_MODIFIERS.ELEMENT.NAME;
+                string name = PHO_STRINGS.FERTILITY_MODIFIERS.ELEMENT.NAME;
                 Db.Get().CreateFertilityModifier(id, eggTag, name, "description test", (string src) => string.Format(
-                    StringsPatch.FERTILITY_MODIFIERS.ELEMENT.DESC, element),
+                    PHO_STRINGS.FERTILITY_MODIFIERS.ELEMENT.DESC, element),
                         delegate (FertilityMonitor.Instance inst, Tag eggType)
                         {
 

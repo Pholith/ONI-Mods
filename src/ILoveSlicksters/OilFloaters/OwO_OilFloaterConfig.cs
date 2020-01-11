@@ -12,7 +12,7 @@ namespace ILoveSlicksters
 
         public GameObject CreatePrefab()
         {
-            GameObject gameObject = CreateOilFloater(ID, StringsPatch.VARIANT_OWO.NAME, StringsPatch.VARIANT_OWO.DESC, base_kanim_id, false);
+            GameObject gameObject = CreateOilFloater(ID, PHO_STRINGS.VARIANT_OWO.NAME, PHO_STRINGS.VARIANT_OWO.DESC, base_kanim_id, false);
 
             DecorProvider decorProvider = gameObject.AddOrGet<DecorProvider>();
             decorProvider.SetValues(TUNING.DECOR.BONUS.TIER5);
@@ -25,8 +25,8 @@ namespace ILoveSlicksters
 
             EntityTemplates.ExtendEntityToFertileCreature(gameObject, 
                 EGG_ID, 
-                StringsPatch.VARIANT_OWO.EGG_NAME, 
-                StringsPatch.VARIANT_OWO.DESC,
+                PHO_STRINGS.VARIANT_OWO.EGG_NAME, 
+                PHO_STRINGS.VARIANT_OWO.DESC,
                 egg_kanim_id, 
                 OilFloaterTuning.EGG_MASS, 
                 ID + "Baby", 

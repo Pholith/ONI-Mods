@@ -6,7 +6,7 @@ namespace ILoveSlicksters
     {
         public GameObject CreatePrefab()
         {
-            GameObject gameObject = LeafyOilfloaterConfig.CreateOilfloater(ID, StringsPatch.VARIANT_LEAFY.BABY.NAME, StringsPatch.VARIANT_LEAFY.BABY.DESC, kanim_id, true);
+            GameObject gameObject = LeafyOilfloaterConfig.CreateOilfloater(ID, PHO_STRINGS.VARIANT_LEAFY.BABY.NAME, PHO_STRINGS.VARIANT_LEAFY.BABY.DESC, kanim_id, true);
             EntityTemplates.ExtendEntityToBeingABaby(gameObject, "LeafyOilfloater");
             return gameObject;
         }

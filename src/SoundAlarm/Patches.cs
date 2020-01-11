@@ -1,18 +1,15 @@
 ﻿using Harmony;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using UnityEngine;
 using static Pholib.Utilities;
 
-namespace SoundAlarm
+namespace Notepad
 {
     [HarmonyPatch(typeof(GeneratedBuildings), "LoadGeneratedBuildings")]
     public static class DupRoomSensorStringsPatch
     {
         public static void Prefix()
         {
-            AddBuilding("Automation", SoundAlarmConfig.ID, SoundAlarmConfig.NAME, SoundAlarmConfig.DESC, SoundAlarmConfig.EFFECT);
+            AddBuilding("Furniture", NotepadConfig.ID, NotepadConfig.NAME, NotepadConfig.DESC, NotepadConfig.EFFECT);
         }
     }
 
@@ -21,7 +18,11 @@ namespace SoundAlarm
     {
         public static void Prefix()
         {
-            AddBuildingTech("LogicControl", SoundAlarmConfig.ID);
+            AddBuildingTech("InteriorDecor", NotepadConfig.ID);
+
+            GameObject o = new GameObject();
+            o.AddComponent<NotepadSideScreen>();
+            //new NotepadSideScreen();
         }
     }
 

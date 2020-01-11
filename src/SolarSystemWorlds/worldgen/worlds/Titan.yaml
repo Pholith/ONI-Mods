@@ -1,5 +1,5 @@
-name: STRINGS.WORLDS.TITAN.NAME
-description: STRINGS.WORLDS.TITAN.DESCRIPTION
+name: SolarSystemWorlds.WorldAdds.T_NAME
+description: SolarSystemWorlds.WorldAdds.T_DESC
 spriteName: Asteroid_Titan
 coordinatePrefix: TIT-PHO
 difficulty: 6

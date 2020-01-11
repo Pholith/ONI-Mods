@@ -9,15 +9,15 @@ namespace ILoveSlicksters
     {
         public GameObject CreatePrefab()
         {
-            GameObject gameObject = CreateOilfloater(ID, StringsPatch.VARIANT_LEAFY.NAME, StringsPatch.VARIANT_LEAFY.DESC, base_kanim_id, false);
+            GameObject gameObject = CreateOilfloater(ID, PHO_STRINGS.VARIANT_LEAFY.NAME, PHO_STRINGS.VARIANT_LEAFY.DESC, base_kanim_id, false);
 
             gameObject.AddOrGetDef<CreatureLightMonitor.Def>();
 
             EntityTemplates.ExtendEntityToFertileCreature(
                 gameObject, 
                 EGG_ID, 
-                StringsPatch.VARIANT_LEAFY.EGG_NAME, 
-                StringsPatch.VARIANT_LEAFY.DESC,
+                PHO_STRINGS.VARIANT_LEAFY.EGG_NAME, 
+                PHO_STRINGS.VARIANT_LEAFY.DESC,
                 egg_kanim_id, 
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",

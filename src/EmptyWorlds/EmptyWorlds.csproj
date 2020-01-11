@@ -90,6 +90,9 @@
     <None Include="templates\poi\poi_mob_lab.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="translations\fr.po">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="worldgen\features\bunker_skyblock.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

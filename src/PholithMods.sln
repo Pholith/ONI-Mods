@@ -44,7 +44,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuplicantRoomSensor", "Dupl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLib", "..\..\..\..\Downloads\PLib\PLib.csproj", "{FB7A6AF8-B8D5-4D10-8707-29C4537FD8C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundAlarm", "SoundAlarm\SoundAlarm.csproj", "{45F6C6F6-FABE-4E99-AF9C-5D9BB2AE16A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notepad", "SoundAlarm\Notepad.csproj", "{45F6C6F6-FABE-4E99-AF9C-5D9BB2AE16A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmptyWorlds", "EmptyWorlds\EmptyWorlds.csproj", "{16F6003B-39BA-43BE-AC9B-15FA1F787F7B}"
 EndProject

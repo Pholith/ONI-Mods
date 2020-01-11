@@ -3,7 +3,7 @@ using STRINGS;
 
 namespace ILoveSlicksters
 {
-    class StringsPatch
+    class PHO_STRINGS
     {
 
         public static class VARIANT_ETHANOL

@@ -2,7 +2,7 @@
 using Pholib;
 using UnityEngine;
 
-namespace WorldgenPack
+namespace SolarSystemWorlds
 {
     /*[HarmonyPatch(typeof(TerrainBG))]
     [HarmonyPatch("OnSpawn")]
@@ -82,25 +82,46 @@ namespace WorldgenPack
         }
     }
 
+
+    [HarmonyPatch(typeof(Localization))]
+    [HarmonyPatch("Initialize")]
+    class LocalizationPatch
+    {
+        public static string modPath;
+
+        public static void OnLoad(string modPath)
+        {
+            LocalizationPatch.modPath = modPath;
+        }
+        public static void Postfix()
+        {
+            Utilities.LoadTranslations(typeof(WorldAdds), modPath);
+        }
+    }
+
     [HarmonyPatch(typeof(Db))]
     [HarmonyPatch("Initialize")]
     public class WorldAdds
     {
         public static LocString A_NAME = "Aquaria";
-        public static LocString A_DESCRIPTION = "Test \n\n";
+        public static LocString A_DESC= "Test \n\n";
 
         public static LocString G_NAME = "Ganymede";
-        public static LocString G_DESCRIPTION = "Ganymede is a moon of Jupiter, the largest moon in the entire solar system. It contains a lot of water under its surface.\n\nGanymede will be a difficult experience, to help you in your planetary conquest, you have your habitable rocket that will provide you with valuable resources\n\n";
-        
+        public static LocString G_DESC= "Ganymede is a moon of Jupiter, the largest moon in the entire solar system. It contains a lot of water under its surface.\n\nGanymede will be a difficult experience, to help you in your planetary conquest, you have your habitable rocket that will provide you with valuable resources\n\n";
+
+        public static LocString E_NAME = "Earth";
+        public static LocString E_DESC= "\n";
+
         public static LocString T_NAME = "Titan";
-        public static LocString T_DESCRIPTION = "Titan is one of Saturn's moons, the second largest moon in the solar system and the only planet other than Earth that has liquid oceans. Oceans... of methane\n\nTitan is an extremely cold planet, to help you in your planetary conquest, you have your habitable rocket that will provide you with valuable resources\n\n";
+        public static LocString T_DESC= "Titan is one of Saturn's moons, the second largest moon in the solar system and the only planet other than Earth that has liquid oceans. Oceans... of methane\n\nTitan is an extremely cold planet, to help you in your planetary conquest, you have your habitable rocket that will provide you with valuable resources\n\n";
 
 
         public static void Postfix()
         {
-            Utilities.AddWorldYaml(A_NAME, A_DESCRIPTION, null, typeof(WorldAdds));
-            Utilities.AddWorldYaml(G_NAME, G_DESCRIPTION, "Asteroid_Ganymede", typeof(WorldAdds));
-            Utilities.AddWorldYaml(T_NAME, T_DESCRIPTION, "Asteroid_Titan", typeof(WorldAdds));
+            Utilities.AddWorldYaml(A_NAME, A_DESC, null, typeof(WorldAdds));
+            Utilities.AddWorldYaml(G_NAME, G_DESC, "Asteroid_Ganymede", typeof(WorldAdds));
+            Utilities.AddWorldYaml(T_NAME, T_DESC, "Asteroid_Titan", typeof(WorldAdds));
+            Utilities.AddWorldYaml(E_NAME, E_DESC, null, typeof(WorldAdds));
         }
     }
 }

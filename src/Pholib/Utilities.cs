@@ -38,6 +38,57 @@ namespace Pholib
             return dict["World"].Replace("worlds/", "") == worldName;
         }
 
+        /// <summary>
+        /// Load a .po file and override translations
+        /// Should be called at Localization.Initialize (Postfix)
+        /// </summary>
+        /// <param name="locStringRoot">  locStringRoot is typeof(YourStringsClass) </param>
+        /// <param name="modPath"> modPath is obtained via OnLoad(string) </param>
+        /// <param name="translationsDir"> translationsDir is the directory with your translations. 
+        /// Ideally, it should be named something other than "strings" 
+        /// because that's where the game will try to look for translations by default and load them on its own
+        ///</param>
+        /// Thanks exnihilo to helping making translations
+        public static void LoadTranslations(Type locStringRoot, string modPath, string translationsDir = "translations")
+        {
+            // you still need to call this
+            Localization.RegisterForTranslation(locStringRoot);
+
+            var locale = Localization.GetLocale();
+            if (locale == null)
+            {
+                // english language is selected, so no action is needed
+                return;
+            }
+
+            if (string.IsNullOrEmpty(modPath))
+            {
+                Debug.LogError("modPath is empty");
+                return;
+            }
+
+            var stringsPath = Path.Combine(modPath, translationsDir ?? "");
+            var translationsPath = Path.Combine(stringsPath, locale.Code + ".po");
+
+            Debug.Log($"Loading translation file for {locale.Lang} ({locale.Code}) language: '{translationsPath}'");
+
+            if (!File.Exists(translationsPath))
+            {
+                Debug.LogWarning($"Translation file not found: '{translationsPath}'");
+                return;
+            }
+
+            try
+            {
+                var translations = Localization.LoadStringsFile(translationsPath, false);
+                Localization.OverloadStrings(translations);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Unexpected error while loading translation file: '{translationsPath}'");
+                Debug.LogError(ex);
+            }
+        }
 
         public static void AddCarePackage(ref Immigration immigration, string objectId, float amount, Func<bool> requirement = null)
         {
@@ -52,7 +103,7 @@ namespace Pholib
         /// <summary>
         /// Add strings and icon for a world
         /// Don't call this method OnLoad ! 
-        /// To call at Db.Initialize
+        /// Should be called at Db.Initialize
         /// </summary>
         /// <param name="NAME"> Name of the world </param>
         /// <param name="DESCRIPTION"> Description of the world </param>
@@ -60,18 +111,19 @@ namespace Pholib
         /// <param name="className"> Class containing the locstrings </param>
         public static void AddWorldYaml(string NAME, string DESCRIPTION, string iconName, Type className)
         {
-            // Add strings used in ****.yaml
-            Strings.Add($"STRINGS.WORLDS." + NAME.ToUpper() + ".NAME", NAME);
-            Strings.Add($"STRINGS.WORLDS." + NAME.ToUpper() + ".DESCRIPTION", DESCRIPTION);
 
-            Logs.LogIfDebugging("Strings added at: " + "STRINGS.WORLDS." + NAME.ToUpper() + ".NAME");
+            // DEPRECATED - Add strings used in ****.yaml 
+            //Strings.Add($"STRINGS.WORLDS." + NAME.ToUpper() + ".NAME", NAME);
+            //Strings.Add($"STRINGS.WORLDS." + NAME.ToUpper() + ".DESCRIPTION", DESCRIPTION);
 
-            // Generate a translation .pot
+
+            // Generate a translation .pot and prepare translation strings for loading
             if (!alreadyLoaded.Contains(className))
             {
                 ModUtil.RegisterForTranslation(className);
                 alreadyLoaded.Add(className);
             }
+
 
             if (!iconName.IsNullOrWhiteSpace())
             {
@@ -87,8 +139,8 @@ namespace Pholib
             }
         }
 
-        // Load a incorporated sprite
-        public static Sprite CreateSpriteDXT5(Stream inputStream, int width, int height)
+        // Load a incorporated sprite (old loading, the image is reversed)
+        public static Sprite CreateSpriteDXT5Inversed(Stream inputStream, int width, int height)
         {
             byte[] array = new byte[inputStream.Length - 128L];
             inputStream.Seek(128L, SeekOrigin.Current);
@@ -99,6 +151,28 @@ namespace Pholib
             return Sprite.Create(texture2D, new Rect(0f, 0f, (float)width, (float)height), new Vector2((float)(width / 2), (float)(height / 2)));
         }
 
+        // Load a incorporated sprite v2 - thanks test447
+        public static Sprite CreateSpriteDXT5(Stream inputStream, int width, int height)
+        {
+            byte[] array = new byte[inputStream.Length - 128L];
+            inputStream.Seek(128L, SeekOrigin.Current);
+            inputStream.Read(array, 0, array.Length);
+            Texture2D texture2D = new Texture2D(width, height, TextureFormat.DXT5, false);
+            texture2D.LoadRawTextureData(array);
+            texture2D.Apply(false, false);
+            // this isn't an efficient way to flip the loaded texture but it only runs once so the performance impact can't be that terrible
+            Texture2D texture2DFlipped = new Texture2D(width, height, TextureFormat.RGBA32, false);
+            for (int i = 0; i < texture2D.width; i++)
+            {
+                for (int j = 0; j < texture2D.height; j++)
+                {
+                    texture2DFlipped.SetPixel(i, j, texture2D.GetPixel(i, height - j - 1));
+                }
+            }
+            texture2DFlipped.Apply(false, true);
+            Sprite sprite = Sprite.Create(texture2DFlipped, new Rect(0f, 0f, (float)width, (float)height), new Vector2((float)(width / 2), (float)(height / 2)));
+            return sprite;
+        }
 
         public static Texture2D CreateTextureDXT5(Stream inputStream, int width, int height)
         {

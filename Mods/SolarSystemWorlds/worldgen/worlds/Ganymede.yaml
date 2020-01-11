@@ -1,5 +1,5 @@
-name: STRINGS.WORLDS.GANYMEDE.NAME
-description: STRINGS.WORLDS.GANYMEDE.DESCRIPTION
+name: SolarSystemWorlds.WorldAdds.G_NAME
+description: SolarSystemWorlds.WorldAdds.G_DESC
 spriteName: Asteroid_Ganymede
 coordinatePrefix: GMD-PHO
 difficulty: 6

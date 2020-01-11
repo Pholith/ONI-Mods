@@ -1,5 +1,5 @@
-name: STRINGS.WORLDS.ISLANDS.NAME
-description: STRINGS.WORLDS.ISLANDS.DESCRIPTION
+name: EmptyWorlds.WorldsPatches.I_NAME
+description: EmptyWorlds.WorldsPatches.I_DESCRIPTION
 spriteName: Asteroid_Islands
 coordinatePrefix: ISD-PHO
 difficulty: 4

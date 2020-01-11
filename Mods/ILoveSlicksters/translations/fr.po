@@ -1,0 +1,286 @@
+msgid ""
+msgstr ""
+"Application: Oxygen Not IncludedPOT Version: 2.0\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.4\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr\n"
+
+#. ILoveSlicksters.PHO_STRINGS.FERTILITY_MODIFIERS.ELEMENT.DESC
+msgctxt "ILoveSlicksters.PHO_STRINGS.FERTILITY_MODIFIERS.ELEMENT.DESC"
+msgid "Is immersed in {0}."
+msgstr "Est immergé dans {0}."
+
+#. ILoveSlicksters.PHO_STRINGS.FERTILITY_MODIFIERS.ELEMENT.NAME
+msgctxt "ILoveSlicksters.PHO_STRINGS.FERTILITY_MODIFIERS.ELEMENT.NAME"
+msgid "Element"
+msgstr "Element"
+
+#. ILoveSlicksters.PHO_STRINGS.FERTILITY_MODIFIERS.LIGHT.DESC
+msgctxt "ILoveSlicksters.PHO_STRINGS.FERTILITY_MODIFIERS.LIGHT.DESC"
+msgid "Is in the light."
+msgstr "Est dans la lumière."
+
+#. ILoveSlicksters.PHO_STRINGS.FERTILITY_MODIFIERS.LIGHT.NAME
+msgctxt "ILoveSlicksters.PHO_STRINGS.FERTILITY_MODIFIERS.LIGHT.NAME"
+msgid "Light"
+msgstr "Lumière"
+
+#. ILoveSlicksters.PHO_STRINGS.FERTILITY_MODIFIERS.PRESSURE.DESC
+msgctxt "ILoveSlicksters.PHO_STRINGS.FERTILITY_MODIFIERS.PRESSURE.DESC"
+msgid "Is in air pressure below {0} g."
+msgstr "Est dans une pression inférieur à {0} g."
+
+#. ILoveSlicksters.PHO_STRINGS.FERTILITY_MODIFIERS.PRESSURE.NAME
+msgctxt "ILoveSlicksters.PHO_STRINGS.FERTILITY_MODIFIERS.PRESSURE.NAME"
+msgid "Pressure"
+msgstr "Pression"
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_ETHANOL.BABY.DESC
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_ETHANOL.BABY.DESC"
+msgid ""
+"A goopy little Ethanol Larva.\n"
+"\n"
+"One day it will grow into an adult Slickster morph, the <link="
+"\"ETHANOLOILFLOATER\">Ethanol Slickster</link>."
+msgstr ""
+"Une petite larve d'éthanol.\n"
+"\n"
+"Un jour, elle va se transformer en une forme adulte de gluant, la <link="
+"\"ETHANOLOILFLOATER\">Gluant éthanol</link>."
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_ETHANOL.BABY.NAME
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_ETHANOL.BABY.NAME"
+msgid "<link=\"ETHANOLOILFLOATER\">Ethanol Larva</link>"
+msgstr "<link=\"ETHANOLOILFLOATER\">Larve éthanol</link>"
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_ETHANOL.DESC
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_ETHANOL.DESC"
+msgid ""
+"Ehtanol Slicksters are slimy critters that consume <link=\"CARBONDIOXIDE"
+"\">Carbon Dioxide</link> and exude <link=\"ETHANOL\">Ethanol</link>.\n"
+"\n"
+"The ethanol slickster has adapted to a cold environment rich in carbon "
+"dioxide unlike its cousin the hairy slickster."
+msgstr ""
+"Les Gluants éthanols sont des créatures visqueuses qui consomment du <link="
+"\"CARBONDIOXIDE\">dioxyde de carbone</link> et qui exsudent de l'<link="
+"\"ETHANOL\">Ethanol</link>.\n"
+"\n"
+"Le gluant éthanol s'est adapté à un environnement froid riche en dioxyde de "
+"carbone contrairement à son cousin le gluant velue."
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_ETHANOL.EGG_NAME
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_ETHANOL.EGG_NAME"
+msgid "<link=\"ETHANOLOILFLOATER\">Ethanol Slickster Egg</link>"
+msgstr "<link=\"ETHANOLOILFLOATER\">Œuf de gluant éthanol </link>"
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_ETHANOL.NAME
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_ETHANOL.NAME"
+msgid "<link=\"ETHANOLOILFLOATER\">Ethanol Slickster</link>"
+msgstr "<link=\"ETHANOLOILFLOATER\">Gluant éthanol</link>"
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_FROZEN.BABY.DESC
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_FROZEN.BABY.DESC"
+msgid ""
+"A goopy little Frozen Larva.\n"
+"\n"
+"One day it will grow into an adult Slickster morph, the <link="
+"\"FROZENOILFLOATER\">Frozen Slickster</link>."
+msgstr ""
+"Une petite larve givrée très glamour.\n"
+"\n"
+"Un jour, elle va se transformer en une forme adulte de gluant , le <link="
+"\"FROZENOILFLOATER\">gluant givré</link>."
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_FROZEN.BABY.NAME
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_FROZEN.BABY.NAME"
+msgid "<link=\"FROZENOILFLOATER\">Frozen Larva</link>"
+msgstr "<link=\"FROZENOILFLOATER\">Larve givrée</link>"
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_FROZEN.DESC
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_FROZEN.DESC"
+msgid ""
+"Frozen Slicksters are slimy critters that consume <link=\"CARBONDIOXIDE"
+"\">Carbon Dioxide</link> and exude <link=\"ANTIGEL\">Antigel</link>.\n"
+"\n"
+"The Frozen slickster is a distant variant of the slickster in a very cold "
+"environment, it produces a liquid appreciated by our engineers."
+msgstr ""
+"Les gluants givrés sont des créatures froides et visqueuses qui consomment "
+"du <link=\"CARBONDIOXIDE\">dioxyde de carbone</link> et qui exsudent de "
+"l'<link=\"ANTIGEL\">Antigel</link>.\n"
+"\n"
+"Le gluant givré est une variante lointaine du gluant en milieu très froid, "
+"il produit un liquide apprécié par nos ingénieurs."
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_FROZEN.EGG_NAME
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_FROZEN.EGG_NAME"
+msgid "<link=\"FROZENOILFLOATER\">Frozen Slickster Egg</link>"
+msgstr "<link=\"FROZENOILFLOATER\">Œuf de gluant givré</link>"
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_FROZEN.NAME
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_FROZEN.NAME"
+msgid "<link=\"FROZENOILFLOATER\">Frozen Slickster</link>"
+msgstr "<link=\"FROZENOILFLOATER\">Gluant givré</link>"
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_LEAFY.BABY.DESC
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_LEAFY.BABY.DESC"
+msgid ""
+"A goopy little Leafy Larva.\n"
+"\n"
+"One day it will grow into an adult Slickster morph, the <link="
+"\"LEAFYOILFLOATER\">Leafy Slickster</link>."
+msgstr ""
+"Une petite larve feuillue.\n"
+"\n"
+"Un jour, elle va se transformer en une forme adulte de gluant, le <link="
+"\"LEAFYOILFLOATER\">gluant feuillu</link>."
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_LEAFY.BABY.NAME
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_LEAFY.BABY.NAME"
+msgid "<link=\"LEAFYOILFLOATER\">Leafy Larva</link>"
+msgstr "<link=\"LEAFYOILFLOATER\">larve feuillu</link>"
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_LEAFY.DESC
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_LEAFY.DESC"
+msgid ""
+"Leafy Slicksters are slimy critters that consume <link=\"CARBONDIOXIDE"
+"\">Carbon Dioxide</link> and exude <link=\"OXYGEN\">Oxygen</link>.\n"
+"\n"
+"The leafy slickster has adapted to its environment and uses photosynthesis "
+"to feed on carbon.\n"
+"Leafy Slicksters need light to live."
+msgstr ""
+"Les gluants feuillus sont des créatures visqueuses et feuillues qui "
+"consomment du<link=\"CARBONDIOXIDE\">dioxyde de carbone</link> et qui "
+"exsudent de l'<link=\"OXYGEN\">oxygène</link>.\n"
+"\n"
+"Le gluant feuillue s'est adaptée à son environnement et utilise la "
+"photosynthèse pour se nourrir du dioxyde de carbone.\n"
+"Les gluants feuillues ont besoin de lumière pour vivre."
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_LEAFY.EGG_NAME
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_LEAFY.EGG_NAME"
+msgid "<link=\"LEAFYOILFLOATER\">Leafy Slickster Egg</link>"
+msgstr "<link=\"LEAFYOILFLOATER\">Œuf de gluant feuillu</link>"
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_LEAFY.NAME
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_LEAFY.NAME"
+msgid "<link=\"LEAFYOILFLOATER\">Leafy Slickster</link>"
+msgstr "<link=\"LEAFYOILFLOATER\">Gluant feuillu</link>"
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_OWO.BABY.DESC
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_OWO.BABY.DESC"
+msgid ""
+"A goopy little OwO Larva.\n"
+"\n"
+"One day it will grow into an adult Slickster morph, the <link=\"OWOOILFLOATER"
+"\">OwO Slickster</link>."
+msgstr ""
+"Une petite Larve OwO.\n"
+"\n"
+"Un jour, elle va se transformer en une forme adulte de gluant, le <link="
+"\"OWOOILFLOATER\">Gluant OwO</link>."
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_OWO.BABY.NAME
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_OWO.BABY.NAME"
+msgid "<link=\"OWOOILFLOATER\">OwO Larva</link>"
+msgstr "<link=\"OWOOILFLOATER\">Larve OwO</link>"
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_OWO.DESC
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_OWO.DESC"
+msgid ""
+"OwO Slicksters are slimy critters that consume <link=\"OXYGEN\">Oxygen</"
+"link> and exude <link=\"HYDROGEN\">Hydrogen</link>.\n"
+"\n"
+"The OwO Slicksters are extremely cute creatures that will delight your "
+"duplicants."
+msgstr ""
+"Les gluants OwO sont des créatures visqueuses qui consomment de l'<link="
+"\"OXYGEN\">Oxygène</link> et exsudent de l'<link=\"HYDROGEN\">Hydrogène</"
+"link>.\n"
+"\n"
+"Les gluants OwO sont des créatures extrêmement mignonnes qui raviront vos "
+"duplicants."
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_OWO.EGG_NAME
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_OWO.EGG_NAME"
+msgid "<link=\"OWOOILFLOATER\">OwO Slickster Egg</link>"
+msgstr "<link=\"OWOOILFLOATER\">Oeuf de gluant OwO</link>"
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_OWO.NAME
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_OWO.NAME"
+msgid "<link=\"OWOOILFLOATER\">OwO Slickster</link>"
+msgstr "<link=\"OWOOILFLOATER\">Gluant OwO</link>"
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_ROBOT.BABY.DESC
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_ROBOT.BABY.DESC"
+msgid ""
+"A goopy little Robot Larva.\n"
+"\n"
+"One day it will grow into an adult Slickster morph, the <link="
+"\"ROBOTOILFLOATER\">Robot Slickster</link>."
+msgstr ""
+"Une petite larve robot.\n"
+"\n"
+"Un jour, elle va se transformer en gluant adulte, le <link=\"ROBOTOILFLOATER"
+"\">Gluant robot </link>."
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_ROBOT.BABY.NAME
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_ROBOT.BABY.NAME"
+msgid "<link=\"ROBOTOILFLOATER\">Robot Larva</link>"
+msgstr "<link=\"ROBOTOILFLOATER\">Larve robot </link>"
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_ROBOT.DESC
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_ROBOT.DESC"
+msgid ""
+"Robot Slicksters are slimy critters that consume <link=\"CARBONDIOXIDE"
+"\">Carbon Dioxide</link> and exude <link=\"STEEL\">Steel</link>.\n"
+"\n"
+"The robot slickster is a slime that has been technologically improved by "
+"Gravitas to meet our heavy metal needs."
+msgstr ""
+"Les gluants robots sont des créatures visqueuses qui consomment du <link="
+"\"CARBONDIOXIDE\">dioxyde de carbone</link> et qui exsudent de l'<link="
+"\"STEEL\">acier</link>.\n"
+"\n"
+"Le gluant robot est un gluant qui a été technologiquement améliorée par "
+"Gravitas pour répondre à nos besoins en métaux lourds."
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_ROBOT.EGG_NAME
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_ROBOT.EGG_NAME"
+msgid "<link=\"ROBOTOILFLOATER\">Robot Slickster Egg</link>"
+msgstr "<link=\"ROBOTOILFLOATER\">Œuf de gluant robot</link>"
+
+#. ILoveSlicksters.PHO_STRINGS.VARIANT_ROBOT.NAME
+msgctxt "ILoveSlicksters.PHO_STRINGS.VARIANT_ROBOT.NAME"
+msgid "<link=\"ROBOTOILFLOATER\">Robot Slickster</link>"
+msgstr "<link=\"ROBOTOILFLOATER\">Gluant robot</link>"
+
+#. ILoveSlicksters.PHO_STRINGS.WORLDGEN.DESC
+msgctxt "ILoveSlicksters.PHO_STRINGS.WORLDGEN.DESC"
+msgid ""
+"Slicksteria is an asteroid very close to Verdante but which has the "
+"particularity of containing a great diversity of slicksters, the conditions "
+"on this asteroid are perfect for their development and these small bugs will "
+"help your colony to survive.\n"
+"\n"
+msgstr ""
+"Slicksteria est un astéroïde très proche de Verdante mais qui a la "
+"particularité de contenir une grande diversité de gluants, les conditions "
+"sur cet astéroïde sont parfaites pour leur développement et ces petites "
+"créatures aideront votre colonie à survivre.\n"
+"\n"
+
+#. ILoveSlicksters.PHO_STRINGS.WORLDGEN.NAME
+msgctxt "ILoveSlicksters.PHO_STRINGS.WORLDGEN.NAME"
+msgid "Slicksteria"
+msgstr "Slicksteria"

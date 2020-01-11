@@ -3,17 +3,20 @@ using TUNING;
 using System;
 using Klei.AI;
 using UnityEngine;
-using System.Reflection;
 using static Pholib.Utilities;
+using Pholib;
 
 namespace ILoveSlicksters
 {
 
     class Patches
     {
+        public static String modPath;
+
         // Egg chance patches
-        public static void OnLoad()
+        public static void OnLoad(string modPath)
         {
+            Patches.modPath = modPath;
 
             // Add the temperature modifier for ethanol oilfloater
             Type[] parameters_type = new Type[] { typeof(string), typeof(Tag), typeof(float), typeof(float), typeof(float), typeof(bool) };
@@ -85,7 +88,6 @@ namespace ILoveSlicksters
     {
         public static void OnLoad()
         {
-
             Traverse.Create<OilFloaterConfig>().Field<float>("KG_ORE_EATEN_PER_CYCLE").Value = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2;
 
             float CALORIES_PER_KG_OF_ORE = PHO_TUNING.OILFLOATER.STANDARD_CALORIES_PER_CYCLE / PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2;
@@ -97,6 +99,16 @@ namespace ILoveSlicksters
         }
     }
 
+    // Load translations files
+    [HarmonyPatch(typeof(Localization))]
+    [HarmonyPatch("Initialize")]
+    class StringLocalisationPatch
+    {
+        public static void Postfix()
+        {
+            Utilities.LoadTranslations(typeof(PHO_STRINGS), Patches.modPath);
+        }
+    }
 
     // add the OwO effect
     [HarmonyPatch(typeof(Db))]
@@ -105,7 +117,7 @@ namespace ILoveSlicksters
     {
         public static void Postfix(Db __instance)
         {
-            Pholib.Utilities.AddWorldYaml(StringsPatch.WORLDGEN.NAME, StringsPatch.WORLDGEN.DESC, "Asteroid_Slicksteria", typeof(StringsPatch));
+            Utilities.AddWorldYaml(PHO_STRINGS.WORLDGEN.NAME, PHO_STRINGS.WORLDGEN.DESC, "Asteroid_Slicksteria", typeof(PHO_STRINGS));
 
 
             Effect OwO_Effect = new Effect("OwO_effect", " OwO Effect", "This duplicant saw something so cute that he can't think of anything else.", 300f, true, true, false, null, 10f);
