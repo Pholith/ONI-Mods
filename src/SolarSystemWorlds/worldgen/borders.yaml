@@ -11,3 +11,5 @@ add:
       weight: 10
       overrides:
         massMultiplier: 2
+  dirty:
+    - element: Dirt

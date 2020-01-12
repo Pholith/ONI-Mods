@@ -90,10 +90,10 @@
     <None Include="worldgen\mobs.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\noise\subworldIsle.yaml">
+    <None Include="worldgen\noise\subworldSky.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\noise\subworldSky.yaml">
+    <None Include="worldgen\PholithWorlds\features\earth\Geode.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="worldgen\PholithWorlds\features\earth\LittleLack.yaml">

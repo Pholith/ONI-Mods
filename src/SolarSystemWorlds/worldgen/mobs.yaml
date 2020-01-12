@@ -12,3 +12,11 @@ MobLookupTable:
         max: 0.1
       width: 1
       height: 1
+    LightBugOrange:
+      location: Air
+      selectMethod: Centroid
+      density:
+        min: 0.002
+        max: 0.008
+      width: 1
+      height: 1

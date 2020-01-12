@@ -1,17 +1,20 @@
 biomeNoise: noise/Generic
-temperatureRange: HumanHot
-minChildCount: 2
+temperatureRange: Cool
+minChildCount: 4
 density:
-  min: 55
-  max: 65
+  min: 35
+  max: 45
 avoidRadius: 50.0
 sampleBehaviour: PoissonDisk
+borderOverride: rocky
+
 biomes:
-  - name: biomes/WaterOcean/Basic
+  - name: biomes/Misc/Space
     weight: 1
     #overrides:
     #  massMultiplier: 50
 pointsOfInterest:
 tags:
   - IgnoreCaveOverride
-zoneType: Forest
+  - NoGlobalFeatureSpawning
+zoneType: Space

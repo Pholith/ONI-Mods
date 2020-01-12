@@ -1,20 +1,18 @@
-biomeNoise: noise/Generic
-temperatureRange: Cool
-minChildCount: 4
+biomeNoise: noise/MagmaVent
+temperatureRange: ExtremelyHot
+minChildCount: 3
+pdWeight: 0.7
 density:
   min: 35
   max: 45
 avoidRadius: 50.0
 sampleBehaviour: PoissonDisk
-borderOverride: rocky
-
 biomes:
-  - name: biomes/Misc/Space
+  - name: biomes/Earth/Core
     weight: 1
     #overrides:
     #  massMultiplier: 50
-pointsOfInterest:
 tags:
   - IgnoreCaveOverride
   - NoGlobalFeatureSpawning
-zoneType: Space
+zoneType: MagmaCore
