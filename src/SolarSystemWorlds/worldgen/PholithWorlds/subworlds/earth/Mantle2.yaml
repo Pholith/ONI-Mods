@@ -14,7 +14,12 @@ features:
 
 pointsOfInterest:
   home:
-    - oilfloaterHome 
+    - oilfloaterHome
+  ruin:
+  - ruin2
+  - ruin1
+  ruin2:
+  - ruinCircle
 tags:
   - IgnoreCaveOverride
 featureTemplates:

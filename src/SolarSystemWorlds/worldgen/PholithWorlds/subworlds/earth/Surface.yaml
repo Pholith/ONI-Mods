@@ -27,6 +27,13 @@ features: []
  # - type: PholithWorlds/features/titan/OxygenLack
  # - type: PholithWorlds/features/titan/SolidOxygen
 
+pointsOfInterest:
+  ruin:
+  - ruin3
+  - ruin4
+  ruin2:
+  - ruin5
+    
 tags:
   - IgnoreCaveOverride
   #- ErodePointToWorldTop

@@ -17,7 +17,13 @@ pointsOfInterest:
   home:
     - drekoHome
   ruin:
-    - poi_ladder_tunnel
+  - ruin4
+  - ruin5
+  ruin2:
+  - ruinTower
+  skeleton:
+  - raptor
+
 features:
   - type: PholithWorlds/features/earth/Geode
 

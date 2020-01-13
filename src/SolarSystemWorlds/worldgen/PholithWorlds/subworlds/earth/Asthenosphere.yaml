@@ -24,5 +24,7 @@ pointsOfInterest:
     - pipHome
   home2:
     - hatchHome
-
+  ruin:
+    - ruin1
+    - ruin2
 zoneType: Rust
