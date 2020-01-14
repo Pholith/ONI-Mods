@@ -18,6 +18,8 @@ biomes:
 
 tags:
   - IgnoreCaveOverride
+features:
+  - type: PholithWorlds/features/earth/LittleSwamp
 
 pointsOfInterest:
   home:

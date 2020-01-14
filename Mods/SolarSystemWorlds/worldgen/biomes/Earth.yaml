@@ -37,11 +37,11 @@ TerrainBiomeLookupTable:
       bandSize: 0.5
     - content: IgneousRock
       bandSize: 0.5
-    - content: CarbonDioxide
-      bandSize: 2
     - content: Sandstone
       bandSize: 2
     - content: SedimentaryRock
+      bandSize: 2
+    - content: CarbonDioxide
       bandSize: 2
     - content: GoldAmalgam
       bandSize: 0.2

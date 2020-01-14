@@ -1,11 +1,11 @@
 name: SolarSystemWorlds.WorldAdds.E_NAME
 description: SolarSystemWorlds.WorldAdds.E_DESC
-spriteName: Asteroid_T
+spriteName: Asteroid_Earth
 coordinatePrefix: ERT-PHO
 difficulty: 3
 tier: 2
 disableWorldTraits: true
-#skip: true
+skip: false
 
 worldsize:
   X: 224
@@ -31,6 +31,7 @@ subworldFiles:
   - name: PholithWorlds/subworlds/earth/SurfaceStart
   - name: PholithWorlds/subworlds/earth/SurfaceNoGravitas
   - name: PholithWorlds/subworlds/earth/Sky
+  - name: PholithWorlds/subworlds/earth/MagmaBreach
 
 startSubworldName: PholithWorlds/subworlds/earth/SurfaceStart
 startingBaseTemplate: spaceBase
@@ -39,8 +40,8 @@ startingBasePositionHorizontal:
   min: 0.4
   max: 0.7
 startingBasePositionVertical:
-  min: 0.62
-  max: 0.62
+  min: 0.58
+  max: 0.58
 
 globalFeatureTemplates:
   feature_geyser_generic: 10
@@ -65,6 +66,14 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - PholithWorlds/subworlds/earth/Mantle2
+
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 2
+    maxDistance: 5
+    command: UnionWith
+    subworldNames:
+      - PholithWorlds/subworlds/earth/MagmaBreach
 
   - tagcommand: DistanceFromTag
     tag: AtDepths

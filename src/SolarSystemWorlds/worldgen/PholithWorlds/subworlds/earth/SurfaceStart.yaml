@@ -1,9 +1,9 @@
 biomeNoise: noise/subworldFrozen
-temperatureRange: Cool
+temperatureRange: Mild
 #pdWeight: 1.2
 density:
-  min: 30
-  max: 40
+  min: 50
+  max: 70
 avoidRadius: 50.0
 sampleBehaviour: PoissonDisk
 borderOverride: dirty
@@ -19,6 +19,7 @@ tags:
   - NoGlobalFeatureSpawning
  # - ErodePointToWorldTop
   #- DistFunctionPointCentroid
+
 centralFeature:
   type: features/generic/StartLocation
 zoneType: Rust

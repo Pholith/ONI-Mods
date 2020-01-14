@@ -21,6 +21,9 @@ pointsOfInterest:
   - ruin5
   ruin2:
   - ruinTower
+  ruin3:
+  - ruin4
+  - ruin1
   skeleton:
   - raptor
 

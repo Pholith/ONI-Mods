@@ -1,0 +1,62 @@
+shape: Square
+
+tags:
+  - AllowExceedNodeBorders
+
+borders:
+  - 1
+  - 2
+  - 1
+
+blobSize:
+  min: 5
+  max: 8
+forceBiome: biomes/HotMarsh/Basic
+biomeTags:
+  - MushroomPlant
+  - Pacu
+  - Puft
+  - BasicFabricPlant
+  - BulbPlant
+
+ElementChoiceGroups:
+  RoomCenterElements:
+    selectionMethod: WeightedResample
+    choices:
+      - element: ContaminatedOxygen
+        weight: 1
+        overrides:
+          diseaseOverride: SlimeLung
+          diseaseAmountOverride: 1000000
+  
+  RoomBorderChoices1:
+    selectionMethod: WeightedResample
+    choices:
+      - element: DirtyWater
+        weight: 1
+
+  RoomBorderChoices1:
+    selectionMethod: WeightedResample
+    choices:
+      - element: Dirt
+        weight: 1
+      - element: Algae
+        weight: 3
+      - element: SlimeMold
+        weight: 5
+        overrides:
+          diseaseOverride: SlimeLung
+          diseaseAmountOverride: 1000000
+
+  RoomBorderChoices2:
+    selectionMethod: WeightedResample
+    choices:
+      - element: Dirt
+        weight: 1
+      - element: Algae
+        weight: 5
+      - element: SlimeMold
+        weight: 2
+        overrides:
+          diseaseOverride: SlimeLung
+          diseaseAmountOverride: 1000000

@@ -98,7 +98,7 @@ namespace SolarSystemWorlds
             Utilities.LoadTranslations(typeof(WorldAdds), modPath);
         }
     }
-
+    
     [HarmonyPatch(typeof(Db))]
     [HarmonyPatch("Initialize")]
     public class WorldAdds
@@ -121,7 +121,7 @@ namespace SolarSystemWorlds
             Utilities.AddWorldYaml(A_NAME, A_DESC, null, typeof(WorldAdds));
             Utilities.AddWorldYaml(G_NAME, G_DESC, "Asteroid_Ganymede", typeof(WorldAdds));
             Utilities.AddWorldYaml(T_NAME, T_DESC, "Asteroid_Titan", typeof(WorldAdds));
-            Utilities.AddWorldYaml(E_NAME, E_DESC, null, typeof(WorldAdds));
+            Utilities.AddWorldYaml(E_NAME, E_DESC, "Asteroid_Earth", typeof(WorldAdds));
         }
     }
 }

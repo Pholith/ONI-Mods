@@ -20,5 +20,8 @@ biomes:
 tags:
   - IgnoreCaveOverride
   - NoGlobalFeatureSpawning
-pointsOfInterest:
+
+centralFeature:
+  type: PholithWorlds/features/earth/FloatingIsland
+
 zoneType: Ocean

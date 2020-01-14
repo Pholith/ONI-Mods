@@ -123,16 +123,10 @@
     <None Include="worldgen\PholithWorlds\features\earth\Geode.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorlds\features\earth\LittleLack.yaml">
+    <None Include="worldgen\PholithWorlds\features\earth\FloatingIsland.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorlds\features\earth\MethaneCloud.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="worldgen\PholithWorlds\features\earth\MethaneLack.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="worldgen\PholithWorlds\features\earth\OxygenLack.yaml">
+    <None Include="worldgen\PholithWorlds\features\earth\LittleSwamp.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="worldgen\PholithWorlds\features\earth\SolidOxygen.yaml">
@@ -169,6 +163,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="worldgen\PholithWorlds\subworlds\earth\Asthenosphere.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorlds\subworlds\earth\MagmaBreach.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="worldgen\PholithWorlds\subworlds\earth\Mantle.yaml">
@@ -318,6 +315,7 @@
     <Content Include="anim\earth_anims\saturn\earth_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Asteroid_Earth.dds" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
