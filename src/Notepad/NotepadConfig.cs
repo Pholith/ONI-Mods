@@ -25,13 +25,12 @@ namespace Notepad
             buildingDef.AudioCategory = "Metal";
             return buildingDef;
         }
-
-        public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
+        public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
         {
             go.AddOrGet<Notepad>();
         }
 
-        public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
+        public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
         {
         }
 
@@ -40,8 +39,5 @@ namespace Notepad
         }
 
         public const string ID = "Notepad";
-        public const string NAME = "Notepad test ";
-        public const string DESC = "Notepad";
-        public const string EFFECT = "Notepad";
     }
 }
