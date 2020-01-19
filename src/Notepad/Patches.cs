@@ -42,8 +42,9 @@ namespace Notepad
 
             NotepadControl controller = new NotepadControl();
             NotepadSideScreen screen = controller.RootPanel.AddComponent<NotepadSideScreen>();
+
             screen.gameObject.transform.parent = sideScreenContentBody.transform;
-            PUIUtils.DebugObjectTree(sideScreenContentBody);
+            screen.gameObject.transform.localScale = Vector3.one;
 
             DetailsScreen.SideScreenRef myRef = new DetailsScreen.SideScreenRef
             {

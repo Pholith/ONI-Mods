@@ -10,7 +10,7 @@ namespace Notepad
             string id = ID;
             int width = 1;
             int height = 1;
-            string anim = "ceilinglight_kanim";
+            string anim = "notepad_kanim";
             int hitpoints = 10;
             float construction_time = 10f;
             float[] tier = BUILDINGS.CONSTRUCTION_MASS_KG.TIER1;

@@ -44,13 +44,13 @@ namespace Notepad
 
         private void UpdateLabels()
         {
-            descriptionText.text = targetNotepad.activateText;
+            //descriptionText.Text = targetNotepad.activateText;
 
         }
+
         public Notepad targetNotepad;
 
         public LocText descriptionText;
-
 
     }
 }
