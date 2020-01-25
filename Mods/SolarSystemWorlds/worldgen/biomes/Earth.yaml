@@ -15,12 +15,12 @@ TerrainBiomeLookupTable:
       bandSize: 2
     - content: SedimentaryRock
       bandSize: 2
-    - content: Dirt
-      bandSize: 1
-    - content: Algae
-      bandSize: 1
     - content: Cuprite
       bandSize: 2
+    - content: Algae
+      bandSize: 1
+    - content: Dirt
+      bandSize: 1
     - content: Oxygen
       bandSize: 2.5
 

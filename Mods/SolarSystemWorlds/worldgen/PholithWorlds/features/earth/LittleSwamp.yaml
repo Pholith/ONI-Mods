@@ -11,7 +11,7 @@ borders:
 blobSize:
   min: 5
   max: 8
-forceBiome: biomes/HotMarsh/Basic
+
 biomeTags:
   - MushroomPlant
   - Pacu
