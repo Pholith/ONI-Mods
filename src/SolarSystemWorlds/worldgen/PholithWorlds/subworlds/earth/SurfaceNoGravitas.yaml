@@ -14,6 +14,12 @@ biomes:
     weight: 1
     tags:
       - Mole
+      - BasicSingleHarvestPlant
+      - LeafyPlant
+      - LeafyPlantSeed
+      - ForestTree
+      - Oxyfern
+
     #overrides:
     #  massMultiplier: 50
 tags:

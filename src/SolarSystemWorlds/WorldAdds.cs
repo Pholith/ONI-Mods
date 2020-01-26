@@ -39,6 +39,7 @@ namespace SolarSystemWorlds
         {
             if (Utilities.IsOnWorld(WorldAdds.T_NAME)) return Assets.GetAnim("saturn_kanim");
             if (Utilities.IsOnWorld(WorldAdds.G_NAME)) return Assets.GetAnim("jupiter_kanim");
+            if (Utilities.IsOnWorld(WorldAdds.E_NAME)) return Assets.GetAnim("moon_kanim");
             return null;
         }
 
@@ -46,9 +47,11 @@ namespace SolarSystemWorlds
         private static KAnimFile[] originalAnim = null;
         private static float normalSize = 0;
 
+
+        // incomprehensible code but... it works
         public static void Postfix()
         {
-            if (Utilities.IsOnWorld(WorldAdds.G_NAME) || Utilities.IsOnWorld(WorldAdds.T_NAME))
+            if (Utilities.IsOnWorld(WorldAdds.G_NAME) || Utilities.IsOnWorld(WorldAdds.T_NAME) || Utilities.IsOnWorld(WorldAdds.E_NAME))
             {
                 // Patch the moon
                 if (EarthConfigPatch.earthAnimController != null)
@@ -71,7 +74,8 @@ namespace SolarSystemWorlds
             {
                 // if someone load a other game from a Ganymede game -> reset changes
                 if (EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("jupiter_kanim") || 
-                    EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("saturn_kanim"))
+                    EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("saturn_kanim") ||
+                    EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("moon_kanim"))
                 {
                     // reset the moon
                     Debug.Assert(originalAnim != null, "Original anim should not be null.");
@@ -110,11 +114,13 @@ namespace SolarSystemWorlds
         public static LocString G_DESC= "Ganymede is a moon of Jupiter, the largest moon in the entire solar system. It contains a lot of water under its surface.\n\nGanymede will be a difficult experience, to help you in your planetary conquest, you have your habitable rocket that will provide you with valuable resources\n\n";
 
         public static LocString E_NAME = "Earth";
-        public static LocString E_DESC= "\n";
+        public static LocString E_DESC= "The Earth is the cradle of humanity, it is where the distant ancestors of the duplicants lived, they should have a little trouble finding their place here.\n\n";
 
         public static LocString T_NAME = "Titan";
         public static LocString T_DESC= "Titan is one of Saturn's moons, the second largest moon in the solar system and the only planet other than Earth that has liquid oceans. Oceans... of methane\n\nTitan is an extremely cold planet, to help you in your planetary conquest, you have your habitable rocket that will provide you with valuable resources\n\n";
 
+        public static LocString IRON_CORE_NAME = "Iron Core";
+        public static LocString IRON_CORE_DESC = "This world has a core of liquid iron";
 
         public static void Postfix()
         {

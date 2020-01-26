@@ -1,0 +1,36 @@
+shape: Square
+
+tags:
+  - AllowExceedNodeBorders
+
+borders:
+  - 2
+
+blobSize:
+  min: 4
+  max: 7
+
+biomeTags:
+  - Pacu
+  - SeaLettuce
+  - SpiceVine
+
+ElementChoiceGroups:
+  RoomCenterElements:
+    selectionMethod: WeightedResample
+    choices:
+      - element: Water
+        weight: 1
+        overrides:
+          massMultiplier: 0.8
+
+  
+  RoomBorderChoices0:
+    selectionMethod: WeightedResample
+    choices:
+      - element: Sand
+        weight: 1
+      - element: Algae
+        weight: 3
+      - element: Dirt
+        weight: 1

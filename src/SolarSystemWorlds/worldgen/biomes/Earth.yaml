@@ -14,15 +14,15 @@ TerrainBiomeLookupTable:
     - content: Dirt
       bandSize: 2
     - content: SedimentaryRock
-      bandSize: 2
+      bandSize: 1
     - content: Cuprite
-      bandSize: 2
+      bandSize: 1
     - content: Algae
       bandSize: 1
     - content: Dirt
       bandSize: 1
     - content: Oxygen
-      bandSize: 2.5
+      bandSize: 3
 
     Ocean:
     - content: SaltWater
@@ -30,21 +30,23 @@ TerrainBiomeLookupTable:
       overrides:
         massMultiplier: 1.5
     - content: Sand
-      bandSize: 0.5
+      bandSize: 0.6
 
     Asthenosphere:
     - content: Dirt
       bandSize: 0.5
     - content: IgneousRock
       bandSize: 0.5
-    - content: Sandstone
+    - content: Sand
+      bandSize: 2
+    - content: SandStone
       bandSize: 2
     - content: SedimentaryRock
       bandSize: 2
-    - content: CarbonDioxide
-      bandSize: 2
     - content: GoldAmalgam
-      bandSize: 0.2
+      bandSize: 0.3
+    - content: CarbonDioxide
+      bandSize: 1.5
 
     Mantle:
     - content: CarbonDioxide

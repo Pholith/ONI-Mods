@@ -1,18 +1,22 @@
-biomeNoise: noise/subworldFrozen
+biomeNoise: noise/subworldOceanDeep
 temperatureRange: Mild
 #pdWeight: 1.2
 density:
-  min: 50
-  max: 70
-avoidRadius: 50.0
+  min: 10
+  max: 15
+avoidRadius: 10
 sampleBehaviour: PoissonDisk
 borderOverride: dirty
 
 biomes:
   - name: biomes/Earth/Surface
-    weight: 1
-    #overrides:
-    #  massMultiplier: 50
+    tags:
+    - BasicSingleHarvestPlant
+    - LeafyPlant
+    - LeafyPlantSeed
+    - ForestTree
+    - Oxyfern
+
 tags:
   - StartWorld
   - IgnoreCaveOverride
@@ -22,4 +26,13 @@ tags:
 
 centralFeature:
   type: features/generic/StartLocation
+
+pointsOfInterest:
+  ruin:
+    - ruin1
+    - ruin2
+    - ruin3
+    - ruin4
+    - ruin5
+    - ruin7
 zoneType: Rust

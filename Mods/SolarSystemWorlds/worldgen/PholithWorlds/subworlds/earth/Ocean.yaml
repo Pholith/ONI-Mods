@@ -1,4 +1,4 @@
-biomeNoise: noise/Default
+biomeNoise: noise/subworldCrystal
 temperatureRange: Cool
 density:
   min: 50

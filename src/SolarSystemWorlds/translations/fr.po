@@ -1,18 +1,18 @@
 msgid ""
 msgstr ""
-"Application: Oxygen Not Included\n"
-"POT Version: 2.0\n"
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Application: Oxygen Not Included\n"
+"POT Version: 2.0\n"
 "X-Generator: Poedit 2.2.4\n"
-"Last-Translator: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"Language: fr\n"
 
 #. SolarSystemWorlds.WorldAdds.A_DESC
 msgctxt "SolarSystemWorlds.WorldAdds.A_DESC"
@@ -28,13 +28,21 @@ msgstr ""
 
 #. SolarSystemWorlds.WorldAdds.E_DESC
 msgctxt "SolarSystemWorlds.WorldAdds.E_DESC"
-msgid "\n"
+msgid ""
+"The Earth is the cradle of humanity, it is where the distant ancestors of "
+"the duplicants lived, they should have a little trouble finding their place "
+"here.\n"
+"\n"
 msgstr ""
+"La Terre est le berceau de l'humanité, c'est là que vivaient les lointains "
+"ancêtres des duplicateurs, ils devraient avoir un peu de mal à trouver leur "
+"place ici.\n"
+"\n"
 
 #. SolarSystemWorlds.WorldAdds.E_NAME
 msgctxt "SolarSystemWorlds.WorldAdds.E_NAME"
 msgid "Earth"
-msgstr ""
+msgstr "La Terre"
 
 #. SolarSystemWorlds.WorldAdds.G_DESC
 msgctxt "SolarSystemWorlds.WorldAdds.G_DESC"
@@ -56,9 +64,22 @@ msgstr ""
 "\n"
 
 #. SolarSystemWorlds.WorldAdds.G_NAME
+#, fuzzy
+#| msgctxt "SolarSystemWorlds.WorldAdds.G_NAME"
+#| msgid "Ganymede"
 msgctxt "SolarSystemWorlds.WorldAdds.G_NAME"
 msgid "Ganymede"
 msgstr "Ganymède"
+
+#. SolarSystemWorlds.WorldAdds.IRON_CORE_DESC
+msgctxt "SolarSystemWorlds.WorldAdds.IRON_CORE_DESC"
+msgid "This world has a core of liquid iron"
+msgstr "Ce monde possède un coeur de fer liquide"
+
+#. SolarSystemWorlds.WorldAdds.IRON_CORE_NAME
+msgctxt "SolarSystemWorlds.WorldAdds.IRON_CORE_NAME"
+msgid "Iron Core"
+msgstr "Noyau de fer"
 
 #. SolarSystemWorlds.WorldAdds.T_DESC
 msgctxt "SolarSystemWorlds.WorldAdds.T_DESC"
@@ -84,4 +105,8 @@ msgstr ""
 #. SolarSystemWorlds.WorldAdds.T_NAME
 msgctxt "SolarSystemWorlds.WorldAdds.T_NAME"
 msgid "Titan"
-msgstr ""
+msgstr "Titan"
+
+#~ msgctxt "SolarSystemWorlds.WorldAdds.IRON_CORE_DESC"
+#~ msgid "Replace the asteroid core with a liquid iron core"
+#~ msgstr "Ce monde possède un coeur de fer liquide"

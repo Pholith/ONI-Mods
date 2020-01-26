@@ -2,9 +2,9 @@ biomeNoise: noise/subworldOceanDeep
 temperatureRange: Mild
 pdWeight: 1.2
 density:
-  min: 70
-  max: 80
-avoidRadius: 50.0
+  min: 10
+  max: 15
+avoidRadius: 10
 sampleBehaviour: PoissonDisk
 borderOverride: rocky
 
@@ -13,11 +13,9 @@ biomes:
     tags:
     - LightBugOrange
     - PrickleFlower
-    - PrickleFlowerSeed
     - BasicSingleHarvestPlant
     - Squirrel
     - LeafyPlant
-    - LeafyPlantSeed
     - ForestTree
     - Oxyfern
 

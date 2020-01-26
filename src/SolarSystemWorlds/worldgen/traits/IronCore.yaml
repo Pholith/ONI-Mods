@@ -1,0 +1,18 @@
+name: SolarSystemWorlds.WorldAdds.IRON_CORE_NAME
+description: SolarSystemWorlds.WorldAdds.IRON_CORE_DESC
+colorHex: 990000
+exclusiveWith:
+  - traits\FrozenCore
+
+
+additionalSubworldFiles:
+  - name: PholithWorlds/subworlds/earth/Core
+
+additionalUnknownCellFilters:
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 0
+    maxDistance: 0
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/earth/Core

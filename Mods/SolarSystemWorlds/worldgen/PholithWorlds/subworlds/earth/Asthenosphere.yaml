@@ -1,9 +1,9 @@
 biomeNoise: noise/subworldHotMarsh
 temperatureRange: HumanWarm
 density:
-  min: 50
-  max: 60
-avoidRadius: 50.0
+  min: 10
+  max: 15
+avoidRadius: 10
 sampleBehaviour: PoissonDisk
 borderOverride: rocky
 
@@ -29,4 +29,7 @@ pointsOfInterest:
   ruin:
     - ruin1
     - ruin2
+  ruin2:
+    - ruin8
+    - ruin9
 zoneType: Rust

@@ -3,9 +3,9 @@ temperatureRange: Room
 pdWeight: 1.2
 minChildCount: 1
 density:
-  min: 65
-  max: 70
-avoidRadius: 50.0
+  min: 10
+  max: 15
+avoidRadius: 10
 sampleBehaviour: PoissonDisk
 borderOverride: dirty
 
@@ -14,18 +14,14 @@ biomes:
     tags:
     - LightBugOrange
     - PrickleFlower
-    - PrickleFlowerSeed
     - BasicSingleHarvestPlant
     - Squirrel
     - LeafyPlant
-    - LeafyPlantSeed
     - ForestTree
     - Oxyfern
 
-features: []
- # - type: PholithWorlds/features/titan/MethaneLack
- # - type: PholithWorlds/features/titan/OxygenLack
- # - type: PholithWorlds/features/titan/SolidOxygen
+features: 
+  - type: PholithWorlds/features/earth/LittleLack
 
 pointsOfInterest:
   ruin:
@@ -33,9 +29,14 @@ pointsOfInterest:
   - ruin4
   ruin2:
   - ruin5
-    
+  ruin3:
+  - ruin7
+  - ruin8
+  miniBiomes:
+  - miniBiomes
+
 tags:
   - IgnoreCaveOverride
   #- ErodePointToWorldTop
-  #- NoGlobalFeatureSpawning
+  - NoGlobalFeatureSpawning
 zoneType: Rust

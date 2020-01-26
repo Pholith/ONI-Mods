@@ -13,6 +13,11 @@ worldsize:
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
 
+defaultsOverrides:
+  data:
+    PlantSpawnDensity: 10
+    PlantSpawnAvoidRadius: 2
+    PlantSpawnMax: 150
 
 # List all the zone files to load
 subworldFiles:
@@ -40,8 +45,8 @@ startingBasePositionHorizontal:
   min: 0.4
   max: 0.7
 startingBasePositionVertical:
-  min: 0.58
-  max: 0.58
+  min: 0.6
+  max: 0.6
 
 globalFeatureTemplates:
   feature_geyser_generic: 10

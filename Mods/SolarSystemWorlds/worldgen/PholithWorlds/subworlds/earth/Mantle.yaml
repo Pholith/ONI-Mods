@@ -24,6 +24,9 @@ pointsOfInterest:
   ruin3:
   - ruin4
   - ruin1
+  ruin4:
+  - ruin6
+  - ruin8
   skeleton:
   - raptor
 
