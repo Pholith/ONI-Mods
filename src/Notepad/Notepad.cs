@@ -7,6 +7,8 @@ namespace Notepad
         protected override void OnSpawn()
         {
             base.OnSpawn();
+            KBatchedAnimController animController = gameObject.AddOrGet<KBatchedAnimController>();
+            animController.Play("empty", KAnim.PlayMode.Paused);
         }
         protected override void OnCleanUp()
         {
