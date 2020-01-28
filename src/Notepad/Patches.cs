@@ -1,5 +1,6 @@
 ﻿using Harmony;
 using PeterHan.PLib.UI;
+using Pholib;
 using System.Collections.Generic;
 using UnityEngine;
 using static Pholib.Utilities;
@@ -43,9 +44,10 @@ namespace Notepad
             NotepadControl controller = new NotepadControl();
             NotepadSideScreen screen = controller.RootPanel.AddComponent<NotepadSideScreen>();
 
+            screen.Control = controller;
             screen.gameObject.transform.parent = sideScreenContentBody.transform;
             screen.gameObject.transform.localScale = Vector3.one;
-
+            Logs.Log("here");
             DetailsScreen.SideScreenRef myRef = new DetailsScreen.SideScreenRef
             {
                 name = "NotepadSideScreen",

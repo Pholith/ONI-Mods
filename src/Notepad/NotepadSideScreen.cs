@@ -12,7 +12,6 @@ namespace Notepad
             base.OnPrefabInit();
             titleKey = PHO_STRINGS.NOTEPAD.NAME;
             activateOnSpawn = true;
-            descriptionText = new LocText();
 
 
             /*editButton.onClick += delegate()
@@ -44,13 +43,15 @@ namespace Notepad
 
         private void UpdateLabels()
         {
-            //descriptionText.Text = targetNotepad.activateText;
-
+            Logs.Log("update");
+            Logs.Log(targetNotepad.activateText);
+            Logs.Log(Control.DescriptionField.Text);
+            Control.DescriptionField.Text = targetNotepad.activateText;
+            Control.DescriptionField.OnTextChanged += (go, text) => targetNotepad.activateText = Control.DescriptionField.Text;
         }
 
         public Notepad targetNotepad;
 
-        public LocText descriptionText;
-
+        public NotepadControl Control { get; set; }
     }
 }

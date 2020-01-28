@@ -23,34 +23,13 @@ namespace Notepad
         public NotepadControl()
 		{
 
-            // Childs elements
-            PTextField titleField = new PTextField("title field")
-            {
-                TextAlignment = TMPro.TextAlignmentOptions.Center,
-                MinWidth = 192
-            };
 
-            //PButton buttonTest = new PButton();
-            /*buttonTest.OnClick += delegate (GameObject obj4)
-            {
-                Debug.Log("test onClick");
-            };
-            */
             DescriptionField = new PTextField("description field")
             {
                 FlexSize = Vector2.one, // new Vector2(1f, 10f),
             };
             DescriptionField.OnRealize += (obj4) => Debug.Log("On Realize");
-
-            PLabel titleLabel = new PLabel("title label")
-            {
-                Text = "Title",
-                TextAlignment = TextAnchor.MiddleCenter,
-            };
             
-            PSpacer space = new PSpacer();
-            space.PreferredSize = new Vector2(0, 24f);
-
             PLabel descriptionLabel = new PLabel("description label")
             {
                 Text = "Description",
@@ -66,9 +45,6 @@ namespace Notepad
                 FlexSize = Vector2.one,
             };
 
-            panel.AddChild(titleLabel);
-            panel.AddChild(titleField);
-            panel.AddChild(space);
             panel.AddChild(descriptionLabel);
             panel.AddChild(DescriptionField);
 
