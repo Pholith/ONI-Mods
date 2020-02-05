@@ -29,7 +29,10 @@ namespace Pholib
             {
                 return false;
             }
+
             Dictionary<string, string> dict = Traverse.Create(CustomGameSettings.Instance).Field<Dictionary<string, string>>("CurrentQualityLevelsBySetting").Value;
+            Logs.Log(worldName);
+            Logs.Log(dict["World"]);
             if (dict == null || dict["World"] == null) return false;
 
             //Logs.LogIfDebugging(dict["World"]);

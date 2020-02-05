@@ -5,7 +5,7 @@ coordinatePrefix: ERT-PHO
 difficulty: 3
 tier: 2
 disableWorldTraits: true
-skip: false
+
 
 worldsize:
   X: 224
