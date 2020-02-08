@@ -8,7 +8,7 @@ namespace Notepad
         {
             base.OnSpawn();
             KBatchedAnimController animController = gameObject.AddOrGet<KBatchedAnimController>();
-            animController.Play("empty", KAnim.PlayMode.Paused);
+            animController.Play(activateText.IsNullOrWhiteSpace() ? "empty" : "full", KAnim.PlayMode.Paused);
         }
         protected override void OnCleanUp()
         {
@@ -16,6 +16,6 @@ namespace Notepad
         }
 
         [Serialize]
-        public string activateText = "test a";
+        public string activateText = "";
     }
 }

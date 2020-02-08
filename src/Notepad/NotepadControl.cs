@@ -1,4 +1,5 @@
 ﻿using PeterHan.PLib.UI;
+using Pholib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,19 +18,63 @@ namespace Notepad
         
         public GameObject RootPanel { get; }
 
-        public PTextField DescriptionField { get; private set; }
+        private PTextArea descriptionField;
 
+        public Notepad currentTarget;
+
+
+        public PTextArea DescriptionArea()
+        {
+            return new PTextArea("description field")
+            {
+                FlexSize = Vector2.one,
+                Text = (currentTarget != null) ? currentTarget.activateText : "",
+
+                OnTextChanged = (go, text) =>
+                {
+                    currentTarget.activateText = text;
+                    if (currentTarget == null) return;
+                    // change the anim looking on the text
+                    KBatchedAnimController animController = currentTarget.gameObject.AddOrGet<KBatchedAnimController>();
+                    animController.Play(currentTarget.activateText.IsNullOrWhiteSpace() ? "empty" : "full", KAnim.PlayMode.Paused);
+
+                },
+                LineCount = 6,
+            };
+        }
+
+        // Destroy and recrate the text area to update it text
+        public void UpdateTextArea()
+        {
+            if (currentTarget == null) return;
+            descriptionField = DescriptionArea();
+            Transform panelTransform = RootPanel.transform.Find("Text panel");
+            Debug.Assert(panelTransform != null, "Panel transform shound never be null");
+            
+            Transform descriptionTransform = panelTransform.gameObject.transform.Find("description field");
+            Debug.Assert(descriptionTransform != null, "Description area transform shound never be null");
+
+            if (descriptionTransform == null) return;
+            descriptionTransform.gameObject.DeleteObject();
+
+            GameObject newTextArea = descriptionField.Build();
+            newTextArea.transform.SetParent(panelTransform);
+            newTextArea.transform.SetSiblingIndex(1);
+            newTextArea.transform.localScale = Vector3.one;
+
+        }
 
         public NotepadControl()
 		{
+            descriptionField = DescriptionArea();
 
-
-            DescriptionField = new PTextField("description field")
+            // this button does nothing but it enable to deselect the textarea and to valide the input without closing the sidescreen
+            PButton validationButton = new PButton("button")
             {
-                FlexSize = Vector2.one, // new Vector2(1f, 10f),
+                Sprite = PUITuning.Images.Checked,
+                SpriteSize = new Vector2(25, 30),
             };
-            DescriptionField.OnRealize += (obj4) => Debug.Log("On Realize");
-            
+
             PLabel descriptionLabel = new PLabel("description label")
             {
                 Text = "Description",
@@ -46,7 +91,8 @@ namespace Notepad
             };
 
             panel.AddChild(descriptionLabel);
-            panel.AddChild(DescriptionField);
+            panel.AddChild(descriptionField);
+            panel.AddChild(validationButton);
 
 
             PPanel root = new PPanel("NotepadSideScreen")
@@ -56,7 +102,7 @@ namespace Notepad
                 Alignment = TextAnchor.MiddleCenter,
                 Spacing = 0,
                 BackColor = PUITuning.Colors.BackgroundLight,
-                FlexSize = Vector2.one
+                FlexSize = Vector2.one,
             };
             root.AddChild(panel);
             RootPanel = root.SetKleiBlueColor().Build();

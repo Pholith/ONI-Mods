@@ -67,8 +67,8 @@
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="PLib, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PLib.3.0.0\lib\net40\PLib.dll</HintPath>
+    <Reference Include="PLib, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PLib.3.1.0\lib\net40\PLib.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>

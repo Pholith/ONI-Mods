@@ -46,7 +46,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmptyWorlds", "EmptyWorlds\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notepad", "Notepad\Notepad.csproj", "{45F6C6F6-FABE-4E99-AF9C-5D9BB2AE16A8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLib", "packages\ONIMods-PLib2.24\PLib\PLib.csproj", "{77ECF1DA-7B3F-4D0F-A8BC-7FC24E62B039}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLib", "packages\ONIMods-PLib3.1\PLib\PLib.csproj", "{DAF83BE9-58CF-46BE-9836-7C30D9538325}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -114,10 +114,10 @@ Global
 		{45F6C6F6-FABE-4E99-AF9C-5D9BB2AE16A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45F6C6F6-FABE-4E99-AF9C-5D9BB2AE16A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45F6C6F6-FABE-4E99-AF9C-5D9BB2AE16A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{77ECF1DA-7B3F-4D0F-A8BC-7FC24E62B039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77ECF1DA-7B3F-4D0F-A8BC-7FC24E62B039}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77ECF1DA-7B3F-4D0F-A8BC-7FC24E62B039}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77ECF1DA-7B3F-4D0F-A8BC-7FC24E62B039}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAF83BE9-58CF-46BE-9836-7C30D9538325}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAF83BE9-58CF-46BE-9836-7C30D9538325}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAF83BE9-58CF-46BE-9836-7C30D9538325}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAF83BE9-58CF-46BE-9836-7C30D9538325}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

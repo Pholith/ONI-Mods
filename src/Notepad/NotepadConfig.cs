@@ -14,7 +14,7 @@ namespace Notepad
             int hitpoints = 10;
             float construction_time = 10f;
             float[] tier = BUILDINGS.CONSTRUCTION_MASS_KG.TIER1;
-            string[] all_METALS = MATERIALS.ALL_METALS;
+            string[] all_METALS = MATERIALS.ANY_BUILDABLE;
             float melting_point = 800f;
             BuildLocationRule build_location_rule = BuildLocationRule.Anywhere;
             EffectorValues none = NOISE_POLLUTION.NONE;
@@ -27,11 +27,13 @@ namespace Notepad
         }
         public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
         {
+            base.ConfigureBuildingTemplate(go, prefab_tag);
             go.AddOrGet<Notepad>();
         }
 
         public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
         {
+            base.DoPostConfigurePreview(def, go);
         }
 
         public override void DoPostConfigureComplete(GameObject go)

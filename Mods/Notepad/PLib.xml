@@ -584,6 +584,11 @@
             </summary>
             <param name="assembly">The assembly to register for PLib localization.</param>
         </member>
+        <member name="T:PeterHan.PLib.KeyCodeStrings">
+            <summary>
+            Strings used as localized descriptions for key bindings.
+            </summary>
+        </member>
         <member name="T:PeterHan.PLib.PAction">
             <summary>
             An Action managed by PLib. Actions have key bindings assigned to them.
@@ -609,7 +614,9 @@
             user's custom key bind (if applicable) will be discarded.
             </summary>
             <param name="identifier">The identifier for this action.</param>
-            <param name="title">The action's title.</param>
+            <param name="title">The action's title. To localize the action's title, use the
+            UpdateLocalizedTitle method on the PAction instance in a postload patch (which
+            runs after localization mods have been loaded)</param>
             <param name="binding">The default key binding for this action.</param>
             <returns>The action thus registered.</returns>
             <exception cref="T:System.InvalidOperationException">If PLib is not yet initialized.</exception>
@@ -642,6 +649,15 @@
             Retrieves the Klei action for this PAction.
             </summary>
             <returns>The Klei action for use in game functions.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.PAction.UpdateLocalizedTitle(LocString)">
+            <summary>
+            Updates the localized title of this action as shown in the Key Bindings window.
+            
+            If you localize your key bindings, use this method in a postload patch to update
+            the action title after all mods (including translation mods) have loaded.
+            </summary>
+            <param name="newTitle">The new localized title to apply.</param>
         </member>
         <member name="T:PeterHan.PLib.PActionManager">
             <summary>
@@ -684,6 +700,15 @@
             <param name="category">The category of the key binding.</param>
             <param name="item">The key binding to retrieve.</param>
             <returns>The Strings entry describing this key binding.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.PActionManager.GetExtraKeycodeLocalized(KKeyCode)">
+            <summary>
+            Retrieves a "localized" (if PLib is localized) description of additional key codes
+            from the KKeyCode enumeration, to avoid warning spam on popular keybinds like
+            arrow keys, delete, home, and so forth.
+            </summary>
+            <param name="code">The key code.</param>
+            <returns>A description of that key code, or null if no localization is found.</returns>
         </member>
         <member name="M:PeterHan.PLib.PActionManager.LogKeyBind(System.String)">
             <summary>
@@ -1091,6 +1116,14 @@
             to be set.
             </summary>
         </member>
+        <member name="M:PeterHan.PLib.Options.ConfigFileAttribute.CreateFrom(System.Object)">
+            <summary>
+            Creates a ConfigFileAttribute using an object from another mod.
+            </summary>
+            <param name="attr">The attribute from the other mod.</param>
+            <returns>A ConfigFileAttribute object with the values from that object, where
+            possible to retrieve; or null if none could be obtained.</returns>
+        </member>
         <member name="P:PeterHan.PLib.Options.ConfigFileAttribute.ConfigFileName">
             <summary>
             The configuration file name. If null, the default file name will be used.
@@ -1166,6 +1199,17 @@
             <param name="forType">The type of the options class.</param>
             <returns>A list of all public properties annotated for options dialogs.</returns>
         </member>
+        <member name="M:PeterHan.PLib.Options.OptionsDialog.LookInStrings(System.String)">
+            <summary>
+            First looks to see if the string exists in the string database; if it does, returns
+            the localized value, otherwise returns the string unmodified.
+            
+            This method is somewhat slow. Cache the result if possible.
+            </summary>
+            <param name="keyOrValue">The string key to check.</param>
+            <returns>The string value with that key, or the key if there is no such localized
+            string value.</returns>
+        </member>
         <member name="M:PeterHan.PLib.Options.OptionsDialog.CreateOptions(System.Reflection.PropertyInfo,PeterHan.PLib.OptionAttribute)">
             <summary>
             Creates an options entry wrapper for the specified property.
@@ -1173,6 +1217,11 @@
             <param name="info">The property to wrap.</param>
             <param name="oa">The option title and tool tip.</param>
             <returns>An options wrapper, or null if none can handle this type.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.Options.OptionsDialog.SaveAndRestart">
+            <summary>
+            Saves the mod enabled settings and restarts the game.
+            </summary>
         </member>
         <member name="F:PeterHan.PLib.Options.OptionsDialog.dialog">
             <summary>
@@ -1210,12 +1259,13 @@
             The config file attribute for the options type, if present.
             </summary>
         </member>
-        <member name="M:PeterHan.PLib.Options.OptionsDialog.AddCategoryHeader(PeterHan.PLib.UI.PPanel,System.String)">
+        <member name="M:PeterHan.PLib.Options.OptionsDialog.AddCategoryHeader(PeterHan.PLib.UI.PPanel,System.String,PeterHan.PLib.UI.PPanel)">
             <summary>
             Adds a category header to the dialog.
             </summary>
             <param name="body">The parent of the header.</param>
             <param name="category">The header title.</param>
+            <param name="contents">The panel containing the options in this category.</param>
         </member>
         <member name="M:PeterHan.PLib.Options.OptionsDialog.CheckForRestart">
             <summary>
@@ -1233,9 +1283,20 @@
             Creates an options object using the default constructor if possible.
             </summary>
         </member>
+        <member name="M:PeterHan.PLib.Options.OptionsDialog.FillModOptions(PeterHan.PLib.UI.PDialog)">
+            <summary>
+            Fills in the actual mod option fields.
+            </summary>
+            <param name="pDialog">The dialog to populate.</param>
+        </member>
         <member name="M:PeterHan.PLib.Options.OptionsDialog.OnModOptions(UnityEngine.GameObject)">
             <summary>
             Triggered when the Mod Options button is clicked.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.Options.OptionsDialog.OnManualConfig(UnityEngine.GameObject)">
+            <summary>
+            Invoked when the manual config button is pressed.
             </summary>
         </member>
         <member name="M:PeterHan.PLib.Options.OptionsDialog.OnOptionsSelected(System.String)">
@@ -1254,24 +1315,39 @@
             Writes the mod options to its config file.
             </summary>
         </member>
+        <member name="T:PeterHan.PLib.Options.OptionsDialog.CategoryExpandHandler">
+            <summary>
+            Handles events for expanding and contracting buttons.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.Options.OptionsDialog.CategoryExpandHandler.contents">
+            <summary>
+            The realized panel containing the options.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.Options.OptionsDialog.CategoryExpandHandler.OnExpandContract(UnityEngine.GameObject,System.Boolean)">
+            <summary>
+            Fired when the button is expanded or contracted.
+            </summary>
+            <param name="on">true if the button is on, or false if it is off.</param>
+        </member>
+        <member name="M:PeterHan.PLib.Options.OptionsDialog.CategoryExpandHandler.OnRealizePanel(UnityEngine.GameObject)">
+            <summary>
+            Fired when the body is realized.
+            </summary>
+            <param name="panel">The realized body of the category.</param>
+        </member>
         <member name="T:PeterHan.PLib.Options.OptionsEntry">
             <summary>
             An entry in the Options screen for one particular setting.
             </summary>
         </member>
-        <member name="M:PeterHan.PLib.Options.OptionsEntry.GetLimits(System.Object)">
+        <member name="M:PeterHan.PLib.Options.OptionsEntry.FindLimitAttribute(System.Reflection.PropertyInfo)">
             <summary>
-            Tries to retrieve the limits for an option.
+            Searches for LimitAttribute attributes on the property wrapped by an OptionsEntry.
             </summary>
-            <param name="attr">The annotation to check.</param>
-            <returns>The LimitAttribute matching that annotation, or null if it is not a LimitAttribute.</returns>
-        </member>
-        <member name="M:PeterHan.PLib.Options.OptionsEntry.GetOptionInfo(System.Object)">
-            <summary>
-            Tries to retrieve the option's title and tool tip.
-            </summary>
-            <param name="attr">The annotation to check.</param>
-            <returns>The OptionAttribute matching that annotation, or null if it is not an OptionAttribute.</returns>
+            <param name="prop">The property with annotations.</param>
+            <returns>The Limit attribute if present, or null if none is.</returns>
         </member>
         <member name="P:PeterHan.PLib.Options.OptionsEntry.Category">
             <summary>
@@ -1334,31 +1410,11 @@
             Adds an "Options" screen to a mod in the Mods menu.
             </summary>
         </member>
-        <member name="F:PeterHan.PLib.Options.POptions.BUTTON_MANUAL">
-            <summary>
-            The button used to manually edit the mod configuration.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.Options.POptions.BUTTON_OK">
-            <summary>
-            The text shown on the Done button.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.Options.POptions.BUTTON_OPTIONS">
-            <summary>
-            The text shown on the Options button.
-            </summary>
-        </member>
         <!-- Badly formed XML comment ignored for member "F:PeterHan.PLib.Options.POptions.CONFIG_FILE" -->
         <member name="F:PeterHan.PLib.Options.POptions.CONFIG_FILE_NAME">
             <summary>
             The configuration file name to be used by default for classes that do not specify
             otherwise. This file name is case sensitive.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.Options.POptions.DIALOG_TITLE">
-            <summary>
-            The dialog title, where {0} is substituted with the mod friendly name.
             </summary>
         </member>
         <member name="F:PeterHan.PLib.Options.POptions.MAX_SERIALIZATION_DEPTH">
@@ -1367,24 +1423,14 @@
             infinite loops.
             </summary>
         </member>
-        <member name="F:PeterHan.PLib.Options.POptions.RESTART_CANCEL">
-            <summary>
-            The cancel button in the restart dialog.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.Options.POptions.RESTART_OK">
-            <summary>
-            The OK button in the restart dialog.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.Options.POptions.RESTART_REQUIRED">
-            <summary>
-            The message prompting the user to restart.
-            </summary>
-        </member>
         <member name="F:PeterHan.PLib.Options.POptions.SETTINGS_DIALOG_SIZE">
             <summary>
             The default size of the Mod Settings dialog.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.Options.POptions.SETTINGS_DIALOG_MAX_SIZE">
+            <summary>
+            The maximum size of the Mod Settings dialog before it gets scroll bars.
             </summary>
         </member>
         <member name="F:PeterHan.PLib.Options.POptions.TITLE_COLOR">
@@ -1395,31 +1441,6 @@
         <member name="F:PeterHan.PLib.Options.POptions.TITLE_STYLE">
             <summary>
             The text style applied to option category titles.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.Options.POptions.TOOLTIP_CANCEL">
-            <summary>
-            The tooltip on the CANCEL button.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.Options.POptions.TOOLTIP_MANUAL">
-            <summary>
-            The tooltip on the MANUAL CONFIG button.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.Options.POptions.TOOLTIP_NEXT">
-            <summary>
-            The tooltip for cycling to the next item.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.Options.POptions.TOOLTIP_OK">
-            <summary>
-            The tooltip on the OK button.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.Options.POptions.TOOLTIP_PREVIOUS">
-            <summary>
-            The tooltip for cycling to the previous item.
             </summary>
         </member>
         <member name="F:PeterHan.PLib.Options.POptions.modOptions">
@@ -1636,6 +1657,11 @@
             An options entry which represents a string and displays a text field.
             </summary>
         </member>
+        <member name="F:PeterHan.PLib.Options.StringOptionsEntry.maxLength">
+            <summary>
+            The maximum entry length.
+            </summary>
+        </member>
         <member name="F:PeterHan.PLib.Options.StringOptionsEntry.textField">
             <summary>
             The realized text field.
@@ -1657,6 +1683,14 @@
             An attribute placed on an option field for a property used as mod options to define
             minimum and maximum acceptable values.
             </summary>
+        </member>
+        <member name="M:PeterHan.PLib.LimitAttribute.CreateFrom(System.Object)">
+            <summary>
+            Creates a LimitAttribute using an object from another mod.
+            </summary>
+            <param name="attr">The attribute from the other mod.</param>
+            <returns>A LimitAttribute object with the values from that object, where
+            possible to retrieve; or null if none could be obtained.</returns>
         </member>
         <member name="P:PeterHan.PLib.LimitAttribute.Maximum">
             <summary>
@@ -1689,11 +1723,56 @@
             <param name="value">The value to check.</param>
             <returns>true if it is included in the limits, or false otherwise.</returns>
         </member>
+        <member name="T:PeterHan.PLib.ModInfoAttribute">
+            <summary>
+            Allows mod authors to specify attributes for their mods to be shown in the Options
+            dialog.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.ModInfoAttribute.CreateFrom(System.Object)">
+            <summary>
+            Creates a ModInfoAttribute using an object from another mod.
+            </summary>
+            <param name="attr">The attribute from the other mod.</param>
+            <returns>A ModInfoAttribute object with the values from that object, where
+            possible to retrieve; or null if none could be obtained.</returns>
+        </member>
+        <member name="P:PeterHan.PLib.ModInfoAttribute.ForceCollapseCategories">
+            <summary>
+            If true, forces all categories in the options screen to begin collapsed (except
+            the default category).
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.ModInfoAttribute.Image">
+            <summary>
+            The name of the image file (in the mod's root directory) to display in the options
+            dialog. If null or empty (or it cannot be loaded), no image is displayed.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.ModInfoAttribute.Title">
+            <summary>
+            The mod title. If not null or empty, overrides the title derived from the mod name.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.ModInfoAttribute.URL">
+            <summary>
+            The URL to use for the mod. If null or empty, the Steam workshop link will be used
+            if possible, or otherwise the button will not be shown.
+            </summary>
+        </member>
         <member name="T:PeterHan.PLib.OptionAttribute">
             <summary>
             An attribute placed on an option property or enum value for a class used as mod options in
             order to denote the display title and other options.
             </summary>
+        </member>
+        <member name="M:PeterHan.PLib.OptionAttribute.CreateFrom(System.Object)">
+            <summary>
+            Creates an OptionAttribute using an object from another mod.
+            </summary>
+            <param name="attr">The attribute from the other mod.</param>
+            <returns>An OptionAttribute object with the values from that object, where
+            possible to retrieve; or null if none could be obtained.</returns>
         </member>
         <member name="P:PeterHan.PLib.OptionAttribute.Category">
             <summary>
@@ -1749,6 +1828,16 @@
             Applied to KeyDef (constructor) to adjust array lengths if necessary.
             </summary>
         </member>
+        <member name="M:PeterHan.PLib.PLibPatches.CollectEntries_Postfix(System.String,System.Collections.Generic.List{CodexEntry})">
+            <summary>
+            Applied to CodexCache to collect dynamic codex entries from the file system.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.PLibPatches.CollectSubEntries_Postfix(System.Collections.Generic.List{SubEntry})">
+            <summary>
+            Applied to CodexCache to collect dynamic codex sub entries from the file system.
+            </summary>
+        </member>
         <member name="M:PeterHan.PLib.PLibPatches.ComputeLux_Prefix(LightGridManager.LightGridEmitter,System.Int32,LightGridManager.LightGridEmitter.State,System.Int32@)">
             <summary>
             Applied to LightGridEmitter to compute the lux values properly.
@@ -1770,6 +1859,12 @@
         <member name="M:PeterHan.PLib.PLibPatches.CreateEquipmentDef_Postfix(EquipmentDef,System.String,System.String)">
             <summary>
             Applied to EquipmentTemplates to properly debug missing item anims.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.PLibPatches.GetKeycodeLocalized_Prefix(KKeyCode,System.String@)">
+            <summary>
+            Applied to GetKeycodeLocalized to quash warning spam on key codes that are valid
+            but not handled by default.
             </summary>
         </member>
         <member name="M:PeterHan.PLib.PLibPatches.GetVisibleCells_Prefix(System.Int32,System.Collections.Generic.List{System.Int32},System.Int32,LightShape)">
@@ -1795,6 +1890,13 @@
         <member name="M:PeterHan.PLib.PLibPatches.LoadGeneratedBuildings_Prefix">
             <summary>
             Applied to GeneratedBuildings to register PLib buildings.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.PLibPatches.OnEnable_Postfix(UnityEngine.UI.Scrollbar,TMPro.TMP_Text)">
+            <summary>
+            Applied to TMPro.TMP_InputField to fix a clipping bug inside of Scroll Rects.
+            
+            https://forum.unity.com/threads/textmeshpro-text-still-visible-when-using-nested-rectmask2d.537967/
             </summary>
         </member>
         <member name="M:PeterHan.PLib.PLibPatches.OrientVisualizer_Postfix(Rotatable)">
@@ -1831,16 +1933,6 @@
         <member name="M:PeterHan.PLib.PLibPatches.UpdateLitCells_Prefix(LightGridManager.LightGridEmitter,System.Collections.Generic.List{System.Int32},LightGridManager.LightGridEmitter.State)">
             <summary>
             Applied to LightGridEmitter to update lit cells upon a lighting request.
-            </summary>
-        </member>
-        <member name="M:PeterHan.PLib.PLibPatches.CollectEntries_Postfix(System.String,System.Collections.Generic.List{CodexEntry})">
-            <summary>
-            Applied to CodexCache to collect dynamic codex entries from the file system.
-            </summary>
-        </member>
-        <member name="M:PeterHan.PLib.PLibPatches.CollectSubEntries_Postfix(System.Collections.Generic.List{SubEntry})">
-            <summary>
-            Applied to CodexCache to collect dynamic codex sub entries from the file system.
             </summary>
         </member>
         <member name="M:PeterHan.PLib.PLibPatches.PatchAll(Harmony.HarmonyInstance)">
@@ -1886,6 +1978,100 @@
             This accessor will only work after PLib is fully loaded. Therefore, it will be
             unavailable in OnLoad, and will always return false in those cases.
             </summary>
+        </member>
+        <member name="T:PeterHan.PLib.UI.IDynamicSizable">
+            <summary>
+            A UI component which can be dynamically resized for its content.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.IDynamicSizable.DynamicSize">
+            <summary>
+            Whether the component should dynamically resize for its content. This adds more
+            components and more layout depth, so should only be enabled if necessary.
+            
+            Defaults to false. Must be set to true for components with a nonzero flex size.
+            </summary>
+        </member>
+        <member name="T:PeterHan.PLib.UI.ImageTransform">
+            <summary>
+            An enumeration describing how to transform the image in a label.
+            
+            Rotations are counterclockwise from 0 (straight up).
+            </summary>
+        </member>
+        <member name="T:PeterHan.PLib.UI.ISettableFlexSize">
+            <summary>
+            Describes a UI component whose flexible size can be mutated.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.ISettableFlexSize.flexibleWidth">
+            <summary>
+            The flexible width of the completed layout group can be set.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.ISettableFlexSize.flexibleHeight">
+            <summary>
+            The flexible height of the completed layout group can be set.
+            </summary>
+        </member>
+        <member name="T:PeterHan.PLib.UI.IUIComponent">
+            <summary>
+            Implemented by PLib UI components.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.IUIComponent.Name">
+            <summary>
+            The component name.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.UI.IUIComponent.Build">
+            <summary>
+            Creates a physical game object embodying this component.
+            </summary>
+            <returns>The game object representing this UI component. Multiple invocations return
+            unique objects.</returns>
+        </member>
+        <member name="E:PeterHan.PLib.UI.IUIComponent.OnRealize">
+            <summary>
+            Actions invoked when the UI component is actually realized.
+            </summary>
+        </member>
+        <member name="T:PeterHan.PLib.UI.LayoutSizes">
+            <summary>
+            A class representing the size sets of a particular component.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.LayoutSizes.flexible">
+            <summary>
+            The flexible dimension value.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.LayoutSizes.min">
+            <summary>
+            The minimum dimension value.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.LayoutSizes.preferred">
+            <summary>
+            The preferred dimension value.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.LayoutSizes.source">
+            <summary>
+            The source of these values.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.UI.LayoutSizes.Add(PeterHan.PLib.UI.LayoutSizes)">
+            <summary>
+            Adds another set of layout sizes to this one.
+            </summary>
+            <param name="other">The size values to add.</param>
+        </member>
+        <member name="M:PeterHan.PLib.UI.LayoutSizes.Max(PeterHan.PLib.UI.LayoutSizes)">
+            <summary>
+            Enlarges this layout size, if necessary, using the values from another.
+            </summary>
+            <param name="other">The minimum size values to enforce.</param>
         </member>
         <member name="T:PeterHan.PLib.UI.BorderLayoutGroup">
             <summary>
@@ -2104,15 +2290,6 @@
             <param name="required">The calculated minimum and preferred sizes.</param>
             <param name="args">The parameters to use for layout.</param>
             <param name="status">The current status of layout.</param>
-        </member>
-        <member name="M:PeterHan.PLib.UI.BoxLayoutGroup.GetOffset(PeterHan.PLib.UI.BoxLayoutParams,PeterHan.PLib.UI.PanelDirection,System.Single)">
-            <summary>
-            Gets the offset required for a component in its box.
-            </summary>
-            <param name="args">The parameters to use for layout.</param>
-            <param name="direction">The direction of layout.</param>
-            <param name="delta">The remaining space.</param>
-            <returns>The offset from the edge.</returns>
         </member>
         <member name="M:PeterHan.PLib.UI.BoxLayoutGroup.LayoutNow(UnityEngine.GameObject,PeterHan.PLib.UI.BoxLayoutParams,UnityEngine.Vector2)">
             <summary>
@@ -2375,99 +2552,289 @@
             </summary>
             <param name="sizes">The size of the component to expand to.</param>
         </member>
-        <member name="T:PeterHan.PLib.UI.IDynamicSizable">
+        <member name="T:PeterHan.PLib.UI.GridComponent`1">
             <summary>
-            A UI component which can be dynamically resized for its content.
+            A component in the grid with its placement information.
             </summary>
         </member>
-        <member name="P:PeterHan.PLib.UI.IDynamicSizable.DynamicSize">
+        <member name="P:PeterHan.PLib.UI.GridComponent`1.Item">
             <summary>
-            Whether the component should dynamically resize for its content. This adds more
-            components and more layout depth, so should only be enabled if necessary.
-            
-            Defaults to false. Must be set to true for components with a nonzero flex size.
+            The object to place here.
             </summary>
         </member>
-        <member name="T:PeterHan.PLib.UI.ImageTransform">
+        <member name="T:PeterHan.PLib.UI.GridComponentSpec">
             <summary>
-            An enumeration describing how to transform the image in a label.
-            
-            Rotations are counterclockwise from 0 (straight up).
+            Stores the state of a component in a grid layout.
             </summary>
         </member>
-        <member name="T:PeterHan.PLib.UI.ISettableFlexSize">
+        <member name="P:PeterHan.PLib.UI.GridComponentSpec.Alignment">
             <summary>
-            Describes a UI component whose flexible size can be mutated.
+            The alignment of the component.
             </summary>
         </member>
-        <member name="P:PeterHan.PLib.UI.ISettableFlexSize.flexibleWidth">
+        <member name="P:PeterHan.PLib.UI.GridComponentSpec.Column">
             <summary>
-            The flexible width of the completed layout group can be set.
+            The column of the component.
             </summary>
         </member>
-        <member name="P:PeterHan.PLib.UI.ISettableFlexSize.flexibleHeight">
+        <member name="P:PeterHan.PLib.UI.GridComponentSpec.ColumnSpan">
+            <summary>
+            The number of columns this component spans.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.GridComponentSpec.Margin">
+            <summary>
+            The margin to allocate around each component.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.GridComponentSpec.Row">
+            <summary>
+            The row of the component.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.GridComponentSpec.RowSpan">
+            <summary>
+            The number of rows this component spans.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.UI.GridComponentSpec.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Creates a new grid component specification. While the row and column are mandatory,
+            the other attributes can be optionally specified in the initializer.
+            </summary>
+            <param name="row">The row to place the component.</param>
+            <param name="column">The column to place the component.</param>
+        </member>
+        <member name="T:PeterHan.PLib.UI.GridColumnSpec">
+            <summary>
+            The specifications for one column in a grid layout.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.GridColumnSpec.FlexWidth">
+            <summary>
+            The flexible width of this grid column. If there is space left after all
+            columns get their nominal width, each column will get a fraction of the space
+            left proportional to their FlexWidth value as a ratio to the total flexible
+            width values.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.GridColumnSpec.Width">
+            <summary>
+            The nominal width of this grid column. If zero, the preferred width of the
+            largest component is used. If there are no components in this column (possibly
+            because the only components in this row all have column spans from other
+            columns), the width will be zero!
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.UI.GridColumnSpec.#ctor(System.Single,System.Single)">
+            <summary>
+            Creates a new grid column specification.
+            </summary>
+            <param name="width">The column's base width, or 0 to auto-size the column to the
+            preferred width of its largest component.</param>
+            <param name="flex">The percentage of the leftover width the column should occupy.</param>
+        </member>
+        <member name="T:PeterHan.PLib.UI.GridRowSpec">
+            <summary>
+            The specifications for one row in a grid layout.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.GridRowSpec.FlexHeight">
+            <summary>
+            The flexible height of this grid row. If there is space left after all rows
+            get their nominal height, each row will get a fraction of the space left
+            proportional to their FlexHeight value as a ratio to the total flexible
+            height values.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.GridRowSpec.Height">
+            <summary>
+            The nominal height of this grid row. If zero, the preferred height of the
+            largest component is used. If there are no components in this row (possibly
+            because the only components in this row all have row spans from other rows),
+            the height will be zero!
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.UI.GridRowSpec.#ctor(System.Single,System.Single)">
+            <summary>
+            Creates a new grid row specification.
+            </summary>
+            <param name="height">The row's base width, or 0 to auto-size the row to the
+            preferred height of its largest component.</param>
+            <param name="flex">The percentage of the leftover height the row should occupy.</param>
+        </member>
+        <member name="T:PeterHan.PLib.UI.PGridLayoutGroup">
+            <summary>
+            Implements a flexible version of the base GridLayout.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PGridLayoutGroup.GetMatrix(System.Int32,System.Int32,System.Collections.Generic.ICollection{PeterHan.PLib.UI.PGridLayoutGroup.SizedGridComponent})">
+            <summary>
+            Builds a matrix of the components at each given location. Components only are
+            entered at their origin cell (ignoring row and column span).
+            </summary>
+            <param name="rows">The maximum number of rows.</param>
+            <param name="columns">The maximum number of columns.</param>
+            <param name="components">The components to add.</param>
+            <returns>A 2-D array of the components at a given row/column location.</returns>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PGridLayoutGroup.flexibleHeight">
             <summary>
             The flexible height of the completed layout group can be set.
             </summary>
         </member>
-        <member name="T:PeterHan.PLib.UI.IUIComponent">
+        <member name="P:PeterHan.PLib.UI.PGridLayoutGroup.flexibleWidth">
             <summary>
-            Implemented by PLib UI components.
+            The flexible width of the completed layout group can be set.
             </summary>
         </member>
-        <member name="P:PeterHan.PLib.UI.IUIComponent.Name">
+        <member name="P:PeterHan.PLib.UI.PGridLayoutGroup.layoutPriority">
             <summary>
-            The component name.
+            The priority of this layout group.
             </summary>
         </member>
-        <member name="M:PeterHan.PLib.UI.IUIComponent.Build">
+        <member name="F:PeterHan.PLib.UI.PGridLayoutGroup.children">
             <summary>
-            Creates a physical game object embodying this component.
-            </summary>
-            <returns>The game object representing this UI component. Multiple invocations return
-            unique objects.</returns>
-        </member>
-        <member name="E:PeterHan.PLib.UI.IUIComponent.OnRealize">
-            <summary>
-            Actions invoked when the UI component is actually realized.
+            The children of this panel.
             </summary>
         </member>
-        <member name="T:PeterHan.PLib.UI.LayoutSizes">
+        <member name="F:PeterHan.PLib.UI.PGridLayoutGroup.columns">
             <summary>
-            A class representing the size sets of a particular component.
+            The columns in this panel.
             </summary>
         </member>
-        <member name="F:PeterHan.PLib.UI.LayoutSizes.flexible">
+        <member name="F:PeterHan.PLib.UI.PGridLayoutGroup.results">
             <summary>
-            The flexible dimension value.
+            The current layout status.
             </summary>
         </member>
-        <member name="F:PeterHan.PLib.UI.LayoutSizes.min">
+        <member name="F:PeterHan.PLib.UI.PGridLayoutGroup.rows">
             <summary>
-            The minimum dimension value.
+            The rows in this panel.
             </summary>
         </member>
-        <member name="F:PeterHan.PLib.UI.LayoutSizes.preferred">
+        <member name="M:PeterHan.PLib.UI.PGridLayoutGroup.AddColumn(PeterHan.PLib.UI.GridColumnSpec)">
             <summary>
-            The preferred dimension value.
+            Adds a column to this grid layout.
+            </summary>
+            <param name="column">The specification for that column.</param>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PGridLayoutGroup.AddComponent(UnityEngine.GameObject,PeterHan.PLib.UI.GridComponentSpec)">
+            <summary>
+            Adds a component to this layout. Components added through other means to the
+            transform will not be laid out at all!
+            </summary>
+            <param name="child">The child to add.</param>
+            <param name="spec">The location where the child will be placed.</param>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PGridLayoutGroup.AddRow(PeterHan.PLib.UI.GridRowSpec)">
+            <summary>
+            Adds a row to this grid layout.
+            </summary>
+            <param name="row">The specification for that row.</param>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PGridLayoutGroup.SetDirty">
+            <summary>
+            Sets this layout as dirty.
             </summary>
         </member>
-        <member name="F:PeterHan.PLib.UI.LayoutSizes.source">
+        <member name="T:PeterHan.PLib.UI.PGridLayoutGroup.SizedGridComponent">
             <summary>
-            The source of these values.
+            A component in the grid with its sizes computed.
             </summary>
         </member>
-        <member name="M:PeterHan.PLib.UI.LayoutSizes.Add(PeterHan.PLib.UI.LayoutSizes)">
+        <member name="P:PeterHan.PLib.UI.PGridLayoutGroup.SizedGridComponent.HorizontalSize">
             <summary>
-            Adds another set of layout sizes to this one.
+            The object and its computed horizontal sizes.
             </summary>
-            <param name="other">The size values to add.</param>
         </member>
-        <member name="M:PeterHan.PLib.UI.LayoutSizes.Max(PeterHan.PLib.UI.LayoutSizes)">
+        <member name="P:PeterHan.PLib.UI.PGridLayoutGroup.SizedGridComponent.VerticalSize">
             <summary>
-            Enlarges this layout size, if necessary, using the values from another.
+            The object and its computed vertical sizes.
             </summary>
-            <param name="other">The minimum size values to enforce.</param>
+        </member>
+        <member name="T:PeterHan.PLib.UI.PGridLayoutGroup.LayoutResults">
+            <summary>
+            A class which stores the results of a single layout calculation pass.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PGridLayoutGroup.LayoutResults.ColumnSpecs">
+            <summary>
+            The columns in the grid.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PGridLayoutGroup.LayoutResults.Components">
+            <summary>
+            The components in the grid, in order of addition.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PGridLayoutGroup.LayoutResults.Columns">
+            <summary>
+            The number of columns in the grid.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PGridLayoutGroup.LayoutResults.MinHeight">
+            <summary>
+            The minimum total height.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PGridLayoutGroup.LayoutResults.MinWidth">
+            <summary>
+            The minimum total width.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PGridLayoutGroup.LayoutResults.Matrix">
+            <summary>
+            The components which were laid out.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PGridLayoutGroup.LayoutResults.RowSpecs">
+            <summary>
+            The rows in the grid.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PGridLayoutGroup.LayoutResults.Rows">
+            <summary>
+            The number of rows in the grid.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PGridLayoutGroup.LayoutResults.TotalFlexHeight">
+            <summary>
+            The total flexible height weights.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PGridLayoutGroup.LayoutResults.TotalFlexWidth">
+            <summary>
+            The total flexible width weights.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PGridLayoutGroup.LayoutResults.CalcBaseHeights">
+            <summary>
+            Calculates the base height of each row, the minimum it gets before extra space
+            is distributed.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PGridLayoutGroup.LayoutResults.CalcBaseWidths">
+            <summary>
+            Calculates the base width of each row, the minimum it gets before extra space
+            is distributed.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PGridLayoutGroup.LayoutResults.PreferredHeightAt(System.Int32,System.Int32)">
+            <summary>
+            Retrieves the preferred height of a cell.
+            </summary>
+            <param name="row">The cell's row.</param>
+            <param name="column">The cell's column.</param>
+            <returns>The preferred height.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PGridLayoutGroup.LayoutResults.PreferredWidthAt(System.Int32,System.Int32)">
+            <summary>
+            Retrieves the preferred width of a cell.
+            </summary>
+            <param name="row">The cell's row.</param>
+            <param name="column">The cell's column.</param>
+            <returns>The preferred width.</returns>
         </member>
         <member name="T:PeterHan.PLib.UI.PButton">
             <summary>
@@ -2617,6 +2984,11 @@
             The margin around dialog buttons.
             </summary>
         </member>
+        <member name="F:PeterHan.PLib.UI.PDialog.CLOSE_ICON_SIZE">
+            <summary>
+            The size of the dialog close button's icon.
+            </summary>
+        </member>
         <member name="F:PeterHan.PLib.UI.PDialog.DIALOG_KEY_CLOSE">
             <summary>
             The dialog key returned if the user closes the dialog with [ESC] or the X.
@@ -2632,6 +3004,13 @@
             The background color of the dialog itself (including button panel).
             </summary>
         </member>
+        <member name="P:PeterHan.PLib.UI.PDialog.MaxSize">
+            <summary>
+            The dialog's maximum size. If the dialog preferred size is bigger than this size,
+            the dialog will be decreased in size to fit. If either axis is zero, the dialog
+            gets its preferred size in that axis, at least the value in Size.
+            </summary>
+        </member>
         <member name="P:PeterHan.PLib.UI.PDialog.Parent">
             <summary>
             The dialog's parent.
@@ -2639,9 +3018,9 @@
         </member>
         <member name="P:PeterHan.PLib.UI.PDialog.Size">
             <summary>
-            The dialog's minimum size. If the dialog minimum size is bigger than this size,
-            the dialog will be increased in size to fit. If zero, the dialog gets its minimum
-            size.
+            The dialog's minimum size. If the dialog preferred size is bigger than this size,
+            the dialog will be increased in size to fit. If either axis is zero, the dialog
+            gets its preferred size in that axis, up until the value in MaxSize.
             </summary>
         </member>
         <member name="P:PeterHan.PLib.UI.PDialog.SortKey">
@@ -2666,12 +3045,41 @@
         </member>
         <member name="M:PeterHan.PLib.UI.PDialog.AddButton(System.String,System.String,System.String)">
             <summary>
-            Adds a button to the dialog.
+            Adds a button to the dialog. The button will use a blue background with white text
+            in the default UI font, except for the last button which will be pink.
             </summary>
             <param name="key">The key to report if this button is selected.</param>
             <param name="text">The button text.</param>
             <param name="tooltip">The tooltip to display on the button (optional)</param>
             <returns>This dialog for call chaining.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PDialog.AddButton(System.String,System.String,System.String,ColorStyleSetting,TextStyleSetting)">
+            <summary>
+            Adds a button to the dialog.
+            </summary>
+            <param name="key">The key to report if this button is selected.</param>
+            <param name="text">The button text.</param>
+            <param name="tooltip">The tooltip to display on the button (optional)</param>
+            <param name="backColor">The background color to use for the button. If null or
+            omitted, the last button will be pink and all others will be blue.</param>
+            <param name="foreColor">The foreground color to use for the button. If null or
+            omitted, white text with the default game UI font will be used.</param>
+            <returns>This dialog for call chaining.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PDialog.CreateUserButtons(PeterHan.PLib.UI.PUIDelegates.OnButtonPressed)">
+            <summary>
+            Creates the user buttons.
+            </summary>
+            <param name="onPressed">The handler to call when any button is pressed.</param>
+            <returns>The panel containing the user buttons.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PDialog.LayoutTitle(UnityEngine.GameObject,PeterHan.PLib.UI.PUIDelegates.OnButtonPressed)">
+            <summary>
+            Lays out the dialog title bar and close button.
+            </summary>
+            <param name="dialog">The dialog where the title will be added.</param>
+            <param name="onClose">The action to invoke when close is pressed.</param>
+            <returns>The layout in progress.</returns>
         </member>
         <member name="M:PeterHan.PLib.UI.PDialog.Show">
             <summary>
@@ -2683,6 +3091,12 @@
             Stores information about a dialog button in this dialog.
             </summary>
         </member>
+        <member name="F:PeterHan.PLib.UI.PDialog.DialogButton.backColor">
+            <summary>
+            The color to use when displaying the button. If null, the default color will
+            be used.
+            </summary>
+        </member>
         <member name="F:PeterHan.PLib.UI.PDialog.DialogButton.key">
             <summary>
             The button key used to indicate that it was selected.
@@ -2691,6 +3105,12 @@
         <member name="F:PeterHan.PLib.UI.PDialog.DialogButton.text">
             <summary>
             The text to display for the button.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PDialog.DialogButton.textColor">
+            <summary>
+            The color to use when displaying the button text. If null, the default color
+            will be used.
             </summary>
         </member>
         <member name="F:PeterHan.PLib.UI.PDialog.DialogButton.tooltip">
@@ -2723,6 +3143,74 @@
             A delegate which closes the dialog on prompt.
             </summary>
             <param name="source">The button source.</param>
+        </member>
+        <member name="T:PeterHan.PLib.UI.PGridPanel">
+            <summary>
+            A panel which lays out its components using grid-type constraints.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PGridPanel.BackColor">
+            <summary>
+            The background color of this panel.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PGridPanel.Columns">
+            <summary>
+            The number of columns currently defined.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PGridPanel.FlexSize">
+            <summary>
+            The flexible size bounds of this component.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PGridPanel.Margin">
+            <summary>
+            The margin left around the contained components in pixels. If null, no margin will
+            be used.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PGridPanel.Rows">
+            <summary>
+            The number of rows currently defined.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PGridPanel.children">
+            <summary>
+            The children of this panel.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PGridPanel.columns">
+            <summary>
+            The columns in this panel.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PGridPanel.rows">
+            <summary>
+            The rows in this panel.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PGridPanel.AddChild(PeterHan.PLib.UI.IUIComponent,PeterHan.PLib.UI.GridComponentSpec)">
+            <summary>
+            Adds a child to this panel.
+            </summary>
+            <param name="child">The child to add.</param>
+            <param name="spec">The location where the child will be placed.</param>
+            <returns>This panel for call chaining.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PGridPanel.AddColumn(PeterHan.PLib.UI.GridColumnSpec)">
+            <summary>
+            Adds a column to this panel.
+            </summary>
+            <param name="column">The specification for that column.</param>
+            <returns>This panel for call chaining.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PGridPanel.AddRow(PeterHan.PLib.UI.GridRowSpec)">
+            <summary>
+            Adds a row to this panel.
+            </summary>
+            <param name="row">The specification for that row.</param>
+            <returns>This panel for call chaining.</returns>
         </member>
         <member name="T:PeterHan.PLib.UI.PLabel">
             <summary>
@@ -2812,7 +3300,7 @@
             <summary>
             Builds this panel with a given default size.
             </summary>
-            <param name="size">The fixed size to use if dynamic is false.</param>
+            <param name="size">The fixed size to use.</param>
             <returns>The realized panel.</returns>
         </member>
         <member name="M:PeterHan.PLib.UI.PPanel.RemoveChild(PeterHan.PLib.UI.IUIComponent)">
@@ -2915,15 +3403,196 @@
             </summary>
             <returns>This scroll pane for call chaining.</returns>
         </member>
+        <member name="T:PeterHan.PLib.UI.PScrollPane.PScrollPaneLayout">
+            <summary>
+            Handles layout for scroll panes. Not freezable.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PScrollPane.PScrollPaneLayout.flexibleHeight">
+            <summary>
+            The flexible height of the scroll pane.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PScrollPane.PScrollPaneLayout.flexibleWidth">
+            <summary>
+            The flexible width of the scroll pane.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PScrollPane.PScrollPaneLayout.minHeight">
+            <summary>
+            The minimum height of the scroll pane.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PScrollPane.PScrollPaneLayout.minWidth">
+            <summary>
+            The minimum width of the scroll pane.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PScrollPane.PScrollPaneLayout.preferredHeight">
+            <summary>
+            The preferred height of the scroll pane.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PScrollPane.PScrollPaneLayout.preferredWidth">
+            <summary>
+            The preferred width of the scroll pane.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PScrollPane.PScrollPaneLayout.calcElements">
+            <summary>
+            Caches elements when calculating layout to improve performance.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PScrollPane.PScrollPaneLayout.childHorizontal">
+            <summary>
+            The calculated horizontal size of the child element.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PScrollPane.PScrollPaneLayout.childVertical">
+            <summary>
+            The calculated vertical size of the child element.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PScrollPane.PScrollPaneLayout.child">
+            <summary>
+            The child object inside the scroll rect.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PScrollPane.PScrollPaneLayout.setElements">
+            <summary>
+            Caches elements when setting layout to improve performance.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PScrollPane.PScrollPaneLayout.viewport">
+            <summary>
+            The viewport which clips the child rectangle.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PScrollPane.PScrollPaneLayout.SetDirty">
+            <summary>
+            Sets this layout as dirty.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PScrollPane.PScrollPaneLayout.UpdateComponents">
+            <summary>
+            Caches the child component for performance reasons at runtime.
+            </summary>
+        </member>
+        <member name="T:PeterHan.PLib.UI.PScrollPane.ViewportLayoutGroup">
+            <summary>
+            A layout group object that does nothing. While it seems completely pointless,
+            it allows LayoutRebuilder to pass by the viewport on Scroll Rects on its way up
+            the tree, thus ensuring that the scroll rect gets rebuilt.
+            
+            On the way back down, this component gets skipped over by PScrollPaneLayout to
+            save on processing, and the child layout is built directly.
+            </summary>
+        </member>
         <member name="T:PeterHan.PLib.UI.PSpacer">
             <summary>
-            A spacer to add into layouts. Has a large flexible width/height to eat all the space.
+            A spacer to add into layouts. Has a large flexible width/height by default to eat all
+            the extra space.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PSpacer.FlexSize">
+            <summary>
+            The flexible size of this spacer. Defaults to (1, 1) but can be set to (0, 0) to
+            make this spacer a fixed size area instead.
             </summary>
         </member>
         <member name="P:PeterHan.PLib.UI.PSpacer.PreferredSize">
             <summary>
             The preferred size of this spacer.
             </summary>
+        </member>
+        <member name="T:PeterHan.PLib.UI.PTextArea">
+            <summary>
+            A custom UI text area (multi-line text field) factory class. This class should
+            probably be wrapped in a scroll pane.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PTextArea.BackColor">
+            <summary>
+            The text area's background color.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PTextArea.FlexSize">
+            <summary>
+            The flexible size bounds of this component.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PTextArea.LineCount">
+            <summary>
+            The preferred number of text lines to be displayed. If the component is made
+            bigger, the number of text lines (and size) can increase.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PTextArea.MaxLength">
+            <summary>
+            The maximum number of characters in this text area.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PTextArea.MinWidth">
+            <summary>
+            The minimum width in units (not characters!) of this text area.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PTextArea.TextAlignment">
+            <summary>
+            The text alignment in the text area.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PTextArea.Text">
+            <summary>
+            The initial text in the text field.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PTextArea.TextStyle">
+            <summary>
+            The text field's text color, font, word wrap settings, and font size.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PTextArea.ToolTip">
+            <summary>
+            The tool tip text.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PTextArea.OnTextChanged">
+            <summary>
+            The action to trigger on text change. It is passed the realized source object.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PTextArea.OnValidate">
+            <summary>
+            The callback to invoke when validating input.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PTextArea.ConfigureTextEntry(TMPro.TMP_InputField)">
+            <summary>
+            Sets up the text entry field.
+            </summary>
+            <param name="textEntry">The input field to configure.</param>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PTextArea.SetKleiPinkStyle">
+            <summary>
+            Sets the default Klei pink style as this text area's color and text style.
+            </summary>
+            <returns>This button for call chaining.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PTextArea.SetKleiBlueStyle">
+            <summary>
+            Sets the default Klei blue style as this text area's color and text style.
+            </summary>
+            <returns>This button for call chaining.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PTextArea.SetMinWidthInCharacters(System.Int32)">
+            <summary>
+            Sets the minimum (and preferred) width of this text area in characters.
+            
+            The width is computed using the currently selected text style.
+            </summary>
+            <param name="chars">The number of characters to be displayed.</param>
+            <returns>This button for call chaining.</returns>
         </member>
         <member name="T:PeterHan.PLib.UI.PTextComponent">
             <summary>
@@ -3020,7 +3689,7 @@
         </member>
         <member name="P:PeterHan.PLib.UI.PTextField.ContentType">
             <summary>
-            Retrieves the built-in type used for Text Mesh Pro.
+            Retrieves the built-in field type used for Text Mesh Pro.
             </summary>
         </member>
         <member name="P:PeterHan.PLib.UI.PTextField.FlexSize">
@@ -3091,60 +3760,134 @@
             </summary>
             <returns>This button for call chaining.</returns>
         </member>
+        <member name="M:PeterHan.PLib.UI.PTextField.SetMinWidthInCharacters(System.Int32)">
+            <summary>
+            Sets the minimum (and preferred) width of this text field in characters.
+            
+            The width is computed using the currently selected text style.
+            </summary>
+            <param name="chars">The number of characters to be displayed.</param>
+            <returns>This button for call chaining.</returns>
+        </member>
         <member name="T:PeterHan.PLib.UI.PTextField.FieldType">
             <summary>
             The valid text field types supported by this class.
             </summary>
         </member>
-        <member name="T:PeterHan.PLib.UI.PTextField.PTextFieldEvents">
+        <member name="T:PeterHan.PLib.UI.PTextField.PTextFieldLayout">
+            <summary>
+            Handles layout for text boxes. Not freezable.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PTextField.PTextFieldLayout.flexibleHeight">
+            <summary>
+            The flexible height of the text box.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PTextField.PTextFieldLayout.flexibleWidth">
+            <summary>
+            The flexible width of the text box.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PTextField.PTextFieldLayout.minHeight">
+            <summary>
+            The minimum height of the text box.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PTextField.PTextFieldLayout.minWidth">
+            <summary>
+            The minimum width of the text box.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PTextField.PTextFieldLayout.preferredHeight">
+            <summary>
+            The preferred height of the text box.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PTextField.PTextFieldLayout.preferredWidth">
+            <summary>
+            The preferred width of the text box.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PTextField.PTextFieldLayout.calcElements">
+            <summary>
+            Caches elements when calculating layout to improve performance.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PTextField.PTextFieldLayout.setElements">
+            <summary>
+            Caches elements when setting layout to improve performance.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PTextField.PTextFieldLayout.textArea">
+            <summary>
+            The text area where the mask is displayed.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PTextField.PTextFieldLayout.textBox">
+            <summary>
+            The text box component used to determine the size of the overall layout.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PTextField.PTextFieldLayout.SetDirty">
+            <summary>
+            Sets this layout as dirty.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PTextField.PTextFieldLayout.UpdateComponents">
+            <summary>
+            Caches the child components for performance reasons at runtime.
+            </summary>
+        </member>
+        <member name="T:PeterHan.PLib.UI.PTextFieldEvents">
             <summary>
             A class instance that handles events for text fields.
             </summary>
         </member>
-        <member name="P:PeterHan.PLib.UI.PTextField.PTextFieldEvents.OnTextChanged">
+        <member name="P:PeterHan.PLib.UI.PTextFieldEvents.OnTextChanged">
             <summary>
             The action to trigger on text change. It is passed the realized source object.
             </summary>
         </member>
-        <member name="P:PeterHan.PLib.UI.PTextField.PTextFieldEvents.OnValidate">
+        <member name="P:PeterHan.PLib.UI.PTextFieldEvents.OnValidate">
             <summary>
             The callback to invoke when validating input.
             </summary>
         </member>
-        <member name="F:PeterHan.PLib.UI.PTextField.PTextFieldEvents.editing">
+        <member name="F:PeterHan.PLib.UI.PTextFieldEvents.editing">
             <summary>
             Whether editing is in progress.
             </summary>
         </member>
-        <member name="M:PeterHan.PLib.UI.PTextField.PTextFieldEvents.DelayEndEdit">
+        <member name="M:PeterHan.PLib.UI.PTextFieldEvents.DelayEndEdit">
             <summary>
             Completes the edit process one frame after the data is entered.
             </summary>
         </member>
-        <member name="M:PeterHan.PLib.UI.PTextField.PTextFieldEvents.OnEndEdit(System.String)">
+        <member name="M:PeterHan.PLib.UI.PTextFieldEvents.OnEndEdit(System.String)">
             <summary>
             Triggered when editing of the text ends (field loses focus).
             </summary>
             <param name="text">The text entered.</param>
         </member>
-        <member name="M:PeterHan.PLib.UI.PTextField.PTextFieldEvents.OnFocus">
+        <member name="M:PeterHan.PLib.UI.PTextFieldEvents.OnFocus">
             <summary>
             Triggered when the text field gains focus.
             </summary>
         </member>
-        <member name="M:PeterHan.PLib.UI.PTextField.PTextFieldEvents.OnKeyDown(KButtonEvent)">
+        <member name="M:PeterHan.PLib.UI.PTextFieldEvents.OnKeyDown(KButtonEvent)">
             <summary>
             Destroys events if editing is in progress to prevent bubbling through to the
             game UI.
             </summary>
         </member>
-        <member name="M:PeterHan.PLib.UI.PTextField.PTextFieldEvents.OnKeyUp(KButtonEvent)">
+        <member name="M:PeterHan.PLib.UI.PTextFieldEvents.OnKeyUp(KButtonEvent)">
             <summary>
             Destroys events if editing is in progress to prevent bubbling through to the
             game UI.
             </summary>
         </member>
-        <member name="M:PeterHan.PLib.UI.PTextField.PTextFieldEvents.StopEditing">
+        <member name="M:PeterHan.PLib.UI.PTextFieldEvents.StopEditing">
             <summary>
             Completes the edit process.
             </summary>
@@ -3177,6 +3920,11 @@
         <member name="P:PeterHan.PLib.UI.PToggle.InactiveSprite">
             <summary>
             The sprite to display when inactive.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PToggle.InitialState">
+            <summary>
+            The initial state of the toggle button.
             </summary>
         </member>
         <member name="P:PeterHan.PLib.UI.PToggle.Margin">
@@ -3301,11 +4049,33 @@
         </member>
         <member name="M:PeterHan.PLib.UI.PUIElements.SetAnchors(UnityEngine.GameObject,PeterHan.PLib.UI.PUIAnchoring,PeterHan.PLib.UI.PUIAnchoring)">
             <summary>
-            Sets the anchor location of a UI element.
+            Sets the anchor location of a UI element. The offsets will be reset, use
+            SetAnchorOffsets to adjust the offset from the new anchor locations.
             </summary>
             <param name="uiElement">The UI element to modify.</param>
             <param name="horizAnchor">The horizontal anchor mode.</param>
             <param name="vertAnchor">The vertical anchor mode.</param>
+            <returns>The UI element, for call chaining.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PUIElements.SetAnchorOffsets(UnityEngine.GameObject,UnityEngine.RectOffset)">
+            <summary>
+            Sets the offsets of the UI component from its anchors. Positive for each value
+            denotes towards the component center, and negative away from the component center.
+            </summary>
+            <param name="uiElement">The UI element to modify.</param>
+            <param name="border">The offset of each corner from the anchors.</param>
+            <returns>The UI element, for call chaining.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PUIElements.SetAnchorOffsets(UnityEngine.GameObject,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Sets the offsets of the UI component from its anchors. Positive for each value
+            denotes towards the component center, and negative away from the component center.
+            </summary>
+            <param name="uiElement">The UI element to modify.</param>
+            <param name="left">The left border in pixels.</param>
+            <param name="right">The right border in pixels.</param>
+            <param name="top">The top border in pixels.</param>
+            <param name="bottom">The bottom border in pixels.</param>
             <returns>The UI element, for call chaining.</returns>
         </member>
         <member name="M:PeterHan.PLib.UI.PUIElements.SetParent(UnityEngine.GameObject,UnityEngine.GameObject)">
@@ -3363,6 +4133,76 @@
         <member name="T:PeterHan.PLib.UI.PUIAnchoring">
             <summary>
             The anchor mode to set a UI component.
+            </summary>
+        </member>
+        <member name="T:PeterHan.PLib.UI.PUIStrings">
+            <summary>
+            Strings used in PLib UI and Options.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PUIStrings.BUTTON_MANUAL">
+            <summary>
+            The button used to manually edit the mod configuration.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PUIStrings.BUTTON_OK">
+            <summary>
+            The text shown on the Done button.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PUIStrings.BUTTON_OPTIONS">
+            <summary>
+            The text shown on the Options button.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PUIStrings.DIALOG_TITLE">
+            <summary>
+            The dialog title, where {0} is substituted with the mod friendly name.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PUIStrings.RESTART_CANCEL">
+            <summary>
+            The cancel button in the restart dialog.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PUIStrings.RESTART_OK">
+            <summary>
+            The OK button in the restart dialog.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PUIStrings.RESTART_REQUIRED">
+            <summary>
+            The message prompting the user to restart.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PUIStrings.TOOLTIP_CANCEL">
+            <summary>
+            The tooltip on the CANCEL button.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PUIStrings.TOOLTIP_MANUAL">
+            <summary>
+            The tooltip on the MANUAL CONFIG button.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PUIStrings.TOOLTIP_NEXT">
+            <summary>
+            The tooltip for cycling to the next item.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PUIStrings.TOOLTIP_OK">
+            <summary>
+            The tooltip on the OK button.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PUIStrings.TOOLTIP_PREVIOUS">
+            <summary>
+            The tooltip for cycling to the previous item.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.PUIStrings.TOOLTIP_TOGGLE">
+            <summary>
+            The tooltip for each category visibility toggle.
             </summary>
         </member>
         <member name="T:PeterHan.PLib.UI.PUITuning">
@@ -3655,6 +4495,15 @@
             <param name="index">The sibling index to insert the element at, if provided.</param>
             <returns>The built version of the UI object.</returns>
         </member>
+        <member name="M:PeterHan.PLib.UI.PUIUtils.CalcSizes(UnityEngine.GameObject,PeterHan.PLib.UI.PanelDirection,System.Collections.Generic.IEnumerable{UnityEngine.UI.ILayoutElement})">
+            <summary>
+            Calculates the size of a single game object.
+            </summary>
+            <param name="obj">The object to calculate.</param>
+            <param name="direction">The direction to calculate.</param>
+            <param name="elements">The layout eligible components of this game object.</param>
+            <returns>The object's minimum and preferred size.</returns>
+        </member>
         <member name="M:PeterHan.PLib.UI.PUIUtils.DebugObjectHierarchy(UnityEngine.GameObject)">
             <summary>
             Dumps information about the parent tree of the specified GameObject to the debug
@@ -3675,6 +4524,21 @@
             <param name="uiElement">The UI to layout</param>
             <returns>The UI element, for call chaining.</returns>
         </member>
+        <member name="M:PeterHan.PLib.UI.PUIUtils.GetEmWidth(TextStyleSetting)">
+            <summary>
+            Retrieves the estimated width of a single string character (uses 'm' as the
+            standard estimation character) in the given text style.
+            </summary>
+            <param name="style">The text style to use.</param>
+            <returns>The width in pixels that should be allocated.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PUIUtils.GetLineHeight(TextStyleSetting)">
+            <summary>
+            Retrieves the estimated height of one line of text in the given text style.
+            </summary>
+            <param name="style">The text style to use.</param>
+            <returns>The height in pixels that should be allocated.</returns>
+        </member>
         <member name="M:PeterHan.PLib.UI.PUIUtils.GetObjectTree(UnityEngine.GameObject,System.Int32)">
             <summary>
             Creates a string recursively describing the specified GameObject.
@@ -3683,14 +4547,29 @@
             <param name="indent">The indentation to use.</param>
             <returns>A string describing this game object.</returns>
         </member>
-        <member name="M:PeterHan.PLib.UI.PUIUtils.GetSize(UnityEngine.GameObject,PeterHan.PLib.UI.PanelDirection,System.Collections.Generic.IEnumerable{UnityEngine.UI.ILayoutElement})">
+        <member name="M:PeterHan.PLib.UI.PUIUtils.GetProperSize(PeterHan.PLib.UI.LayoutSizes,System.Single)">
             <summary>
-            Calculates the size of a single game object.
+            Determines the size for a component on a particular axis.
             </summary>
-            <param name="obj">The object to calculate.</param>
-            <param name="direction">The direction to calculate.</param>
-            <param name="elements">The layout eligible components of this game object.</param>
-            <returns>The object's minimum and preferred size.</returns>
+            <param name="sizes">The declared sizes.</param>
+            <param name="allocated">The space allocated.</param>
+            <returns>The size that the component should be.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PUIUtils.GetOffset(UnityEngine.TextAnchor,PeterHan.PLib.UI.PanelDirection,System.Single)">
+            <summary>
+            Gets the offset required for a component in its box.
+            </summary>
+            <param name="alignment">The alignment to use.</param>
+            <param name="direction">The direction of layout.</param>
+            <param name="delta">The remaining space.</param>
+            <returns>The offset from the edge.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PUIUtils.GetParent(UnityEngine.GameObject)">
+            <summary>
+            Retrieves the parent of the GameObject, or null if it does not have a parent.
+            </summary>
+            <param name="child">The child object.</param>
+            <returns>The parent of that object, or null if it does not have a parent.</returns>
         </member>
         <member name="M:PeterHan.PLib.UI.PUIUtils.IgnoreLayout(System.Object)">
             <summary>
@@ -4771,12 +5650,6 @@
             <returns>The sprite thus loaded.</returns>
             <exception cref="T:System.ArgumentException">If the image could not be loaded.</exception>
         </member>
-        <member name="M:PeterHan.PLib.PUtil.YamlParseErrorCB(Klei.YamlIO.Error,System.Boolean)">
-            <summary>
-            A callback function for the YAML parser to process errors that it throws.
-            </summary>
-            <param name="error">The YAML parsing error</param>
-        </member>
         <member name="M:PeterHan.PLib.PUtil.LogDebug(System.Object)">
             <summary>
             Logs a message to the debug log.
@@ -4840,6 +5713,12 @@
             <returns>The parsed enumeration value, or ifNotFound if the value string is invalid.
             Note that out of range integer strings will be successfully parsed and converted to
             the enumeration type.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.PUtil.YamlParseErrorCB(Klei.YamlIO.Error,System.Boolean)">
+            <summary>
+            A callback function for the YAML parser to process errors that it throws.
+            </summary>
+            <param name="error">The YAML parsing error</param>
         </member>
     </members>
 </doc>

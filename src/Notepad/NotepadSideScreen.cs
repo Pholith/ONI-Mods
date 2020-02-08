@@ -6,11 +6,12 @@ namespace Notepad
 {
     public class NotepadSideScreen : SideScreenContent
     {
-
         protected override void OnPrefabInit()
         {
             base.OnPrefabInit();
-            titleKey = PHO_STRINGS.NOTEPAD.NAME;
+
+            titleKey = PHO_STRINGS.NOTEPAD.NAME.key.String;
+
             activateOnSpawn = true;
 
 
@@ -43,11 +44,9 @@ namespace Notepad
 
         private void UpdateLabels()
         {
-            Logs.Log("update");
-            Logs.Log(targetNotepad.activateText);
-            Logs.Log(Control.DescriptionField.Text);
-            Control.DescriptionField.Text = targetNotepad.activateText;
-            Control.DescriptionField.OnTextChanged += (go, text) => targetNotepad.activateText = Control.DescriptionField.Text;
+            Control.currentTarget = targetNotepad;
+            Control.UpdateTextArea();
+
         }
 
         public Notepad targetNotepad;

@@ -1,12 +1,23 @@
 ﻿using Harmony;
-using PeterHan.PLib.UI;
-using Pholib;
 using System.Collections.Generic;
 using UnityEngine;
 using static Pholib.Utilities;
 
 namespace Notepad
 {
+
+
+    public class OnLoadPatch
+    {
+        public static string modPath;
+
+        public static void OnLoad(string modPath)
+        {
+            OnLoadPatch.modPath = modPath;
+        }
+    }
+
+
     [HarmonyPatch(typeof(GeneratedBuildings), "LoadGeneratedBuildings")]
     public static class DupRoomSensorStringsPatch
     {
@@ -31,6 +42,20 @@ namespace Notepad
         }
     }
 
+
+    // Load translations files
+    [HarmonyPatch(typeof(Localization))]
+    [HarmonyPatch("Initialize")]
+    class StringLocalisationPatch
+    {
+        public static void Postfix()
+        {
+            LoadTranslations(typeof(PHO_STRINGS), OnLoadPatch.modPath);
+        }
+    }
+
+
+
     [HarmonyPatch(typeof(DetailsScreen), "OnPrefabInit")]
     public class DetailsScreen_OnPrefabInit_Patch
     {
@@ -39,7 +64,7 @@ namespace Notepad
         {
             List<DetailsScreen.SideScreenRef> sideScreens = Traverse.Create(DetailsScreen.Instance).Field("sideScreens").GetValue<List<DetailsScreen.SideScreenRef>>();
             GameObject sideScreenContentBody = Traverse.Create(DetailsScreen.Instance).Field("sideScreenContentBody").GetValue<GameObject>();
-            
+
 
             NotepadControl controller = new NotepadControl();
             NotepadSideScreen screen = controller.RootPanel.AddComponent<NotepadSideScreen>();
@@ -47,7 +72,7 @@ namespace Notepad
             screen.Control = controller;
             screen.gameObject.transform.parent = sideScreenContentBody.transform;
             screen.gameObject.transform.localScale = Vector3.one;
-            Logs.Log("here");
+
             DetailsScreen.SideScreenRef myRef = new DetailsScreen.SideScreenRef
             {
                 name = "NotepadSideScreen",
@@ -58,6 +83,4 @@ namespace Notepad
             sideScreens.Add(myRef);
         }
     }
-
-
 }
