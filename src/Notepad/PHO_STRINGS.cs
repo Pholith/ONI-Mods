@@ -10,8 +10,8 @@ namespace Notepad
         public static class NOTEPAD
         {
             public static LocString NAME = "Notepad";
-            public static LocString DESC = "this is a desc";
-            public static LocString EFFECT = "this is a effect";
+            public static LocString DESC = "Your dupes have no memory? Let them have a silly thought!";
+            public static LocString EFFECT = "Note and commenting on your setups will help you a lot!";
         }
     }
 }

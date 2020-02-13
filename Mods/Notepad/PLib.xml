@@ -30,16 +30,6 @@
             The anim name to use when visualizing.
             </summary>
         </member>
-        <member name="F:PeterHan.PLib.Buildings.ColoredRangeVisualizer.OnSelectDelegate">
-            <summary>
-            A delegate used when objects are selected.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.Buildings.ColoredRangeVisualizer.OnRotatedDelegate">
-            <summary>
-            A delegate used when objects are rotated.
-            </summary>
-        </member>
         <member name="F:PeterHan.PLib.Buildings.ColoredRangeVisualizer.PRE_ANIMS">
             <summary>
             The animations to play when the visualization is created.
@@ -49,19 +39,6 @@
             <summary>
             The animation to play when the visualization is destroyed.
             </summary>
-        </member>
-        <member name="M:PeterHan.PLib.Buildings.ColoredRangeVisualizer.OnRotated(PeterHan.PLib.Buildings.ColoredRangeVisualizer,System.Object)">
-            <summary>
-            Called when the object is rotated.
-            </summary>
-            <param name="component">The component which was rotated.</param>
-        </member>
-        <member name="M:PeterHan.PLib.Buildings.ColoredRangeVisualizer.OnSelect(PeterHan.PLib.Buildings.ColoredRangeVisualizer,System.Object)">
-            <summary>
-            Called when the object is selected.
-            </summary>
-            <param name="component">The component which was selected.</param>
-            <param name="data">true if selected, or false if deselected.</param>
         </member>
         <member name="P:PeterHan.PLib.Buildings.ColoredRangeVisualizer.Layer">
             <summary>
@@ -82,6 +59,17 @@
             <summary>
             Called when cells are changed in the building radius.
             </summary>
+        </member>
+        <member name="M:PeterHan.PLib.Buildings.ColoredRangeVisualizer.OnRotated(System.Object)">
+            <summary>
+            Called when the object is rotated.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.Buildings.ColoredRangeVisualizer.OnSelect(System.Object)">
+            <summary>
+            Called when the object is selected.
+            </summary>
+            <param name="data">true if selected, or false if deselected.</param>
         </member>
         <member name="M:PeterHan.PLib.Buildings.ColoredRangeVisualizer.RemoveVisualizers">
             <summary>
@@ -307,6 +295,11 @@
         <member name="P:PeterHan.PLib.Buildings.PBuilding.InputConduits">
             <summary>
             The input conduits.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.Buildings.PBuilding.IsSolidTile">
+            <summary>
+            Whether this building is (or can be) a solid tile.
             </summary>
         </member>
         <member name="P:PeterHan.PLib.Buildings.PBuilding.LogicIO">
@@ -1161,6 +1154,17 @@
             </summary>
             <param name="realized">The actual text field.</param>
         </member>
+        <member name="M:PeterHan.PLib.Options.FloatOptionsEntry.OnTextChanged(UnityEngine.GameObject,System.String)">
+            <summary>
+            Called when the input field's text is changed.
+            </summary>
+            <param name="text">The new text.</param>
+        </member>
+        <member name="M:PeterHan.PLib.Options.FloatOptionsEntry.Update">
+            <summary>
+            Updates the displayed value.
+            </summary>
+        </member>
         <member name="T:PeterHan.PLib.Options.IntOptionsEntry">
             <summary>
             An options entry which represents int and displays a text field.
@@ -1186,6 +1190,17 @@
             Called when the text field is realized.
             </summary>
             <param name="realized">The actual text field.</param>
+        </member>
+        <member name="M:PeterHan.PLib.Options.IntOptionsEntry.OnTextChanged(UnityEngine.GameObject,System.String)">
+            <summary>
+            Called when the input field's text is changed.
+            </summary>
+            <param name="text">The new text.</param>
+        </member>
+        <member name="M:PeterHan.PLib.Options.IntOptionsEntry.Update">
+            <summary>
+            Updates the displayed value.
+            </summary>
         </member>
         <member name="T:PeterHan.PLib.Options.OptionsDialog">
             <summary>
@@ -1678,6 +1693,17 @@
             </summary>
             <param name="realized">The actual text field.</param>
         </member>
+        <member name="M:PeterHan.PLib.Options.StringOptionsEntry.OnTextChanged(UnityEngine.GameObject,System.String)">
+            <summary>
+            Called when the input field's text is changed.
+            </summary>
+            <param name="text">The new text.</param>
+        </member>
+        <member name="M:PeterHan.PLib.Options.StringOptionsEntry.Update">
+            <summary>
+            Updates the displayed value.
+            </summary>
+        </member>
         <member name="T:PeterHan.PLib.LimitAttribute">
             <summary>
             An attribute placed on an option field for a property used as mod options to define
@@ -2072,6 +2098,76 @@
             Enlarges this layout size, if necessary, using the values from another.
             </summary>
             <param name="other">The minimum size values to enforce.</param>
+        </member>
+        <member name="T:PeterHan.PLib.UI.Layouts.AbstractTextFieldLayout">
+            <summary>
+            Handles layout for text boxes and text areas. Not freezable.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.Layouts.AbstractTextFieldLayout.BorderSize">
+            <summary>
+            The size of the border to apply around the text.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.Layouts.AbstractTextFieldLayout.flexibleHeight">
+            <summary>
+            The flexible height of the text box.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.Layouts.AbstractTextFieldLayout.flexibleWidth">
+            <summary>
+            The flexible width of the text box.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.Layouts.AbstractTextFieldLayout.minHeight">
+            <summary>
+            The minimum height of the text box.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.Layouts.AbstractTextFieldLayout.minWidth">
+            <summary>
+            The minimum width of the text box.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.Layouts.AbstractTextFieldLayout.preferredHeight">
+            <summary>
+            The preferred height of the text box.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.Layouts.AbstractTextFieldLayout.preferredWidth">
+            <summary>
+            The preferred width of the text box.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.Layouts.AbstractTextFieldLayout.calcElements">
+            <summary>
+            Caches elements when calculating layout to improve performance.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.Layouts.AbstractTextFieldLayout.setElements">
+            <summary>
+            Caches elements when setting layout to improve performance.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.Layouts.AbstractTextFieldLayout.textArea">
+            <summary>
+            The text area where the mask is displayed.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.UI.Layouts.AbstractTextFieldLayout.textBox">
+            <summary>
+            The text box component used to determine the size of the overall layout.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.UI.Layouts.AbstractTextFieldLayout.SetDirty">
+            <summary>
+            Sets this layout as dirty.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.UI.Layouts.AbstractTextFieldLayout.UpdateComponents">
+            <summary>
+            Caches the child components for performance reasons at runtime.
+            </summary>
         </member>
         <member name="T:PeterHan.PLib.UI.BorderLayoutGroup">
             <summary>
@@ -3594,6 +3690,16 @@
             <param name="chars">The number of characters to be displayed.</param>
             <returns>This button for call chaining.</returns>
         </member>
+        <member name="T:PeterHan.PLib.UI.PTextArea.PTextAreaLayout">
+            <summary>
+            Handles layout for text areas. Not freezable.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.UI.PTextArea.PTextAreaLayout.CalculatedHeight">
+            <summary>
+            The calculated height of the text box according to the line count set.
+            </summary>
+        </member>
         <member name="T:PeterHan.PLib.UI.PTextComponent">
             <summary>
             The abstract parent of PLib UI components which display text and/or images.
@@ -3777,66 +3883,6 @@
         <member name="T:PeterHan.PLib.UI.PTextField.PTextFieldLayout">
             <summary>
             Handles layout for text boxes. Not freezable.
-            </summary>
-        </member>
-        <member name="P:PeterHan.PLib.UI.PTextField.PTextFieldLayout.flexibleHeight">
-            <summary>
-            The flexible height of the text box.
-            </summary>
-        </member>
-        <member name="P:PeterHan.PLib.UI.PTextField.PTextFieldLayout.flexibleWidth">
-            <summary>
-            The flexible width of the text box.
-            </summary>
-        </member>
-        <member name="P:PeterHan.PLib.UI.PTextField.PTextFieldLayout.minHeight">
-            <summary>
-            The minimum height of the text box.
-            </summary>
-        </member>
-        <member name="P:PeterHan.PLib.UI.PTextField.PTextFieldLayout.minWidth">
-            <summary>
-            The minimum width of the text box.
-            </summary>
-        </member>
-        <member name="P:PeterHan.PLib.UI.PTextField.PTextFieldLayout.preferredHeight">
-            <summary>
-            The preferred height of the text box.
-            </summary>
-        </member>
-        <member name="P:PeterHan.PLib.UI.PTextField.PTextFieldLayout.preferredWidth">
-            <summary>
-            The preferred width of the text box.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.UI.PTextField.PTextFieldLayout.calcElements">
-            <summary>
-            Caches elements when calculating layout to improve performance.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.UI.PTextField.PTextFieldLayout.setElements">
-            <summary>
-            Caches elements when setting layout to improve performance.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.UI.PTextField.PTextFieldLayout.textArea">
-            <summary>
-            The text area where the mask is displayed.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.UI.PTextField.PTextFieldLayout.textBox">
-            <summary>
-            The text box component used to determine the size of the overall layout.
-            </summary>
-        </member>
-        <member name="M:PeterHan.PLib.UI.PTextField.PTextFieldLayout.SetDirty">
-            <summary>
-            Sets this layout as dirty.
-            </summary>
-        </member>
-        <member name="M:PeterHan.PLib.UI.PTextField.PTextFieldLayout.UpdateComponents">
-            <summary>
-            Caches the child components for performance reasons at runtime.
             </summary>
         </member>
         <member name="T:PeterHan.PLib.UI.PTextFieldEvents">

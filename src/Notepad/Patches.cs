@@ -14,6 +14,7 @@ namespace Notepad
         public static void OnLoad(string modPath)
         {
             OnLoadPatch.modPath = modPath;
+            ModUtil.RegisterForTranslation(typeof(PHO_STRINGS));
         }
     }
 
@@ -37,8 +38,6 @@ namespace Notepad
 
             GameObject o = new GameObject();
             o.AddComponent<NotepadSideScreen>();
-            //new NotepadSideScreen();
-
         }
     }
 

@@ -1,0 +1,29 @@
+msgid ""
+msgstr ""
+"Application: Oxygen Not IncludedPOT Version: 2.0\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr\n"
+
+#. Notepad.PHO_STRINGS.NOTEPAD.DESC
+msgctxt "Notepad.PHO_STRINGS.NOTEPAD.DESC"
+msgid "Your dupes have no memory? Let them have a silly thought!"
+msgstr "Vos dup n'ont pas de memoire? Laissez leur un pense bête!"
+
+#. Notepad.PHO_STRINGS.NOTEPAD.EFFECT
+msgctxt "Notepad.PHO_STRINGS.NOTEPAD.EFFECT"
+msgid "Rating and commenting on your setups will help you a lot!"
+msgstr "Notez et commenter vos installations vous aidera beaucoup !"
+
+#. Notepad.PHO_STRINGS.NOTEPAD.NAME
+msgctxt "Notepad.PHO_STRINGS.NOTEPAD.NAME"
+msgid "Notepad"
+msgstr "Notepad"
