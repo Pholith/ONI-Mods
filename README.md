@@ -52,5 +52,5 @@ https://discord.gg/cmZUWYT
 
 # Special thanks
 To [@pardeike](https://github.com/pardeike), creator of [Harmony](https://github.com/pardeike/Harmony), the library that made oni modding possible.  
-To [@PeterHan](https://github.com/peterhaneve), author of [PLib](https://github.com/peterhaneve/ONIMods/tree/master/PLib) and for his enormous help.
+To [@PeterHan](https://github.com/peterhaneve), author of [PLib](https://github.com/peterhaneve/ONIMods/tree/master/PLib) and for his enormous help.    
 To [@Cairath](https://github.com/Cairath), author of [Some mods](https://github.com/Cairath/ONI-Mods) that was a example for me.
