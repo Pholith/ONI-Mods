@@ -95,7 +95,6 @@ namespace PollutedElectrolyzer
             var kAnimBase = __instance.GetComponent<KAnimControllerBase>();
             if (kAnimBase != null)
             {
-                Debug.Log(__instance.name);
                 if (__instance.name == "PollutedElectrolyzerComplete") // I found it in the logs
                 {
                 float r = 255 - 70;// 100
