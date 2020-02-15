@@ -5,7 +5,7 @@
 
 # My Steam Page
 There are more details on the mods on my steam page:
-https://steamcommunity.com/profiles/76561198263471888/myworkshopfiles/?
+https://steamcommunity.com/profiles/76561198263471888/myworkshopfiles/?appid=457140&sort=score&browsefilter=myfiles&view=imagewall
 
 ## List of mods
 | **Name**                            | **Description**                                                                                                                                                                                                                                                                      | **Preview**                                           |
@@ -15,7 +15,7 @@ https://steamcommunity.com/profiles/76561198263471888/myworkshopfiles/?
 | Polluted Electrolyzer               | Add a new Electrolyzer that produce polluted oxygen and hydrogen from dirty water.                                                                                                                                                                                                   |![image](/src/PollutedElectrolyzer/screen.png)|
 | AllBiomesWorld - Fuleria| Fuleria is a small asteroid that contains all the biomes. This world will be pleasant and easy to live in for your duplicants. But be careful, they will also have to get used to the small size of the asteroid.                                                                                 |![image](/src/AllBiomesWorld/screen.png)|
 | Helium Extractor | This mod adds a helium extractor that transforms natural gas into helium, propane and sulphur.                                                                                                                                                                                                          |![image](/src/HeliumExtractor/screen.png)|
-| EmptyWorlds (Skyblock)| Emptera is a very difficult empty asteroid. Resources are limited and you will have to take advantage of your geysers to get them.                                                                                 |![image](/src/EmptyWorld/screen1.png)|
+| EmptyWorlds (Skyblock)| Emptera is a very difficult empty asteroid. Resources are limited and you will have to take advantage of your geysers to get them.                                                                                 |![image](/src/EmptyWorlds/screen1.png)|
 | I Love Slicksters - Variants | Add some Slicksters variant.                                                                                 |![image](/src/ILoveSlicksters/screen1.png)|
 | AchievementReEnabler | Reenable achievement on map loading and unlock you your map achievements							|![image](/src/AchievementReEnabler/screen1.png)|
 | Customize Your Paints | Enable the user to use custom textures for paintings												|![image](/src/CustomizeYourPaints/screen1.png)|
@@ -52,5 +52,5 @@ https://discord.gg/cmZUWYT
 
 # Special thanks
 To [@pardeike](https://github.com/pardeike), creator of [Harmony](https://github.com/pardeike/Harmony), the library that made oni modding possible.  
+To [@PeterHan](https://github.com/peterhaneve), author of [PLib](https://github.com/peterhaneve/ONIMods/tree/master/PLib) and for his enormous help.
 To [@Cairath](https://github.com/Cairath), author of [Some mods](https://github.com/Cairath/ONI-Mods) that was a example for me.
-To [@PeterHan](https://github.com/peterhaneve), author of [PLib](https://github.com/peterhaneve/ONIMods/tree/master/PLib) and for his help.
