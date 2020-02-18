@@ -1,6 +1,4 @@
-﻿using PeterHan.PLib.UI;
-using Pholib;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Notepad
 {

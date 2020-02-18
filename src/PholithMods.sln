@@ -48,6 +48,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notepad", "Notepad\Notepad.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLib", "packages\ONIMods-PLib3.1\PLib\PLib.csproj", "{DAF83BE9-58CF-46BE-9836-7C30D9538325}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomizableSpeed", "CustomizableSpeed\CustomizableSpeed.csproj", "{CAB4D049-150E-4AE9-BF6F-39E004E089E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -118,6 +120,10 @@ Global
 		{DAF83BE9-58CF-46BE-9836-7C30D9538325}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAF83BE9-58CF-46BE-9836-7C30D9538325}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAF83BE9-58CF-46BE-9836-7C30D9538325}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAB4D049-150E-4AE9-BF6F-39E004E089E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAB4D049-150E-4AE9-BF6F-39E004E089E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAB4D049-150E-4AE9-BF6F-39E004E089E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAB4D049-150E-4AE9-BF6F-39E004E089E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

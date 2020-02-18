@@ -1,9 +1,4 @@
 ﻿using PeterHan.PLib.UI;
-using Pholib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace Notepad
@@ -11,11 +6,11 @@ namespace Notepad
     public class NotepadControl
     {
 
-		private static readonly RectOffset OUTER_MARGIN = new RectOffset(6, 10, 6, 14);
-		internal static readonly Vector2 PANEL_SIZE = new Vector2(240.0f, 360.0f);
+        private static readonly RectOffset OUTER_MARGIN = new RectOffset(6, 10, 6, 14);
+        internal static readonly Vector2 PANEL_SIZE = new Vector2(240.0f, 360.0f);
         internal static readonly Vector2 ROW_SIZE = new Vector2(48, 48);
         internal const int ROW_SPACING = 2;
-        
+
         public GameObject RootPanel { get; }
 
         private PTextArea descriptionField;
@@ -50,7 +45,7 @@ namespace Notepad
             descriptionField = DescriptionArea();
             Transform panelTransform = RootPanel.transform.Find("Text panel");
             Debug.Assert(panelTransform != null, "Panel transform shound never be null");
-            
+
             Transform descriptionTransform = panelTransform.gameObject.transform.Find("description field");
             Debug.Assert(descriptionTransform != null, "Description area transform shound never be null");
 
@@ -65,7 +60,7 @@ namespace Notepad
         }
 
         public NotepadControl()
-		{
+        {
             descriptionField = DescriptionArea();
 
             // this button does nothing but it enable to deselect the textarea and to valide the input without closing the sidescreen
@@ -107,5 +102,5 @@ namespace Notepad
             root.AddChild(panel);
             RootPanel = root.SetKleiBlueColor().Build();
         }
-	}
+    }
 }
