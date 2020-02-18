@@ -5,9 +5,21 @@ using UnityEngine;
 namespace CustomizableSpeed
 {
 	[HarmonyPatch(typeof(SpeedControlScreen), "OnChanged")]
-	
-	internal static class CustomizableSpeedPatch
+	public static class CustomizableSpeedPatch
 	{
+
+		/*private static void OnLoad()
+		{
+			PUtil.InitLibrary();
+			POptions.RegisterOptions(typeof(SpeedOptions));
+
+			settings = POptions.ReadSettings<SpeedOptions>();
+			if (settings == null)
+			{
+				settings = new SpeedOptions();
+			}
+		}*/
+
 		private static bool Prefix(SpeedControlScreen __instance)
 		{
 			bool isPaused = __instance.IsPaused;
