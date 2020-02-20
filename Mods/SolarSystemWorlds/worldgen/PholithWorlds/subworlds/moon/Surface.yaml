@@ -1,0 +1,25 @@
+biomeNoise: noise/subworldFrozen
+temperatureRange: Cool
+minChildCount: 1
+density:
+  min: 70
+  max: 70
+avoidRadius: 50.0
+sampleBehaviour: PoissonDisk
+borderOverride: rocky
+
+biomes:
+  - name: biomes/Moon/Surface
+    weight: 1
+    #overrides:
+    #  massMultiplier: 50
+
+pointsOfInterest:
+  home:
+    - hatchHome
+
+tags:
+  - IgnoreCaveOverride
+ # - ErodePointToWorldTop
+  #- NoGlobalFeatureSpawning
+zoneType: Rust

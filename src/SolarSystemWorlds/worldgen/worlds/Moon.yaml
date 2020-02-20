@@ -1,38 +1,40 @@
 name: SolarSystemWorlds.WorldAdds.M_NAME
 description: SolarSystemWorlds.WorldAdds.M_DESC
-spriteName: Asteroid_Earth
+spriteName: Asteroid_Moon
 coordinatePrefix: MN-PHO
-difficulty: 1
+difficulty: 6
 tier: 2
 disableWorldTraits: true
 
 worldsize:
-  X: 224
-  Y: 240
+  X: 256
+  Y: 288
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
+
+defaultsOverrides:
+  data:
+    DrawWorldBorder: false
 
 # List all the zone files to load
 subworldFiles:
   - name: subworlds/Impenetrable
   - name: subworlds/space/Space
-  - name: subworlds/space/Surface
-  - name: PholithWorlds/subworlds/earth/Core
-  - name: PholithWorlds/subworlds/earth/Mantle2
-  - name: PholithWorlds/subworlds/ganymede/Surface
-  - name: PholithWorlds/subworlds/earth/SurfaceStart
-  - name: PholithWorlds/subworlds/earth/SurfaceNoGravitas
+  - name: PholithWorlds/subworlds/moon/SurfaceNoGravitas
+  - name: PholithWorlds/subworlds/moon/SurfaceStart
+  - name: PholithWorlds/subworlds/moon/Surface
   - name: PholithWorlds/subworlds/earth/Space
+  - name: PholithWorlds/subworlds/moon/SpaceGravitas
 
-startSubworldName: PholithWorlds/subworlds/earth/SurfaceStart
+startSubworldName: PholithWorlds/subworlds/moon/SurfaceStart
 startingBaseTemplate: spaceBase
 
 startingBasePositionHorizontal:
   min: 0.4
   max: 0.7
 startingBasePositionVertical:
-  min: 0.4
-  max: 0.4
+  min: 0.2
+  max: 0.25
 
 globalFeatureTemplates:
   feature_geyser_generic: 8
@@ -47,18 +49,26 @@ unknownCellsAllowedSubworlds:
   - tagcommand: DistanceFromTag
     tag: AtDepths
     minDistance: 0
+    maxDistance: 0
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/moon/Surface
+
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 1
     maxDistance: 1
     command: Replace
     subworldNames:
-      - PholithWorlds/subworlds/earth/Mantle2
-
+      - PholithWorlds/subworlds/moon/SurfaceNoGravitas
+  
   - tagcommand: DistanceFromTag
     tag: AtDepths
     minDistance: 2
     maxDistance: 2
     command: Replace
     subworldNames:
-      - PholithWorlds/subworlds/ganymede/Surface
+      - PholithWorlds/subworlds/moon/SpaceGravitas
 
   - tagcommand: DistanceFromTag
     tag: AtDepths
@@ -66,10 +76,10 @@ unknownCellsAllowedSubworlds:
     maxDistance: 99
     command: Replace
     subworldNames:
-      - PholithWorlds/subworlds/earth/Space
+      - subworlds/space/Space
 
   - tagcommand: AtTag
     tag: AtSurface
     command: Replace
     subworldNames:
-      - PholithWorlds/subworlds/earth/Space
+      - subworlds/space/Space

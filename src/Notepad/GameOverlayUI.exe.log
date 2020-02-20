@@ -1,0 +1,10 @@
+Thu Feb 20 22:04:00 2020 UTC - GameOverlay process started: pid: 22940
+Thu Feb 20 22:04:00 2020 UTC - GameOverlay process connecting to: pid: 21980
+Thu Feb 20 22:04:00 2020 UTC - BuildID: 1581460722
+Thu Feb 20 22:04:00 2020 UTC - Steam Path: C:\Program Files (x86)\Steam
+jeu. févr. 20 22:04:00 2020 UTC - Got gameid on commandline: 457140
+jeu. févr. 20 22:04:10 2020 UTC - Warning: The game hasn't rendered a frame from us in over 10 seconds
+jeu. févr. 20 22:04:15 2020 UTC - SetScreenSize from (1920, 1080) to ( 1920, 1017 )
+jeu. févr. 20 22:04:15 2020 UTC - Changing resolution from (1920, 1080) to (1920, 1017)
+jeu. févr. 20 22:05:57 2020 UTC - Detected possibly crashed/killed game, exiting
+jeu. févr. 20 22:05:57 2020 UTC - Shutting down overlay

@@ -42,6 +42,12 @@
     <Compile Include="WorldGenPatches.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="anim\earth_anims\earth\earth_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\earth_anims\earth\earth_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="anim\earth_anims\jupiter\earth_anim.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -129,6 +135,9 @@
     <None Include="worldgen\biomes\Ganymede.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="worldgen\biomes\Moon.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="worldgen\biomes\Titan.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -163,6 +172,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="worldgen\PholithWorlds\features\ganymede\StartingGeode.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorlds\features\moon\StartingGeode.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="worldgen\PholithWorlds\features\titan\MethaneCloud.yaml">
@@ -240,6 +252,18 @@
     <None Include="worldgen\PholithWorlds\subworlds\ganymede\SurfaceStart.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="worldgen\PholithWorlds\subworlds\moon\SpaceGravitas.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorlds\subworlds\moon\Surface.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorlds\subworlds\moon\SurfaceNoGravitas.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorlds\subworlds\moon\SurfaceStart.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="worldgen\PholithWorlds\subworlds\titan\Core.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -297,6 +321,9 @@
     <EmbeddedResource Include="Asteroid_Ganymede.dds" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="anim\earth_anims\earth\earth_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="anim\earth_anims\jupiter\earth_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -306,32 +333,41 @@
     <Content Include="anim\earth_anims\saturn\earth_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Asteroid_Moon.dds" />
     <EmbeddedResource Include="Asteroid_Earth.dds" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\0Harmony.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UIModule">
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

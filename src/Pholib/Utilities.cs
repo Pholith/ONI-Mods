@@ -106,17 +106,10 @@ namespace Pholib
         /// Don't call this method OnLoad ! 
         /// Should be called at Db.Initialize
         /// </summary>
-        /// <param name="NAME"> Name of the world </param>
-        /// <param name="DESCRIPTION"> Description of the world </param>
         /// <param name="iconName"> DDS icon name (incorporated ressources only) </param>
         /// <param name="className"> Class containing the locstrings </param>
-        public static void AddWorldYaml(string NAME, string DESCRIPTION, string iconName, Type className)
+        public static void AddWorldYaml(string iconName, Type className)
         {
-
-            // DEPRECATED - Add strings used in ****.yaml 
-            //Strings.Add($"STRINGS.WORLDS." + NAME.ToUpper() + ".NAME", NAME);
-            //Strings.Add($"STRINGS.WORLDS." + NAME.ToUpper() + ".DESCRIPTION", DESCRIPTION);
-
 
             // Generate a translation .pot and prepare translation strings for loading
             if (!alreadyLoaded.Contains(className))

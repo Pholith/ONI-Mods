@@ -40,6 +40,7 @@ namespace SolarSystemWorlds
             if (Utilities.IsOnWorld(WorldAdds.TitanId)) return Assets.GetAnim("saturn_kanim");
             if (Utilities.IsOnWorld(WorldAdds.GanymedeId)) return Assets.GetAnim("jupiter_kanim");
             if (Utilities.IsOnWorld(WorldAdds.EarthId)) return Assets.GetAnim("moon_kanim");
+            if (Utilities.IsOnWorld(WorldAdds.MoonId)) return Assets.GetAnim("earth_kanim");
             return null;
         }
 
@@ -51,7 +52,11 @@ namespace SolarSystemWorlds
         // incomprehensible code but... it works
         public static void Postfix()
         {
-            if (Utilities.IsOnWorld(WorldAdds.GanymedeId) || Utilities.IsOnWorld(WorldAdds.TitanId) || Utilities.IsOnWorld(WorldAdds.EarthId))
+            if (Utilities.IsOnWorld(WorldAdds.GanymedeId) || 
+                Utilities.IsOnWorld(WorldAdds.TitanId) || 
+                Utilities.IsOnWorld(WorldAdds.EarthId) ||
+                Utilities.IsOnWorld(WorldAdds.MoonId))
+
             {
                 // Patch the moon
                 if (EarthConfigPatch.earthAnimController != null)
@@ -75,6 +80,7 @@ namespace SolarSystemWorlds
                 // if someone load a other game from a Ganymede game -> reset changes
                 if (EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("jupiter_kanim") || 
                     EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("saturn_kanim") ||
+                    EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("earth_kanim") ||
                     EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("moon_kanim"))
                 {
                     // reset the moon
@@ -119,7 +125,7 @@ namespace SolarSystemWorlds
         public static LocString E_DESC = "The Earth is the cradle of humanity, it is where the distant ancestors of the duplicants lived, they should have a little trouble finding their place here.\n\n";
 
         public static LocString M_NAME = "Moon";
-        public static LocString M_DESC = "";
+        public static LocString M_DESC = "The Moon is the Earth's only natural satellite, probably the result of a collision 4.4 billion years ago between our fledgling planet and a small celestial body called Theia.\n\nThe lunar surface is barren and without resources, your duplicants will not survive without extreme preparation.\n\n";
 
 
         public static LocString IRON_CORE_NAME = "Iron Core";
@@ -135,9 +141,10 @@ namespace SolarSystemWorlds
 
         public static void Postfix()
         {
-            Utilities.AddWorldYaml(G_NAME, G_DESC, "Asteroid_Ganymede", typeof(WorldAdds));
-            Utilities.AddWorldYaml(T_NAME, T_DESC, "Asteroid_Titan", typeof(WorldAdds));
-            Utilities.AddWorldYaml(E_NAME, E_DESC, "Asteroid_Earth", typeof(WorldAdds));
+            Utilities.AddWorldYaml("Asteroid_Ganymede", typeof(WorldAdds));
+            Utilities.AddWorldYaml("Asteroid_Titan", typeof(WorldAdds));
+            Utilities.AddWorldYaml("Asteroid_Earth", typeof(WorldAdds));
+            Utilities.AddWorldYaml("Asteroid_Moon", typeof(WorldAdds));
         }
     }
 }

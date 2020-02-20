@@ -11,20 +11,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Application: Oxygen Not Included\n"
 "POT Version: 2.0\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
-#. SolarSystemWorlds.WorldAdds.A_DESC
-msgctxt "SolarSystemWorlds.WorldAdds.A_DESC"
-msgid ""
-"Test \n"
-"\n"
-msgstr ""
-
-#. SolarSystemWorlds.WorldAdds.A_NAME
-msgctxt "SolarSystemWorlds.WorldAdds.A_NAME"
-msgid "Aquaria"
-msgstr ""
 
 #. SolarSystemWorlds.WorldAdds.E_DESC
 msgctxt "SolarSystemWorlds.WorldAdds.E_DESC"
@@ -64,9 +52,6 @@ msgstr ""
 "\n"
 
 #. SolarSystemWorlds.WorldAdds.G_NAME
-#, fuzzy
-#| msgctxt "SolarSystemWorlds.WorldAdds.G_NAME"
-#| msgid "Ganymede"
 msgctxt "SolarSystemWorlds.WorldAdds.G_NAME"
 msgid "Ganymede"
 msgstr "Ganymède"
@@ -80,6 +65,30 @@ msgstr "Ce monde possède un coeur de fer liquide"
 msgctxt "SolarSystemWorlds.WorldAdds.IRON_CORE_NAME"
 msgid "Iron Core"
 msgstr "Noyau de fer"
+
+#. SolarSystemWorlds.WorldAdds.M_DESC
+msgctxt "SolarSystemWorlds.WorldAdds.M_DESC"
+msgid ""
+"The Moon is the Earth's only natural satellite, probably the result of a "
+"collision 4.4 billion years ago between our fledgling planet and a small "
+"celestial body called Theia.\n"
+"\n"
+"The lunar surface is barren and without resources, your duplicants will not "
+"survive without extreme preparation.\n"
+"\n"
+msgstr ""
+"La Lune est l'unique satellite naturel de la Terre; elle résulte sans doute "
+"d'une collision il y a 4,4 milliards d'années entre notre planète naissante "
+"et un petit corps céleste appelé Théia.\n"
+"\n"
+"La surface lunaire est stérile et sans ressource, vos duplicants ne "
+"survivront pas sans une extrême préparation\n"
+"\n"
+
+#. SolarSystemWorlds.WorldAdds.M_NAME
+msgctxt "SolarSystemWorlds.WorldAdds.M_NAME"
+msgid "Moon"
+msgstr "Lune"
 
 #. SolarSystemWorlds.WorldAdds.T_DESC
 msgctxt "SolarSystemWorlds.WorldAdds.T_DESC"

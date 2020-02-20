@@ -1,0 +1,23 @@
+shape: Square
+borders:
+  - 1
+blobSize:
+  min: 2
+  max: 4
+
+ElementChoiceGroups:
+  RoomCenterElements:
+    selectionMethod: PickOneWeighted
+    choices:
+      - element: GoldAmalgam
+        weight: 1
+        overrides:
+          massMultiplier: 10
+
+  RoomBorderChoices0:
+    selectionMethod: WeightedResample
+    choices:
+      - element: IgneousRock
+        weight: 1
+      - element: Regolith
+        weight: 0.5

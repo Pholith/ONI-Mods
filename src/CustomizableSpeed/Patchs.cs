@@ -32,6 +32,7 @@ namespace CustomizableSpeed
 	{
 		private static bool Prefix(SpeedControlScreen __instance)
 		{
+			if (GameOnLoadPatch.Settings == null) return true;
 			if (__instance.IsPaused)
 			{
 				Time.timeScale = 0f;

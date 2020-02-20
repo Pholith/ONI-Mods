@@ -1,0 +1,24 @@
+biomeNoise: noise/Generic
+temperatureRange: Cool
+density:
+  min: 35
+  max: 45
+avoidRadius: 50.0
+sampleBehaviour: PoissonDisk
+borderOverride: rocky
+
+biomes:
+  - name: biomes/Misc/Space
+    weight: 1
+    #overrides:
+    #  massMultiplier: 50
+
+pointsOfInterest:
+  gravitas:
+    - poi_gravitas 
+
+tags:
+  - IgnoreCaveOverride
+ # - ErodePointToWorldTop
+  - NoGlobalFeatureSpawning
+zoneType: Space
