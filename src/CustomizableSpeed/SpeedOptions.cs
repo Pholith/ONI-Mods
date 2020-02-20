@@ -1,21 +1,22 @@
-﻿
+﻿using Newtonsoft.Json;
+using PeterHan.PLib;
 
 namespace CustomizableSpeed
 {
     public class SpeedOptions
     {
-        /*[Option("Number of Good traits", "")]
-        [Limit(0, 5)]
+        [Option("Slow speed", "")]
+        [Limit(1, 10)]
         [JsonProperty]
         public int slowSpeed { get; set; }
 
-        [Option("Number of Bad traits", "")]
-        [Limit(0, 5)]
+        [Option("Normal speed", "")]
+        [Limit(1, 30)]
         [JsonProperty]
         public int normalSpeed { get; set; }
 
-        [Option("Starting level on printing pod", "Set the experience of in game printed dups.")]
-        [Limit(0, 5)]
+        [Option("Super speed", "")]
+        [Limit(1, 50)]
         [JsonProperty]
         public int superSpeed { get; set; }
 
@@ -23,8 +24,8 @@ namespace CustomizableSpeed
         public SpeedOptions()
         {
             slowSpeed = 1;
-            normalSpeed = 3;
-            superSpeed = 5;
-        }*/
+            normalSpeed = 2;
+            superSpeed = 3;
+        }
     }
 }

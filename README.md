@@ -22,6 +22,7 @@ https://steamcommunity.com/profiles/76561198263471888/myworkshopfiles/?appid=457
 | Duplicant Room Sensor | Add a sensor to count duplicants												|![image](/src/DuplicantRoomSensor/screen1.png)|
 | Solar System Worlds |Add more worlds based on the solar system planets and moons   |![image](/src/SolarSystemWorlds/screen1.png)|
 | Notepad |Add a notepad that allows you to note texts in your databases    |![image](/src/Notepad/screen1.png)|
+| CustomizableSpeed | Tired of needed to switch between mos and restart the game to change the speed ? This mod is for you !|![image](/src/CustomizableSpeed/screen1.png)|
 
 # Instructions
 
