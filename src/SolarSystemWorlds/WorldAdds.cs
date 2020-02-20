@@ -118,6 +118,9 @@ namespace SolarSystemWorlds
         public static LocString E_NAME = "Earth";
         public static LocString E_DESC = "The Earth is the cradle of humanity, it is where the distant ancestors of the duplicants lived, they should have a little trouble finding their place here.\n\n";
 
+        public static LocString M_NAME = "Moon";
+        public static LocString M_DESC = "";
+
 
         public static LocString IRON_CORE_NAME = "Iron Core";
         public static LocString IRON_CORE_DESC = "This world has a core of liquid iron";
@@ -127,6 +130,7 @@ namespace SolarSystemWorlds
         public static string GanymedeId = G_NAME;
         public static string TitanId = T_NAME;
         public static string EarthId = E_NAME;
+        public static string MoonId = M_NAME;
 
 
         public static void Postfix()

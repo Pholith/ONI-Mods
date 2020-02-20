@@ -7,6 +7,7 @@ namespace SolarSystemWorlds
 {
     public class WorldGenPatches
     {
+
         public class ExtremelyCold2_patch
         {
             public static Dictionary<Range, string> TemperatureTable = new Dictionary<Range, string>();

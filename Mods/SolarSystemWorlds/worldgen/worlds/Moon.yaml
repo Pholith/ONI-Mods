@@ -1,0 +1,75 @@
+name: SolarSystemWorlds.WorldAdds.M_NAME
+description: SolarSystemWorlds.WorldAdds.M_DESC
+spriteName: Asteroid_Earth
+coordinatePrefix: MN-PHO
+difficulty: 1
+tier: 2
+disableWorldTraits: true
+
+worldsize:
+  X: 224
+  Y: 240
+layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
+#                                in order to use this.
+
+# List all the zone files to load
+subworldFiles:
+  - name: subworlds/Impenetrable
+  - name: subworlds/space/Space
+  - name: subworlds/space/Surface
+  - name: PholithWorlds/subworlds/earth/Core
+  - name: PholithWorlds/subworlds/earth/Mantle2
+  - name: PholithWorlds/subworlds/ganymede/Surface
+  - name: PholithWorlds/subworlds/earth/SurfaceStart
+  - name: PholithWorlds/subworlds/earth/SurfaceNoGravitas
+  - name: PholithWorlds/subworlds/earth/Space
+
+startSubworldName: PholithWorlds/subworlds/earth/SurfaceStart
+startingBaseTemplate: spaceBase
+
+startingBasePositionHorizontal:
+  min: 0.4
+  max: 0.7
+startingBasePositionVertical:
+  min: 0.4
+  max: 0.4
+
+globalFeatureTemplates:
+  feature_geyser_generic: 8
+
+# When we are converting unknown cells, this will give us the options, processed in this order, the effects are cumlative
+unknownCellsAllowedSubworlds: 
+  - tagcommand: Default
+    command: Replace
+    subworldNames:
+      - subworlds/space/Space
+
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 0
+    maxDistance: 1
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/earth/Mantle2
+
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 2
+    maxDistance: 2
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/ganymede/Surface
+
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 3
+    maxDistance: 99
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/earth/Space
+
+  - tagcommand: AtTag
+    tag: AtSurface
+    command: Replace
+    subworldNames:
+      - PholithWorlds/subworlds/earth/Space
