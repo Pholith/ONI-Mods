@@ -42,10 +42,10 @@
     <Compile Include="WorldGenPatches.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="anim\earth_anims\earth\earth_anim.bytes">
+    <None Include="anim\earth_anims\earth2\earth_anim.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="anim\earth_anims\earth\earth_build.bytes">
+    <None Include="anim\earth_anims\earth2\earth_build.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="anim\earth_anims\jupiter\earth_anim.bytes">
@@ -321,7 +321,7 @@
     <EmbeddedResource Include="Asteroid_Ganymede.dds" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="anim\earth_anims\earth\earth_0.png">
+    <Content Include="anim\earth_anims\earth2\earth_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="anim\earth_anims\jupiter\earth_0.png">

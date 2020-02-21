@@ -40,7 +40,7 @@ namespace SolarSystemWorlds
             if (Utilities.IsOnWorld(WorldAdds.TitanId)) return Assets.GetAnim("saturn_kanim");
             if (Utilities.IsOnWorld(WorldAdds.GanymedeId)) return Assets.GetAnim("jupiter_kanim");
             if (Utilities.IsOnWorld(WorldAdds.EarthId)) return Assets.GetAnim("moon_kanim");
-            if (Utilities.IsOnWorld(WorldAdds.MoonId)) return Assets.GetAnim("earth_kanim");
+            if (Utilities.IsOnWorld(WorldAdds.MoonId)) return Assets.GetAnim("earth2_kanim");
             return null;
         }
 
@@ -56,13 +56,12 @@ namespace SolarSystemWorlds
                 Utilities.IsOnWorld(WorldAdds.TitanId) || 
                 Utilities.IsOnWorld(WorldAdds.EarthId) ||
                 Utilities.IsOnWorld(WorldAdds.MoonId))
-
             {
                 // Patch the moon
                 if (EarthConfigPatch.earthAnimController != null)
                 {
                     // save original anim
-                    originalAnim = EarthConfigPatch.earthAnimController.AnimFiles;
+                    if (originalAnim == null) originalAnim = new KAnimFile[] { Assets.GetAnim("earth_kanim") };
                     // replace the anim
                     EarthConfigPatch.earthAnimController.AnimFiles = new KAnimFile[]
                     {
@@ -77,10 +76,10 @@ namespace SolarSystemWorlds
             }
             else
             {
-                // if someone load a other game from a Ganymede game -> reset changes
+                // if someone load a non solar system game from one -> reset changes
                 if (EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("jupiter_kanim") || 
                     EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("saturn_kanim") ||
-                    EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("earth_kanim") ||
+                    EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("earth2_kanim") ||
                     EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("moon_kanim"))
                 {
                     // reset the moon

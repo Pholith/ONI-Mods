@@ -14,7 +14,10 @@ layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 
 defaultsOverrides:
   data:
-    DrawWorldBorder: false
+    DrawWorldBorder: true # bottom cause crash
+    WorldBorderThickness: 6
+    WorldBorderRange: 4
+
 
 # List all the zone files to load
 subworldFiles:
