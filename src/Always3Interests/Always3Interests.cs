@@ -13,6 +13,7 @@ using PeterHan.PLib;
 
 namespace Always3Interests
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class Always3InterestsSettings
     {
         [Option("Number of interests", "The number of interests.")]
@@ -55,6 +56,14 @@ namespace Always3Interests
         [JsonProperty]
         public int numberOfBadTraits { get; set; }
 
+        [Option("Disable joy trait", "")]
+        [JsonProperty]
+        public bool disableJoyTrait { get; set; }
+
+        [Option("Disable stress trait", "")]
+        [JsonProperty]
+        public bool disableStressTrait { get; set; }
+
         [Option("Starting level on printing pod", "Set the experience of in game printed dups.")]
         [Limit(0, 5)]
         [JsonProperty]
@@ -75,6 +84,8 @@ namespace Always3Interests
 
             numberOfGoodTraits = 1;
             numberOfBadTraits = 1;
+            disableJoyTrait = false;
+            disableStressTrait = false;
 
             startingLevelOnPrintingPod = 1;
         }
@@ -89,12 +100,9 @@ namespace Always3Interests
         {
             PUtil.InitLibrary();
             POptions.RegisterOptions(typeof(Always3InterestsSettings));
-
-            settings = POptions.ReadSettings<Always3InterestsSettings>();
-            if (settings == null)
-            {
-                settings = new Always3InterestsSettings();
-            }
+            
+            settings = new Always3InterestsSettings();
+            ReadSettings();
 
             var customAttributes = new int[] {
                 settings.pointsWhen1Interest ,
@@ -103,52 +111,62 @@ namespace Always3Interests
                 settings.pointsWhenMoreThan3Interest,
                 settings.pointsWhenMoreThan3Interest, 
                 settings.pointsWhenMoreThan3Interest, 
-                settings.pointsWhenMoreThan3Interest, 
+                settings.pointsWhenMoreThan3Interest,
                 settings.pointsWhenMoreThan3Interest, 
                 settings.pointsWhenMoreThan3Interest, 
                 settings.pointsWhenMoreThan3Interest,
                 settings.pointsWhenMoreThan3Interest
             };
+            Debug.Log(3);
+
             Traverse.Create<DUPLICANTSTATS>().Field("APTITUDE_ATTRIBUTE_BONUSES").SetValue(customAttributes);
+
+        }
+        public static void ReadSettings()
+        {
+            settings = POptions.ReadSettings<Always3InterestsSettings>();
+            if (settings == null) settings = new Always3InterestsSettings();
         }
     }
+
+    // Load the json each time the duplicant selector show
+    [HarmonyPatch(typeof(CharacterSelectionController))]
+    [HarmonyPatch("InitializeContainers")]
+    class MinionStartingStatsConstructorPrefixPatch
+    {
+        public static void Prefix()
+        {
+            TuningConfigPatch.ReadSettings();
+        }
+    }
+    
 
     [HarmonyPatch(typeof(MinionStartingStats), "GenerateAptitudes")]
     public class GenerateAptitudesPatch
     {
-        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        public static bool Prefix(MinionStartingStats __instance, string guaranteedAptitudeID)
         {
-            var codes = new List<CodeInstruction>(instructions);
+            if (TuningConfigPatch.settings.randomNumberOfInterests) return true;
 
-            Always3InterestsSettings settings = POptions.ReadSettings<Always3InterestsSettings>();
-            if (settings == null)
+            int num = TuningConfigPatch.settings.numberOfInterests;
+            
+            List<SkillGroup> list = new List<SkillGroup>(Db.Get().SkillGroups.resources);
+            list.Shuffle<SkillGroup>();
+            if (guaranteedAptitudeID != null)
             {
-                settings = new Always3InterestsSettings();
+                __instance.skillAptitudes.Add(Db.Get().SkillGroups.Get(guaranteedAptitudeID), DUPLICANTSTATS.APTITUDE_BONUS);
+                list.Remove(Db.Get().SkillGroups.Get(guaranteedAptitudeID));
+                num--;
             }
-
-            var numberOfInterests = settings.numberOfInterests;
-            bool randomInterests = settings.randomNumberOfInterests;
-
-            if (!randomInterests)
+            for (int i = 0; i < num; i++)
             {
-                for (int i = 0; i < 5; i++)
-                {
-                    if (codes[i].opcode == OpCodes.Ldc_I4_1)
-                    {
-                        codes[i].opcode = OpCodes.Ldc_I4;
-                        codes[i].operand = numberOfInterests;
-                    }
-                    if (codes[i].opcode == OpCodes.Ldc_I4_4)
-                    {
-                        codes[i].opcode = OpCodes.Ldc_I4;
-                        codes[i].operand = numberOfInterests;
-                    }
-                    //Debug.Log("test= " + codes[i].ToString());
-                }
+                __instance.skillAptitudes.Add(list[i], DUPLICANTSTATS.APTITUDE_BONUS);
             }
-            return codes.AsEnumerable();
+            return false;
         }
     }
+
+
     [HarmonyPatch(typeof(MinionStartingStats))]
     [HarmonyPatch("GenerateTraits")]
     public class TraitPatch
@@ -159,11 +177,20 @@ namespace Always3Interests
 
             List<string> selectedTraits = new List<string>();
             System.Random randSeed = new System.Random();
+
+            // set stress trait if it is not disable
             Trait trait = Db.Get().traits.Get(__instance.personality.stresstrait);
             __instance.stressTrait = trait;
+            if (TuningConfigPatch.settings.disableStressTrait) __instance.stressTrait = Db.Get().traits.Get("None");
+
+            // set joy trait if it is not disable
             Trait joytrait = Db.Get().traits.Get(__instance.personality.joyTrait);
             __instance.joyTrait = joytrait;
+            if (TuningConfigPatch.settings.disableJoyTrait) __instance.joyTrait = Db.Get().traits.Get("None");
+            
+
             Trait trait2 = Db.Get().traits.Get(__instance.personality.congenitaltrait);
+            
             if (trait2.Name == "None")
             {
                 __instance.congenitaltrait = null;
@@ -253,8 +280,8 @@ namespace Always3Interests
             };
 
 
-            int numberOfGoodTraits = TuningConfigPatch.settings.numberOfGoodTraits; //TuningConfigPatch.config.GetProperty<int>("numberOfGoodTraits", 1);
-            int numberOfBadTraits = TuningConfigPatch.settings.numberOfBadTraits; //TuningConfigPatch.config.GetProperty<int>("numberOfBadTraits", 1);
+            int numberOfGoodTraits = TuningConfigPatch.settings.numberOfGoodTraits;
+            int numberOfBadTraits = TuningConfigPatch.settings.numberOfBadTraits;
 
             if (numberOfGoodTraits > 5)
             {
@@ -285,13 +312,15 @@ namespace Always3Interests
 
         }
     }
+
+
     [HarmonyPatch(typeof(HeadquartersConfig))]
     [HarmonyPatch("ConfigureBuildingTemplate")]
     public class SkillPointPatch
     {
         public static void Postfix(GameObject go)
         {
-            int startingLevel = TuningConfigPatch.settings.startingLevelOnPrintingPod;// .GetProperty<int>("startingLevelOnPrintingPod", 1);
+            int startingLevel = TuningConfigPatch.settings.startingLevelOnPrintingPod;
 
             Telepad telepad = go.AddOrGet<Telepad>();
             telepad.startingSkillPoints = startingLevel;
