@@ -103,27 +103,12 @@ namespace Always3Interests
             
             settings = new Always3InterestsSettings();
             ReadSettings();
-
-            var customAttributes = new int[] {
-                settings.pointsWhen1Interest ,
-                settings.pointsWhen2Interest,
-                settings.pointsWhen3Interest,
-                settings.pointsWhenMoreThan3Interest,
-                settings.pointsWhenMoreThan3Interest, 
-                settings.pointsWhenMoreThan3Interest, 
-                settings.pointsWhenMoreThan3Interest,
-                settings.pointsWhenMoreThan3Interest, 
-                settings.pointsWhenMoreThan3Interest, 
-                settings.pointsWhenMoreThan3Interest,
-                settings.pointsWhenMoreThan3Interest
-            };
-            Debug.Log(3);
-
-            Traverse.Create<DUPLICANTSTATS>().Field("APTITUDE_ATTRIBUTE_BONUSES").SetValue(customAttributes);
-
+            
         }
         public static void ReadSettings()
         {
+            //Debug.Log("Loading settings");
+
             settings = POptions.ReadSettings<Always3InterestsSettings>();
             if (settings == null) settings = new Always3InterestsSettings();
         }
@@ -137,6 +122,24 @@ namespace Always3Interests
         public static void Prefix()
         {
             TuningConfigPatch.ReadSettings();
+            var settings = TuningConfigPatch.settings;
+
+            var customAttributes = new int[] {
+                settings.pointsWhen1Interest ,
+                settings.pointsWhen2Interest,
+                settings.pointsWhen3Interest,
+                settings.pointsWhenMoreThan3Interest,
+                settings.pointsWhenMoreThan3Interest,
+                settings.pointsWhenMoreThan3Interest,
+                settings.pointsWhenMoreThan3Interest,
+                settings.pointsWhenMoreThan3Interest,
+                settings.pointsWhenMoreThan3Interest,
+                settings.pointsWhenMoreThan3Interest,
+                settings.pointsWhenMoreThan3Interest
+            };
+
+            Traverse.Create<DUPLICANTSTATS>().Field("APTITUDE_ATTRIBUTE_BONUSES").SetValue(customAttributes);
+
         }
     }
     
@@ -166,7 +169,7 @@ namespace Always3Interests
         }
     }
 
-
+    
     [HarmonyPatch(typeof(MinionStartingStats))]
     [HarmonyPatch("GenerateTraits")]
     public class TraitPatch
@@ -320,6 +323,8 @@ namespace Always3Interests
     {
         public static void Postfix(GameObject go)
         {
+            TuningConfigPatch.ReadSettings();
+            //Debug.Log("telepad");
             int startingLevel = TuningConfigPatch.settings.startingLevelOnPrintingPod;
 
             Telepad telepad = go.AddOrGet<Telepad>();
