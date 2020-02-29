@@ -100,32 +100,11 @@ namespace Always3Interests
         {
             PUtil.InitLibrary();
             POptions.RegisterOptions(typeof(Always3InterestsSettings));
-            
             settings = new Always3InterestsSettings();
             ReadSettings();
-            
-        }
-        public static void ReadSettings()
-        {
-            //Debug.Log("Loading settings");
-
-            settings = POptions.ReadSettings<Always3InterestsSettings>();
-            if (settings == null) settings = new Always3InterestsSettings();
-        }
-    }
-
-    // Load the json each time the duplicant selector show
-    [HarmonyPatch(typeof(CharacterSelectionController))]
-    [HarmonyPatch("InitializeContainers")]
-    class MinionStartingStatsConstructorPrefixPatch
-    {
-        public static void Prefix()
-        {
-            TuningConfigPatch.ReadSettings();
-            var settings = TuningConfigPatch.settings;
 
             var customAttributes = new int[] {
-                settings.pointsWhen1Interest ,
+                settings.pointsWhen1Interest,
                 settings.pointsWhen2Interest,
                 settings.pointsWhen3Interest,
                 settings.pointsWhenMoreThan3Interest,
@@ -138,11 +117,47 @@ namespace Always3Interests
                 settings.pointsWhenMoreThan3Interest
             };
 
-            Traverse.Create<DUPLICANTSTATS>().Field("APTITUDE_ATTRIBUTE_BONUSES").SetValue(customAttributes);
+            Traverse.Create<DUPLICANTSTATS>().Field<int[]>("APTITUDE_ATTRIBUTE_BONUSES").Value = customAttributes;
+
 
         }
+        public static void ReadSettings()
+        {
+            Debug.Log("Loading settings");
+
+            settings = POptions.ReadSettings<Always3InterestsSettings>();
+            if (settings == null) settings = new Always3InterestsSettings();
+        }
     }
-    
+
+
+    /*[HarmonyPatch(typeof(CharacterSelectionController))]
+    [HarmonyPatch("InitializeContainers")]
+    class MinionStartingStatsConstructorPrefixPatch
+    {
+        public static void Prefix()
+        {
+            TuningConfigPatch.ReadSettings();
+            var settings = TuningConfigPatch.settings;
+            var customAttributes = new int[] {
+                settings.pointsWhen1Interest,
+                settings.pointsWhen2Interest,
+                settings.pointsWhen3Interest,
+                settings.pointsWhenMoreThan3Interest,
+                settings.pointsWhenMoreThan3Interest,
+                settings.pointsWhenMoreThan3Interest,
+                settings.pointsWhenMoreThan3Interest,
+                settings.pointsWhenMoreThan3Interest,
+                settings.pointsWhenMoreThan3Interest,
+                settings.pointsWhenMoreThan3Interest,
+                settings.pointsWhenMoreThan3Interest
+            };
+
+            Traverse.Create<DUPLICANTSTATS>().Field<int[]>("APTITUDE_ATTRIBUTE_BONUSES").Value = customAttributes;
+            
+        }
+    }
+    */
 
     [HarmonyPatch(typeof(MinionStartingStats), "GenerateAptitudes")]
     public class GenerateAptitudesPatch
