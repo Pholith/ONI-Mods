@@ -34,6 +34,8 @@ namespace PollutedElectrolyzer
             buildingDef.AudioCategory = "HollowMetal";
             buildingDef.InputConduitType = ConduitType.Liquid;
             buildingDef.UtilityInputOffset = new CellOffset(0, 0);
+            buildingDef.LogicInputPorts = LogicOperationalController.CreateSingleInputPortList(new CellOffset(1, 1));
+
             return buildingDef;
         }
         // Big copy paste of the game code
@@ -63,19 +65,9 @@ namespace PollutedElectrolyzer
             };
             Prioritizable.AddRef(go);
         }
-        public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
-        {
-            GeneratedBuildings.RegisterLogicPorts(go, LogicOperationalController.INPUT_PORTS_1_1);
-        }
-
-        public override void DoPostConfigureUnderConstruction(GameObject go)
-        {
-            GeneratedBuildings.RegisterLogicPorts(go, LogicOperationalController.INPUT_PORTS_1_1);
-        }
 
         public override void DoPostConfigureComplete(GameObject go)
         {
-            GeneratedBuildings.RegisterLogicPorts(go, LogicOperationalController.INPUT_PORTS_1_1);
             go.AddOrGet<LogicOperationalController>();
             go.AddOrGetDef<PoweredActiveController.Def>();
         }

@@ -30,7 +30,6 @@ namespace HeliumExtractor
             buildingDef.ViewMode = OverlayModes.GasConduits.ID;
             buildingDef.InputConduitType = ConduitType.Gas;
             buildingDef.OutputConduitType = ConduitType.Gas;
-            
             buildingDef.UtilityInputOffset = new CellOffset(-1, 1);
             buildingDef.UtilityOutputOffset = new CellOffset(1, 0);
             buildingDef.ModifiesTemperature = false;
