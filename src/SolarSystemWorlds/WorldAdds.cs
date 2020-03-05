@@ -39,6 +39,7 @@ namespace SolarSystemWorlds
         {
             if (Utilities.IsOnWorld(WorldAdds.TitanId)) return Assets.GetAnim("saturn_kanim");
             if (Utilities.IsOnWorld(WorldAdds.GanymedeId)) return Assets.GetAnim("jupiter_kanim");
+            if (Utilities.IsOnWorld(WorldAdds.IOId)) return Assets.GetAnim("jupiter_kanim");
             if (Utilities.IsOnWorld(WorldAdds.EarthId)) return Assets.GetAnim("moon_kanim");
             if (Utilities.IsOnWorld(WorldAdds.MoonId)) return Assets.GetAnim("earth2_kanim");
             return null;
@@ -55,7 +56,8 @@ namespace SolarSystemWorlds
             if (Utilities.IsOnWorld(WorldAdds.GanymedeId) || 
                 Utilities.IsOnWorld(WorldAdds.TitanId) || 
                 Utilities.IsOnWorld(WorldAdds.EarthId) ||
-                Utilities.IsOnWorld(WorldAdds.MoonId))
+                Utilities.IsOnWorld(WorldAdds.MoonId) ||
+                Utilities.IsOnWorld(WorldAdds.IOId))
             {
                 // Patch the moon
                 if (EarthConfigPatch.earthAnimController != null)
@@ -126,6 +128,9 @@ namespace SolarSystemWorlds
         public static LocString M_NAME = "Moon";
         public static LocString M_DESC = "The Moon is the Earth's only natural satellite, probably the result of a collision 4.4 billion years ago between our fledgling planet and a small celestial body called Theia.\n\nThe lunar surface is barren and without resources, your duplicants will not survive without extreme preparation.\n\n";
 
+        public static LocString I_NAME = "IO";
+        public static LocString I_DESC = "\n\n";
+
 
         public static LocString IRON_CORE_NAME = "Iron Core";
         public static LocString IRON_CORE_DESC = "This world has a core of liquid iron";
@@ -136,6 +141,7 @@ namespace SolarSystemWorlds
         public static string TitanId = T_NAME;
         public static string EarthId = E_NAME;
         public static string MoonId = M_NAME;
+        public static string IOId = I_NAME;
 
 
         public static void Postfix()

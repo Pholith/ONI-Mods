@@ -1,0 +1,35 @@
+shape: Square
+borders:
+  - 1
+  - 2
+blobSize:
+  min: 3
+  max: 4
+tags:
+  - AllowExceedNodeBorders
+ElementChoiceGroups:
+  RoomCenterElements:
+    selectionMethod: PickOneWeighted
+    choices:
+      - element: GoldAmalgam
+        weight: 0.5
+      - element: Lead
+        weight: 0.5
+      - element: Isoresin
+        weight: 0.4
+        overrides:
+          temperatureOverride: 50
+  RoomBorderChoices0:
+    selectionMethod: WeightedResample
+    choices:
+      - element: IgneousRock
+        weight: 1
+      - element: Obsidian
+        weight: 1
+  RoomBorderChoices1:
+    selectionMethod: WeightedResample
+    choices:
+      - element: Katairite
+        weight: 5
+      - element: IgneousRock
+        weight: 1

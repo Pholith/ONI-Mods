@@ -12,14 +12,18 @@ namespace CustomizableSpeed
 
 		public static void Prefix()
 		{
+			ReadSettings();
+		}
+		public static void ReadSettings()
+		{
 			// read the option each time the game is loaded - so we don't need to restart all the game
 			Settings = POptions.ReadSettings<SpeedOptions>();
 			if (Settings == null)
 			{
 				Settings = new SpeedOptions();
 			}
-		}
 
+		}
 		public static void OnLoad()
 		{
 			PUtil.InitLibrary();
@@ -32,7 +36,11 @@ namespace CustomizableSpeed
 	{
 		private static bool Prefix(SpeedControlScreen __instance)
 		{
-			if (GameOnLoadPatch.Settings == null) return true;
+			if (GameOnLoadPatch.Settings == null)
+			{
+				GameOnLoadPatch.ReadSettings();
+			}
+
 			if (__instance.IsPaused)
 			{
 				Time.timeScale = 0f;
