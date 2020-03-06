@@ -30,32 +30,29 @@ namespace DuplicantRoomSensor
             buildingDef.ViewMode = OverlayModes.Logic.ID;
             buildingDef.AudioCategory = "Metal";
             buildingDef.SceneLayer = Grid.SceneLayer.Building;
+            buildingDef.AlwaysOperational = true;
+            buildingDef.LogicOutputPorts = new List<LogicPorts.Port>
+            {
+                LogicPorts.Port.OutputPort(LogicSwitch.PORT_ID, new CellOffset(0, 0), 
+                STRINGS.BUILDINGS.PREFABS.LOGICCRITTERCOUNTSENSOR.LOGIC_PORT,
+                STRINGS.BUILDINGS.PREFABS.LOGICCRITTERCOUNTSENSOR.LOGIC_PORT_ACTIVE, 
+                STRINGS.BUILDINGS.PREFABS.LOGICCRITTERCOUNTSENSOR.LOGIC_PORT_INACTIVE, true, false)
+            };
+
             SoundEventVolumeCache.instance.AddVolume("switchgaspressure_kanim", "PowerSwitch_on", NOISE_POLLUTION.NOISY.TIER3);
             SoundEventVolumeCache.instance.AddVolume("switchgaspressure_kanim", "PowerSwitch_off", NOISE_POLLUTION.NOISY.TIER3);
             GeneratedBuildings.RegisterWithOverlay(OverlayModes.Logic.HighlightItemIDs, ID);
             return buildingDef;
         }
 
-        public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
-        {
-            GeneratedBuildings.RegisterLogicPorts(go, OUTPUT_PORT);
-        }
-
-        public override void DoPostConfigureUnderConstruction(GameObject go)
-        {
-            GeneratedBuildings.RegisterLogicPorts(go, OUTPUT_PORT);
-        }
-
         public override void DoPostConfigureComplete(GameObject go)
         {
-            GeneratedBuildings.MakeBuildingAlwaysOperational(go);
-            GeneratedBuildings.RegisterLogicPorts(go, OUTPUT_PORT);
-            LogicDuplicantCountSensor sensor = go.AddOrGet<LogicDuplicantCountSensor>();
-            sensor.manuallyControlled = false;
+            go.AddOrGet<LogicDuplicantCountSensor>().manuallyControlled = false;
+            go.GetComponent<KPrefabID>().AddTag(GameTags.OverlayInFrontOfConduits, false);
+
         }
 
         public static string ID = "DuplicantRoomSensor";
-        public static readonly LogicPorts.Port OUTPUT_PORT = LogicPorts.Port.OutputPort(LogicSwitch.PORT_ID, new CellOffset(0, 0), STRINGS.BUILDINGS.PREFABS.LOGICCRITTERCOUNTSENSOR.LOGIC_PORT, STRINGS.BUILDINGS.PREFABS.LOGICCRITTERCOUNTSENSOR.LOGIC_PORT_ACTIVE,STRINGS.BUILDINGS.PREFABS.LOGICCRITTERCOUNTSENSOR.LOGIC_PORT_INACTIVE,true, false);
         public static string NAME = UI.FormatAsLink("Duplicant Room Sensor", "DUPLICANTROOMSENSOR");
         public static string DESC = "Detecting duplicant populations can help adjust their automated needs.";
         public static string EFFECT = string.Concat(new string[]

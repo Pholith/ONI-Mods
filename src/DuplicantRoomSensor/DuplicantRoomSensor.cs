@@ -58,8 +58,7 @@ namespace DuplicantRoomSensor
 
         private void UpdateLogicCircuit()
         {
-            LogicPorts component = GetComponent<LogicPorts>();
-            component.SendSignal(LogicSwitch.PORT_ID, (!switchedOn) ? 0 : 1);
+            GetComponent<LogicPorts>().SendSignal(LogicSwitch.PORT_ID, this.switchedOn ? 1 : 0);
         }
 
         private void UpdateVisualState(bool force = false)

@@ -6,18 +6,18 @@ namespace DuplicantRoomSensor
 {
     public class DuplicantMonitor : GameStateMachine<DuplicantMonitor, DuplicantMonitor.Instance, IStateMachineTarget, DuplicantMonitor.Def>
     {
-        public override void InitializeStates(out StateMachine.BaseState default_state)
+        public override void InitializeStates(out BaseState default_state)
         {
             default_state = this.root;
-            GameStateMachine<DuplicantMonitor, DuplicantMonitor.Instance, IStateMachineTarget, DuplicantMonitor.Def>.State root = this.root;
-            if (action == null) action = new Action<DuplicantMonitor.Instance, float>(UpdateState);
 
-            root.Update(action, UpdateRate.SIM_1000ms, true);
+            State root = this.root;
+            if (action == null) action = new Action<Instance, float>(UpdateState);
+            root.Update("DuplicantMonitor", action, UpdateRate.SIM_1000ms, true);
         }
 
-        private static Action<DuplicantMonitor.Instance, float> action;
+        private static Action<Instance, float> action;
 
-        private static void UpdateCavity(DuplicantMonitor.Instance smi, float dt)
+        private static void UpdateCavity(Instance smi, float dt)
         {
             CavityInfo cavityForCell = Game.Instance.roomProber.GetCavityForCell(Grid.PosToCell(smi));
 
@@ -56,21 +56,21 @@ namespace DuplicantRoomSensor
             }*/
         }
 
-        private static void UpdateState(DuplicantMonitor.Instance smi, float dt)
+        private static void UpdateState(Instance smi, float dt)
         {
             UpdateCavity(smi, dt);
         }
 
-        public new class Instance : GameStateMachine<DuplicantMonitor, DuplicantMonitor.Instance, IStateMachineTarget, DuplicantMonitor.Def>.GameInstance
+        public new class Instance : GameInstance
         {
-            public Instance(IStateMachineTarget master, DuplicantMonitor.Def def) : base(master, def)
+            public Instance(IStateMachineTarget master, Def def) : base(master, def)
             {
             }
             public CavityInfo cavity;
             public DeathMonitor.Instance deathMonitor;
         }
 
-        public class Def : StateMachine.BaseDef
+        public class Def : BaseDef
         {
         }
     }
