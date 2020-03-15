@@ -1,0 +1,31 @@
+TerrainBiomeLookupTable:
+  # keys to remove from in-memory structure when this file is loaded
+  remove: [] 
+  # elements to add from in-memory structure when this file is loaded
+  add:
+
+    Mantle:
+    - content: Unobtanium
+      bandSize: 0.1
+    - content: MaficRock
+      bandSize: 0.3
+    - content: IgneousRock
+      bandSize: 0.3
+    - content: Granite
+      bandSize: 0.3
+    - content: SedimentaryRock
+      bandSize: 0.3
+
+
+    Mantle2:
+    - content: Unobtanium
+      bandSize: 0.1
+    - content: MaficRock
+      bandSize: 0.3
+    - content: IgneousRock
+      bandSize: 0.3
+    - content: Granite
+      bandSize: 0.3
+    - content: SedimentaryRock
+      bandSize: 0.3
+

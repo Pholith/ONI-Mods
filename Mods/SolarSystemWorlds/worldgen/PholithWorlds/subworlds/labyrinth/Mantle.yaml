@@ -1,0 +1,19 @@
+biomeNoise: noise/subworldRust
+temperatureRange: Hot
+minChildCount: 2
+density:
+  min: 35
+  max: 45
+avoidRadius: 50.0
+sampleBehaviour: PoissonDisk
+borderOverride: rocky
+
+biomes:
+  - name: biomes/Test/Mantle
+    weight: 1
+
+tags:
+  - IgnoreCaveOverride
+# featureTemplates:
+  # feature_geyser_generic: 2
+zoneType: Rust
