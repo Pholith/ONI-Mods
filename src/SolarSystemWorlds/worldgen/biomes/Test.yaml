@@ -6,26 +6,17 @@ TerrainBiomeLookupTable:
 
     Mantle:
     - content: Unobtanium
-      bandSize: 0.1
+      bandSize: 1
     - content: MaficRock
-      bandSize: 0.3
+      bandSize: 5
     - content: IgneousRock
-      bandSize: 0.3
-    - content: Granite
-      bandSize: 0.3
-    - content: SedimentaryRock
-      bandSize: 0.3
-
+      bandSize: 5
 
     Mantle2:
     - content: Unobtanium
-      bandSize: 0.1
+      bandSize: 1
     - content: MaficRock
-      bandSize: 0.3
+      bandSize: 8
     - content: IgneousRock
-      bandSize: 0.3
-    - content: Granite
-      bandSize: 0.3
-    - content: SedimentaryRock
-      bandSize: 0.3
+      bandSize: 8
 

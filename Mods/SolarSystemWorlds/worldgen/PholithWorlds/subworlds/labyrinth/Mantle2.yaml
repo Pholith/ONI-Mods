@@ -1,4 +1,4 @@
-biomeNoise: noise/Twisty
+biomeNoise: noise/subworldHotMarsh
 temperatureRange: VeryHot
 minChildCount: 2
 density:
