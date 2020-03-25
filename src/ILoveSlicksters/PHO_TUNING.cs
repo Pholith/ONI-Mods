@@ -13,6 +13,7 @@ namespace ILoveSlicksters
                 public static float HIGH = 40f;
                 public static float HIGH2 = 60f;
                 public static float MEGA = 100f;
+
             }
             public static float STANDARD_CALORIES_PER_CYCLE = 120000f;
         }

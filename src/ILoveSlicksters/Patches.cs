@@ -89,7 +89,7 @@ namespace ILoveSlicksters
             });
 
             // Kg eaten patch
-            if (Patches.Settings.increasesVanillaSlickstersConsumption)
+            if (Patches.Settings.IncreasesVanillaSlickstersConsumption)
             {
                 Traverse.Create<OilFloaterConfig>().Field<float>("KG_ORE_EATEN_PER_CYCLE").Value = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2;
 
@@ -135,13 +135,13 @@ namespace ILoveSlicksters
             // If the slickster is a vanilla slickster, I check the options
             if (vanillasSlickstersIds.Contains(kId.PrefabTag.Name))
             {
-                if (Patches.Settings.increasesVanillaSlickstersConsumption)
+                if (Patches.Settings.IncreasesVanillaSlickstersConsumption)
                 {
-                    def.consumptionRate = 3f;
+                    def.consumptionRate = 5f;
                 }
             } else
             {
-                if (def.consumptionRate <= 0.5f) def.consumptionRate = 3f;
+                if (def.consumptionRate <= 0.5f) def.consumptionRate = 5f * Patches.Settings.ConsumptionMultiplier;
             }
 
         }
