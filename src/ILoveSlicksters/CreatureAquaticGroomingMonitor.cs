@@ -1,4 +1,5 @@
 ﻿using Klei.AI;
+using System;
 
 namespace ILoveSlicksters
 {
@@ -46,8 +47,9 @@ namespace ILoveSlicksters
 
             public bool IsInAquarium()
             {
-                CavityInfo cavityForCell = Game.Instance.roomProber.GetCavityForCell(Grid.PosToCell(gameObject));
-                return cavityForCell.numCells > 20 && cavityForCell.buildings.Find((kid) => { return kid.HasTag(RoomConstraints.ConstraintTags.CreatureRelocator); }) != null;
+                    CavityInfo cavityForCell = Game.Instance.roomProber.GetCavityForCell(Grid.PosToCell(gameObject));
+                    if (cavityForCell == null) return false;
+                    return cavityForCell.numCells > 20 && cavityForCell.buildings.Find((kid) => { return kid.HasTag(RoomConstraints.ConstraintTags.CreatureRelocator); }) != null;
             }
 
         }

@@ -120,13 +120,15 @@ namespace ILoveSlicksters
         public static void Postfix(GameObject __result)
         {
             GasAndLiquidConsumerMonitor.Def def = __result.AddOrGetDef<GasAndLiquidConsumerMonitor.Def>();
-            List<string> vanillasSlickstersIds = new List<string>();
-            vanillasSlickstersIds.Add("Oilfloater");
-            vanillasSlickstersIds.Add("OilfloaterBaby");
-            vanillasSlickstersIds.Add("OilfloaterDecor");
-            vanillasSlickstersIds.Add("OilfloaterDecorBaby");
-            vanillasSlickstersIds.Add("OilfloaterHighTemp");
-            vanillasSlickstersIds.Add("OilfloaterHighTempBaby");
+            List<string> vanillasSlickstersIds = new List<string>
+            {
+                "Oilfloater",
+                "OilfloaterBaby",
+                "OilfloaterDecor",
+                "OilfloaterDecorBaby",
+                "OilfloaterHighTemp",
+                "OilfloaterHighTempBaby"
+            };
 
             KPrefabID kId = __result.AddOrGet<KPrefabID>();
 

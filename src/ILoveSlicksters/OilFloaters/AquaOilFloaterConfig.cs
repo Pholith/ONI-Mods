@@ -49,11 +49,11 @@ namespace ILoveSlicksters
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     SimHashes.Water.CreateTag()
-                }), SimHashes.LiquidMethane.CreateTag(), caloriesPerKg / 2, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+                }), SimHashes.LiquidMethane.CreateTag(), caloriesPerKg * 4, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     SimHashes.SaltWater.CreateTag()
-                }), SimHashes.SedimentaryRock.CreateTag(), caloriesPerKg * 2, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+                }), SimHashes.SedimentaryRock.CreateTag(), caloriesPerKg / 2, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     SimHashes.DirtyWater.CreateTag()
