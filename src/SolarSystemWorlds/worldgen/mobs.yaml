@@ -1,6 +1,6 @@
 MobLookupTable:
   #keys to remove from in-memory structure when this file is loaded
-  remove: []
+  remove: [ LightBugOrange , PacuEgg]
    #- PuftBleachstone
   #elements to add from in-memory structure when this file is loaded
   add:

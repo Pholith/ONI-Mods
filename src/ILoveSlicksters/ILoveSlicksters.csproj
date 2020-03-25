@@ -73,8 +73,13 @@
       <Link>Utilities.cs</Link>
     </Compile>
     <Compile Include="BugDancingSlicker.cs" />
+    <Compile Include="CreatureAquaticGroomingMonitor.cs" />
+    <Compile Include="GasDrowingMonitor.cs" />
     <Compile Include="OilFloaters\FrozenOilFloaterBabyConfig.cs" />
     <Compile Include="OilFloaters\LeafyOilFloaterConfig.cs" />
+    <Compile Include="OilFloaters\AquaOilFloaterBabyConfig.cs" />
+    <Compile Include="OilFloaters\AquaOilFloaterConfig.cs" />
+    <Compile Include="OilFloaters\OilFloaters.cs" />
     <Compile Include="PHO_TUNING.cs" />
     <Compile Include="OilFloaters\EthanolOilFloaterBabyConfig.cs" />
     <Compile Include="OilFloaters\EthanolOilFloaterConfig.cs" />

@@ -10,19 +10,91 @@ using UnityEngine;
 
 namespace Pholib
 {
+    public static class Extensions
+    {
+        public static void RemoveDef<DefType>(this GameObject go) where DefType : StateMachine.BaseDef
+        {
+            StateMachineController stateMachineController = go.AddOrGet<StateMachineController>();
+            DefType defType = stateMachineController.GetDef<DefType>();
+            if (defType != null)
+            {
+                defType.Configure(null);
+                stateMachineController.cmpdef.defs.Remove(defType);
+
+                //defType = Activator.CreateInstance<DefType>();
+                //stateMachineController.AddDef(defType);
+                //defType.Configure(stateMachineController.gameObject);
+            }
+        }
+    }
+
     public class Utilities
     {
-
+        /// <summary>
+        /// Return true if the surface is discovered. Should not be called until game loaded.
+        /// </summary>
+        /// <returns></returns>
         public static bool IsSurfaceDiscovered()
         {
-            return Traverse.Create<Game.SavedInfo>().Field("discoveredSurface").GetValue<bool>();
+            return Game.Instance.savedInfo.discoveredSurface;
         }
 
+        /// <summary>
+        /// Return true if a oilfield is discovered. Should not be called until game loaded.
+        /// </summary>
+        /// <returns></returns>
+        public static bool IsOilFieldDiscovered()
+        {
+            return Game.Instance.savedInfo.discoveredOilField;
+        }
+
+        /// <summary>
+        /// Return true if the tag is discovered (exemple: IsTagDiscovered("EthanolOilfloater") return true if the player discovered a ethanoloilfloater). 
+        /// Should not be called until game loaded.
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        public static bool IsTagDiscovered(string tag)
+        {
+            return WorldInventory.Instance.IsDiscovered(tag);
+        }
+
+        /// <summary>
+        /// Return true if a SimHashes is discovered. Should not be called until game loaded.
+        /// </summary>
+        /// <param name="hash"> SimHash of the element </param>
+        /// <returns></returns>
+        public static bool IsSimHashesDiscovered(SimHashes hash)
+        {
+            return WorldInventory.Instance.IsDiscovered(ElementLoader.FindElementByHash(hash).tag);
+        }
+
+        /// <summary>
+        /// Return true if the current cycle greater than the condition. Should not be called until game loaded.
+        /// </summary>
+        /// <param name="cycle"> minimum condition cycle </param>
+        /// <returns></returns>
         public static bool CycleCondition(int cycle)
         {
             return GameClock.Instance.GetCycle() >= cycle;
         }
 
+        /// <summary>
+        /// Return True if the current cycle is in range. Should not be called until game loaded.
+        /// </summary>
+        /// <param name="minimum"> minimum cycle </param>
+        /// <param name="maximum"> maximum cycle </param>
+        /// <returns></returns>
+        public static bool CycleInRange(int minimum, int maximum)
+        {
+            return GameClock.Instance.GetCycle() >= minimum && GameClock.Instance.GetCycle() <= maximum;
+        }
+
+        /// <summary>
+        /// Return true if the game is loaded a this world. Should not be called until game loaded.
+        /// </summary>
+        /// <param name="worldName"> Worldname </param>
+        /// <returns></returns>
         public static bool IsOnWorld(string worldName)
         {
             if (CustomGameSettings.Instance == null)

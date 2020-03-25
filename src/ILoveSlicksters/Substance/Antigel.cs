@@ -30,16 +30,19 @@ namespace ILoveSlicksters
     molarMass: 30
     toxicity: 0.5
     lightAbsorptionFactor: 0.3
+    tags:    
+    - AnyWater
+    - Mixture
     isDisabled: false
     state: Liquid
-    localizationID: STRINGS.ELEMENTS.ANTIGEL.NAME
+    localizationID: ILoveSlicksters.PHO_STRINGS.ELEMENTS.ANTIGEL.NAME
 ";
 
 
         public const string Id = "Antigel";
         public static readonly SimHashes SimHash = (SimHashes)Hash.SDBMLower(Id);
-        public static string Name = UI.FormatAsLink("Antigel", Id.ToUpper());
-        public static string Description = $"A mixture of water(H<sub>2</sub>O) and Ethylen Glycol (C<sub>2</sub>H<sub>6</sub>O<sub>2</sub>).\n\nIt has been designed by engineers to be a good heat transfer fluid that does not freeze or vaporize easily.";
+        public static string Name = PHO_STRINGS.ELEMENTS.ANTIGEL.NAME;
+        public static string Description = PHO_STRINGS.ELEMENTS.ANTIGEL.DESC;
         public static Color32 color = new Color32(190, 220, 160, 255);
 
         public static Substance CreateSubstance(Substance source)

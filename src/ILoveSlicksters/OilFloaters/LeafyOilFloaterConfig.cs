@@ -21,7 +21,7 @@ namespace ILoveSlicksters
                 egg_kanim_id, 
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
-                60.0000038f, 20f, 
+                30f, 10f, 
                 EGG_CHANCES_LEAFY, 
                 EGG_SORT_ORDER);
 
@@ -31,14 +31,44 @@ namespace ILoveSlicksters
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
             GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 263.15f, 313.15f, is_baby, variantSprite);
-            EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE, LIFESPAN.TIER3);
+            EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE, LIFESPAN.TIER2);
+            int count = 3;
+            string[] loot = new string[count];
+            for (int i = 0; i < count; i++)
+            {
+                loot[i] = TUNING.FOOD.FOOD_TYPES.PRICKLEFRUIT.Id;
+            }
+            prefab.AddOrGet<Butcherable>().SetDrops(loot);
+            prefab.AddOrGet<Navigator>().defaultSpeed = 1f;
+
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.deltaAttribute.Id, -OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / 600f, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.HitPoints.maxAttribute.Id, HITPOINTS.TIER1, name, false, false, true));
-            trait.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, LIFESPAN.TIER3, name, false, false, true));
-            return BaseOilFloaterConfig.SetupDiet(prefab, CONSUME_ELEMENT.CreateTag(), EMIT_ELEMENT.CreateTag(), CALORIES_PER_KG_OF_ORE, CONVERSION_EFFICIENCY.GOOD_3, null, 0f, MIN_POOP_SIZE_IN_KG);
+            trait.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, LIFESPAN.TIER2, name, false, false, true));
+            List<Diet.Info> diet_infos = DietInfo(GameTags.Steel, CALORIES_PER_KG_OF_ORE, CONVERSION_EFFICIENCY.GOOD_1, null, 0f);
+            return OilFloaters.SetupDiet(prefab, diet_infos, CALORIES_PER_KG_OF_ORE, MIN_POOP_SIZE_IN_KG);
         }
+        
+        public static List<Diet.Info> DietInfo(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
+        {
+            return new List<Diet.Info>
+            {
+                new Diet.Info(new HashSet<Tag>(new Tag[]
+                {
+                    SimHashes.CarbonDioxide.CreateTag()
+                }), SimHashes.LiquidOxygen.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+                new Diet.Info(new HashSet<Tag>(new Tag[]
+                {
+                    SimHashes.ChlorineGas.CreateTag()
+                }), SimHashes.Algae.CreateTag(), caloriesPerKg / 2, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+                new Diet.Info(new HashSet<Tag>(new Tag[]
+                {
+                    SimHashes.Oxygen.CreateTag()
+                }), SimHashes.SlimeMold.CreateTag(), caloriesPerKg / 2, producedConversionRate, diseaseId, diseasePerKgProduced, false, false)
+            };
+        }
+
 
         public void OnPrefabInit(GameObject inst)
         {
@@ -72,10 +102,6 @@ namespace ILoveSlicksters
         public const string BASE_TRAIT_ID = "LeafyOilfloaterBaseTrait";
 
         public const string EGG_ID = "LeafyOilfloaterEgg";
-
-        public const SimHashes CONSUME_ELEMENT = SimHashes.CarbonDioxide;
-
-        public const SimHashes EMIT_ELEMENT = SimHashes.LiquidOxygen;
 
         private static float KG_ORE_EATEN_PER_CYCLE = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH;
 

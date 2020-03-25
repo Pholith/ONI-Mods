@@ -7,42 +7,41 @@ namespace ILoveSlicksters
     public class CreatureLightMonitor : GameStateMachine<CreatureLightMonitor, CreatureLightMonitor.Instance, IStateMachineTarget, CreatureLightMonitor.Def>
 
     {
-        public override void InitializeStates(out StateMachine.BaseState default_state)
+        public override void InitializeStates(out BaseState default_state)
         {
 
-            default_state = this.satisfiedState;
+            default_state = satisfiedState;
 
             // Create and configure the light effect
             Effect needLightEffect = new Effect("NeedLight", "Need Light", "This creature needs light to live properly.", 0f, true, true, true);
             needLightEffect.Add(new AttributeModifier(Db.Get().CritterAttributes.Metabolism.Id, -40f, CREATURES.MODIFIERS.UNHAPPY.NAME));
             needLightEffect.Add(new AttributeModifier(Db.Get().CritterAttributes.Happiness.Id, -10f, CREATURES.MODIFIERS.UNHAPPY.NAME));
 
-
-            satisfiedState.Transition(needLightState, (CreatureLightMonitor.Instance smi) => smi.IsInDark(), UpdateRate.SIM_1000ms);
-            needLightState.Transition(satisfiedState, (CreatureLightMonitor.Instance smi) => !smi.IsInDark(), UpdateRate.SIM_1000ms);
-
-            satisfiedState.Enter(delegate (CreatureLightMonitor.Instance smi)
+            satisfiedState.Transition(needLightState, (Instance smi) => smi.IsInDark(), UpdateRate.SIM_1000ms);
+            needLightState.Transition(satisfiedState, (Instance smi) => !smi.IsInDark(), UpdateRate.SIM_1000ms);
+            
+            satisfiedState.Enter(delegate (Instance smi)
             {
             });
 
-            needLightState.Enter(delegate (CreatureLightMonitor.Instance smi)
+            needLightState.Enter(delegate (Instance smi)
             {
             });
 
             // Toggle the effects when enter or ewit un needLight state
-            needLightState.ToggleEffect((CreatureLightMonitor.Instance smi) => needLightEffect);
+            needLightState.ToggleEffect((Instance smi) => needLightEffect);
         }
 
-        public GameStateMachine<CreatureLightMonitor, CreatureLightMonitor.Instance, IStateMachineTarget, CreatureLightMonitor.Def>.State satisfiedState;
-        public GameStateMachine<CreatureLightMonitor, CreatureLightMonitor.Instance, IStateMachineTarget, CreatureLightMonitor.Def>.State needLightState;
+        public State satisfiedState;
+        public State needLightState;
 
-        public class Def : StateMachine.BaseDef
+        public class Def : BaseDef
         {
         }
 
-        public new class Instance : GameStateMachine<CreatureLightMonitor, CreatureLightMonitor.Instance, IStateMachineTarget, CreatureLightMonitor.Def>.GameInstance
+        public new class Instance : GameInstance
         {
-            public Instance(IStateMachineTarget master, CreatureLightMonitor.Def def) : base(master, def)
+            public Instance(IStateMachineTarget master, Def def) : base(master, def)
             {
             }
 

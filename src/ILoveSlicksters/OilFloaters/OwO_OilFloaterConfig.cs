@@ -34,8 +34,6 @@ namespace ILoveSlicksters
                 EGG_CHANCES_OWO, 
                 EGG_SORT_ORDER, 
                 true, false, true, 1f);
-
-
             return gameObject;
         }
 

@@ -2,7 +2,7 @@ name: SolarSystemWorlds.WorldAdds.M_NAME
 description: SolarSystemWorlds.WorldAdds.M_DESC
 spriteName: Asteroid_Moon
 coordinatePrefix: MN-PHO
-difficulty: 6
+difficulty: 7
 tier: 2
 disableWorldTraits: true
 

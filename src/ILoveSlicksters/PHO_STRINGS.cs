@@ -26,7 +26,7 @@ namespace ILoveSlicksters
             {
                 public static LocString NAME = UI.FormatAsLink("Ethanol Larva", "ETHANOLOILFLOATER");
 
-                public static LocString DESC = "A goopy little Ethanol Larva.\n\nOne day it will grow into an adult Slickster morph, the " + UI.FormatAsLink("Ethanol Slickster", "ETHANOLOILFLOATER") + ".";
+                public static LocString DESC = "A goopy little Ethanol Larva.\n\nOne day it will grow into an adult morph, the " + UI.FormatAsLink("Ethanol Slickster", "ETHANOLOILFLOATER") + ".";
             }
 
         }
@@ -37,7 +37,7 @@ namespace ILoveSlicksters
 
             public static LocString DESC = string.Concat(new string[]
             {
-                "OwO Slicksters are slimy critters that consume ",
+                "OwO Slicksters are cute critters that consume ",
                 UI.FormatAsLink("Oxygen", "OXYGEN"),
                 " and exude ",
                 UI.FormatAsLink("Hydrogen", "HYDROGEN"),
@@ -50,7 +50,7 @@ namespace ILoveSlicksters
             {
                 public static LocString NAME = UI.FormatAsLink("OwO Larva", "OWO_OILFLOATER");
 
-                public static LocString DESC = "A goopy little OwO Larva.\n\nOne day it will grow into an adult Slickster morph, the " + UI.FormatAsLink("OwO Slickster", "OWO_OILFLOATER") + ".";
+                public static LocString DESC = "A goopy little OwO Larva.\n\nOne day it will grow into an adult morph, the " + UI.FormatAsLink("OwO Slickster", "OWO_OILFLOATER") + ".";
             }
 
         }
@@ -62,11 +62,7 @@ namespace ILoveSlicksters
 
             public static LocString DESC = string.Concat(new string[]
             {
-                "Leafy Slicksters are slimy critters that consume ",
-                UI.FormatAsLink("Carbon Dioxide", "CARBONDIOXIDE"),
-                " and exude ",
-                UI.FormatAsLink("Oxygen", "OXYGEN"),
-                ".\n\nThe leafy slickster has adapted to its environment and uses photosynthesis to feed on carbon.\nLeafy Slicksters need light to live."
+                "Leafy Slicksters are leafy critters that consume air.\n\nThe leafy slickster has adapted to its environment and uses photosynthesis to feed on carbon.\nLeafy Slicksters need light to live."
             });
 
             public static LocString EGG_NAME = UI.FormatAsLink("Leafy Slickster Egg", "LEAFYOILFLOATER");
@@ -75,7 +71,7 @@ namespace ILoveSlicksters
             {
                 public static LocString NAME = UI.FormatAsLink("Leafy Larva", "LEAFYOILFLOATER");
 
-                public static LocString DESC = "A goopy little Leafy Larva.\n\nOne day it will grow into an adult Slickster morph, the " + UI.FormatAsLink("Leafy Slickster", "LEAFYOILFLOATER") + ".";
+                public static LocString DESC = "A goopy little Leafy Larva.\n\nOne day it will grow into an adult morph, the " + UI.FormatAsLink("Leafy Slickster", "LEAFYOILFLOATER") + ".";
             }
 
         }
@@ -86,8 +82,8 @@ namespace ILoveSlicksters
 
             public static LocString DESC = string.Concat(new string[]
             {
-                "Robot Slicksters are slimy critters that consume ",
-                UI.FormatAsLink("Carbon Dioxide", "CARBONDIOXIDE"),
+                "Robot Slicksters are slimy critters that consume hot ",
+                UI.FormatAsLink("Carbon Dioxide", "CARBONDIOXIDE"), ", ", UI.FormatAsLink("Steam", "STEAM"), " or ", UI.FormatAsLink("Sour Gas", "SOURGAS"),
                 " and exude ",
                 UI.FormatAsLink("Steel", "STEEL"),
                 ".\n\nThe robot slickster is a slime that has been technologically improved by Gravitas to meet our heavy metal needs."
@@ -99,7 +95,7 @@ namespace ILoveSlicksters
             {
                 public static LocString NAME = UI.FormatAsLink("Robot Larva", "ROBOTOILFLOATER");
 
-                public static LocString DESC = "A goopy little Robot Larva.\n\nOne day it will grow into an adult Slickster morph, the " + UI.FormatAsLink("Robot Slickster", "ROBOTOILFLOATER") + ".";
+                public static LocString DESC = "A goopy little Robot Larva.\n\nOne day it will grow into an adult morph, the " + UI.FormatAsLink("Robot Slickster", "ROBOTOILFLOATER") + ".";
             }
 
         }
@@ -110,10 +106,7 @@ namespace ILoveSlicksters
 
             public static LocString DESC = string.Concat(new string[]
             {
-                "Frozen Slicksters are slimy critters that consume ",
-                UI.FormatAsLink("Carbon Dioxide", "CARBONDIOXIDE"),
-                " and exude ",
-                UI.FormatAsLink("Antigel", "ANTIGEL"),
+                "Frozen Slicksters are slimy critters that consume air to reject ", UI.FormatAsLink("Water", "WATER"), " or ", UI.FormatAsLink("Antigel", "ANTIGEL"),
                 ".\n\nThe Frozen slickster is a distant variant of the slickster in a very cold environment, it produces a liquid appreciated by our engineers."
             });
 
@@ -123,10 +116,29 @@ namespace ILoveSlicksters
             {
                 public static LocString NAME = UI.FormatAsLink("Frozen Larva", "FROZENOILFLOATER");
 
-                public static LocString DESC = "A goopy little Frozen Larva.\n\nOne day it will grow into an adult Slickster morph, the " + UI.FormatAsLink("Frozen Slickster", "FROZENOILFLOATER") + ".";
+                public static LocString DESC = "A goopy little Frozen Larva.\n\nOne day it will grow into an adult morph, the " + UI.FormatAsLink("Frozen Slickster", "FROZENOILFLOATER") + ".";
             }
         }
+        public static class VARIANT_AQUA
+        {
 
+            public static LocString NAME = UI.FormatAsLink("Aqua Slickster", "AQUAOILFLOATER");
+
+            public static LocString DESC = string.Concat(new string[]
+            {
+                "Aqua Slicksters are aquatic critters that live in any water and consume any water.",
+                ".\n\nThe Aqua slickster is a prehistoric strain of slickster when it was still living underwater. It is appreciated by the duplicants because it requires little maintenance of its aquarium."
+            });
+
+            public static LocString EGG_NAME = UI.FormatAsLink("Aqua Slickster Egg", "AQUAOILFLOATER");
+
+            public static class BABY
+            {
+                public static LocString NAME = UI.FormatAsLink("Aqua Larva", "AQUAOILFLOATER");
+
+                public static LocString DESC = "A goopy little Aqua Larva.\n\nOne day it will grow into an adult morph, the " + UI.FormatAsLink("Aqua Slickster", "AQUAOILFLOATER") + ".";
+            }
+        }
         public static class FERTILITY_MODIFIERS
         {
             public static class LIGHT
@@ -146,6 +158,41 @@ namespace ILoveSlicksters
                 public static LocString NAME = "Element";
 
                 public static LocString DESC = "Is immersed in {0}.";
+            }
+        }
+
+        public static class INAQUARIUM
+        {
+            public static LocString NAME = "In an aquarium";
+        }
+        public static class NOTINAQUARIUM
+        {
+            public static LocString NAME = "Not in an aquarium";
+        }
+
+
+        public static class DROWNING
+        {
+
+            public static LocString NAME = "Drowning";
+
+            public static LocString TOOLTIP = string.Concat(new string[]
+            {
+                    "This critter can't breathe in ",
+                    UI.PRE_KEYWORD,
+                    "Air",
+                    UI.PST_KEYWORD,
+                    "!"
+            });
+        }
+
+        public static class ELEMENTS
+        {
+            public static class ANTIGEL
+            {
+                public static LocString NAME = UI.FormatAsLink("Antigel", Antigel.Id.ToUpper());
+                public static LocString DESC = $"A mixture of water(H<sub>2</sub>O) and Ethylen Glycol (C<sub>2</sub>H<sub>6</sub>O<sub>2</sub>).\n\nIt has been designed by engineers to be a good heat transfer fluid that does not freeze or vaporize easily.";
+
             }
         }
 
