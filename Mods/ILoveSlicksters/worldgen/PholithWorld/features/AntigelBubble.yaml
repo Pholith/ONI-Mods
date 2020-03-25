@@ -8,6 +8,11 @@ internalMobs:
      count:
        min: 0
        max: 1
+   - type: AquaOilFloater
+     count:
+       min: 0
+       max: 1
+
 blobSize:
   min: 4
   max: 6

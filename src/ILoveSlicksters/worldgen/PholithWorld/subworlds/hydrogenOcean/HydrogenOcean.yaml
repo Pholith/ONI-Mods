@@ -18,6 +18,7 @@ biomes:
       - SpiceVineSeed
       - Pacu
       - Crab
+      - AquaOilFloater
 features:
   - type: PholithWorld/features/HeliumGeode
   - type: PholithWorld/features/OilFloaterDecorCage

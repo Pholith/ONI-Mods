@@ -1,21 +1,35 @@
 ﻿using Harmony;
 using Klei.AI;
+using PeterHan.PLib;
+using PeterHan.PLib.Options;
 using Pholib;
 using System;
+using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 
 namespace ILoveSlicksters
 {
 
-    class Patches
+    public class Patches
     {
         public static string modPath;
+        public static SlicksterOptions Settings { get; private set; }
 
-        // Egg chance patches
         public static void OnLoad(string modPath)
         {
             Patches.modPath = modPath;
+
+            // Init PLib and settings
+            PUtil.InitLibrary();
+            POptions.RegisterOptions(typeof(SlicksterOptions));
+
+            Settings = POptions.ReadSettings<SlicksterOptions>();
+            if (Settings == null)
+            {
+                Settings = new SlicksterOptions();
+            }
+
 
             // Egg Chance modifier
             Type[] parameters_type = new Type[] { typeof(string), typeof(Tag), typeof(float), typeof(float), typeof(float), typeof(bool) };
@@ -73,20 +87,16 @@ namespace ILoveSlicksters
                 egg = "OwO_OilfloaterEgg".ToTag(),
                 weight = 0.20f
             });
-        }
-    }
-    // Kg eaten patch
-    public class KG_Eaten_Patch
-    {
-        public static void OnLoad()
-        {
-            Traverse.Create<OilFloaterConfig>().Field<float>("KG_ORE_EATEN_PER_CYCLE").Value = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2;
 
-            float CALORIES_PER_KG_OF_ORE = PHO_TUNING.OILFLOATER.STANDARD_CALORIES_PER_CYCLE / PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2;
+            // Kg eaten patch
+            if (Patches.Settings.increasesVanillaSlickstersConsumption)
+            {
+                Traverse.Create<OilFloaterConfig>().Field<float>("KG_ORE_EATEN_PER_CYCLE").Value = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2;
 
-            Traverse.Create<OilFloaterConfig>().Field<float>("CALORIES_PER_KG_OF_ORE").Value = CALORIES_PER_KG_OF_ORE;
-            Traverse.Create<OilFloaterHighTempConfig>().Field<float>("CALORIES_PER_KG_OF_ORE").Value = CALORIES_PER_KG_OF_ORE;
-
+                float CALORIES_PER_KG_OF_ORE = PHO_TUNING.OILFLOATER.STANDARD_CALORIES_PER_CYCLE / PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2;
+                Traverse.Create<OilFloaterConfig>().Field<float>("CALORIES_PER_KG_OF_ORE").Value = CALORIES_PER_KG_OF_ORE;
+                Traverse.Create<OilFloaterHighTempConfig>().Field<float>("CALORIES_PER_KG_OF_ORE").Value = CALORIES_PER_KG_OF_ORE;
+            }
 
         }
     }
@@ -110,7 +120,28 @@ namespace ILoveSlicksters
         public static void Postfix(GameObject __result)
         {
             GasAndLiquidConsumerMonitor.Def def = __result.AddOrGetDef<GasAndLiquidConsumerMonitor.Def>();
-            if (def.consumptionRate <= 0.5f) def.consumptionRate = 3f;
+            List<string> vanillasSlickstersIds = new List<string>();
+            vanillasSlickstersIds.Add("Oilfloater");
+            vanillasSlickstersIds.Add("OilfloaterBaby");
+            vanillasSlickstersIds.Add("OilfloaterDecor");
+            vanillasSlickstersIds.Add("OilfloaterDecorBaby");
+            vanillasSlickstersIds.Add("OilfloaterHighTemp");
+            vanillasSlickstersIds.Add("OilfloaterHighTempBaby");
+
+            KPrefabID kId = __result.AddOrGet<KPrefabID>();
+
+            // If the slickster is a vanilla slickster, I check the options
+            if (vanillasSlickstersIds.Contains(kId.PrefabTag.Name))
+            {
+                if (Patches.Settings.increasesVanillaSlickstersConsumption)
+                {
+                    def.consumptionRate = 3f;
+                }
+            } else
+            {
+                if (def.consumptionRate <= 0.5f) def.consumptionRate = 3f;
+            }
+
         }
     }
 

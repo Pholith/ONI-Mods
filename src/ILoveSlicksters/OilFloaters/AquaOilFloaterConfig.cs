@@ -49,7 +49,7 @@ namespace ILoveSlicksters
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     SimHashes.Water.CreateTag()
-                }), SimHashes.Methane.CreateTag(), caloriesPerKg / 2, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+                }), SimHashes.LiquidMethane.CreateTag(), caloriesPerKg / 2, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     SimHashes.SaltWater.CreateTag()
@@ -73,7 +73,7 @@ namespace ILoveSlicksters
             gameObject.GetComponent<KPrefabID>().AddTag(GameTags.Creatures.Swimmer);
             gameObject.GetComponent<KPrefabID>().AddTag(GameTags.SwimmingCreature);
 
-            EntityTemplates.ExtendEntityToBasicCreature(gameObject, FactionManager.FactionID.Pest, traitId, "SwimmerNavGrid", NavType.Swim, 32, 1f, TUNING.FOOD.FOOD_TYPES.FISH_MEAT.Id, 2, false, false, warnLowTemp, warnHighTemp, warnLowTemp - 15f, warnHighTemp + 20f);
+            EntityTemplates.ExtendEntityToBasicCreature(gameObject, FactionManager.FactionID.Pest, traitId, "SwimmerNavGrid", NavType.Swim, 32, 3f, TUNING.FOOD.FOOD_TYPES.FISH_MEAT.Id, 2, false, false, warnLowTemp, warnHighTemp, warnLowTemp - 15f, warnHighTemp + 20f);
             if (!string.IsNullOrEmpty(symbolOverridePrefix))
             {
                 gameObject.AddOrGet<SymbolOverrideController>().ApplySymbolOverridesByAffix(Assets.GetAnim(anim_file), symbolOverridePrefix, null, 0);

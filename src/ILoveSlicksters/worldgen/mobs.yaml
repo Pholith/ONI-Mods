@@ -8,7 +8,7 @@ MobLookupTable:
       selectMethod: Centroid
       density:
         min: 0.05
-        max: 0.5
+        max: 0.2
       width: 1
       height: 1
     LeafyOilfloaterEgg:
@@ -97,5 +97,13 @@ MobLookupTable:
       density:
         min: 0.1
         max: 0.2
+      width: 1
+      height: 1
+    AquaOilFloater:
+      location: ShallowLiquid
+      selectMethod: Centroid
+      density:
+        min: 0.01
+        max: 0.03
       width: 1
       height: 1

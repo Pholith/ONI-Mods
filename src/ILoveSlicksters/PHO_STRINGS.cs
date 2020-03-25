@@ -127,7 +127,7 @@ namespace ILoveSlicksters
             public static LocString DESC = string.Concat(new string[]
             {
                 "Aqua Slicksters are aquatic critters that live in any water and consume any water.",
-                ".\n\nThe Aqua slickster is a prehistoric strain of slickster when it was still living underwater. It is appreciated by the duplicants because it requires little maintenance of its aquarium."
+                "\n\nThe Aqua slickster is a prehistoric strain of slickster when it was still living underwater. It is appreciated by the duplicants because it requires little maintenance of its aquarium."
             });
 
             public static LocString EGG_NAME = UI.FormatAsLink("Aqua Slickster Egg", "AQUAOILFLOATER");
