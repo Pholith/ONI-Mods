@@ -8,7 +8,7 @@ using System.Text;
 
 namespace ILoveSlicksters
 {
-    class SubstancePatches
+    public class SubstancePatches
     {
 
         private static string ToUpperSnakeCase(string camelCase)

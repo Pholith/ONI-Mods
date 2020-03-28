@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace ILoveSlicksters
 {
-    class Antigel
+    public class Antigel
     {
         public const string Data = @"elements:
   - elementId: Antigel
@@ -40,7 +40,7 @@ namespace ILoveSlicksters
 
 
         public const string Id = "Antigel";
-        public static readonly SimHashes SimHash = (SimHashes)Hash.SDBMLower(Id);
+        public static readonly SimHashes SimHash = (SimHashes) Hash.SDBMLower(Id);
         public static string Name = PHO_STRINGS.ELEMENTS.ANTIGEL.NAME;
         public static string Description = PHO_STRINGS.ELEMENTS.ANTIGEL.DESC;
         public static Color32 color = new Color32(190, 220, 160, 255);

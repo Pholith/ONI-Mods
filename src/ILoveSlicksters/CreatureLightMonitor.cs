@@ -5,7 +5,6 @@ namespace ILoveSlicksters
 {
 
     public class CreatureLightMonitor : GameStateMachine<CreatureLightMonitor, CreatureLightMonitor.Instance, IStateMachineTarget, CreatureLightMonitor.Def>
-
     {
         public override void InitializeStates(out BaseState default_state)
         {
