@@ -1,9 +1,7 @@
-﻿using Harmony;
-using Klei.AI;
+﻿using Klei.AI;
 using KSerialization;
 using STRINGS;
 using System;
-using System.Reflection;
 using UnityEngine;
 
 namespace ILoveSlicksters
@@ -45,7 +43,7 @@ namespace ILoveSlicksters
 				NeedLiquid.resolveStringCallback = ((string str, object data) => str);
 			}
 
-			timeToDrown = 75f;
+			timeToDrown = 100f;
 			if (drowningEffect == null)
 			{
 				drowningEffect = new Effect("GasDrowning", PHO_STRINGS.DROWNING.NAME, PHO_STRINGS.DROWNING.TOOLTIP, 0f, false, false, true, null, 0f, null);
@@ -117,8 +115,8 @@ namespace ILoveSlicksters
 			{
 				drowning = false;
 				GetComponent<KPrefabID>().RemoveTag(GameTags.Creatures.Drowning);
-				Trigger((int) GameHashes.EnteredBreathableArea);
-				
+				Trigger((int)GameHashes.EnteredBreathableArea);
+
 			}
 			drowningStatusGuid = selectable.ToggleStatusItem(NeedLiquid, drowningStatusGuid, drowning, this);
 
@@ -139,6 +137,9 @@ namespace ILoveSlicksters
 		private static bool CellSafeTest(int testCell, object data)
 		{
 			int num = Grid.CellAbove(testCell);
+
+			GameObject obj = Grid.Objects[testCell, (int)ObjectLayer.Building];
+			if (obj != null && obj.PrefabID() == EggIncubatorConfig.ID) return true;
 			if (!Grid.IsValidCell(testCell) || !Grid.IsValidCell(num))
 			{
 				return false;

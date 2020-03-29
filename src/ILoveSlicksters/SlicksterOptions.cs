@@ -14,10 +14,20 @@ namespace ILoveSlicksters
         [Limit(1, 3)]
         public int ConsumptionMultiplier { get; set; }
 
+        [Option("Disable new slicksters egg recipes", "If the box is ticked, new recipes to create eggs will not be added to the super refinery.")]
+        [JsonProperty]
+        public bool DisableSlickstersRecipes { get; set; }
+
+        [Option("Disable slicksters care packages", "If the box is ticked, The printing pod will not show new slicksters eggs.")]
+        [JsonProperty]
+        public bool DisableSlickstersCarePackages { get; set; }
+
         public SlicksterOptions()
         {
             IncreasesVanillaSlickstersConsumption = true;
             ConsumptionMultiplier = 1;
+            DisableSlickstersRecipes = false;
+            DisableSlickstersCarePackages = false;
         }
     }
 }

@@ -31,13 +31,20 @@ namespace ILoveSlicksters
             GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 523.15f, 743.15f, is_baby, variantSprite);
             EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE, LIFESPAN.TIER3);
             int count = (int) prefab.AddOrGet<PrimaryElement>().Mass;
-            ;
+
             string[] loot = new string[count];
             for (int i = 0; i < count; i++)
             {
                 loot[i] = "Steel";
             }
             prefab.AddOrGet<Butcherable>().SetDrops(loot);
+
+            DiseaseDropper.Def def = prefab.AddOrGetDef<DiseaseDropper.Def>();
+            def.diseaseIdx = Db.Get().Diseases.GetIndex(Db.Get().Diseases.ZombieSpores.id);
+            def.emitFrequency = 1f;
+            def.averageEmitPerSecond = 200;
+            def.singleEmitQuantity = 20000;
+
 
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));

@@ -40,6 +40,11 @@ namespace ILoveSlicksters
             }
             prefab.AddOrGet<Butcherable>().SetDrops(loot);
             prefab.AddOrGet<Navigator>().defaultSpeed = 1f;
+            DiseaseDropper.Def def = prefab.AddOrGetDef<DiseaseDropper.Def>();
+            def.diseaseIdx = Db.Get().Diseases.GetIndex(Db.Get().Diseases.PollenGerms.id);
+            def.emitFrequency = 1f;
+            def.averageEmitPerSecond = 1000;
+            def.singleEmitQuantity = 100000;
 
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));

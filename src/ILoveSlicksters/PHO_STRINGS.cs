@@ -1,5 +1,4 @@
-﻿using Harmony;
-using STRINGS;
+﻿using STRINGS;
 
 namespace ILoveSlicksters
 {

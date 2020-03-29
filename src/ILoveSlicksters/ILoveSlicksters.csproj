@@ -80,7 +80,7 @@
     <Compile Include="..\Pholib\Utilities.cs">
       <Link>Utilities.cs</Link>
     </Compile>
-    <Compile Include="BugDancingSlicker.cs" />
+    <Compile Include="SlicksterDance.cs" />
     <Compile Include="CreatureAquaticGroomingMonitor.cs" />
     <Compile Include="GasDrowingMonitor.cs" />
     <Compile Include="OilFloaters\FrozenOilFloaterBabyConfig.cs" />

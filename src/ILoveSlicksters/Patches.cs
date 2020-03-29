@@ -139,7 +139,8 @@ namespace ILoveSlicksters
                 {
                     def.consumptionRate = 5f;
                 }
-            } else
+            }
+            else
             {
                 if (def.consumptionRate <= 0.5f) def.consumptionRate = 5f * Patches.Settings.ConsumptionMultiplier;
             }
@@ -147,7 +148,71 @@ namespace ILoveSlicksters
         }
     }
 
-
+    // add some slickster egg recipes to make them easier to unlock
+    [HarmonyPatch(typeof(SupermaterialRefineryConfig))]
+    [HarmonyPatch("ConfigureBuildingTemplate")]
+    public class SuperRefineryConfig_ConfigureBuildingTemplateAddSlickstersPatch
+    {
+        public static void Postfix()
+        {
+            if (!Patches.Settings.DisableSlickstersRecipes)
+            {
+                Utilities.AddComplexRecipe(
+                    input: new[] {
+                        new ComplexRecipe.RecipeElement(SimHashes.Ethanol.CreateTag(), 50f),
+                        new ComplexRecipe.RecipeElement(SimHashes.Lime.CreateTag(), 3f),
+                        new ComplexRecipe.RecipeElement(SimHashes.CarbonDioxide.CreateTag(), 10f),
+                    },
+                    output: new[] { new ComplexRecipe.RecipeElement(TagManager.Create(EthanolOilfloaterConfig.EGG_ID), 1f) },
+                    fabricatorId: SupermaterialRefineryConfig.ID,
+                    productionTime: 20f,
+                    recipeDescription: PHO_STRINGS.VARIANT_ETHANOL.DESC,
+                    nameDisplayType: ComplexRecipe.RecipeNameDisplay.Result,
+                    sortOrder: 975
+                );
+                Utilities.AddComplexRecipe(
+                    input: new[] {
+                        new ComplexRecipe.RecipeElement(EthanolOilfloaterConfig.EGG_ID.ToTag(), 2f),
+                        new ComplexRecipe.RecipeElement(SimHashes.Algae.CreateTag(), 50f),
+                        new ComplexRecipe.RecipeElement(SimHashes.Water.CreateTag(), 10f),
+                        new ComplexRecipe.RecipeElement(SimHashes.SaltWater.CreateTag(), 10f),
+                    },
+                    output: new[] { new ComplexRecipe.RecipeElement(TagManager.Create(AquaOilfloaterConfig.EGG_ID), 1f) },
+                    fabricatorId: SupermaterialRefineryConfig.ID,
+                    productionTime: 20f,
+                    recipeDescription: PHO_STRINGS.VARIANT_AQUA.DESC,
+                    nameDisplayType: ComplexRecipe.RecipeNameDisplay.Result,
+                    sortOrder: 980
+                );
+                Utilities.AddComplexRecipe(
+                    input: new[] {
+                        new ComplexRecipe.RecipeElement(PrickleFlowerConfig.ID.ToTag(), 10f),
+                        new ComplexRecipe.RecipeElement(SimHashes.Algae.CreateTag(), 50f),
+                        new ComplexRecipe.RecipeElement(SimHashes.SlimeMold.CreateTag(), 50f),
+                    },
+                    output: new[] { new ComplexRecipe.RecipeElement(TagManager.Create(LeafyOilfloaterConfig.EGG_ID), 1f) },
+                    fabricatorId: SupermaterialRefineryConfig.ID,
+                    productionTime: 20f,
+                    recipeDescription: PHO_STRINGS.VARIANT_LEAFY.DESC,
+                    nameDisplayType: ComplexRecipe.RecipeNameDisplay.Result,
+                    sortOrder: 985
+                );
+                Utilities.AddComplexRecipe(
+                    input: new[] {
+                        new ComplexRecipe.RecipeElement(OilFloaterConfig.EGG_ID.ToTag(), 2f),
+                        new ComplexRecipe.RecipeElement(SimHashes.Steel.CreateTag(), 20f),
+                        new ComplexRecipe.RecipeElement(SimHashes.Iron.CreateTag(), 50f),
+                    },
+                    output: new[] { new ComplexRecipe.RecipeElement(TagManager.Create(RobotOilfloaterConfig.EGG_ID), 1f) },
+                    fabricatorId: SupermaterialRefineryConfig.ID,
+                    productionTime: 20f,
+                    recipeDescription: PHO_STRINGS.VARIANT_ROBOT.DESC,
+                    nameDisplayType: ComplexRecipe.RecipeNameDisplay.Result,
+                    sortOrder: 990
+                );
+            }
+        }
+    }
 
     // add the OwO effect
     [HarmonyPatch(typeof(Db))]
@@ -176,6 +241,7 @@ namespace ILoveSlicksters
             __result.AddOrGet<LightVulnerable>();
             __result.AddOrGet<SimplePressureVulnerable>();
             __result.AddOrGet<ElementVulnerable>();
+            __result.AddOrGetDef<SlicksterDance.Def>();
         }
     }
 
@@ -185,12 +251,17 @@ namespace ILoveSlicksters
     {
         public static void Postfix(ref Immigration __instance)
         {
-            Utilities.AddCarePackage(ref __instance, LeafyOilfloaterConfig.EGG_ID, 2f, () => Utilities.CycleInRange(100, 400) && Utilities.IsTagDiscovered("LeafyOilfloater"));
-            Utilities.AddCarePackage(ref __instance, EthanolOilfloaterConfig.EGG_ID, 2f, () => Utilities.CycleInRange(100, 400) && Utilities.IsOilFieldDiscovered() && Utilities.IsSimHashesDiscovered(SimHashes.Ethanol) && Utilities.IsTagDiscovered("EthanolOilfloater"));
-            Utilities.AddCarePackage(ref __instance, OwO_OilFloaterConfig.EGG_ID, 2f, () => Utilities.CycleInRange(200, 600) && Utilities.IsOilFieldDiscovered() && Utilities.IsTagDiscovered("OwO_Oilfloater"));
-            Utilities.AddCarePackage(ref __instance, FrozenOilfloaterConfig.EGG_ID, 1f, () => Utilities.CycleCondition(600) && Utilities.IsOilFieldDiscovered() && Utilities.IsTagDiscovered("FrozenOilfloater"));
-            Utilities.AddCarePackage(ref __instance, RobotOilfloaterConfig.EGG_ID, 1f, () => Utilities.CycleCondition(600) &&
-                Utilities.IsOilFieldDiscovered() && Utilities.IsSimHashesDiscovered(SimHashes.Steel) && Utilities.IsTagDiscovered("RobotOilfloater"));
+            if (!Patches.Settings.DisableSlickstersCarePackages)
+            {
+                Utilities.AddCarePackage(ref __instance, LeafyOilfloaterConfig.EGG_ID, 2f, () => Utilities.CycleInRange(50, 600) && Utilities.IsTagDiscovered("LeafyOilfloater"));
+                Utilities.AddCarePackage(ref __instance, EthanolOilfloaterConfig.EGG_ID, 2f, () => Utilities.CycleInRange(50, 800) && Utilities.IsOilFieldDiscovered() && Utilities.IsSimHashesDiscovered(SimHashes.Ethanol) && Utilities.IsTagDiscovered("EthanolOilfloater"));
+                Utilities.AddCarePackage(ref __instance, OwO_OilFloaterConfig.EGG_ID, 2f, () => Utilities.CycleInRange(150, 700) && Utilities.IsOilFieldDiscovered() && Utilities.IsTagDiscovered("OwO_Oilfloater"));
+                Utilities.AddCarePackage(ref __instance, FrozenOilfloaterConfig.EGG_ID, 1f, () => Utilities.CycleCondition(500) && Utilities.IsOilFieldDiscovered() && Utilities.IsTagDiscovered("FrozenOilfloater"));
+                Utilities.AddCarePackage(ref __instance, AquaOilfloaterConfig.EGG_ID, 2f, () => Utilities.CycleCondition(500) && Utilities.IsTagDiscovered("AquaOilfloater"));
+                Utilities.AddCarePackage(ref __instance, RobotOilfloaterConfig.EGG_ID, 1f, () => Utilities.CycleCondition(500) &&
+                    Utilities.IsOilFieldDiscovered() && Utilities.IsSimHashesDiscovered(SimHashes.Steel) && Utilities.IsTagDiscovered("RobotOilfloater"));
+
+            }
         }
     }
 }
