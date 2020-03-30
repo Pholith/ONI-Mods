@@ -6,19 +6,19 @@ namespace CustomizableSpeed
     public class SpeedOptions
     {
         [Option("Slow speed", "")]
-        [Limit(1, 10)]
+        [Limit(0, 10)]
         [JsonProperty]
-        public int slowSpeed { get; set; }
+        public float slowSpeed { get; set; }
 
         [Option("Normal speed", "")]
-        [Limit(1, 30)]
+        [Limit(0, 30)]
         [JsonProperty]
-        public int normalSpeed { get; set; }
+        public float normalSpeed { get; set; }
 
         [Option("Super speed", "")]
-        [Limit(1, 50)]
+        [Limit(0, 50)]
         [JsonProperty]
-        public int superSpeed { get; set; }
+        public float superSpeed { get; set; }
 
 
         public SpeedOptions()

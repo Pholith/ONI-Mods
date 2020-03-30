@@ -32,9 +32,9 @@ namespace CustomizableSpeed
 	}
 
 	[HarmonyPatch(typeof(SpeedControlScreen), "OnChanged")]
-	public static class SpeedControlPatch
+	public static class SpeedControlPatchOnChanged
 	{
-		private static bool Prefix(SpeedControlScreen __instance)
+		public static bool Prefix(SpeedControlScreen __instance)
 		{
 			if (GameOnLoadPatch.Settings == null)
 			{

@@ -1,8 +1,11 @@
 ﻿using Newtonsoft.Json;
 using PeterHan.PLib;
+using PeterHan.PLib.Options;
 
 namespace ILoveSlicksters
 {
+
+    [RestartRequired]
     public class SlicksterOptions
     {
         [Option("Increases vanilla slicksters consumption", "If the box is ticked, the vanilla slicksters will consume 60kg/cycle instead of 20kg/cycle.\nIt doesn't affect new slicksters.\nGame must be restarted after change.")]
