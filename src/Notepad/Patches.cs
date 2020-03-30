@@ -1,5 +1,7 @@
 ﻿using Harmony;
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using static Pholib.Utilities;
 
@@ -80,6 +82,32 @@ namespace Notepad
                 screenInstance = screen
             };
             sideScreens.Add(myRef);
+        }
+    }
+
+
+    [HarmonyPatch(typeof(SelectToolHoverTextCard))]
+    [HarmonyPatch("UpdateHoverElements")]
+    public class HoverText_ConfigureTitlePatch
+    {
+        public static void Postfix(SelectToolHoverTextCard __instance, List<KSelectable> hoverObjects)
+        {
+
+            foreach (KSelectable selectable in hoverObjects)
+            {
+                Notepad pad = selectable.gameObject.GetComponent<Notepad>();
+                if (pad != null)
+                {
+                    HoverTextScreen instance = HoverTextScreen.Instance;
+                    HoverTextDrawer hover = instance.BeginDrawing();
+                    hover.BeginShadowBar();
+                    hover.DrawIcon(Assets.GetSprite("icon_category_furniture"), 20);
+                    hover.DrawText(pad.activateText, __instance.ToolTitleTextStyle);
+                    hover.EndShadowBar();
+                    hover.EndDrawing();
+
+                }
+            }
         }
     }
 }
