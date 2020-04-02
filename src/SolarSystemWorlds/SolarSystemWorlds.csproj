@@ -183,10 +183,7 @@
     <None Include="worldgen\PholithWorlds\features\io\Geode.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorlds\features\io\VolcanicArea.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="worldgen\PholithWorlds\features\io\SolidOxygen.yaml">
+    <None Include="worldgen\PholithWorlds\features\io\SuperHotLiquid.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="worldgen\PholithWorlds\features\moon\StartingGeode.yaml">
@@ -280,6 +277,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="worldgen\PholithWorlds\subworlds\io\Surface.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="worldgen\PholithWorlds\subworlds\io\SurfaceMagma.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="worldgen\PholithWorlds\subworlds\io\SurfaceNoGravitas.yaml">

@@ -9,8 +9,8 @@ sampleBehaviour: PoissonDisk
 biomes:
   - name: biomes/IO/Mantle2
     weight: 1
-features: []
-  #- type: PholithWorlds/features/io/MagmaVent
+features:
+  - type: PholithWorlds/features/io/SuperHotLiquid
 
 pointsOfInterest:
   home:

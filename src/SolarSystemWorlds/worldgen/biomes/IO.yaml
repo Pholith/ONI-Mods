@@ -4,51 +4,21 @@ TerrainBiomeLookupTable:
   # elements to add from in-memory structure when this file is loaded
   add:
 
+    SurfaceMagma:
+    - content: Obsidian
+      bandSize: 1
+    - content: Magma
+      bandSize: 0.2
+
     Surface:
     - content: Regolith
       bandSize: 0.2
     - content: MaficRock
       bandSize: 0.2
     - content: IgneousRock
-      bandSize: 0.1
+      bandSize: 0.2
     - content: Vacuum
       bandSize: 0.03
-    - content: Hydrogen
-      bandSize: 0.2
-      overrides:
-        massMultiplier: 2.5
-    - content: Cuprite
-      bandSize: 0.1
-
-    Ice1h:
-    - content: Regolith
-      bandSize: 0.1
-    - content: IgneousRock
-      bandSize: 0.3
-    - content: BrineIce
-      bandSize: 0.5
-    - content: Hydrogen
-      bandSize: 0.15
-      overrides:
-        massMultiplier: 15
-    - content: IgneousRock
-      bandSize: 0.2
-
-    Ocean:
-    - content: Hydrogen
-      bandSize: 0.05
-    - content: Granite
-      bandSize: 0.05
-    - content: SaltWater
-      bandSize: 1
-      overrides:
-        massOverride: 1400
-    - content: BleachStone
-      bandSize: 0.005
-    - content: Sand
-      bandSize: 0.1
-    - content: SedimentaryRock
-      bandSize: 0.02
 
     Mantle:
     - content: CarbonDioxide

@@ -16,9 +16,19 @@ ElementChoiceGroups:
       - element: Lead
         weight: 0.5
       - element: Isoresin
-        weight: 0.4
+        weight: 0.1
         overrides:
           temperatureOverride: 50
+      - element: SaltWater
+        weight: 0.4
+        overrides:
+          temperatureOverride: 300
+      - element: Magma
+        weight: 0.2
+        overrides:
+          temperatureOverride: 2000
+
+
   RoomBorderChoices0:
     selectionMethod: WeightedResample
     choices:

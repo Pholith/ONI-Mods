@@ -5,7 +5,7 @@ coordinatePrefix: IO-PHO
 difficulty: 1
 tier: 2
 disableWorldTraits: true
-skip: true
+#skip: true
 
 worldsize:
   X: 224
@@ -24,6 +24,8 @@ subworldFiles:
   - name: PholithWorlds/subworlds/io/Mantle
   - name: PholithWorlds/subworlds/io/Mantle2
   - name: PholithWorlds/subworlds/io/Surface
+  - name: PholithWorlds/subworlds/io/SurfaceMagma
+    weight: 0.6
   - name: PholithWorlds/subworlds/io/SurfaceStart
 
 startSubworldName: PholithWorlds/subworlds/io/SurfaceStart
@@ -37,7 +39,7 @@ startingBasePositionVertical:
   max: 0.65
 
 globalFeatureTemplates:
-  feature_geyser_generic: 14
+  feature_geyser_generic: 11
 
 # When we are converting unknown cells, this will give us the options, processed in this order, the effects are cumlative
 unknownCellsAllowedSubworlds: 
@@ -67,6 +69,7 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - PholithWorlds/subworlds/io/Mantle
+      - PholithWorlds/subworlds/io/SurfaceMagma
 
 
   - tagcommand: DistanceFromTag
@@ -76,6 +79,7 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - PholithWorlds/subworlds/io/Surface
+      - PholithWorlds/subworlds/io/SurfaceMagma
 
   - tagcommand: DistanceFromTag
     tag: AtDepths

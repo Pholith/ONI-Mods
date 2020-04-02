@@ -20,7 +20,7 @@ namespace ILoveSlicksters
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
                 60.0000038f, 20f,
-                EGG_CHANCES_ROBOT,
+                EGG_CHANCES_AQUA,
                 EGG_SORT_ORDER);
 
             return gameObject;
@@ -49,7 +49,7 @@ namespace ILoveSlicksters
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     SimHashes.Water.CreateTag()
-                }), SimHashes.LiquidMethane.CreateTag(), caloriesPerKg * 4, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+                }), SimHashes.Methane.CreateTag(), caloriesPerKg * 10, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     SimHashes.SaltWater.CreateTag()
@@ -121,7 +121,7 @@ namespace ILoveSlicksters
 
         }
 
-        public static List<FertilityMonitor.BreedingChance> EGG_CHANCES_ROBOT = new List<FertilityMonitor.BreedingChance>
+        public static List<FertilityMonitor.BreedingChance> EGG_CHANCES_AQUA = new List<FertilityMonitor.BreedingChance>
         {
             new FertilityMonitor.BreedingChance
             {

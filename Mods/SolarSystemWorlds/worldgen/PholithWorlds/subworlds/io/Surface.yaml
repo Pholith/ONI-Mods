@@ -1,4 +1,4 @@
-biomeNoise: noise/subworldOceanDeep
+biomeNoise: noise/subworldFrozen
 temperatureRange: ExtremelyCold2
 pdWeight: 1.5
 minChildCount: 1

@@ -30,7 +30,7 @@ namespace ILoveSlicksters
 
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 263.15f, 313.15f, is_baby, variantSprite);
+            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 283.15f, 298.15f, is_baby, variantSprite);
             EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE, LIFESPAN.TIER2);
             int count = 3;
             string[] loot = new string[count];
@@ -112,7 +112,7 @@ namespace ILoveSlicksters
 
         private static float CALORIES_PER_KG_OF_ORE = PHO_TUNING.OILFLOATER.STANDARD_CALORIES_PER_CYCLE / KG_ORE_EATEN_PER_CYCLE;
 
-        private static float MIN_POOP_SIZE_IN_KG = 0.5f;
+        private static float MIN_POOP_SIZE_IN_KG = 0.3f;
 
         public static int EGG_SORT_ORDER = OilFloaterConfig.EGG_SORT_ORDER + 2;
 
