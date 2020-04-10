@@ -89,7 +89,7 @@ cells:
   temperature: 314.088135
   location_x: -1
   location_y: -5
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.83126879
   temperature: 311.232635
@@ -99,25 +99,25 @@ cells:
   temperature: 311.829407
   location_x: 1
   location_y: -5
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.76181996
   temperature: 309.522369
   location_x: 2
   location_y: -5
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.73723066
   temperature: 309.563599
   location_x: 3
   location_y: -5
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.72039235
   temperature: 309.768097
   location_x: 4
   location_y: -5
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.71193516
   temperature: 309.850128
@@ -153,7 +153,7 @@ cells:
   temperature: 313.047333
   location_x: -1
   location_y: -4
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.8099972
   temperature: 310.439423
@@ -163,25 +163,25 @@ cells:
   temperature: 312.126282
   location_x: 1
   location_y: -4
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.75336242
   temperature: 309.794037
   location_x: 2
   location_y: -4
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.7347523
   temperature: 309.78656
   location_x: 3
   location_y: -4
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.72031713
   temperature: 309.76944
   location_x: 4
   location_y: -4
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.71250844
   temperature: 309.800964
@@ -226,7 +226,7 @@ cells:
   temperature: 311.250122
   location_x: 1
   location_y: -3
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.73118234
   temperature: 309.977997
@@ -277,7 +277,7 @@ cells:
   temperature: 311.328125
   location_x: -1
   location_y: -2
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.68835199
   temperature: 310.001038
@@ -287,7 +287,7 @@ cells:
   temperature: 309.751801
   location_x: 1
   location_y: -2
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.69014025
   temperature: 310.243378
@@ -338,7 +338,7 @@ cells:
   temperature: 309.947174
   location_x: -1
   location_y: -1
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.65021229
   temperature: 310.586945
@@ -348,7 +348,7 @@ cells:
   temperature: 309.736328
   location_x: 1
   location_y: -1
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.63847256
   temperature: 309.968292
@@ -359,7 +359,7 @@ cells:
   temperature: 309.68924
   location_x: 3
   location_y: -1
-  preventFoWReveal: true
+
 - element: Fossil
   mass: 3039
   temperature: 309.998505
@@ -402,7 +402,7 @@ cells:
   mass: 1.59699857
   temperature: 309.418488
   location_x: 1
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.59915209
   temperature: 309.920715
@@ -411,7 +411,7 @@ cells:
   mass: 1.61363971
   temperature: 309.726288
   location_x: 3
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.61351597
   temperature: 309.71701
@@ -449,7 +449,7 @@ cells:
   temperature: 309.636383
   location_x: -1
   location_y: 1
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.55855227
   temperature: 309.827667
@@ -459,7 +459,7 @@ cells:
   temperature: 309.285339
   location_x: 1
   location_y: 1
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.53559017
   temperature: 309.871979
@@ -510,7 +510,7 @@ cells:
   temperature: 309.527496
   location_x: -1
   location_y: 2
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.53342092
   temperature: 309.630341
@@ -520,19 +520,19 @@ cells:
   temperature: 309.718292
   location_x: 1
   location_y: 2
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.42941356
   temperature: 309.75
   location_x: 2
   location_y: 2
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.26447988
   temperature: 309.804047
   location_x: 3
   location_y: 2
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.11097538
   temperature: 309.883514
@@ -582,19 +582,19 @@ cells:
   temperature: 309.072937
   location_x: 1
   location_y: 3
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.42386723
   temperature: 309.811127
   location_x: 2
   location_y: 3
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.28066087
   temperature: 309.816833
   location_x: 3
   location_y: 3
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.11649835
   temperature: 309.902679
@@ -635,7 +635,7 @@ cells:
   temperature: 309.876801
   location_x: -1
   location_y: 4
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.51456463
   temperature: 309.877045
@@ -695,7 +695,7 @@ cells:
   temperature: 309.919098
   location_x: -1
   location_y: 5
-  preventFoWReveal: true
+
 - element: CarbonDioxide
   mass: 1.52136326
   temperature: 309.988251

@@ -18,8 +18,11 @@ tags:
   - NoGlobalFeatureSpawning
 featureTemplates:
 	feature_geyser_generic2: 13
+
 pointsOfInterest:
   mob_lab:
     - poi_mob_lab
+  brain:
+    - poi_brain_ruin
 
 zoneType: Space

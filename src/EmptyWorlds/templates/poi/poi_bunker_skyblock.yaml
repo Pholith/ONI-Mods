@@ -800,19 +800,16 @@ cells:
   temperature: 301.873901
   location_x: -7
   location_y: 1
-  preventFoWReveal: true
 - element: Oxygen
   mass: 1.79999936
   temperature: 301.988739
   location_x: -6
   location_y: 1
-  preventFoWReveal: true
 - element: Oxygen
   mass: 1.79999983
   temperature: 302.006226
   location_x: -5
   location_y: 1
-  preventFoWReveal: true
 - element: OxyRock
   mass: 1919.6239
   temperature: 302.006226
@@ -917,19 +914,16 @@ cells:
   temperature: 302.054779
   location_x: -7
   location_y: 2
-  preventFoWReveal: true
 - element: Oxygen
   mass: 1.79999912
   temperature: 301.9646
   location_x: -6
   location_y: 2
-  preventFoWReveal: true
 - element: Oxygen
   mass: 1.799999
   temperature: 301.96524
   location_x: -5
   location_y: 2
-  preventFoWReveal: true
 - element: Oxygen
   mass: 1.79999948
   temperature: 302.006226
