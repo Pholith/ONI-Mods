@@ -19,7 +19,7 @@ namespace ILoveSlicksters
                 egg_kanim_id,
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
-                60.0000038f, 20f,
+                40f, 10f,
                 EGG_CHANCES_AQUA,
                 EGG_SORT_ORDER);
 
@@ -69,7 +69,7 @@ namespace ILoveSlicksters
         {
             float mass = 50f;
             EffectorValues tier = TUNING.DECOR.BONUS.TIER1;
-            GameObject gameObject = EntityTemplates.CreatePlacedEntity(id, name, desc, mass, Assets.GetAnim(anim_file), "idle_loop", Grid.SceneLayer.Creatures, 1, 1, tier, default(EffectorValues), SimHashes.Creature, null, (warnLowTemp + warnHighTemp) / 2f);
+            GameObject gameObject = EntityTemplates.CreatePlacedEntity(id, name, desc, mass, Assets.GetAnim(anim_file), "swim_idle_loop", Grid.SceneLayer.Creatures, 1, 1, tier, default(EffectorValues), SimHashes.Creature, null, (warnLowTemp + warnHighTemp) / 2f);
             gameObject.GetComponent<KPrefabID>().AddTag(GameTags.Creatures.Swimmer);
             gameObject.GetComponent<KPrefabID>().AddTag(GameTags.SwimmingCreature);
 
@@ -92,6 +92,10 @@ namespace ILoveSlicksters
             {
                 inhaleSound = "OilFloaterBaby_intake_air";
             }
+
+            IdleStates.Def state = new IdleStates.Def();
+            state.customIdleAnim = new IdleStates.Def.IdleAnimCallback(AquaOilfloaterConfig.CustomIdleAnim);
+
             ChoreTable.Builder chore_table = new ChoreTable.Builder().Add(new DeathStates.Def()).Add(new AnimInterruptStates.Def())
                 .Add(new GrowUpStates.Def()).Add(new TrappedStates.Def()).Add(new IncubatingStates.Def())
                 .Add(new BaggedStates.Def()).Add(new FallStates.Def()).Add(new StunnedStates.Def())
@@ -100,7 +104,8 @@ namespace ILoveSlicksters
                 .Add(new RanchedStates.Def()).Add(new LayEggStates.Def()).Add(new InhaleStates.Def
                 {
                     inhaleSound = inhaleSound
-                }).Add(new SameSpotPoopStates.Def()).Add(new CallAdultStates.Def()).PopInterruptGroup().Add(new IdleStates.Def());
+                }).Add(new SameSpotPoopStates.Def()).Add(new CallAdultStates.Def()).PopInterruptGroup()
+                .Add(state);
 
             EntityTemplates.AddCreatureBrain(gameObject, chore_table, GameTags.Creatures.Species.OilFloaterSpecies, symbolOverridePrefix);
             //string sound = "OilFloater_move_LP";
@@ -111,6 +116,12 @@ namespace ILoveSlicksters
             //gameObject.AddOrGet<OilFloaterMovementSound>().sound = sound;
             return gameObject;
         }
+        private static HashedString CustomIdleAnim(IdleStates.Instance smi, ref HashedString pre_anim)
+        {
+            pre_anim = "hover_swim";
+            return "swim_idle_loop";
+        }
+
 
         public void OnPrefabInit(GameObject inst)
         {
@@ -134,9 +145,9 @@ namespace ILoveSlicksters
                 weight = 0.33f
             }
         };
-        public const string base_kanim_id = "custom_oilfloater_kanim";
-        public const string egg_kanim_id = "custom_egg_oilfloater_kanim";
-        public const string variantSprite = "oxy_";
+        public const string base_kanim_id = "aqua_oilfloater_kanim";
+        public const string egg_kanim_id = "egg_aqua_oilfloater_kanim";
+        public const string variantSprite = null;
 
 
         public const string ID = "AquaOilfloater";

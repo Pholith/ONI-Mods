@@ -27,7 +27,11 @@ namespace ILoveSlicksters
             public static float FAST3 = 40f / EGG_CONVERTER;
         }
 
+        public static class CONVERSION_EFFICIENCY
+        {
+            public static float NORMAL_LOW = 0.4f;
 
+        }
         // adapted from temperaturemodifier
         // Idea: set a minimum light needed 
         public static System.Action CreateLightModifier(string id, Tag eggTag, float modifierPerSecond, bool alsoInvert)

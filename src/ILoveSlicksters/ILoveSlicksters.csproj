@@ -108,6 +108,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="anim\slicksters\aqua_oilfloater\oilFloater.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="anim\slicksters\baby_aqua_oilfloater\baby_oilFloater.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="anim\slicksters\custom_baby_oilfloater2\baby_oilfloater_1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -126,10 +132,25 @@
     <Content Include="anim\slicksters\custom_oilfloater\oilfloater_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="anim\slicksters\egg_aqua_oilfloater\egg_oilFloater.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ILMergeOrder.txt" />
     <EmbeddedResource Include="Asteroid_Slicksteria.dds" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="anim\slicksters\aqua_oilfloater\oilFloater_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\slicksters\aqua_oilfloater\oilFloater_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\slicksters\baby_aqua_oilfloater\baby_oilFloater_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\slicksters\baby_aqua_oilfloater\baby_oilFloater_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="anim\slicksters\custom_baby_oilfloater2\baby_oilfloater_anim.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -164,6 +185,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="anim\slicksters\custom_oilfloater\oilfloater_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\slicksters\egg_aqua_oilfloater\egg_oilFloater_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\slicksters\egg_aqua_oilfloater\egg_oilFloater_build.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="app.config" />
