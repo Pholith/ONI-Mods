@@ -43,7 +43,7 @@ namespace ILoveSlicksters
             def.diseaseIdx = Db.Get().Diseases.GetIndex(Db.Get().Diseases.ZombieSpores.id);
             def.emitFrequency = 1f;
             def.averageEmitPerSecond = 200;
-            def.singleEmitQuantity = 20000;
+            def.singleEmitQuantity = 10000;
 
 
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);

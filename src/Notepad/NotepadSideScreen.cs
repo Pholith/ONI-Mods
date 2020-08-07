@@ -42,6 +42,7 @@ namespace Notepad
 
         private void UpdateLabels()
         {
+
             Control.currentTarget = targetNotepad;
             Control.UpdateTextArea();
 

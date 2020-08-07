@@ -24,7 +24,7 @@ namespace Notepad
             {
                 FlexSize = Vector2.one,
                 Text = (currentTarget != null) ? currentTarget.activateText : "",
-
+                
                 OnTextChanged = (go, text) =>
                 {
                     currentTarget.activateText = text;

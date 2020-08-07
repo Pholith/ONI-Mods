@@ -186,7 +186,7 @@ namespace ILoveSlicksters
                 );
                 Utilities.AddComplexRecipe(
                     input: new[] {
-                        new ComplexRecipe.RecipeElement(PrickleFlowerConfig.ID.ToTag(), 10f),
+                        new ComplexRecipe.RecipeElement(PrickleFlowerConfig.SEED_ID.ToTag(), 10f),
                         new ComplexRecipe.RecipeElement(SimHashes.Algae.CreateTag(), 50f),
                         new ComplexRecipe.RecipeElement(SimHashes.SlimeMold.CreateTag(), 50f),
                     },
@@ -265,5 +265,57 @@ namespace ILoveSlicksters
         }
     }
 
+
+
+    [HarmonyPatch(typeof(OilFloaterDecorConfig))]
+    [HarmonyPatch("CreateOilFloater")]
+    public class OilFloaterDecorConfigDietPatch
+    {
+        public static void Postfix(GameObject __result)
+        {
+            if (!Patches.Settings.DisableLonghairSlicksters)
+            {
+
+                // Patch the diet
+                Diet diet = new Diet(new Diet.Info[]
+                {
+                    new Diet.Info(new HashSet<Tag>
+                    {
+                        SimHashes.Oxygen.CreateTag()
+                    }, ((SimHashes) Patches.Settings.LonghairElement).CreateTag(), Traverse.Create<OilFloaterDecorConfig>().GetField<float>("CALORIES_PER_KG_OF_ORE"), TUNING.CREATURES.CONVERSION_EFFICIENCY.GOOD_1, null, 0, false, false)
+                });
+                CreatureCalorieMonitor.Def def = __result.AddOrGetDef<CreatureCalorieMonitor.Def>();
+                def.diet = diet;
+                __result.AddOrGetDef<GasAndLiquidConsumerMonitor.Def>().diet = diet;
+
+
+                // Patch the dead drop
+                string[] loot = new string[4];
+                loot[0] = BasicFabricConfig.ID;
+                loot[1] = BasicFabricConfig.ID;
+                loot[2] = MeatConfig.ID;
+                loot[3] = MeatConfig.ID;
+                
+                __result.AddOrGet<Butcherable>().SetDrops(loot);
+
+
+            }
+        }
+    }
+
+    public enum LonghairElementList
+    {
+        CO2 = SimHashes.CarbonDioxide,
+        Oxygen = SimHashes.Oxygen,
+        Chlorine = SimHashes.ChlorineGas,
+        Helium = SimHashes.Helium,
+        Water = SimHashes.Water,
+        Brine = SimHashes.Brine,
+        Dirt = SimHashes.Dirt,
+        Snow = SimHashes.Snow,
+        Carbon = SimHashes.Carbon,
+        Phosphorite = SimHashes.Phosphorite,
+        Rust = SimHashes.Rust
+    }
 
 }

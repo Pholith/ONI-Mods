@@ -21,9 +21,18 @@ namespace ILoveSlicksters
         [JsonProperty]
         public bool DisableSlickstersRecipes { get; set; }
 
-        [Option("Disable slicksters care packages", "If the box is ticked, The printing pod will not show new slicksters eggs.")]
+        [Option("Disable slicksters care packages", "If the box is ticked, the printing pod will not show new slicksters eggs.")]
         [JsonProperty]
         public bool DisableSlickstersCarePackages { get; set; }
+
+        [Option("Disable longhair slickster buff", "If the box is ticked, the longhair slickster will not have a buff from the mod.")]
+        [JsonProperty]
+        public bool DisableLonghairSlicksters { get; set; }
+
+        [Option("Longhair element conversion", "Set the element the longhair slickster will produce. Don't works if you disabled the longhair buff.")]
+        [JsonProperty]
+        public LonghairElementList LonghairElement { get; set; }
+
 
         public SlicksterOptions()
         {
@@ -31,6 +40,8 @@ namespace ILoveSlicksters
             ConsumptionMultiplier = 1;
             DisableSlickstersRecipes = false;
             DisableSlickstersCarePackages = false;
+            DisableLonghairSlicksters = false;
+            LonghairElement = LonghairElementList.Oxygen;
         }
     }
 }
