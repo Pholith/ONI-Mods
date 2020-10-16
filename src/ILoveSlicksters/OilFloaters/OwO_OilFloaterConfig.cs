@@ -8,7 +8,7 @@ using static TUNING.CREATURES;
 
 namespace ILoveSlicksters
 {
-    class OwO_OilFloaterConfig : IEntityConfig
+    public class OwO_OilFloaterConfig : IEntityConfig
     {
 
         public GameObject CreatePrefab()
