@@ -13,6 +13,7 @@ using PeterHan.PLib;
 
 namespace Always3Interests
 {
+    [RestartRequired]
     [JsonObject(MemberSerialization.OptIn)]
     public class Always3InterestsSettings
     {

@@ -296,13 +296,14 @@ namespace Pholib
             };
         }
 
+
     }
 
 
 
     public class Logs
     {
-        private static readonly string version = "1.2.0";
+        private static readonly string version = "1.2.1";
 
         public static bool DebugLog = false;
         private static bool initiated = false;
