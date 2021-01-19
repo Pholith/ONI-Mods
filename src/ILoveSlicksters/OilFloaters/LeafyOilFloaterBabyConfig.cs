@@ -18,6 +18,10 @@ namespace ILoveSlicksters
         public void OnSpawn(GameObject inst)
         {
         }
+        public string GetDlcId()
+        {
+            return "";
+        }
 
         public const string ID = "LeafyOilfloaterBaby";
         private const string kanim_id = "custom_baby_oilfloater2_kanim";

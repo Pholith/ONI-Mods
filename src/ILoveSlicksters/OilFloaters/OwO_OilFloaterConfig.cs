@@ -41,7 +41,7 @@ namespace ILoveSlicksters
         public static GameObject CreateOilFloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
             GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 263.15f, 313.15f, is_baby, variantSprite);
-            EntityTemplates.ExtendEntityToWildCreature(prefab, CREATURES.SPACE_REQUIREMENTS.TIER4, LIFESPAN.TIER2);
+            EntityTemplates.ExtendEntityToWildCreature(prefab, CREATURES.SPACE_REQUIREMENTS.TIER4);
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.deltaAttribute.Id, -OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / 600f, name, false, false, true));
@@ -76,6 +76,10 @@ namespace ILoveSlicksters
                 weight = 0.02f
             }
         };
+        public string GetDlcId()
+        {
+            return "";
+        }
 
         public const string base_kanim_id = "custom_oilfloater_kanim";
         public const string egg_kanim_id = "custom_egg_oilfloater_kanim";

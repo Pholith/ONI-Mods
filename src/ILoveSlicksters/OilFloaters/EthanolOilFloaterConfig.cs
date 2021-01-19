@@ -28,7 +28,7 @@ namespace ILoveSlicksters
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
             GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 243.15f, 293.15f, is_baby, variantSprite);
-            EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE, LIFESPAN.TIER2);
+            EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.deltaAttribute.Id, -OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / 600f, name, false, false, true));
@@ -43,6 +43,10 @@ namespace ILoveSlicksters
 
         public void OnSpawn(GameObject inst)
         {
+        }
+        public string GetDlcId()
+        {
+            return "";
         }
 
         public static List<FertilityMonitor.BreedingChance> EGG_CHANCES_ETHANOL = new List<FertilityMonitor.BreedingChance>

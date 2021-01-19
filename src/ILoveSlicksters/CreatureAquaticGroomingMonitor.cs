@@ -1,5 +1,4 @@
 ﻿using Klei.AI;
-using System;
 
 namespace ILoveSlicksters
 {

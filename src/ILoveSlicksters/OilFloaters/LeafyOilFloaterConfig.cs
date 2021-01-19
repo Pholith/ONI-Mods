@@ -31,7 +31,7 @@ namespace ILoveSlicksters
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
             GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 283.15f, 298.15f, is_baby, variantSprite);
-            EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE, LIFESPAN.TIER2);
+            EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
             int count = 3;
             string[] loot = new string[count];
             for (int i = 0; i < count; i++)
@@ -54,7 +54,11 @@ namespace ILoveSlicksters
             List<Diet.Info> diet_infos = DietInfo(GameTags.Steel, CALORIES_PER_KG_OF_ORE, CONVERSION_EFFICIENCY.GOOD_1, null, 0f);
             return OilFloaters.SetupDiet(prefab, diet_infos, CALORIES_PER_KG_OF_ORE, MIN_POOP_SIZE_IN_KG, 5 * Patches.Settings.ConsumptionMultiplier);
         }
-        
+        public string GetDlcId()
+        {
+            return "";
+        }
+
         public static List<Diet.Info> DietInfo(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
         {
             return new List<Diet.Info>

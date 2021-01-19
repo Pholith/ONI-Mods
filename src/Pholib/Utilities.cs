@@ -1,5 +1,4 @@
-﻿using Database;
-using Harmony;
+﻿using Harmony;
 using STRINGS;
 using System;
 using System.Collections.Generic;
@@ -10,6 +9,46 @@ using UnityEngine;
 
 namespace Pholib
 {
+    public class Logs
+    {
+        private static readonly string version = "1.2.2";
+
+        public static bool DebugLog = false;
+        private static bool initiated = false;
+
+        public static void InitIfNot()
+        {
+            if (initiated)
+            {
+                return;
+            }
+            Debug.Log("== Game Launched with Pholib " + version + "  " + System.DateTime.Now);
+            initiated = true;
+        }
+
+
+        public static void Log(string informations)
+        {
+            InitIfNot();
+            Debug.Log("Pholib: " + informations);
+        }
+        public static void Log(object informations)
+        {
+            InitIfNot();
+            Debug.Log("Pholib: " + informations.ToString());
+        }
+
+
+        public static void LogIfDebugging(string informations)
+        {
+            InitIfNot();
+            if (DebugLog)
+            {
+                Debug.Log("Pholib: " + informations);
+            }
+        }
+    }
+
     public static class Extensions
     {
         public static void RemoveDef<DefType>(this GameObject go) where DefType : StateMachine.BaseDef
@@ -56,7 +95,7 @@ namespace Pholib
         /// <returns></returns>
         public static bool IsTagDiscovered(string tag)
         {
-            return WorldInventory.Instance.IsDiscovered(tag);
+            return DiscoveredResources.Instance.IsDiscovered(tag);
         }
 
         /// <summary>
@@ -66,7 +105,7 @@ namespace Pholib
         /// <returns></returns>
         public static bool IsSimHashesDiscovered(SimHashes hash)
         {
-            return WorldInventory.Instance.IsDiscovered(ElementLoader.FindElementByHash(hash).tag);
+            return DiscoveredResources.Instance.IsDiscovered(ElementLoader.FindElementByHash(hash).tag);
         }
 
         /// <summary>
@@ -273,11 +312,22 @@ namespace Pholib
             ModUtil.AddBuildingToPlanScreen(category, id);
         }
 
-        public static void AddBuildingTech(string techName, string id)
+        /// <summary>
+        /// Add building tech. Must be called using a postfix on Db.Init
+        /// </summary>
+        /// <param name="techName"></param>
+        /// <param name="buildingId"></param>
+        public static void AddBuildingTech(string techName, string buildingId)
         {
-            List<string> list = new List<string>(Techs.TECH_GROUPING[techName]);
-            list.Add(id);
-            Techs.TECH_GROUPING[techName] = list.ToArray();
+            var techs = Db.Get().Techs.TryGet(techName);
+            if (techs == null)
+            {
+                Debug.LogError($"No tech {techName} found!");
+            }
+            else
+            {
+                techs.unlockedItemIDs.Add(buildingId);
+            }
         }
 
         public static ComplexRecipe AddComplexRecipe(ComplexRecipe.RecipeElement[] input, ComplexRecipe.RecipeElement[] output,
@@ -297,48 +347,6 @@ namespace Pholib
         }
 
 
-    }
-
-
-
-    public class Logs
-    {
-        private static readonly string version = "1.2.1";
-
-        public static bool DebugLog = false;
-        private static bool initiated = false;
-
-        public static void InitIfNot()
-        {
-            if (initiated)
-            {
-                return;
-            }
-            Debug.Log("== Game Launched with Pholib " + version + "  " + System.DateTime.Now);
-            initiated = true;
-        }
-
-
-        public static void Log(string informations)
-        {
-            InitIfNot();
-            Debug.Log("Pholib: " + informations);
-        }
-        public static void Log(object informations)
-        {
-            InitIfNot();
-            Debug.Log("Pholib: " + informations.ToString());
-        }
-
-
-        public static void LogIfDebugging(string informations)
-        {
-            InitIfNot();
-            if (DebugLog)
-            {
-                Debug.Log("Pholib: " + informations);
-            }
-        }
     }
 
 }

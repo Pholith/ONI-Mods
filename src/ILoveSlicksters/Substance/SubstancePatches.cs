@@ -79,11 +79,10 @@ namespace ILoveSlicksters
         [HarmonyPatch(typeof(ElementLoader), "Load")]
         public class ElementLoader_Load
         {
-            public static void Prefix(ref Hashtable substanceList, SubstanceTable substanceTable)
+            public static void Prefix(ref Hashtable substanceList, Dictionary<string, SubstanceTable> substanceTablesByDlc)
             {
-                var water = substanceTable.GetSubstance(SimHashes.Water);
-                
-                substanceList[Antigel.SimHash] = Antigel.CreateSubstance(water);
+                var water = substanceTablesByDlc[""].GetSubstance(SimHashes.Water);
+                substanceList.Add(Antigel.SimHash, Antigel.CreateSubstance(water));
             }
         }
 

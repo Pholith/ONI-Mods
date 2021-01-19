@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ILoveSlicksters
 {
@@ -42,7 +38,7 @@ namespace ILoveSlicksters
 
             public bool MustDance()
             {
-                GameObject obj = Grid.Objects[Grid.PosToCell(transform.GetPosition()), (int) ObjectLayer.Building];
+                GameObject obj = Grid.Objects[Grid.PosToCell(transform.GetPosition()), (int)ObjectLayer.Building];
                 if (obj == null || obj.PrefabID() != PhonoboxConfig.ID) return false;
                 Phonobox box = obj.AddOrGet<Phonobox>();
                 return box.smi.GetCurrentState() == box.smi.sm.operational.playing;

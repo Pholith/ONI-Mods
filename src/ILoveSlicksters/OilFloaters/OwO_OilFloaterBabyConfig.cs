@@ -19,6 +19,10 @@ namespace ILoveSlicksters
         public void OnSpawn(GameObject inst)
         {
         }
+        public string GetDlcId()
+        {
+            return "";
+        }
 
         public const string ID = "OwO_OilfloaterBaby";
 

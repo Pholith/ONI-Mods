@@ -1,19 +1,16 @@
-﻿using STRINGS;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ILoveSlicksters
 {
     public class Antigel
     {
+
+
         public const string Data = @"elements:
   - elementId: Antigel
     maxMass: 1000
     liquidCompression: 1.01
-    speed: 110
+    speed: 125
     minHorizontalFlow: 0.1
     minVerticalFlow: 0.1
     specificHeatCapacity: 5.179
@@ -30,17 +27,19 @@ namespace ILoveSlicksters
     molarMass: 30
     toxicity: 0.5
     lightAbsorptionFactor: 0.3
+    radiationAbsorptionFactor: 0.35
     tags:    
     - AnyWater
     - Mixture
     isDisabled: false
     state: Liquid
     localizationID: ILoveSlicksters.PHO_STRINGS.ELEMENTS.ANTIGEL.NAME
+    dlcId: """"
 ";
 
 
         public const string Id = "Antigel";
-        public static readonly SimHashes SimHash = (SimHashes) Hash.SDBMLower(Id);
+        public static readonly SimHashes SimHash = (SimHashes)Hash.SDBMLower(Id);
         public static string Name = PHO_STRINGS.ELEMENTS.ANTIGEL.NAME;
         public static string Description = PHO_STRINGS.ELEMENTS.ANTIGEL.DESC;
         public static Color32 color = new Color32(190, 220, 160, 255);

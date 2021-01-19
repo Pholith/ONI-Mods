@@ -25,11 +25,15 @@ namespace ILoveSlicksters
 
             return gameObject;
         }
+        public string GetDlcId()
+        {
+            return "";
+        }
 
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
             GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 523.15f, 743.15f, is_baby, variantSprite);
-            EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE, LIFESPAN.TIER3);
+            EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
             int count = (int) prefab.AddOrGet<PrimaryElement>().Mass;
 
             string[] loot = new string[count];

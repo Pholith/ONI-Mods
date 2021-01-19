@@ -1,10 +1,6 @@
 ﻿using Harmony;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
-using static ProcGen.SubWorld;
 using static ProcGen.Temperature;
 
 namespace ILoveSlicksters
@@ -24,7 +20,9 @@ namespace ILoveSlicksters
 
             public static void OnLoad()
             {
-                AddHashToTable((Range)11, "VeryHot2");
+                // Hash to be sure there is no other mod with this id
+                Range hashedString = (Range) Hash.SDBMLower("VeryHot2");
+                if (!TemperatureTable.ContainsKey(hashedString)) AddHashToTable(hashedString, "VeryHot2");
             }
 
             [HarmonyPatch(typeof(Enum), nameof(Enum.ToString), new Type[] { })]
