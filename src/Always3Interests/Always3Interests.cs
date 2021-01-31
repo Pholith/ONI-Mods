@@ -155,7 +155,6 @@ namespace Always3Interests
             };
 
             Traverse.Create<DUPLICANTSTATS>().Field<int[]>("APTITUDE_ATTRIBUTE_BONUSES").Value = customAttributes;
-            
         }
     }
     */

@@ -44,13 +44,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\..\..\..\..\..\Program Files %28x86%29\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp-firstpass.dll" />
-    <Analyzer Include="..\..\..\..\..\..\..\Program Files %28x86%29\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\Assembly-CSharp.dll" />
-    <Analyzer Include="..\..\..\..\..\..\..\Program Files %28x86%29\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\ModLoader.dll" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="ILMerge.props" />
+    <None Include="mod_info.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -62,19 +62,19 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\packages\GameLibs\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\packages\GameLibs\vanilla\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\packages\GameLibs\Assembly-CSharp-firstpass.dll</HintPath>
+      <HintPath>..\packages\GameLibs\vanilla\Assembly-CSharp-firstpass.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="PLib, Version=3.13.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PLib.3.13.0\lib\net40\PLib.dll</HintPath>
+    <Reference Include="PLib, Version=3.13.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PLib.3.13.1\lib\net40\PLib.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\packages\GameLibs\UnityEngine.dll</HintPath>
@@ -88,6 +88,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo running script...
+rm *.pdb
+copy "$(ProjectDir)\mod_info.yaml" "$(OutDir)\mod_info.yaml"
 rmdir /Q /S "$(SolutionDir)\..\..\..\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)"
 xcopy "$(TargetDir.TrimEnd('\'))" "$(SolutionDir)\..\..\..\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)" /E /I /Q
 </PostBuildEvent>
