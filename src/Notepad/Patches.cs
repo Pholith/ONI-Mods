@@ -1,22 +1,19 @@
-﻿using Harmony;
-using System;
+﻿using HarmonyLib;
+using KMod;
+using PeterHan.PLib.Database;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 using static Pholib.Utilities;
 
 namespace Notepad
 {
 
-
-    public class OnLoadPatch
+    public class NotepadMod : UserMod2
     {
-        public static string modPath;
-
-        public static void OnLoad(string modPath)
+        public override void OnLoad(Harmony harmony)
         {
-            OnLoadPatch.modPath = modPath;
-            ModUtil.RegisterForTranslation(typeof(PHO_STRINGS));
+            base.OnLoad(harmony);
+            new PLocalization().Register();
         }
     }
 
@@ -34,7 +31,7 @@ namespace Notepad
     [HarmonyPatch(typeof(Db), "Initialize")]
     public static class DupRoomSensorTechPatch
     {
-        public static void Prefix()
+        public static void Postfix()
         {
             AddBuildingTech("InteriorDecor", NotepadConfig.ID);
 
@@ -42,19 +39,6 @@ namespace Notepad
             o.AddComponent<NotepadSideScreen>();
         }
     }
-
-
-    // Load translations files
-    [HarmonyPatch(typeof(Localization))]
-    [HarmonyPatch("Initialize")]
-    class StringLocalisationPatch
-    {
-        public static void Postfix()
-        {
-            LoadTranslations(typeof(PHO_STRINGS), OnLoadPatch.modPath);
-        }
-    }
-
 
 
     [HarmonyPatch(typeof(DetailsScreen), "OnPrefabInit")]

@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using STRINGS;
 using System;
 using System.Collections.Generic;
@@ -142,7 +142,10 @@ namespace Pholib
             }
 
             Dictionary<string, string> dict = Traverse.Create(CustomGameSettings.Instance).Field<Dictionary<string, string>>("CurrentQualityLevelsBySetting").Value;
-            if (dict == null || dict["World"] == null) return false;
+            if (dict == null || dict["World"] == null)
+            {
+                return false;
+            }
 
             //Logs.LogIfDebugging(dict["World"]);
             //Logs.LogIfDebugging(dict["World"].Replace("worlds/", ""));
@@ -166,7 +169,7 @@ namespace Pholib
             // you still need to call this
             Localization.RegisterForTranslation(locStringRoot);
 
-            var locale = Localization.GetLocale();
+            Localization.Locale locale = Localization.GetLocale();
             if (locale == null)
             {
                 // english language is selected, so no action is needed
@@ -179,8 +182,8 @@ namespace Pholib
                 return;
             }
 
-            var stringsPath = Path.Combine(modPath, translationsDir ?? "");
-            var translationsPath = Path.Combine(stringsPath, locale.Code + ".po");
+            string stringsPath = Path.Combine(modPath, translationsDir ?? "");
+            string translationsPath = Path.Combine(stringsPath, locale.Code + ".po");
 
             Debug.Log($"Loading translation file for {locale.Lang} ({locale.Code}) language: '{translationsPath}'");
 
@@ -192,7 +195,7 @@ namespace Pholib
 
             try
             {
-                var translations = Localization.LoadStringsFile(translationsPath, false);
+                Dictionary<string, string> translations = Localization.LoadStringsFile(translationsPath, false);
                 Localization.OverloadStrings(translations);
             }
             catch (Exception ex)
@@ -204,14 +207,14 @@ namespace Pholib
 
         public static void AddCarePackage(ref Immigration immigration, string objectId, float amount, Func<bool> requirement = null)
         {
-            var field = Traverse.Create(immigration).Field("carePackages");
-            var list = field.GetValue<CarePackageInfo[]>().ToList();
+            Traverse field = Traverse.Create(immigration).Field("carePackages");
+            List<CarePackageInfo> list = field.GetValue<CarePackageInfo[]>().ToList();
             list.Add(new CarePackageInfo(objectId, amount, requirement));
             field.SetValue(list.ToArray());
         }
 
 
-        private static List<Type> alreadyLoaded = new List<Type>();
+        private static readonly List<Type> alreadyLoaded = new List<Type>();
         /// <summary>
         /// Add strings and icon for a world
         /// Don't call this method OnLoad ! 
@@ -253,7 +256,7 @@ namespace Pholib
             Texture2D texture2D = new Texture2D(width, height, TextureFormat.DXT5, false);
             texture2D.LoadRawTextureData(array);
             texture2D.Apply(false, true);
-            return Sprite.Create(texture2D, new Rect(0f, 0f, (float)width, (float)height), new Vector2((float)(width / 2), (float)(height / 2)));
+            return Sprite.Create(texture2D, new Rect(0f, 0f, width, height), new Vector2(width / 2, height / 2));
         }
 
         // Load a incorporated sprite v2 - thanks test447
@@ -275,7 +278,7 @@ namespace Pholib
                 }
             }
             texture2DFlipped.Apply(false, true);
-            Sprite sprite = Sprite.Create(texture2DFlipped, new Rect(0f, 0f, (float)width, (float)height), new Vector2((float)(width / 2), (float)(height / 2)));
+            Sprite sprite = Sprite.Create(texture2DFlipped, new Rect(0f, 0f, width, height), new Vector2(width / 2, height / 2));
             return sprite;
         }
 
@@ -315,25 +318,17 @@ namespace Pholib
         /// <summary>
         /// Add building tech. Must be called using a postfix on Db.Init
         /// </summary>
-        /// <param name="techName"></param>
+        /// <param name="techId"></param>
         /// <param name="buildingId"></param>
-        public static void AddBuildingTech(string techName, string buildingId)
+        public static void AddBuildingTech(string techId, string buildingId)
         {
-            var techs = Db.Get().Techs.TryGet(techName);
-            if (techs == null)
-            {
-                Debug.LogError($"No tech {techName} found!");
-            }
-            else
-            {
-                techs.unlockedItemIDs.Add(buildingId);
-            }
+            Db.Get().Techs.Get(techId).unlockedItemIDs.Add(buildingId);
         }
 
         public static ComplexRecipe AddComplexRecipe(ComplexRecipe.RecipeElement[] input, ComplexRecipe.RecipeElement[] output,
             string fabricatorId, float productionTime, LocString recipeDescription, ComplexRecipe.RecipeNameDisplay nameDisplayType, int sortOrder, string requiredTech = null)
         {
-            var recipeId = ComplexRecipeManager.MakeRecipeID(fabricatorId, input, output);
+            string recipeId = ComplexRecipeManager.MakeRecipeID(fabricatorId, input, output);
 
             return new ComplexRecipe(recipeId, input, output)
             {

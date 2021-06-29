@@ -7,9 +7,7 @@ namespace Notepad
         protected override void OnPrefabInit()
         {
             base.OnPrefabInit();
-
             titleKey = PHO_STRINGS.NOTEPAD.NAME.key.String;
-
             activateOnSpawn = true;
 
 
