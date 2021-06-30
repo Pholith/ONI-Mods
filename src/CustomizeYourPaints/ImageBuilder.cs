@@ -1,5 +1,4 @@
-﻿using Harmony;
-using Pholib;
+﻿using Pholib;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -62,10 +61,20 @@ namespace SolarSystemWorlds
                     }
                 }
 
-                if (squarePainting != null) squarePainting.Save(ImageUtil.ModPath() + "anim/paints/mod_painting/painting_0.png", ImageFormat.Png);
-                if (tallPainting != null) tallPainting.Save(ImageUtil.ModPath() + "anim/paints/mod_painting_tall/painting_tall_0.png", ImageFormat.Png);
-                if (widePainting != null) widePainting.Save(ImageUtil.ModPath() + "anim/paints/mod_painting_wide/painting_wide_0.png", ImageFormat.Png);
+                if (squarePainting != null)
+                {
+                    squarePainting.Save(ImageUtil.ModPath() + "anim/paints/mod_painting/painting_0.png", ImageFormat.Png);
+                }
 
+                if (tallPainting != null)
+                {
+                    tallPainting.Save(ImageUtil.ModPath() + "anim/paints/mod_painting_tall/painting_tall_0.png", ImageFormat.Png);
+                }
+
+                if (widePainting != null)
+                {
+                    widePainting.Save(ImageUtil.ModPath() + "anim/paints/mod_painting_wide/painting_wide_0.png", ImageFormat.Png);
+                }
             }
             catch (IOException e)
             {

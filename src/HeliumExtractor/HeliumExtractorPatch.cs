@@ -1,5 +1,5 @@
 ﻿using Database;
-using Harmony;
+using HarmonyLib;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace HeliumExtractor
 {
-    class HeliumExtractorPatch
+    internal class HeliumExtractorPatch
     {
         //Change the color of the extractor
         [HarmonyPatch(typeof(BuildingComplete), "OnSpawn")]
@@ -16,7 +16,7 @@ namespace HeliumExtractor
         {
             public static void Postfix(BuildingComplete __instance)
             {
-                var kAnimBase = __instance.GetComponent<KAnimControllerBase>();
+                KAnimControllerBase kAnimBase = __instance.GetComponent<KAnimControllerBase>();
                 if (kAnimBase != null)
                 {
                     if (__instance.name == "HeliumExtractorComplete")
@@ -42,16 +42,15 @@ namespace HeliumExtractor
                 "STRINGS.BUILDINGS.PREFABS." + HeliumExtractorConfig.ID.ToUpper() + ".DESC");
 
             public static LocString EFFECT = new LocString("Transforms "
-                + STRINGS.UI.FormatAsLink("natural gas", "METHANE") 
+                + STRINGS.UI.FormatAsLink("natural gas", "METHANE")
                 + " into "
-                + STRINGS.UI.FormatAsLink("helium", "HELIUM") + ", " 
+                + STRINGS.UI.FormatAsLink("helium", "HELIUM") + ", "
                 + STRINGS.UI.FormatAsLink("propane", "LIQUIDPROPANE") + " and "
                 + STRINGS.UI.FormatAsLink("sulfur", "SULFUR") + "."
                 + "\n\n" + STRINGS.UI.FormatAsLink("Helium", "HELIUM") + " is a useful gas with interesting physical properties.\n",
                 "STRINGS.BUILDINGS.PREFABS." + HeliumExtractorConfig.ID.ToUpper() + ".EFFECT");
 
-
-            static void Prefix()
+            private static void Prefix()
             {
                 Strings.Add(NAME.key.String, NAME.text);
                 Strings.Add(DESC.key.String, DESC.text);
@@ -59,7 +58,7 @@ namespace HeliumExtractor
                 ModUtil.AddBuildingToPlanScreen("Refining", HeliumExtractorConfig.ID);
             }
 
-            static void Postfix()
+            private static void Postfix()
             {
                 object obj = Activator.CreateInstance(typeof(HeliumExtractorConfig));
                 BuildingConfigManager.Instance.RegisterBuilding(obj as IBuildingConfig);
@@ -95,7 +94,7 @@ namespace HeliumExtractor
         {
             public static void Postfix(Element elem)
             {
-                if (elem.id == SimHashes.Helium || elem.id == SimHashes.LiquidHelium )
+                if (elem.id == SimHashes.Helium || elem.id == SimHashes.LiquidHelium)
                 {
                     elem.disabled = false;
                 }
@@ -118,7 +117,7 @@ namespace HeliumExtractor
         {
             public static void Prefix(GourmetCookingStationConfig __instance)
             {
-                Traverse.Create(__instance).Field("FUEL_TAG").SetValue( new Tag(GameTags.CombustibleGas));
+                Traverse.Create(__instance).Field("FUEL_TAG").SetValue(new Tag(GameTags.CombustibleGas));
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using static OilRefinery;
 
 namespace HeliumExtractor
@@ -9,7 +9,7 @@ namespace HeliumExtractor
 
     [HarmonyPatch(typeof(WorkableTarget))]
     [HarmonyPatch("OnPrefabInit")]
-    class AnimationPatch
+    public class AnimationPatch
     {
         public static void Postfix(WorkableTarget __instance)
         {

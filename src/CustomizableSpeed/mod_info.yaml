@@ -1,5 +1,5 @@
 supportedContent: ALL
-minimumSupportedBuild: 469473
+minimumSupportedBuild: 0
 APIVersion: 2
 version: "2.0.0"
 staticID: CustomizableSpeed
