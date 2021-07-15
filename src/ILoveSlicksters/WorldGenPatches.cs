@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using static ProcGen.Temperature;
@@ -21,8 +21,11 @@ namespace ILoveSlicksters
             public static void OnLoad()
             {
                 // Hash to be sure there is no other mod with this id
-                Range hashedString = (Range) Hash.SDBMLower("VeryHot2");
-                if (!TemperatureTable.ContainsKey(hashedString)) AddHashToTable(hashedString, "VeryHot2");
+                Range hashedString = (Range)Hash.SDBMLower("VeryHot2");
+                if (!TemperatureTable.ContainsKey(hashedString))
+                {
+                    AddHashToTable(hashedString, "VeryHot2");
+                }
             }
 
             [HarmonyPatch(typeof(Enum), nameof(Enum.ToString), new Type[] { })]
@@ -30,7 +33,11 @@ namespace ILoveSlicksters
             {
                 public static bool Prefix(ref Enum __instance, ref string __result)
                 {
-                    if (!(__instance is Range)) return true;
+                    if (!(__instance is Range))
+                    {
+                        return true;
+                    }
+
                     return !TemperatureTable.TryGetValue((Range)__instance, out __result);
                 }
             }
@@ -40,7 +47,11 @@ namespace ILoveSlicksters
             {
                 public static bool Prefix(Type enumType, string value, ref object __result)
                 {
-                    if (!enumType.Equals(typeof(Range))) return true;
+                    if (!enumType.Equals(typeof(Range)))
+                    {
+                        return true;
+                    }
+
                     return !TemperatureReverseTable.TryGetValue(value, out __result);
                 }
             }

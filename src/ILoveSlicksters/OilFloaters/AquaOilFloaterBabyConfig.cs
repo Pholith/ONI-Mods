@@ -19,9 +19,9 @@ namespace ILoveSlicksters
         {
         }
 
-        public string GetDlcId()
+        public string[] GetDlcIds()
         {
-            return "";
+            return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
 
         public const string ID = "AquaOilfloaterBaby";

@@ -26,9 +26,9 @@ namespace ILoveSlicksters
             return gameObject;
         }
 
-        public string GetDlcId()
+        public string[] GetDlcIds()
         {
-            return "";
+            return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
 
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
@@ -44,7 +44,7 @@ namespace ILoveSlicksters
             trait.Add(new AttributeModifier(Db.Get().Amounts.HitPoints.maxAttribute.Id, HITPOINTS.TIER1, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, LIFESPAN.TIER3, name, false, false, true));
             List<Diet.Info> diet_infos = DietInfo(GameTags.AnyWater, CALORIES_PER_KG_OF_ORE, CONVERSION_EFFICIENCY.GOOD_1, null, 0f);
-            return OilFloaters.SetupDiet(prefab, diet_infos, CALORIES_PER_KG_OF_ORE, MIN_POOP_SIZE_IN_KG, 15f * Patches.Settings.ConsumptionMultiplier);
+            return OilFloaters.SetupDiet(prefab, diet_infos, CALORIES_PER_KG_OF_ORE, MIN_POOP_SIZE_IN_KG, 15f * ILoveSlicksters.Settings.ConsumptionMultiplier);
 
         }
         public static List<Diet.Info> DietInfo(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
@@ -67,9 +67,10 @@ namespace ILoveSlicksters
                 {
                     Antigel.SimHash.CreateTag()
                 }), SimHashes.Wolframite.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false)
-
+                
             };
         }
+
         public static GameObject AquaticOilFloater(string id, string name, string desc, string anim_file, string traitId, float warnLowTemp, float warnHighTemp, bool is_baby, string symbolOverridePrefix = null)
         {
             float mass = 50f;
@@ -161,7 +162,7 @@ namespace ILoveSlicksters
 
         public const string EGG_ID = "AquaOilfloaterEgg";
 
-        private static float KG_ORE_EATEN_PER_CYCLE = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.MEGA * Patches.Settings.ConsumptionMultiplier;
+        private static float KG_ORE_EATEN_PER_CYCLE = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.MEGA * ILoveSlicksters.Settings.ConsumptionMultiplier;
 
         private static float CALORIES_PER_KG_OF_ORE = PHO_TUNING.OILFLOATER.STANDARD_CALORIES_PER_CYCLE / KG_ORE_EATEN_PER_CYCLE;
 

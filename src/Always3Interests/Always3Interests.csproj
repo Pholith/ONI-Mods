@@ -50,6 +50,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="ILMerge.props" />
+    <None Include="mod.yaml" />
     <None Include="mod_info.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

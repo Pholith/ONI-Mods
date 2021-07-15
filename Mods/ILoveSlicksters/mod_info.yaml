@@ -1,2 +1,4 @@
 supportedContent: ALL
-lastWorkingBuild: 447892
+minimumSupportedBuild: 0
+APIVersion: 2
+version: "2.0.0"

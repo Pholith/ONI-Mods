@@ -1,6 +1,8 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using Klei.AI;
-using PeterHan.PLib;
+using KMod;
+using PeterHan.PLib.Core;
+using PeterHan.PLib.Database;
 using PeterHan.PLib.Options;
 using Pholib;
 using System;
@@ -11,18 +13,22 @@ using UnityEngine;
 namespace ILoveSlicksters
 {
 
-    public class Patches
+    public class ILoveSlicksters : UserMod2
     {
-        public static string modPath;
+
+        //public static string modPath;
         public static SlicksterOptions Settings { get; private set; }
 
-        public static void OnLoad(string modPath)
+
+        public override void OnLoad(Harmony harmony)
         {
-            Patches.modPath = modPath;
+            base.OnLoad(harmony);
+            new POptions().RegisterOptions(this, typeof(SlicksterOptions));
+
+            new PLocalization().Register();
 
             // Init PLib and settings
             PUtil.InitLibrary();
-            POptions.RegisterOptions(typeof(SlicksterOptions));
 
             Settings = POptions.ReadSettings<SlicksterOptions>();
             if (Settings == null)
@@ -89,7 +95,7 @@ namespace ILoveSlicksters
             });
 
             // Kg eaten patch
-            if (Patches.Settings.IncreasesVanillaSlickstersConsumption)
+            if (Settings.IncreasesVanillaSlickstersConsumption)
             {
                 Traverse.Create<OilFloaterConfig>().Field<float>("KG_ORE_EATEN_PER_CYCLE").Value = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2;
 
@@ -97,25 +103,13 @@ namespace ILoveSlicksters
                 Traverse.Create<OilFloaterConfig>().Field<float>("CALORIES_PER_KG_OF_ORE").Value = CALORIES_PER_KG_OF_ORE;
                 Traverse.Create<OilFloaterHighTempConfig>().Field<float>("CALORIES_PER_KG_OF_ORE").Value = CALORIES_PER_KG_OF_ORE;
             }
-
-        }
-    }
-
-    // Load translations files
-    [HarmonyPatch(typeof(Localization))]
-    [HarmonyPatch("Initialize")]
-    class StringLocalisationPatch
-    {
-        public static void Postfix()
-        {
-            Utilities.LoadTranslations(typeof(PHO_STRINGS), Patches.modPath);
         }
     }
 
     // Load translations files
     [HarmonyPatch(typeof(BaseOilFloaterConfig))]
     [HarmonyPatch("SetupDiet")]
-    class BiggerConsumptionRatePatch
+    internal class BiggerConsumptionRatePatch
     {
         public static void Postfix(GameObject __result)
         {
@@ -135,14 +129,17 @@ namespace ILoveSlicksters
             // If the slickster is a vanilla slickster, I check the options
             if (vanillasSlickstersIds.Contains(kId.PrefabTag.Name))
             {
-                if (Patches.Settings.IncreasesVanillaSlickstersConsumption)
+                if (ILoveSlicksters.Settings.IncreasesVanillaSlickstersConsumption)
                 {
                     def.consumptionRate = 5f;
                 }
             }
             else
             {
-                if (def.consumptionRate <= 0.5f) def.consumptionRate = 5f * Patches.Settings.ConsumptionMultiplier;
+                if (def.consumptionRate <= 0.5f)
+                {
+                    def.consumptionRate = 5f * ILoveSlicksters.Settings.ConsumptionMultiplier;
+                }
             }
 
         }
@@ -155,7 +152,7 @@ namespace ILoveSlicksters
     {
         public static void Postfix()
         {
-            if (!Patches.Settings.DisableSlickstersRecipes)
+            if (!ILoveSlicksters.Settings.DisableSlickstersRecipes)
             {
                 Utilities.AddComplexRecipe(
                     input: new[] {
@@ -251,7 +248,7 @@ namespace ILoveSlicksters
     {
         public static void Postfix(ref Immigration __instance)
         {
-            if (!Patches.Settings.DisableSlickstersCarePackages)
+            if (!ILoveSlicksters.Settings.DisableSlickstersCarePackages)
             {
                 Utilities.AddCarePackage(ref __instance, LeafyOilfloaterConfig.EGG_ID, 2f, () => Utilities.CycleInRange(50, 600) && Utilities.IsTagDiscovered("LeafyOilfloater"));
                 Utilities.AddCarePackage(ref __instance, EthanolOilfloaterConfig.EGG_ID, 2f, () => Utilities.CycleInRange(50, 800) && Utilities.IsOilFieldDiscovered() && Utilities.IsSimHashesDiscovered(SimHashes.Ethanol) && Utilities.IsTagDiscovered("EthanolOilfloater"));
@@ -273,7 +270,7 @@ namespace ILoveSlicksters
     {
         public static void Postfix(GameObject __result)
         {
-            if (!Patches.Settings.DisableLonghairSlicksters)
+            if (!ILoveSlicksters.Settings.DisableLonghairSlicksters)
             {
 
                 // Patch the diet
@@ -282,7 +279,7 @@ namespace ILoveSlicksters
                     new Diet.Info(new HashSet<Tag>
                     {
                         SimHashes.Oxygen.CreateTag()
-                    }, ((SimHashes) Patches.Settings.LonghairElement).CreateTag(), Traverse.Create<OilFloaterDecorConfig>().GetField<float>("CALORIES_PER_KG_OF_ORE"), TUNING.CREATURES.CONVERSION_EFFICIENCY.GOOD_1, null, 0, false, false)
+                    }, ((SimHashes) ILoveSlicksters.Settings.LonghairElement).CreateTag(), Traverse.Create<OilFloaterDecorConfig>().Field<float>("CALORIES_PER_KG_OF_ORE").Value, TUNING.CREATURES.CONVERSION_EFFICIENCY.GOOD_1, null, 0, false, false)
                 });
                 CreatureCalorieMonitor.Def def = __result.AddOrGetDef<CreatureCalorieMonitor.Def>();
                 def.diet = diet;
@@ -295,11 +292,25 @@ namespace ILoveSlicksters
                 loot[1] = BasicFabricConfig.ID;
                 loot[2] = MeatConfig.ID;
                 loot[3] = MeatConfig.ID;
-                
+
                 __result.AddOrGet<Butcherable>().SetDrops(loot);
 
 
             }
+        }
+    }
+
+    [HarmonyPatch(typeof(Assets), "SubstanceListHookup")]
+    public class Assets_SubstanceListHookup
+    {
+        public static void Prefix()
+        {
+            Utilities.RegisterElementStrings(Antigel.Id, PHO_STRINGS.ELEMENTS.ANTIGEL.NAME, PHO_STRINGS.ELEMENTS.ANTIGEL.DESC);
+        }
+
+        public static void Postfix()
+        {
+            Antigel.RegisterSubstance();
         }
     }
 
@@ -310,6 +321,7 @@ namespace ILoveSlicksters
         Chlorine = SimHashes.ChlorineGas,
         Helium = SimHashes.Helium,
         Water = SimHashes.Water,
+        SaltWater = SimHashes.SaltWater,
         Brine = SimHashes.Brine,
         Dirt = SimHashes.Dirt,
         Snow = SimHashes.Snow,

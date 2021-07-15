@@ -1,9 +1,7 @@
-﻿using Harmony;
-using Klei.AI;
+﻿using Klei.AI;
 using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
-using static StateMachine;
 using static TUNING.CREATURES;
 
 namespace ILoveSlicksters
@@ -24,16 +22,16 @@ namespace ILoveSlicksters
             owoEffect.Area = 5;
 
 
-            EntityTemplates.ExtendEntityToFertileCreature(gameObject, 
-                EGG_ID, 
-                PHO_STRINGS.VARIANT_OWO.EGG_NAME, 
+            EntityTemplates.ExtendEntityToFertileCreature(gameObject,
+                EGG_ID,
+                PHO_STRINGS.VARIANT_OWO.EGG_NAME,
                 PHO_STRINGS.VARIANT_OWO.DESC,
-                egg_kanim_id, 
-                OilFloaterTuning.EGG_MASS, 
-                ID + "Baby", 
-                60.0000038f, 20f, 
-                EGG_CHANCES_OWO, 
-                EGG_SORT_ORDER, 
+                egg_kanim_id,
+                OilFloaterTuning.EGG_MASS,
+                ID + "Baby",
+                60.0000038f, 20f,
+                EGG_CHANCES_OWO,
+                EGG_SORT_ORDER,
                 true, false, true, 1f);
             return gameObject;
         }
@@ -76,9 +74,9 @@ namespace ILoveSlicksters
                 weight = 0.02f
             }
         };
-        public string GetDlcId()
+        public string[] GetDlcIds()
         {
-            return "";
+            return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
 
         public const string base_kanim_id = "custom_oilfloater_kanim";
@@ -96,11 +94,11 @@ namespace ILoveSlicksters
 
         public const SimHashes EMIT_ELEMENT = SimHashes.LiquidHydrogen;
 
-        private static float KG_ORE_EATEN_PER_CYCLE = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2 * Patches.Settings.ConsumptionMultiplier;
+        private static readonly float KG_ORE_EATEN_PER_CYCLE = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2 * ILoveSlicksters.Settings.ConsumptionMultiplier;
 
-        private static float CALORIES_PER_KG_OF_ORE = PHO_TUNING.OILFLOATER.STANDARD_CALORIES_PER_CYCLE / KG_ORE_EATEN_PER_CYCLE;
+        private static readonly float CALORIES_PER_KG_OF_ORE = PHO_TUNING.OILFLOATER.STANDARD_CALORIES_PER_CYCLE / KG_ORE_EATEN_PER_CYCLE;
 
-        private static float MIN_POOP_SIZE_IN_KG = 0.5f;
+        private static readonly float MIN_POOP_SIZE_IN_KG = 0.5f;
 
         public static int EGG_SORT_ORDER = OilFloaterConfig.EGG_SORT_ORDER + 2;
 

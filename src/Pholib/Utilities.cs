@@ -11,7 +11,7 @@ namespace Pholib
 {
     public class Logs
     {
-        private static readonly string version = "1.2.2";
+        private static readonly string version = "1.2.3";
 
         public static bool DebugLog = false;
         private static bool initiated = false;
@@ -35,7 +35,7 @@ namespace Pholib
         public static void Log(object informations)
         {
             InitIfNot();
-            Debug.Log("Pholib: " + informations.ToString());
+            Debug.Log("Pholib: " + informations == null ? "null" : informations.ToString());
         }
 
 
@@ -341,6 +341,80 @@ namespace Pholib
             };
         }
 
+
+
+
+        //ElementsUtils from Heinermann
+
+        public static void AddSubstance(Substance substance)
+        {
+            Assets.instance.substanceTable.GetList().Add(substance);
+        }
+
+        public static Substance CreateSubstance(string name, Element.State state, KAnimFile kanim, Material material, Color32 colour)
+        {
+            return ModUtil.CreateSubstance(name, state, kanim, material, colour, colour, colour);
+        }
+
+        public static void RegisterElementStrings(string elementId, string name, string description)
+        {
+            string upperElemId = elementId.ToUpper();
+            Strings.Add($"STRINGS.ELEMENTS.{upperElemId}.NAME", STRINGS.UI.FormatAsLink(name, upperElemId));
+            Strings.Add($"STRINGS.ELEMENTS.{upperElemId}.DESC", description);
+        }
+
+        // Note: As of 2021-03-14
+        // Needed for vanilla as it does not map anims into a dictionary until after elements have been loaded
+        // Therefore don't use Assets.GetAnim here.
+        public static KAnimFile FindAnim(string name)
+        {
+            KAnimFile result = Assets.Anims.Find((anim) => anim.name == name);
+            if (result == null)
+                Debug.LogError($"Failed to find KAnim: {name}");
+            return result;
+        }
+        public static Substance CreateRegisteredSubstance(string name, Element.State state, KAnimFile kanim, Material material, Color32 colour)
+        {
+            Substance result = CreateSubstance(name, state, kanim, material, colour);
+            SimHashUtil.RegisterSimHash(name);
+            AddSubstance(result);
+            ElementLoader.FindElementByHash(result.elementID).substance = result;
+            return result;
+        }
+
+
+        public static class SimHashUtil
+        {
+            public static Dictionary<SimHashes, string> SimHashNameLookup = new Dictionary<SimHashes, string>();
+            public static readonly Dictionary<string, object> ReverseSimHashNameLookup = new Dictionary<string, object>();
+
+            public static void RegisterSimHash(string name)
+            {
+                SimHashes simHash = (SimHashes)Hash.SDBMLower(name);
+                SimHashNameLookup.Add(simHash, name);
+                ReverseSimHashNameLookup.Add(name, simHash);
+            }
+        }
+
+        [HarmonyPatch(typeof(Enum), "ToString", new Type[] { })]
+        public class SimHashes_ToString
+        {
+            public static bool Prefix(ref Enum __instance, ref string __result)
+            {
+                if (!(__instance is SimHashes)) return true;
+                return !SimHashUtil.SimHashNameLookup.TryGetValue((SimHashes)__instance, out __result);
+            }
+        }
+
+        [HarmonyPatch(typeof(Enum), nameof(Enum.Parse), new Type[] { typeof(Type), typeof(string), typeof(bool) })]
+        public class SimHashes_Parse
+        {
+            public static bool Prefix(Type enumType, string value, ref object __result)
+            {
+                if (!enumType.Equals(typeof(SimHashes))) return true;
+                return !SimHashUtil.ReverseSimHashNameLookup.TryGetValue(value, out __result);
+            }
+        }
 
     }
 

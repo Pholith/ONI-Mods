@@ -4,7 +4,8 @@ using PeterHan.PLib.Options;
 
 namespace ILoveSlicksters
 {
-    [ModInfo("I Love Slicksters !", "https://github.com/Pholith/ONI-Mods", "screen1.png")]
+    [JsonObject(MemberSerialization.OptIn)]
+    [ModInfo("https://github.com/Pholith/ONI-Mods", "screen1.png")]
     [RestartRequired]
     public class SlicksterOptions
     {
