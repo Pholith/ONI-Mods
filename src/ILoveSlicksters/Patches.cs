@@ -25,7 +25,6 @@ namespace ILoveSlicksters
             base.OnLoad(harmony);
             new POptions().RegisterOptions(this, typeof(SlicksterOptions));
 
-            new PLocalization().Register();
 
             // Init PLib and settings
             PUtil.InitLibrary();

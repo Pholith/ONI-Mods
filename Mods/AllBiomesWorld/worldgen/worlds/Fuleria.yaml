@@ -1,9 +1,6 @@
 name: STRINGS.WORLDS.FULERIA.NAME
 description: STRINGS.WORLDS.FULERIA.DESCRIPTION
-spriteName: Asteroid_Fuleria
-coordinatePrefix: FUL-PHO
-difficulty: 2
-tier: 2
+asteroidIcon: asteroid_fuleria_kanim
 disableWorldTraits: true
 
 worldsize:
@@ -16,18 +13,17 @@ layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 subworldFiles:
   - name: subworlds/forest/ForestStart
   - name: subworlds/forest/ForestMiniWaterAbyBorder
-  - name: subworlds/forest/ForestMiniOxyAbyBorder
+  # - name: subworlds/forest/ForestMiniOxyAbyBorder
     weight: 0.3
   - name: subworlds/forest/ForestMiniMetalAbyBorder
   - name: subworlds/sandstone/SandstoneMiniAlgaeAbyBorder
+    weight: 1.2
   - name: subworlds/frozen/Frozen
-  - name: subworlds/frozen/CO2Lakes
-  - name: subworlds/forest/Forest
+ # - name: subworlds/frozen/CO2Lakes
+ # - name: subworlds/forest/Forest
   - name: subworlds/marsh/HotMarsh
   - name: subworlds/jungle/Jungle
-  - name: subworlds/Impenetrable
-  - name: subworlds/magma/Bottom
-  - name: subworlds/magma/VolcanoHole
+  - name: subworlds/magma/VolcanoHoleFree
   - name: subworlds/oil/OilPockets
     weight: 0.8
   - name: subworlds/sandstone/Desert
@@ -41,18 +37,16 @@ subworldFiles:
 
 
 startSubworldName: subworlds/forest/ForestStart
-startingBaseTemplate: forestBase
+startingBaseTemplate: bases/forestBase
 
-globalFeatureTemplates:
-  feature_geyser_generic: 12
+defaultsOverrides:
+  startingWorldElements: [] # remove the algae check
+
+seasons:
+  - MeteorShowers
 
 
-# Rivers:
-#   - water
-#   - fatWater
-#   - oilygoodness
-
-# When we are converting unknown cells, this will give us the options, processed in this order, the effects are cumlative
+# Specify where subworlds can spawn. These rules are processed in order and their effects are cumulative.
 unknownCellsAllowedSubworlds: 
   - tagcommand: Default
     command: Replace
@@ -76,7 +70,7 @@ unknownCellsAllowedSubworlds:
       - subworlds/marsh/HotMarsh
       - subworlds/jungle/Jungle
       - subworlds/ocean/Ocean
-      
+            
   - tagcommand: DistanceFromTag
     tag: AtStart
     minDistance: 3
@@ -120,8 +114,7 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - subworlds/oil/OilPockets
-      - subworlds/magma/Bottom
-      - subworlds/magma/VolcanoHole
+      - subworlds/magma/VolcanoHoleFree
 
 
   - tagcommand: DistanceFromTag
@@ -131,3 +124,95 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - subworlds/space/Surface
+
+
+worldTemplateRules:
+  # Jungle
+  - names:
+      - poi/jungle/geyser_steam
+    listRule: GuaranteeOne
+    priority: 100
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [ToxicJungle]
+  - names:
+      - poi/jungle/geyser_methane
+      - poi/jungle/geyser_chlorine
+    listRule: GuaranteeOne
+    priority: 100
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [ToxicJungle]
+  # Marsh
+  - names:
+      - poi/hotmarsh/geyser_steam
+    listRule: GuaranteeOne
+    priority: 100
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [BoggyMarsh]
+  - names:
+      - poi/hotmarsh/geyser_methane
+    listRule: GuaranteeOne
+    priority: 150
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [BoggyMarsh]
+  # Ocean
+  - names:
+      - poi/poi_ocean_geyser_saltwater
+    listRule: GuaranteeOne
+    priority: 100 
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [Ocean]
+  # Oil
+  - names:
+    - poi/oil/small_oilpockets_geyser_a
+    - poi/oil/small_oilpockets_geyser_b
+    - poi/oil/small_oilpockets_geyser_c
+    - poi/oil/small_oilpockets_geyser_d
+    - poi/oil/small_oilpockets_geyser_e
+    - poi/oil/small_oilpockets_geyser_f
+    - poi/oil/small_oilpockets_geyser_g
+    - poi/oil/small_oilpockets_geyser_h
+    listRule: GuaranteeOne
+    times: 3
+    allowDuplicates: true # be more flexible due to high temperature borders
+    priority: 100
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [OilField]
+
+  # Magma
+  - names:
+    - geysers/volcanohole
+    listRule: GuaranteeOne
+    times: 3
+    allowDuplicates: true
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
+    priority: 200
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [MagmaCore]
+
+  # Gravitas
+  - names:
+    - poi/poi_gravitas
+    listRule: GuaranteeOne
+    priority: 500
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - subworlds/space/Surface
+  # Generic Geysers
+  - names:
+    - geysers/generic
+    listRule: TryOne
+    times: 12
+    allowDuplicates: true
+    allowedCellsFilter:
+      - command: Replace
+        tagcommand: NotAtTag
+        tag: NoGlobalFeatureSpawning

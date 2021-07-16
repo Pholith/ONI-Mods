@@ -1,11 +1,12 @@
-﻿using Harmony;
+﻿using HarmonyLib;
+using KMod;
 using System.Reflection;
 using UnityEngine;
 
 namespace AllBiomesWorld
 {
     [HarmonyPatch(typeof(Db), "Initialize")]
-    class AllBiomesWorldPatch
+    public class AllBiomesWorldPatch
     {
 
         public static LocString NAME = "Fuleria";
@@ -17,13 +18,15 @@ namespace AllBiomesWorld
             Strings.Add($"STRINGS.WORLDS.FULERIA.NAME", NAME);
             Strings.Add($"STRINGS.WORLDS.FULERIA.DESCRIPTION", DESCRIPTION);
 
-            // Generate a translation .pot 
-            ModUtil.RegisterForTranslation(typeof(AllBiomesWorldPatch));
-
-            // Load the sprite from Asteroid_Fuleria.dds (converted online from png) and set "generation action" to incorporated ressources
-            Sprite fuleriaSprite = Utilities.Sprites.CreateSpriteDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("AllBiomesWorld.Asteroid_Fuleria.dds"), 512, 512);
-            Assets.Sprites.Add("Asteroid_Fuleria", fuleriaSprite);
-
+        }
+    }
+    public class AllBiomesWorld : UserMod2
+    {
+        public override void OnLoad(Harmony harmony)
+        {
+            base.OnLoad(harmony);
+            //PUtil.InitLibrary();
+            //new PLocalization().Register();
         }
     }
 }
