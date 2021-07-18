@@ -11,8 +11,6 @@ namespace ILoveSlicksters
     public class Antigel
     {
 
-
-
         public const string Id = "Antigel";
         public static readonly SimHashes SimHash = (SimHashes)Hash.SDBMLower(Id);
         public static string Name = PHO_STRINGS.ELEMENTS.ANTIGEL.NAME;

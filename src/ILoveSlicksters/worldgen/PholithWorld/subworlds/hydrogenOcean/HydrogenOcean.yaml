@@ -7,7 +7,7 @@ avoidRadius: 20.0
 minChildCount: 4
 sampleBehaviour: PoissonDisk
 biomes:
-  - name: PholithWorld/biomes/HydrogenOcean/Basic
+  - name: biomes/HydrogenOcean/Basic
     weight: 2
     tags:
       - OwO_Oilfloater

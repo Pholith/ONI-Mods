@@ -7,7 +7,6 @@ using static Pholib.Utilities;
 
 namespace Notepad
 {
-
     public class NotepadMod : UserMod2
     {
         public override void OnLoad(Harmony harmony)
@@ -16,7 +15,6 @@ namespace Notepad
             new PLocalization().Register();
         }
     }
-
 
     [HarmonyPatch(typeof(GeneratedBuildings), "LoadGeneratedBuildings")]
     public static class DupRoomSensorStringsPatch

@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
-using PeterHan.PLib;
 using PeterHan.PLib.Options;
 
 namespace EmptyWorlds
 {
-    [ModInfo("EmptyWorlds - Skyblock", "https://github.com/Pholith/ONI-Mods", "screen1.png")]
+    [JsonObject(MemberSerialization.OptIn)]
+    [ModInfo("https://github.com/Pholith/ONI-Mods", "screen1.png")]
     [RestartRequired]
     public class EmptyWorldsOptions
     {

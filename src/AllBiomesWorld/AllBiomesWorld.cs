@@ -1,7 +1,5 @@
 ﻿using HarmonyLib;
 using KMod;
-using System.Reflection;
-using UnityEngine;
 
 namespace AllBiomesWorld
 {

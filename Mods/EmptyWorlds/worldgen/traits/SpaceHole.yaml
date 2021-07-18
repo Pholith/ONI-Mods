@@ -1,5 +1,5 @@
-name: EmptyWorlds.WorldsPatches.SPACE_HOLE_NAME
-description: EmptyWorlds.WorldsPatches.SPACE_HOLE_DESC
+name: EmptyWorlds.PHO_STRINGS.SPACE_HOLE_NAME
+description: EmptyWorlds.PHO_STRINGS.SPACE_HOLE_DESC
 colorHex: 666699
 
 additionalUnknownCellFilters:

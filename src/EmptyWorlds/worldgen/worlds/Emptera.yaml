@@ -1,9 +1,6 @@
-name: EmptyWorlds.WorldsPatches.E_NAME
-description: EmptyWorlds.WorldsPatches.E_DESCRIPTION
-spriteName: Asteroid_Emptera
-coordinatePrefix: EMP-PHO
-difficulty: 5
-tier: 2
+name: EmptyWorlds.PHO_STRINGS.E_NAME
+description: EmptyWorlds.PHO_STRINGS.E_DESCRIPTION
+asteroidIcon: asteroid_emptera_kanim
 disableWorldTraits: true
 
 worldsize:
@@ -14,34 +11,28 @@ layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 
 # List all the zone files to load
 subworldFiles:
-  - name: PholithWorld/subworlds/forest/ForestStartModified
-  - name: PholithWorld/subworlds/forest/ForestMiniWaterModified
+  - name: subworlds/forest/ForestStartModified
+  - name: subworlds/forest/ForestMiniWaterModified
     weight: 1.5
   - name: subworlds/marsh/HotMarsh
-  - name: subworlds/Impenetrable
   - name: subworlds/space/Space
-  - name: PholithWorld/subworlds/space/SpaceGeyser
-  - name: PholithWorld/subworlds/space/SpaceWell
+  - name: subworlds/space/SpaceGeyser
+  - name: subworlds/space/SpaceWell
   - name: subworlds/space/Surface
 
 
-startSubworldName: PholithWorld/subworlds/forest/ForestStartModified
-startingBaseTemplate: forestBase
+startSubworldName: subworlds/forest/ForestStartModified
+startingBaseTemplate: bases/forestBase
 
-globalFeatureTemplates:
-  feature_geyser_generic: 1
+#globalFeatureTemplates:
+#  feature_geyser_generic: 1
 
-# Rivers:
-#   - water
-#   - fatWater
-#   - oilygoodness
 
-# When we are converting unknown cells, this will give us the options, processed in this order, the effects are cumlative
 unknownCellsAllowedSubworlds: 
   - tagcommand: Default
     command: Replace
     subworldNames:
-      - PholithWorld/subworlds/forest/ForestStartModified
+      - subworlds/forest/ForestStartModified
       
   - tagcommand: DistanceFromTag
     tag: AtStart
@@ -57,7 +48,7 @@ unknownCellsAllowedSubworlds:
     maxDistance: 999
     command: Replace
     subworldNames:
-      - PholithWorld/subworlds/space/SpaceGeyser
+      - subworlds/space/SpaceGeyser
 
   - tagcommand: DistanceFromTag
     tag: AtSurface
@@ -73,8 +64,8 @@ unknownCellsAllowedSubworlds:
     maxDistance: 1
     command: Replace
     subworldNames:
-      - PholithWorld/subworlds/forest/ForestMiniWaterModified
-      - PholithWorld/subworlds/space/SpaceGeyser
+      - subworlds/forest/ForestMiniWaterModified
+      - subworlds/space/SpaceGeyser
 
   - tagcommand: AtTag
     tag: AtSurface
@@ -86,4 +77,49 @@ unknownCellsAllowedSubworlds:
     tag: AtDepths
     command: Replace
     subworldNames:
-      - PholithWorld/subworlds/space/SpaceWell
+      - subworlds/space/SpaceWell
+
+
+      
+worldTemplateRules:
+  # Gravitas
+  - names:
+    - poi/poi_bunker_skyblock
+    listRule: GuaranteeOne
+    priority: 500
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - subworlds/forest/ForestMiniWaterModified
+
+  - names:
+    - poi/poi_mob_lab
+    listRule: GuaranteeOne
+    priority: 200
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - subworlds/space/SpaceGeyser
+  - names:
+    - poi/poi_brain_ruin
+    listRule: GuaranteeOne
+    priority: 200
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - subworlds/space/SpaceGeyser
+
+
+  # Generic Geysers
+#  - names:
+#    - geysers/generic
+#    listRule: TryOne
+#    times: 12
+#    allowDuplicates: true
+#    allowedCellsFilter:
+#      - command: Replace
+#        tagcommand: NotAtTag
+#        tag: NoGlobalFeatureSpawning

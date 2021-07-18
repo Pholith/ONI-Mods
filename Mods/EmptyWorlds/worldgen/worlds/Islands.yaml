@@ -1,9 +1,6 @@
-name: EmptyWorlds.WorldsPatches.I_NAME
-description: EmptyWorlds.WorldsPatches.I_DESCRIPTION
-spriteName: Asteroid_Islands
-coordinatePrefix: ISD-PHO
-difficulty: 4
-tier: 2
+name: EmptyWorlds.PHO_STRINGS.I_NAME
+description: EmptyWorlds.PHO_STRINGS.I_DESCRIPTION
+asteroidIcon: asteroid_islands_kanim
 disableWorldTraits: false
 
 worldsize:
@@ -14,14 +11,12 @@ layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 
 # List all the zone files to load
 subworldFiles:
-  - name: PholithWorld/subworlds/forest/ForestStartModified
-  - name: PholithWorld/subworlds/forest/ForestMiniWaterModified
+  - name: subworlds/forest/ForestStartModified
+  - name: subworlds/forest/ForestMiniWaterModified
     weight: 2
   - name: subworlds/marsh/HotMarsh
-  - name: subworlds/Impenetrable
   - name: subworlds/space/Space
     weight: 4
-  - name: PholithWorld/subworlds/space/NormalSpacePOI
   - name: subworlds/space/Surface
 
   - name: subworlds/frozen/Frozen
@@ -40,23 +35,19 @@ subworldFiles:
 
 
 
-startSubworldName: PholithWorld/subworlds/forest/ForestStartModified
-startingBaseTemplate: forestBase
+startSubworldName: subworlds/forest/ForestStartModified
+startingBaseTemplate: bases/forestBase
 
-globalFeatureTemplates:
-  feature_geyser_generic: 12
+#globalFeatureTemplates:
+#  feature_geyser_generic: 12
 
-# Rivers:
-#   - water
-#   - fatWater
-#   - oilygoodness
 
 # When we are converting unknown cells, this will give us the options, processed in this order, the effects are cumlative
 unknownCellsAllowedSubworlds: 
   - tagcommand: Default
     command: Replace
     subworldNames:
-      - PholithWorld/subworlds/forest/ForestStartModified
+      - subworlds/forest/ForestStartModified
       
   - tagcommand: DistanceFromTag
     tag: AtStart
@@ -80,7 +71,7 @@ unknownCellsAllowedSubworlds:
     maxDistance: 1
     command: Replace
     subworldNames:
-      - PholithWorld/subworlds/forest/ForestMiniWaterModified
+      - subworlds/forest/ForestMiniWaterModified
       - subworlds/space/Space
 
   - tagcommand: DistanceFromTag
@@ -102,7 +93,7 @@ unknownCellsAllowedSubworlds:
       - subworlds/frozen/Frozen
 	  - subworlds/ocean/Ocean
 	  - subworlds/rust/Rust
-      - PholithWorld/subworlds/space/NormalSpacePOI
+      - subworlds/space/NormalSpacePOI
 
   - tagcommand: DistanceFromTag
     tag: AtStart
@@ -115,7 +106,7 @@ unknownCellsAllowedSubworlds:
 	  - subworlds/barren/BarrenGranite
       - subworlds/frozen/Frozen
 	  - subworlds/jungle/Jungle
-      - PholithWorld/subworlds/space/NormalSpacePOI
+      - subworlds/space/NormalSpacePOI
       - subworlds/magma/Bottom
 	  	  
   - tagcommand: DistanceFromTag
@@ -130,3 +121,43 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - subworlds/space/Surface
+
+      
+worldTemplateRules:
+  # Gravitas
+  - names:
+    - poi/poi_bunker_skyblock
+    listRule: GuaranteeOne
+    priority: 500
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - subworlds/forest/ForestMiniWaterModified
+
+  - names:
+    - poi/poi_mob_lab
+    listRule: GuaranteeOne
+    priority: 200
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - subworlds/space/Space
+          - subworlds/jungle/Jungle
+          - subworlds/marsh/HotMarsh
+          - subworlds/rust/Rust
+          - subworlds/rust/Ocean
+  - names:
+    - poi/poi_brain_ruin
+    listRule: GuaranteeOne
+    priority: 200
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - subworlds/space/Space
+          - subworlds/jungle/Jungle
+          - subworlds/marsh/HotMarsh
+          - subworlds/rust/Rust
+          - subworlds/rust/Ocean

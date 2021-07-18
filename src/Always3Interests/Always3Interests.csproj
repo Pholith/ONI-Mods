@@ -50,7 +50,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="ILMerge.props" />
-    <None Include="mod.yaml" />
+    <None Include="mod.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="mod_info.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -90,7 +92,6 @@
   <PropertyGroup>
     <PostBuildEvent>echo running script...
 rm *.pdb
-copy "$(ProjectDir)\mod_info.yaml" "$(OutDir)\mod_info.yaml"
 rmdir /Q /S "$(SolutionDir)\..\..\..\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)"
 xcopy "$(TargetDir.TrimEnd('\'))" "$(SolutionDir)\..\..\..\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)" /E /I /Q
 </PostBuildEvent>

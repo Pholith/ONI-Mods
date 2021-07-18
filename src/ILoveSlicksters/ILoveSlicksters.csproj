@@ -153,7 +153,9 @@
     <None Include="app.config" />
     <None Include="elements\Antigel.yaml" />
     <None Include="ILMerge.props" />
-    <None Include="mod.yaml" />
+    <None Include="mod.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="mod_info.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
