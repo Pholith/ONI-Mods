@@ -1,9 +1,7 @@
-﻿using Harmony;
-using System.Collections.Generic;
-using UnityEngine;
-using Database;
+﻿using HarmonyLib;
+using Pholib;
 using TUNING;
-using System;
+using UnityEngine;
 
 namespace PollutedElectrolyzer
 {
@@ -84,25 +82,24 @@ namespace PollutedElectrolyzer
     {
         public static void Postfix(BuildingComplete __instance)
         {
-            var kAnimBase = __instance.GetComponent<KAnimControllerBase>();
+            KAnimControllerBase kAnimBase = __instance.GetComponent<KAnimControllerBase>();
             if (kAnimBase != null)
             {
                 if (__instance.name == "PollutedElectrolyzerComplete") // I found it in the logs
                 {
-                float r = 255 - 70;// 100
-                float g = 255; // more the int after - is big, less green and more pink
-                float b = 255 - 150; //50
-                kAnimBase.TintColour = new Color(r / 255f, g / 255f, b / 255f);
+                    float r = 255 - 70;// 100
+                    float g = 255; // more the int after - is big, less green and more pink
+                    float b = 255 - 150; //50
+                    kAnimBase.TintColour = new Color(r / 255f, g / 255f, b / 255f);
                 }
             }
         }
     }
 
-    [HarmonyPatch(typeof(GeneratedBuildings))]
-    [HarmonyPatch("LoadGeneratedBuildings")]
+    [HarmonyPatch(typeof(GeneratedBuildings), "LoadGeneratedBuildings")]
     public class PollutedElectrolyzerPatch
     {
-        public static LocString NAME = new LocString("Polluted Electrolyzer", 
+        public static LocString NAME = new LocString("Polluted Electrolyzer",
             "STRINGS.BUILDINGS.PREFABS." + PollutedElectrolyserConfig.ID.ToUpper() + ".NAME");
 
         public static LocString DESC = new LocString("Water enters on one side, oxygen essential to life exits on the other.",
@@ -111,32 +108,21 @@ namespace PollutedElectrolyzer
         public static LocString EFFECT = new LocString("Transforms " + STRINGS.UI.FormatAsLink("Dirty water", "DIRTYWATER") + " into " + STRINGS.UI.FormatAsLink("Polluted oxygen", "CONTAMINATEDOXYGEN") + " and " + STRINGS.UI.FormatAsLink("Hydrogen", "HYDROGEN") + ".",
             "STRINGS.BUILDINGS.PREFABS." + PollutedElectrolyserConfig.ID.ToUpper() + ".EFFECT");
 
-
-
-        static void Prefix()
+        private static void Prefix()
         {
             Strings.Add(NAME.key.String, NAME.text);
             Strings.Add(DESC.key.String, DESC.text);
             Strings.Add(EFFECT.key.String, EFFECT.text);
             ModUtil.AddBuildingToPlanScreen("Oxygen", PollutedElectrolyserConfig.ID);
         }
-
-        static void Postfix()
-        {
-            object obj = Activator.CreateInstance(typeof(PollutedElectrolyserConfig));
-            BuildingConfigManager.Instance.RegisterBuilding(obj as IBuildingConfig);
-        }
-
     }
     [HarmonyPatch(typeof(Db), "Initialize")]
     public class DbPatch
     {
-        public static void Prefix()
+        public static void Postfix()
         {
-            List<string> ls = new List<string>(Techs.TECH_GROUPING["ImprovedOxygen"]) { PollutedElectrolyserConfig.ID };
-            Techs.TECH_GROUPING["ImprovedOxygen"] = ls.ToArray();
+            Utilities.AddBuildingTech("ImprovedOxygen", PollutedElectrolyserConfig.ID);
         }
     }
-
 
 }

@@ -1,5 +1,6 @@
 ﻿using Database;
 using HarmonyLib;
+using Pholib;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -58,23 +59,17 @@ namespace HeliumExtractor
                 ModUtil.AddBuildingToPlanScreen("Refining", HeliumExtractorConfig.ID);
             }
 
-            private static void Postfix()
-            {
-                object obj = Activator.CreateInstance(typeof(HeliumExtractorConfig));
-                BuildingConfigManager.Instance.RegisterBuilding(obj as IBuildingConfig);
-            }
-
         }
         // Add the extractor to tech tree 
         [HarmonyPatch(typeof(Db), "Initialize")]
         public class DatabaseAddingPatch
         {
-            public static void Prefix()
+            public static void Postfix()
             {
-                List<string> ls = new List<string>(Techs.TECH_GROUPING["HighTempForging"]) { HeliumExtractorConfig.ID };
-                Techs.TECH_GROUPING["HighTempForging"] = ls.ToArray();
+                Utilities.AddBuildingTech("HighTempForging", HeliumExtractorConfig.ID);
             }
         }
+
         // Add CombustibleGas tag to Propane
         [HarmonyPatch(typeof(ElementLoader), "CopyEntryToElement")]
         public class PropaneCombustibleAdder
@@ -83,7 +78,7 @@ namespace HeliumExtractor
             {
                 if (elem.id == SimHashes.Propane)
                 {
-                    IEnumerable list = elem.oreTags.Add(GameTags.CombustibleGas);
+                    IEnumerable list = elem.oreTags.AddItem(GameTags.CombustibleGas);
                     elem.oreTags = list.Cast<Tag>().ToArray();
                 }
             }
@@ -107,7 +102,7 @@ namespace HeliumExtractor
             public static void Postfix(GameObject go)
             {
                 ConduitDispenser conduitDispenser = go.AddOrGet<ConduitDispenser>();
-                conduitDispenser.elementFilter = conduitDispenser.elementFilter.Add(SimHashes.Propane).ToArray();
+                conduitDispenser.elementFilter = conduitDispenser.elementFilter.AddItem(SimHashes.Propane).ToArray();
 
             }
         }

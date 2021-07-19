@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using UnityEngine;
 
 namespace Pholib
@@ -309,7 +308,10 @@ namespace Pholib
         {
             KAnimFile result = Assets.Anims.Find((anim) => anim.name == name);
             if (result == null)
+            {
                 Debug.LogError($"Failed to find KAnim: {name}");
+            }
+
             return result;
         }
         public static Substance CreateRegisteredSubstance(string name, Element.State state, KAnimFile kanim, Material material, Color32 colour)
@@ -340,7 +342,11 @@ namespace Pholib
         {
             public static bool Prefix(ref Enum __instance, ref string __result)
             {
-                if (!(__instance is SimHashes)) return true;
+                if (!(__instance is SimHashes))
+                {
+                    return true;
+                }
+
                 return !SimHashUtil.SimHashNameLookup.TryGetValue((SimHashes)__instance, out __result);
             }
         }
@@ -350,7 +356,11 @@ namespace Pholib
         {
             public static bool Prefix(Type enumType, string value, ref object __result)
             {
-                if (!enumType.Equals(typeof(SimHashes))) return true;
+                if (!enumType.Equals(typeof(SimHashes)))
+                {
+                    return true;
+                }
+
                 return !SimHashUtil.ReverseSimHashNameLookup.TryGetValue(value, out __result);
             }
         }

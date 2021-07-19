@@ -1,6 +1,4 @@
-﻿using Database;
-using Harmony;
-using STRINGS;
+﻿using HarmonyLib;
 using System.Collections.Generic;
 using UnityEngine;
 using static Pholib.Utilities;
@@ -19,7 +17,7 @@ namespace DuplicantRoomSensor
     [HarmonyPatch(typeof(Db), "Initialize")]
     public static class DupRoomSensorTechPatch
     {
-        public static void Prefix()
+        public static void Postfix()
         {
             AddBuildingTech("LogicControl", DuplicantRoomSensorConfig.ID);
         }

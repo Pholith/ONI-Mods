@@ -70,15 +70,8 @@ namespace HeliumExtractor
                 SimHashes.Methane,
                 SimHashes.Helium
             };
+            conduitDispenser2.useSecondaryOutput = true;
 
-            /*ConduitDispenser conduitDispenser2 = go.AddOrGet<ConduitDispenser>();
-            conduitDispenser2.conduitType = ConduitType.Gas;
-            conduitDispenser2.invertElementFilter = true;
-            //conduitDispenser2.
-            conduitDispenser2.elementFilter = new SimHashes[]
-            {
-                SimHashes.Propane
-            };*/
 
             ConduitSecondaryOutput secondOutput = go.AddOrGet<ConduitSecondaryOutput>();
             secondOutput.portInfo = secondaryPort;

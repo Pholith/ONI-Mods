@@ -1,4 +1,5 @@
-﻿using Pholib;
+﻿using HarmonyLib;
+using Pholib;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -88,8 +89,7 @@ namespace SolarSystemWorlds
         }
     }
 
-    [HarmonyPatch(typeof(Db))]
-    [HarmonyPatch("Initialize")]
+    [HarmonyPatch(typeof(Db), "Initialize")]
     public class DbPatch
     {
         public static void Postfix()

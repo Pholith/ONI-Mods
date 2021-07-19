@@ -1,15 +1,13 @@
 ﻿using Database;
 using HarmonyLib;
 using Klei.AI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using TUNING;
-using UnityEngine;
-using PeterHan.PLib.Options;
 using Newtonsoft.Json;
 using PeterHan.PLib;
+using PeterHan.PLib.Options;
+using System;
+using System.Collections.Generic;
+using TUNING;
+using UnityEngine;
 
 namespace Always3Interests
 {
@@ -70,7 +68,7 @@ namespace Always3Interests
         [JsonProperty]
         public int startingLevelOnPrintingPod { get; set; }
 
-        
+
 
         public Always3InterestsSettings()
         {
@@ -92,7 +90,7 @@ namespace Always3Interests
         }
     }
 
-    class TuningConfigPatch
+    internal class TuningConfigPatch
     {
 
         public static Always3InterestsSettings settings;
@@ -104,7 +102,7 @@ namespace Always3Interests
             settings = new Always3InterestsSettings();
             ReadSettings();
 
-            var customAttributes = new int[] {
+            int[] customAttributes = new int[] {
                 settings.pointsWhen1Interest,
                 settings.pointsWhen2Interest,
                 settings.pointsWhen3Interest,
@@ -127,7 +125,10 @@ namespace Always3Interests
             Debug.Log("Loading settings");
 
             settings = POptions.ReadSettings<Always3InterestsSettings>();
-            if (settings == null) settings = new Always3InterestsSettings();
+            if (settings == null)
+            {
+                settings = new Always3InterestsSettings();
+            }
         }
     }
 
@@ -164,10 +165,13 @@ namespace Always3Interests
     {
         public static bool Prefix(MinionStartingStats __instance, string guaranteedAptitudeID)
         {
-            if (TuningConfigPatch.settings.randomNumberOfInterests) return true;
+            if (TuningConfigPatch.settings.randomNumberOfInterests)
+            {
+                return true;
+            }
 
             int num = TuningConfigPatch.settings.numberOfInterests;
-            
+
             List<SkillGroup> list = new List<SkillGroup>(Db.Get().SkillGroups.resources);
             list.Shuffle<SkillGroup>();
             if (guaranteedAptitudeID != null)
@@ -184,7 +188,7 @@ namespace Always3Interests
         }
     }
 
-    
+
     [HarmonyPatch(typeof(MinionStartingStats))]
     [HarmonyPatch("GenerateTraits")]
     public class TraitPatch
@@ -199,16 +203,21 @@ namespace Always3Interests
             // set stress trait if it is not disable
             Trait trait = Db.Get().traits.Get(__instance.personality.stresstrait);
             __instance.stressTrait = trait;
-            if (TuningConfigPatch.settings.disableStressTrait) __instance.stressTrait = Db.Get().traits.Get("None");
+            if (TuningConfigPatch.settings.disableStressTrait)
+            {
+                __instance.stressTrait = Db.Get().traits.Get("None");
+            }
 
             // set joy trait if it is not disable
             Trait joytrait = Db.Get().traits.Get(__instance.personality.joyTrait);
             __instance.joyTrait = joytrait;
-            if (TuningConfigPatch.settings.disableJoyTrait) __instance.joyTrait = Db.Get().traits.Get("None");
-            
+            if (TuningConfigPatch.settings.disableJoyTrait)
+            {
+                __instance.joyTrait = Db.Get().traits.Get("None");
+            }
 
             Trait trait2 = Db.Get().traits.Get(__instance.personality.congenitaltrait);
-            
+
             if (trait2.Name == "None")
             {
                 __instance.congenitaltrait = null;

@@ -1,15 +1,12 @@
 ﻿using STRINGS;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using TUNING;
 using UnityEngine;
 
-namespace DuplicantRoomSensor 
+namespace DuplicantRoomSensor
 {
-    class DuplicantRoomSensorConfig : IBuildingConfig
-    { 
+    public class DuplicantRoomSensorConfig : IBuildingConfig
+    {
         public override BuildingDef CreateBuildingDef()
         {
             string id = ID;
@@ -33,9 +30,9 @@ namespace DuplicantRoomSensor
             buildingDef.AlwaysOperational = true;
             buildingDef.LogicOutputPorts = new List<LogicPorts.Port>
             {
-                LogicPorts.Port.OutputPort(LogicSwitch.PORT_ID, new CellOffset(0, 0), 
+                LogicPorts.Port.OutputPort(LogicSwitch.PORT_ID, new CellOffset(0, 0),
                 STRINGS.BUILDINGS.PREFABS.LOGICCRITTERCOUNTSENSOR.LOGIC_PORT,
-                STRINGS.BUILDINGS.PREFABS.LOGICCRITTERCOUNTSENSOR.LOGIC_PORT_ACTIVE, 
+                STRINGS.BUILDINGS.PREFABS.LOGICCRITTERCOUNTSENSOR.LOGIC_PORT_ACTIVE,
                 STRINGS.BUILDINGS.PREFABS.LOGICCRITTERCOUNTSENSOR.LOGIC_PORT_INACTIVE, true, false)
             };
 
