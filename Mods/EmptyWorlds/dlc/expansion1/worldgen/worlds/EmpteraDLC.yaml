@@ -4,8 +4,8 @@ asteroidIcon: asteroid_emptera_kanim
 disableWorldTraits: true
 
 worldsize:
-  X: 230
-  Y: 300
+  X: 256
+  Y: 320
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
 
@@ -16,14 +16,13 @@ subworldFiles:
     weight: 1.5
   - name: subworlds/space/SpaceGeyser
   - name: subworlds/space/SpaceWell
-  - name: subworlds/space/Surface
+  - name: subworlds/space/Space
 
 defaultsOverrides:
   data:
     DrawWorldBorderBottom: true
     WorldBorderRange: 4
     WorldBorderThickness: 6
-
   startingWorldElements: [] # remove the algae check
 
 
@@ -44,19 +43,25 @@ unknownCellsAllowedSubworlds:
 
   - tagcommand: DistanceFromTag
     tag: AtSurface
+    minDistance: 1
+    maxDistance: 2
+    command: Replace
+    subworldNames:
+      - subworlds/space/Space
+
+  - tagcommand: AtTag
+    tag: AtSurface
+    command: Replace
+    subworldNames:
+      - subworlds/space/Space
+
+  - tagcommand: DistanceFromTag
+    tag: AtSurface
     minDistance: 2
     maxDistance: 999
     command: Replace
     subworldNames:
       - subworlds/space/SpaceGeyser
-
-  - tagcommand: DistanceFromTag
-    tag: AtSurface
-    minDistance: 1
-    maxDistance: 2
-    command: Replace
-    subworldNames:
-      - subworlds/space/Surface
 
   - tagcommand: DistanceFromTag
     tag: AtStart
@@ -66,12 +71,6 @@ unknownCellsAllowedSubworlds:
     subworldNames:
       - subworlds/forest/ForestMiniWaterModified
       - subworlds/space/SpaceGeyser
-
-  - tagcommand: AtTag
-    tag: AtSurface
-    command: Replace
-    subworldNames:
-      - subworlds/space/Surface
 
   - tagcommand: AtTag
     tag: AtDepths

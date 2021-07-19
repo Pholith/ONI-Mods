@@ -20,14 +20,12 @@ subworldFiles:
   - name: subworlds/space/Surface
 
   - name: subworlds/frozen/Frozen
-  - name: subworlds/marsh/HotMarsh
   - name: subworlds/jungle/Jungle
   - name: subworlds/magma/MagmaVent
     weight: 0.2
   - name: subworlds/magma/Bottom
     weight: 0.5
   - name: subworlds/oil/OilPatch
-  - name: subworlds/space/Surface
   - name: subworlds/ocean/Ocean
   - name: subworlds/rust/Rust
   - name: subworlds/barren/BarrenGranite
@@ -38,7 +36,6 @@ defaultsOverrides:
     DrawWorldBorderBottom: true
     WorldBorderRange: 4
     WorldBorderThickness: 6
-  
   startingWorldElements: [] # remove the algae check
 
 
@@ -56,22 +53,6 @@ unknownCellsAllowedSubworlds:
     subworldNames:
       - subworlds/forest/ForestStartModified
       
-  - tagcommand: DistanceFromTag
-    tag: AtStart
-    minDistance: 2
-    maxDistance: 999
-    command: Replace
-    subworldNames:
-      - subworlds/marsh/HotMarsh
-
-  - tagcommand: DistanceFromTag
-    tag: AtSurface
-    minDistance: 2
-    maxDistance: 999
-    command: Replace
-    subworldNames:
-      - subworlds/space/Space
-
   - tagcommand: DistanceFromTag
     tag: AtStart
     minDistance: 1
@@ -115,7 +96,7 @@ unknownCellsAllowedSubworlds:
 	  - subworlds/jungle/Jungle
       - subworlds/space/Space
       - subworlds/magma/Bottom
-	  	  
+
   - tagcommand: DistanceFromTag
     tag: AtSurface
     minDistance: 1
@@ -129,7 +110,7 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - subworlds/space/Surface
-
+	  	  
       
 worldTemplateRules:
   # Gravitas

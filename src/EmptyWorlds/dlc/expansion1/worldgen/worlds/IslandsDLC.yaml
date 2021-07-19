@@ -4,8 +4,8 @@ asteroidIcon: asteroid_islands_kanim
 disableWorldTraits: false
 
 worldsize:
-  X: 250
-  Y: 350
+  X: 180
+  Y: 240
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
 
@@ -20,16 +20,15 @@ subworldFiles:
   - name: subworlds/space/Surface
 
   - name: subworlds/frozen/Frozen
-  - name: subworlds/marsh/HotMarsh
   - name: subworlds/jungle/Jungle
   - name: subworlds/magma/MagmaVent
     weight: 0.2
   - name: subworlds/magma/Bottom
     weight: 0.5
   - name: subworlds/oil/OilPatch
-  - name: subworlds/space/Surface
   - name: subworlds/ocean/Ocean
   - name: subworlds/rust/Rust
+  - name: expansion1::subworlds/wasteland/WasteLandBeetle
   - name: subworlds/barren/BarrenGranite
     weight: 0.3
 
@@ -38,7 +37,6 @@ defaultsOverrides:
     DrawWorldBorderBottom: true
     WorldBorderRange: 4
     WorldBorderThickness: 6
-  
   startingWorldElements: [] # remove the algae check
 
 
@@ -56,22 +54,6 @@ unknownCellsAllowedSubworlds:
     subworldNames:
       - subworlds/forest/ForestStartModified
       
-  - tagcommand: DistanceFromTag
-    tag: AtStart
-    minDistance: 2
-    maxDistance: 999
-    command: Replace
-    subworldNames:
-      - subworlds/marsh/HotMarsh
-
-  - tagcommand: DistanceFromTag
-    tag: AtSurface
-    minDistance: 2
-    maxDistance: 999
-    command: Replace
-    subworldNames:
-      - subworlds/space/Space
-
   - tagcommand: DistanceFromTag
     tag: AtStart
     minDistance: 1
@@ -101,6 +83,7 @@ unknownCellsAllowedSubworlds:
 	  - subworlds/ocean/Ocean
 	  - subworlds/rust/Rust
       - subworlds/space/Space
+      - expansion1::subworlds/wasteland/WasteLandBeetle
 
   - tagcommand: DistanceFromTag
     tag: AtStart
@@ -115,7 +98,7 @@ unknownCellsAllowedSubworlds:
 	  - subworlds/jungle/Jungle
       - subworlds/space/Space
       - subworlds/magma/Bottom
-	  	  
+
   - tagcommand: DistanceFromTag
     tag: AtSurface
     minDistance: 1
@@ -129,7 +112,7 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - subworlds/space/Surface
-
+	  	  
       
 worldTemplateRules:
   # Gravitas
@@ -169,3 +152,5 @@ worldTemplateRules:
           - subworlds/marsh/HotMarsh
           - subworlds/rust/Rust
           - subworlds/rust/Ocean
+
+

@@ -4,8 +4,8 @@ asteroidIcon: asteroid_islands_kanim
 disableWorldTraits: false
 
 worldsize:
-  X: 256
-  Y: 384
+  X: 250
+  Y: 350
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
 
@@ -33,6 +33,13 @@ subworldFiles:
   - name: subworlds/barren/BarrenGranite
     weight: 0.3
 
+defaultsOverrides:
+  data:
+    DrawWorldBorderBottom: true
+    WorldBorderRange: 4
+    WorldBorderThickness: 6
+  
+  startingWorldElements: [] # remove the algae check
 
 
 startSubworldName: subworlds/forest/ForestStartModified
@@ -116,6 +123,7 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - subworlds/space/Surface
+
   - tagcommand: AtTag
     tag: AtSurface
     command: Replace

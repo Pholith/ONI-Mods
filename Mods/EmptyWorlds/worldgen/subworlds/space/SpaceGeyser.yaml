@@ -17,7 +17,7 @@ tags:
   - IgnoreCaveOverride
   - NoGlobalFeatureSpawning
 
-featureTemplates:
-	feature_geyser_generic2: 13
+#featureTemplates:
+#	feature_geyser_generic2: 13
 
 zoneType: Space

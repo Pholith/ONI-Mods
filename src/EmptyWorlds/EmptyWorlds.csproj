@@ -62,6 +62,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="app.config" />
+    <None Include="dlc\expansion1\worldgen\clusters\EmpteraDLC.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="dlc\expansion1\worldgen\clusters\IslandsDLC.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="dlc\expansion1\worldgen\worlds\EmpteraDLC.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="dlc\expansion1\worldgen\worlds\IslandsDLC.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ILMerge.props" />
     <None Include="mod.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -197,6 +209,7 @@
   <PropertyGroup>
     <PostBuildEvent>del /Q $(OutDir)\*.pdb
 xcopy /E /I /Q "$(ProjectDir)\anim" "$(OutDir)\anim"
+xcopy /E /I /Q "$(ProjectDir)\dlc" "$(OutDir)\dlc"
 xcopy /E /I /Q "$(ProjectDir)\templates" "$(OutDir)\templates"
 xcopy /E /I /Q "$(ProjectDir)\translations" "$(OutDir)\translations"
 xcopy /E /I /Q "$(ProjectDir)\worldgen" "$(OutDir)\worldgen"
