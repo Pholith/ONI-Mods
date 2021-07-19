@@ -169,3 +169,87 @@ worldTemplateRules:
           - subworlds/marsh/HotMarsh
           - subworlds/rust/Rust
           - subworlds/rust/Ocean
+         
+  - names:
+      - expansion1::poi/jungle/geyser_hydrogen
+      - poi/jungle/geyser_chlorine
+    listRule: GuaranteeOne
+    priority: 100
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [ToxicJungle]
+  # FrozenSlush
+  - names:
+    - expansion1::poi/poi_geyser_dirty_slush
+    - expansion1::poi/poi_frozen_salt_water_geyser
+    listRule: GuaranteeAll
+    priority: 100
+    allowedCellsFilter:
+	  - command: Replace
+        zoneTypes: [FrozenWastes]
+      - command: IntersectWith
+        tagcommand: DistanceFromTag
+        tag: AtStart
+        minDistance: 1
+        maxDistance: 3
+  - names:
+      - poi/frozen/heatsink_a
+      - poi/frozen/heatsink_b
+    listRule: GuaranteeOne
+    priority: 100 
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [FrozenWastes]
+  # Geysers
+  - names:
+    - expansion1::poi/poi_geyser_magma
+    - expansion1::poi/poi_geyser_magma_2
+    - expansion1::poi/poi_geyser_magma_3
+    listRule: TryAll
+    priority: 50
+    allowedCellsFilter:
+      - command: Replace
+        tagcommand: DistanceFromTag
+        tag: AtDepths
+        minDistance: 1
+        maxDistance: 1
+      - command: IntersectWith
+        zoneTypes: [ Barren ]
+      - command: ExceptWith
+        tagcommand: AtTag
+        tag: NoGravitasFeatures
+  # Curated Geysers
+  - names: 
+    - geysers/steam
+    - geysers/chlorine_gas
+    - geysers/hot_po2
+    - geysers/methane
+    - geysers/filthy_water
+    - geysers/liquid_co2
+    - geysers/hot_hydrogen
+    - geysers/big_volcano
+    listRule: TryOne
+    times: 3
+    allowDuplicates: true
+    priority: 10
+    allowedCellsFilter:
+      - command: Replace
+        tagcommand: DistanceFromTag
+        tag: AtStart
+        minDistance: 2
+        maxDistance: 10
+      - command: ExceptWith
+        zoneTypes: [ Space ]
+      - command: ExceptWith
+        tagcommand: AtTag
+        tag: NoGlobalFeatureSpawning
+
+  # Generic Geysers
+  - names:
+    - geysers/generic
+    listRule: TryOne
+    times: 5
+    allowDuplicates: true
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [ Space ]

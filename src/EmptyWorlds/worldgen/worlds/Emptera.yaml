@@ -14,7 +14,7 @@ subworldFiles:
   - name: subworlds/forest/ForestStartModified
   - name: subworlds/forest/ForestMiniWaterModified
     weight: 1.5
-  - name: subworlds/space/SpaceGeyser
+  - name: subworlds/space/Space
   - name: subworlds/space/SpaceWell
   - name: subworlds/space/Surface
 
@@ -48,7 +48,7 @@ unknownCellsAllowedSubworlds:
     maxDistance: 999
     command: Replace
     subworldNames:
-      - subworlds/space/SpaceGeyser
+      - subworlds/space/Space
 
   - tagcommand: DistanceFromTag
     tag: AtSurface
@@ -65,7 +65,7 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - subworlds/forest/ForestMiniWaterModified
-      - subworlds/space/SpaceGeyser
+      - subworlds/space/Space
 
   - tagcommand: AtTag
     tag: AtSurface
@@ -101,7 +101,7 @@ worldTemplateRules:
     allowedCellsFilter:
       - command: Replace
         subworldNames:
-          - subworlds/space/SpaceGeyser
+          - subworlds/space/Space
   - names:
     - poi/poi_brain_ruin
     listRule: GuaranteeOne
@@ -110,16 +110,64 @@ worldTemplateRules:
     allowedCellsFilter:
       - command: Replace
         subworldNames:
-          - subworlds/space/SpaceGeyser
+          - subworlds/space/Space
 
+  - names:
+      - expansion1::poi/jungle/geyser_hydrogen
+      - poi/jungle/geyser_chlorine
+    listRule: GuaranteeOne
+    priority: 100
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [Space]
+  # FrozenSlush
+  - names:
+    - expansion1::poi/poi_geyser_dirty_slush
+    - expansion1::poi/poi_frozen_salt_water_geyser
+    listRule: GuaranteeAll
+    priority: 100
+    allowedCellsFilter:
+	  - command: Replace
+        zoneTypes: [Space]
+      - command: IntersectWith
+        tagcommand: DistanceFromTag
+        tag: AtStart
+        minDistance: 1
+        maxDistance: 3
+  - names:
+      - poi/frozen/heatsink_a
+      - poi/frozen/heatsink_b
+    listRule: GuaranteeOne
+    priority: 100 
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [Space]
+  # Geysers
+  - names:
+    - expansion1::poi/poi_geyser_magma
+    - expansion1::poi/poi_geyser_magma_2
+    - expansion1::poi/poi_geyser_magma_3
+    listRule: TryAll
+    priority: 50
+    allowedCellsFilter:
+      - command: Replace
+        tagcommand: DistanceFromTag
+        tag: AtDepths
+        minDistance: 1
+        maxDistance: 1
+      - command: IntersectWith
+        zoneTypes: [ Space ]
+      - command: ExceptWith
+        tagcommand: AtTag
+        tag: NoGravitasFeatures
 
   # Generic Geysers
-#  - names:
-#    - geysers/generic
-#    listRule: TryOne
-#    times: 12
-#    allowDuplicates: true
-#    allowedCellsFilter:
-#      - command: Replace
-#        tagcommand: NotAtTag
-#        tag: NoGlobalFeatureSpawning
+  - names:
+    - geysers/generic
+    listRule: TryOne
+    times: 6
+    allowDuplicates: true
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [ Space ]
+

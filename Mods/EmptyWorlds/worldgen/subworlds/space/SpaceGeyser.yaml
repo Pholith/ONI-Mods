@@ -15,9 +15,5 @@ biomes:
 
 tags:
   - IgnoreCaveOverride
-  - NoGlobalFeatureSpawning
-
-#featureTemplates:
-#	feature_geyser_generic2: 13
 
 zoneType: Space

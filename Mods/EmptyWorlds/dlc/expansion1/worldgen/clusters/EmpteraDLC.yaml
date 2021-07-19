@@ -18,7 +18,8 @@ worldPlacements:
   allowedRings:
     min: 3
     max: 3
-- world: expansion1::worlds/OilRichWarpTarget #portal destination
+
+- world: expansion1::worlds/IslandsDLC # NO portal destination
   buffer: 3
   allowedRings:
     min: 4

@@ -4,8 +4,8 @@ asteroidIcon: asteroid_islands_kanim
 disableWorldTraits: false
 
 worldsize:
-  X: 180
-  Y: 240
+  X: 200
+  Y: 280
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
 
@@ -20,12 +20,15 @@ subworldFiles:
   - name: subworlds/space/Surface
 
   - name: subworlds/frozen/Frozen
+    minCount: 1
   - name: subworlds/jungle/Jungle
   - name: subworlds/magma/MagmaVent
-    weight: 0.2
+    minCount: 1
+    weight: 0.3
   - name: subworlds/magma/Bottom
     weight: 0.5
   - name: subworlds/oil/OilPatch
+    minCount: 1
   - name: subworlds/ocean/Ocean
   - name: subworlds/rust/Rust
   - name: expansion1::subworlds/wasteland/WasteLandBeetle
@@ -153,4 +156,63 @@ worldTemplateRules:
           - subworlds/rust/Rust
           - subworlds/rust/Ocean
 
+  - names:
+    - expansion1::poi/jungle/geyser_hydrogen
+    - poi/jungle/geyser_chlorine
+    listRule: GuaranteeOne
+    priority: 100
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [ToxicJungle]
+  # FrozenSlush
+  - names:
+    - expansion1::poi/poi_geyser_dirty_slush
+    - expansion1::poi/poi_frozen_salt_water_geyser
+    listRule: GuaranteeAll
+    priority: 100
+    allowedCellsFilter:
+	  - command: Replace
+        zoneTypes: [FrozenWastes]
+      - command: IntersectWith
+        tagcommand: DistanceFromTag
+        tag: AtStart
+        minDistance: 1
+        maxDistance: 5
+
+  - names:
+      - poi/frozen/heatsink_a
+      - poi/frozen/heatsink_b
+    listRule: GuaranteeOne
+    priority: 100 
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [FrozenWastes]
+  # Geysers
+  - names:
+    - expansion1::poi/poi_geyser_magma
+    - expansion1::poi/poi_geyser_magma_2
+    - expansion1::poi/poi_geyser_magma_3
+    listRule: TryAll
+    priority: 50
+    allowedCellsFilter:
+      - command: Replace
+        tagcommand: DistanceFromTag
+        tag: AtDepths
+        minDistance: 1
+        maxDistance: 1
+      - command: IntersectWith
+        zoneTypes: [ Barren ]
+      - command: ExceptWith
+        tagcommand: AtTag
+        tag: NoGravitasFeatures
+
+  # Generic Geysers
+  - names:
+    - geysers/generic
+    listRule: TryOne
+    times: 5
+    allowDuplicates: true
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [ Space ]
 
