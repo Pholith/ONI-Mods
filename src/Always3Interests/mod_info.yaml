@@ -1,2 +1,4 @@
-supportedContent: VANILLA_ID
-lastWorkingBuild: 449549
+supportedContent: ALL
+minimumSupportedBuild: 0
+APIVersion: 2
+version: "2.0.0"

@@ -297,8 +297,7 @@
   <PropertyGroup>
     <PostBuildEvent>echo running script...
 echo copy src files...
-rm *.png
-rm *.pdb
+rm $(OutDir)*.pdb
 xcopy /E /I /Q "$(ProjectDir)\anim" "$(OutDir)\anim"
 xcopy /E /I /Q "$(ProjectDir)\templates" "$(OutDir)\templates"
 xcopy /E /I /Q "$(ProjectDir)\translations" "$(OutDir)\translations"

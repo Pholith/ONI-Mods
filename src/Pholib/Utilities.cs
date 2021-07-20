@@ -10,7 +10,7 @@ namespace Pholib
 {
     public class Logs
     {
-        private static readonly string version = "1.2.3";
+        private static readonly string version = "1.3";
 
         public static bool DebugLog = false;
         private static bool initiated = false;

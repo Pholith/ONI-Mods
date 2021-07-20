@@ -1,23 +1,25 @@
 ﻿using HarmonyLib;
+using KMod;
 using Pholib;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
+using UnityEngine;
 
 namespace SolarSystemWorlds
 {
-    public class ImageBuilder
+    public class CustomizeYourPaints : UserMod2
     {
 
-        public static void OnLoad()
+        public override void OnLoad(Harmony harmony)
         {
+            base.OnLoad(harmony);
+
             try
             {
-                Image squarePainting = Image.FromFile(ImageUtil.ModPath() + "src/originals/painting_0_original.png");
-                Image tallPainting = Image.FromFile(ImageUtil.ModPath() + "src/originals/painting_tall_0_original.png");
-                Image widePainting = Image.FromFile(ImageUtil.ModPath() + "src/originals/painting_wide_0_original.png");
+                Texture2D squarePainting = ImageUtil.LoadPNG(ImageUtil.ModPath() + "src/originals/painting_0_original.png");
+                Texture2D tallPainting = ImageUtil.LoadPNG(ImageUtil.ModPath() + "src/originals/painting_tall_0_original.png");
+                Texture2D widePainting = ImageUtil.LoadPNG(ImageUtil.ModPath() + "src/originals/painting_wide_0_original.png");
 
                 // x and y position on the original image
                 int[] paintingPositionsX = new int[] { 395, 390, 390, 532, 530 };
@@ -27,7 +29,7 @@ namespace SolarSystemWorlds
                 {
                     try
                     {
-                        squarePainting = ImageUtil.MergeImage(squarePainting, Image.FromFile(ImageUtil.ModPath() + "src/painting" + (i + 1) + ".png").GetThumbnailImage(120, 130, null, IntPtr.Zero), paintingPositionsX[i], paintingPositionsY[i]);
+                        squarePainting = ImageUtil.MergeImage(squarePainting, ImageUtil.LoadPNG(ImageUtil.ModPath() + "src/painting" + (i + 1) + ".png").ScaleTexture(120, 130), paintingPositionsX[i], paintingPositionsY[i]);
                     }
                     catch (Exception)
                     {
@@ -41,7 +43,7 @@ namespace SolarSystemWorlds
                 {
                     try
                     {
-                        tallPainting = ImageUtil.MergeImage(tallPainting, Image.FromFile(ImageUtil.ModPath() + "src/tall_painting" + (i + 1) + ".png").GetThumbnailImage(140, 230, null, IntPtr.Zero), tallPaintingPositionsX[i], tallPaintingPositionsY[i]);
+                        tallPainting = ImageUtil.MergeImage(tallPainting, ImageUtil.LoadPNG(ImageUtil.ModPath() + "src/tall_painting" + (i + 1) + ".png").ScaleTexture(140, 230), tallPaintingPositionsX[i], tallPaintingPositionsY[i]);
                     }
                     catch (Exception)
                     {
@@ -54,7 +56,7 @@ namespace SolarSystemWorlds
                 {
                     try
                     {
-                        widePainting = ImageUtil.MergeImage(widePainting, Image.FromFile(ImageUtil.ModPath() + "src/wide_painting" + (i + 1) + ".png").GetThumbnailImage(215, 135, null, IntPtr.Zero), widePaintingPositionsX[i], widePaintingPositionsY[i]);
+                        widePainting = ImageUtil.MergeImage(widePainting, ImageUtil.LoadPNG(ImageUtil.ModPath() + "src/wide_painting" + (i + 1) + ".png").ScaleTexture(215, 135), widePaintingPositionsX[i], widePaintingPositionsY[i]);
                     }
                     catch (Exception)
                     {
@@ -64,17 +66,22 @@ namespace SolarSystemWorlds
 
                 if (squarePainting != null)
                 {
-                    squarePainting.Save(ImageUtil.ModPath() + "anim/paints/mod_painting/painting_0.png", ImageFormat.Png);
+                    byte[] image = squarePainting.EncodeToPNG();
+                    File.WriteAllBytes(ImageUtil.ModPath() + "anim/paints/mod_painting/painting_0.png", image);
                 }
 
                 if (tallPainting != null)
                 {
-                    tallPainting.Save(ImageUtil.ModPath() + "anim/paints/mod_painting_tall/painting_tall_0.png", ImageFormat.Png);
+                    byte[] image = tallPainting.EncodeToPNG();
+                    File.WriteAllBytes(ImageUtil.ModPath() + "anim/paints/mod_painting_tall/painting_tall_0.png", image);
+
                 }
 
                 if (widePainting != null)
                 {
-                    widePainting.Save(ImageUtil.ModPath() + "anim/paints/mod_painting_wide/painting_wide_0.png", ImageFormat.Png);
+                    byte[] image = widePainting.EncodeToPNG();
+                    File.WriteAllBytes(ImageUtil.ModPath() + "anim/paints/mod_painting_wide/painting_wide_0.png", image);
+
                 }
             }
             catch (IOException e)

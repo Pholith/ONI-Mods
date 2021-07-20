@@ -1,8 +1,9 @@
 ﻿using Database;
 using HarmonyLib;
 using Klei.AI;
+using KMod;
 using Newtonsoft.Json;
-using PeterHan.PLib;
+using PeterHan.PLib.Core;
 using PeterHan.PLib.Options;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Always3Interests
     public class Always3InterestsSettings
     {
         [Option("Number of interests", "The number of interests.")]
-        [Limit(0, 10)]
+        [Limit(0, 6)]
         [JsonProperty]
         public int numberOfInterests { get; set; }
 
@@ -72,8 +73,8 @@ namespace Always3Interests
 
         public Always3InterestsSettings()
         {
-            pointsWhen1Interest = 7;
-            pointsWhen2Interest = 3;
+            pointsWhen1Interest = 9;
+            pointsWhen2Interest = 5;
             pointsWhen3Interest = 1;
 
             pointsWhenMoreThan3Interest = 1;
@@ -90,87 +91,66 @@ namespace Always3Interests
         }
     }
 
-    internal class TuningConfigPatch
+    public class Always3Interests : UserMod2
     {
 
-        public static Always3InterestsSettings settings;
+        public static Always3InterestsSettings Settings;
 
-        public static void OnLoad()
+        public override void OnLoad(Harmony harmony)
         {
+            base.OnLoad(harmony);
+            new POptions().RegisterOptions(this, typeof(Always3InterestsSettings));
+
+
+            // Init PLib and settings
             PUtil.InitLibrary();
-            POptions.RegisterOptions(typeof(Always3InterestsSettings));
-            settings = new Always3InterestsSettings();
-            ReadSettings();
+
+            Settings = POptions.ReadSettings<Always3InterestsSettings>();
+            if (Settings == null)
+            {
+                Settings = new Always3InterestsSettings();
+            }
 
             int[] customAttributes = new int[] {
-                settings.pointsWhen1Interest,
-                settings.pointsWhen2Interest,
-                settings.pointsWhen3Interest,
-                settings.pointsWhenMoreThan3Interest,
-                settings.pointsWhenMoreThan3Interest,
-                settings.pointsWhenMoreThan3Interest,
-                settings.pointsWhenMoreThan3Interest,
-                settings.pointsWhenMoreThan3Interest,
-                settings.pointsWhenMoreThan3Interest,
-                settings.pointsWhenMoreThan3Interest,
-                settings.pointsWhenMoreThan3Interest
+                Settings.pointsWhen1Interest,
+                Settings.pointsWhen2Interest,
+                Settings.pointsWhen3Interest,
+                Settings.pointsWhenMoreThan3Interest,
+                Settings.pointsWhenMoreThan3Interest,
+                Settings.pointsWhenMoreThan3Interest,
+                Settings.pointsWhenMoreThan3Interest,
+                Settings.pointsWhenMoreThan3Interest,
+                Settings.pointsWhenMoreThan3Interest,
+                Settings.pointsWhenMoreThan3Interest,
+                Settings.pointsWhenMoreThan3Interest
             };
 
             Traverse.Create<DUPLICANTSTATS>().Field<int[]>("APTITUDE_ATTRIBUTE_BONUSES").Value = customAttributes;
-
-
         }
+
         public static void ReadSettings()
         {
             Debug.Log("Loading settings");
 
-            settings = POptions.ReadSettings<Always3InterestsSettings>();
-            if (settings == null)
+            Settings = POptions.ReadSettings<Always3InterestsSettings>();
+            if (Settings == null)
             {
-                settings = new Always3InterestsSettings();
+                Settings = new Always3InterestsSettings();
             }
         }
     }
-
-
-    /*[HarmonyPatch(typeof(CharacterSelectionController))]
-    [HarmonyPatch("InitializeContainers")]
-    class MinionStartingStatsConstructorPrefixPatch
-    {
-        public static void Prefix()
-        {
-            TuningConfigPatch.ReadSettings();
-            var settings = TuningConfigPatch.settings;
-            var customAttributes = new int[] {
-                settings.pointsWhen1Interest,
-                settings.pointsWhen2Interest,
-                settings.pointsWhen3Interest,
-                settings.pointsWhenMoreThan3Interest,
-                settings.pointsWhenMoreThan3Interest,
-                settings.pointsWhenMoreThan3Interest,
-                settings.pointsWhenMoreThan3Interest,
-                settings.pointsWhenMoreThan3Interest,
-                settings.pointsWhenMoreThan3Interest,
-                settings.pointsWhenMoreThan3Interest,
-                settings.pointsWhenMoreThan3Interest
-            };
-
-            Traverse.Create<DUPLICANTSTATS>().Field<int[]>("APTITUDE_ATTRIBUTE_BONUSES").Value = customAttributes;
-        }
-    }
-    */
 
     [HarmonyPatch(typeof(MinionStartingStats), "GenerateAptitudes")]
     public class GenerateAptitudesPatch
     {
         public static bool Prefix(MinionStartingStats __instance, string guaranteedAptitudeID)
         {
-            if (TuningConfigPatch.settings.randomNumberOfInterests)
+            if (Always3Interests.Settings.randomNumberOfInterests)
             {
                 return true;
             }
 
-            int num = TuningConfigPatch.settings.numberOfInterests;
+            int num = Always3Interests.Settings.numberOfInterests;
 
             List<SkillGroup> list = new List<SkillGroup>(Db.Get().SkillGroups.resources);
             list.Shuffle<SkillGroup>();
@@ -193,17 +173,18 @@ namespace Always3Interests
     [HarmonyPatch("GenerateTraits")]
     public class TraitPatch
     {
-        public static bool Prefix(MinionStartingStats __instance, List<ChoreGroup> disabled_chore_groups)
+        public static bool Prefix(MinionStartingStats __instance, bool is_starter_minion, List<ChoreGroup> disabled_chore_groups, string guaranteedAptitudeID = null)
         {
             DUPLICANTSTATS.MAX_TRAITS = 10;
 
+            int statDelta = 0;
             List<string> selectedTraits = new List<string>();
             System.Random randSeed = new System.Random();
 
-            // set stress trait if it is not disable
             Trait trait = Db.Get().traits.Get(__instance.personality.stresstrait);
             __instance.stressTrait = trait;
-            if (TuningConfigPatch.settings.disableStressTrait)
+
+            if (Always3Interests.Settings.disableStressTrait)
             {
                 __instance.stressTrait = Db.Get().traits.Get("None");
             }
@@ -211,7 +192,7 @@ namespace Always3Interests
             // set joy trait if it is not disable
             Trait joytrait = Db.Get().traits.Get(__instance.personality.joyTrait);
             __instance.joyTrait = joytrait;
-            if (TuningConfigPatch.settings.disableJoyTrait)
+            if (Always3Interests.Settings.disableJoyTrait)
             {
                 __instance.joyTrait = Db.Get().traits.Get("None");
             }
@@ -219,87 +200,122 @@ namespace Always3Interests
             Trait trait2 = Db.Get().traits.Get(__instance.personality.congenitaltrait);
 
             if (trait2.Name == "None")
+
+
+            __instance.stickerType = __instance.personality.stickerType;
+            Trait trait3 = Db.Get().traits.Get(__instance.personality.congenitaltrait);
+            if (trait3.Name == "None")
             {
                 __instance.congenitaltrait = null;
             }
             else
             {
-                __instance.congenitaltrait = trait2;
+                __instance.congenitaltrait = trait3;
             }
-            Func<List<DUPLICANTSTATS.TraitVal>, bool> func = delegate (List<DUPLICANTSTATS.TraitVal> traitPossibilities)
+            Func<List<DUPLICANTSTATS.TraitVal>, bool, bool> func = delegate (List<DUPLICANTSTATS.TraitVal> traitPossibilities, bool positiveTrait)
             {
                 if (__instance.Traits.Count > DUPLICANTSTATS.MAX_TRAITS)
                 {
                     return false;
                 }
-                float num2 = Util.GaussianRandom(0f, 1f);
-                List<DUPLICANTSTATS.TraitVal> list = new List<DUPLICANTSTATS.TraitVal>(traitPossibilities);
-                list.ShuffleSeeded(randSeed);
-                list.Sort((DUPLICANTSTATS.TraitVal t1, DUPLICANTSTATS.TraitVal t2) => -t1.probability.CompareTo(t2.probability));
-                foreach (DUPLICANTSTATS.TraitVal traitVal in list)
+                Mathf.Abs(Util.GaussianRandom(0f, 1f));
+                int num6 = traitPossibilities.Count;
+                int num7;
+                if (!positiveTrait)
                 {
-                    if (!selectedTraits.Contains(traitVal.id))
+                    if (DUPLICANTSTATS.rarityDeckActive.Count < 1)
                     {
-                        if (traitVal.requiredNonPositiveAptitudes != null)
+                        DUPLICANTSTATS.rarityDeckActive.AddRange(DUPLICANTSTATS.RARITY_DECK);
+                    }
+                    if (DUPLICANTSTATS.rarityDeckActive.Count == DUPLICANTSTATS.RARITY_DECK.Count)
+                    {
+                        DUPLICANTSTATS.rarityDeckActive.ShuffleSeeded(randSeed);
+                    }
+                    num7 = DUPLICANTSTATS.rarityDeckActive[DUPLICANTSTATS.rarityDeckActive.Count - 1];
+                    DUPLICANTSTATS.rarityDeckActive.RemoveAt(DUPLICANTSTATS.rarityDeckActive.Count - 1);
+                }
+                else
+                {
+                    List<int> list = new List<int>();
+                    if (is_starter_minion)
+                    {
+                        list.Add(__instance.rarityBalance - 1);
+                        list.Add(__instance.rarityBalance);
+                        list.Add(__instance.rarityBalance);
+                        list.Add(__instance.rarityBalance + 1);
+                    }
+                    else
+                    {
+                        list.Add(__instance.rarityBalance - 2);
+                        list.Add(__instance.rarityBalance - 1);
+                        list.Add(__instance.rarityBalance);
+                        list.Add(__instance.rarityBalance + 1);
+                        list.Add(__instance.rarityBalance + 2);
+                    }
+                    list.ShuffleSeeded(randSeed);
+                    num7 = list[0];
+                    num7 = Mathf.Max(DUPLICANTSTATS.RARITY_COMMON, num7);
+                    num7 = Mathf.Min(DUPLICANTSTATS.RARITY_LEGENDARY, num7);
+                }
+                List<DUPLICANTSTATS.TraitVal> list2 = new List<DUPLICANTSTATS.TraitVal>(traitPossibilities);
+                for (int i = list2.Count - 1; i > -1; i--)
+                {
+                    if (list2[i].rarity != num7)
+                    {
+                        list2.RemoveAt(i);
+                        num6--;
+                    }
+                }
+                list2.ShuffleSeeded(randSeed);
+                foreach (DUPLICANTSTATS.TraitVal traitVal in list2)
+                {
+                    if (!DlcManager.IsContentActive(traitVal.dlcId))
+                    {
+                        num6--;
+                    }
+                    else if (selectedTraits.Contains(traitVal.id))
+                    {
+                        num6--;
+                    }
+                    else
+                    {
+                        Trait trait4 = Db.Get().traits.TryGet(traitVal.id);
+                        if (trait4 == null)
                         {
-                            bool flag2 = false;
-                            foreach (KeyValuePair<SkillGroup, float> keyValuePair in __instance.skillAptitudes)
-                            {
-                                if (flag2)
-                                {
-                                    break;
-                                }
-                                foreach (HashedString x in traitVal.requiredNonPositiveAptitudes)
-                                {
-                                    if (x == keyValuePair.Key.IdHash && keyValuePair.Value > 0f)
-                                    {
-                                        flag2 = true;
-                                        break;
-                                    }
-                                }
-                            }
-                            if (flag2)
-                            {
-                                continue;
-                            }
+                            global::Debug.LogWarning("Trying to add nonexistent trait: " + traitVal.id);
+                            num6--;
                         }
-                        if (traitVal.mutuallyExclusiveTraits != null)
+                        else if (is_starter_minion && !trait4.ValidStarterTrait)
                         {
-                            bool flag3 = false;
-                            foreach (string item in selectedTraits)
-                            {
-                                flag3 = traitVal.mutuallyExclusiveTraits.Contains(item);
-                                if (flag3)
-                                {
-                                    break;
-                                }
-                            }
-                            if (flag3)
-                            {
-                                continue;
-                            }
+                            num6--;
                         }
-                        if (num2 > traitVal.probability)
+                        else if ((bool)Traverse.Create(__instance).Method("AreTraitAndAptitudesExclusive", new object[] { traitVal, __instance.skillAptitudes }).GetValue())
                         {
-                            Trait trait3 = Db.Get().traits.TryGet(traitVal.id);
-                            if (trait3 == null)
-                            {
-                                global::Debug.LogWarning("Trying to add nonexistent trait: " + traitVal.id);
-                            }
-                            else if (trait3.ValidStarterTrait)
+                            num6--;
+                        }
+                        else if (is_starter_minion && guaranteedAptitudeID != null &&
+                            (bool)Traverse.Create(__instance).Method("AreTraitAndArchetypeExclusive", new object[] { traitVal, guaranteedAptitudeID }).GetValue())
+                        {
+                            num6--;
+                        }
+                        else
+                        {
+                            if (!(bool)Traverse.Create(__instance).Method("AreTraitsMutuallyExclusive", new object[] { traitVal, selectedTraits }).GetValue())
                             {
                                 selectedTraits.Add(traitVal.id);
-                                __instance.Traits.Add(trait3);
-                                if (trait3.disabledChoreGroups != null)
+                                statDelta += traitVal.statBonus;
+                                __instance.rarityBalance += (positiveTrait ? (-traitVal.rarity) : traitVal.rarity);
+                                __instance.Traits.Add(trait4);
+                                if (trait4.disabledChoreGroups != null)
                                 {
-                                    for (int k = 0; k < trait3.disabledChoreGroups.Length; k++)
+                                    for (int j = 0; j < trait4.disabledChoreGroups.Length; j++)
                                     {
-                                        disabled_chore_groups.Add(trait3.disabledChoreGroups[k]);
+                                        disabled_chore_groups.Add(trait4.disabledChoreGroups[j]);
                                     }
                                 }
                                 return true;
                             }
-
+                            num6--;
                         }
                     }
                 }
@@ -307,8 +323,8 @@ namespace Always3Interests
             };
 
 
-            int numberOfGoodTraits = TuningConfigPatch.settings.numberOfGoodTraits;
-            int numberOfBadTraits = TuningConfigPatch.settings.numberOfBadTraits;
+            int numberOfGoodTraits = Always3Interests.Settings.numberOfGoodTraits;
+            int numberOfBadTraits = Always3Interests.Settings.numberOfBadTraits;
 
             if (numberOfGoodTraits > 5)
             {
@@ -324,7 +340,7 @@ namespace Always3Interests
                 bool isTraitAdded = false;
                 while (!isTraitAdded)
                 {
-                    isTraitAdded = func(DUPLICANTSTATS.BADTRAITS);
+                    isTraitAdded = func(DUPLICANTSTATS.BADTRAITS, false);
                 }
             }
             for (int i = 0; i < numberOfGoodTraits; i++)
@@ -332,11 +348,11 @@ namespace Always3Interests
                 bool isTraitAdded = false;
                 while (!isTraitAdded)
                 {
-                    isTraitAdded = func(DUPLICANTSTATS.GOODTRAITS);
+                    isTraitAdded = func(DUPLICANTSTATS.GOODTRAITS, true);
                 }
             }
-            return false;
 
+            return false;
         }
     }
 
@@ -347,9 +363,9 @@ namespace Always3Interests
     {
         public static void Postfix(GameObject go)
         {
-            TuningConfigPatch.ReadSettings();
+            Always3Interests.ReadSettings();
             //Debug.Log("telepad");
-            int startingLevel = TuningConfigPatch.settings.startingLevelOnPrintingPod;
+            int startingLevel = Always3Interests.Settings.startingLevelOnPrintingPod;
 
             Telepad telepad = go.AddOrGet<Telepad>();
             telepad.startingSkillPoints = startingLevel;
