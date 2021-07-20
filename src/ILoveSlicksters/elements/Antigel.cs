@@ -1,10 +1,5 @@
-﻿using HarmonyLib;
-using Pholib;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using ILoveSlicksters.elements;
 using UnityEngine;
-using static Pholib.Utilities;
 
 namespace ILoveSlicksters
 {
@@ -32,10 +27,10 @@ namespace ILoveSlicksters
 
         public static void RegisterSubstance()
         {
-            CreateRegisteredSubstance(
+            SubstanceUtils.CreateRegisteredSubstance(
               name: Id,
               state: Element.State.Liquid,
-              kanim: FindAnim("liquid_tank_kanim"),
+              kanim: SubstanceUtils.FindAnim("liquid_tank_kanim"),
               material: Assets.instance.substanceTable.liquidMaterial,
               colour: color
             );

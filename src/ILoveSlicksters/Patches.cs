@@ -105,7 +105,6 @@ namespace ILoveSlicksters
         }
     }
 
-    // Load translations files
     [HarmonyPatch(typeof(BaseOilFloaterConfig))]
     [HarmonyPatch("SetupDiet")]
     internal class BiggerConsumptionRatePatch
@@ -296,20 +295,6 @@ namespace ILoveSlicksters
 
 
             }
-        }
-    }
-
-    [HarmonyPatch(typeof(Assets), "SubstanceListHookup")]
-    public class Assets_SubstanceListHookup
-    {
-        public static void Prefix()
-        {
-            Utilities.RegisterElementStrings(Antigel.Id, PHO_STRINGS.ELEMENTS.ANTIGEL.NAME, PHO_STRINGS.ELEMENTS.ANTIGEL.DESC);
-        }
-
-        public static void Postfix()
-        {
-            Antigel.RegisterSubstance();
         }
     }
 

@@ -40,6 +40,7 @@
     <Compile Include="..\Pholib\Utilities.cs">
       <Link>Utilities.cs</Link>
     </Compile>
+    <Compile Include="elements\ElementsPatches.cs" />
     <Compile Include="SlicksterDance.cs" />
     <Compile Include="CreatureAquaticGroomingMonitor.cs" />
     <Compile Include="GasDrowingMonitor.cs" />

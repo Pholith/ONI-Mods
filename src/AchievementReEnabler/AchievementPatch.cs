@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using System;
 using System.Collections.Generic;
 
@@ -8,7 +8,7 @@ namespace AchievementReEnabler
     // modify the save File to toggle debugWasUsed to false
     [HarmonyPatch(typeof(Game))]
     [HarmonyPatch("Load")]
-    class AchievementPatch
+    internal class AchievementPatch
     {
 
         public static void Postfix(Game __instance)
@@ -21,7 +21,7 @@ namespace AchievementReEnabler
     // Steam Unlock achievment that were unlocked when debugWasUsed was true
     [HarmonyPatch(typeof(ColonyAchievementTracker))]
     [HarmonyPatch("OnSpawn")]
-    class AchievementsReactiver
+    internal class AchievementsReactiver
     {
 
         public static void Postfix(ColonyAchievementTracker __instance)
