@@ -1,11 +1,12 @@
 name: EmptyWorlds.PHO_STRINGS.I_NAME
 description: EmptyWorlds.PHO_STRINGS.I_DESCRIPTION
+nameTable: SPACE
 asteroidIcon: asteroid_islands_kanim
 disableWorldTraits: false
 
 worldsize:
-  X: 200
-  Y: 280
+  X: 230
+  Y: 290
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
 
@@ -13,23 +14,26 @@ layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 subworldFiles:
   - name: subworlds/forest/ForestStartModified
   - name: subworlds/forest/ForestMiniWaterModified
+    minCount: 2
     weight: 2
   - name: subworlds/marsh/HotMarsh
   - name: subworlds/space/Space
-    weight: 4
+    weight: 3.5
   - name: subworlds/space/Surface
 
   - name: subworlds/frozen/Frozen
     minCount: 1
   - name: subworlds/jungle/Jungle
-  - name: subworlds/magma/MagmaVent
     minCount: 1
-    weight: 0.3
+  - name: subworlds/magma/MagmaVent
+    weight: 0.2
   - name: subworlds/magma/Bottom
+    minCount: 1
     weight: 0.5
   - name: subworlds/oil/OilPatch
     minCount: 1
   - name: subworlds/ocean/Ocean
+    weight: 0.8
   - name: subworlds/rust/Rust
   - name: expansion1::subworlds/wasteland/WasteLandBeetle
   - name: subworlds/barren/BarrenGranite
@@ -70,7 +74,7 @@ unknownCellsAllowedSubworlds:
     tag: AtStart
     minDistance: 2
     maxDistance: 2
-    command: UnionWith
+    command: Replace
     subworldNames:
 	  - subworlds/marsh/HotMarsh
 	  - subworlds/space/Space
@@ -80,7 +84,7 @@ unknownCellsAllowedSubworlds:
     tag: AtStart
     minDistance: 3
     maxDistance: 3
-    command: UnionWith
+    command: Replace
     subworldNames:
       - subworlds/frozen/Frozen
 	  - subworlds/ocean/Ocean
@@ -92,7 +96,7 @@ unknownCellsAllowedSubworlds:
     tag: AtStart
     minDistance: 4
     maxDistance: 999
-    command: UnionWith
+    command: Replace
     subworldNames:
       - subworlds/magma/MagmaVent
 	  - subworlds/oil/OilPatch
@@ -105,17 +109,17 @@ unknownCellsAllowedSubworlds:
   - tagcommand: DistanceFromTag
     tag: AtSurface
     minDistance: 1
-    maxDistance: 2
+    maxDistance: 1
     command: Replace
     subworldNames:
-      - subworlds/space/Surface
+      - subworlds/space/Space
 
   - tagcommand: AtTag
     tag: AtSurface
     command: Replace
     subworldNames:
-      - subworlds/space/Surface
-	  	  
+      - subworlds/space/Space
+
       
 worldTemplateRules:
   # Gravitas
@@ -161,32 +165,30 @@ worldTemplateRules:
     - poi/jungle/geyser_chlorine
     listRule: GuaranteeOne
     priority: 100
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
     allowedCellsFilter:
       - command: Replace
-        zoneTypes: [ToxicJungle]
+        zoneTypes: [ToxicJungle, Space]
   # FrozenSlush
   - names:
     - expansion1::poi/poi_geyser_dirty_slush
     - expansion1::poi/poi_frozen_salt_water_geyser
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
     listRule: GuaranteeAll
     priority: 100
     allowedCellsFilter:
 	  - command: Replace
-        zoneTypes: [FrozenWastes]
-      - command: IntersectWith
-        tagcommand: DistanceFromTag
-        tag: AtStart
-        minDistance: 1
-        maxDistance: 5
+        zoneTypes: [FrozenWastes, ToxicJungle, Space]
 
   - names:
-      - poi/frozen/heatsink_a
-      - poi/frozen/heatsink_b
+    - poi/frozen/heatsink_a
+    - poi/frozen/heatsink_b
     listRule: GuaranteeOne
     priority: 100 
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
     allowedCellsFilter:
       - command: Replace
-        zoneTypes: [FrozenWastes]
+        zoneTypes: [FrozenWastes, Space]
   # Geysers
   - names:
     - expansion1::poi/poi_geyser_magma

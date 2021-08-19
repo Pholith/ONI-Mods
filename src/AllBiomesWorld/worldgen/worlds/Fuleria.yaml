@@ -196,6 +196,18 @@ worldTemplateRules:
       - command: Replace
         zoneTypes: [MagmaCore]
 
+  # Frozen
+  - names:
+      - poi/frozen/heatsink_a
+      - poi/frozen/heatsink_b
+      - poi/frozen/heatsink_c
+      - poi/frozen/heatsink_d
+    listRule: GuaranteeOne
+    priority: 300 
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [FrozenWastes]
+
   # Gravitas
   - names:
     - poi/poi_gravitas

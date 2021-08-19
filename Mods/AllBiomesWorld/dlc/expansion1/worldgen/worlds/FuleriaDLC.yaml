@@ -5,8 +5,8 @@ asteroidIcon: asteroid_fuleria_kanim
 disableWorldTraits: true
 
 worldsize:
-  X: 240
-  Y: 340
+  X: 260
+  Y: 350
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
 
@@ -53,11 +53,13 @@ subworldFiles:
     minCount: 2
     maxCount: 3
   - name: subworlds/frozen/Frozen
+    minCount: 1
+    maxCount: 3
   - name: subworlds/barren/BarrenGranite
     minCount: 1
     maxCount: 3
   - name: subworlds/space/Space
-    weight: 0.7
+    weight: 0.6
   - name: expansion1::subworlds/aquatic/OpenWater  
     minCount: 1
     maxCount: 2
@@ -238,6 +240,19 @@ worldTemplateRules:
     allowedCellsFilter:
       - command: Replace
         zoneTypes: [OilField]
+
+  # Frozen
+  - names:
+      - poi/frozen/heatsink_a
+      - poi/frozen/heatsink_b
+      - poi/frozen/heatsink_c
+      - poi/frozen/heatsink_d
+    listRule: GuaranteeOne
+    priority: 300 
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [FrozenWastes]
+
   # Gravitas
   - names:
     - expansion1::poi/warp/sender

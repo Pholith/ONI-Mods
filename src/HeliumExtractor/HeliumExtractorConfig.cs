@@ -13,7 +13,7 @@ namespace HeliumExtractor
             string id = "HeliumExtractor";
             int width = 3;
             int height = 4;
-            string anim = "algae_distillery_kanim";
+            string anim = "helium_extractor_kanim";
             int hitpoints = 30;
             float construction_time = 30f;
             float[] tier = BUILDINGS.CONSTRUCTION_MASS_KG.TIER3;
@@ -23,14 +23,14 @@ namespace HeliumExtractor
             EffectorValues tier2 = NOISE_POLLUTION.NOISY.TIER3;
             BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, tier, all_METALS, melting_point, build_location_rule, BUILDINGS.DECOR.PENALTY.TIER2, tier2, 0.2f);
             buildingDef.RequiresPowerInput = true;
-            buildingDef.PowerInputOffset = new CellOffset(1, 0);
+            buildingDef.PowerInputOffset = new CellOffset(0, 0);
             buildingDef.EnergyConsumptionWhenActive = 600f;
             buildingDef.SelfHeatKilowattsWhenActive = 12f;
             buildingDef.AudioCategory = "HollowMetal";
             buildingDef.ViewMode = OverlayModes.GasConduits.ID;
             buildingDef.InputConduitType = ConduitType.Gas;
             buildingDef.OutputConduitType = ConduitType.Gas;
-            buildingDef.UtilityInputOffset = new CellOffset(-1, 1);
+            buildingDef.UtilityInputOffset = new CellOffset(-1, 0);
             buildingDef.UtilityOutputOffset = new CellOffset(1, 0);
             buildingDef.ModifiesTemperature = false;
             return buildingDef;
@@ -114,7 +114,7 @@ namespace HeliumExtractor
 
 
 
-        private readonly ConduitPortInfo secondaryPort = new ConduitPortInfo(ConduitType.Gas, new CellOffset(0, 1));
+        private readonly ConduitPortInfo secondaryPort = new ConduitPortInfo(ConduitType.Gas, new CellOffset(-1, 2));
 
         public static float totalConversion = 0.5f; // 500 g (input of pipes)
         public static float heliumConversionRate = 0.05f / 2; // 5% of 1kg

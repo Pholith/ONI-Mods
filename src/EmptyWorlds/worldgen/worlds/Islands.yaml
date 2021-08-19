@@ -16,7 +16,7 @@ subworldFiles:
     weight: 2
   - name: subworlds/marsh/HotMarsh
   - name: subworlds/space/Space
-    weight: 4
+    weight: 3.5
   - name: subworlds/space/Surface
 
   - name: subworlds/frozen/Frozen
@@ -41,6 +41,9 @@ defaultsOverrides:
   
   startingWorldElements: [] # remove the algae check
 
+
+seasons:
+  - MeteorShowers
 
 startSubworldName: subworlds/forest/ForestStartModified
 startingBaseTemplate: bases/forestBase
@@ -174,24 +177,20 @@ worldTemplateRules:
       - expansion1::poi/jungle/geyser_hydrogen
       - poi/jungle/geyser_chlorine
     listRule: GuaranteeOne
-    priority: 100
+    priority: 200
     allowedCellsFilter:
       - command: Replace
-        zoneTypes: [ToxicJungle]
+        zoneTypes: [ToxicJungle, Space, Ocean]
   # FrozenSlush
   - names:
     - expansion1::poi/poi_geyser_dirty_slush
     - expansion1::poi/poi_frozen_salt_water_geyser
     listRule: GuaranteeAll
-    priority: 100
+    priority: 200
     allowedCellsFilter:
 	  - command: Replace
-        zoneTypes: [FrozenWastes]
-      - command: IntersectWith
-        tagcommand: DistanceFromTag
-        tag: AtStart
-        minDistance: 1
-        maxDistance: 3
+        zoneTypes: [FrozenWastes, Space, Ocean]
+
   - names:
       - poi/frozen/heatsink_a
       - poi/frozen/heatsink_b
@@ -199,7 +198,7 @@ worldTemplateRules:
     priority: 100 
     allowedCellsFilter:
       - command: Replace
-        zoneTypes: [FrozenWastes]
+        zoneTypes: [FrozenWastes, Space, Ocean]
   # Geysers
   - names:
     - expansion1::poi/poi_geyser_magma

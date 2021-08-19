@@ -5,6 +5,7 @@ using PeterHan.PLib.Database;
 using PeterHan.PLib.Options;
 using ProcGenGame;
 using STRINGS;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,6 +32,16 @@ namespace EmptyWorlds
             new PLocalization().Register();
         }
     }
+    [HarmonyPatch(typeof(CameraController), "ActiveWorldStarWipe", new Type[] {typeof(int), typeof(bool), typeof(Vector3), typeof(float), typeof(System.Action)})]
+    public class test
+    {
+        public static void Prefix(int id, bool useForcePosition)
+        {
+            Debug.Log("PHOLITH " + id + " " + ClusterManager.Instance.activeWorldId);
+        }
+
+    }
+
 
     [HarmonyPatch(typeof(TemplateCache), "GetTemplate")]
     public class TemplateCache_GetTemplate

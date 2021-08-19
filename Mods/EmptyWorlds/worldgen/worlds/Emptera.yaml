@@ -26,6 +26,8 @@ defaultsOverrides:
 
   startingWorldElements: [] # remove the algae check
 
+seasons:
+  - MeteorShowers
 
 
 startSubworldName: subworlds/forest/ForestStartModified

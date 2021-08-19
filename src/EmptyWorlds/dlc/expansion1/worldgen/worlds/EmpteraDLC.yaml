@@ -1,10 +1,11 @@
 name: EmptyWorlds.PHO_STRINGS.E_NAME
 description: EmptyWorlds.PHO_STRINGS.E_DESCRIPTION
+nameTable: SPACE
 asteroidIcon: asteroid_emptera_kanim
 disableWorldTraits: true
 
 worldsize:
-  X: 180
+  X: 170
   Y: 240
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
@@ -13,7 +14,7 @@ layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 subworldFiles:
   - name: subworlds/forest/ForestStartModified
   - name: subworlds/forest/ForestMiniWaterModified
-    weight: 1.5
+    weight: 1.3
   - name: subworlds/space/SpaceWell
   - name: subworlds/space/Space
 
@@ -114,32 +115,33 @@ worldTemplateRules:
     - expansion1::poi/jungle/geyser_hydrogen
     - poi/jungle/geyser_chlorine
     listRule: GuaranteeOne
-    priority: 150
+    priority: 200
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
     allowedCellsFilter:
       - command: Replace
         zoneTypes: [Space]
+
   # FrozenSlush
   - names:
     - expansion1::poi/poi_geyser_dirty_slush
     - expansion1::poi/poi_frozen_salt_water_geyser
     listRule: GuaranteeAll
     priority: 100
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
     allowedCellsFilter:
 	  - command: Replace
         zoneTypes: [Space]
-      - command: IntersectWith
-        tagcommand: DistanceFromTag
-        tag: AtStart
-        minDistance: 1
-        maxDistance: 3
+
   - names:
-      - poi/frozen/heatsink_a
-      - poi/frozen/heatsink_b
+    - poi/frozen/heatsink_a
+    - poi/frozen/heatsink_b
     listRule: GuaranteeOne
     priority: 100 
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
     allowedCellsFilter:
       - command: Replace
         zoneTypes: [Space]
+
   # Geysers
   - names:
     - expansion1::poi/poi_geyser_magma
@@ -147,6 +149,7 @@ worldTemplateRules:
     - expansion1::poi/poi_geyser_magma_3
     listRule: TryAll
     priority: 50
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
     allowedCellsFilter:
       - command: Replace
         tagcommand: DistanceFromTag
@@ -165,6 +168,7 @@ worldTemplateRules:
     listRule: TryOne
     times: 6
     allowDuplicates: true
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
     allowedCellsFilter:
       - command: Replace
         zoneTypes: [ Space ]

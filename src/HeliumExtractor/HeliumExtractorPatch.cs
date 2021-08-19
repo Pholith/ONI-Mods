@@ -11,25 +11,6 @@ namespace HeliumExtractor
 {
     internal class HeliumExtractorPatch
     {
-        //Change the color of the extractor
-        [HarmonyPatch(typeof(BuildingComplete), "OnSpawn")]
-        public class ColorPatch
-        {
-            public static void Postfix(BuildingComplete __instance)
-            {
-                KAnimControllerBase kAnimBase = __instance.GetComponent<KAnimControllerBase>();
-                if (kAnimBase != null)
-                {
-                    if (__instance.name == "HeliumExtractorComplete")
-                    {
-                        float r = 255;
-                        float g = 255 - 200;
-                        float b = 255 - 100;
-                        kAnimBase.TintColour = new Color(r / 255f, g / 255f, b / 255f);
-                    }
-                }
-            }
-        }
 
         // Add strings and add the extractor to plan screen
         [HarmonyPatch(typeof(GeneratedBuildings))]
