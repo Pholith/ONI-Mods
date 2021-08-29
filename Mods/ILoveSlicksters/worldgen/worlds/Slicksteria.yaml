@@ -1,9 +1,6 @@
 name: ILoveSlicksters.PHO_STRINGS.WORLDGEN.NAME
 description: ILoveSlicksters.PHO_STRINGS.WORLDGEN.DESC
-spriteName: Asteroid_Slicksteria
-coordinatePrefix: SLK-PHO
-difficulty: 2
-tier: 2
+asteroidIcon: asteroid_slicksteria_kanim
 
 worldsize:
   X: 256
@@ -11,36 +8,49 @@ worldsize:
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
 
+defaultsOverrides:
+  startingWorldElements: [] # remove the algae check
+
 # List all the zone files to load
 subworldFiles:
-  - name: PholithWorld/subworlds/slicksterForest/SlicksterForestStart
-  - name: PholithWorld/subworlds/slicksterForest/SlicksterForestMiniWater
+  - name: subworlds/slicksterForest/SlicksterForestStart
+  - name: subworlds/slicksterForest/SlicksterForestMiniWater
     weight: 0.5
-  - name: PholithWorld/subworlds/slicksterForest/SlicksterForestMiniOxy
-  - name: PholithWorld/subworlds/slicksterForest/SlicksterForestMiniMetal
+    minCount: 1
+    maxCount: 4
+  - name: subworlds/slicksterForest/SlicksterForestMiniOxy
+    minCount: 1
+  - name: subworlds/slicksterForest/SlicksterForestMiniMetal
+    minCount: 1
   - name: subworlds/jungle/Jungle
     weight: 0.6
-  - name: PholithWorld/subworlds/notSoFrozen/NotSoFrozen
-  - name: PholithWorld/subworlds/hydrogenOcean/HydrogenOcean
-  - name: PholithWorld/subworlds/steelCaves/SteelCaves
+    minCount: 5
+  - name: subworlds/notSoFrozen/NotSoFrozen
+    minCount: 3
+  - name: subworlds/hydrogenOcean/HydrogenOcean
+    minCount: 5
+  - name: subworlds/steelCaves/SteelCaves
     weight: 0.3
-  - name: PholithWorld/subworlds/rust/Rust
-  - name: subworlds/Impenetrable
+  - name: subworlds/rust/SlicktersRust
+    minCount: 5
   - name: subworlds/magma/Bottom
-  - name: PholithWorld/subworlds/oil/OilPockets
+  - name: subworlds/oil/SlickstersOilPockets
   - name: subworlds/space/Space
     weight: 0.5
   - name: subworlds/space/Surface
 
-startSubworldName: PholithWorld/subworlds/slicksterForest/SlicksterForestStart
-startingBaseTemplate: forestBase
+startSubworldName: subworlds/slicksterForest/SlicksterForestStart
+startingBaseTemplate: bases/forestBase
 
-globalFeatureTemplates:
-  feature_geyser_generic: 7
-  feature_geyser_chlorine: 1
-  feature_geyser_co2: 2
-  feature_geyser_slush: 1
-  feature_geyser_methane: 1
+startingBasePositionHorizontal:
+  min: 0.4
+  max: 0.5
+startingBasePositionVertical:
+  min: 0.45
+  max: 0.55
+
+seasons:
+  - MeteorShowers
 
 # Rivers:
 #   - water
@@ -52,16 +62,16 @@ unknownCellsAllowedSubworlds:
   - tagcommand: Default
     command: Replace
     subworldNames:
-      - PholithWorld/subworlds/slicksterForest/SlicksterForestStart
+      - subworlds/slicksterForest/SlicksterForestStart
   - tagcommand: DistanceFromTag
     tag: AtStart
     minDistance: 1
     maxDistance: 1
     command: Replace
     subworldNames:
-      - PholithWorld/subworlds/slicksterForest/SlicksterForestMiniOxy
-      - PholithWorld/subworlds/slicksterForest/SlicksterForestMiniWater
-      - PholithWorld/subworlds/slicksterForest/SlicksterForestMiniMetal
+      - subworlds/slicksterForest/SlicksterForestMiniOxy
+      - subworlds/slicksterForest/SlicksterForestMiniWater
+      - subworlds/slicksterForest/SlicksterForestMiniMetal
   - tagcommand: DistanceFromTag
     tag: AtStart
     minDistance: 2
@@ -69,7 +79,7 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - subworlds/jungle/Jungle
-      - PholithWorld/subworlds/rust/Rust
+      - subworlds/rust/SlicktersRust
   - tagcommand: DistanceFromTag
     tag: AtStart
     minDistance: 3
@@ -77,9 +87,9 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - subworlds/jungle/Jungle
-      - PholithWorld/subworlds/hydrogenOcean/HydrogenOcean
-      - PholithWorld/subworlds/notSoFrozen/NotSoFrozen
-      - subworlds/rust/Rust
+      - subworlds/hydrogenOcean/HydrogenOcean
+      - subworlds/notSoFrozen/NotSoFrozen
+      - subworlds/rust/SlicktersRust
   - tagcommand: DistanceFromTag
     tag: AtStart
     minDistance: 4
@@ -87,8 +97,8 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - subworlds/jungle/Jungle
-      - PholithWorld/subworlds/notSoFrozen/NotSoFrozen
-      - PholithWorld/subworlds/rust/Rust
+      - subworlds/notSoFrozen/NotSoFrozen
+      - subworlds/rust/SlicktersRust
       - subworlds/space/Space
   - tagcommand: DistanceFromTag
     tag: AtStart
@@ -97,22 +107,22 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - subworlds/jungle/Jungle
-      - PholithWorld/subworlds/hydrogenOcean/HydrogenOcean
-      - PholithWorld/subworlds/rust/Rust
-      - PholithWorld/subworlds/notSoFrozen/NotSoFrozen
+      - subworlds/hydrogenOcean/HydrogenOcean
+      - subworlds/rust/SlicktersRust
+      - subworlds/notSoFrozen/NotSoFrozen
   - tagcommand: AtTag
     tag: AtDepths
     command: Replace
     subworldNames:
       - subworlds/magma/Bottom
-      - PholithWorld/subworlds/steelCaves/SteelCaves
+      - subworlds/steelCaves/SteelCaves
   - tagcommand: DistanceFromTag
     tag: AtDepths
     minDistance: 1
     maxDistance: 1
     command: Replace
     subworldNames:
-      - PholithWorld/subworlds/oil/OilPockets
+      - subworlds/oil/SlickstersOilPockets
   - tagcommand: AtTag
     tag: AtSurface
     command: Replace
@@ -125,3 +135,80 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - subworlds/space/Surface
+
+      
+worldTemplateRules:
+  # Jungle
+  - names:
+      - poi/jungle/geyser_steam
+    listRule: TryOne
+    priority: 100
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [ToxicJungle]
+  - names:
+      - poi/jungle/geyser_methane
+      - poi/jungle/geyser_chlorine
+    listRule: TryOne
+    priority: 100
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [ToxicJungle]
+  # Frozen
+  - names:
+      - poi/frozen/heatsink_a
+      - poi/frozen/heatsink_b
+      - poi/frozen/heatsink_c
+      - poi/frozen/heatsink_d
+    listRule: TrySome
+    someCount: 3
+    priority: 100 
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [FrozenWastes]
+  # Ocean
+  - names:
+      - poi/poi_ocean_geyser_saltwater
+    listRule: TryOne
+    priority: 100 
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [Ocean]
+  # Oil
+  - names:
+    - poi/oil/small_oilpockets_geyser_a
+    - poi/oil/small_oilpockets_geyser_b
+    - poi/oil/small_oilpockets_geyser_c
+    - poi/oil/small_oilpockets_geyser_d
+    - poi/oil/small_oilpockets_geyser_e
+    - poi/oil/small_oilpockets_geyser_f
+    - poi/oil/small_oilpockets_geyser_g
+    - poi/oil/small_oilpockets_geyser_h
+    listRule: TryOne
+    times: 3
+    allowDuplicates: true # be more flexible due to high temperature borders
+    priority: 100
+    allowedCellsFilter:
+      - command: Replace
+        zoneTypes: [OilField]
+  # Gravitas
+  - names:
+    - poi/poi_gravitas
+    listRule: GuaranteeOne
+    priority: 500
+    allowExtremeTemperatureOverlap: true
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - subworlds/space/Surface
+  # Generic Geysers
+  - names:
+    - geysers/generic
+    listRule: TryOne
+    times: 12
+    ruleId: GenericGeysers
+    allowDuplicates: true
+    allowedCellsFilter:
+      - command: Replace
+        tagcommand: NotAtTag
+        tag: NoGlobalFeatureSpawning

@@ -40,7 +40,7 @@
     <Compile Include="..\Pholib\Utilities.cs">
       <Link>Utilities.cs</Link>
     </Compile>
-    <Compile Include="elements\ElementsPatches.cs" />
+    <Compile Include="ElementsPatches\ElementsPatches.cs" />
     <Compile Include="SlicksterDance.cs" />
     <Compile Include="CreatureAquaticGroomingMonitor.cs" />
     <Compile Include="GasDrowingMonitor.cs" />
@@ -63,7 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PHO_STRINGS.cs" />
     <Compile Include="SlicksterOptions.cs" />
-    <Compile Include="elements\Antigel.cs" />
+    <Compile Include="ElementsPatches\Antigel.cs" />
     <Compile Include="WorldGenPatches.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -94,7 +94,9 @@
     <Content Include="anim\slicksters\egg_aqua_oilfloater\egg_oilFloater.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="Asteroid_Slicksteria.dds" />
+    <Content Include="anim\worldgen\asteroid_slicksteria\slicksteria.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="anim\slicksters\aqua_oilfloater\oilFloater_anim.bytes">
@@ -151,8 +153,16 @@
     <None Include="anim\slicksters\egg_aqua_oilfloater\egg_oilFloater_build.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="anim\worldgen\asteroid_slicksteria\slicksteria_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\worldgen\asteroid_slicksteria\slicksteria_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="app.config" />
-    <None Include="elements\Antigel.yaml" />
+    <None Include="elements\Antigel.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ILMerge.props" />
     <None Include="mod.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -173,58 +183,61 @@
     <None Include="translations\fr.po">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="worldgen\clusters\Slicksteria.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="worldgen\mobs.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="templates\features\feature_geyser_chlorine.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorld\biomes\HydrogenOcean.yaml">
+    <None Include="worldgen\biomes\HydrogenOcean.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorld\biomes\NotSoFrozen.yaml">
+    <None Include="worldgen\biomes\NotSoFrozen.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorld\biomes\SteelCaves.yaml">
+    <None Include="worldgen\biomes\SteelCaves.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorld\features\AntigelBubble.yaml">
+    <None Include="worldgen\features\AntigelBubble.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorld\features\HeliumGeode.yaml">
+    <None Include="worldgen\features\HeliumGeode.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorld\features\OilFloaterHighTempCage.yaml">
+    <None Include="worldgen\features\OilFloaterHighTempCage.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorld\features\OilFloaterDecorCage.yaml">
+    <None Include="worldgen\features\OilFloaterDecorCage.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorld\subworlds\rust\Rust.yaml">
+    <None Include="worldgen\subworlds\rust\SlicktersRust.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorld\subworlds\hydrogenOcean\HydrogenOcean.yaml">
+    <None Include="worldgen\subworlds\hydrogenOcean\HydrogenOcean.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorld\subworlds\notSoFrozen\NotSoFrozen.yaml">
+    <None Include="worldgen\subworlds\notSoFrozen\NotSoFrozen.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorld\subworlds\oil\OilPockets.yaml">
+    <None Include="worldgen\subworlds\oil\SlickstersOilPockets.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorld\subworlds\slicksterForest\SlicksterForestStart.yaml">
+    <None Include="worldgen\subworlds\slicksterForest\SlicksterForestStart.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorld\subworlds\slicksterForest\SlicksterForestMiniMetal.yaml">
+    <None Include="worldgen\subworlds\slicksterForest\SlicksterForestMiniMetal.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorld\subworlds\slicksterForest\SlicksterForestMiniOxy.yaml">
+    <None Include="worldgen\subworlds\slicksterForest\SlicksterForestMiniOxy.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorld\subworlds\slicksterForest\SlicksterForestMiniWater.yaml">
+    <None Include="worldgen\subworlds\slicksterForest\SlicksterForestMiniWater.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\PholithWorld\subworlds\steelCaves\SteelCaves.yaml">
+    <None Include="worldgen\subworlds\steelCaves\SteelCaves.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="worldgen\temperatures.yaml">
@@ -303,6 +316,7 @@ xcopy /E /I /Q "$(ProjectDir)\anim" "$(OutDir)\anim"
 xcopy /E /I /Q "$(ProjectDir)\templates" "$(OutDir)\templates"
 xcopy /E /I /Q "$(ProjectDir)\translations" "$(OutDir)\translations"
 xcopy /E /I /Q "$(ProjectDir)\worldgen" "$(OutDir)\worldgen"
+xcopy /E /I /Q "$(ProjectDir)\elements" "$(OutDir)\elements"
 copy "$(ProjectDir)\screen1.png" "$(OutDir)\screen1.png"
 copy "$(ProjectDir)\mod_info.yaml" "$(OutDir)\mod_info.yaml"
 copy "$(ProjectDir)\mod.yaml" "$(OutDir)\mod.yaml"
@@ -312,7 +326,7 @@ xcopy "$(TargetDir.TrimEnd('\'))" "$(SolutionDir)\..\..\..\Klei\OxygenNotInclude
 </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>rmdir /Q/S $(TargetDir)</PreBuildEvent>
+    <PreBuildEvent>rmdir /Q/S "$(TargetDir)"</PreBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

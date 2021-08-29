@@ -29,6 +29,10 @@ namespace ILoveSlicksters
         [JsonProperty]
         public bool DisableLonghairSlicksters { get; set; }
 
+        [Option("Disable new slicksters eggs", "Prevents vanilla slicksters from spawning new slicksters.\nOnly works with new born slicksters. (So it's better to check it before generating a world).")]
+        [JsonProperty]
+        public bool DisableNewEggs { get; set; }
+
         [Option("Longhair element conversion", "Set the element the longhair slickster will produce. Don't works if you disabled the longhair buff.")]
         [JsonProperty]
         public LonghairElementList LonghairElement { get; set; }
@@ -41,6 +45,7 @@ namespace ILoveSlicksters
             DisableSlickstersRecipes = false;
             DisableSlickstersCarePackages = false;
             DisableLonghairSlicksters = false;
+            DisableNewEggs = false;
             LonghairElement = LonghairElementList.Oxygen;
         }
     }

@@ -25,7 +25,6 @@ namespace ILoveSlicksters
             base.OnLoad(harmony);
             new POptions().RegisterOptions(this, typeof(SlicksterOptions));
 
-
             // Init PLib and settings
             PUtil.InitLibrary();
 
@@ -34,7 +33,9 @@ namespace ILoveSlicksters
             {
                 Settings = new SlicksterOptions();
             }
+            new PLocalization().Register();
 
+            WorldGenPatches.VeryHot2_patch.OnLoad();
 
             // Egg Chance modifier
             Type[] parameters_type = new Type[] { typeof(string), typeof(Tag), typeof(float), typeof(float), typeof(float), typeof(bool) };
@@ -66,33 +67,35 @@ namespace ILoveSlicksters
                 PHO_TUNING.CreateElementModifier("AquaOilFloater", "AquaOilFloaterEgg".ToTag(), SimHashes.Water, PHO_TUNING.EGG_MODIFIER_PER_SECOND.FAST * 10, false)
             );
 
-
-
-            // Add custom slicksters eggs into vanilla slicksters
-            OilFloaterTuning.EGG_CHANCES_BASE.Add(
-            new FertilityMonitor.BreedingChance
+            if (!Settings.DisableNewEggs)
             {
-                egg = "LeafyOilfloaterEgg".ToTag(),
-                weight = 0.02f
-            });
-            OilFloaterTuning.EGG_CHANCES_HIGHTEMP.Add(
-            new FertilityMonitor.BreedingChance
-            {
-                egg = "RobotOilfloaterEgg".ToTag(),
-                weight = 0.02f
-            });
 
-            OilFloaterTuning.EGG_CHANCES_DECOR[1] = new FertilityMonitor.BreedingChance
-            {
-                egg = "EthanolOilfloaterEgg".ToTag(),
-                weight = 0.02f
-            };
-            OilFloaterTuning.EGG_CHANCES_DECOR.Add(new FertilityMonitor.BreedingChance
-            {
-                egg = "OwO_OilfloaterEgg".ToTag(),
-                weight = 0.20f
-            });
+                // Add custom slicksters eggs into vanilla slicksters
+                OilFloaterTuning.EGG_CHANCES_BASE.Add(
+                new FertilityMonitor.BreedingChance
+                {
+                    egg = "LeafyOilfloaterEgg".ToTag(),
+                    weight = 0.02f
+                });
+                OilFloaterTuning.EGG_CHANCES_HIGHTEMP.Add(
+                new FertilityMonitor.BreedingChance
+                {
+                    egg = "RobotOilfloaterEgg".ToTag(),
+                    weight = 0.02f
+                });
 
+                OilFloaterTuning.EGG_CHANCES_DECOR[1] = new FertilityMonitor.BreedingChance
+                {
+                    egg = "EthanolOilfloaterEgg".ToTag(),
+                    weight = 0.02f
+                };
+                OilFloaterTuning.EGG_CHANCES_DECOR.Add(new FertilityMonitor.BreedingChance
+                {
+                    egg = "OwO_OilfloaterEgg".ToTag(),
+                    weight = 0.20f
+                });
+
+            }
             // Kg eaten patch
             if (Settings.IncreasesVanillaSlickstersConsumption)
             {

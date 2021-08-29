@@ -1,1 +1,0 @@
-."D:\Users\Vincent Buisset\Downloads\kanimal-cli.exe" kanim .\animation\animation.scml -o .\anim\worldgen\asteroid_fuleria\ -i

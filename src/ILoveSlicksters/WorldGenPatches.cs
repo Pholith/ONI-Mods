@@ -18,7 +18,7 @@ namespace ILoveSlicksters
                 TemperatureReverseTable.Add(id, hash);
             }
 
-            public static void OnLoad()
+            public static void OnLoad() // Now called in Patches by ILoveSlicksters
             {
                 // Hash to be sure there is no other mod with this id
                 Range hashedString = (Range)Hash.SDBMLower("VeryHot2");
