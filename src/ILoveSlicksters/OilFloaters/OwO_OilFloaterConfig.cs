@@ -29,7 +29,7 @@ namespace ILoveSlicksters
                 egg_kanim_id,
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
-                60.0000038f, 20f,
+                45, 20f,
                 EGG_CHANCES_OWO,
                 EGG_SORT_ORDER,
                 true, false, true, 1f);

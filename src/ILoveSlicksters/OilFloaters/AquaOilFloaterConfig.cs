@@ -19,7 +19,7 @@ namespace ILoveSlicksters
                 egg_kanim_id,
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
-                40f, 10f,
+                55f, 15f,
                 EGG_CHANCES_AQUA,
                 EGG_SORT_ORDER);
 
@@ -54,7 +54,7 @@ namespace ILoveSlicksters
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     SimHashes.Water.CreateTag()
-                }), SimHashes.Methane.CreateTag(), caloriesPerKg * 10, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+                }), SimHashes.Methane.CreateTag(), caloriesPerKg * 10, producedConversionRate / 2, diseaseId, diseasePerKgProduced, false, false),
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     SimHashes.SaltWater.CreateTag()

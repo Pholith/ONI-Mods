@@ -208,6 +208,19 @@ namespace ILoveSlicksters
                     nameDisplayType: ComplexRecipe.RecipeNameDisplay.Result,
                     sortOrder: 990
                 );
+                Utilities.AddComplexRecipe(
+                    input: new[] {
+                        new ComplexRecipe.RecipeElement(OilFloaterDecorConfig.EGG_ID.ToTag(), 2f),
+                        new ComplexRecipe.RecipeElement(SimHashes.Ice.CreateTag(), 20f),
+                        new ComplexRecipe.RecipeElement(SimHashes.CarbonDioxide.CreateTag(), 50f),
+                    },
+                    output: new[] { new ComplexRecipe.RecipeElement(TagManager.Create(FrozenOilfloaterConfig.EGG_ID), 1f) },
+                    fabricatorId: SupermaterialRefineryConfig.ID,
+                    productionTime: 20f,
+                    recipeDescription: PHO_STRINGS.VARIANT_ROBOT.DESC,
+                    nameDisplayType: ComplexRecipe.RecipeNameDisplay.Result,
+                    sortOrder: 986
+                );
             }
         }
     }
