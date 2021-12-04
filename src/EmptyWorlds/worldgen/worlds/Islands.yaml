@@ -42,6 +42,10 @@ defaultsOverrides:
   startingWorldElements: [] # remove the algae check
 
 
+worldTraitRules: 
+  - min: 0
+  - max: 1
+
 seasons:
   - MeteorShowers
 

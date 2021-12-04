@@ -1,7 +1,6 @@
 name: STRINGS.WORLDS.FULERIA.NAME
 description: STRINGS.WORLDS.FULERIA.DESCRIPTION
 asteroidIcon: asteroid_fuleria_kanim
-disableWorldTraits: true
 
 worldsize:
   X: 256
@@ -35,6 +34,9 @@ subworldFiles:
   - name: subworlds/barren/BarrenGranite
     weight: 0.3
 
+worldTraitRules: 
+  - min: 0
+  - max: 1
 
 startSubworldName: subworlds/forest/ForestStart
 startingBaseTemplate: bases/forestBase

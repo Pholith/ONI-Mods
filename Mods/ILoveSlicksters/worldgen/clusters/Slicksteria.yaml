@@ -1,7 +1,7 @@
 name: STRINGS.CLUSTER_NAMES.DEFAULT.NAME
 description: STRINGS.CLUSTER_NAMES.DEFAULT.DESCRIPTION
 coordinatePrefix: SLK-PHO
-#forbiddenDlcId: EXPANSION1_ID
+forbiddenDlcId: EXPANSION1_ID
 
 difficulty: 3
 menuOrder: 5

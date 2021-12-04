@@ -1,7 +1,6 @@
 name: EmptyWorlds.PHO_STRINGS.E_NAME
 description: EmptyWorlds.PHO_STRINGS.E_DESCRIPTION
 asteroidIcon: asteroid_emptera_kanim
-disableWorldTraits: true
 
 worldsize:
   X: 230
@@ -29,6 +28,10 @@ defaultsOverrides:
 seasons:
   - MeteorShowers
 
+  
+worldTraitRules: 
+  - min: 0
+  - max: 1
 
 startSubworldName: subworlds/forest/ForestStartModified
 startingBaseTemplate: bases/forestBase

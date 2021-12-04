@@ -1,8 +1,7 @@
 name: EmptyWorlds.PHO_STRINGS.E_NAME
 description: EmptyWorlds.PHO_STRINGS.E_DESCRIPTION
-nameTable: SPACE
+nameTable: [SPACE]
 asteroidIcon: asteroid_emptera_kanim
-disableWorldTraits: true
 
 worldsize:
   X: 170
@@ -25,7 +24,10 @@ defaultsOverrides:
     WorldBorderThickness: 6
   startingWorldElements: [] # remove the algae check
 
-
+worldTraitScale: 0.20 # Adjust with worldSize. Traits are tuned to base game world sizes.
+worldTraitRules: 
+  - min: 0
+  - max: 1
 
 startSubworldName: subworlds/forest/ForestStartModified
 startingBaseTemplate: bases/forestBase

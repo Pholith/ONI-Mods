@@ -2,7 +2,6 @@ name: STRINGS.WORLDS.FULERIA.NAME # Verdante
 description: STRINGS.WORLDS.FULERIA.DESCRIPTION
 nameTable: FOREST
 asteroidIcon: asteroid_fuleria_kanim
-disableWorldTraits: true
 
 worldsize:
   X: 260
@@ -12,6 +11,10 @@ layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 
 defaultsOverrides:
   startingWorldElements: [] # remove the algae check
+
+worldTraitRules: 
+  - min: 0
+  - max: 1
 
 # List all the subworld files to load
 subworldFiles:

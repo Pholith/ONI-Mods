@@ -2,6 +2,10 @@ name: EmptyWorlds.PHO_STRINGS.SPACE_HOLE_NAME
 description: EmptyWorlds.PHO_STRINGS.SPACE_HOLE_DESC
 colorHex: 666699
 
+
+traitTags:
+  - SpaceHole
+
 additionalUnknownCellFilters:
   - tagcommand: DistanceFromTag
     tag: AtStart
