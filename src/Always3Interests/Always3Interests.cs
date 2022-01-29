@@ -229,7 +229,7 @@ namespace Always3Interests
                     }
                     if (DUPLICANTSTATS.rarityDeckActive.Count == DUPLICANTSTATS.RARITY_DECK.Count)
                     {
-                        DUPLICANTSTATS.rarityDeckActive.ShuffleSeeded(randSeed);
+                        DUPLICANTSTATS.rarityDeckActive.ShuffleSeeded(new KRandom());
                     }
                     num7 = DUPLICANTSTATS.rarityDeckActive[DUPLICANTSTATS.rarityDeckActive.Count - 1];
                     DUPLICANTSTATS.rarityDeckActive.RemoveAt(DUPLICANTSTATS.rarityDeckActive.Count - 1);
@@ -252,7 +252,7 @@ namespace Always3Interests
                         list.Add(__instance.rarityBalance + 1);
                         list.Add(__instance.rarityBalance + 2);
                     }
-                    list.ShuffleSeeded(randSeed);
+                    list.ShuffleSeeded(new KRandom());
                     num7 = list[0];
                     num7 = Mathf.Max(DUPLICANTSTATS.RARITY_COMMON, num7);
                     num7 = Mathf.Min(DUPLICANTSTATS.RARITY_LEGENDARY, num7);
@@ -266,7 +266,7 @@ namespace Always3Interests
                         num6--;
                     }
                 }
-                list2.ShuffleSeeded(randSeed);
+                list2.ShuffleSeeded(new KRandom());
                 foreach (DUPLICANTSTATS.TraitVal traitVal in list2)
                 {
                     if (!DlcManager.IsContentActive(traitVal.dlcId))
