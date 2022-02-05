@@ -1,11 +1,8 @@
 name: SolarSystemWorlds.WorldAdds.M_NAME
 description: SolarSystemWorlds.WorldAdds.M_DESC
-spriteName: Asteroid_Moon
-coordinatePrefix: MN-PHO
-difficulty: 7
-tier: 2
-disableWorldTraits: true
+asteroidIcon: Asteroid_Moon
 
+worldTraitScale: 0.7 # Adjust with worldSize. Traits are tuned to base game world sizes.
 worldsize:
   X: 256
   Y: 288
@@ -39,8 +36,15 @@ startingBasePositionVertical:
   min: 0.2
   max: 0.25
 
-globalFeatureTemplates:
-  feature_geyser_generic: 8
+#globalFeatureTemplates:
+  #feature_geyser_generic: 8
+
+seasons:
+  - MeteorShowers
+
+worldTraitRules:
+  - min: 2
+    max: 4
 
 # When we are converting unknown cells, this will give us the options, processed in this order, the effects are cumlative
 unknownCellsAllowedSubworlds: 

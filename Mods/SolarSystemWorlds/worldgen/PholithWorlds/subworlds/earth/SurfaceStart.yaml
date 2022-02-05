@@ -27,12 +27,14 @@ tags:
 centralFeature:
   type: features/generic/StartLocation
 
-pointsOfInterest:
-  ruin:
-    - ruin1
-    - ruin2
-    - ruin3
-    - ruin4
-    - ruin5
-    - ruin7
+subworldTemplateRules:
+  - names:
+      - poi/ruin1
+      - poi/ruin2
+      - poi/ruin3
+      - poi/ruin4
+      - poi/ruin5
+      - poi/ruin7
+    listRule: GuaranteeOne
+
 zoneType: Rust

@@ -1,0 +1,14 @@
+name: STRINGS.WORLDS.FOREST_DEFAULT.NAME # Arboria
+description: STRINGS.WORLDS.FOREST_DEFAULT.DESCRIPTION
+coordinatePrefix: ERT-PHO
+forbiddenDlcId: EXPANSION1_ID
+
+difficulty: 3
+menuOrder: 2
+
+startWorldIndex: 0
+worldPlacements:
+- world: worlds/Earth
+  allowedRings:
+    min: 0
+    max: 0

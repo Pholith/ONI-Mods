@@ -12,14 +12,18 @@ biomes:
 features:
   - type: PholithWorlds/features/ganymede/MagmaVent
 
-pointsOfInterest:
-  home:
-    - oilfloaterHome
-  ruin:
-  - ruin2
-  - ruin1
-  ruin2:
-  - ruinCircle
+subworldTemplateRules:
+  - names:
+      - poi/oilfloaterHome
+    listRule: GuaranteeAll
+  - names:
+      - poi/ruin2
+      - poi/ruin1
+    listRule: GuaranteeOne
+  - names:
+      - poi/ruinCircle
+    listRule: GuaranteeAll
+
 tags:
   - IgnoreCaveOverride
 featureTemplates:

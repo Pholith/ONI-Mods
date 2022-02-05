@@ -1,0 +1,14 @@
+name: STRINGS.WORLDS.FOREST_DEFAULT.NAME # Arboria
+description: STRINGS.WORLDS.FOREST_DEFAULT.DESCRIPTION
+coordinatePrefix: TIT-PHO
+forbiddenDlcId: EXPANSION1_ID
+
+difficulty: 6
+menuOrder: 4
+
+startWorldIndex: 0
+worldPlacements:
+- world: worlds/Titan
+  allowedRings:
+    min: 0
+    max: 0

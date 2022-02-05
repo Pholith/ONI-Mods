@@ -13,7 +13,8 @@ biomes:
     weight: 1
     #overrides:
     #  massMultiplier: 50
-pointsOfInterest:
+
+
 tags:
   - IgnoreCaveOverride
   - NoGlobalFeatureSpawning

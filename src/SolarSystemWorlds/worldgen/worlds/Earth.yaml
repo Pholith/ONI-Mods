@@ -1,12 +1,8 @@
 name: SolarSystemWorlds.WorldAdds.E_NAME
 description: SolarSystemWorlds.WorldAdds.E_DESC
-spriteName: Asteroid_Earth
-coordinatePrefix: ERT-PHO
-difficulty: 3
-tier: 2
-disableWorldTraits: true
+asteroidIcon: Asteroid_Earth
 
-
+worldTraitScale: 0.8 # Adjust with worldSize. Traits are tuned to base game world sizes.
 worldsize:
   X: 224
   Y: 320
@@ -48,8 +44,15 @@ startingBasePositionVertical:
   min: 0.6
   max: 0.6
 
-globalFeatureTemplates:
-  feature_geyser_generic: 10
+#globalFeatureTemplates:
+  #feature_geyser_generic: 10
+
+seasons:
+  - MeteorShowers
+
+worldTraitRules:
+  - min: 1
+    max: 2
 
 # When we are converting unknown cells, this will give us the options, processed in this order, the effects are cumlative
 unknownCellsAllowedSubworlds: 
@@ -129,3 +132,16 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - PholithWorlds/subworlds/earth/Space
+
+
+ 
+worldTemplateRules:
+  # Gravitas
+  - names:
+    - poi/poi_bunker_skyblock
+    listRule: GuaranteeOne
+    priority: 500
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
+    allowedCellsFilter:
+        zoneTypes: [ToxicJungle, Space, Ocean]
+      - command: Replace

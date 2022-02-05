@@ -12,5 +12,4 @@ biomes:
     weight: 4
 tags:
   - IgnoreCaveOverride
-pointsOfInterest:
 zoneType: Ocean

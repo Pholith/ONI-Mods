@@ -1,4 +1,5 @@
-﻿using Harmony;
+﻿using HarmonyLib;
+using KMod;
 using Pholib;
 using UnityEngine;
 
@@ -18,6 +19,16 @@ namespace SolarSystemWorlds
             }
         }
     }*/
+    public class AllBiomesWorld : UserMod2
+    {
+        public override void OnLoad(Harmony harmony)
+        {
+            base.OnLoad(harmony);
+            //PUtil.InitLibrary();
+            //new PLocalization().Register();
+        }
+    }
+
 
     [HarmonyPatch(typeof(BackgroundEarthConfig))]
     [HarmonyPatch("CreatePrefab")]
@@ -93,22 +104,6 @@ namespace SolarSystemWorlds
         }
     }
 
-
-    [HarmonyPatch(typeof(Localization))]
-    [HarmonyPatch("Initialize")]
-    class LocalizationPatch
-    {
-        public static string modPath;
-
-        public static void OnLoad(string modPath)
-        {
-            LocalizationPatch.modPath = modPath;
-        }
-        public static void Postfix()
-        {
-            Utilities.LoadTranslations(typeof(WorldAdds), modPath);
-        }
-    }
     
     [HarmonyPatch(typeof(Db))]
     [HarmonyPatch("Initialize")]
@@ -146,10 +141,10 @@ namespace SolarSystemWorlds
 
         public static void Postfix()
         {
-            Utilities.AddWorldYaml("Asteroid_Ganymede", typeof(WorldAdds));
-            Utilities.AddWorldYaml("Asteroid_Titan", typeof(WorldAdds));
-            Utilities.AddWorldYaml("Asteroid_Earth", typeof(WorldAdds));
-            Utilities.AddWorldYaml("Asteroid_Moon", typeof(WorldAdds));
+            Utilities.AddWorldYaml(typeof(WorldAdds));
+            Utilities.AddWorldYaml(typeof(WorldAdds));
+            Utilities.AddWorldYaml(typeof(WorldAdds));
+            Utilities.AddWorldYaml(typeof(WorldAdds));
         }
     }
 }

@@ -5,7 +5,7 @@ coordinatePrefix: IO-PHO
 difficulty: 1
 tier: 2
 disableWorldTraits: true
-skip: true
+#skip: true
 
 worldsize:
   X: 224

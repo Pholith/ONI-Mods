@@ -13,9 +13,10 @@ biomes:
     #overrides:
     #  massMultiplier: 50
 
-pointsOfInterest:
-  gravitas:
-    - poi_gravitas 
+subworldTemplateRules:
+  - names:
+      - poi/poi_gravitas
+    listRule: GuaranteeAll
 
 tags:
   - IgnoreCaveOverride

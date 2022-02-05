@@ -23,17 +23,21 @@ biomes:
 features: 
   - type: PholithWorlds/features/earth/LittleLack
 
-pointsOfInterest:
-  ruin:
-  - ruin3
-  - ruin4
-  ruin2:
-  - ruin5
-  ruin3:
-  - ruin7
-  - ruin8
-  miniBiomes:
-  - miniBiomes
+subworldTemplateRules:
+  - names:
+      - poi/ruin3
+      - poi/ruin4
+    listRule: GuaranteeOne
+  - names:
+      - poi/ruin5
+    listRule: GuaranteeAll
+  - names:
+      - poi/ruin7
+      - poi/ruin8
+    listRule: GuaranteeOne
+  - names:
+      - poi/miniBiomes
+    listRule: GuaranteeAll
 
 tags:
   - IgnoreCaveOverride

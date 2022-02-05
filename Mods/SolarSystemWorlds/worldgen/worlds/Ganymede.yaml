@@ -1,17 +1,16 @@
 name: SolarSystemWorlds.WorldAdds.G_NAME
 description: SolarSystemWorlds.WorldAdds.G_DESC
-spriteName: Asteroid_Ganymede
-coordinatePrefix: GMD-PHO
-difficulty: 6
-tier: 2
-disableWorldTraits: true
+asteroidIcon: Asteroid_Ganymede
 
+worldTraitScale: 0.6 # Adjust with worldSize. Traits are tuned to base game world sizes.
 worldsize:
   X: 192
   Y: 352
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
 
+defaultsOverrides:
+  startingWorldElements: [] # remove the algae check
 
 # List all the zone files to load
 subworldFiles:
@@ -38,8 +37,15 @@ startingBasePositionVertical:
   min: 0.75
   max: 0.75
 
-globalFeatureTemplates:
-  feature_geyser_generic: 12
+#globalFeatureTemplates:
+#  feature_geyser_generic: 12
+
+seasons:
+  - MeteorShowers
+
+worldTraitRules:
+  - min: 1
+    max: 2
 
 # Rivers:
 #   - water

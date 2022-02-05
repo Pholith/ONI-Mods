@@ -1,12 +1,8 @@
 name: SolarSystemWorlds.WorldAdds.T_NAME
 description: SolarSystemWorlds.WorldAdds.T_DESC
-spriteName: Asteroid_Titan
-coordinatePrefix: TIT-PHO
-difficulty: 6
-tier: 2
-disableWorldTraits: true
-#skip: true
+asteroidIcon: Asteroid_Titan
 
+worldTraitScale: 0.6 # Adjust with worldSize. Traits are tuned to base game world sizes.
 worldsize:
   X: 224
   Y: 320
@@ -40,8 +36,15 @@ startingBasePositionVertical:
   min: 0.65
   max: 0.65
 
-globalFeatureTemplates:
-  feature_geyser_generic: 10
+#globalFeatureTemplates:
+#  feature_geyser_generic: 10
+
+seasons:
+  - MeteorShowers
+
+worldTraitRules:
+  - min: 2
+    max: 4
 
 # When we are converting unknown cells, this will give us the options, processed in this order, the effects are cumlative
 unknownCellsAllowedSubworlds: 

@@ -12,9 +12,11 @@ biomes:
     weight: 4
 tags:
   - IgnoreCaveOverride
-pointsOfInterest:
-  home:
-    - pipHome
-  home2:
-    - hatchHome
+subworldTemplateRules:
+  - names:
+      - poi/pipHome
+    listRule: GuaranteeAll
+  - names:
+      - poi/hatchHome
+    listRule: GuaranteeAll
 zoneType: Rust
