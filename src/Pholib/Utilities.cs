@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 
 namespace Pholib
 {
@@ -63,6 +65,18 @@ namespace Pholib
                 //stateMachineController.AddDef(defType);
                 //defType.Configure(stateMachineController.gameObject);
             }
+        }
+        /// <summary>
+        /// Convert an object in a yaml readable string.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static string Dump(this object obj)
+        {
+            var serializer = new SerializerBuilder()
+                .WithNamingConvention(new CamelCaseNamingConvention())
+                .Build();
+            return serializer.Serialize(obj);
         }
     }
 
@@ -133,15 +147,16 @@ namespace Pholib
         /// </summary>
         /// <param name="worldName"> Worldname </param>
         /// <returns></returns>
-        public static bool IsOnWorld(string worldName)
+        public static bool IsOnCluster(string clusterName)
         {
             if (CustomGameSettings.Instance == null)
             {
                 return false;
             }
-
             Dictionary<string, string> dict = Traverse.Create(CustomGameSettings.Instance).Field<Dictionary<string, string>>("CurrentQualityLevelsBySetting").Value;
-            if (dict == null || dict["World"] == null)
+            
+            
+            if (dict == null || dict["ClusterLayout"] == null)
             {
                 return false;
             }
@@ -149,8 +164,9 @@ namespace Pholib
             //Logs.LogIfDebugging(dict["World"]);
             //Logs.LogIfDebugging(dict["World"].Replace("worlds/", ""));
 
-            return dict["World"].Replace("worlds/", "") == worldName;
+            return dict["ClusterLayout"].Replace("clusters/", "") == clusterName;
         }
+
 
         /// <summary>
         /// Load a .po file and override translations

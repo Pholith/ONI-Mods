@@ -12,13 +12,6 @@ biomes:
   - name: biomes/Ganymede/Mantle
     weight: 1
 
-subworldTemplateRules:
-  - names:
-      - poi/drekoHome
-    listRule: GuaranteeAll
-  - names:
-      - poi/poi_ladder_tunnel
-    listRule: GuaranteeAll
 
 features:
   - type: PholithWorlds/features/ganymede/Geode

@@ -24,6 +24,8 @@ namespace SolarSystemWorlds
         public override void OnLoad(Harmony harmony)
         {
             base.OnLoad(harmony);
+            Logs.DebugLog = true;
+            WorldGenPatches.ExtremelyCold2_patch.OnLoad();
             //PUtil.InitLibrary();
             //new PLocalization().Register();
         }
@@ -48,11 +50,11 @@ namespace SolarSystemWorlds
     {
         private static KAnimFile getWorldAnim()
         {
-            if (Utilities.IsOnWorld(WorldAdds.TitanId)) return Assets.GetAnim("saturn_kanim");
-            if (Utilities.IsOnWorld(WorldAdds.GanymedeId)) return Assets.GetAnim("jupiter_kanim");
-            if (Utilities.IsOnWorld(WorldAdds.IOId)) return Assets.GetAnim("jupiter_kanim");
-            if (Utilities.IsOnWorld(WorldAdds.EarthId)) return Assets.GetAnim("moon_kanim");
-            if (Utilities.IsOnWorld(WorldAdds.MoonId)) return Assets.GetAnim("earth2_kanim");
+            if (Utilities.IsOnCluster(WorldAdds.TitanId)) return Assets.GetAnim("saturn_kanim");
+            if (Utilities.IsOnCluster(WorldAdds.GanymedeId)) return Assets.GetAnim("jupiter_kanim");
+            if (Utilities.IsOnCluster(WorldAdds.IOId)) return Assets.GetAnim("jupiter_kanim");
+            if (Utilities.IsOnCluster(WorldAdds.EarthId)) return Assets.GetAnim("moon_kanim");
+            if (Utilities.IsOnCluster(WorldAdds.MoonId)) return Assets.GetAnim("earth2_kanim");
             return null;
         }
 
@@ -64,11 +66,11 @@ namespace SolarSystemWorlds
         // incomprehensible code but... it works
         public static void Postfix()
         {
-            if (Utilities.IsOnWorld(WorldAdds.GanymedeId) || 
-                Utilities.IsOnWorld(WorldAdds.TitanId) || 
-                Utilities.IsOnWorld(WorldAdds.EarthId) ||
-                Utilities.IsOnWorld(WorldAdds.MoonId) ||
-                Utilities.IsOnWorld(WorldAdds.IOId))
+            if (Utilities.IsOnCluster(WorldAdds.GanymedeId) || 
+                Utilities.IsOnCluster(WorldAdds.TitanId) || 
+                Utilities.IsOnCluster(WorldAdds.EarthId) ||
+                Utilities.IsOnCluster(WorldAdds.MoonId) ||
+                Utilities.IsOnCluster(WorldAdds.IOId))
             {
                 // Patch the moon
                 if (EarthConfigPatch.earthAnimController != null)

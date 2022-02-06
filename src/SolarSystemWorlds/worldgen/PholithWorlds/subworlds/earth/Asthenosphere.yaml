@@ -21,19 +21,4 @@ tags:
 features:
   - type: PholithWorlds/features/earth/LittleSwamp
 
-subworldTemplateRules:
-  - names:
-      - poi/pipHome
-    listRule: GuaranteeAll
-  - names:
-      - poi/hatchHome
-    listRule: GuaranteeAll
-  - names:
-      - poi/ruin1
-      - poi/ruin2
-    listRule: GuaranteeOne
-  - names:
-      - poi/ruin8
-      - poi/ruin9
-    listRule: GuaranteeOne
 zoneType: Rust

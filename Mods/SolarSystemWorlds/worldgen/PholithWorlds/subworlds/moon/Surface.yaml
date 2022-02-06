@@ -14,11 +14,6 @@ biomes:
     #overrides:
     #  massMultiplier: 50
 
-subworldTemplateRules:
-  - names:
-      - poi/hatchHome
-    listRule: GuaranteeAll
-
 tags:
   - IgnoreCaveOverride
  # - ErodePointToWorldTop

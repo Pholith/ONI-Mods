@@ -12,10 +12,7 @@ biomes:
 features:
   - type: PholithWorlds/features/ganymede/MagmaVent
 
-subworldTemplateRules:
-  - names:
-      - poi/oilfloaterHome
-    listRule: GuaranteeAll
+
 tags:
   - IgnoreCaveOverride
 featureTemplates:

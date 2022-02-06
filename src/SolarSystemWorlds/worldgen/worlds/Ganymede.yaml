@@ -1,8 +1,8 @@
 name: SolarSystemWorlds.WorldAdds.G_NAME
 description: SolarSystemWorlds.WorldAdds.G_DESC
-asteroidIcon: Asteroid_Ganymede
+asteroidIcon: Asteroid_Ganymede_kanim
 
-worldTraitScale: 0.6 # Adjust with worldSize. Traits are tuned to base game world sizes.
+worldTraitScale: 0.4 # Adjust with worldSize. Traits are tuned to base game world sizes.
 worldsize:
   X: 192
   Y: 352
@@ -14,9 +14,7 @@ defaultsOverrides:
 
 # List all the zone files to load
 subworldFiles:
-  - name: subworlds/Impenetrable
   - name: subworlds/space/Space
-  - name: subworlds/space/Surface
   - name: PholithWorlds/subworlds/ganymede/Core
   - name: PholithWorlds/subworlds/ganymede/Ice1h
   - name: PholithWorlds/subworlds/ganymede/IceVI
@@ -128,3 +126,41 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - subworlds/space/Space
+
+
+ 
+worldTemplateRules:
+  # Ice1h
+  - names:
+    - poi/pipHome
+    - poi/hatchHome
+    listRule: GuaranteeAll
+    priority: 500
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - PholithWorlds/subworlds/ganymede/Ice1h
+  
+  # IceVI
+  - names:
+    - poi/drekoHome
+    - poi/poi_ladder_tunnel
+    listRule: GuaranteeAll
+    priority: 500
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - PholithWorlds/subworlds/ganymede/IceVI
+
+  # Mantle2
+  - names:
+    - poi/oilfloaterHome
+    listRule: GuaranteeAll
+    priority: 500
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - PholithWorlds/subworlds/ganymede/Mantle2

@@ -14,29 +14,6 @@ biomes:
     weight: 1
 
 
-subworldTemplateRules:
-  - names:
-    - poi/drekoHome
-    listRule: GuaranteeAll
-  - names:
-    - poi/ruin4
-    - poi/ruin5
-    listRule: GuaranteeOne
-  - names:
-    - poi/ruinTower
-    listRule: GuaranteeAll
-  - names:
-    - poi/ruin4
-    - poi/ruin1
-    listRule: GuaranteeOne
-  - names:
-    - poi/ruin6
-    - poi/ruin8
-    listRule: GuaranteeOne
-   - names:
-    - poi/raptor
-    listRule: GuaranteeAll
-
 features:
   - type: PholithWorlds/features/earth/Geode
 

@@ -1,6 +1,6 @@
 name: SolarSystemWorlds.WorldAdds.M_NAME
 description: SolarSystemWorlds.WorldAdds.M_DESC
-asteroidIcon: Asteroid_Moon
+asteroidIcon: Asteroid_Moon_kanim
 
 worldTraitScale: 0.7 # Adjust with worldSize. Traits are tuned to base game world sizes.
 worldsize:
@@ -18,7 +18,6 @@ defaultsOverrides:
 
 # List all the zone files to load
 subworldFiles:
-  - name: subworlds/Impenetrable
   - name: subworlds/space/Space
   - name: PholithWorlds/subworlds/moon/SurfaceNoGravitas
   - name: PholithWorlds/subworlds/moon/SurfaceStart
@@ -90,3 +89,28 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - subworlds/space/Space
+
+
+ 
+worldTemplateRules:
+  # SpaceGravitas
+  - names:
+    - poi/poi_gravitas
+    listRule: GuaranteeAll
+    priority: 500
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - PholithWorlds/subworlds/moon/SpaceGravitas
+  
+  # Surface
+  - names:
+    - poi/hatchHome
+    listRule: GuaranteeAll
+    priority: 500
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - PholithWorlds/subworlds/moon/Surface

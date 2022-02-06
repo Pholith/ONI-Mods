@@ -27,14 +27,4 @@ tags:
 centralFeature:
   type: features/generic/StartLocation
 
-subworldTemplateRules:
-  - names:
-      - poi/ruin1
-      - poi/ruin2
-      - poi/ruin3
-      - poi/ruin4
-      - poi/ruin5
-      - poi/ruin7
-    listRule: GuaranteeOne
-
 zoneType: Rust

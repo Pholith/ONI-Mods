@@ -27,6 +27,7 @@ tags:
  # - ErodePointToBorderInv
  # - ErodePointToWorldTop
   - NoGlobalFeatureSpawning
+  - RemoveWorldBorderOverVacuum
 
 features:
   - type: PholithWorlds/features/ganymede/StartingGeode

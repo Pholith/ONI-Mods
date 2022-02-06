@@ -12,18 +12,6 @@ biomes:
 features:
   - type: PholithWorlds/features/ganymede/MagmaVent
 
-subworldTemplateRules:
-  - names:
-      - poi/oilfloaterHome
-    listRule: GuaranteeAll
-  - names:
-      - poi/ruin2
-      - poi/ruin1
-    listRule: GuaranteeOne
-  - names:
-      - poi/ruinCircle
-    listRule: GuaranteeAll
-
 tags:
   - IgnoreCaveOverride
 featureTemplates:
@@ -32,3 +20,4 @@ featureTemplates:
 # featureTemplates:
   # feature_geyser_generic: 2
 zoneType: Ocean
+ 

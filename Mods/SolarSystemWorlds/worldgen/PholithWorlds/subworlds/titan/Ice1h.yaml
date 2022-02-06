@@ -11,13 +11,6 @@ biomes:
   - name: biomes/Titan/Ice1h
 tags:
   - IgnoreCaveOverride
-subworldTemplateRules:
-  - names:
-      - poi/pipHome
-    listRule: GuaranteeAll
-  - names:
-      - poi/hatchHome
-    listRule: GuaranteeAll
 
 features:
   - type: PholithWorlds/features/titan/LittleLack
