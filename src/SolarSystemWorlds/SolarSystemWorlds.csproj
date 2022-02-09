@@ -44,28 +44,52 @@
     <Compile Include="WorldGenPatches.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="anim\earth_anims\earth2\earth_anim.bytes">
+    <None Include="anim\background_planets_anims\earth2\earth_anim.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="anim\earth_anims\earth2\earth_build.bytes">
+    <None Include="anim\background_planets_anims\earth2\earth_build.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="anim\earth_anims\jupiter\earth_anim.bytes">
+    <None Include="anim\background_planets_anims\jupiter\earth_anim.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="anim\earth_anims\jupiter\earth_build.bytes">
+    <None Include="anim\background_planets_anims\jupiter\earth_build.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="anim\earth_anims\moon\earth_anim.bytes">
+    <None Include="anim\background_planets_anims\moon\earth_anim.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="anim\earth_anims\moon\earth_build.bytes">
+    <None Include="anim\background_planets_anims\moon\earth_build.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="anim\earth_anims\saturn\earth_anim.bytes">
+    <None Include="anim\background_planets_anims\saturn\earth_anim.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="anim\earth_anims\saturn\earth_build.bytes">
+    <None Include="anim\background_planets_anims\saturn\earth_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\icon_anims\planet_earth\earth_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\icon_anims\planet_earth\earth_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\icon_anims\planet_ganymede\ganymede_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\icon_anims\planet_ganymede\ganymede_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\icon_anims\planet_moon\moon_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\icon_anims\planet_moon\moon_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\icon_anims\planet_titan\titan_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\icon_anims\planet_titan\titan_build.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="mod_info.yaml">
@@ -90,6 +114,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="templates\poi\oilfloaterHome.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="templates\poi\open_methane.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="templates\poi\pipHome.yaml">
@@ -374,35 +401,12 @@
     <None Include="worldgen\worlds\Moon.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="worldgen\worlds\Test.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="worldgen\worlds\Titan.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="space_00.dds" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Asteroid_Titan.dds" />
-    <EmbeddedResource Include="Asteroid_Ganymede.dds" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="anim\earth_anims\earth2\earth_0.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="anim\earth_anims\jupiter\earth_0.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="anim\earth_anims\moon\earth_0.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="anim\earth_anims\saturn\earth_0.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <EmbeddedResource Include="Asteroid_Moon.dds" />
-    <EmbeddedResource Include="Asteroid_Earth.dds" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
@@ -453,6 +457,32 @@
       <HintPath>..\packages\GameLibs\UnityEngine.UnityWebRequestModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="anim\background_planets_anims\earth2\earth_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="anim\background_planets_anims\jupiter\earth_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="anim\background_planets_anims\moon\earth_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="anim\background_planets_anims\saturn\earth_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="anim\icon_anims\planet_earth\earth.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="anim\icon_anims\planet_ganymede\ganymede.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="anim\icon_anims\planet_moon\moon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="anim\icon_anims\planet_titan\titan.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

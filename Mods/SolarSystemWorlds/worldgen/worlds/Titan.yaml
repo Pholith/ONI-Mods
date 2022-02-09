@@ -1,8 +1,8 @@
 name: SolarSystemWorlds.WorldAdds.T_NAME
 description: SolarSystemWorlds.WorldAdds.T_DESC
-asteroidIcon: Asteroid_Titan_kanim
+asteroidIcon: planet_titan_kanim
 
-worldTraitScale: 0.6 # Adjust with worldSize. Traits are tuned to base game world sizes.
+worldTraitScale: 0.5 # Adjust with worldSize. Traits are tuned to base game world sizes.
 worldsize:
   X: 224
   Y: 320
@@ -41,8 +41,8 @@ seasons:
   - MeteorShowers
 
 worldTraitRules:
-  - min: 2
-    max: 4
+  - min: 0
+    max: 1
 
 # When we are converting unknown cells, this will give us the options, processed in this order, the effects are cumlative
 unknownCellsAllowedSubworlds: 
@@ -119,7 +119,7 @@ unknownCellsAllowedSubworlds:
     maxDistance: 99
     command: Replace
     subworldNames:
-      - PholithWorlds/subworlds/titan/Space
+      - subworlds/space/Space
 
 
  
@@ -157,4 +157,93 @@ worldTemplateRules:
     allowedCellsFilter:
       - command: Replace
         subworldNames:
+          - PholithWorlds/subworlds/titan/Mantle2
+
+
+  # Generic Geysers
+  - names:
+    - geysers/generic
+    listRule: TryOne
+    times: 7
+    allowDuplicates: true
+    allowExtremeTemperatureOverlap: true
+    allowedCellsFilter:
+      - command: Replace
+        tagcommand: NotAtTag
+        tag: NoGlobalFeatureSpawning
+
+  # Generic Geysers
+  - names:
+    - poi/open_methane
+    listRule: TryOne
+    times: 3
+    allowDuplicates: true
+    allowExtremeTemperatureOverlap: true
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - PholithWorlds/subworlds/titan/Surface
+          - PholithWorlds/subworlds/titan/Sky
+
+  # Generic Geysers
+  - names:
+    - geysers/hot_hydrogen
+    listRule: TryOne
+    times: 2
+    allowDuplicates: true
+    allowExtremeTemperatureOverlap: true
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - PholithWorlds/subworlds/titan/Surface
+          - PholithWorlds/subworlds/titan/Mantle
+
+  # Generic Geysers
+  - names:
+    - features/feature_geyser_ironvolcano
+    - features/feature_geyser_ironvolcano
+    - geysers/volcanohole
+    listRule: TryAll
+    #times: 2
+    allowDuplicates: true
+    allowExtremeTemperatureOverlap: true
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - PholithWorlds/subworlds/titan/Mantle2
+          - PholithWorlds/subworlds/titan/Core
+
+          
+  # Generic Geysers
+  - names:
+    - geysers/salt_water
+    listRule: TryAll
+    times: 2
+    allowDuplicates: true
+    allowExtremeTemperatureOverlap: true
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - PholithWorlds/subworlds/titan/Ice1h
+          - PholithWorlds/subworlds/titan/Ocean
+          
+          
+  # Oil
+  - names:
+    - poi/oil/small_oilpockets_geyser_a
+    - poi/oil/small_oilpockets_geyser_b
+    - poi/oil/small_oilpockets_geyser_c
+    - poi/oil/small_oilpockets_geyser_d
+    - poi/oil/small_oilpockets_geyser_e
+    - poi/oil/small_oilpockets_geyser_f
+    - poi/oil/small_oilpockets_geyser_g
+    - poi/oil/small_oilpockets_geyser_h
+    listRule: GuaranteeOne
+    times: 2
+    allowDuplicates: true
+    allowExtremeTemperatureOverlap: true
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - PholithWorlds/subworlds/titan/Mantle
           - PholithWorlds/subworlds/titan/Mantle2

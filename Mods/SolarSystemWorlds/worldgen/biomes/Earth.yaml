@@ -50,7 +50,7 @@ TerrainBiomeLookupTable:
 
     Mantle:
     - content: CarbonDioxide
-      bandSize: 0.01
+      bandSize: 0.005
     - content: IgneousRock
       bandSize: 0.3
     - content: Granite

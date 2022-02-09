@@ -5,20 +5,6 @@ using UnityEngine;
 
 namespace SolarSystemWorlds
 {
-    /*[HarmonyPatch(typeof(TerrainBG))]
-    [HarmonyPatch("OnSpawn")]
-    class Test
-    {
-        private static string spriteName = "space_00";
-
-        public static void Postfix(TerrainBG __instance)
-        {
-            if (Utilities.IsOnWorld(WorldAdds.G_NAME))
-            {
-                __instance.starsMaterial.SetTexture("_Tex0", Utilities.CreateTextureDXT5(Assembly.GetExecutingAssembly().GetManifestResourceStream("SolarSystemWorlds" + "." + spriteName + ".dds"), 1024, 1024));
-            }
-        }
-    }*/
     public class AllBiomesWorld : UserMod2
     {
         public override void OnLoad(Harmony harmony)
@@ -58,7 +44,7 @@ namespace SolarSystemWorlds
             return null;
         }
 
-        private const int sizeScale = 7;
+        private const int sizeScale = 5;
         private static KAnimFile[] originalAnim = null;
         private static float normalSize = 0;
 
@@ -82,6 +68,7 @@ namespace SolarSystemWorlds
                     {
                         getWorldAnim()
                     };
+                    
                     if (normalSize == 0 || EarthConfigPatch.earthAnimController.animScale < normalSize)
                     {
                         normalSize = EarthConfigPatch.earthAnimController.animScale;

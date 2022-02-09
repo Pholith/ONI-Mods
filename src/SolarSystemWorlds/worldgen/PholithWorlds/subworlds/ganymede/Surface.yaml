@@ -16,6 +16,4 @@ biomes:
 
 tags:
   - IgnoreCaveOverride
- # - ErodePointToWorldTop
-  - NoGlobalFeatureSpawning
 zoneType: Rust

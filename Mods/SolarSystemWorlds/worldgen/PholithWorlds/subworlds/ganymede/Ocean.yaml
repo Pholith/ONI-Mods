@@ -11,5 +11,6 @@ biomes:
   - name: biomes/Ganymede/Ocean
     weight: 4
 tags:
+  - NoGlobalFeatureSpawning
   - IgnoreCaveOverride
 zoneType: Ocean

@@ -1,3 +1,6 @@
+
+## IO is outdated since Spaced Out
+##
 name: SolarSystemWorlds.WorldAdds.I_NAME
 description: SolarSystemWorlds.WorldAdds.I_DESC
 spriteName: Asteroid_IO
@@ -88,3 +91,4 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - PholithWorlds/subworlds/io/Space
+

@@ -1,6 +1,6 @@
 name: SolarSystemWorlds.WorldAdds.G_NAME
 description: SolarSystemWorlds.WorldAdds.G_DESC
-asteroidIcon: Asteroid_Ganymede_kanim
+asteroidIcon: planet_ganymede_kanim
 
 worldTraitScale: 0.4 # Adjust with worldSize. Traits are tuned to base game world sizes.
 worldsize:
@@ -42,8 +42,8 @@ seasons:
   - MeteorShowers
 
 worldTraitRules:
-  - min: 1
-    max: 2
+  - min: 0
+    max: 1
 
 # Rivers:
 #   - water
@@ -163,4 +163,66 @@ worldTemplateRules:
     allowedCellsFilter:
       - command: Replace
         subworldNames:
+          - PholithWorlds/subworlds/ganymede/Mantle2
+
+  # Generic Geysers
+  - names:
+    - geysers/generic
+    listRule: TryOne
+    times: 8
+    allowDuplicates: true
+    allowExtremeTemperatureOverlap: true
+    allowedCellsFilter:
+      - command: Replace
+        tagcommand: NotAtTag
+        tag: NoGlobalFeatureSpawning
+
+  # Generic Geysers
+  - names:
+    - features/feature_geyser_ironvolcano
+    - features/feature_geyser_ironvolcano
+    - geysers/volcanohole
+    listRule: TryAll
+    #times: 2
+    allowDuplicates: true
+    allowExtremeTemperatureOverlap: true
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - PholithWorlds/subworlds/ganymede/Mantle2
+          - PholithWorlds/subworlds/ganymede/Core
+          
+  # Generic Geysers
+  - names:
+    - geysers/salt_water
+    listRule: TryAll
+    times: 2
+    allowDuplicates: true
+    allowExtremeTemperatureOverlap: true
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - PholithWorlds/subworlds/ganymede/Ice1h
+          - PholithWorlds/subworlds/ganymede/IceVI
+          - PholithWorlds/subworlds/ganymede/Ocean
+
+          
+  # Oil
+  - names:
+    - poi/oil/small_oilpockets_geyser_a
+    - poi/oil/small_oilpockets_geyser_b
+    - poi/oil/small_oilpockets_geyser_c
+    - poi/oil/small_oilpockets_geyser_d
+    - poi/oil/small_oilpockets_geyser_e
+    - poi/oil/small_oilpockets_geyser_f
+    - poi/oil/small_oilpockets_geyser_g
+    - poi/oil/small_oilpockets_geyser_h
+    listRule: GuaranteeOne
+    times: 2
+    allowDuplicates: true
+    allowExtremeTemperatureOverlap: true
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - PholithWorlds/subworlds/ganymede/Mantle
           - PholithWorlds/subworlds/ganymede/Mantle2

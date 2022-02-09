@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="glow_0.png" width="158" height="158" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="1" name="hex_ref_0.png" width="218" height="242" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="2" name="ui_0.png" width="338" height="350" pivot_x="0.5" pivot_y="0.5"/>
+    </folder>
+    <entity id="0" name="fuleria">
+        <animation id="0" name="idle_loop" length="528" interval="33">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="glow_0">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-0.270492" y="0.270492" angle="0" scale_x="2.858748" scale_y="2.858748"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="ui_0_000">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="2.823529" y="6" angle="0" scale_x="0.562746" scale_y="0.562746"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="ui" length="132" interval="33">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="ui_0">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-0.569783" y="38.802367" angle="0" scale_x="0.230676" scale_y="0.225325"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

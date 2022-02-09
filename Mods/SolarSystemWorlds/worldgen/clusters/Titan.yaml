@@ -4,7 +4,7 @@ coordinatePrefix: TIT-PHO
 forbiddenDlcId: EXPANSION1_ID
 
 difficulty: 6
-menuOrder: 4
+menuOrder: 6
 
 startWorldIndex: 0
 worldPlacements:

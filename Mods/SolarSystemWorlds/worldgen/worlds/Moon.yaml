@@ -1,8 +1,8 @@
 name: SolarSystemWorlds.WorldAdds.M_NAME
 description: SolarSystemWorlds.WorldAdds.M_DESC
-asteroidIcon: Asteroid_Moon_kanim
+asteroidIcon: planet_moon_kanim
 
-worldTraitScale: 0.7 # Adjust with worldSize. Traits are tuned to base game world sizes.
+worldTraitScale: 0.5 # Adjust with worldSize. Traits are tuned to base game world sizes.
 worldsize:
   X: 256
   Y: 288
@@ -42,8 +42,8 @@ seasons:
   - MeteorShowers
 
 worldTraitRules:
-  - min: 2
-    max: 4
+  - min: 0
+    max: 1
 
 # When we are converting unknown cells, this will give us the options, processed in this order, the effects are cumlative
 unknownCellsAllowedSubworlds: 
@@ -114,3 +114,37 @@ worldTemplateRules:
       - command: Replace
         subworldNames:
           - PholithWorlds/subworlds/moon/Surface
+
+
+  # Generic Geysers
+  - names:
+    - geysers/generic
+    listRule: TryOne
+    times: 6
+    allowDuplicates: true
+    allowExtremeTemperatureOverlap: true
+    allowedCellsFilter:
+      - command: Replace
+        tagcommand: NotAtTag
+        tag: NoGlobalFeatureSpawning
+
+          
+  # Oil
+  - names:
+    - poi/oil/small_oilpockets_geyser_a
+    - poi/oil/small_oilpockets_geyser_b
+    - poi/oil/small_oilpockets_geyser_c
+    - poi/oil/small_oilpockets_geyser_d
+    - poi/oil/small_oilpockets_geyser_e
+    - poi/oil/small_oilpockets_geyser_f
+    - poi/oil/small_oilpockets_geyser_g
+    - poi/oil/small_oilpockets_geyser_h
+    listRule: GuaranteeOne
+    times: 2
+    allowDuplicates: true
+    allowExtremeTemperatureOverlap: true
+    allowedCellsFilter:
+      - command: Replace
+      - command: Replace
+        tagcommand: NotAtTag
+        tag: NoGlobalFeatureSpawning

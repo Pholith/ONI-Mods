@@ -12,12 +12,8 @@ biomes:
 features:
   - type: PholithWorlds/features/ganymede/MagmaVent
 
-
 tags:
   - IgnoreCaveOverride
-featureTemplates:
-  feature_geyser_volcanohole: 1
-  feature_geyser_ironvolcano: 2
 # featureTemplates:
   # feature_geyser_generic: 2
 zoneType: Ocean

@@ -17,7 +17,6 @@ tags:
   - IgnoreCaveOverride
   - ErodePointToBorderInv
   - ErodePointToWorldTop
-  - NoGlobalFeatureSpawning
 
 features:
   - type: PholithWorlds/features/ganymede/StartingGeode

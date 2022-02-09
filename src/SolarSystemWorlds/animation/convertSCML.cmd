@@ -1,0 +1,1 @@
+..\..\..\..\..\..\Downloads\kanimal-cli.exe kanim .\animation.scml -o ..\anim\icon_anims\asteroid_generated\ -i

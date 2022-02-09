@@ -4,7 +4,7 @@ coordinatePrefix: GMD-PHO
 forbiddenDlcId: EXPANSION1_ID
 
 difficulty: 6
-menuOrder: 3
+menuOrder: 5
 
 startWorldIndex: 0
 worldPlacements:

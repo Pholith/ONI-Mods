@@ -1,10 +1,10 @@
 name: STRINGS.WORLDS.FOREST_DEFAULT.NAME # Arboria
 description: STRINGS.WORLDS.FOREST_DEFAULT.DESCRIPTION
-coordinatePrefix: MN-PHOPHO
+coordinatePrefix: MN-PHO
 forbiddenDlcId: EXPANSION1_ID
 
 difficulty: 7
-menuOrder: 5
+menuOrder: 8
 
 startWorldIndex: 0
 worldPlacements:
