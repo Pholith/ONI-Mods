@@ -22,11 +22,10 @@ subworldFiles:
   - name: PholithWorlds/subworlds/moon/SurfaceNoGravitas
   - name: PholithWorlds/subworlds/moon/SurfaceStart
   - name: PholithWorlds/subworlds/moon/Surface
-  - name: PholithWorlds/subworlds/earth/Space
   - name: PholithWorlds/subworlds/moon/SpaceGravitas
 
 startSubworldName: PholithWorlds/subworlds/moon/SurfaceStart
-startingBaseTemplate: spaceBase
+startingBaseTemplate: bases/spaceBase
 
 startingBasePositionHorizontal:
   min: 0.4
@@ -144,7 +143,6 @@ worldTemplateRules:
     allowDuplicates: true
     allowExtremeTemperatureOverlap: true
     allowedCellsFilter:
-      - command: Replace
       - command: Replace
         tagcommand: NotAtTag
         tag: NoGlobalFeatureSpawning

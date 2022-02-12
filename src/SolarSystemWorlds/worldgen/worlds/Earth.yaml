@@ -33,7 +33,7 @@ subworldFiles:
   - name: PholithWorlds/subworlds/earth/MagmaBreach
 
 startSubworldName: PholithWorlds/subworlds/earth/SurfaceStart
-startingBaseTemplate: spaceBase
+startingBaseTemplate: bases/spaceBase
 
 startingBasePositionHorizontal:
   min: 0.4

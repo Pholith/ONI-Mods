@@ -25,7 +25,7 @@ subworldFiles:
   - name: PholithWorlds/subworlds/titan/Sky
 
 startSubworldName: PholithWorlds/subworlds/titan/SurfaceStart
-startingBaseTemplate: spaceBase
+startingBaseTemplate: bases/spaceBase
 
 startingBasePositionHorizontal:
   min: 0.4

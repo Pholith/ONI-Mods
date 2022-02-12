@@ -26,7 +26,7 @@ subworldFiles:
   - name: PholithWorlds/subworlds/ganymede/SurfaceNoGravitas
 
 startSubworldName: PholithWorlds/subworlds/ganymede/SurfaceStart
-startingBaseTemplate: spaceBase
+startingBaseTemplate: bases/spaceBase
 
 startingBasePositionHorizontal:
   min: 0.4

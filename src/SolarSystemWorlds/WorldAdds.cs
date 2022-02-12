@@ -1,6 +1,8 @@
 ﻿using HarmonyLib;
 using KMod;
 using Pholib;
+using ProcGenGame;
+using System;
 using UnityEngine;
 
 namespace SolarSystemWorlds
@@ -26,6 +28,44 @@ namespace SolarSystemWorlds
         public static void Postfix(GameObject __result)
         {
             earthAnimController = __result.AddOrGet<KBatchedAnimController>();
+        }
+    }
+
+    // Theses patches are used to improve worldgen error logs.
+    [HarmonyPatch(typeof(WorldGen))]
+    [HarmonyPatch("ReportWorldGenError")]
+    class ReportWorldGenError_patch
+    {
+        public static void Prefix(Exception e)
+        {
+            Debug.LogException(e);
+        }
+    }
+    [HarmonyPatch(typeof(WorldGen))]
+    [HarmonyPatch("GenerateNoiseData")]
+    class GenerateNoiseData_patch
+    {
+        public static void Prefix()
+        {
+            Debug.Log("Starting generate noise");
+        }
+    }    
+    [HarmonyPatch(typeof(WorldGen))]
+    [HarmonyPatch("GenerateLayout")]
+    class GenerateLayout_patch
+    {
+        public static void Prefix()
+        {
+            Debug.Log("Starting generate layout");
+        }
+    }
+    [HarmonyPatch(typeof(WorldGen))]
+    [HarmonyPatch("RenderOffline")]
+    class RenderOffline_patch
+    {
+        public static void Prefix()
+        {
+            Debug.Log("Starting render offline");
         }
     }
 
