@@ -1,5 +1,5 @@
 # keys to remove from in-memory structure when this file is loaded
-remove: [] 
+remove: [ExtremelyCold2] 
 # elements to add from in-memory structure when this file is loaded
 add:
 #between very hot and extremely hot

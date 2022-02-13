@@ -11,7 +11,7 @@ borderOverride: rocky
 biomes:
   - name: biomes/Earth/Sky
     tags:
-    - LightBugOrange
+    - SolarSystemWorlds_LightBugOrange
     - PrickleFlower
     - BasicSingleHarvestPlant
     - Squirrel

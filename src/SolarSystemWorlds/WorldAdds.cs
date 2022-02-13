@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using KMod;
 using Pholib;
+using ProcGen;
 using ProcGenGame;
 using System;
 using UnityEngine;
@@ -18,7 +19,6 @@ namespace SolarSystemWorlds
             //new PLocalization().Register();
         }
     }
-
 
     [HarmonyPatch(typeof(BackgroundEarthConfig))]
     [HarmonyPatch("CreatePrefab")]

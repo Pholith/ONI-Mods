@@ -12,7 +12,7 @@ borderOverride: dirty
 biomes:
   - name: biomes/Earth/Surface
     tags:
-    - LightBugOrange
+    - SolarSystemWorlds_LightBugOrange
     - PrickleFlower
     - BasicSingleHarvestPlant
     - Squirrel
