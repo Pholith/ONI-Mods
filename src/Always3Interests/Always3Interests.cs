@@ -173,7 +173,7 @@ namespace Always3Interests
     [HarmonyPatch("GenerateTraits")]
     public class TraitPatch
     {
-        public static bool Prefix(MinionStartingStats __instance, bool is_starter_minion, List<ChoreGroup> disabled_chore_groups, string guaranteedAptitudeID = null)
+        public static bool Prefix(MinionStartingStats __instance, bool is_starter_minion, List<ChoreGroup> disabled_chore_groups, string guaranteedAptitudeID = null, string guaranteedTraitID = null)
         {
             DUPLICANTSTATS.MAX_TRAITS = 10;
 
@@ -197,14 +197,13 @@ namespace Always3Interests
                 __instance.joyTrait = Db.Get().traits.Get("None");
             }
 
-            Trait trait2 = Db.Get().traits.Get(__instance.personality.congenitaltrait);
+            Trait trait2 = Db.Get().traits.TryGet(__instance.personality.congenitaltrait);
 
-            if (trait2.Name == "None")
-
-
-            __instance.stickerType = __instance.personality.stickerType;
-            Trait trait3 = Db.Get().traits.Get(__instance.personality.congenitaltrait);
-            if (trait3.Name == "None")
+            if (trait2 == null || trait2.Name == "None")
+                __instance.stickerType = __instance.personality.stickerType;
+            
+            Trait trait3 = Db.Get().traits.TryGet(__instance.personality.congenitaltrait);
+            if (trait3 == null || trait3.Name == "None")
             {
                 __instance.congenitaltrait = null;
             }
@@ -212,6 +211,7 @@ namespace Always3Interests
             {
                 __instance.congenitaltrait = trait3;
             }
+
             Func<List<DUPLICANTSTATS.TraitVal>, bool, bool> func = delegate (List<DUPLICANTSTATS.TraitVal> traitPossibilities, bool positiveTrait)
             {
                 if (__instance.Traits.Count > DUPLICANTSTATS.MAX_TRAITS)
@@ -257,6 +257,7 @@ namespace Always3Interests
                     num7 = Mathf.Max(DUPLICANTSTATS.RARITY_COMMON, num7);
                     num7 = Mathf.Min(DUPLICANTSTATS.RARITY_LEGENDARY, num7);
                 }
+
                 List<DUPLICANTSTATS.TraitVal> list2 = new List<DUPLICANTSTATS.TraitVal>(traitPossibilities);
                 for (int i = list2.Count - 1; i > -1; i--)
                 {
