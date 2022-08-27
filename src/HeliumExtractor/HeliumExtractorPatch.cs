@@ -29,7 +29,7 @@ namespace HeliumExtractor
                 + STRINGS.UI.FormatAsLink("helium", "HELIUM") + ", "
                 + STRINGS.UI.FormatAsLink("propane", "LIQUIDPROPANE") + " and "
                 + STRINGS.UI.FormatAsLink("sulfur", "SULFUR") + "."
-                + "\n\n" + STRINGS.UI.FormatAsLink("Helium", "HELIUM") + " is a useful gas with interesting physical properties.\n",
+                + "\n\n" + STRINGS.UI.FormatAsLink("Helium", "HELIUM") + " is a useful gas with interesting physical properties.\nPropane can be used the say way then Natural gas.",
                 "STRINGS.BUILDINGS.PREFABS." + HeliumExtractorConfig.ID.ToUpper() + ".EFFECT");
 
             private static void Prefix()
@@ -82,6 +82,21 @@ namespace HeliumExtractor
         {
             public static void Postfix(GameObject go)
             {
+                EnergyGenerator energyGenerator = go.AddOrGet<EnergyGenerator>();
+                energyGenerator.formula = new EnergyGenerator.Formula
+                {
+                    inputs = new EnergyGenerator.InputItem[]
+                    {
+                new EnergyGenerator.InputItem(GameTags.CombustibleGas, 0.09f, 0.90000004f)
+                    },
+                    outputs = new EnergyGenerator.OutputItem[]
+                    {
+                new EnergyGenerator.OutputItem(SimHashes.DirtyWater, 0.0675f, false, new CellOffset(1, 1), 313.15f),
+                new EnergyGenerator.OutputItem(SimHashes.CarbonDioxide, 0.0225f, true, new CellOffset(0, 2), 383.15f)
+                    }
+                };
+
+
                 ConduitDispenser conduitDispenser = go.AddOrGet<ConduitDispenser>();
                 conduitDispenser.elementFilter = conduitDispenser.elementFilter.AddItem(SimHashes.Propane).ToArray();
 
