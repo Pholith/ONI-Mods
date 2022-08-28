@@ -27,9 +27,9 @@ namespace HeliumExtractor
                 + STRINGS.UI.FormatAsLink("natural gas", "METHANE")
                 + " into "
                 + STRINGS.UI.FormatAsLink("helium", "HELIUM") + ", "
-                + STRINGS.UI.FormatAsLink("propane", "LIQUIDPROPANE") + " and "
+                + STRINGS.UI.FormatAsLink("propane", "PROPANE") + " and "
                 + STRINGS.UI.FormatAsLink("sulfur", "SULFUR") + "."
-                + "\n\n" + STRINGS.UI.FormatAsLink("Helium", "HELIUM") + " is a useful gas with interesting physical properties.\nPropane can be used the say way then Natural gas.",
+                + "\n\n" + STRINGS.UI.FormatAsLink("Helium", "HELIUM") + " is a useful gas with interesting physical properties.\nPropane can be used the same way than Natural gas.",
                 "STRINGS.BUILDINGS.PREFABS." + HeliumExtractorConfig.ID.ToUpper() + ".EFFECT");
 
             private static void Prefix()

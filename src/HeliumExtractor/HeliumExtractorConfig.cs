@@ -24,7 +24,7 @@ namespace HeliumExtractor
             BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, tier, all_METALS, melting_point, build_location_rule, BUILDINGS.DECOR.PENALTY.TIER2, tier2, 0.2f);
             buildingDef.RequiresPowerInput = true;
             buildingDef.PowerInputOffset = new CellOffset(0, 0);
-            buildingDef.EnergyConsumptionWhenActive = 600f;
+            buildingDef.EnergyConsumptionWhenActive = 420f;
             buildingDef.SelfHeatKilowattsWhenActive = 12f;
             buildingDef.AudioCategory = "HollowMetal";
             buildingDef.ViewMode = OverlayModes.GasConduits.ID;
