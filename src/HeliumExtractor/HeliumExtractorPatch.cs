@@ -14,7 +14,7 @@ namespace HeliumExtractor
 
         // Add strings and add the extractor to plan screen
         [HarmonyPatch(typeof(GeneratedBuildings))]
-        [HarmonyPatch("LoadGeneratedBuildings")]
+        [HarmonyPatch(nameof(GeneratedBuildings.LoadGeneratedBuildings))]
         public class ImplementationPatch
         {
             public static LocString NAME = new LocString("Helium Extractor",
@@ -70,7 +70,7 @@ namespace HeliumExtractor
         {
             public static void Postfix(Element elem)
             {
-                if (elem.id == SimHashes.Helium || elem.id == SimHashes.LiquidHelium)
+                if (elem.id == SimHashes.Helium || elem.id == SimHashes.LiquidHelium || elem.id == SimHashes.Propane || elem.id == SimHashes.LiquidPropane || elem.id == SimHashes.SolidPropane)
                 {
                     elem.disabled = false;
                 }
