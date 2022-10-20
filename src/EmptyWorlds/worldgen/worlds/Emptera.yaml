@@ -14,6 +14,7 @@ subworldFiles:
   - name: subworlds/forest/ForestMiniWaterModified
     weight: 1.5
   - name: subworlds/space/Space
+  - name: subworlds/space/SpaceGeyser
   - name: subworlds/space/SpaceWell
   - name: subworlds/space/Surface
 
@@ -70,7 +71,7 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - subworlds/forest/ForestMiniWaterModified
-      - subworlds/space/Space
+      - subworlds/space/SpaceGeyser
 
   - tagcommand: AtTag
     tag: AtSurface
@@ -106,7 +107,7 @@ worldTemplateRules:
     allowedCellsFilter:
       - command: Replace
         subworldNames:
-          - subworlds/space/Space
+          - subworlds/space/SpaceGeyser
   - names:
     - poi/poi_brain_ruin
     listRule: GuaranteeOne
@@ -115,7 +116,7 @@ worldTemplateRules:
     allowedCellsFilter:
       - command: Replace
         subworldNames:
-          - subworlds/space/Space
+          - subworlds/space/SpaceGeyser
 
   - names:
       - expansion1::poi/jungle/geyser_hydrogen

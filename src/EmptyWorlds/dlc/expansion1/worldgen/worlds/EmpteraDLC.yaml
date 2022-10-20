@@ -16,6 +16,7 @@ subworldFiles:
     weight: 1.3
   - name: subworlds/space/SpaceWell
   - name: subworlds/space/Space
+  - name: subworlds/space/SpaceGeyser
 
 defaultsOverrides:
   data:
@@ -63,7 +64,7 @@ unknownCellsAllowedSubworlds:
     maxDistance: 999
     command: Replace
     subworldNames:
-      - subworlds/space/Space
+      - subworlds/space/SpaceGeyser
 
   - tagcommand: DistanceFromTag
     tag: AtStart
@@ -101,8 +102,7 @@ worldTemplateRules:
     allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
     allowedCellsFilter:
       - command: Replace
-        subworldNames:
-          - subworlds/space/Space
+        zoneTypes: [Space]
   - names:
     - poi/poi_brain_ruin
     listRule: GuaranteeOne
@@ -110,8 +110,7 @@ worldTemplateRules:
     allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
     allowedCellsFilter:
       - command: Replace
-        subworldNames:
-          - subworlds/space/Space
+        zoneTypes: [Space]
 
   - names:
     - expansion1::poi/jungle/geyser_hydrogen

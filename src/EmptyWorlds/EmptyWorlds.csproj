@@ -188,10 +188,6 @@
       <HintPath>..\packages\GameLibs\UnityEngine.InputLegacyModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>..\packages\GameLibs\UnityEngine.TextRenderingModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>..\packages\GameLibs\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>

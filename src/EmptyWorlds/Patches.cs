@@ -32,7 +32,7 @@ namespace EmptyWorlds
             new PLocalization().Register();
         }
     }
-    [HarmonyPatch(typeof(CameraController), "ActiveWorldStarWipe", new Type[] {typeof(int), typeof(bool), typeof(Vector3), typeof(float), typeof(System.Action)})]
+    [HarmonyPatch(typeof(CameraController), "ActiveWorldStarWipe", new Type[] { typeof(int), typeof(bool), typeof(Vector3), typeof(float), typeof(System.Action) })]
     public class test
     {
         public static void Prefix(int id, bool useForcePosition)
@@ -53,8 +53,10 @@ namespace EmptyWorlds
                 if (__result.name == "poi_bunker_skyblock")
                 {
                     __result = new TemplateContainer();
-                    var list = new List<TemplateClasses.Cell>();
-                    list.Add(new TemplateClasses.Cell(0, 0, SimHashes.Vacuum, 1, 0, "", 0));
+                    List<TemplateClasses.Cell> list = new List<TemplateClasses.Cell>
+                    {
+                        new TemplateClasses.Cell(0, 0, SimHashes.Vacuum, 1, 0, "", 0)
+                    };
                     __result.Init(list, new List<TemplateClasses.Prefab>(), new List<TemplateClasses.Prefab>(), new List<TemplateClasses.Prefab>(), new List<TemplateClasses.Prefab>());
                 }
             }
@@ -73,22 +75,30 @@ namespace EmptyWorlds
             byte new_elem_idx = (byte)ElementLoader.elements.IndexOf(WorldGen.unobtaniumElement);
             float temperature = WorldGen.unobtaniumElement.defaultValues.temperature;
             float mass = WorldGen.unobtaniumElement.defaultValues.mass;
-
-            for (int l = 0; l < world.size.x; l++)
+            try
             {
-                updateProgressFn(UI.WORLDGEN.DRAWWORLDBORDER.key, l / world.size.x * 0.66f + 0.33f, WorldGenProgressStages.Stages.DrawWorldBorder);
-                var num9 = Mathf.Max(-intSetting2, Mathf.Min(rnd.RandomRange(-2, 2), intSetting2));
-                for (int m = 0; m < intSetting + num9; m++)
+                for (int l = 0; l < world.size.x; l++)
                 {
-                    int num13 = Grid.XYToCell(l, m);
-                    if (boolSetting)
+                    updateProgressFn(UI.WORLDGEN.DRAWWORLDBORDER.key, l / world.size.x * 0.66f + 0.33f, WorldGenProgressStages.Stages.DrawWorldBorder);
+                    int num9 = Mathf.Max(-intSetting2, Mathf.Min(rnd.RandomRange(-2, 2), intSetting2));
+                    for (int m = 0; m < intSetting + num9; m++)
                     {
-                        borderCells.Add(num13);
-                        cells[num13].SetValues(new_elem_idx, temperature, mass);
+                        int num13 = Grid.XYToCell(l, m);
+                        if (boolSetting)
+                        {
+                            borderCells.Add(num13);
+                            cells[num13].SetValues(new_elem_idx, temperature, mass);
+                        }
                     }
-                }
 
+                }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Debug.LogWarning(ex.Message);
+            }
+            
         }
     }
 }
