@@ -1,6 +1,5 @@
-
-## IO is outdated since Spaced Out
-##
+# IO isn't ended and can't be played
+# + IO isn't compatible with worldgen since SpacedOut
 name: SolarSystemWorlds.WorldAdds.I_NAME
 description: SolarSystemWorlds.WorldAdds.I_DESC
 spriteName: Asteroid_IO
@@ -9,7 +8,6 @@ difficulty: 1
 tier: 2
 disableWorldTraits: true
 skip: true
-
 worldsize:
   X: 224
   Y: 320

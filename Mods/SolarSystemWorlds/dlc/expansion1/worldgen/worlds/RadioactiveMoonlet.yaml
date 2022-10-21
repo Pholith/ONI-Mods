@@ -1,0 +1,121 @@
+# Unused - Was used for VanillaSandstoneCluster
+name: STRINGS.WORLDS.MINIRADIOACTIVEOCEAN.NAME
+description: STRINGS.WORLDS.MINIRADIOACTIVEOCEAN.DESCRIPTION
+nameTables: [ RADIOACTIVE ]
+asteroidIcon: asteroid_mini_radiation_kanim
+disableWorldTraits: true
+
+worldTraitScale: 0.12 # Adjust with worldSize. Traits are tuned to base game world sizes.
+worldsize:
+  X: 64
+  Y: 80
+layoutMethod: PowerTree
+
+defaultsOverrides:
+  data:
+    DrawWorldBorderForce: false
+    DrawWorldBorder: true
+    WorldBorderThickness: 3
+    WorldBorderRange: 1
+    OverworldDensityMin: 18
+    OverworldDensityMax: 18
+    OverworldAvoidRadius: 5
+    OverworldSampleBehaviour: PoissonDisk
+    POIPadding: 1
+
+
+# List all the subworld files to load
+subworldFiles:
+  - name: expansion1::subworlds/radioactive/med_Radioactive
+  - name: expansion1::subworlds/radioactive/med_UraniumFields
+  - name: expansion1::subworlds/radioactive/med_FrozenUraniumFields
+  - name: expansion1::subworlds/frozen/FrozenCore
+    weight: 0.4
+  - name: subworlds/space/Space
+  - name: expansion1::subworlds/space/SpaceWithBorder
+    overridePower: 1.25
+    
+unknownCellsAllowedSubworlds: 
+  - tagcommand: Default
+    command: Replace
+    subworldNames:
+      - expansion1::subworlds/radioactive/med_Radioactive
+  - tagcommand: DistanceFromTag
+    tag: AtEdge
+    minDistance: 3
+    maxDistance: 3
+    command: Replace
+    subworldNames:
+      - expansion1::subworlds/radioactive/med_Radioactive
+  - tagcommand: AtTag
+    tag: AtSurface
+    command: Replace
+    subworldNames:
+      - subworlds/space/Space
+  - tagcommand: DistanceFromTag
+    tag: AtSurface
+    command: Replace
+    minDistance: 1
+    maxDistance: 1
+    subworldNames:
+      - expansion1::subworlds/radioactive/med_Radioactive  
+  - tagcommand: DistanceFromTag
+    tag: AtSurface
+    minDistance: 2
+    maxDistance: 2
+    command: Replace
+    subworldNames:
+      - expansion1::subworlds/radioactive/med_Radioactive
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 1
+    maxDistance: 1
+    command: Replace
+    subworldNames:
+      - expansion1::subworlds/radioactive/med_Radioactive
+      - expansion1::subworlds/radioactive/med_UraniumFields
+      - expansion1::subworlds/radioactive/med_FrozenUraniumFields
+  - tagcommand: DistanceFromTag
+    tag: AtDepths
+    minDistance: 0
+    maxDistance: 0
+    command: Replace
+    subworldNames:
+      - expansion1::subworlds/frozen/FrozenCore
+      - expansion1::subworlds/radioactive/med_UraniumFields
+      - expansion1::subworlds/radioactive/med_FrozenUraniumFields
+
+worldTemplateRules:
+  - names:
+    - expansion1::poi/boon/bedroom
+    - expansion1::poi/boon/washroom
+    - expansion1::poi/boon/power
+    - expansion1::poi/boon/kitchen
+    - expansion1::poi/boon/well
+    - expansion1::poi/boon/farm
+    listRule: TrySome
+    someCount: 2
+    priority: 50
+    allowedCellsFilter:
+      - command: Replace
+        tagcommand: DistanceFromTag
+        tag: AtDepths
+        minDistance: 0
+        maxDistance: 5
+      - command: IntersectWith
+        zoneTypes: [ Radioactive ]
+  - names:
+    - geysers/generic
+    listRule: TryOne
+    times: 2
+    allowDuplicates: true
+  - names: # Generic geysers
+    - geysers/chlorine_gas
+    - geysers/methane
+    - geysers/hot_po2
+    - geysers/small_volcano
+    - geysers/hot_hydrogen
+    - geysers/filthy_water
+    - geysers/salt_water
+    listRule: TryOne
+    times: 2

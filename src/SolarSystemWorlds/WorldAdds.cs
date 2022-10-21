@@ -1,7 +1,6 @@
 ﻿using HarmonyLib;
 using KMod;
 using Pholib;
-using ProcGen;
 using ProcGenGame;
 using System;
 using UnityEngine;
@@ -22,7 +21,7 @@ namespace SolarSystemWorlds
 
     [HarmonyPatch(typeof(BackgroundEarthConfig))]
     [HarmonyPatch("CreatePrefab")]
-    class EarthConfigPatch
+    internal class EarthConfigPatch
     {
         public static KBatchedAnimController earthAnimController;
         public static void Postfix(GameObject __result)
@@ -34,47 +33,34 @@ namespace SolarSystemWorlds
     // Theses patches are used to improve worldgen error logs.
     [HarmonyPatch(typeof(WorldGen))]
     [HarmonyPatch("ReportWorldGenError")]
-    class ReportWorldGenError_patch
+    internal class ReportWorldGenError_patch
     {
         public static void Prefix(Exception e)
         {
             Debug.LogException(e);
         }
     }
-    [HarmonyPatch(typeof(WorldGen))]
-    [HarmonyPatch("GenerateNoiseData")]
-    class GenerateNoiseData_patch
+
+    // Change the name of the planet on the space map
+    [HarmonyPatch(typeof(AsteroidGridEntity), nameof(AsteroidGridEntity.Init))]
+    public class AsteroidGridEntityPatch
     {
-        public static void Prefix()
+        private static void Postfix(AsteroidGridEntity __instance, string asteroidTypeId)
         {
-            Debug.Log("Starting generate noise");
-        }
-    }    
-    [HarmonyPatch(typeof(WorldGen))]
-    [HarmonyPatch("GenerateLayout")]
-    class GenerateLayout_patch
-    {
-        public static void Prefix()
-        {
-            Debug.Log("Starting generate layout");
+            if (asteroidTypeId.Contains("planet"))
+            {
+                Traverse.Create(__instance).Field<string>("m_name").Value = asteroidTypeId.Replace("planet_", "").Replace("_kanim", "");
+            }
         }
     }
-    [HarmonyPatch(typeof(WorldGen))]
-    [HarmonyPatch("RenderOffline")]
-    class RenderOffline_patch
-    {
-        public static void Prefix()
-        {
-            Debug.Log("Starting render offline");
-        }
-    }
+
 
 
     [HarmonyPatch(typeof(Game))]
     [HarmonyPatch("OnSpawn")]
     public class AfterGameLoad_Patch
     {
-        private static KAnimFile getWorldAnim()
+        private static KAnimFile GetWorldAnim()
         {
             if (Utilities.IsOnCluster(WorldAdds.TitanId)) return Assets.GetAnim("saturn_kanim");
             if (Utilities.IsOnCluster(WorldAdds.GanymedeId)) return Assets.GetAnim("jupiter_kanim");
@@ -92,8 +78,8 @@ namespace SolarSystemWorlds
         // incomprehensible code but... it works
         public static void Postfix()
         {
-            if (Utilities.IsOnCluster(WorldAdds.GanymedeId) || 
-                Utilities.IsOnCluster(WorldAdds.TitanId) || 
+            if (Utilities.IsOnCluster(WorldAdds.GanymedeId) ||
+                Utilities.IsOnCluster(WorldAdds.TitanId) ||
                 Utilities.IsOnCluster(WorldAdds.EarthId) ||
                 Utilities.IsOnCluster(WorldAdds.MoonId) ||
                 Utilities.IsOnCluster(WorldAdds.IOId))
@@ -106,9 +92,9 @@ namespace SolarSystemWorlds
                     // replace the anim
                     EarthConfigPatch.earthAnimController.AnimFiles = new KAnimFile[]
                     {
-                        getWorldAnim()
+                        GetWorldAnim()
                     };
-                    
+
                     if (normalSize == 0 || EarthConfigPatch.earthAnimController.animScale < normalSize)
                     {
                         normalSize = EarthConfigPatch.earthAnimController.animScale;
@@ -119,7 +105,7 @@ namespace SolarSystemWorlds
             else
             {
                 // if someone load a non solar system game from one -> reset changes
-                if (EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("jupiter_kanim") || 
+                if (EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("jupiter_kanim") ||
                     EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("saturn_kanim") ||
                     EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("earth2_kanim") ||
                     EarthConfigPatch.earthAnimController.AnimFiles[0] == Assets.GetAnim("moon_kanim"))
@@ -133,17 +119,19 @@ namespace SolarSystemWorlds
         }
     }
 
-    
+
     [HarmonyPatch(typeof(Db))]
     [HarmonyPatch("Initialize")]
     public class WorldAdds
     {
 
+        public static LocString SOLAR_SYSTEM_NAME = "Solar System";
+
         public static LocString G_NAME = "Ganymede";
-        public static LocString G_DESC= "Ganymede is a moon of Jupiter, the largest moon in the entire solar system. It contains a lot of water under its surface.\n\nGanymede will be a difficult experience, to help you in your planetary conquest, you have your habitable rocket that will provide you with valuable resources\n\n";
+        public static LocString G_DESC = "Ganymede is a moon of Jupiter, the largest moon in the entire solar system. It contains a lot of water under its surface.\n\nGanymede will be a difficult experience, to help you in your planetary conquest, you have your habitable rocket that will provide you with valuable resources\n\n";
 
         public static LocString T_NAME = "Titan";
-        public static LocString T_DESC= "Titan is one of Saturn's moons, the second largest moon in the solar system and the only planet other than Earth that has liquid oceans. Oceans... of methane\n\nTitan is an extremely cold planet, to help you in your planetary conquest, you have your habitable rocket that will provide you with valuable resources\n\n";
+        public static LocString T_DESC = "Titan is one of Saturn's moons, the second largest moon in the solar system and the only planet other than Earth that has liquid oceans. Oceans... of methane\n\nTitan is an extremely cold planet, to help you in your planetary conquest, you have your habitable rocket that will provide you with valuable resources\n\n";
 
 
         public static LocString E_NAME = "Earth";
@@ -171,9 +159,55 @@ namespace SolarSystemWorlds
         public static void Postfix()
         {
             Utilities.AddWorldYaml(typeof(WorldAdds));
-            Utilities.AddWorldYaml(typeof(WorldAdds));
-            Utilities.AddWorldYaml(typeof(WorldAdds));
-            Utilities.AddWorldYaml(typeof(WorldAdds));
+
+            Strings.Add(new string[]
+            {
+                "STRINGS.SUBWORLDS.EARTH.NAME", E_NAME
+            });
+            Strings.Add(new string[]
+            {
+                "STRINGS.SUBWORLDS.EARTH.DESC", E_DESC
+            });
+            Strings.Add(new string[]
+            {
+                "STRINGS.SUBWORLDS.EARTH.UTILITY", ""
+            });
+            Strings.Add(new string[]
+            {
+                "STRINGS.SUBWORLDS.GANYMEDE.NAME", G_NAME
+            });
+            Strings.Add(new string[]
+            {
+                "STRINGS.SUBWORLDS.GANYMEDE.DESC", G_DESC
+            });
+            Strings.Add(new string[]
+            {
+                "STRINGS.SUBWORLDS.GANYMEDE.UTILITY", ""
+            });
+            Strings.Add(new string[]
+            {
+                "STRINGS.SUBWORLDS.TITAN.NAME", T_NAME
+            });
+            Strings.Add(new string[]
+            {
+                "STRINGS.SUBWORLDS.TITAN.DESC", T_DESC
+            });
+            Strings.Add(new string[]
+            {
+                "STRINGS.SUBWORLDS.TITAN.UTILITY", ""
+            });
+            Strings.Add(new string[]
+            {
+                "STRINGS.SUBWORLDS.MOON.NAME", M_NAME
+            });
+            Strings.Add(new string[]
+            {
+                "STRINGS.SUBWORLDS.MOON.DESC", M_DESC
+            });
+            Strings.Add(new string[]
+            {
+                "STRINGS.SUBWORLDS.MOON.UTILITY", ""
+            });
         }
     }
 }

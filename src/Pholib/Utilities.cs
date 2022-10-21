@@ -145,7 +145,7 @@ namespace Pholib
         /// <summary>
         /// Return true if the game is loaded a this world. Should not be called until game loaded.
         /// </summary>
-        /// <param name="worldName"> Worldname </param>
+        /// <param name="clusterName"> Cluster name </param>
         /// <returns></returns>
         public static bool IsOnCluster(string clusterName)
         {

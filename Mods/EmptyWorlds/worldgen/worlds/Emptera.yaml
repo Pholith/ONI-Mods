@@ -54,7 +54,7 @@ unknownCellsAllowedSubworlds:
     maxDistance: 999
     command: Replace
     subworldNames:
-      - subworlds/space/Space
+      - subworlds/space/SpaceGeyser
 
   - tagcommand: DistanceFromTag
     tag: AtSurface

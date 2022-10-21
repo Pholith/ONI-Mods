@@ -1,6 +1,7 @@
 name: SolarSystemWorlds.WorldAdds.E_NAME
 description: SolarSystemWorlds.WorldAdds.E_DESC
 asteroidIcon: planet_earth_kanim
+nameTables: [ FOREST ]
 worldTraitScale: 0.3 # Adjust with worldSize. Traits are tuned to base game world sizes.
 worldsize:
   X: 224
@@ -44,8 +45,8 @@ startingBasePositionVertical:
 #globalFeatureTemplates:
   #feature_geyser_generic: 10
 
-seasons:
-  - MeteorShowers
+#seasons:
+ # - MeteorShowers
 
 worldTraitRules:
   - min: 0

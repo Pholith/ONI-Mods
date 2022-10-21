@@ -1,7 +1,6 @@
 name: SolarSystemWorlds.WorldAdds.E_NAME
 description: SolarSystemWorlds.WorldAdds.E_DESC
 asteroidIcon: planet_earth_kanim
-
 worldTraitScale: 0.3 # Adjust with worldSize. Traits are tuned to base game world sizes.
 worldsize:
   X: 224
