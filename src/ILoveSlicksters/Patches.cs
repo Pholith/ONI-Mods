@@ -235,7 +235,7 @@ namespace ILoveSlicksters
             //Utilities.AddWorldYaml("Asteroid_Slicksteria", typeof(PHO_STRINGS));
 
 
-            Effect OwO_Effect = new Effect("OwO_effect", " OwO Effect", "This duplicant saw something so cute that he can't think of anything else.", 300f, true, true, false, null, 10f);
+            Effect OwO_Effect = new Effect("OwO_effect", " OwO Effect", "This duplicant saw something so cute that he can't think of anything else.", 300f, true, true, false, null, 10f, null, "");
             OwO_Effect.Add(new AttributeModifier(Db.Get().Amounts.Stress.deltaAttribute.Id, -DUPLICANTSTATS.QOL_STRESS.BELOW_EXPECTATIONS.HARD, "OwO Effect"));
             __instance.effects.Add(OwO_Effect);
 

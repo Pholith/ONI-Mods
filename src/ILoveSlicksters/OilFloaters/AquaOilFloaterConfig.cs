@@ -103,14 +103,14 @@ namespace ILoveSlicksters
             state.customIdleAnim = new IdleStates.Def.IdleAnimCallback(AquaOilfloaterConfig.CustomIdleAnim);
 
             ChoreTable.Builder chore_table = new ChoreTable.Builder().Add(new DeathStates.Def()).Add(new AnimInterruptStates.Def())
-                .Add(new GrowUpStates.Def()).Add(new TrappedStates.Def()).Add(new IncubatingStates.Def())
+                .Add(new GrowUpStates.Def()).Add(new TrappedStates.Def()).Add(new IncubatingStates.Def(), is_baby)
                 .Add(new BaggedStates.Def()).Add(new FallStates.Def()).Add(new StunnedStates.Def())
                 /*.Add(new DrowningStates.Def())*/.Add(new DebugGoToStates.Def()).PushInterruptGroup()//.Add(new GasDrowningStates.Def())
                 .Add(new CreatureSleepStates.Def()).Add(new FixedCaptureStates.Def())
-                .Add(new RanchedStates.Def()).Add(new LayEggStates.Def()).Add(new InhaleStates.Def
+                .Add(new RanchedStates.Def(), !is_baby).Add(new LayEggStates.Def(), !is_baby).Add(new InhaleStates.Def
                 {
                     inhaleSound = inhaleSound
-                }).Add(new SameSpotPoopStates.Def()).Add(new CallAdultStates.Def()).PopInterruptGroup()
+                }).Add(new SameSpotPoopStates.Def()).Add(new CallAdultStates.Def(), is_baby).PopInterruptGroup()
                 .Add(state);
 
             EntityTemplates.AddCreatureBrain(gameObject, chore_table, GameTags.Creatures.Species.OilFloaterSpecies, symbolOverridePrefix);
