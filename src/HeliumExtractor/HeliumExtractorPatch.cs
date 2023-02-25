@@ -64,7 +64,7 @@ namespace HeliumExtractor
                 }
             }
         }
-        // Enable helium
+        // Enable helium and propane
         [HarmonyPatch(typeof(ElementLoader), "CopyEntryToElement")]
         public class HeliumEnablePatch
         {
@@ -76,6 +76,7 @@ namespace HeliumExtractor
                 }
             }
         }
+    
         // Add propane in the MethaneGeneratorConfig element list
         [HarmonyPatch(typeof(MethaneGeneratorConfig), "DoPostConfigureComplete")]
         public class MethaneGeneratorPropanePatch
