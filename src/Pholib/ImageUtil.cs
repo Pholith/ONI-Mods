@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 using UnityEngine;
 
@@ -7,7 +6,7 @@ namespace Pholib
 {
     public static class ImageUtil
     {
-        
+
         public static string ModPath()
         {
             return Directory.GetParent(Assembly.GetExecutingAssembly().Location) + Path.DirectorySeparatorChar.ToString();
@@ -15,7 +14,6 @@ namespace Pholib
 
         public static Texture2D LoadPNG(string filePath)
         {
-
             Texture2D tex = null;
             byte[] fileData;
 
@@ -24,6 +22,9 @@ namespace Pholib
                 fileData = File.ReadAllBytes(filePath);
                 tex = new Texture2D(2, 2);
                 tex.LoadImage(fileData); //..this will auto-resize the texture dimensions.
+            } else
+            {
+                Logs.Error($"{filePath} not found !");
             }
             return tex;
         }

@@ -99,11 +99,11 @@ namespace ILoveSlicksters
                 inhaleSound = "OilFloaterBaby_intake_air";
             }
 
-            IdleStates.Def state = new IdleStates.Def();
-            state.customIdleAnim = new IdleStates.Def.IdleAnimCallback(AquaOilfloaterConfig.CustomIdleAnim);
+            IdleStates.Def idleState = new IdleStates.Def();
+            idleState.customIdleAnim = new IdleStates.Def.IdleAnimCallback(AquaOilfloaterConfig.CustomIdleAnim);
 
             ChoreTable.Builder chore_table = new ChoreTable.Builder().Add(new DeathStates.Def()).Add(new AnimInterruptStates.Def())
-                .Add(new GrowUpStates.Def()).Add(new TrappedStates.Def()).Add(new IncubatingStates.Def(), is_baby)
+                .Add(new GrowUpStates.Def(), is_baby).Add(new TrappedStates.Def()).Add(new IncubatingStates.Def(), is_baby)
                 .Add(new BaggedStates.Def()).Add(new FallStates.Def()).Add(new StunnedStates.Def())
                 /*.Add(new DrowningStates.Def())*/.Add(new DebugGoToStates.Def()).PushInterruptGroup()//.Add(new GasDrowningStates.Def())
                 .Add(new CreatureSleepStates.Def()).Add(new FixedCaptureStates.Def())
@@ -111,7 +111,7 @@ namespace ILoveSlicksters
                 {
                     inhaleSound = inhaleSound
                 }).Add(new SameSpotPoopStates.Def()).Add(new CallAdultStates.Def(), is_baby).PopInterruptGroup()
-                .Add(state);
+                .Add(idleState);
 
             EntityTemplates.AddCreatureBrain(gameObject, chore_table, GameTags.Creatures.Species.OilFloaterSpecies, symbolOverridePrefix);
             //string sound = "OilFloater_move_LP";

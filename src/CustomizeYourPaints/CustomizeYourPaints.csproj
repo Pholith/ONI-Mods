@@ -46,41 +46,30 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="anim\paints\mod_painting\painting_anim.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="anim\paints\mod_painting\painting_build.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="anim\paints\mod_painting_tall\painting_tall_anim.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="anim\paints\mod_painting_tall\painting_tall_build.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="anim\paints\mod_painting_wide\painting_wide_anim.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="anim\paints\mod_painting_wide\painting_wide_build.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="mod.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="mod_info.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\originals\painting_0_original.png">
+    <None Include="src\originals\painting_art_a_anim.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="src\originals\painting_tall_0_original.png">
+    </None>
+    <None Include="src\originals\painting_art_a_build.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="src\originals\painting_wide_0_original.png">
+    </None>
+    <None Include="src\originals\painting_tall_art_a_anim.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
+    <None Include="src\originals\painting_tall_art_a_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="src\originals\painting_wide_art_a_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="src\originals\painting_wide_art_a_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
@@ -131,6 +120,20 @@
       <HintPath>..\packages\GameLibs\UnityEngine.UnityWebRequestModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\originals\painting_art_a_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="src\originals\painting_tall_art_a_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="src\originals\painting_wide_art_a_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="src\test.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -12,7 +12,7 @@ namespace Pholib
 {
     public class Logs
     {
-        private static readonly string version = "1.3";
+        private static readonly string version = "1.4";
 
         public static bool DebugLog = false;
         private static bool initiated = false;
@@ -27,7 +27,11 @@ namespace Pholib
             initiated = true;
         }
 
-
+        public static void Error(string informations)
+        {
+            InitIfNot();
+            Debug.Log("Pholib: [ERROR] " + informations);
+        }
         public static void Log(string informations)
         {
             InitIfNot();
@@ -36,7 +40,7 @@ namespace Pholib
         public static void Log(object informations)
         {
             InitIfNot();
-            Debug.Log("Pholib: " + informations == null ? "null" : informations.ToString());
+            Debug.Log("Pholib: " + (informations == null ? "null" : informations.ToString()));
         }
 
 
@@ -154,8 +158,8 @@ namespace Pholib
                 return false;
             }
             Dictionary<string, string> dict = Traverse.Create(CustomGameSettings.Instance).Field<Dictionary<string, string>>("CurrentQualityLevelsBySetting").Value;
-            
-            
+
+
             if (dict == null || dict["ClusterLayout"] == null)
             {
                 return false;

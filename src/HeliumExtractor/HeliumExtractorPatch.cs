@@ -104,12 +104,56 @@ namespace HeliumExtractor
             }
         }
         // Change the GourmetCookingStationConfig fuel tag from Methane to CombustibleGas
-        [HarmonyPatch(typeof(GourmetCookingStationConfig), "ConfigureBuildingTemplate")]
+        [HarmonyPatch(typeof(GourmetCookingStationConfig), nameof(GourmetCookingStationConfig.ConfigureBuildingTemplate))]
         public class GourmetCookingStationPropanePatch
         {
-            public static void Prefix(GourmetCookingStationConfig __instance)
+            public static void Prefix(GourmetCookingStationConfig __instance, GameObject go)
             {
-                Traverse.Create(__instance).Field("FUEL_TAG").SetValue(new Tag(GameTags.CombustibleGas));
+                Traverse.Create(__instance).Field("FUEL_TAG").SetValue(GameTags.CombustibleGas);
+            }
+        }
+
+        [HarmonyPatch(typeof(ComplexFabricator), "DropExcessIngredients")]
+        public class GourmetCookingStationPropanePatch2
+        {
+            public static bool Prefix(ComplexFabricator __instance, Storage storage)
+            {
+
+                var recipe_list = Traverse.Create(__instance).Field<ComplexRecipe[]>("recipe_list").Value;
+
+                HashSet<Tag> hashSet = new HashSet<Tag>();
+                if (__instance.keepAdditionalTag != Tag.Invalid)
+                {
+                    hashSet.Add(__instance.keepAdditionalTag);
+                }
+                for (int i = 0; i < recipe_list.Length; i++)
+                {
+                    ComplexRecipe complexRecipe = recipe_list[i];
+                    if (__instance.IsRecipeQueued(complexRecipe))
+                    {
+                        foreach (ComplexRecipe.RecipeElement recipeElement in complexRecipe.ingredients)
+                        {
+                            hashSet.Add(recipeElement.material);
+                        }
+                    }
+                }
+                for (int k = storage.items.Count - 1; k >= 0; k--)
+                {
+                    GameObject gameObject = storage.items[k];
+                    if (!(gameObject == null))
+                    {
+                        PrimaryElement component = gameObject.GetComponent<PrimaryElement>();
+                        if (!(component == null) && (!__instance.keepExcessLiquids || !component.Element.IsLiquid))
+                        {
+                            KPrefabID component2 = gameObject.GetComponent<KPrefabID>();
+                            if (!(component2.HasTag(__instance.keepAdditionalTag)) && component2 && !hashSet.Contains(component2.PrefabID())) // My change here 
+                            {
+                                storage.Drop(gameObject, true);
+                            }
+                        }
+                    }
+                }
+                return false;
             }
         }
     }

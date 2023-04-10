@@ -23,13 +23,11 @@ defaultsOverrides:
     DrawWorldBorderBottom: true
     WorldBorderRange: 4
     WorldBorderThickness: 6
-
   startingWorldElements: [] # remove the algae check
 
 seasons:
   - MeteorShowers
 
-  
 worldTraitRules: 
   - min: 0
   - max: 1

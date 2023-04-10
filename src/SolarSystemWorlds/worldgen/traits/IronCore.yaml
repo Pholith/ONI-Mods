@@ -3,6 +3,7 @@ description: SolarSystemWorlds.WorldAdds.IRON_CORE_DESC
 colorHex: 990000
 exclusiveWith:
   - traits/FrozenCore
+  - traits/CoreTrait
 
 traitTags:
   - IronCore

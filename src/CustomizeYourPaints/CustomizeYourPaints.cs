@@ -4,6 +4,7 @@ using Pholib;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using UnityEngine;
 
 namespace SolarSystemWorlds
@@ -14,99 +15,48 @@ namespace SolarSystemWorlds
         public override void OnLoad(Harmony harmony)
         {
             base.OnLoad(harmony);
+            //Traverse.Create(Assets.instance).Method("LoadAnims").GetValue();
+        }
+    }
+    [HarmonyPatch(typeof(KAnimGroupFile), nameof(KAnimGroupFile.MapNamesToAnimFiles))]
+    public class ModAnimPatch
+    {
+        private static readonly string ORIGINALS_PATH = Path.Combine("src", "originals");
 
-            try
-            {
-                Texture2D squarePainting = ImageUtil.LoadPNG(ImageUtil.ModPath() + "src/originals/painting_0_original.png");
-                Texture2D tallPainting = ImageUtil.LoadPNG(ImageUtil.ModPath() + "src/originals/painting_tall_0_original.png");
-                Texture2D widePainting = ImageUtil.LoadPNG(ImageUtil.ModPath() + "src/originals/painting_wide_0_original.png");
+        public static void Prefix()
+        {
 
-                // x and y position on the original image
-                int[] paintingPositionsX = new int[] { 395, 390, 390, 532, 530 };
-                int[] paintingPositionsY = new int[] { 565, 710, 860, 706, 868 };
+            var anim = new KAnimFile.Mod();
 
-                for (int i = 0; i < paintingPositionsX.Length; i++)
-                {
-                    try
-                    {
-                        squarePainting = ImageUtil.MergeImage(squarePainting, ImageUtil.LoadPNG(ImageUtil.ModPath() + "src/painting" + (i + 1) + ".png").ScaleTexture(120, 130), paintingPositionsX[i], paintingPositionsY[i]);
-                    }
-                    catch (Exception)
-                    {
-                        Logs.Log("File painting" + (i + 1) + ".png not found.");
-                    }
-                }
-                int[] tallPaintingPositionsX = new int[] { 399, 558, 395, 555, 395, 397 };
-                int[] tallPaintingPositionsY = new int[] { 15, 8, 254, 259, 503, 752 };
+            Logs.Log("test");
 
-                for (int i = 0; i < tallPaintingPositionsX.Length; i++)
-                {
-                    try
-                    {
-                        tallPainting = ImageUtil.MergeImage(tallPainting, ImageUtil.LoadPNG(ImageUtil.ModPath() + "src/tall_painting" + (i + 1) + ".png").ScaleTexture(140, 230), tallPaintingPositionsX[i], tallPaintingPositionsY[i]);
-                    }
-                    catch (Exception)
-                    {
-                        Logs.Log("File tall_painting" + (i + 1) + ".png not found.");
-                    }
-                }
-                int[] widePaintingPositionsX = new int[] { 265, 18, 255, 8, 255, 485 };
-                int[] widePaintingPositionsY = new int[] { 424, 431, 570, 745, 747, 744 };
-                for (int i = 0; i < widePaintingPositionsX.Length; i++)
-                {
-                    try
-                    {
-                        widePainting = ImageUtil.MergeImage(widePainting, ImageUtil.LoadPNG(ImageUtil.ModPath() + "src/wide_painting" + (i + 1) + ".png").ScaleTexture(215, 135), widePaintingPositionsX[i], widePaintingPositionsY[i]);
-                    }
-                    catch (Exception)
-                    {
-                        Logs.Log("File wide_painting" + (i + 1) + ".png not found.");
-                    }
-                }
+            anim.anim = File.ReadAllBytes(Path.Combine(ImageUtil.ModPath(), ORIGINALS_PATH, "painting_art_a_anim.bytes"));
+            anim.build = File.ReadAllBytes(Path.Combine(ImageUtil.ModPath(), ORIGINALS_PATH, "painting_art_a_build.bytes"));
+            anim.textures = new List<Texture2D>();
 
-                if (squarePainting != null)
-                {
-                    byte[] image = squarePainting.EncodeToPNG();
-                    File.WriteAllBytes(ImageUtil.ModPath() + "anim/paints/mod_painting/painting_0.png", image);
-                }
+            Texture2D normalPainting = ImageUtil.LoadPNG(Path.Combine(ImageUtil.ModPath(), ORIGINALS_PATH, "painting_art_a_0.png"));
+            Texture2D normalPainting2 = ImageUtil.MergeImage(normalPainting, ImageUtil.LoadPNG(Path.Combine(ImageUtil.ModPath(), "src", "test.png")).ScaleTexture(118, 118), 178, 144);
+            normalPainting2 = ImageUtil.MergeImage(normalPainting, ImageUtil.LoadPNG(Path.Combine(ImageUtil.ModPath(), "src", "test.png")).ScaleTexture(78, 78), 217, 148);
+            anim.textures.Add(normalPainting2);
 
-                if (tallPainting != null)
-                {
-                    byte[] image = tallPainting.EncodeToPNG();
-                    File.WriteAllBytes(ImageUtil.ModPath() + "anim/paints/mod_painting_tall/painting_tall_0.png", image);
-
-                }
-
-                if (widePainting != null)
-                {
-                    byte[] image = widePainting.EncodeToPNG();
-                    File.WriteAllBytes(ImageUtil.ModPath() + "anim/paints/mod_painting_wide/painting_wide_0.png", image);
-
-                }
-            }
-            catch (IOException e)
-            {
-                Logs.Log("Error while loading painting images. " + e.ToString());
-            }
-            catch (Exception e)
-            {
-                Logs.Log("Unknown error while loading painting images. " + e.ToString());
-            }
+            ModUtil.AddKAnimMod("art_custom1_kanim", anim);
 
         }
     }
-
     [HarmonyPatch(typeof(Db), "Initialize")]
     public class DbPatch
     {
-        public static void Postfix()
+        public static void Postfix(Db __instance)
         {
-
+            Logs.Log("test2");
+            __instance.Permits.ArtableStages.Add("id", "name", "desc", Database.PermitRarity.Universal, "art_custom1_kanim", "art_b", 15, true, "LookingGreat", "Canvas", "canvas");
+            
+            /*
             Dictionary<HashedString, KAnimFile> table = Traverse.Create<Assets>().Field("AnimTable").GetValue<Dictionary<HashedString, KAnimFile>>();
 
             table["painting_kanim"] = Assets.GetAnim("mod_painting_kanim");
             table["painting_tall_kanim"] = Assets.GetAnim("mod_painting_tall_kanim");
-            table["painting_wide_kanim"] = Assets.GetAnim("mod_painting_wide_kanim");
+            table["painting_wide_kanim"] = Assets.GetAnim("mod_painting_wide_kanim");*/
 
         }
     }

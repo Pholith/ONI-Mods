@@ -58,7 +58,7 @@ namespace EmptyWorlds
     {
         private static void Prefix(WorldGen __instance, Sim.Cell[] cells, Chunk world, SeededRandom rnd, ref HashSet<int> borderCells, ref List<RectInt> poiBounds, WorldGen.OfflineCallbackFunction updateProgressFn)
         {
-            bool boolSetting = __instance.Settings.GetBoolSetting("DrawWorldBorderBottom");
+            bool boolSetting = __instance.Settings.GetBoolSetting("DrawWorldBorderForce");
             int intSetting = __instance.Settings.GetIntSetting("WorldBorderThickness");
             int intSetting2 = __instance.Settings.GetIntSetting("WorldBorderRange");
 
