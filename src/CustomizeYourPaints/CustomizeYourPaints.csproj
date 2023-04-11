@@ -42,22 +42,24 @@
     <Compile Include="..\Pholib\Utilities.cs">
       <Link>Utilities.cs</Link>
     </Compile>
+    <Compile Include="Art\ArtablePatches.cs" />
+    <Compile Include="Art\ArtHelper.cs" />
+    <Compile Include="Art\ArtOverride.cs" />
+    <Compile Include="Art\ArtOverrideRestorer.cs" />
+    <Compile Include="Art\PaintingsPatches.cs" />
+    <Compile Include="Art\SaveLoaderPatches.cs" />
     <Compile Include="CustomizeYourPaints.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="mod.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="mod_info.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="src\originals\painting_art_a_anim.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="src\originals\painting_art_a_build.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="packages.config" />
     <None Include="src\originals\painting_tall_art_a_anim.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -84,6 +86,11 @@
       <HintPath>..\packages\GameLibs\Assembly-CSharp-firstpass.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
     <Reference Include="Unity.TextMeshPro">
       <HintPath>..\packages\GameLibs\Unity.TextMeshPro.dll</HintPath>
       <Private>False</Private>
@@ -122,16 +129,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="src\originals\painting_art_a_0.png">
+    <Content Include="src\originals\painting_art_b_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="src\originals\painting_art_b_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="src\originals\painting_art_b_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="src\originals\painting_tall_art_a_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="src\originals\painting_wide_art_a_0.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="src\test.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

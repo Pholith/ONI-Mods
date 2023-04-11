@@ -1,0 +1,53 @@
+""
+{
+	"serverlist"
+	{
+		"Hosts"
+		{
+			"Realms"
+			{
+				"SteamGlobal"
+				{
+					"cdn.cloudflare.steamstatic.com"
+					{
+						"base_url"		"/client/"
+						"weight"		"1"
+						"https"		"1"
+					}
+					"client-update.akamai.steamstatic.com"
+					{
+						"base_url"		"/"
+						"weight"		"1000"
+						"https"		"1"
+					}
+					"media.st.dl.eccdnx.com"
+					{
+						"base_url"		"/client/"
+						"weight"		"100000"
+						"country_codes"		"CN"
+						"https"		"1"
+					}
+				}
+				"steamchina"
+				{
+					"media.st.dl.eccdnx.com"
+					{
+						"base_url"		"/client/"
+						"weight"		"100"
+						"country_codes"		"CN"
+						"https"		"1"
+					}
+				}
+			}
+		}
+		"kvsign2"
+		{
+			"Hosts"		"c0317fad771687d2b3231656a25b683146c30d5c6ecb9324986999174bad9e94a9b842e6432369ed2eb0c66bbc810ed5bfff21c4c3931bf6b148d50c98d09b03"
+		}
+	}
+	"ClientInfo"
+	{
+		"valid_until"		"1681482102"
+		"ip_country_code"		"FR"
+	}
+}
