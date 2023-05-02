@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using Pholib;
 
 namespace CustomizeYourPaints.Art
 {
@@ -7,9 +8,21 @@ namespace CustomizeYourPaints.Art
         public static void RestoreStage(Artable instance, ref string currentStage)
         {
             ArtOverride artOverride;
-            if (instance.TryGetComponent<ArtOverride>(out artOverride) && !artOverride.overrideStage.IsNullOrWhiteSpace())
+            if (instance.TryGetComponent<ArtOverride>(out artOverride) && !artOverride.overrideStage.IsNullOrWhiteSpace()) // test if mod is active
             {
-                currentStage = artOverride.overrideStage;
+                if (CustomizeYourPaints.myOverrides.Contains(artOverride.overrideStage)) 
+                    currentStage = artOverride.overrideStage;
+                else if (CustomizeYourPaints.myOverrides.Count > 0)
+                {
+                    string searchName = artOverride.overrideStage.Split('_')[1];
+                    Logs.Log("search name = " + searchName);
+                    currentStage = CustomizeYourPaints.myOverrides.Find((txt) => txt == searchName);
+
+                    if (currentStage == null)
+                    {
+                        currentStage = CustomizeYourPaints.myOverrides.GetRandom();
+                    }
+                }
             }
         }
 
@@ -19,15 +32,6 @@ namespace CustomizeYourPaints.Art
             if (instance.TryGetComponent<ArtOverride>(out artOverride))
             {
                 artOverride.UpdateOverride(stage_id);
-            }
-        }
-
-        [HarmonyPatch(typeof(Artable), "OnSpawn")]
-        public class CustomPaints_Artable_OnSpawn_Patch
-        {
-            public static void Prefix(Artable __instance, ref string ___currentStage, string ___defaultArtworkId)
-            {
-
             }
         }
 

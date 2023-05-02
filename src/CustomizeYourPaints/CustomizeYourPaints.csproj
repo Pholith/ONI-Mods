@@ -132,6 +132,9 @@
     <Content Include="src\originals\painting_art_b_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="src\wide_ put your picture here.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="src\originals\painting_art_b_anim.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -61,7 +61,7 @@ namespace CustomizeYourPaints
                 counter++;
                 string[] splitedFile = Path.GetFileNameWithoutExtension(filePath).Split('_','-');
                 string prefix = splitedFile[0].ToLower();
-                string suffix = counter + splitedFile[1];
+                string suffix = counter + "_" + splitedFile[1];
                 CanvasSize canvasSize = CanvasSize.Normal;
                 if (prefix.Contains("wide")) canvasSize = CanvasSize.Wide;
                 if (prefix.Contains("tall")) canvasSize = CanvasSize.Tall;
@@ -151,7 +151,7 @@ namespace CustomizeYourPaints
                     break;
             }
 
-            myOverrides.Add(CUSTOM_PAINT_ID + "_" + id);
+            myOverrides.Add(id);
             __instance.Add(
                 id,
                 name,

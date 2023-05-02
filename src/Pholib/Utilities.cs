@@ -44,6 +44,7 @@ namespace Pholib
         }
 
 
+
         public static void LogIfDebugging(string informations)
         {
             InitIfNot();
@@ -82,6 +83,19 @@ namespace Pholib
                 .Build();
             return serializer.Serialize(obj);
         }
+
+        public static string ListToString<T>(this List<T> list) where T : class
+        {
+            string result = "{";
+            for (int i = 0; i < list.Count; i++)
+            {
+                result += list[i];
+                if (i < list.Count - 1) result += ",";
+            }
+            result += "}";
+            return result;
+        }
+
     }
 
     public class Utilities
