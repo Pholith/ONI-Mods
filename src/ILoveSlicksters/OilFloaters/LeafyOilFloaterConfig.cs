@@ -1,4 +1,5 @@
 ﻿using Klei.AI;
+using Pholib;
 using System.Collections.Generic;
 using UnityEngine;
 using static TUNING.CREATURES;
@@ -11,7 +12,9 @@ namespace ILoveSlicksters
         {
             GameObject gameObject = CreateOilfloater(ID, PHO_STRINGS.VARIANT_LEAFY.NAME, PHO_STRINGS.VARIANT_LEAFY.DESC, base_kanim_id, false);
 
+            Logs.Log(gameObject);
             gameObject.AddOrGetDef<CreatureLightMonitor.Def>();
+            Logs.Log(gameObject);
 
             EntityTemplates.ExtendEntityToFertileCreature(
                 gameObject, 
@@ -25,6 +28,7 @@ namespace ILoveSlicksters
                 EGG_CHANCES_LEAFY, 
                 EGG_SORT_ORDER);
 
+            Logs.Log(gameObject);
             return gameObject;
         }
 
@@ -45,7 +49,6 @@ namespace ILoveSlicksters
             def.emitFrequency = 1f;
             def.averageEmitPerSecond = 1000;
             def.singleEmitQuantity = 100000;
-
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.deltaAttribute.Id, -OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / 600f, name, false, false, true));
@@ -91,12 +94,12 @@ namespace ILoveSlicksters
         {
             new FertilityMonitor.BreedingChance
             {
-                egg = "LeafyOilfloaterEgg".ToTag(),
+                egg = EGG_ID.ToTag(),
                 weight = 0.66f
             },
             new FertilityMonitor.BreedingChance
             {
-                egg = "OilfloaterEgg".ToTag(),
+                egg = OilFloaterConfig.EGG_ID.ToTag(),
                 weight = 0.34f
             }
         };
@@ -110,7 +113,7 @@ namespace ILoveSlicksters
 
         public const string BASE_TRAIT_ID = "LeafyOilfloaterBaseTrait";
 
-        public const string EGG_ID = "LeafyOilfloaterEgg";
+        public const string EGG_ID = ID + "Egg";
 
         private static float KG_ORE_EATEN_PER_CYCLE = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH * ILoveSlicksters.Settings.ConsumptionMultiplier;
 

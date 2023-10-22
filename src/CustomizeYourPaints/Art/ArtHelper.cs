@@ -18,7 +18,7 @@ namespace CustomizeYourPaints.Art
                     Logs.Log("search name = " + searchName);
                     currentStage = CustomizeYourPaints.myOverrides.Find((txt) => txt == searchName);
 
-                    if (currentStage == null)
+                    if (currentStage == null )
                     {
                         currentStage = CustomizeYourPaints.myOverrides.GetRandom();
                     }

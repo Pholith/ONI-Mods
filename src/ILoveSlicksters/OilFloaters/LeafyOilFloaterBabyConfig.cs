@@ -2,12 +2,13 @@
 
 namespace ILoveSlicksters
 {
+    [EntityConfigOrder(2)]
     public class LeafyOilfloaterBabyConfig : IEntityConfig
     {
         public GameObject CreatePrefab()
         {
             GameObject gameObject = LeafyOilfloaterConfig.CreateOilfloater(ID, PHO_STRINGS.VARIANT_LEAFY.BABY.NAME, PHO_STRINGS.VARIANT_LEAFY.BABY.DESC, kanim_id, true);
-            EntityTemplates.ExtendEntityToBeingABaby(gameObject, "LeafyOilfloater");
+            EntityTemplates.ExtendEntityToBeingABaby(gameObject, LeafyOilfloaterConfig.ID);
             return gameObject;
         }
 
@@ -23,7 +24,7 @@ namespace ILoveSlicksters
             return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
 
-        public const string ID = "LeafyOilfloaterBaby";
+        public const string ID = LeafyOilfloaterConfig.ID + "Baby";
         private const string kanim_id = "custom_baby_oilfloater2_kanim";
     }
 }

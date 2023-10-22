@@ -2,6 +2,7 @@
 
 namespace ILoveSlicksters
 {
+    [EntityConfigOrder(2)]
     public class FrozenOilfloaterBabyConfig : IEntityConfig
     {
         public GameObject CreatePrefab()

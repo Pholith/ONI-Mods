@@ -14,6 +14,8 @@ namespace ILoveSlicksters
             GasAndLiquidConsumerMonitor.Def def2 = prefab.AddOrGetDef<GasAndLiquidConsumerMonitor.Def>();
             def2.diet = diet;
             def2.consumptionRate = consumptionRate;
+            Pholib.Logs.Log("PHOLITH");
+            Pholib.Logs.Log(prefab);
             return prefab;
         }
     }
