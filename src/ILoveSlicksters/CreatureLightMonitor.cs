@@ -13,8 +13,8 @@ namespace ILoveSlicksters
 
             // Create and configure the light effect
             Effect needLightEffect = new Effect("NeedLight", "Need Light", "This creature needs light to live properly.", 0f, true, true, true);
-            needLightEffect.Add(new AttributeModifier(Db.Get().CritterAttributes.Metabolism.Id, -40f, CREATURES.MODIFIERS.UNHAPPY.NAME));
-            needLightEffect.Add(new AttributeModifier(Db.Get().CritterAttributes.Happiness.Id, -10f, CREATURES.MODIFIERS.UNHAPPY.NAME));
+            needLightEffect.Add(new AttributeModifier(Db.Get().CritterAttributes.Metabolism.Id, -40f, CREATURES.MODIFIERS.MISERABLE.NAME));
+            needLightEffect.Add(new AttributeModifier(Db.Get().CritterAttributes.Happiness.Id, -10f, CREATURES.MODIFIERS.MISERABLE.NAME));
 
             satisfiedState.Transition(needLightState, (Instance smi) => smi.IsInDark(), UpdateRate.SIM_1000ms);
             needLightState.Transition(satisfiedState, (Instance smi) => !smi.IsInDark(), UpdateRate.SIM_1000ms);

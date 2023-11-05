@@ -67,10 +67,13 @@ namespace ILoveSlicksters
                 {
                     Antigel.SimHash.CreateTag()
                 }), SimHashes.Wolframite.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false)
-                
+
             };
         }
 
+        /// <summary>
+        /// Replace <see cref="BaseOilFloaterConfig.BaseOilFloater(string, string, string, string, string, float, float, bool, string)"/> for Aqua slicksters
+        /// </summary>
         public static GameObject AquaticOilFloater(string id, string name, string desc, string anim_file, string traitId, float warnLowTemp, float warnHighTemp, bool is_baby, string symbolOverridePrefix = null)
         {
             float mass = 50f;
@@ -91,6 +94,8 @@ namespace ILoveSlicksters
             gameObject.AddOrGetDef<CreatureAquaticGroomingMonitor.Def>();
 
             gameObject.AddOrGetDef<CreatureFallMonitor.Def>().canSwim = true;
+            gameObject.AddOrGetDef<CreatureFallMonitor.Def>().checkHead = false;
+
             gameObject.AddWeapon(1f, 1f, AttackProperties.DamageType.Standard, AttackProperties.TargetType.Single, 1, 0f);
             EntityTemplates.CreateAndRegisterBaggedCreature(gameObject, false, true, false);
             string inhaleSound = "OilFloater_intake_air";
@@ -110,8 +115,19 @@ namespace ILoveSlicksters
                 .Add(new RanchedStates.Def(), !is_baby).Add(new LayEggStates.Def(), !is_baby).Add(new InhaleStates.Def
                 {
                     inhaleSound = inhaleSound
-                }).Add(new SameSpotPoopStates.Def()).Add(new CallAdultStates.Def(), is_baby).PopInterruptGroup()
+                }).Add(new SameSpotPoopStates.Def()).Add(new MoveToLureStates.Def()).Add(new CritterCondoStates.Def()).Add(new CallAdultStates.Def(), is_baby).PopInterruptGroup()
                 .Add(idleState);
+
+            CritterCondoInteractMontior.Def def2 = gameObject.AddOrGetDef<CritterCondoInteractMontior.Def>();
+            def2.useunderWaterCondos = true;
+
+            LureableMonitor.Def def5 = gameObject.AddOrGetDef<LureableMonitor.Def>();
+            def5.lures = new Tag[]
+            {
+                GameTags.Creatures.FishTrapLure,
+                GameTags.Creatures.FlyersLure
+            };
+
 
             EntityTemplates.AddCreatureBrain(gameObject, chore_table, GameTags.Creatures.Species.OilFloaterSpecies, symbolOverridePrefix);
             //string sound = "OilFloater_move_LP";
