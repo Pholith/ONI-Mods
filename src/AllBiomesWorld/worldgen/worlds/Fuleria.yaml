@@ -2,6 +2,7 @@ name: STRINGS.WORLDS.FULERIA.NAME
 description: STRINGS.WORLDS.FULERIA.DESCRIPTION
 asteroidIcon: asteroid_fuleria_kanim
 
+worldTraitScale: 0.6 # Adjust with worldSize. Traits are tuned to base game world sizes.
 worldsize:
   X: 256
   Y: 288
