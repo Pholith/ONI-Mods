@@ -55,6 +55,7 @@ namespace HeliumExtractor
             
             ConduitDispenser conduitDispenser = go.AddOrGet<ConduitDispenser>();
             conduitDispenser.conduitType = ConduitType.Gas;
+            conduitDispenser.blocked = true;
             conduitDispenser.invertElementFilter = true;
             conduitDispenser.elementFilter = new SimHashes[]
             {
@@ -78,6 +79,8 @@ namespace HeliumExtractor
 
             Storage storage = go.AddOrGet<Storage>();
             storage.showInUI = true;
+            storage.capacityKg = 10;
+
             ElementConverter elementConverter = go.AddOrGet<ElementConverter>();
             elementConverter.consumedElements = new ElementConverter.ConsumedElement[]
             {
