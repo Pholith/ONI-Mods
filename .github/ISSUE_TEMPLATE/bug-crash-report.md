@@ -1,6 +1,6 @@
 ---
-name: Bug report
-about: Create a report to help me improve
+name: Bug/Crash report
+about: Use this template to report a crash or bug you had with my mods.
 title: ''
 labels: Bug
 assignees: Pholith
