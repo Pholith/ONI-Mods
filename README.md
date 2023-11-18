@@ -7,14 +7,14 @@
 There are more details on the mods on my steam page:
 https://steamcommunity.com/profiles/76561198263471888/myworkshopfiles/?appid=457140&sort=score&browsefilter=myfiles&view=imagewall
 
-# Installation instructions
+# Installation instructions 📃
 
 ### With Steam
 You can install the mods by Steam just by click on "subscribe".
 
 ### Manually (Epic users can only do this)
 To download the mods, you need to click on "Clone or download" and "Download ZIP".
-You can also download mods on Steam from http://steamworkshop.download/
+You can also download mods on Steam from http://steamworkshop.download/ 📥
 
 If the mod is not on Steam and you want to manually install it, you can try this.
 Place the mods in the folder: Documents/Klei/OxygenNotIncluded/mods/local/
@@ -31,6 +31,7 @@ If the folder doesn't exist, create it.
  On Linux, the path is: `~/config/unity3d/Klei/Oxygen Not Included/mods/Dev/`
 
 ## Want to translate my mods in your languages ?
+🌐 🇲🇫 🇮🇹 🇩🇪 🇹🇷 🇸🇯 🇵🇸 🇨🇳 🇰🇷 ...   
 Some mods are localizable and you can contribute to add your languages to my mods.
 Only mods with a translations folder can contains translations *(or I need to add one, can be done if needed)*
 Examples: src/ILoveSlicksters/translations
@@ -43,7 +44,7 @@ Examples: src/ILoveSlicksters/translations
 - Send me the file and tell me for which mod it is 
 - Than I upload it on steam and everyone can access it
 
-## Feedbacks , suggestions, bugs and help
+## Feedbacks , suggestions, bugs and help 💌
 If you have some problems or suggestions on my mods. 
 Don't hesitate to open a github issue, you also can ask me on my discord server:
 https://discord.gg/cmZUWYT
@@ -52,7 +53,7 @@ https://discord.gg/cmZUWYT
 Official documentation here:     
 https://support.klei.com/hc/en-us/articles/360029555392-Logs-and-Useful-Information-for-Bug-Reports
 
-## List of mods
+## List of mods 
 | **Name**        | **Description**     | **Preview** | 
 | :-------------- | :------ | :--------------------:|
 | Always 3 Interests  | Make the duplicants from the Printer always have 3 job interests.  You can config others starting stats. |<img src="/src/Always3Interests/screen.png" height="110" width="110" />
@@ -67,7 +68,7 @@ https://support.klei.com/hc/en-us/articles/360029555392-Logs-and-Useful-Informat
 | Notepad |Add a notepad that allows you to note texts in your databases    |<img src="/src/Notepad/screen1.png" height="110" width="110" />|
 | CustomizableSpeed | Tired of needed to switch between mods or restart the game to change the speed ? This mod is for you !|<img src="/src/CustomizableSpeed/screen1.png" height="110" width="110" />
 
-# Support me / Donations
+# Support me / Donations 💜
 <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Patreon_logo_with_wordmark.svg" width="110" />
 
 You can support me and encourage me to make new mods with donations.    
@@ -77,7 +78,7 @@ My work is free, the source are online for educational and review purpose.
 Patreon: https://www.patreon.com/pholithmods 
 
 
-# Special thanks
+# Special thanks 💛
 To [@pardeike](https://github.com/pardeike), creator of [Harmony](https://github.com/pardeike/Harmony), the library that made oni modding possible.  
 To [@PeterHan](https://github.com/peterhaneve), author of [PLib](https://github.com/peterhaneve/ONIMods/tree/master/PLib) and for his enormous help.    
 To [@Cairath](https://github.com/Cairath), author of [Some mods](https://github.com/Cairath/ONI-Mods) that was a example for me.
