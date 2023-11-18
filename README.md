@@ -11,13 +11,13 @@ https://steamcommunity.com/profiles/76561198263471888/myworkshopfiles/?appid=457
 | **Name**        | **Description**     | **Preview** | 
 | :----- | :------| :-------:|
 | Always 3 Interests  | Make the duplicants from the Printer always have 3 job interests.  You can config others starting stats. |<img src="/src/Always3Interests/screen.png" width="150" height="140" />
-| AllBiomesWorld - Fuleria| Fuleria is a small asteroid that contains all the biomes. This world will be pleasant and easy to live in for your duplicants. But be careful, they will also have to get used to the small size of the asteroid.                                                                                 |![image](/src/AllBiomesWorld/screen.png)|
-| Helium Extractor | This mod adds a helium extractor that transforms natural gas into helium, propane and sulphur.                                                                                                                                                                                                          |![image](/src/HeliumExtractor/screen.png)|
-| EmptyWorlds (Skyblock)| Emptera is a very difficult empty asteroid. Resources are limited and you will have to take advantage of your geysers to get them.                                                                                 |![image](/src/EmptyWorlds/screen1.png)|
-| I Love Slicksters - Variants | Add some Slicksters variant.                                                                                 |![image](/src/ILoveSlicksters/screen1.png)|
+| AllBiomesWorld - Fuleria| Fuleria is a small asteroid that contains all the biomes. This world will be pleasant and easy to live in for your duplicants. But be careful, they will also have to get used to the small size of the asteroid.   |![image](/src/AllBiomesWorld/screen.png)|
+| Helium Extractor | This mod adds a helium extractor that transforms natural gas into helium, propane and sulphur.     |![image](/src/HeliumExtractor/screen.png)|
+| EmptyWorlds (Skyblock)| Emptera is a very difficult empty asteroid. Resources are limited and you will have to take advantage of your geysers to get them.     |![image](/src/EmptyWorlds/screen1.png)|
+| I Love Slicksters - Variants | Add some Slicksters variant.    |![image](/src/ILoveSlicksters/screen1.png)|
 | AchievementReEnabler | Reenable achievement on map loading and unlock you your map achievements							|![image](/src/AchievementReEnabler/screen1.png)|
-| Customize Your Paints | Enable the user to use custom textures for paintings												|![image](/src/CustomizeYourPaints/screen1.png)|
-| Duplicant Room Sensor | Add a sensor to count duplicants												|![image](/src/DuplicantRoomSensor/screen1.png)|
+| Customize Your Paints | Enable the user to use custom textures for paintings							|![image](/src/CustomizeYourPaints/screen1.png)|
+| Duplicant Room Sensor | Add a sensor to count duplicants						|![image](/src/DuplicantRoomSensor/screen1.png)|
 | Solar System Worlds |Add more worlds based on the solar system planets and moons   |![image](/src/SolarSystemWorlds/screen1.png)|
 | Notepad |Add a notepad that allows you to note texts in your databases    |![image](/src/Notepad/screen1.png)|
 | CustomizableSpeed | Tired of needed to switch between mods or restart the game to change the speed ? This mod is for you !|![image](/src/CustomizableSpeed/screen1.png)|
