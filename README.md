@@ -42,17 +42,17 @@ https://support.klei.com/hc/en-us/articles/360029555392-Logs-and-Useful-Informat
 ## List of mods
 | **Name**        | **Description**     | **Preview** | 
 | :----- | :------| :-------:|
-| Always 3 Interests  | Make the duplicants from the Printer always have 3 job interests.  You can config others starting stats. |<img src="/src/Always3Interests/screen.png" width="160" height="150" />
-| AllBiomesWorld - Fuleria| Fuleria is a small asteroid that contains all the biomes. This world will be pleasant and easy to live in for your duplicants. |<img src="/src/AllBiomesWorld/screen.png" width="160" height="150" />|
-| Helium Extractor | This mod adds a helium extractor that transforms natural gas into helium, propane and sulphur.     |<img src="/src/HeliumExtractor/screen.png" width="160" height="150" />|
-| EmptyWorlds (Skyblock)| Emptera is a very difficult empty asteroid. Resources are limited and you will have to take advantage of your geysers to get them.     |<img src="/src/EmptyWorlds/screen1.png" width="160" height="150" />|
-| I Love Slicksters - Variants | Add some Slicksters variant.    |<img src="/src/ILoveSlicksters/screen1.png" width="160" height="150" />|
+| Always 3 Interests  | Make the duplicants from the Printer always have 3 job interests.  You can config others starting stats. |<img src="/src/Always3Interests/screen.png" width="145" height="150" />
+| AllBiomesWorld - Fuleria| Fuleria is a small asteroid that contains all the biomes. This world will be pleasant and easy to live in for your duplicants. |<img src="/src/AllBiomesWorld/screen.png" width="145" height="150" />|
+| Helium Extractor | This mod adds a helium extractor that transforms natural gas into helium, propane and sulphur.     |<img src="/src/HeliumExtractor/screen.png" width="145" height="150" />|
+| EmptyWorlds (Skyblock)| Emptera is a very difficult empty asteroid. Resources are limited and you will have to take advantage of your geysers to get them.     |<img src="/src/EmptyWorlds/screen1.png" width="145" height="150" />|
+| I Love Slicksters - Variants | Add some Slicksters variant.    |<img src="/src/ILoveSlicksters/screen1.png" width="145" height="150" />|
 | AchievementReEnabler | Reenable achievement on map loading and unlock you your map achievements			||
-| Customize Your Paints | Enable the user to use custom textures for paintings							|<img src="/src/CustomizeYourPaints/screen1.png" width="160" height="150" />|
-| Duplicant Room Sensor | Add a sensor to count duplicants						|<img src="/src/DuplicantRoomSensor/screen1.png" width="160" height="150" />|
-| Solar System Worlds |Add more worlds based on the solar system planets and moons   |<img src="/src/SolarSystemWorlds/screen1.png" width="160" height="150" />|
-| Notepad |Add a notepad that allows you to note texts in your databases    |<img src="/src/Notepad/screen1.png" width="160" height="150" />|
-| CustomizableSpeed | Tired of needed to switch between mods or restart the game to change the speed ? This mod is for you !|<img src="/src/CustomizableSpeed/screen1.png" width="160" height="150" />
+| Customize Your Paints | Enable the user to use custom textures for paintings							|<img src="/src/CustomizeYourPaints/screen1.png" width="145" height="150" />|
+| Duplicant Room Sensor | Add a sensor to count duplicants						|<img src="/src/DuplicantRoomSensor/screen1.png" width="145" height="150" />|
+| Solar System Worlds |Add more worlds based on the solar system planets and moons   |<img src="/src/SolarSystemWorlds/screen1.png" width="145" height="150" />|
+| Notepad |Add a notepad that allows you to note texts in your databases    |<img src="/src/Notepad/screen1.png" width="145" height="150" />|
+| CustomizableSpeed | Tired of needed to switch between mods or restart the game to change the speed ? This mod is for you !|<img src="/src/CustomizableSpeed/screen1.png" width="145" height="150" />
 
 # Support me / Donations
 <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Patreon_logo_with_wordmark.svg" width="150" />
