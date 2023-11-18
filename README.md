@@ -10,7 +10,7 @@ https://steamcommunity.com/profiles/76561198263471888/myworkshopfiles/?appid=457
 ## List of mods
 | **Name**        | **Description**     | **Preview** | 
 | :----- | :------| :-------:|
-| Always 3 Interests  | Make the duplicants from the Printer always have 3 job interests.  You can config others starting stats. |<img src="/src/Always3Interests/screen.png" width="150" height="120" />
+| Always 3 Interests  | Make the duplicants from the Printer always have 3 job interests.  You can config others starting stats. |<img src="/src/Always3Interests/screen.png" width="150" height="140" />
 | AllBiomesWorld - Fuleria| Fuleria is a small asteroid that contains all the biomes. This world will be pleasant and easy to live in for your duplicants. But be careful, they will also have to get used to the small size of the asteroid.                                                                                 |![image](/src/AllBiomesWorld/screen.png)|
 | Helium Extractor | This mod adds a helium extractor that transforms natural gas into helium, propane and sulphur.                                                                                                                                                                                                          |![image](/src/HeliumExtractor/screen.png)|
 | EmptyWorlds (Skyblock)| Emptera is a very difficult empty asteroid. Resources are limited and you will have to take advantage of your geysers to get them.                                                                                 |![image](/src/EmptyWorlds/screen1.png)|
