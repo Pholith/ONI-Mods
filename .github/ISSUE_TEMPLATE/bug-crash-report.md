@@ -15,7 +15,7 @@ If a mod crash, is it when launching the game, loading a game or doing a specifi
 Steps to reproduce the behavior.
 
 #### Mod Version
-- Did you play on the DLC ? *[e.g. Vanilla, Spaced Out, On DLC]*
+- Did you play on the DLC ? Is not, do you own it ? *[e.g. Vanilla, Spaced Out, On DLC]*
 - Version of the mod issue (You can find it in game->Mods page) *[e.g. EmptyWorlds 2.2.0]*
 
 #### Configuration *(Not needed if you copy paste the full logs)*
@@ -30,7 +30,7 @@ Please add the ENTIRE player.log file.
 It can be found:
 - Windows: %appdata%\..\locallow\klei\Oxygen Not Included
 - Mac: ~/Library/Application Support/unity.klei.Oxygen Not Included/
-*Can't find it ? More details [here](https://support.klei.com/hc/en-us/articles/360029555392-Logs-and-Useful-Information-for-Bug-Reports)*
+Can't find it ? More details [here](https://support.klei.com/hc/en-us/articles/360029555392-Logs-and-Useful-Information-for-Bug-Reports)
 
 #### Screenshot
 If it is something else then a crash, add screenshots to help explain your problem.
