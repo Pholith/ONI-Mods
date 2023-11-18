@@ -31,7 +31,14 @@ If the folder doesn't exist, create it.
  On Linux, the path is: `~/config/unity3d/Klei/Oxygen Not Included/mods/Dev/`
 
 ## Want to translate my mods in your languages ?
+Some mods are localizable and you can contribute to add your languages to my mods.
 
+### Steps
+- Launch the game with the mods activated
+- Search the mod strings template (.pot file) in:  D:\Documents\Klei\OxygenNotIncluded\mods\strings_templates    
+- Open and edit the file with [POedit](https://poedit.net/) or an [alternative](https://alternativeto.net/software/poedit/about/)
+- Export it to .po
+- Send me the file and tell me for which mod it is 
 
 ## Feedbacks , suggestions, bugs and help
 If you have some problems or suggestions on my mods. 
@@ -44,7 +51,7 @@ https://support.klei.com/hc/en-us/articles/360029555392-Logs-and-Useful-Informat
 
 ## List of mods
 | **Name**        | **Description**     | **Preview** | 
-| :----- | :------| :-------:|
+| :-------------- | :------ | :--------------------:|
 | Always 3 Interests  | Make the duplicants from the Printer always have 3 job interests.  You can config others starting stats. |<img src="/src/Always3Interests/screen.png" height="130" width="130" />
 | AllBiomesWorld - Fuleria| Fuleria is a small asteroid that contains all the biomes. This world will be pleasant and easy to live in for your duplicants. |<img src="/src/AllBiomesWorld/screen.png" height="130" width="130" />|
 | Helium Extractor | This mod adds a helium extractor that transforms natural gas into helium, propane and sulphur.     |<img src="/src/HeliumExtractor/screen.png" height="130" width="130" />|
