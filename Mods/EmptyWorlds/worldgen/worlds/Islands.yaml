@@ -150,6 +150,7 @@ worldTemplateRules:
       - command: Replace
         subworldNames:
           - subworlds/forest/ForestMiniWaterModified
+          - subworlds/forest/ForestStartModified
 
   - names:
     - poi/poi_mob_lab
@@ -179,7 +180,7 @@ worldTemplateRules:
           - subworlds/rust/Ocean
          
   - names:
-      - expansion1::poi/jungle/geyser_hydrogen
+      - poi/geyser_hydrogen
       - poi/jungle/geyser_chlorine
     listRule: GuaranteeOne
     priority: 200
@@ -188,8 +189,8 @@ worldTemplateRules:
         zoneTypes: [ToxicJungle, Space, Ocean]
   # FrozenSlush
   - names:
-    - expansion1::poi/poi_geyser_dirty_slush
-    - expansion1::poi/poi_frozen_salt_water_geyser
+    - poi/poi_geyser_dirty_slush
+    - poi/poi_frozen_salt_water_geyser
     listRule: GuaranteeAll
     priority: 200
     allowedCellsFilter:
@@ -206,9 +207,9 @@ worldTemplateRules:
         zoneTypes: [FrozenWastes, Space, Ocean]
   # Geysers
   - names:
-    - expansion1::poi/poi_geyser_magma
-    - expansion1::poi/poi_geyser_magma_2
-    - expansion1::poi/poi_geyser_magma_3
+    - poi/poi_geyser_magma
+    - poi/poi_geyser_magma_2
+    - poi/poi_frozen_iron_geyser
     listRule: TryAll
     priority: 50
     allowedCellsFilter:
