@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29020.237
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Always3Interests", "Always3Interests\Always3Interests.csproj", "{EE0F4C31-4491-402C-8AB7-1D6C3AC1D956}"
 EndProject
@@ -28,7 +28,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILoveSlicksters", "ILoveSlicksters\ILoveSlicksters.csproj", "{9045D35E-DD73-4462-B9C7-50E91F737544}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllBiomesWorld", "AllBiomesWorld\AllBiomesWorld.csproj", "{B26EF9D9-018D-422B-9D73-6308AA31AA38}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fuleria", "AllBiomesWorld\Fuleria.csproj", "{B26EF9D9-018D-422B-9D73-6308AA31AA38}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AchievementReEnabler", "AchievementReEnabler\AchievementReEnabler.csproj", "{A34620F3-66BF-4228-BBFE-358E74A09008}"
 EndProject
@@ -49,6 +49,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomizableSpeed", "CustomizableSpeed\CustomizableSpeed.csproj", "{CAB4D049-150E-4AE9-BF6F-39E004E089E3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HidePanelOnBuild", "HidePanelOnBuild\HidePanelOnBuild.csproj", "{31275432-B877-41EB-A832-F1CACD214942}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GigawattWire", "GigawattWire\GigawattWire.csproj", "{CF5D36AE-7B3D-49F0-BB7E-734E55EECB23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -124,6 +126,10 @@ Global
 		{31275432-B877-41EB-A832-F1CACD214942}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31275432-B877-41EB-A832-F1CACD214942}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31275432-B877-41EB-A832-F1CACD214942}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF5D36AE-7B3D-49F0-BB7E-734E55EECB23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF5D36AE-7B3D-49F0-BB7E-734E55EECB23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF5D36AE-7B3D-49F0-BB7E-734E55EECB23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF5D36AE-7B3D-49F0-BB7E-734E55EECB23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

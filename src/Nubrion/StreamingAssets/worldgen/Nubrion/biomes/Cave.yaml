@@ -1,0 +1,85 @@
+TerrainBiomeLookupTable:
+  add:
+    BasicA:
+    - content: CarbonDioxide
+      bandSize: 0.3
+    - content: Granite
+      bandSize: 0.5
+    - content: Phosphorite
+      bandSize: 0.1
+    - content: IgneousRock
+      bandSize: 0.5
+
+    BasicB:
+    - content: CarbonDioxide
+      bandSize: 0.3
+    - content: PhosphateNodules
+      bandSize: 0.1
+    - content: IgneousRock
+      bandSize: 0.5
+    - content: Granite
+      bandSize: 0.5
+
+    SlimeA:
+    - content: CarbonDioxide
+      bandSize: 0.3
+    - content: SlimeMold
+      bandSize: 0.1
+    - content: Granite
+      bandSize: 0.5
+    - content: Phosphorite
+      bandSize: 0.1
+    - content: IgneousRock
+      bandSize: 0.5
+
+    SlimeB:
+    - content: CarbonDioxide
+      bandSize: 0.3
+    - content: SlimeMold
+      bandSize: 0.1
+    - content: PhosphateNodules
+      bandSize: 0.1
+    - content: IgneousRock
+      bandSize: 0.5
+    - content: Granite
+      bandSize: 0.5
+
+    LakeA:
+    - content: Water
+      bandSize: 0.1
+    - content: Granite
+      bandSize: 0.5
+    - content: Phosphorite
+      bandSize: 0.1
+    - content: IgneousRock
+      bandSize: 0.5
+
+    LakeB:
+    - content: Water
+      bandSize: 0.1
+    - content: PhosphateNodules
+      bandSize: 0.1
+    - content: IgneousRock
+      bandSize: 0.5
+    - content: Granite
+      bandSize: 0.5
+
+    ChlorineA:
+    - content: ChlorineGas
+      bandSize: 0.3
+    - content: Granite
+      bandSize: 0.5
+    - content: Phosphorus
+      bandSize: 0.1
+    - content: IgneousRock
+      bandSize: 0.5
+
+    ChlorineB:
+    - content: ChlorineGas
+      bandSize: 0.3
+    - content: Phosphorus
+      bandSize: 0.1
+    - content: IgneousRock
+      bandSize: 0.5
+    - content: Granite
+      bandSize: 0.5

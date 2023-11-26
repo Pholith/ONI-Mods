@@ -1,0 +1,8 @@
+Chlorine
+Copper
+Gold
+LiquidCarbonDioxide
+Steam
+Void
+
+RefinedCarbon

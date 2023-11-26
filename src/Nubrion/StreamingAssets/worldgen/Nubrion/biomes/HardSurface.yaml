@@ -1,0 +1,25 @@
+TerrainBiomeLookupTable:
+  add:
+    BasicA:
+    - content: Katairite
+      bandSize: 1
+      overrides:
+        massMultiplier: 10
+    - content: Diamond
+      bandSize: 1
+    - content: Katairite
+      bandSize: 1
+      overrides:
+        massMultiplier: 10
+
+    BasicB:
+    - content: Katairite
+      bandSize: 1
+      overrides:
+        massMultiplier: 10
+    - content: Wolframite
+      bandSize: 1
+    - content: Katairite
+      bandSize: 1
+      overrides:
+        massMultiplier: 10

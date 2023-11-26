@@ -1,0 +1,18 @@
+biomeNoise: noise/OilField
+temperatureRange: Cool
+density:
+  min: 10
+  max: 15
+avoidRadius: 20.0
+minChildCount: 4
+sampleBehaviour: PoissonDisk
+biomes:
+- name: Nubrion/biomes/SludgeSea/Basic
+  weight: 1
+  tags:
+  - Pacu
+tags:
+- IgnoreCaveOverride
+featureTemplates:
+  nubrion_slush_water: 2
+zoneType: Sandstone

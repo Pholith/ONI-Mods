@@ -1,0 +1,22 @@
+biomeNoise: noise/OilField
+temperatureRange: VeryCold
+density:
+  min: 10
+  max: 15
+avoidRadius: 20.0
+minChildCount: 4
+sampleBehaviour: PoissonDisk
+biomes:
+- name: Nubrion/biomes/SludgeSea/Frozen
+  weight: 1
+tags:
+- IgnoreCaveOverride
+featureTemplates:
+  nubrion_heatsink: 4
+  safe_storage_liquid_helium: 1
+  safe_storage_liquid_hydrogen: 1
+  safe_storage_liquid_methane: 1
+  safe_storage_granite: 1
+  safe_storage_cuprite: 1
+  safe_storage_crude_oil: 1
+zoneType: Sandstone

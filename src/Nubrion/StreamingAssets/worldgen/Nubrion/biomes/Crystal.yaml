@@ -1,0 +1,15 @@
+TerrainBiomeLookupTable:
+  add:
+    Basic:
+    - content: SolidChlorine
+      bandSize: 0.2
+    - content: BleachStone
+      bandSize: 0.5
+    - content: Ice
+      bandSize: 0.5
+    - content: Diamond
+      bandSize: 0.5
+    - content: OxyRock
+      bandSize: 0.1
+    - content: Katairite
+      bandSize: 1

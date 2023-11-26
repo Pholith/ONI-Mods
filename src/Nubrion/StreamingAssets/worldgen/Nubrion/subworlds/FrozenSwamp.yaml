@@ -1,0 +1,34 @@
+biomeNoise: noise/OilField
+temperatureRange: Cold
+density:
+  min: 10
+  max: 15
+avoidRadius: 20.0
+minChildCount: 4
+sampleBehaviour: PoissonDisk
+#features:
+#- type: features/hotmarsh/TallRoom
+#- type: features/hotmarsh/BlobRoom
+#- type: features/hotmarsh/SandGeode
+biomes:
+- name: Nubrion/biomes/Swamp/Basic
+  weight: 1
+  tags:
+  - ColdBreather
+- name: Nubrion/biomes/Swamp/Basic
+  weight: 1
+  tags:
+  - ColdBreather
+  - Glom
+- name: Nubrion/biomes/Swamp/FrozenLake
+  weight: 1
+  tags:
+  - ColdWheat
+tags:
+- IgnoreCaveOverride
+#pointsOfInterest:
+#  geysers_a:
+#  - poi_swamp_geyser_steam
+featureTemplates:
+  nubrion_slush_water: 2
+zoneType: BoggyMarsh

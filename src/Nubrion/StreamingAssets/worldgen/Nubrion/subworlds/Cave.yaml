@@ -1,0 +1,53 @@
+biomeNoise: noise/subworldFrozen
+temperatureRange: Mild
+density:
+  min: 10
+  max: 15
+avoidRadius: 20.0
+minChildCount: 4
+sampleBehaviour: PoissonDisk
+#features:
+#- type: features/hotmarsh/TallRoom
+#- type: features/hotmarsh/BlobRoom
+#- type: features/hotmarsh/SandGeode
+biomes:
+- name: Nubrion/biomes/Cave/BasicA
+  weight: 3
+  tags:
+  - Hatch
+  - HatchBuried
+- name: Nubrion/biomes/Cave/BasicB
+  weight: 3
+  tags:
+  - Hatch
+  - HatchBuried
+- name: Nubrion/biomes/Cave/SlimeA
+  weight: 1
+  tags:
+  - MushroomPlant
+- name: Nubrion/biomes/Cave/SlimeB
+  weight: 1
+  tags:
+  - GreedyGreen
+  - Glom
+  - MushroomPlant
+- name: Nubrion/biomes/Cave/LakeA
+  weight: 1
+- name: Nubrion/biomes/Cave/LakeB
+  weight: 1
+- name: Nubrion/biomes/Cave/ChlorineA
+  weight: 1
+  tags:
+  - SwampLily
+- name: Nubrion/biomes/Cave/ChlorineB
+  weight: 1
+  tags:
+  - SwampLily
+tags:
+- IgnoreCaveOverride
+#pointsOfInterest:
+#  geysers_a:
+#  - poi_swamp_geyser_steam
+featureTemplates:
+  nubrion_chlorine_gas: 1
+zoneType: Sandstone

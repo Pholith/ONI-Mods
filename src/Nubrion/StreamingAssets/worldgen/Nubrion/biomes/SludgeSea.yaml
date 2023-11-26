@@ -1,0 +1,22 @@
+TerrainBiomeLookupTable:
+  add:
+    Basic:
+    - content: DirtyWater
+      bandSize: 1
+      overrides:
+        diseaseOverride: FoodPoisoning
+        diseaseAmountOverride: 100000
+    - content: SlimeMold
+      bandSize: 0.1
+      overrides:
+        diseaseOverride: SlimeLung
+        diseaseAmountOverride: 1000000
+
+    Frozen:
+    - content: DirtyIce
+      bandSize: 1
+    - content: SlimeMold
+      bandSize: 0.1
+      overrides:
+        diseaseOverride: SlimeLung
+        diseaseAmountOverride: 1000000

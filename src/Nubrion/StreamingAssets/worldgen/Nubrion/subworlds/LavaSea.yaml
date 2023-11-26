@@ -1,0 +1,14 @@
+biomeNoise: noise/subworldHotMarsh
+temperatureRange: ExtremelyHot
+density:
+  min: 10
+  max: 15
+avoidRadius: 20.0
+minChildCount: 4
+sampleBehaviour: PoissonDisk
+biomes:
+- name: Nubrion/biomes/LavaSea/Basic
+  weight: 1
+tags:
+- IgnoreCaveOverride
+zoneType: Sandstone

@@ -1,0 +1,29 @@
+biomeNoise: noise/OilField
+temperatureRange: ExtremelyCold
+density:
+  min: 10
+  max: 15
+avoidRadius: 20.0
+minChildCount: 4
+sampleBehaviour: PoissonDisk
+#features:
+#- type: features/hotmarsh/TallRoom
+#- type: features/hotmarsh/BlobRoom
+#- type: features/hotmarsh/SandGeode
+biomes:
+- name: Nubrion/biomes/Hydrocarbon/Frozen
+  weight: 1
+tags:
+- IgnoreCaveOverride
+pointsOfInterest:
+  liquid_a:
+  - nubrion_poi_liquid_methane
+  liquid_b:
+  - nubrion_poi_liquid_hydrogen
+  liquid_c:
+  - nubrion_poi_liquid_propane
+featureTemplates:
+  nubrion_liquid_co2: 2
+  nubrion_oil_drip: 1
+  nubrion_oil_reservoir: 1
+zoneType: FrozenWastes

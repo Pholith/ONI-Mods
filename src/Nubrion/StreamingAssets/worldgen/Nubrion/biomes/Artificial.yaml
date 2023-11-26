@@ -1,0 +1,19 @@
+TerrainBiomeLookupTable:
+  add:
+    Basic:
+    - content: SandCement
+      bandSize: 0.5
+    - content: Brick
+      bandSize: 0.5
+    - content: CarbonFibre
+      bandSize: 0.5
+    - content: Glass
+      bandSize: 0.5
+    - content: Slabs
+      bandSize: 0.5
+    - content: Cement
+      bandSize: 0.5
+    - content: CementMix
+      bandSize: 0.5
+    - content: Plastic
+      bandSize: 0.5

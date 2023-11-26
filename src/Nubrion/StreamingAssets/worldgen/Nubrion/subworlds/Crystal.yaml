@@ -1,0 +1,23 @@
+biomeNoise: noise/subworldHotMarsh
+temperatureRange: ExtremelyCold
+density:
+  min: 10
+  max: 15
+avoidRadius: 20.0
+minChildCount: 4
+sampleBehaviour: PoissonDisk
+#features:
+#- type: features/hotmarsh/TallRoom
+#- type: features/hotmarsh/BlobRoom
+#- type: features/hotmarsh/SandGeode
+biomes:
+- name: Nubrion/biomes/Crystal/Basic
+  weight: 1
+tags:
+- IgnoreCaveOverride
+pointsOfInterest:
+  liquid_a:
+  - nubrion_poi_liquid_helium
+featureTemplates:
+  nubrion_heatsink: 4
+zoneType: FrozenWastes

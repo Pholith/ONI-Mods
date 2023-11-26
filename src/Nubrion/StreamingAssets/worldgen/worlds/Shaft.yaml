@@ -1,0 +1,147 @@
+name: Shaft
+description: Not very wide
+worldsize:
+  X: 128
+  Y: 512
+ZoneFiles:
+- name: subworlds/StartWorld
+- name: Nubrion/subworlds/Space2
+- name: Nubrion/subworlds/LavaSea
+- name: Nubrion/subworlds/SludgeSea
+- name: Nubrion/subworlds/FrozenSludgeSea
+- name: Nubrion/subworlds/HardSurface
+
+- name: subworlds/HotMarsh
+- name: subworlds/Jungle
+- name: subworlds/Frozen
+- name: subworlds/Impenetrable
+- name: subworlds/Bottom
+- name: subworlds/OilField
+- name: subworlds/OilPockets
+- name: Nubrion/subworlds/Metal
+- name: Nubrion/subworlds/HotMetal
+- name: Nubrion/subworlds/Crystal
+- name: Nubrion/subworlds/SunnyGlade
+  weight: 0.5
+#- name: Nubrion/subworlds/Swamp
+- name: Nubrion/subworlds/FrozenSwamp
+- name: Nubrion/subworlds/Cave
+  weight: 0.5
+- name: Nubrion/subworlds/WarmCave
+  weight: 0.5
+- name: Nubrion/subworlds/Hydrocarbon
+- name: Nubrion/subworlds/FrozenHydrocarbon
+#- name: Nubrion/subworlds/Atmosphere
+- name: Nubrion/subworlds/Unstable
+
+DefineTagSet:
+  FarAndDown:
+  - NearDepths
+  - StartFar
+  FarAndUp:
+  - NearSurface
+  - StartFar  
+  NearOrAtSurface: 
+  - NearSurface
+  - AtSurface
+  NearSurface:
+  - NearSurface
+  AtSurface:
+  - AtSurface
+  NearOrAtDepths: 
+  - NearDepths
+  - AtDepths  
+  NearDepths:
+  - NearDepths
+  AtDepths:
+  - AtDepths
+
+UnknownCellsAllowedSubworlds: 
+- tagcommand: Default
+  command: UnionWith
+  temperatureRanges:
+  - HumanWarm
+  - HumanHot
+  
+- tagcommand: ContainsOne
+  tagset: StartMedium
+  command: UnionWith
+  temperatureRanges:
+  - Mild
+  - Cool
+  - Cold
+  - HumanWarm
+  - HumanHot
+  
+- tagcommand: ContainsOne
+  tagset: StartFar
+  command: UnionWith
+  temperatureRanges:
+  - Mild
+  - Cool
+  - Cold
+  - HumanWarm
+  - HumanHot
+
+- tagcommand: DistanceFrom
+  tagset: NearOrAtSurface
+  distance: 5
+  maxDistance: 5
+  distCmp: -1
+  command: Replace
+  subworldNames:
+  - OilPockets
+  - OilField
+  - Hydrocarbon
+  - HotMetal
+- tagcommand: DistanceFrom
+  tagset: NearOrAtSurface
+  distance: 4
+  maxDistance: 4
+  distCmp: -1
+  command: Replace
+  subworldNames:
+  - OilPockets
+  - OilField
+  - Hydrocarbon
+- tagcommand: DistanceFrom
+  tagset: NearOrAtSurface
+  distance: 3
+  maxDistance: 3
+  distCmp: -1
+  command: Replace
+  subworldNames:
+  - HardSurface
+- tagcommand: DistanceFrom
+  tagset: NearOrAtSurface
+  distance: 2
+  maxDistance: 2
+  distCmp: -1
+  command: Replace
+  subworldNames:
+  - LavaSea
+- tagcommand: DistanceFrom
+  tagset: NearOrAtSurface
+  distance: 1
+  maxDistance: 1
+  distCmp: -1
+  command: Replace
+  subworldNames:
+  - Space2
+
+- tagcommand: DistanceFrom
+  tagset: NearOrAtDepths
+  distance: 2
+  maxDistance: 3
+  distCmp: -1
+  command: Replace
+  subworldNames:
+  - SludgeSea
+- tagcommand: DistanceFrom
+  tagset: NearOrAtDepths
+  distance: 1
+  maxDistance: 1
+  distCmp: -1
+  command: Replace
+  subworldNames:
+  - FrozenSludgeSea

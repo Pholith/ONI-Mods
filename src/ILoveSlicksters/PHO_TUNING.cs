@@ -31,6 +31,10 @@ namespace ILoveSlicksters
         {
             public static float NORMAL_LOW = 0.4f;
 
+            public static float NORMAL_HIGH = 0.6f;
+            
+            public static float HIGH = 0.8f;
+
         }
         // adapted from temperaturemodifier
         // Idea: set a minimum light needed 

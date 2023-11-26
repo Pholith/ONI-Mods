@@ -1,0 +1,23 @@
+TerrainBiomeLookupTable:
+  add:
+    Basic:
+    - content: Oxygen
+      bandSize: 0.5
+    - content: Dirt
+      bandSize: 0.5
+    - content: Fertilizer
+      bandSize: 0.1
+    - content: Sand
+      bandSize: 0.5
+    - content: SandStone
+      bandSize: 1
+
+    Lake:
+    - content: Water
+      bandSize: 0.1
+    - content: Algae
+      bandSize: 0.5
+    - content: Clay
+      bandSize: 0.5
+    - content: SedimentaryRock
+      bandSize: 1

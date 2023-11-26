@@ -1,0 +1,21 @@
+biomeNoise: noise/subworldHotMarsh
+temperatureRange: Cool
+density:
+  min: 20
+  max: 25
+avoidRadius: 20.0
+minChildCount: 4
+sampleBehaviour: PoissonDisk
+#features:
+#- type: features/hotmarsh/TallRoom
+#- type: features/hotmarsh/BlobRoom
+#- type: features/hotmarsh/SandGeode
+biomes:
+- name: Nubrion/biomes/Unstable/Basic
+  weight: 1
+tags:
+- IgnoreCaveOverride
+featureTemplates:
+  nubrion_hot_water: 1
+  nubrion_salt_water: 1
+zoneType: FrozenWastes

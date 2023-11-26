@@ -1,0 +1,140 @@
+name: Nubrion (Small)
+description: A brave new frontier
+worldsize:
+  X: 256
+  Y: 384
+  
+ZoneFiles:
+- name: subworlds/StartWorld
+- name: Nubrion/subworlds/Metal
+- name: Nubrion/subworlds/HotMetal
+- name: Nubrion/subworlds/Crystal
+- name: Nubrion/subworlds/SunnyGlade
+- name: Nubrion/subworlds/Swamp
+- name: Nubrion/subworlds/FrozenSwamp
+- name: Nubrion/subworlds/Cave
+- name: Nubrion/subworlds/WarmCave
+- name: Nubrion/subworlds/Hydrocarbon
+- name: Nubrion/subworlds/FrozenHydrocarbon
+- name: Nubrion/subworlds/Molten
+- name: Nubrion/subworlds/Atmosphere
+- name: Nubrion/subworlds/Space
+- name: Nubrion/subworlds/Unstable
+  
+DefineTagSet:
+  FarAndDown:
+  - NearDepths
+  - StartFar
+  FarAndUp:
+  - NearSurface
+  - StartFar  
+  NearOrAtSurface: 
+  - NearSurface
+  - AtSurface
+  NearSurface:
+  - NearSurface
+  AtSurface:
+  - AtSurface
+  NearOrAtDepths: 
+  - NearDepths
+  - AtDepths  
+  NearDepths:
+  - NearDepths
+  AtDepths:
+  - AtDepths
+
+UnknownCellsAllowedSubworlds: 
+- tagcommand: Default
+  command: UnionWith
+  temperatureRanges:
+  - Mild
+
+- tagcommand: ContainsOne
+  tagset: StartNear
+  command: UnionWith
+  temperatureRanges:
+  - HumanWarm
+
+- tagcommand: ContainsOne
+  tagset: StartMedium
+  command: Replace
+  subworldNames:
+  - Swamp
+
+- tagcommand: ContainsOne
+  tagset: StartFar
+  command: UnionWith
+  temperatureRanges:
+  - Cool
+  - HumanHot
+  - Hot
+
+- tagcommand: DistanceFrom
+  tagset: NearOrAtSurface
+  distance: 4
+  maxDistance: 4
+  distCmp: -1
+  command: Replace
+  subworldNames:
+  - Atmosphere
+  - WarmCave
+  - HotMetal
+  - Hydrocarbon
+- tagcommand: DistanceFrom
+  tagset: NearOrAtSurface
+  distance: 3
+  maxDistance: 3
+  distCmp: -1
+  command: Replace
+  subworldNames:
+  - Unstable
+- tagcommand: DistanceFrom
+  tagset: NearOrAtSurface
+  distance: 2
+  maxDistance: 2
+  distCmp: -1
+  command: Replace
+  subworldNames:
+  - Space
+
+- tagcommand: DistanceFrom
+  tagset: NearOrAtDepths
+  distance: 4
+  maxDistance: 4
+  distCmp: -1
+  command: Replace
+  subworldNames:
+  - FrozenSwamp
+  - FrozenHydrocarbon
+  - Cave
+- tagcommand: DistanceFrom
+  tagset: NearOrAtDepths
+  distance: 3
+  maxDistance: 3
+  distCmp: -1
+  command: UnionWith
+  temperatureRanges:
+  - ExtremelyCold
+- tagcommand: DistanceFrom
+  tagset: NearOrAtDepths
+  distance: 3
+  maxDistance: 3
+  distCmp: -1
+  command: Replace
+  subworldNames:
+  - FrozenSwamp
+  - FrozenHydrocarbon
+  - Crystal
+- tagcommand: DistanceFrom
+  tagset: NearOrAtDepths
+  distance: 2
+  maxDistance: 2
+  distCmp: -1
+  command: Replace
+  subworldNames:
+  - Crystal
+- tagcommand: ContainsOne
+  tagset: NearOrAtDepths
+  command: Replace
+  temperatureRanges:
+  - ExtremelyHot

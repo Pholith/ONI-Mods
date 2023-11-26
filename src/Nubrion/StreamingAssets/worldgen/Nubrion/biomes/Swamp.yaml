@@ -1,0 +1,116 @@
+TerrainBiomeLookupTable:
+  add:
+    Basic:
+    - content: ContaminatedOxygen
+      bandSize: 0.2
+      overrides:
+        diseaseOverride: SlimeLung
+        diseaseAmountOverride: 10000
+    - content: Methane
+      bandSize: 0.1
+    - content: SlimeMold
+      bandSize: 0.5
+      overrides:
+        diseaseOverride: SlimeLung
+        diseaseAmountOverride: 1000000
+    - content: ToxicSand
+      bandSize: 0.2
+      overrides:
+        diseaseOverride: SlimeLung
+        diseaseAmountOverride: 1000000
+    - content: SlimeMold
+      bandSize: 0.5
+      overrides:
+        diseaseOverride: SlimeLung
+        diseaseAmountOverride: 1000000
+    - content: Radium
+      bandSize: 0.1
+    - content: SlimeMold
+      bandSize: 0.5
+      overrides:
+        diseaseOverride: SlimeLung
+        diseaseAmountOverride: 1000000
+    - content: Radium
+      bandSize: 0.1
+
+    Lake:
+    - content: DirtyWater
+      bandSize: 0.1
+      overrides:
+        diseaseOverride: FoodPoisoning
+        diseaseAmountOverride: 100000
+    - content: Algae
+      bandSize: 0.2
+      overrides:
+        diseaseOverride: SlimeLung
+        diseaseAmountOverride: 1000000
+    - content: SlimeMold
+      bandSize: 0.5
+      overrides:
+        diseaseOverride: SlimeLung
+        diseaseAmountOverride: 1000000
+    - content: Radium
+      bandSize: 0.1
+    - content: Algae
+      bandSize: 0.1
+      overrides:
+        diseaseOverride: SlimeLung
+        diseaseAmountOverride: 1000000
+    - content: SlimeMold
+      bandSize: 0.5
+      overrides:
+        diseaseOverride: SlimeLung
+        diseaseAmountOverride: 1000000
+    - content: Radium
+      bandSize: 0.1
+    - content: SlimeMold
+      bandSize: 0.5
+      overrides:
+        diseaseOverride: SlimeLung
+        diseaseAmountOverride: 1000000
+    - content: Radium
+      bandSize: 0.1
+
+
+    FrozenLake:
+    - content: ContaminatedOxygen
+      bandSize: 0.1
+      overrides:
+        diseaseOverride: FoodPoisoning
+        diseaseAmountOverride: 100000
+    - content: DirtyIce
+      bandSize: 0.1
+      overrides:
+        diseaseOverride: FoodPoisoning
+        diseaseAmountOverride: 100000
+    - content: Algae
+      bandSize: 0.2
+      overrides:
+        diseaseOverride: SlimeLung
+        diseaseAmountOverride: 1000000
+    - content: SlimeMold
+      bandSize: 0.5
+      overrides:
+        diseaseOverride: SlimeLung
+        diseaseAmountOverride: 1000000
+    - content: Radium
+      bandSize: 0.1
+    - content: Algae
+      bandSize: 0.1
+      overrides:
+        diseaseOverride: SlimeLung
+        diseaseAmountOverride: 1000000
+    - content: SlimeMold
+      bandSize: 0.5
+      overrides:
+        diseaseOverride: SlimeLung
+        diseaseAmountOverride: 1000000
+    - content: Radium
+      bandSize: 0.1
+    - content: SlimeMold
+      bandSize: 0.5
+      overrides:
+        diseaseOverride: SlimeLung
+        diseaseAmountOverride: 1000000
+    - content: Radium
+      bandSize: 0.1

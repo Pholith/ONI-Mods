@@ -1,0 +1,72 @@
+TerrainBiomeLookupTable:
+  add:
+    Basic:
+    - content: SandStone
+      bandSize: 1
+    - content: Creature
+      bandSize: 0.5
+    - content: Hydrogen
+      bandSize: 0.5
+      overrides:
+        massMultiplier: 10
+    - content: Methane
+      bandSize: 0.5
+      overrides:
+        massMultiplier: 10
+    - content: Propane
+      bandSize: 0.5
+      overrides:
+        massMultiplier: 10
+    - content: CarbonDioxide
+      bandSize: 0.5
+      overrides:
+        massMultiplier: 10
+    - content: Carbon
+      bandSize: 2
+    - content: CrudeOil
+      bandSize: 2
+      overrides:
+        massMultiplier: 20
+    - content: Petroleum
+      bandSize: 1
+      overrides:
+        massMultiplier: 10
+    - content: Naphtha
+      bandSize: 1
+      overrides:
+        massMultiplier: 10
+
+    Frozen:
+    - content: SandStone
+      bandSize: 1
+      overrides:
+        temperatureOverride: 60
+    - content: Creature
+      bandSize: 0.5
+      overrides:
+        temperatureOverride: 60
+    - content: Hydrogen
+      bandSize: 1
+      overrides:
+        massMultiplier: 10
+    - content: SolidMethane
+      bandSize: 2
+      overrides:
+        massMultiplier: 10
+    - content: SolidPropane
+      bandSize: 2
+    - content: SolidCarbonDioxide
+      bandSize: 1
+    - content: Carbon
+      bandSize: 2
+      overrides:
+        temperatureOverride: 60
+    - content: SolidCrudeOil
+      bandSize: 2
+      overrides:
+        temperatureOverride: 60
+    - content: SolidPetroleum
+      bandSize: 1
+    - content: SolidNaphtha
+      bandSize: 1
+    

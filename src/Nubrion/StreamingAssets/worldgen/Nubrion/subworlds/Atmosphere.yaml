@@ -1,0 +1,25 @@
+biomeNoise: noise/subworldHotMarsh
+temperatureRange: VeryHot
+density:
+  min: 10
+  max: 15
+avoidRadius: 20.0
+minChildCount: 4
+sampleBehaviour: PoissonDisk
+#features:
+#- type: features/hotmarsh/TallRoom
+#- type: features/hotmarsh/BlobRoom
+#- type: features/hotmarsh/SandGeode
+biomes:
+- name: Nubrion/biomes/Atmosphere/Helium
+  weight: 1
+- name: Nubrion/biomes/Atmosphere/Hydrogen
+  weight: 1
+tags:
+- IgnoreCaveOverride
+#pointsOfInterest:
+#  geysers_a:
+#  - poi_swamp_geyser_steam
+featureTemplates:
+  nubrion_hot_hydrogen: 2
+zoneType: ToxicJungle

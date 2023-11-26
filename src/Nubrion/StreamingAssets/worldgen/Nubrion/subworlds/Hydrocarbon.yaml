@@ -1,0 +1,32 @@
+biomeNoise: noise/OilField
+temperatureRange: Hot
+density:
+  min: 10
+  max: 15
+avoidRadius: 20.0
+minChildCount: 4
+sampleBehaviour: PoissonDisk
+#features:
+#- type: features/hotmarsh/TallRoom
+#- type: features/hotmarsh/BlobRoom
+#- type: features/hotmarsh/SandGeode
+biomes:
+- name: Nubrion/biomes/Hydrocarbon/Basic
+  weight: 1
+- name: Nubrion/biomes/Hydrocarbon/Basic
+  weight: 1
+  tags:
+  - OilFloater
+tags:
+- IgnoreCaveOverride
+pointsOfInterest:
+  liquid_a:
+  - nubrion_poi_liquid_crude_oil
+  liquid_b:
+  - nubrion_poi_liquid_naphtha
+featureTemplates:
+  nubrion_hot_co2: 1
+  nubrion_methane: 1
+  nubrion_oil_drip: 1
+  nubrion_oil_reservoir: 1
+zoneType: OilField

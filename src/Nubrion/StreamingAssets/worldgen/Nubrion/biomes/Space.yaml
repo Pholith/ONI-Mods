@@ -1,0 +1,5 @@
+TerrainBiomeLookupTable:
+  add:
+    Basic:
+    - content: Vacuum
+      bandSize: 1

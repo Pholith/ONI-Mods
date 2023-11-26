@@ -1,0 +1,53 @@
+TerrainBiomeLookupTable:
+  add:
+    Basic:
+    - content: Cuprite
+      bandSize: 0.5
+    - content: Electrum
+      bandSize: 0.5
+    - content: FoolsGold
+      bandSize: 0.5
+    - content: GoldAmalgam
+      bandSize: 0.5
+    - content: IronOre
+      bandSize: 0.5
+    - content: Wolframite
+      bandSize: 0.5
+    - content: Hydrogen
+      bandSize: 0.5
+
+    Lake:
+    - content: Cuprite
+      bandSize: 0.5
+    - content: Electrum
+      bandSize: 0.5
+    - content: FoolsGold
+      bandSize: 0.5
+    - content: GoldAmalgam
+      bandSize: 0.5
+    - content: IronOre
+      bandSize: 0.5
+    - content: Wolframite
+      bandSize: 0.5
+    - content: Hydrogen
+      bandSize: 0.5
+    - content: Mercury
+      bandSize: 1
+
+    HotLake:
+    - content: Cuprite
+      bandSize: 0.5
+    - content: Electrum
+      bandSize: 0.5
+    - content: FoolsGold
+      bandSize: 0.5
+    - content: GoldAmalgam
+      bandSize: 0.5
+    - content: IronOre
+      bandSize: 0.5
+    - content: Wolframite
+      bandSize: 0.5
+    - content: Hydrogen
+      bandSize: 0.5
+    - content: MercuryGas
+      bandSize: 1

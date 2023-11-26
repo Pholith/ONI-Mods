@@ -1,0 +1,156 @@
+name: Nubrion
+description: A brave new frontier
+spriteName: Asteroid_sandstone
+coordinatePrefix: NUBRION
+worldsize:
+  X: 512
+  Y: 768
+layoutMethod: PowerTree
+disableWorldTraits: true
+  
+subworldFiles:
+- name: subworlds/sandstone/SandstoneStart
+- name: Nubrion/subworlds/Metal
+- name: Nubrion/subworlds/HotMetal
+- name: Nubrion/subworlds/Crystal
+- name: Nubrion/subworlds/SunnyGlade
+- name: Nubrion/subworlds/Swamp
+- name: Nubrion/subworlds/FrozenSwamp
+- name: Nubrion/subworlds/Cave
+- name: Nubrion/subworlds/WarmCave
+- name: Nubrion/subworlds/Hydrocarbon
+- name: Nubrion/subworlds/FrozenHydrocarbon
+- name: Nubrion/subworlds/Molten
+- name: Nubrion/subworlds/Atmosphere
+- name: Nubrion/subworlds/Space
+- name: Nubrion/subworlds/Unstable
+  
+startSubworldName: subworlds/sandstone/SandstoneStart
+startingBaseTemplate: sandstoneBase
+
+unknownCellsAllowedSubworlds: 
+- tagcommand: Default
+  command: UnionWith
+  temperatureRanges:
+  - Mild
+
+- tagcommand: DistanceFromTag
+  tag: AtStart
+  minDistance: 1
+  maxDistance: 1
+  command: UnionWith
+  temperatureRanges:
+  - HumanWarm
+
+- tagcommand: DistanceFromTag
+  tag: AtStart
+  minDistance: 2
+  maxDistance: 2
+  command: Replace
+  subworldNames:
+  - Nubrion/subworlds/Swamp
+
+- tagcommand: DistanceFromTag
+  tag: AtStart
+  minDistance: 3
+  maxDistance: 999
+  command: UnionWith
+  temperatureRanges:
+  - Cool
+  - HumanHot
+  - Hot
+
+- tagcommand: DistanceFromTag
+  tag: AtSurface
+  minDistance: 4
+  maxDistance: 4
+  command: Replace
+  subworldNames:
+  - Nubrion/subworlds/Atmosphere
+  - Nubrion/subworlds/WarmCave
+  - Nubrion/subworlds/HotMetal
+  - Nubrion/subworlds/Hydrocarbon
+- tagcommand: DistanceFromTag
+  tag: AtSurface
+  minDistance: 3
+  maxDistance: 3
+  command: Replace
+  subworldNames:
+  - Nubrion/subworlds/Atmosphere
+  - Nubrion/subworlds/WarmCave
+  - Nubrion/subworlds/HotMetal
+  - Nubrion/subworlds/Hydrocarbon
+  - Nubrion/subworlds/Unstable
+- tagcommand: DistanceFromTag
+  tag: AtSurface
+  minDistance: 2
+  maxDistance: 2
+  command: Replace
+  subworldNames:
+  - Nubrion/subworlds/Unstable
+- tagcommand: DistanceFromTag
+  tag: AtSurface
+  minDistance: 1
+  maxDistance: 1
+  command: Replace
+  subworldNames:
+  - Nubrion/subworlds/Unstable
+  - Nubrion/subworlds/Space
+- tagcommand: DistanceFromTag
+  tag: AtSurface
+  minDistance: 0
+  maxDistance: 1
+  command: Replace
+  subworldNames:
+  - Nubrion/subworlds/Space
+- tagcommand: AtTag
+  tag: AtSurface
+  command: Replace
+  subworldNames:
+  - Nubrion/subworlds/Space
+
+- tagcommand: DistanceFromTag
+  tag: AtDepths
+  minDistance: 4
+  maxDistance: 4
+  command: Replace
+  subworldNames:
+  - Nubrion/subworlds/FrozenSwamp
+  - Nubrion/subworlds/FrozenHydrocarbon
+  - Nubrion/subworlds/Cave
+- tagcommand: DistanceFromTag
+  tag: AtDepths
+  minDistance: 3
+  maxDistance: 3
+  command: UnionWith
+  temperatureRanges:
+  - ExtremelyCold
+- tagcommand: DistanceFromTag
+  tag: AtDepths
+  minDistance: 3
+  maxDistance: 3
+  command: Replace
+  subworldNames:
+  - Nubrion/subworlds/FrozenSwamp
+  - Nubrion/subworlds/FrozenHydrocarbon
+  - Nubrion/subworlds/Crystal
+- tagcommand: DistanceFromTag
+  tag: AtDepths
+  minDistance: 2
+  maxDistance: 2
+  command: Replace
+  subworldNames:
+  - Nubrion/subworlds/Crystal
+- tagcommand: DistanceFromTag
+  tag: AtDepths
+  minDistance: 1
+  maxDistance: 1
+  command: Replace
+  subworldNames:
+  - Nubrion/subworlds/Crystal
+  - Nubrion/subworlds/Molten
+- tagcommand: AtTag
+  tag: AtDepths
+  command: Replace
+  temperatureRanges:
+  - ExtremelyHot

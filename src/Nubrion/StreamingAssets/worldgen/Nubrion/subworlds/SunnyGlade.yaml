@@ -1,0 +1,43 @@
+biomeNoise: noise/SandstoneStart
+temperatureRange: HumanWarm
+density:
+  min: 10
+  max: 15
+avoidRadius: 20.0
+minChildCount: 4
+sampleBehaviour: PoissonDisk
+#features:
+#- type: features/hotmarsh/TallRoom
+#- type: features/hotmarsh/BlobRoom
+#- type: features/hotmarsh/SandGeode
+biomes:
+- name: Nubrion/biomes/SunnyGlade/Basic
+  weight: 1
+  tags:
+  - Pacu
+  - BasicSingleHarvestPlant
+  - BasicForagePlantPlanted
+  - BasicFabricPlant
+  - PrickleFlower
+  - PrickleGrass
+- name: Nubrion/biomes/SunnyGlade/Basic
+  weight: 2
+  tags:
+  - LightBug
+  - BasicSingleHarvestPlant
+  - BasicForagePlantPlanted
+  - BasicFabricPlant
+  - PrickleFlower
+  - PrickleGrass
+- name: Nubrion/biomes/SunnyGlade/Lake
+  weight: 1
+  tags:
+  - Pacu
+tags:
+- IgnoreCaveOverride
+#pointsOfInterest:
+#  geysers_a:
+#  - poi_swamp_geyser_steam
+#featureTemplates:
+#  feature_geyser_generic: 2
+zoneType: Sandstone

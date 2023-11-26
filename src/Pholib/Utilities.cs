@@ -265,7 +265,9 @@ namespace Pholib
             }
         }
 
-
+        /// <summary>
+        /// Add building strings and add building to Plan screen.
+        /// </summary>
         public static void AddBuilding(string category, string id, string name, string desc, string effect)
         {
             string upperCaseID = id.ToUpperInvariant();
@@ -288,13 +290,17 @@ namespace Pholib
         }
 
         /// <summary>
-        /// Add building tech. Must be called using a postfix on Db.Init
+        /// Add building tech. Must be called using a postfix on Db.Init.
+        /// Tech id can be found in Database.Techs class.
         /// </summary>
         /// <param name="techId"></param>
         /// <param name="buildingId"></param>
         public static void AddBuildingTech(string techId, string buildingId)
         {
-            Db.Get().Techs.Get(techId).unlockedItemIDs.Add(buildingId);
+            if (Db.Get().Techs.TryGet(techId) == null)
+                Logs.Error($"Could not find tech: {techId}");
+            else
+                Db.Get().Techs.Get(techId).unlockedItemIDs.Add(buildingId);
         }
 
         public static ComplexRecipe AddComplexRecipe(ComplexRecipe.RecipeElement[] input, ComplexRecipe.RecipeElement[] output,

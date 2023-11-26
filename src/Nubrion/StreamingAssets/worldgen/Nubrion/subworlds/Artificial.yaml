@@ -1,0 +1,21 @@
+biomeNoise: noise/subworldHotMarsh
+temperatureRange: VeryCold
+density:
+  min: 10
+  max: 15
+avoidRadius: 20.0
+minChildCount: 4
+sampleBehaviour: PoissonDisk
+#features:
+#- type: features/hotmarsh/TallRoom
+#- type: features/hotmarsh/BlobRoom
+#- type: features/hotmarsh/SandGeode
+biomes:
+- name: Nubrion/biomes/Artificial/Basic
+  weight: 1
+#pointsOfInterest:
+#  geysers_a:
+#  - poi_swamp_geyser_steam
+#featureTemplates:
+#  feature_geyser_generic: 2
+zoneType: OilField
