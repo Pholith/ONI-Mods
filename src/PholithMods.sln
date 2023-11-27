@@ -34,7 +34,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AchievementReEnabler", "Ach
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolarSystemWorlds", "SolarSystemWorlds\SolarSystemWorlds.csproj", "{C7881127-59D7-44F7-8C47-502B526B947B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HDScreenShot", "HDScreenShot\HDScreenShot.csproj", "{D2236A7F-025C-4ED6-814E-A3123998DD2B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HDScreenshot", "HDScreenShot\HDScreenshot.csproj", "{D2236A7F-025C-4ED6-814E-A3123998DD2B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomizeYourPaints", "CustomizeYourPaints\CustomizeYourPaints.csproj", "{3E28EF1C-4DBD-4722-B847-82B5DCB9ABDB}"
 EndProject

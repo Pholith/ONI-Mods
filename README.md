@@ -67,6 +67,7 @@ https://support.klei.com/hc/en-us/articles/360029555392-Logs-and-Useful-Informat
 | Solar System Worlds |Add more worlds based on the solar system planets and moons   |<img src="/src/SolarSystemWorlds/screen1.png" height="110" width="110" />|
 | Notepad |Add a notepad that allows you to note texts in your databases    |<img src="/src/Notepad/screen1.png" height="110" width="110" />|
 | CustomizableSpeed | Tired of needed to switch between mods or restart the game to change the speed ? This mod is for you !|<img src="/src/CustomizableSpeed/screen1.png" height="110" width="110" />
+| HD Screenshot | Take a big screenshot of you game and share it easily with friends. |<img src="/src/HDScreenshot/screen1.png" height="110" width="110" />
 
 # Support me / Donations 💜
 <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Patreon_logo_with_wordmark.svg" width="110" />
