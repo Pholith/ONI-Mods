@@ -63,63 +63,68 @@ namespace HDScreenShot
             Instance = __instance;
 
             buttonsList.Insert(buttonsList.Count - 2,
-                new KButtonMenu.ButtonInfo("Take a HD Screenshot", Action.NumActions, new UnityAction(() => { __instance.StartCoroutine(Screenshot()); })));
+                new KButtonMenu.ButtonInfo("Take a HD Screenshot", Action.NumActions,
+                new UnityAction(() =>
+                {
+                    //UnityEngine.ScreenCapture.CaptureScreenshot(this.GetScreenshotFileName(), 2);
+
+                    __instance.StartCoroutine(Screenshot());
+                })));
 
             instance.Field("buttons").SetValue(buttonsList.ToArray());
         }
 
         static Vector3 savedCameraPos;
         static float savedOrthographicSize;
-
+        static float savedMaxOrthographicSize;
         public static IEnumerator Screenshot()
         {
             while (true)
             {
                 yield return SequenceUtil.WaitForEndOfFrame;
 
-
                 savedCameraPos = CameraController.Instance.transform.position;
                 savedOrthographicSize = CameraController.Instance.OrthographicSize;
+                savedMaxOrthographicSize = Traverse.Create(CameraController.Instance).Field<float>("maxOrthographicSize").Value;
+
                 OverlayScreen.Instance.ToggleOverlay(OverlayModes.None.ID);
+
                 ///// Timelaspser.Render first pass
                 Texture2D freezeTexture = new Texture2D(Camera.main.pixelWidth, Camera.main.pixelHeight, TextureFormat.ARGB32, false);
                 freezeTexture.ReadPixels(new Rect(0f, 0f, Camera.main.pixelWidth, Camera.main.pixelHeight), 0, 0);
                 freezeTexture.Apply();
                 CameraController.Instance.timelapseFreezeCamera.gameObject.GetComponent<FillRenderTargetEffect>().SetFillTexture(freezeTexture);
-                CameraController.Instance.timelapseFreezeCamera.enabled = true;
-                DebugHandler.SetTimelapseMode(true);
+                //CameraController.Instance.overlayCamera.gameObject.AddComponent<FillRenderTargetEffect>().SetFillTexture(freezeTexture);
 
+                CameraController.Instance.timelapseFreezeCamera.enabled = true;
+                DebugHandler.SetTimelapseMode(true, ClusterManager.Instance.activeWorldId);
 
                 ////// Timelaspser.SetPostionAndOrtho
                 Traverse.Create(Game.Instance.timelapser).Method("SetPositionAndOrtho", ClusterManager.Instance.activeWorld).GetValue();
-                CameraController.Instance.OrthographicSize = 200;
+                float targetOrthographicSize = ClusterManager.Instance.activeWorld.Width - 10; // 10 is just here to reduce the black offset
+                CameraController.Instance.SetMaxOrthographicSize(targetOrthographicSize);
+                CameraController.Instance.OrthographicSize = targetOrthographicSize;
 
-                // Wait the frame to be rendered
-                yield return SequenceUtil.WaitForNextFrame;
-                yield return SequenceUtil.WaitForEndOfFrame;
-
+                //CameraController.Instance.
+                
+                //OverlayScreen.Instance.ToggleOverlay(OverlayModes.)
                 ////// Timelaspser.Render
                 WorldContainer world = ClusterManager.Instance.activeWorld; //ClusterManager.Instance.GetWorld(world_id);
                 if (world == null)
                 {
                     yield break;
                 }
-                if (world.IsStartWorld)
-                {
-                    GameObject telepad = GameUtil.GetTelepad(world.id);
-                    if (telepad == null)
-                    {
-                        global::Debug.Log("No telepad present, aborting screenshot.");
-                        yield break;
-                    }
-                    Vector3 position = telepad.transform.position;
-                    position.z = CameraController.Instance.transform.position.z;
-                    CameraController.Instance.SetPosition(position);
-                }
-                else
-                {
-                    CameraController.Instance.SetPosition(new Vector3((float)(world.WorldOffset.x + world.WorldSize.x / 2), (float)(world.WorldOffset.y + world.WorldSize.y / 2), CameraController.Instance.transform.position.z));
-                }
+                yield return SequenceUtil.WaitForNextFrame;
+                yield return SequenceUtil.WaitForEndOfFrame;
+                
+                CameraController.Instance.SetPosition(new Vector3((world.WorldOffset.x + world.WorldSize.x / 2), (world.WorldOffset.y + world.WorldSize.y / 2), CameraController.Instance.transform.position.z));
+                // Traverse.Create(CameraController.Instance).Method("Update").GetValue();
+                CameraController.Instance.VisibleArea.Update();
+
+                // Wait the frame to be rendered
+                yield return SequenceUtil.WaitForNextFrame;
+                yield return SequenceUtil.WaitForEndOfFrame;
+
                 ///// Timelaspser.Render second pass
 
                 ///// Timelaspser.RenderAndPrint
@@ -130,13 +135,13 @@ namespace HDScreenShot
                 RenderTexture screenshotTexture = new RenderTexture(GameOnLoadPatch.Settings.ScreenshotWidth, GameOnLoadPatch.Settings.ScreenshotHeight, 32, RenderTextureFormat.ARGB32);
                 RenderTexture.active = screenshotTexture;
 
-
                 CameraController.Instance.RenderForTimelapser(ref screenshotTexture);
 
                 CameraController.Instance.timelapseFreezeCamera.enabled = false;
                 DebugHandler.SetTimelapseMode(false);
                 CameraController.Instance.SetPosition(savedCameraPos);
                 CameraController.Instance.OrthographicSize = savedOrthographicSize;
+                CameraController.Instance.SetMaxOrthographicSize(savedMaxOrthographicSize);
 
                 CustomWriteToFile(screenshotTexture);
 
@@ -181,7 +186,7 @@ namespace HDScreenShot
 
             string format = "0000.##_";
             imagePath = imagePath + Path.DirectorySeparatorChar + name + "_cycle_" + GameClock.Instance.GetCycle().ToString(format);
-            
+
             int imageNumber = 1;
             while (File.Exists(string.Concat(imagePath, imageNumber, ".", GameOnLoadPatch.Settings.SavedImageFormat.ToString())))
             {
