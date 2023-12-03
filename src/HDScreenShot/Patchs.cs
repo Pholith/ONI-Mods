@@ -99,7 +99,7 @@ namespace HDScreenShot
                 CameraController.Instance.SetMaxOrthographicSize(targetOrthographicSize);
                 CameraController.Instance.OrthographicSize = targetOrthographicSize;
 
-                //OverlayScreen.Instance.ToggleOverlay(OverlayModes.)
+                OverlayScreen.Instance.ToggleOverlay(OverlayModes.None.ID);
                 ////// Timelaspser.Render
                 WorldContainer world = ClusterManager.Instance.activeWorld; //ClusterManager.Instance.GetWorld(world_id);
                 if (world == null)
