@@ -87,26 +87,18 @@ namespace HDScreenShot
                 savedOrthographicSize = CameraController.Instance.OrthographicSize;
                 savedMaxOrthographicSize = Traverse.Create(CameraController.Instance).Field<float>("maxOrthographicSize").Value;
 
-                OverlayScreen.Instance.ToggleOverlay(OverlayModes.None.ID);
+                //OverlayScreen.Instance.ToggleOverlay(OverlayModes.None.ID);
 
                 ///// Timelaspser.Render first pass
-                Texture2D freezeTexture = new Texture2D(Camera.main.pixelWidth, Camera.main.pixelHeight, TextureFormat.ARGB32, false);
-                freezeTexture.ReadPixels(new Rect(0f, 0f, Camera.main.pixelWidth, Camera.main.pixelHeight), 0, 0);
-                freezeTexture.Apply();
-                CameraController.Instance.timelapseFreezeCamera.gameObject.GetComponent<FillRenderTargetEffect>().SetFillTexture(freezeTexture);
-                //CameraController.Instance.overlayCamera.gameObject.AddComponent<FillRenderTargetEffect>().SetFillTexture(freezeTexture);
-
-                CameraController.Instance.timelapseFreezeCamera.enabled = true;
+                CameraController.Instance.timelapseFreezeCamera.enabled = true; // Hide the baseCamera moving during the screenshot
                 DebugHandler.SetTimelapseMode(true, ClusterManager.Instance.activeWorldId);
 
                 ////// Timelaspser.SetPostionAndOrtho
                 Traverse.Create(Game.Instance.timelapser).Method("SetPositionAndOrtho", ClusterManager.Instance.activeWorld).GetValue();
-                float targetOrthographicSize = ClusterManager.Instance.activeWorld.Width - 10; // 10 is just here to reduce the black offset
+                float targetOrthographicSize = ClusterManager.Instance.activeWorld.Width - 5; // 5 is just here to reduce the black offset
                 CameraController.Instance.SetMaxOrthographicSize(targetOrthographicSize);
                 CameraController.Instance.OrthographicSize = targetOrthographicSize;
 
-                //CameraController.Instance.
-                
                 //OverlayScreen.Instance.ToggleOverlay(OverlayModes.)
                 ////// Timelaspser.Render
                 WorldContainer world = ClusterManager.Instance.activeWorld; //ClusterManager.Instance.GetWorld(world_id);
@@ -116,7 +108,7 @@ namespace HDScreenShot
                 }
                 yield return SequenceUtil.WaitForNextFrame;
                 yield return SequenceUtil.WaitForEndOfFrame;
-                
+
                 CameraController.Instance.SetPosition(new Vector3((world.WorldOffset.x + world.WorldSize.x / 2), (world.WorldOffset.y + world.WorldSize.y / 2), CameraController.Instance.transform.position.z));
                 // Traverse.Create(CameraController.Instance).Method("Update").GetValue();
                 CameraController.Instance.VisibleArea.Update();
@@ -131,27 +123,54 @@ namespace HDScreenShot
 
                 // Store renderText
                 RenderTexture active = RenderTexture.active;
-
                 RenderTexture screenshotTexture = new RenderTexture(GameOnLoadPatch.Settings.ScreenshotWidth, GameOnLoadPatch.Settings.ScreenshotHeight, 32, RenderTextureFormat.ARGB32);
                 RenderTexture.active = screenshotTexture;
 
-                CameraController.Instance.RenderForTimelapser(ref screenshotTexture);
+                LayerMask mask = Traverse.Create(CameraController.Instance).Field<LayerMask>("timelapseCameraCullingMask").Value;
+                LayerMask mask2 = Traverse.Create(CameraController.Instance).Field<LayerMask>("timelapseOverlayCameraCullingMask").Value;
 
+
+                RenderCameraForTimelapse(CameraController.Instance.baseCamera, ref screenshotTexture, mask);
+                CameraController.Instance.overlayCamera.clearFlags = CameraClearFlags.Nothing;
+                RenderCameraForTimelapse(CameraController.Instance.overlayCamera, ref screenshotTexture, mask2);
+
+                CustomWriteToFile(screenshotTexture);
+
+                // Set previous values
                 CameraController.Instance.timelapseFreezeCamera.enabled = false;
                 DebugHandler.SetTimelapseMode(false);
                 CameraController.Instance.SetPosition(savedCameraPos);
                 CameraController.Instance.OrthographicSize = savedOrthographicSize;
                 CameraController.Instance.SetMaxOrthographicSize(savedMaxOrthographicSize);
-
-                CustomWriteToFile(screenshotTexture);
-
-                // Set previous renderText
                 RenderTexture.active = active;
                 yield break;
             }
         }
+        /// <summary>
+        /// Copy of CameraController.RenderCameraForTimelapse because it can't be used easily since it is private and ref keyword.
+        /// </summary>
+        private static void RenderCameraForTimelapse(Camera cam, ref RenderTexture tex, LayerMask mask, float overrideAspect = -1f)
+        {
 
-        public static void CustomWriteToFile(RenderTexture renderTex)
+            int cullingMask = cam.cullingMask;
+            RenderTexture targetTexture = cam.targetTexture;
+            cam.targetTexture = tex;
+            cam.aspect = (float)tex.width / (float)tex.height;
+            if (overrideAspect != -1f)
+            {
+                cam.aspect = overrideAspect;
+            }
+            if (mask != -1)
+            {
+                cam.cullingMask = mask;
+            }
+            cam.Render();
+            cam.ResetAspect();
+            cam.cullingMask = cullingMask;
+            cam.targetTexture = targetTexture;
+        }
+
+        public static void CustomWriteToFile(Texture renderTex)
         {
             Texture2D texture2D = new Texture2D(renderTex.width, renderTex.height, TextureFormat.ARGB32, false);
             texture2D.ReadPixels(new Rect(0f, 0f, renderTex.width, renderTex.height), 0, 0);
@@ -171,7 +190,7 @@ namespace HDScreenShot
                     break;
             }
 
-            Object.Destroy(texture2D);
+            UnityEngine.Object.Destroy(texture2D);
 
             if (!Directory.Exists(Util.RootFolder()))
             {
