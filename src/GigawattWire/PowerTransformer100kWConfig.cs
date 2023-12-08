@@ -16,9 +16,10 @@ namespace Egladil
             float melting_point = 800f;
             BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(ID, width, height, "transformer_kanim", hitpoints, construction_time, massKg, WirePatchs.MEGAWATT_WIRE_MATERIALS, melting_point, BuildLocationRule.OnFloor, TUNING.BUILDINGS.DECOR.PENALTY.TIER1, TUNING.NOISE_POLLUTION.NOISY.TIER5);
             buildingDef.RequiresPowerInput = true;
+            buildingDef.RequiresPowerOutput = true;
             buildingDef.UseWhitePowerOutputConnectorColour = true;
-            buildingDef.PowerInputOffset = new CellOffset(-1, 2);
-            buildingDef.PowerOutputOffset = new CellOffset(1, 1);
+            buildingDef.PowerInputOffset = new CellOffset(-1, 1);
+            buildingDef.PowerOutputOffset = new CellOffset(1, 0);
             buildingDef.ElectricalArrowOffset = new CellOffset(1, 1);
             buildingDef.ViewMode = OverlayModes.Power.ID;
             buildingDef.AudioCategory = "Metal";
