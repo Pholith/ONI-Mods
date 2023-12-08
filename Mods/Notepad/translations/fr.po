@@ -21,7 +21,7 @@ msgstr "Vos dup n'ont pas de memoire? Laissez leur un pense bête!"
 #. Notepad.PHO_STRINGS.NOTEPAD.EFFECT
 msgctxt "Notepad.PHO_STRINGS.NOTEPAD.EFFECT"
 msgid "Rating and commenting on your setups will help you a lot!"
-msgstr "Notez et commenter vos installations vous aidera beaucoup !"
+msgstr "Notez et commentez vos installations vous aidera beaucoup !"
 
 #. Notepad.PHO_STRINGS.NOTEPAD.NAME
 msgctxt "Notepad.PHO_STRINGS.NOTEPAD.NAME"

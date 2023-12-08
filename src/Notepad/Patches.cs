@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using KMod;
 using PeterHan.PLib.Database;
+using PeterHan.PLib.Options;
 using System.Collections.Generic;
 using UnityEngine;
 using static Pholib.Utilities;
@@ -12,9 +13,34 @@ namespace Notepad
         public override void OnLoad(Harmony harmony)
         {
             base.OnLoad(harmony);
+            new POptions().RegisterOptions(this, typeof(NotepadOptions));
+
             new PLocalization().Register();
         }
     }
+
+    // Load PLib settings on game load
+    [HarmonyPatch(typeof(Game), "Load")]
+    public static class GameOnLoadPatch
+    {
+        public static NotepadOptions Settings { get; private set; }
+
+        public static void Prefix()
+        {
+            ReadSettings();
+        }
+        public static void ReadSettings()
+        {
+            // read the option each time the game is loaded - so we don't need to restart all the game
+            Settings = POptions.ReadSettings<NotepadOptions>();
+            if (Settings == null)
+            {
+                Settings = new NotepadOptions();
+            }
+
+        }
+    }
+
 
     [HarmonyPatch(typeof(GeneratedBuildings), "LoadGeneratedBuildings")]
     public static class DupRoomSensorStringsPatch
@@ -90,6 +116,23 @@ namespace Notepad
 
                 }
             }
+        }
+    }
+
+    // Instant Build patch
+    [HarmonyPatch(typeof(BuildingDef))]
+    [HarmonyPatch(nameof(BuildingDef.Instantiate))]
+    public static class BuildingDef_Instantiate_Patch
+    {
+        public static bool Prefix(Vector3 pos, Orientation orientation, IList<Tag> selected_elements, int layer, BuildingDef __instance, ref GameObject __result)
+        {
+            if (__instance.PrefabID != NotepadConfig.ID || !GameOnLoadPatch.Settings.InstantBuild) return true;
+            else
+            {
+                __instance.Build(Grid.PosToCell(pos), orientation, null, selected_elements, 293.15f, playsound: false, GameClock.Instance.GetTime());
+                return false;
+            }
+
         }
     }
 }

@@ -42,6 +42,7 @@
       <Link>Utilities.cs</Link>
     </Compile>
     <Compile Include="NotepadControl.cs" />
+    <Compile Include="NotepadOptions.cs" />
     <Compile Include="NotepadSideScreen.cs" />
     <Compile Include="Patches.cs" />
     <Compile Include="PHO_STRINGS.cs" />
@@ -57,7 +58,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="app.config" />
-    <None Include="ILMerge.props" />
+    <None Include="mod.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="mod_info.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -80,11 +83,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="PLib, Version=4.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PLib.4.7.0\lib\net471\PLib.dll</HintPath>
+    <Reference Include="PLib, Version=4.13.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PLib.4.13.0\lib\net471\PLib.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
@@ -119,12 +122,19 @@
     <Content Include="anim\notepad\notepad\notepad.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ILMergeOrder.txt" />
+    <Content Include="screen1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>echo running script...
-rm *.pdb
+    <PostBuildEvent>del /Q $(OutDir)\*.pdb
+xcopy /E /I /Q "$(ProjectDir)\anim" "$(OutDir)\anim"
+xcopy /E /I /Q "$(ProjectDir)\translations" "$(OutDir)\translations"
+copy "$(ProjectDir)\screen1.png" "$(OutDir)\screen1.png"
+copy "$(ProjectDir)\mod_info.yaml" "$(OutDir)\mod_info.yaml"
+copy "$(ProjectDir)\mod.yaml" "$(OutDir)\mod.yaml"
+echo running script...
 rmdir /Q /S "$(SolutionDir)\..\..\..\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)"
 xcopy "$(TargetDir.TrimEnd('\'))" "$(SolutionDir)\..\..\..\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)" /E /I /Q
 </PostBuildEvent>

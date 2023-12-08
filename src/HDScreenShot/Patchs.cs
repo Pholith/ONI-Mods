@@ -90,7 +90,7 @@ namespace HDScreenShot
                 //OverlayScreen.Instance.ToggleOverlay(OverlayModes.None.ID);
 
                 ///// Timelaspser.Render first pass
-                CameraController.Instance.timelapseFreezeCamera.enabled = true; // Hide the baseCamera moving during the screenshot
+                //CameraController.Instance.timelapseFreezeCamera.enabled = true; // Hide the baseCamera moving during the screenshot
                 DebugHandler.SetTimelapseMode(true, ClusterManager.Instance.activeWorldId);
 
                 ////// Timelaspser.SetPostionAndOrtho
@@ -99,7 +99,7 @@ namespace HDScreenShot
                 CameraController.Instance.SetMaxOrthographicSize(targetOrthographicSize);
                 CameraController.Instance.OrthographicSize = targetOrthographicSize;
 
-                OverlayScreen.Instance.ToggleOverlay(OverlayModes.None.ID);
+                //OverlayScreen.Instance.ToggleOverlay(OverlayModes.None.ID);
                 ////// Timelaspser.Render
                 WorldContainer world = ClusterManager.Instance.activeWorld; //ClusterManager.Instance.GetWorld(world_id);
                 if (world == null)
@@ -129,12 +129,12 @@ namespace HDScreenShot
                 LayerMask mask = Traverse.Create(CameraController.Instance).Field<LayerMask>("timelapseCameraCullingMask").Value;
                 LayerMask mask2 = Traverse.Create(CameraController.Instance).Field<LayerMask>("timelapseOverlayCameraCullingMask").Value;
 
-
                 RenderCameraForTimelapse(CameraController.Instance.baseCamera, ref screenshotTexture, mask);
+                CustomWriteToFile(screenshotTexture);
                 CameraController.Instance.overlayCamera.clearFlags = CameraClearFlags.Nothing;
                 RenderCameraForTimelapse(CameraController.Instance.overlayCamera, ref screenshotTexture, mask2);
-
                 CustomWriteToFile(screenshotTexture);
+
 
                 // Set previous values
                 CameraController.Instance.timelapseFreezeCamera.enabled = false;

@@ -7,8 +7,6 @@ namespace Notepad
     {
 
         private static readonly RectOffset OUTER_MARGIN = new RectOffset(6, 10, 6, 14);
-        internal static readonly Vector2 PANEL_SIZE = new Vector2(240.0f, 360.0f);
-        internal static readonly Vector2 ROW_SIZE = new Vector2(48, 48);
         internal const int ROW_SPACING = 2;
 
         public GameObject RootPanel { get; }
@@ -32,9 +30,9 @@ namespace Notepad
                     // change the anim looking on the text
                     KBatchedAnimController animController = currentTarget.gameObject.AddOrGet<KBatchedAnimController>();
                     animController.Play(currentTarget.activateText.IsNullOrWhiteSpace() ? "empty" : "full", KAnim.PlayMode.Paused);
-
+                    
                 },
-                LineCount = 6,
+                LineCount = GameOnLoadPatch.Settings.LineNumber,
             };
         }
 
@@ -98,6 +96,7 @@ namespace Notepad
                 Spacing = 0,
                 BackColor = PUITuning.Colors.BackgroundLight,
                 FlexSize = Vector2.one,
+
             };
             root.AddChild(panel);
             RootPanel = root.SetKleiBlueColor().Build();
