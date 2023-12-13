@@ -43,7 +43,7 @@ Examples: src/ILoveSlicksters/translations
 - Than I upload it on steam and everyone can access it
 
 ## Feedbacks, suggestions, contact, bugs and help 💌
-If you have some problems or suggestions on my mods. Don't hesitate to open a github issue, you also can ask me on my discord server: https://discord.gg/cmZUWYT
+If you have some problems or suggestions on my mods. Don't hesitate to open a github issue, you also can ask me on my discord server: https://discord.gg/cmZUWYT    
 You can also find me on the [official Oxygen Not Included discord server](https://discord.com/invite/oxygennotincluded) with the Pholith name.
 
 ## Where are the log files ?
