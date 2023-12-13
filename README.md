@@ -1,11 +1,9 @@
 
-
-
 # Pholith's Mods for Oxygen Not Included
 
 ## My Steam Page
-There are more details on the mods on my steam page:
-https://steamcommunity.com/profiles/76561198263471888/myworkshopfiles/?appid=457140&sort=score&browsefilter=myfiles&view=imagewall
+There are more details on the mods on steam:
+[<img src="https://community.akamai.steamstatic.com/public/images/sharedfiles/banner_browse_workshop.jpg"/>](https://steamcommunity.com/profiles/76561198263471888/myworkshopfiles/?appid=457140&sort=score&browsefilter=myfiles&view=imagewall)
 
 # Installation instructions 📃
 
@@ -44,10 +42,9 @@ Examples: src/ILoveSlicksters/translations
 - Send me the file and tell me for which mod it is 
 - Than I upload it on steam and everyone can access it
 
-## Feedbacks , suggestions, bugs and help 💌
-If you have some problems or suggestions on my mods. 
-Don't hesitate to open a github issue, you also can ask me on my discord server:
-https://discord.gg/cmZUWYT
+## Feedbacks, suggestions, contact, bugs and help 💌
+If you have some problems or suggestions on my mods. Don't hesitate to open a github issue, you also can ask me on my discord server: https://discord.gg/cmZUWYT
+You can also find me on the [official Oxygen Not Included discord server](https://discord.com/invite/oxygennotincluded) with the Pholith name.
 
 ## Where are the log files ?
 Official documentation here:     
@@ -67,7 +64,7 @@ https://support.klei.com/hc/en-us/articles/360029555392-Logs-and-Useful-Informat
 | Solar System Worlds |Add more worlds based on the solar system planets and moons   |<img src="/src/SolarSystemWorlds/screen1.png" height="110" width="110" />|
 | Notepad |Add a notepad that allows you to note texts in your databases    |<img src="/src/Notepad/screen1.png" height="110" width="110" />|
 | CustomizableSpeed | Tired of needed to switch between mods or restart the game to change the speed ? This mod is for you !|<img src="/src/CustomizableSpeed/screen1.png" height="110" width="110" />
-| HD Screenshot | Take a big screenshot of you game and share it easily with friends. |<img src="/src/HDScreenshot/screen1.png" height="110" width="110" />
+| HD Screenshot | Take a big screenshot of you game and share it easily with friends. |<img src="/src/HDScreenShot/screen1.png" height="110" width="110" />
 
 # Support me / Donations 💜
 <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Patreon_logo_with_wordmark.svg" width="110" />
