@@ -30,6 +30,7 @@ namespace EmptyWorlds
                 Settings = new EmptyWorldsOptions();
             }
             new PLocalization().Register();
+            Pholib.Utilities.GenerateStringsTemplate(typeof(PHO_STRINGS));
         }
     }
 

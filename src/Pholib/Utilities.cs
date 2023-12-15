@@ -101,6 +101,15 @@ namespace Pholib
     public class Utilities
     {
         /// <summary>
+        /// Generate a .pot file for user to be able to translate the mod.
+        /// This is already called in ModUtil.RegisterForTranslation(), but not in PLib.
+        /// </summary>
+        public static void GenerateStringsTemplate(Type stringClass)
+        {
+            Localization.GenerateStringsTemplate(stringClass, Path.Combine(KMod.Manager.GetDirectory(), "strings_templates"));
+        }
+
+        /// <summary>
         /// Return true if the surface is discovered. Should not be called until game loaded.
         /// </summary>
         /// <returns></returns>
@@ -265,10 +274,8 @@ namespace Pholib
             }
         }
 
-        /// <summary>
-        /// Add building strings and add building to Plan screen.
-        /// </summary>
-        public static void AddBuilding(string category, string id, string name, string desc, string effect)
+
+        public static void AddBuildingStrings(string id, string name, string desc, string effect)
         {
             string upperCaseID = id.ToUpperInvariant();
             Strings.Add(new string[]
@@ -286,6 +293,14 @@ namespace Pholib
                 "STRINGS.BUILDINGS.PREFABS." + upperCaseID + ".EFFECT",
                    effect
             });
+
+        }
+        /// <summary>
+        /// Add building strings and add building to Plan screen.
+        /// </summary>
+        public static void AddBuilding(string category, string id, string name, string desc, string effect)
+        {
+            AddBuildingStrings(id, name, desc, effect);
             ModUtil.AddBuildingToPlanScreen(category, id);
         }
 

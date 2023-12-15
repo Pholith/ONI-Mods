@@ -52,6 +52,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HidePanelOnBuild", "HidePan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GigawattWire", "GigawattWire\GigawattWire.csproj", "{CF5D36AE-7B3D-49F0-BB7E-734E55EECB23}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WallPumps", "WallPumps\WallPumps.csproj", "{40F24E73-E83E-4E8D-B919-63AAADE1BA09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -130,6 +132,10 @@ Global
 		{CF5D36AE-7B3D-49F0-BB7E-734E55EECB23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF5D36AE-7B3D-49F0-BB7E-734E55EECB23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF5D36AE-7B3D-49F0-BB7E-734E55EECB23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40F24E73-E83E-4E8D-B919-63AAADE1BA09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40F24E73-E83E-4E8D-B919-63AAADE1BA09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40F24E73-E83E-4E8D-B919-63AAADE1BA09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40F24E73-E83E-4E8D-B919-63AAADE1BA09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

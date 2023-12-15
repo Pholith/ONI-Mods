@@ -43,6 +43,9 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\Pholib\Utilities.cs">
+      <Link>Utilities.cs</Link>
+    </Compile>
     <Compile Include="EmptyWorldsOptions.cs" />
     <Compile Include="Patches.cs" />
     <Compile Include="PHO_STRINGS.cs" />

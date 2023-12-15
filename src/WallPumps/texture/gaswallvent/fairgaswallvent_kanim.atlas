@@ -1,0 +1,97 @@
+
+fairgaswallvent_kanim.png
+size: 512,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+background
+  rotate: false
+  xy: 2, 386
+  size: 124, 124
+  orig: 124, 124
+  offset: 0, 0
+  index: 0
+base
+  rotate: false
+  xy: 2, 260
+  size: 124, 124
+  orig: 124, 124
+  offset: 0, 0
+  index: 0
+place
+  rotate: false
+  xy: 128, 386
+  size: 124, 124
+  orig: 124, 124
+  offset: 0, 0
+  index: 0
+suck_fx
+  rotate: false
+  xy: 254, 444
+  size: 138, 66
+  orig: 138, 66
+  offset: 0, 0
+  index: 8
+suck_fx
+  rotate: false
+  xy: 394, 444
+  size: 116, 66
+  orig: 116, 66
+  offset: 0, 0
+  index: 6
+suck_fx
+  rotate: false
+  xy: 128, 272
+  size: 80, 112
+  orig: 80, 112
+  offset: 0, 0
+  index: 12
+suck_fx
+  rotate: false
+  xy: 2, 50
+  size: 76, 82
+  orig: 76, 82
+  offset: 0, 0
+  index: 10
+suck_fx
+  rotate: false
+  xy: 128, 212
+  size: 76, 58
+  orig: 76, 58
+  offset: 0, 0
+  index: 4
+suck_fx
+  rotate: false
+  xy: 254, 400
+  size: 48, 42
+  orig: 48, 42
+  offset: 0, 0
+  index: 14
+suck_fx
+  rotate: false
+  xy: 210, 344
+  size: 42, 40
+  orig: 42, 40
+  offset: 0, 0
+  index: 2
+suck_fx
+  rotate: false
+  xy: 2, 16
+  size: 24, 32
+  orig: 24, 32
+  offset: 0, 0
+  index: 0
+suck_fx
+  rotate: false
+  xy: 80, 106
+  size: 28, 26
+  orig: 28, 26
+  offset: 0, 0
+  index: 16
+ui
+  rotate: false
+  xy: 2, 134
+  size: 124, 124
+  orig: 124, 124
+  offset: 0, 0
+  index: 0

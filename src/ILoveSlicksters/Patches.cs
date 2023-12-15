@@ -27,6 +27,7 @@ namespace ILoveSlicksters
 
             // Init PLib and settings
             PUtil.InitLibrary();
+            Utilities.GenerateStringsTemplate(typeof(PHO_STRINGS));
 
             Settings = POptions.ReadSettings<SlicksterOptions>();
             if (Settings == null)

@@ -16,6 +16,7 @@ namespace Notepad
             new POptions().RegisterOptions(this, typeof(NotepadOptions));
 
             new PLocalization().Register();
+            GenerateStringsTemplate(typeof(PHO_STRINGS));
         }
     }
 

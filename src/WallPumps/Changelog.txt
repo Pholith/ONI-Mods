@@ -1,0 +1,50 @@
+v. 2.7
+Updated to work with new game version 577603.
+
+v. 2.6
+Updated to work with new game version 478755.
+
+v. 2.5
+Updated vanilla version to work with new game version 471883.
+
+v. 2.4
+Updated mod to work with new game version 469369.
+
+v. 2.3
+Updated mod to support Spaced Out DLC.
+
+v. 2.2
+Update mod to work with Automation Innovation Pack.
+Added automation to inputs to vents, just like new vanilla vents.
+
+v. 2.1
+Updated mod to work with new game version 364722.
+
+v. 2.0
+Added vanilla equivalents of wall gas and liquid vents.
+Changed configs file completely. This requires people to redo their config.
+Added database links to building descriptions.
+
+v. 1.6
+Added thermalConductivity to config file. Reduce to make pumps more insulated.
+Added insulation as construction material for late game pumps.
+
+v. 1.5
+Fixed error messages showing up when people have problems with config files. This does not fix the root problem, but will just remove the errors.
+
+v. 1.4
+Fixed wallLiquidPumpEnergy config not working correctly.
+Improves potential compatibility issues with other mods overwriting this ones patches.
+
+v. 1.3
+Adds config file at C:\Users\%USERNAME%\Documents\Klei\OxygenNotIncluded\mods\settings. You have to launch the game once with mod enabled for it to appear.
+Fixed liquid pumps being bottlenecked by internal storage.
+
+v. 1.2
+Fixes issue with pumps placed facing left and down.
+
+v. 1.1
+Updated pump graphics to help make direction more clear.
+
+v. 1.0
+Initial release with liquid and gas wall pumps.
