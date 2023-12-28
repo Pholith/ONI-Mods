@@ -1,6 +1,7 @@
-﻿using Database;
-using HarmonyLib;
+﻿using HarmonyLib;
 using KMod;
+using PeterHan.PLib.Database;
+using PeterHan.PLib.Options;
 using Pholib;
 using System;
 using System.Collections;
@@ -8,22 +9,44 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Egladil
+namespace GigaWattWire
 {
     public static class WirePatchs
     {
-
-
         public class WireMod : UserMod2
         {
-
             public override void OnLoad(Harmony harmony)
             {
                 base.OnLoad(harmony);
+                new POptions().RegisterOptions(this, typeof(WireOptions));
+                GameOnLoadPatch.ReadSettings();
+
+                new PLocalization().Register();
+                Utilities.GenerateStringsTemplate(typeof(WIRE_STRINGS));
+
             }
         }
 
+        // Load PLib settings on game load
+        [HarmonyPatch(typeof(Game), "Load")]
+        public static class GameOnLoadPatch
+        {
+            public static WireOptions Settings { get; private set; }
 
+            public static void Prefix()
+            {
+                ReadSettings();
+            }
+            public static void ReadSettings()
+            {
+                // read the option each time the game is loaded - so we don't need to restart all the game
+                Settings = POptions.ReadSettings<WireOptions>();
+                if (Settings == null)
+                {
+                    Settings = new WireOptions();
+                }
+            }
+        }
         public enum WattageRating
         {
             Max500W,
@@ -37,10 +60,21 @@ namespace Egladil
             NumRatings
         }
 
-        public static Wire.WattageRating ToWireWattageRating(this WattageRating rating) => (Wire.WattageRating)(int)rating;
-        public static WattageRating ToExtendedWireWattageRating(this Wire.WattageRating rating) => (WattageRating)(int)rating;
+        public static Wire.WattageRating ToWireWattageRating(this WattageRating rating)
+        {
+            return (Wire.WattageRating)(int)rating;
+        }
 
-        public static GameUtil.WattageFormatterUnit GetFormatterUnit(this Wire.WattageRating rating) => rating.ToExtendedWireWattageRating().GetFormatterUnit();
+        public static WattageRating ToExtendedWireWattageRating(this Wire.WattageRating rating)
+        {
+            return (WattageRating)(int)rating;
+        }
+
+        public static GameUtil.WattageFormatterUnit GetFormatterUnit(this Wire.WattageRating rating)
+        {
+            return rating.ToExtendedWireWattageRating().GetFormatterUnit();
+        }
+
         public static GameUtil.WattageFormatterUnit GetFormatterUnit(this WattageRating rating)
         {
             switch (rating)
@@ -82,7 +116,7 @@ namespace Egladil
                 }
 
                 //Log.Spam($"Marking {element.tag} as conductor");
-                var tags = element.oreTags.ToList();
+                List<Tag> tags = element.oreTags.ToList();
                 tags.Add(ConductorTag);
                 element.oreTags = tags.ToArray();
             }
@@ -222,19 +256,19 @@ namespace Egladil
         {
             public static bool Prefix(object ___circuitInfo)
             {
-                var circuitInfo = (IList)___circuitInfo;
+                IList circuitInfo = (IList)___circuitInfo;
 
                 for (int i = 0; i < circuitInfo.Count; i++)
                 {
                     object info = circuitInfo[i];
 
-                    var bridgeGroups = Traverse.Create(info).Field<List<WireUtilityNetworkLink>[]>("bridgeGroups");
+                    Traverse<List<WireUtilityNetworkLink>[]> bridgeGroups = Traverse.Create(info).Field<List<WireUtilityNetworkLink>[]>("bridgeGroups");
 
                     //Log.Spam($"FixBridgeGroups A {i}: {bridgeGroups.Value.Length}");
 
                     if (bridgeGroups.Value.Length >= (int)WattageRating.NumRatings) continue;
 
-                    var list = bridgeGroups.Value.ToList();
+                    List<List<WireUtilityNetworkLink>> list = bridgeGroups.Value.ToList();
                     while (list.Count < (int)WattageRating.NumRatings)
                     {
                         list.Add(new List<WireUtilityNetworkLink>());
@@ -383,12 +417,12 @@ namespace Egladil
         {
             public static void Prefix()
             {
-                Utilities.AddBuilding("Power", JacketedWireConfig.ID,       WIRE_STRINGS.JACKETED_WIRE.NAME, WIRE_STRINGS.JACKETED_WIRE.DESC, WIRE_STRINGS.JACKETED_WIRE.EFFECT);
-                Utilities.AddBuilding("Power", JacketedWireBridgeConfig.ID, WIRE_STRINGS.JACKETEDWIREBRIDGE.NAME, WIRE_STRINGS.JACKETEDWIREBRIDGE.DESC, WIRE_STRINGS.JACKETEDWIREBRIDGE.EFFECT);
-                Utilities.AddBuilding("Power", MegawattWireConfig.ID,       WIRE_STRINGS.MEGAWATTWIRE.NAME, WIRE_STRINGS.MEGAWATTWIRE.DESC, WIRE_STRINGS.MEGAWATTWIRE.EFFECT);
-                Utilities.AddBuilding("Power", MegawattWireBridgeConfig.ID, WIRE_STRINGS.MEGAWATTWIREBRIDGE.NAME, WIRE_STRINGS.MEGAWATTWIREBRIDGE.DESC, WIRE_STRINGS.MEGAWATTWIREBRIDGE.EFFECT);
-                Utilities.AddBuilding("Power", GigawattWireConfig.ID,       WIRE_STRINGS.GIGAWATTWIRE.NAME, WIRE_STRINGS.GIGAWATTWIRE.DESC, WIRE_STRINGS.GIGAWATTWIRE.EFFECT);
-                Utilities.AddBuilding("Power", GigawattWireBridgeConfig.ID, WIRE_STRINGS.GIGAWATTWIREBRIDGE.NAME, WIRE_STRINGS.GIGAWATTWIREBRIDGE.DESC, WIRE_STRINGS.GIGAWATTWIREBRIDGE.EFFECT);
+                Utilities.AddBuilding("Power", JacketedWireConfig.ID, WIRE_STRINGS.JACKETED_WIRE.NAME, WIRE_STRINGS.JACKETED_WIRE.DESC, WIRE_STRINGS.JACKETED_WIRE.EFFECT, GameOnLoadPatch.Settings.EnableJacketedWire);
+                Utilities.AddBuilding("Power", JacketedWireBridgeConfig.ID, WIRE_STRINGS.JACKETEDWIREBRIDGE.NAME, WIRE_STRINGS.JACKETEDWIREBRIDGE.DESC, WIRE_STRINGS.JACKETEDWIREBRIDGE.EFFECT, GameOnLoadPatch.Settings.EnableJacketedWire);
+                Utilities.AddBuilding("Power", MegawattWireConfig.ID, WIRE_STRINGS.MEGAWATTWIRE.NAME, WIRE_STRINGS.MEGAWATTWIRE.DESC, WIRE_STRINGS.MEGAWATTWIRE.EFFECT, GameOnLoadPatch.Settings.EnableMegaWattWire);
+                Utilities.AddBuilding("Power", MegawattWireBridgeConfig.ID, WIRE_STRINGS.MEGAWATTWIREBRIDGE.NAME, WIRE_STRINGS.MEGAWATTWIREBRIDGE.DESC, WIRE_STRINGS.MEGAWATTWIREBRIDGE.EFFECT, GameOnLoadPatch.Settings.EnableMegaWattWire);
+                Utilities.AddBuilding("Power", GigawattWireConfig.ID, WIRE_STRINGS.GIGAWATTWIRE.NAME, WIRE_STRINGS.GIGAWATTWIRE.DESC, WIRE_STRINGS.GIGAWATTWIRE.EFFECT, GameOnLoadPatch.Settings.EnableGigaWattWire);
+                Utilities.AddBuilding("Power", GigawattWireBridgeConfig.ID, WIRE_STRINGS.GIGAWATTWIREBRIDGE.NAME, WIRE_STRINGS.GIGAWATTWIREBRIDGE.DESC, WIRE_STRINGS.GIGAWATTWIREBRIDGE.EFFECT, GameOnLoadPatch.Settings.EnableGigaWattWire);
                 Utilities.AddBuilding("Power", PowerTransformer100kWConfig.ID, WIRE_STRINGS.POWERTRANSFORMER100KW.NAME, WIRE_STRINGS.POWERTRANSFORMER100KW.DESC, WIRE_STRINGS.POWERTRANSFORMER100KW.EFFECT);
                 Utilities.AddBuilding("Power", PowerTransformer2MWConfig.ID, WIRE_STRINGS.POWERTRANSFORMER2MW.NAME, WIRE_STRINGS.POWERTRANSFORMER2MW.DESC, WIRE_STRINGS.POWERTRANSFORMER2MW.EFFECT);
             }
@@ -403,19 +437,45 @@ namespace Egladil
                 {
                     Logs.Log(Db.Get().Techs[i].Id);
                 }
-                Utilities.AddBuildingTech("RenewableEnergy", JacketedWireConfig.ID);
-                Utilities.AddBuildingTech("RenewableEnergy", JacketedWireBridgeConfig.ID);
-                Utilities.AddBuildingTech("RenewableEnergy", MegawattWireConfig.ID);
-                Utilities.AddBuildingTech("RenewableEnergy", MegawattWireBridgeConfig.ID);
+                if (GameOnLoadPatch.Settings.EnableJacketedWire)
+                {
+                    Utilities.AddBuildingTech("RenewableEnergy", JacketedWireConfig.ID);
+                    Utilities.AddBuildingTech("RenewableEnergy", JacketedWireBridgeConfig.ID);
+                }
+                if (GameOnLoadPatch.Settings.EnableMegaWattWire)
+                {
+                    Utilities.AddBuildingTech("RenewableEnergy", MegawattWireConfig.ID);
+                    Utilities.AddBuildingTech("RenewableEnergy", MegawattWireBridgeConfig.ID);
+                }
                 Utilities.AddBuildingTech("RenewableEnergy", PowerTransformer100kWConfig.ID);
 
                 // CargoI doesn't work on Spaced Out 
                 string techId = DlcManager.IsExpansion1Active() ? "HighVelocityTransport" : "CargoI";
-                Utilities.AddBuildingTech(techId, GigawattWireConfig.ID);
-                Utilities.AddBuildingTech(techId, GigawattWireBridgeConfig.ID);
+                if (GameOnLoadPatch.Settings.EnableGigaWattWire)
+                {
+                    Utilities.AddBuildingTech(techId, GigawattWireConfig.ID);
+                    Utilities.AddBuildingTech(techId, GigawattWireBridgeConfig.ID);
+                }
                 Utilities.AddBuildingTech(techId, PowerTransformer2MWConfig.ID);
             }
         }
 
+        // Enable vanilla wire throuht walls
+        [HarmonyPatch(typeof(WireHighWattageConfig), nameof(WireHighWattageConfig.CreateBuildingDef))]
+        public static class WireHightWattage_CreateBuildingDef_GigaWattWire_Patch
+        {
+            public static void Postfix(ref BuildingDef __result)
+            {
+                if (GameOnLoadPatch.Settings.EnableHighWattageWireToPassThroughtWall) __result.BuildLocationRule = BuildLocationRule.Anywhere;
+            }
+        }
+        [HarmonyPatch(typeof(WireRefinedHighWattageConfig), nameof(WireRefinedHighWattageConfig.CreateBuildingDef))]
+        public static class WireHightWattageRefined_CreateBuildingDef_GigaWattWire_Patch
+        {
+            public static void Postfix(ref BuildingDef __result)
+            {
+                if (GameOnLoadPatch.Settings.EnableHighWattageWireToPassThroughtWall) __result.BuildLocationRule = BuildLocationRule.Anywhere;
+            }
+        }
     }
 }

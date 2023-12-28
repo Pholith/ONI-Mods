@@ -1,6 +1,6 @@
 ﻿using static STRINGS.UI;
 
-namespace Egladil
+namespace GigaWattWire
 {
     public class WIRE_STRINGS
     {

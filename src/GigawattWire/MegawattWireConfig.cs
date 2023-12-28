@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using static GigaWattWire.WirePatchs;
 
-namespace Egladil
+namespace GigaWattWire
 {
     public class MegawattWireConfig : BaseWireConfig
     {
@@ -10,7 +11,7 @@ namespace Egladil
         {
             BuildingDef buildingDef = CreateBuildingDef(ID, "megawatt_wire_kanim", 3f, WirePatchs.MEGAWATT_WIRE_MASS_KG, 0.05f, noise: TUNING.NOISE_POLLUTION.NONE, decor: TUNING.BUILDINGS.DECOR.PENALTY.TIER3);
             buildingDef.MaterialCategory = WirePatchs.MEGAWATT_WIRE_MATERIALS;
-            buildingDef.BuildLocationRule = BuildLocationRule.NotInTiles;
+            if (!GameOnLoadPatch.Settings.EnableBigWireToPassThroughtWall) buildingDef.BuildLocationRule = BuildLocationRule.NotInTiles;
             return buildingDef;
         }
 

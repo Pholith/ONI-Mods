@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Egladil
+namespace GigaWattWire
 {
     public class JacketedWireConfig : BaseWireConfig
     {

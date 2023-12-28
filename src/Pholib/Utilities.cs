@@ -298,10 +298,10 @@ namespace Pholib
         /// <summary>
         /// Add building strings and add building to Plan screen.
         /// </summary>
-        public static void AddBuilding(string category, string id, string name, string desc, string effect)
+        public static void AddBuilding(string category, string id, string name, string desc, string effect, bool addBuildintToPlanScreen = true)
         {
             AddBuildingStrings(id, name, desc, effect);
-            ModUtil.AddBuildingToPlanScreen(category, id);
+            if (addBuildintToPlanScreen) ModUtil.AddBuildingToPlanScreen(category, id);
         }
 
         /// <summary>

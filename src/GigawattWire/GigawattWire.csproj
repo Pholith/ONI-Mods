@@ -40,6 +40,7 @@
     <Compile Include="..\Pholib\Utilities.cs">
       <Link>Utilities.cs</Link>
     </Compile>
+    <Compile Include="WireOptions.cs" />
     <Compile Include="WIRE_STRINGS.cs" />
     <Compile Include="WirePatchs.cs" />
     <Compile Include="GigawattWireBridgeConfig.cs" />
@@ -89,6 +90,7 @@
     <None Include="anim\assets\megawatt_wire_bridge\megawatt_wire_bridge_build.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="app.config" />
     <None Include="mod.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -117,7 +119,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="elements\dummy.txt" />
-    <Content Include="previews\preview.png" />
+    <Content Include="previews\preview.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="previews\preview1.png" />
     <Content Include="previews\preview2.png" />
     <Content Include="previews\preview3.png" />
@@ -135,6 +139,14 @@
       <HintPath>..\packages\GameLibs\Assembly-CSharp-firstpass.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PLib, Version=4.13.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PLib.4.13.0\lib\net471\PLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
     <Reference Include="UnityEngine">
       <HintPath>..\packages\GameLibs\UnityEngine.dll</HintPath>
       <Private>False</Private>
