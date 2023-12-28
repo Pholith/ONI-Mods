@@ -15,7 +15,7 @@ namespace CustomizeYourPaints.Art
                 else if (CustomizeYourPaints.myOverrides.Count > 0)
                 {
                     string searchName = artOverride.overrideStage.Split('_')[1];
-                    Logs.Log("search name = " + searchName);
+                    //Logs.Log("search name = " + searchName);
                     currentStage = CustomizeYourPaints.myOverrides.Find((txt) => txt == searchName);
 
                     if (currentStage == null )

@@ -11,14 +11,14 @@ namespace CustomizeYourPaints.Art
 
         public bool IsCustomPaintStage(string id)
         {
-            Logs.Log("IsCustomStage " + id + " " + (id != null && CustomizeYourPaints.myOverrides.Contains(id)));
+            //Logs.Log("IsCustomStage " + id + " " + (id != null && CustomizeYourPaints.myOverrides.Contains(id)));
             return id != null && CustomizeYourPaints.myOverrides.Contains(id);
         }
 
         public void UpdateOverride(string newId)
         {
             overrideStage = IsCustomPaintStage(newId) ? newId : null;
-            Logs.Log("UpdateOverride " + overrideStage);
+            //Logs.Log("UpdateOverride " + overrideStage);
         }
 
         [Serialize]

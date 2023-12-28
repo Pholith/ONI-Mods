@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using Pholib;
 using UnityEngine;
 
 namespace CustomizeYourPaints.Art
@@ -8,7 +7,8 @@ namespace CustomizeYourPaints.Art
     [HarmonyPatch(typeof(CanvasConfig), "DoPostConfigureComplete")]
     public class CanvasConfig_DoPostConfigureComplete_Patch
     {
-        public static void ModifyGameObject(GameObject go) {
+        public static void ModifyGameObject(GameObject go)
+        {
             go.AddComponent<ArtOverride>().customExtraStages = CustomizeYourPaints.myOverrides;
             go.AddComponent<ArtOverrideRestorer>().fallback = "Default";
             go.GetComponent<KPrefabID>().prefabSpawnFn += delegate (GameObject g)

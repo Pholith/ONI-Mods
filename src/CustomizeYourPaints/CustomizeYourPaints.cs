@@ -1,6 +1,7 @@
 ﻿using CustomizeYourPaints.Art;
 using Database;
 using HarmonyLib;
+using Klei;
 using KMod;
 using Pholib;
 using System.Collections.Generic;
@@ -54,14 +55,25 @@ namespace CustomizeYourPaints
             byte[] wide_painting_build = File.ReadAllBytes(Path.Combine(ImageUtil.ModPath(), ORIGINALS_PATH, "painting_wide_art_a_build.bytes"));
 
             ArtableStages_Constructor_Patch.IdsToAdds = new List<Tuple<string, CanvasSize>>();
+            string customPaintsPath = FileSystem.Normalize(Path.Combine(Path.Combine(Manager.GetDirectory(), "config"), "CustomizeYourPaints"));
+
+            if (!Directory.Exists(customPaintsPath))
+            {
+                Directory.CreateDirectory(customPaintsPath);
+                string exampleImagePath = Path.Combine(ImageUtil.ModPath(), "src", "wide_ put your picture here.png");
+                if (File.Exists(exampleImagePath)) File.Move(exampleImagePath, Path.Combine(customPaintsPath, "wide_ put your picture here.png"));
+            }
 
             int counter = 0;
-            foreach (string filePath in Directory.EnumerateFiles(Path.Combine(ImageUtil.ModPath(), "src")))
+            foreach (string filePath in Directory.EnumerateFiles(customPaintsPath))
             {
                 counter++;
                 string[] splitedFile = Path.GetFileNameWithoutExtension(filePath).Split('_','-');
+
+                if (splitedFile.Length < 2) continue;
+
                 string prefix = splitedFile[0].ToLower();
-                string suffix = counter + "_" + splitedFile[1];
+                string suffix = counter.ToString("00") + "_" + splitedFile[1];
                 CanvasSize canvasSize = CanvasSize.Normal;
                 if (prefix.Contains("wide")) canvasSize = CanvasSize.Wide;
                 if (prefix.Contains("tall")) canvasSize = CanvasSize.Tall;
@@ -129,8 +141,8 @@ namespace CustomizeYourPaints
             {
                 Logs.Log("Adding " + tuple.first);
                 AddCustomPaint(__instance,
-                    tuple.first.Replace("_kanim", "").Replace($"{CUSTOM_PAINT_ID}_", "").Substring(1), 
-                    "A custom paint added using the CustomizeYourPaints mod", 
+                    tuple.first.Replace("_kanim", "").Replace($"{CUSTOM_PAINT_ID}_", "").Substring(2), 
+                    "A custom paint added using the CustomizeYourPaints mod.", 
                     tuple.first, tuple.first, tuple.second);
             }
 
@@ -150,7 +162,10 @@ namespace CustomizeYourPaints
                     targetPrefabId = CanvasWideConfig.ID;
                     break;
             }
-
+            if (__instance.Exists(id))
+            {
+                Logs.Error($"Paint with id {id} is already loaded. Check your images names.");
+            }
             myOverrides.Add(id);
             __instance.Add(
                 id,
