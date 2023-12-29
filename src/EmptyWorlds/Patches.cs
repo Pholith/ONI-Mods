@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using Klei;
 using KMod;
 using PeterHan.PLib.Core;
 using PeterHan.PLib.Database;
@@ -7,6 +8,7 @@ using ProcGenGame;
 using STRINGS;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace EmptyWorlds
@@ -15,7 +17,7 @@ namespace EmptyWorlds
     public class EmptyWorlds : UserMod2
     {
         public static EmptyWorldsOptions Settings { get; private set; }
-
+        public static Sprite spaceHoleSprite;
         public override void OnLoad(Harmony harmony)
         {
             base.OnLoad(harmony);
@@ -31,8 +33,24 @@ namespace EmptyWorlds
             }
             new PLocalization().Register();
             Pholib.Utilities.GenerateStringsTemplate(typeof(PHO_STRINGS));
+
+            spaceHoleSprite = PeterHan.PLib.UI.PUIUtils.LoadSpriteFile(Path.Combine(Pholib.Utilities.ModPath(), "SpaceHole.png"));
+            if (spaceHoleSprite == null)
+            {
+                Pholib.Logs.Error($"Sprite {Path.Combine(Pholib.Utilities.ModPath(), "SpaceHole.png")} could not be loaded. Sprit will remain default.");
+            }
         }
     }
+
+    [HarmonyPatch(typeof(Db)), HarmonyPatch("Initialize")]
+    class EmptyWorlds_DbInitializeaPatch
+    {
+        public static void Postfix()
+        {
+            if (EmptyWorlds.spaceHoleSprite != null) Assets.Sprites.Add("SpaceHole", EmptyWorlds.spaceHoleSprite);
+        }
+    }
+
 
     [HarmonyPatch(typeof(TemplateCache), "GetTemplate")]
     public class TemplateCache_GetTemplate

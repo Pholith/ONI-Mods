@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using UnityEngine;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
@@ -12,7 +13,7 @@ namespace Pholib
 {
     public class Logs
     {
-        private static readonly string version = "1.4";
+        private static readonly string version = "1.5";
 
         public static bool DebugLog = false;
         private static bool initiated = false;
@@ -78,7 +79,7 @@ namespace Pholib
         /// <returns></returns>
         public static string Dump(this object obj)
         {
-            var serializer = new SerializerBuilder()
+            Serializer serializer = new SerializerBuilder()
                 .WithNamingConvention(new CamelCaseNamingConvention())
                 .Build();
             return serializer.Serialize(obj);
@@ -100,6 +101,12 @@ namespace Pholib
 
     public class Utilities
     {
+
+        public static string ModPath()
+        {
+            return Directory.GetParent(Assembly.GetExecutingAssembly().Location) + Path.DirectorySeparatorChar.ToString();
+        }
+
         /// <summary>
         /// Generate a .pot file for user to be able to translate the mod.
         /// This is already called in ModUtil.RegisterForTranslation(), but not in PLib.

@@ -1,21 +1,29 @@
 ﻿using HarmonyLib;
 using KMod;
+using PeterHan.PLib.UI;
 using Pholib;
 using ProcGenGame;
 using System;
+using System.IO;
 using UnityEngine;
 
 namespace SolarSystemWorlds
 {
-    public class AllBiomesWorld : UserMod2
+    public class SolarSystemWorld : UserMod2
     {
+        public static Sprite IronCoreTraitSprite;
         public override void OnLoad(Harmony harmony)
         {
             base.OnLoad(harmony);
             Logs.DebugLog = true;
             WorldGenPatches.ExtremelyCold2_patch.OnLoad();
-            //PUtil.InitLibrary();
-            //new PLocalization().Register();
+
+            IronCoreTraitSprite = PUIUtils.LoadSpriteFile(Path.Combine(Utilities.ModPath(), "IronCore.png"));
+            if (IronCoreTraitSprite == null)
+            {
+                Logs.Error($"Sprite {Path.Combine(Utilities.ModPath(), "IronCore.png")} could not be loaded. Sprit will remain default.");
+            }
+
         }
     }
 

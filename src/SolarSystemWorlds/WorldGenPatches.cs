@@ -7,6 +7,17 @@ namespace SolarSystemWorlds
 {
     public class WorldGenPatches
     {
+        // Patch to add an icon to the iron core trait.
+        [HarmonyPatch(typeof(Db)), HarmonyPatch("Initialize")]
+        class EmptyWorlds_DbInitializeaPatch
+        {
+            public static void Postfix()
+            {
+                if (SolarSystemWorld.IronCoreTraitSprite != null) Assets.Sprites.Add("IronCore", SolarSystemWorld.IronCoreTraitSprite);
+            }
+        }
+
+
         public class ExtremelyCold2_patch
         {
             public static Dictionary<Range, string> TemperatureTable = new Dictionary<Range, string>();

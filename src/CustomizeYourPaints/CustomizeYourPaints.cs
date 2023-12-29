@@ -45,14 +45,14 @@ namespace CustomizeYourPaints
         {
             if (content != Content.Animation) return;
 
-            byte[] normal_painting_anim = File.ReadAllBytes(Path.Combine(ImageUtil.ModPath(), ORIGINALS_PATH, "painting_art_b_anim.bytes"));
-            byte[] normal_painting_build = File.ReadAllBytes(Path.Combine(ImageUtil.ModPath(), ORIGINALS_PATH, "painting_art_b_build.bytes"));
+            byte[] normal_painting_anim = File.ReadAllBytes(Path.Combine(Utilities.ModPath(), ORIGINALS_PATH, "painting_art_b_anim.bytes"));
+            byte[] normal_painting_build = File.ReadAllBytes(Path.Combine(Utilities.ModPath(), ORIGINALS_PATH, "painting_art_b_build.bytes"));
 
-            byte[] tall_painting_anim = File.ReadAllBytes(Path.Combine(ImageUtil.ModPath(), ORIGINALS_PATH, "painting_tall_art_a_anim.bytes"));
-            byte[] tall_painting_build = File.ReadAllBytes(Path.Combine(ImageUtil.ModPath(), ORIGINALS_PATH, "painting_tall_art_a_build.bytes"));
+            byte[] tall_painting_anim = File.ReadAllBytes(Path.Combine(Utilities.ModPath(), ORIGINALS_PATH, "painting_tall_art_a_anim.bytes"));
+            byte[] tall_painting_build = File.ReadAllBytes(Path.Combine(Utilities.ModPath(), ORIGINALS_PATH, "painting_tall_art_a_build.bytes"));
 
-            byte[] wide_painting_anim = File.ReadAllBytes(Path.Combine(ImageUtil.ModPath(), ORIGINALS_PATH, "painting_wide_art_a_anim.bytes"));
-            byte[] wide_painting_build = File.ReadAllBytes(Path.Combine(ImageUtil.ModPath(), ORIGINALS_PATH, "painting_wide_art_a_build.bytes"));
+            byte[] wide_painting_anim = File.ReadAllBytes(Path.Combine(Utilities.ModPath(), ORIGINALS_PATH, "painting_wide_art_a_anim.bytes"));
+            byte[] wide_painting_build = File.ReadAllBytes(Path.Combine(Utilities.ModPath(), ORIGINALS_PATH, "painting_wide_art_a_build.bytes"));
 
             ArtableStages_Constructor_Patch.IdsToAdds = new List<Tuple<string, CanvasSize>>();
             string customPaintsPath = FileSystem.Normalize(Path.Combine(Path.Combine(Manager.GetDirectory(), "config"), "CustomizeYourPaints"));
@@ -60,7 +60,7 @@ namespace CustomizeYourPaints
             if (!Directory.Exists(customPaintsPath))
             {
                 Directory.CreateDirectory(customPaintsPath);
-                string exampleImagePath = Path.Combine(ImageUtil.ModPath(), "src", "wide_ put your picture here.png");
+                string exampleImagePath = Path.Combine(Utilities.ModPath(), "src", "wide_ put your picture here.png");
                 if (File.Exists(exampleImagePath)) File.Move(exampleImagePath, Path.Combine(customPaintsPath, "wide_ put your picture here.png"));
             }
 
@@ -114,7 +114,7 @@ namespace CustomizeYourPaints
                         break;
                 }
                 Texture2D textureToReplace = ImageUtil.LoadPNG(filePath);
-                Texture2D normalPainting = ImageUtil.LoadPNG(Path.Combine(ImageUtil.ModPath(), ORIGINALS_PATH, artToReplace));
+                Texture2D normalPainting = ImageUtil.LoadPNG(Path.Combine(Utilities.ModPath(), ORIGINALS_PATH, artToReplace));
                 Texture2D normalPainting2 = ImageUtil.MergeImage(normalPainting, textureToReplace.ScaleTexture(bigImageToReplace.x, bigImageToReplace.y), bigImagePosition.x, bigImagePosition.y);
                 normalPainting2 = ImageUtil.MergeImage(normalPainting2, textureToReplace.ScaleTexture(littleImageToReplace.x, littleImageToReplace.y), littleImagePosition.x, littleImagePosition.y);
 

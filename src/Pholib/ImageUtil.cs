@@ -7,11 +7,6 @@ namespace Pholib
     public static class ImageUtil
     {
 
-        public static string ModPath()
-        {
-            return Directory.GetParent(Assembly.GetExecutingAssembly().Location) + Path.DirectorySeparatorChar.ToString();
-        }
-
         public static Texture2D LoadPNG(string filePath)
         {
             Texture2D tex = null;

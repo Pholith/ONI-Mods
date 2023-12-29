@@ -21,9 +21,8 @@
     <Snippet>
       <Code Language="CSharp">
         <![CDATA[    
-		[HarmonyPatch(typeof($CLASS$))]
-		[HarmonyPatch("$FUNCTION$")]
-		class $CLASSNAME$
+		[HarmonyPatch(typeof($CLASS$)), HarmonyPatch("$FUNCTION$")]
+		class $MODNAME$_$CLASS$$FUNCTION$Patch
 		{
 			public static void Postfix($TYPE$ $PARAMETER$)
 			{
@@ -42,8 +41,8 @@
           <Default>FunctionName</Default>
         </Literal>
         <Literal>
-          <ID>CLASSNAME</ID>
-          <Default>Patch</Default>
+          <ID>MODNAME</ID>
+          <Default>ModName</Default>
         </Literal>
         <Literal>
           <ID>TYPE</ID>
