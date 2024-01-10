@@ -9,59 +9,59 @@ namespace WallPumps
     [ModInfo("https://github.com/Pholith/ONI-Mods", "preview.png")]
     public class WallPumpOptions
     {
-        [Option("WallPumps.WALLPUMP_STRINGS.UI_ADD.ENABLED", category: "WallPumps.WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLPUMP.NAME")]
+        [Option("STRINGS.UI_ADD.ENABLED", category: "STRINGS.BUILDINGS.PREFABS.FAIRGASWALLPUMP.NAME")]
         [JsonProperty]
         public bool GasWallPumpEnabled { get; set; }
-        [Option("WallPumps.WALLPUMP_STRINGS.UI_ADD.ENERGY_CONSUMPTION", category: "WallPumps.WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLPUMP.NAME")]
+        [Option("STRINGS.UI_ADD.ENERGY_CONSUMPTION", category: "STRINGS.BUILDINGS.PREFABS.FAIRGASWALLPUMP.NAME")]
         [JsonProperty]
         public float GasWallPumpEnergyConsumption { get; set; }
-        [Option("WallPumps.WALLPUMP_STRINGS.UI_ADD.PUMP_RATE", category: "WallPumps.WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLPUMP.NAME")]
+        [Option("STRINGS.UI_ADD.PUMP_RATE", category: "STRINGS.BUILDINGS.PREFABS.FAIRGASWALLPUMP.NAME")]
         [JsonProperty]
         public float GasWallPumpRate{ get; set; }
-        [Option("WallPumps.WALLPUMP_STRINGS.UI_ADD.THERMAL_CONDUCTIVITY", category: "WallPumps.WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLPUMP.NAME")]
+        [Option("STRINGS.UI_ADD.THERMAL_CONDUCTIVITY", category: "STRINGS.BUILDINGS.PREFABS.FAIRGASWALLPUMP.NAME")]
         [JsonProperty]
         public float GasWallPumpThermalConductivity{ get; set; }
 
-        [Option("WallPumps.WALLPUMP_STRINGS.UI_ADD.ENABLED", category: "WallPumps.WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLPUMP.NAME")]
+        [Option("STRINGS.UI_ADD.ENABLED", category: "STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLPUMP.NAME")]
         [JsonProperty]
         public bool LiquidWallPumpEnabled { get; set; }
-        [Option("WallPumps.WALLPUMP_STRINGS.UI_ADD.ENERGY_CONSUMPTION", category: "WallPumps.WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLPUMP.NAME")]
+        [Option("STRINGS.UI_ADD.ENERGY_CONSUMPTION", category: "STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLPUMP.NAME")]
         [JsonProperty]
         public float LiquidWallPumEnergyConsumption { get; set; }
-        [Option("WallPumps.WALLPUMP_STRINGS.UI_ADD.PUMP_RATE", category: "WallPumps.WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLPUMP.NAME")]
+        [Option("STRINGS.UI_ADD.PUMP_RATE", category: "STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLPUMP.NAME")]
         [JsonProperty]
         public float LiquidWallPumpRate { get; set; }
-        [Option("WallPumps.WALLPUMP_STRINGS.UI_ADD.THERMAL_CONDUCTIVITY", category: "WallPumps.WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLPUMP.NAME")]
+        [Option("STRINGS.UI_ADD.THERMAL_CONDUCTIVITY", category: "STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLPUMP.NAME")]
         [JsonProperty]
         public float LiquidWallPumpThermalConductivity { get; set; }
 
-        [Option("WallPumps.WALLPUMP_STRINGS.UI_ADD.ENABLED", category: "WallPumps.WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLVENT.NAME")]
+        [Option("STRINGS.UI_ADD.ENABLED", category: "STRINGS.BUILDINGS.PREFABS.FAIRGASWALLVENT.NAME")]
         [JsonProperty]
         public bool GasWallVentEnabled { get; set; }
-        [Option("WallPumps.WALLPUMP_STRINGS.UI_ADD.MAX_PRESSURE", category: "WallPumps.WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLVENT.NAME")]
+        [Option("STRINGS.UI_ADD.MAX_PRESSURE", category: "STRINGS.BUILDINGS.PREFABS.FAIRGASWALLVENT.NAME")]
         [JsonProperty]
         public float GasWallVentMaxPressure{ get; set; }
-        [Option("WallPumps.WALLPUMP_STRINGS.UI_ADD.THERMAL_CONDUCTIVITY", category: "WallPumps.WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLVENT.NAME")]
+        [Option("STRINGS.UI_ADD.THERMAL_CONDUCTIVITY", category: "STRINGS.BUILDINGS.PREFABS.FAIRGASWALLVENT.NAME")]
         [JsonProperty]
         public float GasWallVentThermalConductivity { get; set; }
 
-        [Option("WallPumps.WALLPUMP_STRINGS.UI_ADD.ENABLED", category: "WallPumps.WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLVENTHIGHTPRESSURE.NAME")]
+        [Option("STRINGS.UI_ADD.ENABLED", category: "STRINGS.BUILDINGS.PREFABS.VENTHIGHPRESSURE.NAME")]
         [JsonProperty]
         public bool GasWallPressureVentEnabled { get; set; }
-        [Option("WallPumps.WALLPUMP_STRINGS.UI_ADD.MAX_PRESSURE", category: "WallPumps.WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLVENTHIGHTPRESSURE.NAME")]
+        [Option("STRINGS.UI_ADD.MAX_PRESSURE", category: "STRINGS.BUILDINGS.PREFABS.VENTHIGHPRESSURE.NAME")]
         [JsonProperty]
         public float GasWallPressureMaxPressure { get; set; }
-        [Option("WallPumps.WALLPUMP_STRINGS.UI_ADD.THERMAL_CONDUCTIVITY", category: "WallPumps.WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLVENTHIGHTPRESSURE.NAME")]
+        [Option("STRINGS.UI_ADD.THERMAL_CONDUCTIVITY", category: "STRINGS.BUILDINGS.PREFABS.VENTHIGHPRESSURE.NAME")]
         [JsonProperty]
         public float GasWallPressureThermalConductivity { get; set; }
 
-        [Option("WallPumps.WALLPUMP_STRINGS.UI_ADD.ENABLED", category: "WallPumps.WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLVENT.NAME")]
+        [Option("STRINGS.UI_ADD.ENABLED", category: "STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLVENT.NAME")]
         [JsonProperty]
         public bool LiquidWallVentEnabled { get; set; }
-        [Option("WallPumps.WALLPUMP_STRINGS.UI_ADD.MAX_PRESSURE", category: "WallPumps.WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLVENT.NAME")]
+        [Option("STRINGS.UI_ADD.MAX_PRESSURE", category: "STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLVENT.NAME")]
         [JsonProperty]
         public float LiquidWallVentMaxPressure{ get; set; }
-        [Option("WallPumps.WALLPUMP_STRINGS.UI_ADD.THERMAL_CONDUCTIVITY", category: "WallPumps.WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLVENT.NAME")]
+        [Option("STRINGS.UI_ADD.THERMAL_CONDUCTIVITY", category: "STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLVENT.NAME")]
         [JsonProperty]
         public float LiquidWallVentThermalConductivity { get; set; }
 

@@ -6,7 +6,7 @@ namespace WallPumps
 {
     public class GasWallVentHighPressure : IBuildingConfig
     {
-        public const string ID = "FairGasWallVentHighPressure";
+        public const string ID = "VentHighPressure";
 
         public static void AddToMenus()
         {

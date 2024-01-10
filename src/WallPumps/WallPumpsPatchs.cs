@@ -1,23 +1,22 @@
 ﻿using HarmonyLib;
+using KMod;
 using PeterHan.PLib.Core;
 using PeterHan.PLib.Database;
 using PeterHan.PLib.Options;
-using System;
-using static Localization;
-using static STRINGS.INPUT_BINDINGS;
+using Pholib;
+using System.Collections.Generic;
 
 namespace WallPumps
 {
     public class WallPumpsPatchs : KMod.UserMod2
     {
+        public static string modPath;
         public override void OnLoad(Harmony harmony)
         {
             base.OnLoad(harmony);
             PUtil.InitLibrary();
 
-            new PLocalization().Register();
-            Pholib.Utilities.GenerateStringsTemplate(typeof(WALLPUMP_STRINGS));
-
+            modPath = this.path;
             new POptions().RegisterOptions(this, typeof(WallPumpOptions));
             GameOnLoadPatch.ReadSettings();
         }
@@ -27,17 +26,18 @@ namespace WallPumps
     {
         public static void Prefix()
         {
-            Pholib.Utilities.AddBuildingStrings(GasWallPump.ID, WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLPUMP.NAME, 
-                WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLPUMP.DESC, WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLPUMP.EFFECT);
-            Pholib.Utilities.AddBuildingStrings(GasWallVent.ID, WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLVENT.NAME, 
+            Pholib.Utilities.AddBuildingStrings(GasWallPump.ID, WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLPUMP.NAME,
+    WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLPUMP.DESC, WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLPUMP.EFFECT);
+            Pholib.Utilities.AddBuildingStrings(GasWallVent.ID, WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLVENT.NAME,
                 WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLVENT.DESC, WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLVENT.EFFECT);
-            Pholib.Utilities.AddBuildingStrings(GasWallVentHighPressure.ID, WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLVENTHIGHTPRESSURE.NAME, 
-                WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLVENTHIGHTPRESSURE.DESC, WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRGASWALLVENTHIGHTPRESSURE.EFFECT);
-            
-            Pholib.Utilities.AddBuildingStrings(LiquidWallPump.ID, WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLPUMP.NAME, 
+            Pholib.Utilities.AddBuildingStrings(GasWallVentHighPressure.ID, WALLPUMP_STRINGS.BUILDINGS.PREFABS.VENTHIGHPRESSURE.NAME,
+                WALLPUMP_STRINGS.BUILDINGS.PREFABS.VENTHIGHPRESSURE.DESC, WALLPUMP_STRINGS.BUILDINGS.PREFABS.VENTHIGHPRESSURE.EFFECT);
+
+            Pholib.Utilities.AddBuildingStrings(LiquidWallPump.ID, WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLPUMP.NAME,
                 WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLPUMP.DESC, WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLPUMP.EFFECT);
-            Pholib.Utilities.AddBuildingStrings(LiquidWallVent.ID, WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLVENT.NAME, 
+            Pholib.Utilities.AddBuildingStrings(LiquidWallVent.ID, WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLVENT.NAME,
                 WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLVENT.DESC, WALLPUMP_STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLVENT.EFFECT);
+
         }
     }
     // Load PLib settings on game load
@@ -61,16 +61,24 @@ namespace WallPumps
         }
     }
 
+    [HarmonyPatch(typeof(Localization))]
+    [HarmonyPatch("Initialize")]
+    public static class Localization_Initialize_Patch
+    {
+        public static void Postfix()
+        {
+            Utilities.LoadTranslations(typeof(WALLPUMP_STRINGS), WallPumpsPatchs.modPath);
+            LocString.CreateLocStringKeys(typeof(WALLPUMP_STRINGS.UI_ADD));
+            Pholib.Utilities.GenerateStringsTemplate(typeof(WALLPUMP_STRINGS));
+
+        }
+    }
     [HarmonyPatch(typeof(Db))]
     [HarmonyPatch("Initialize")]
     public static class Db_Initialize_Patch
     {
         public static void Postfix()
         {
-            Debug.Log(" === WallPumps v. 2.7 Db_Initialize Postfix === ");
-            // Add buildings
-
-
 
             // Add tech tree/building menu entries
             GasWallPump.AddToMenus();

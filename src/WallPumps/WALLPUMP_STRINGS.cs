@@ -26,7 +26,7 @@ namespace WallPumps
                     public static LocString DESC = "A gas vent that's also a wall";
                     public static LocString EFFECT = "Releases " + UI.FormatAsLink("Gas", "ELEMENTS_GAS") + " into a room";
                 }
-                public static class FAIRGASWALLVENTHIGHTPRESSURE
+                public static class VENTHIGHPRESSURE
                 {
                     public static LocString NAME = "High pressure gas wall vent";
                     public static LocString DESC = "A high pressure gas vent that's also a wall";
@@ -53,4 +53,6 @@ namespace WallPumps
             public static LocString THERMAL_CONDUCTIVITY = "Thermal conductivity";
         }
     }
+
+
 }
