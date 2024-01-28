@@ -103,7 +103,7 @@ namespace GigaWattWire
         public static readonly float[] JACKETED_WIRE_MASS_KG = new float[] { TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER1[0], TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER_TINY[0] };
 
         public static readonly string[] GIGAWATT_WIRE_MATERIALS = new string[] { SimHashes.Ceramic.ToString(), SimHashes.TempConductorSolid.ToString(), TUNING.MATERIALS.PLASTIC };
-        public static readonly float[] GIGAWATT_WIRE_MASS_KG = new float[] { TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER3[0], TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER0[0], TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER1[0] };
+        public static readonly float[] GIGAWATT_WIRE_MASS_KG = new float[] { TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER2[0], TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER3[0], TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER1[0] };
 
         [HarmonyPatch(typeof(ElementLoader), nameof(ElementLoader.Load))]
         public class ElementLoader_LoadUserElementData
@@ -126,6 +126,8 @@ namespace GigaWattWire
                 MakeConductor(ElementLoader.GetElement(SimHashes.Copper.ToString()));
                 MakeConductor(ElementLoader.GetElement(SimHashes.Gold.ToString()));
                 MakeConductor(ElementLoader.GetElement(SimHashes.Aluminum.ToString()));
+                MakeConductor(ElementLoader.GetElement(SimHashes.Tungsten.ToString()));
+                MakeConductor(ElementLoader.GetElement(SimHashes.TempConductorSolid.ToString()));
             }
         }
 
