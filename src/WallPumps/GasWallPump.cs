@@ -1,4 +1,5 @@
 ﻿using FairONI;
+using System.Linq;
 using TUNING;
 using UnityEngine;
 
@@ -66,6 +67,7 @@ namespace WallPumps
             go.AddOrGet<TileTemperature>();
             BuildingHP buildingHP = go.AddOrGet<BuildingHP>();
             buildingHP.destroyOnDamaged = true;
+
         }
 
         public override void DoPostConfigurePreview(BuildingDef def, GameObject go)

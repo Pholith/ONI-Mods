@@ -2,6 +2,7 @@
 using TUNING;
 using FairONI;
 using STRINGS;
+using Pholib;
 
 namespace WallPumps
 {
@@ -88,15 +89,17 @@ namespace WallPumps
             AddVisualizer(go, false);
         }
 
+        public override void ConfigurePost(BuildingDef def)
+        {
+        }
         public override void DoPostConfigureComplete(GameObject go)
         {
             go.AddOrGetDef<VentController.Def>();
             AddVisualizer(go, false);
-
             GeneratedBuildings.RemoveLoopingSounds(go);
         }
 
-        private static void AddVisualizer(GameObject go, bool movable)
+    private static void AddVisualizer(GameObject go, bool movable)
         {
             RangeVisualizer _RangeVisualizer = go.AddOrGet<RangeVisualizer>();
 

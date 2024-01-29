@@ -5,6 +5,9 @@ using PeterHan.PLib.Database;
 using PeterHan.PLib.Options;
 using Pholib;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using static KAnim.Build;
 
 namespace WallPumps
 {
@@ -89,5 +92,69 @@ namespace WallPumps
         }
     }
 
+    // Patchs to hide and show some sprite depending of the orientation of the build. Because of the aniamtion of 3GuB
+    [HarmonyPatch(typeof(BuildingComplete), "OnSpawn")]
+    public static class WallPump_BuildingComplete_OnSpawn_Patch
+    {
+        public static void Postfix(BuildingComplete __instance)
+        {
+            if (!__instance.gameObject.TryGetComponent(out KBatchedAnimController kAnim) || kAnim.name != "FairLiquidWallVentComplete") return;
+            
+            Rotatable rotatable = __instance.gameObject.GetComponent<Rotatable>();
+            if (rotatable.Orientation == Orientation.R180) // Bas
+            {
+                kAnim.SetSymbolVisiblity("leak_side", false);
+                kAnim.SetSymbolVisiblity("leak_side_b", false);
+                kAnim.SetSymbolVisiblity("leak_floor", false);
+            }
+            else if (rotatable.Orientation == Orientation.R90) // Right
+            {
+                kAnim.SetSymbolVisiblity("leak_ceiling", false);
+                kAnim.SetSymbolVisiblity("leak_side_b", false);
+                kAnim.SetSymbolVisiblity("leak_floor", false);
+            }
+            else if (rotatable.Orientation == Orientation.R270) // Left
+            {
+                kAnim.SetSymbolVisiblity("leak_ceiling", false);
+                kAnim.SetSymbolVisiblity("leak_side", false);
+                kAnim.SetSymbolVisiblity("leak_floor", false);
+            }
+            else if (rotatable.Orientation == Orientation.Neutral) // Up
+            {
+                kAnim.SetSymbolVisiblity("leak_side", false);
+                kAnim.SetSymbolVisiblity("leak_side_b", false);
+                kAnim.SetSymbolVisiblity("leak_ceiling", false);
+            }
+        }
+    }
+    [HarmonyPatch(typeof(ConduitConsumer), "Consume")]
+    public static class WallPump_ConduitConsumer_Consume_Patch
+    {
+        public static void Postfix(ConduitConsumer __instance, ConduitFlow conduit_mgr)
+        {
+            if (__instance.gameObject.name != "FairLiquidWallVentComplete") return;
+            if (!__instance.gameObject.TryGetComponent(out KBatchedAnimController kAnim) || kAnim.name != "FairLiquidWallVentComplete") return;
 
+            Color? substanceColor = Assets.instance.substanceTable.GetSubstance(__instance.lastConsumedElement)?.colour;
+            Color finalSubstanceColor = substanceColor.HasValue ? substanceColor.Value : Color.white;
+            kAnim.SetSymbolTint("leak_side", finalSubstanceColor);
+            kAnim.SetSymbolTint("leak_side_b", finalSubstanceColor);
+            kAnim.SetSymbolTint("leak_ceiling", finalSubstanceColor);
+            kAnim.SetSymbolTint("leak_floor", finalSubstanceColor);
+            kAnim.SetSymbolTint("liquid", finalSubstanceColor);
+        }
+    }
+    [HarmonyPatch(typeof(ConduitDispenser), "FindSuitableElement")]
+    public static class WallPump_ConduitDispenser_FindSuitableElement_Patch
+    {
+        public static void Postfix(ConduitDispenser __instance, PrimaryElement __result)
+        {
+            if (__instance.gameObject.name != "FairLiquidWallPumpComplete") return;
+            if (__result == null) return;
+            if (!__instance.gameObject.TryGetComponent(out KBatchedAnimController kAnim) || kAnim.name != "FairLiquidWallPumpComplete") return;
+
+            Color? substanceColor = Assets.instance.substanceTable.GetSubstance(__result.ElementID)?.colour;
+            kAnim.SetSymbolTint("liquid", substanceColor.HasValue ? substanceColor.Value : Color.white);
+        }
+    }
 }
