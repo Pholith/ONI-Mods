@@ -13,8 +13,8 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. EmptyWorlds.WorldsPatches.E_DESCRIPTION
-msgctxt "EmptyWorlds.WorldsPatches.E_DESCRIPTION"
+#. EmptyWorlds.PHO_STRINGS.E_DESCRIPTION
+msgctxt "EmptyWorlds.PHO_STRINGS.E_DESCRIPTION"
 msgid ""
 "Emptera is a difficult empty asteroid. Resources are limited and you will "
 "have to take advantage of your geysers to get them.\n"
@@ -30,13 +30,13 @@ msgstr ""
 "astéroïde a quelques avantages avec son vide. </smallcaps>\n"
 "\n"
 
-#. EmptyWorlds.WorldsPatches.E_NAME
-msgctxt "EmptyWorlds.WorldsPatches.E_NAME"
+#. EmptyWorlds.PHO_STRINGS.E_NAME
+msgctxt "EmptyWorlds.PHO_STRINGS.E_NAME"
 msgid "Emptera"
 msgstr ""
 
-#. EmptyWorlds.WorldsPatches.I_DESCRIPTION
-msgctxt "EmptyWorlds.WorldsPatches.I_DESCRIPTION"
+#. EmptyWorlds.PHO_STRINGS.I_DESCRIPTION
+msgctxt "EmptyWorlds.PHO_STRINGS.I_DESCRIPTION"
 msgid ""
 "Islands is an asteroid composed of asteroids. The resources are scattered "
 "and you will have to go through space to colonize the place.\n"
@@ -53,17 +53,17 @@ msgstr ""
 "aménagements</smallcaps>\n"
 "\n"
 
-#. EmptyWorlds.WorldsPatches.I_NAME
-msgctxt "EmptyWorlds.WorldsPatches.I_NAME"
+#. EmptyWorlds.PHO_STRINGS.I_NAME
+msgctxt "EmptyWorlds.PHO_STRINGS.I_NAME"
 msgid "Islands"
 msgstr ""
 
-#. EmptyWorlds.WorldsPatches.SPACE_HOLE_DESC
-msgctxt "EmptyWorlds.WorldsPatches.SPACE_HOLE_DESC"
+#. EmptyWorlds.PHO_STRINGS.SPACE_HOLE_DESC
+msgctxt "EmptyWorlds.PHO_STRINGS.SPACE_HOLE_DESC"
 msgid "This world is completely full of holes and emptiness everywhere."
 msgstr "Ce monde est complètement troué et possède du vide un peu partout."
 
-#. EmptyWorlds.WorldsPatches.SPACE_HOLE_NAME
-msgctxt "EmptyWorlds.WorldsPatches.SPACE_HOLE_NAME"
+#. EmptyWorlds.PHO_STRINGS.SPACE_HOLE_NAME
+msgctxt "EmptyWorlds.PHO_STRINGS.SPACE_HOLE_NAME"
 msgid "Holes"
 msgstr "Troues"

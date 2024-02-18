@@ -179,6 +179,9 @@
     <None Include="translations\fr.po">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="translations\ru.po">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="worldgen\biomes\Earth.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -133,8 +133,7 @@ namespace SolarSystemWorlds
     }
 
     
-    [HarmonyPatch(typeof(Db))]
-    [HarmonyPatch("Initialize")]
+    [HarmonyPatch(typeof(Db)), HarmonyPatch("Initialize")]
     public class WorldAdds
     {
         public static void Postfix()

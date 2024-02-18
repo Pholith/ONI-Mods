@@ -1,9 +1,8 @@
 ﻿using HarmonyLib;
-using Klei;
 using KMod;
 using PeterHan.PLib.Core;
-using PeterHan.PLib.Database;
 using PeterHan.PLib.Options;
+using Pholib;
 using ProcGenGame;
 using STRINGS;
 using System;
@@ -18,6 +17,8 @@ namespace EmptyWorlds
     {
         public static EmptyWorldsOptions Settings { get; private set; }
         public static Sprite spaceHoleSprite;
+        public static string modPath;
+
         public override void OnLoad(Harmony harmony)
         {
             base.OnLoad(harmony);
@@ -25,28 +26,39 @@ namespace EmptyWorlds
 
             // Init PLib and settings
             PUtil.InitLibrary();
+            modPath = path;
 
             Settings = POptions.ReadSettings<EmptyWorldsOptions>();
             if (Settings == null)
             {
                 Settings = new EmptyWorldsOptions();
             }
-            new PLocalization().Register();
-            Pholib.Utilities.GenerateStringsTemplate(typeof(PHO_STRINGS));
 
-            spaceHoleSprite = PeterHan.PLib.UI.PUIUtils.LoadSpriteFile(Path.Combine(Pholib.Utilities.ModPath(), "SpaceHole.png"));
+            spaceHoleSprite = PeterHan.PLib.UI.PUIUtils.LoadSpriteFile(Path.Combine(Utilities.ModPath(), "SpaceHole.png"));
             if (spaceHoleSprite == null)
             {
-                Pholib.Logs.Error($"Sprite {Path.Combine(Pholib.Utilities.ModPath(), "SpaceHole.png")} could not be loaded. Sprit will remain default.");
+                Logs.Error($"Sprite {Path.Combine(Utilities.ModPath(), "SpaceHole.png")} could not be loaded. Sprit will remain default.");
             }
         }
     }
 
-    [HarmonyPatch(typeof(Db)), HarmonyPatch("Initialize")]
-    class EmptyWorlds_DbInitializeaPatch
+    [HarmonyPatch(typeof(Localization))]
+    [HarmonyPatch("Initialize")]
+    public static class Localization_Initialize_Patch
     {
         public static void Postfix()
         {
+            Utilities.LoadTranslations(typeof(PHO_STRINGS), EmptyWorlds.modPath);
+            Utilities.GenerateStringsTemplate(typeof(PHO_STRINGS));
+        }
+    }
+    [HarmonyPatch(typeof(Db)), HarmonyPatch("Initialize")]
+    public class EmptyWorlds_DbInitializeaPatch
+    {
+        public static void Postfix()
+        {
+            Utilities.AddWorldYaml(typeof(PHO_STRINGS));
+
             if (EmptyWorlds.spaceHoleSprite != null) Assets.Sprites.Add("SpaceHole", EmptyWorlds.spaceHoleSprite);
         }
     }
@@ -107,7 +119,9 @@ namespace EmptyWorlds
                 Console.WriteLine(ex.Message);
                 Debug.LogWarning(ex.Message);
             }
-            
+
         }
     }
+
+
 }
