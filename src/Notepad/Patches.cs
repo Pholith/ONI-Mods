@@ -2,6 +2,7 @@
 using KMod;
 using PeterHan.PLib.Database;
 using PeterHan.PLib.Options;
+using Pholib;
 using System.Collections.Generic;
 using UnityEngine;
 using static Pholib.Utilities;
@@ -14,6 +15,7 @@ namespace Notepad
         {
             base.OnLoad(harmony);
             new POptions().RegisterOptions(this, typeof(NotepadOptions));
+            GameOnLoadPatch.ReadSettings(); // Read settings early for the notepad description setting.
 
             new PLocalization().Register();
             GenerateStringsTemplate(typeof(PHO_STRINGS));
@@ -73,12 +75,10 @@ namespace Notepad
         public static void Postfix()
         {
             List<DetailsScreen.SideScreenRef> sideScreens = Traverse.Create(DetailsScreen.Instance).Field("sideScreens").GetValue<List<DetailsScreen.SideScreenRef>>();
-            GameObject sideScreenContentBody = Traverse.Create(DetailsScreen.Instance).Field("sideScreenContentBody").GetValue<GameObject>();
-
+            GameObject sideScreenContentBody = Traverse.Create(DetailsScreen.Instance).Field("sideScreenConfigContentBody").GetValue<GameObject>();
 
             NotepadControl controller = new NotepadControl();
             NotepadSideScreen screen = controller.RootPanel.AddComponent<NotepadSideScreen>();
-
             screen.Control = controller;
             screen.gameObject.transform.parent = sideScreenContentBody.transform;
             screen.gameObject.transform.localScale = Vector3.one;
