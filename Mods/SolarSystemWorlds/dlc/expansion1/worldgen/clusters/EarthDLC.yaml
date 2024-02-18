@@ -1,4 +1,4 @@
-name: SolarSystemWorlds.WorldAdds.SOLAR_SYSTEM_NAME
+name: SolarSystemWorlds.SOLAR_STRINGS.SOLAR_SYSTEM_NAME
 description: STRINGS.WORLDS.FOREST_DEFAULT.DESCRIPTION
 requiredDlcId: EXPANSION1_ID
 coordinatePrefix: ERT-PHO

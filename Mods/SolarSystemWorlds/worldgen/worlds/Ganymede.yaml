@@ -1,5 +1,5 @@
-name: SolarSystemWorlds.WorldAdds.G_NAME
-description: SolarSystemWorlds.WorldAdds.G_DESC
+name: SolarSystemWorlds.SOLAR_STRINGS.G_NAME
+description: SolarSystemWorlds.SOLAR_STRINGS.G_DESC
 asteroidIcon: planet_ganymede_kanim
 
 worldTraitScale: 0.4 # Adjust with worldSize. Traits are tuned to base game world sizes.

@@ -1,5 +1,5 @@
-name: SolarSystemWorlds.WorldAdds.T_NAME
-description: SolarSystemWorlds.WorldAdds.T_DESC
+name: SolarSystemWorlds.SOLAR_STRINGS.T_NAME
+description: SolarSystemWorlds.SOLAR_STRINGS.T_DESC
 asteroidIcon: planet_titan_kanim
 nameTables: [ SPACE ]
 

@@ -1,5 +1,5 @@
-name: SolarSystemWorlds.WorldAdds.IRON_CORE_NAME
-description: SolarSystemWorlds.WorldAdds.IRON_CORE_DESC
+name: SolarSystemWorlds.SOLAR_STRINGS.IRON_CORE_NAME
+description: SolarSystemWorlds.SOLAR_STRINGS.IRON_CORE_DESC
 colorHex: 990000
 exclusiveWith:
   - traits/FrozenCore

@@ -1,5 +1,5 @@
-name: STRINGS.WORLDS.FOREST_DEFAULT.NAME # Arboria
-description: STRINGS.WORLDS.FOREST_DEFAULT.DESCRIPTION
+name: SolarSystemWorlds.SOLAR_STRINGS.E_NAME
+description: SolarSystemWorlds.SOLAR_STRINGS.E_DESC
 coordinatePrefix: ERT-PHO
 forbiddenDlcId: EXPANSION1_ID
 

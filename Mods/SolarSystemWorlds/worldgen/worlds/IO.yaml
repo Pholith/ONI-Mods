@@ -1,7 +1,7 @@
 # IO isn't ended and can't be played
 # + IO isn't compatible with worldgen since SpacedOut
-name: SolarSystemWorlds.WorldAdds.I_NAME
-description: SolarSystemWorlds.WorldAdds.I_DESC
+name: SolarSystemWorlds.SOLAR_STRINGS.I_NAME
+description: SolarSystemWorlds.SOLAR_STRINGS.I_DESC
 spriteName: Asteroid_IO
 coordinatePrefix: IO-PHO
 difficulty: 1

@@ -319,6 +319,37 @@
             The mod's current version.
             </summary>
         </member>
+        <member name="T:PeterHan.PLib.AVC.ModOutdatedWarning">
+            <summary>
+            Added to the main menu to warn users if mods are out of date.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.AVC.ModOutdatedWarning.Instance">
+            <summary>
+            The singleton (should be!) instance of this class.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.AVC.ModOutdatedWarning.modsButton">
+            <summary>
+            The button used to open the Mods screen.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.AVC.ModOutdatedWarning.FindModsButton(UnityEngine.Transform)">
+            <summary>
+            Finds the "Mods" button and stores it in the modsButton field.
+            </summary>
+            <param name="buttonParent">The parent of all the main menu buttons.</param>
+        </member>
+        <member name="M:PeterHan.PLib.AVC.ModOutdatedWarning.UpdateText">
+            <summary>
+            Updates the Mods button text.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.AVC.ModOutdatedWarning.UpdateTextThreaded">
+            <summary>
+            Updates the button text in a coroutine after one frame.
+            </summary>
+        </member>
         <member name="T:PeterHan.PLib.AVC.ModVersionCheckResults">
             <summary>
             The results of checking the mod version.
@@ -356,6 +387,12 @@
             <param name="result">The results of the check. If null, the check has failed,
             and the next version should be tried.</param>
         </member>
+        <member name="F:PeterHan.PLib.AVC.PVersionCheck.WORKING_VERSION">
+            <summary>
+            Versions of PVersionCheck older than this version are broken and do not pass the
+            linked list correctly.
+            </summary>
+        </member>
         <member name="P:PeterHan.PLib.AVC.PVersionCheck.Instance">
             <summary>
             The instantiated copy of this class.
@@ -390,9 +427,19 @@
             The mods whose version will be checked.
             </summary>
         </member>
+        <member name="P:PeterHan.PLib.AVC.PVersionCheck.OutdatedMods">
+            <summary>
+            The number of mods that appear to be outdated.
+            </summary>
+        </member>
         <member name="F:PeterHan.PLib.AVC.PVersionCheck.results">
             <summary>
             The location where the outcome of mod version checking will be stored.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.AVC.PVersionCheck.resultsByMod">
+            <summary>
+            Stores results by the mod static ID. Only populated in the active instance.
             </summary>
         </member>
         <member name="M:PeterHan.PLib.AVC.PVersionCheck.AddWarningIfOutdated(System.Object)">
@@ -466,6 +513,11 @@
         <member name="P:PeterHan.PLib.AVC.PVersionCheck.VersionCheckMethods.Methods">
             <summary>
             The methods which will be used to check.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.AVC.PVersionCheck.VersionCheckMethods.ModToCheck">
+            <summary>
+            The mod whose version will be checked.
             </summary>
         </member>
         <member name="T:PeterHan.PLib.AVC.SteamVersionChecker">
@@ -1884,6 +1936,12 @@
             </summary>
             <param name="value">The new value for the shared data.</param>
         </member>
+        <member name="T:PeterHan.PLib.Core.PForwardedComponent.PComponentComparator">
+            <summary>
+            Compares two forwarded components to each other. The latest versions will be
+            sorted first.
+            </summary>
+        </member>
         <member name="T:PeterHan.PLib.Core.PGameUtils">
             <summary>
             Utility and helper functions to perform common game-related (not UI) tasks.
@@ -2103,6 +2161,16 @@
         <member name="F:PeterHan.PLib.Core.PLibStrings.RESTART_OK">
             <summary>
             The OK button in the restart dialog.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.Core.PLibStrings.MAINMENU_UPDATE">
+            <summary>
+            Displayed in the menu when mods report as being outdated.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.Core.PLibStrings.MAINMENU_UPDATE_1">
+            <summary>
+            Displayed in the menu when a mod reports as being outdated.
             </summary>
         </member>
         <member name="F:PeterHan.PLib.Core.PLibStrings.OUTDATED_TOOLTIP">

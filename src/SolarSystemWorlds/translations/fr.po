@@ -14,8 +14,8 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. SolarSystemWorlds.WorldAdds.E_DESC
-msgctxt "SolarSystemWorlds.WorldAdds.E_DESC"
+#. SolarSystemWorlds.SOLAR_STRINGS.E_DESC
+msgctxt "SolarSystemWorlds.SOLAR_STRINGS.E_DESC"
 msgid ""
 "The Earth is the cradle of humanity, it is where the distant ancestors of "
 "the duplicants lived, they should have a little trouble finding their place "
@@ -27,13 +27,13 @@ msgstr ""
 "place ici.\n"
 "\n"
 
-#. SolarSystemWorlds.WorldAdds.E_NAME
-msgctxt "SolarSystemWorlds.WorldAdds.E_NAME"
+#. SolarSystemWorlds.SOLAR_STRINGS.E_NAME
+msgctxt "SolarSystemWorlds.SOLAR_STRINGS.E_NAME"
 msgid "Earth"
 msgstr "La Terre"
 
-#. SolarSystemWorlds.WorldAdds.G_DESC
-msgctxt "SolarSystemWorlds.WorldAdds.G_DESC"
+#. SolarSystemWorlds.SOLAR_STRINGS.G_DESC
+msgctxt "SolarSystemWorlds.SOLAR_STRINGS.G_DESC"
 msgid ""
 "Ganymede is a moon of Jupiter, the largest moon in the entire solar system. "
 "It contains a lot of water under its surface.\n"
@@ -51,23 +51,23 @@ msgstr ""
 "ressources\n"
 "\n"
 
-#. SolarSystemWorlds.WorldAdds.G_NAME
-msgctxt "SolarSystemWorlds.WorldAdds.G_NAME"
+#. SolarSystemWorlds.SOLAR_STRINGS.G_NAME
+msgctxt "SolarSystemWorlds.SOLAR_STRINGS.G_NAME"
 msgid "Ganymede"
 msgstr "Ganymède"
 
-#. SolarSystemWorlds.WorldAdds.IRON_CORE_DESC
-msgctxt "SolarSystemWorlds.WorldAdds.IRON_CORE_DESC"
+#. SolarSystemWorlds.SOLAR_STRINGS.IRON_CORE_DESC
+msgctxt "SolarSystemWorlds.SOLAR_STRINGS.IRON_CORE_DESC"
 msgid "This world has a core of liquid iron"
 msgstr "Ce monde possède un coeur de fer liquide"
 
-#. SolarSystemWorlds.WorldAdds.IRON_CORE_NAME
-msgctxt "SolarSystemWorlds.WorldAdds.IRON_CORE_NAME"
+#. SolarSystemWorlds.SOLAR_STRINGS.IRON_CORE_NAME
+msgctxt "SolarSystemWorlds.SOLAR_STRINGS.IRON_CORE_NAME"
 msgid "Iron Core"
 msgstr "Noyau de fer"
 
-#. SolarSystemWorlds.WorldAdds.M_DESC
-msgctxt "SolarSystemWorlds.WorldAdds.M_DESC"
+#. SolarSystemWorlds.SOLAR_STRINGS.M_DESC
+msgctxt "SolarSystemWorlds.SOLAR_STRINGS.M_DESC"
 msgid ""
 "The Moon is the Earth's only natural satellite, probably the result of a "
 "collision 4.4 billion years ago between our fledgling planet and a small "
@@ -85,13 +85,13 @@ msgstr ""
 "survivront pas sans une extrême préparation\n"
 "\n"
 
-#. SolarSystemWorlds.WorldAdds.M_NAME
-msgctxt "SolarSystemWorlds.WorldAdds.M_NAME"
+#. SolarSystemWorlds.SOLAR_STRINGS.M_NAME
+msgctxt "SolarSystemWorlds.SOLAR_STRINGS.M_NAME"
 msgid "Moon"
 msgstr "Lune"
 
-#. SolarSystemWorlds.WorldAdds.T_DESC
-msgctxt "SolarSystemWorlds.WorldAdds.T_DESC"
+#. SolarSystemWorlds.SOLAR_STRINGS.T_DESC
+msgctxt "SolarSystemWorlds.SOLAR_STRINGS.T_DESC"
 msgid ""
 "Titan is one of Saturn's moons, the second largest moon in the solar system "
 "and the only planet other than Earth that has liquid oceans. Oceans... of "
@@ -111,11 +111,11 @@ msgstr ""
 "précieuses ressources\n"
 "\n"
 
-#. SolarSystemWorlds.WorldAdds.T_NAME
-msgctxt "SolarSystemWorlds.WorldAdds.T_NAME"
+#. SolarSystemWorlds.SOLAR_STRINGS.T_NAME
+msgctxt "SolarSystemWorlds.SOLAR_STRINGS.T_NAME"
 msgid "Titan"
 msgstr "Titan"
 
-#~ msgctxt "SolarSystemWorlds.WorldAdds.IRON_CORE_DESC"
+#~ msgctxt "SolarSystemWorlds.SOLAR_STRINGS.IRON_CORE_DESC"
 #~ msgid "Replace the asteroid core with a liquid iron core"
 #~ msgstr "Ce monde possède un coeur de fer liquide"

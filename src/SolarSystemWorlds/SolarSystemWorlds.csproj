@@ -38,6 +38,7 @@
       <Link>Utilities.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SOLAR_STRINGS.cs" />
     <Compile Include="WorldAdds.cs" />
     <Compile Include="WorldGenPatches.cs" />
   </ItemGroup>
@@ -438,8 +439,8 @@
       <HintPath>..\packages\GameLibs\Assembly-CSharp-firstpass.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="PLib, Version=4.13.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PLib.4.13.0\lib\net471\PLib.dll</HintPath>
+    <Reference Include="PLib, Version=4.14.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PLib.4.14.1\lib\net471\PLib.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
     <Reference Include="Unity.TextMeshPro">

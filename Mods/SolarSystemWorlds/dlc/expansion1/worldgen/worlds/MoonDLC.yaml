@@ -1,5 +1,5 @@
-name: SolarSystemWorlds.WorldAdds.M_NAME
-description: SolarSystemWorlds.WorldAdds.M_DESC
+name: SolarSystemWorlds.SOLAR_STRINGS.M_NAME
+description: SolarSystemWorlds.SOLAR_STRINGS.M_DESC
 asteroidIcon: planet_moon_kanim
 nameTables: [ SPACE ]
 

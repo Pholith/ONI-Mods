@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using KMod;
+using PeterHan.PLib.Core;
 using PeterHan.PLib.UI;
 using Pholib;
 using ProcGenGame;
@@ -11,11 +12,15 @@ namespace SolarSystemWorlds
 {
     public class SolarSystemWorld : UserMod2
     {
+
+        public static string modPath;
         public static Sprite IronCoreTraitSprite;
+
         public override void OnLoad(Harmony harmony)
         {
             base.OnLoad(harmony);
-            Logs.DebugLog = true;
+            modPath = path;
+            //Logs.DebugLog = true;
             WorldGenPatches.ExtremelyCold2_patch.OnLoad();
 
             IronCoreTraitSprite = PUIUtils.LoadSpriteFile(Path.Combine(Utilities.ModPath(), "IronCore.png"));
@@ -70,11 +75,11 @@ namespace SolarSystemWorlds
     {
         private static KAnimFile GetWorldAnim()
         {
-            if (Utilities.IsOnCluster(WorldAdds.TitanId)) return Assets.GetAnim("saturn_kanim");
-            if (Utilities.IsOnCluster(WorldAdds.GanymedeId)) return Assets.GetAnim("jupiter_kanim");
-            if (Utilities.IsOnCluster(WorldAdds.IOId)) return Assets.GetAnim("jupiter_kanim");
-            if (Utilities.IsOnCluster(WorldAdds.EarthId)) return Assets.GetAnim("moon_kanim");
-            if (Utilities.IsOnCluster(WorldAdds.MoonId)) return Assets.GetAnim("earth2_kanim");
+            if (Utilities.IsOnCluster(SOLAR_STRINGS.TitanId)) return Assets.GetAnim("saturn_kanim");
+            if (Utilities.IsOnCluster(SOLAR_STRINGS.GanymedeId)) return Assets.GetAnim("jupiter_kanim");
+            if (Utilities.IsOnCluster(SOLAR_STRINGS.IOId)) return Assets.GetAnim("jupiter_kanim");
+            if (Utilities.IsOnCluster(SOLAR_STRINGS.EarthId)) return Assets.GetAnim("moon_kanim");
+            if (Utilities.IsOnCluster(SOLAR_STRINGS.MoonId)) return Assets.GetAnim("earth2_kanim");
             return null;
         }
 
@@ -86,11 +91,11 @@ namespace SolarSystemWorlds
         // incomprehensible code but... it works
         public static void Postfix()
         {
-            if (Utilities.IsOnCluster(WorldAdds.GanymedeId) ||
-                Utilities.IsOnCluster(WorldAdds.TitanId) ||
-                Utilities.IsOnCluster(WorldAdds.EarthId) ||
-                Utilities.IsOnCluster(WorldAdds.MoonId) ||
-                Utilities.IsOnCluster(WorldAdds.IOId))
+            if (Utilities.IsOnCluster(SOLAR_STRINGS.GanymedeId) ||
+                Utilities.IsOnCluster(SOLAR_STRINGS.TitanId) ||
+                Utilities.IsOnCluster(SOLAR_STRINGS.EarthId) ||
+                Utilities.IsOnCluster(SOLAR_STRINGS.MoonId) ||
+                Utilities.IsOnCluster(SOLAR_STRINGS.IOId))
             {
                 // Patch the moon
                 if (EarthConfigPatch.earthAnimController != null)
@@ -127,54 +132,21 @@ namespace SolarSystemWorlds
         }
     }
 
-
+    
     [HarmonyPatch(typeof(Db))]
     [HarmonyPatch("Initialize")]
     public class WorldAdds
     {
-
-        public static LocString SOLAR_SYSTEM_NAME = "Solar System";
-
-        public static LocString G_NAME = "Ganymede";
-        public static LocString G_DESC = "Ganymede is a moon of Jupiter, the largest moon in the entire solar system. It contains a lot of water under its surface.\n\nGanymede will be a difficult experience, to help you in your planetary conquest, you have your habitable rocket that will provide you with valuable resources\n\n";
-
-        public static LocString T_NAME = "Titan";
-        public static LocString T_DESC = "Titan is one of Saturn's moons, the second largest moon in the solar system and the only planet other than Earth that has liquid oceans. Oceans... of methane\n\nTitan is an extremely cold planet, to help you in your planetary conquest, you have your habitable rocket that will provide you with valuable resources\n\n";
-
-
-        public static LocString E_NAME = "Earth";
-        public static LocString E_DESC = "The Earth is the cradle of humanity, it is where the distant ancestors of the duplicants lived, they should have a little trouble finding their place here.\n\n";
-
-        public static LocString M_NAME = "Moon";
-        public static LocString M_DESC = "The Moon is the Earth's only natural satellite, probably the result of a collision 4.4 billion years ago between our fledgling planet and a small celestial body called Theia.\n\nThe lunar surface is barren and without resources, your duplicants will not survive without extreme preparation.\n\n";
-
-        public static LocString I_NAME = "IO";
-        public static LocString I_DESC = "\n\n";
-
-
-        public static LocString IRON_CORE_NAME = "Iron Core";
-        public static LocString IRON_CORE_DESC = "This world has a core of liquid iron";
-
-
-        // strings that will not be override by local translation
-        public static string GanymedeId = G_NAME;
-        public static string TitanId = T_NAME;
-        public static string EarthId = E_NAME;
-        public static string MoonId = M_NAME;
-        public static string IOId = I_NAME;
-
-
         public static void Postfix()
         {
-            Utilities.AddWorldYaml(typeof(WorldAdds));
-
+            Utilities.AddWorldYaml(typeof(SOLAR_STRINGS));
             Strings.Add(new string[]
             {
-                "STRINGS.SUBWORLDS.EARTH.NAME", E_NAME
+                "STRINGS.SUBWORLDS.EARTH.NAME", SOLAR_STRINGS.E_NAME
             });
             Strings.Add(new string[]
             {
-                "STRINGS.SUBWORLDS.EARTH.DESC", E_DESC
+                "STRINGS.SUBWORLDS.EARTH.DESC", SOLAR_STRINGS.E_DESC
             });
             Strings.Add(new string[]
             {
@@ -182,11 +154,11 @@ namespace SolarSystemWorlds
             });
             Strings.Add(new string[]
             {
-                "STRINGS.SUBWORLDS.GANYMEDE.NAME", G_NAME
+                "STRINGS.SUBWORLDS.GANYMEDE.NAME", SOLAR_STRINGS.G_NAME
             });
             Strings.Add(new string[]
             {
-                "STRINGS.SUBWORLDS.GANYMEDE.DESC", G_DESC
+                "STRINGS.SUBWORLDS.GANYMEDE.DESC", SOLAR_STRINGS.G_DESC
             });
             Strings.Add(new string[]
             {
@@ -194,11 +166,11 @@ namespace SolarSystemWorlds
             });
             Strings.Add(new string[]
             {
-                "STRINGS.SUBWORLDS.TITAN.NAME", T_NAME
+                "STRINGS.SUBWORLDS.TITAN.NAME", SOLAR_STRINGS.T_NAME
             });
             Strings.Add(new string[]
             {
-                "STRINGS.SUBWORLDS.TITAN.DESC", T_DESC
+                "STRINGS.SUBWORLDS.TITAN.DESC", SOLAR_STRINGS.T_DESC
             });
             Strings.Add(new string[]
             {
@@ -206,16 +178,30 @@ namespace SolarSystemWorlds
             });
             Strings.Add(new string[]
             {
-                "STRINGS.SUBWORLDS.MOON.NAME", M_NAME
+                "STRINGS.SUBWORLDS.MOON.NAME", SOLAR_STRINGS.M_NAME
             });
             Strings.Add(new string[]
             {
-                "STRINGS.SUBWORLDS.MOON.DESC", M_DESC
+                "STRINGS.SUBWORLDS.MOON.DESC", SOLAR_STRINGS.M_DESC
             });
             Strings.Add(new string[]
             {
                 "STRINGS.SUBWORLDS.MOON.UTILITY", ""
             });
+
+        }
+    }
+
+    [HarmonyPatch(typeof(Localization))]
+    [HarmonyPatch("Initialize")]
+    public static class Localization_Initialize_Patch
+    {
+        public static void Postfix()
+        {
+            Utilities.LoadTranslations(typeof(SOLAR_STRINGS), SolarSystemWorld.modPath);
+            //LocString.CreateLocStringKeys(typeof(WALLPUMP_STRINGS.UI_ADD));
+            Utilities.GenerateStringsTemplate(typeof(SOLAR_STRINGS));
+
         }
     }
 }
