@@ -119,7 +119,8 @@ namespace ILoveSlicksters
                 .Add(idleState);
 
             CritterCondoInteractMontior.Def def2 = gameObject.AddOrGetDef<CritterCondoInteractMontior.Def>();
-            def2.useunderWaterCondos = true;
+            def2.condoPrefabTag = "UnderwaterCritterCondo";
+            def2.requireCavity = false;
 
             LureableMonitor.Def def5 = gameObject.AddOrGetDef<LureableMonitor.Def>();
             def5.lures = new Tag[]
