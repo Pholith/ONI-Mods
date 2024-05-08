@@ -71,6 +71,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="anim\buildings\blu\He_Extractor_anim.bytes" />
+    <None Include="anim\buildings\blu\He_Extractor_build.bytes" />
+    <None Include="anim\buildings\grey\He_Extractor_anim.bytes" />
+    <None Include="anim\buildings\grey\He_Extractor_build.bytes" />
     <None Include="anim\buildings\helium_extractor\He_Extractor_anim.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -85,6 +89,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="anim\buildings\blu\He_Extractor.png" />
+    <Content Include="anim\buildings\grey\He_Extractor.png" />
     <Content Include="anim\buildings\helium_extractor\He_Extractor.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using Newtonsoft.Json;
 using STRINGS;
 using System;
 using System.Collections.Generic;
@@ -79,10 +80,10 @@ namespace Pholib
         /// <returns></returns>
         public static string Dump(this object obj)
         {
-            Serializer serializer = new SerializerBuilder()
-                .WithNamingConvention(new CamelCaseNamingConvention())
-                .Build();
-            return serializer.Serialize(obj);
+            var jsonOptions = new JsonSerializerSettings();
+            jsonOptions.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            return JsonConvert.SerializeObject(obj, jsonOptions);
+
         }
 
         public static string ListToString<T>(this List<T> list) where T : class

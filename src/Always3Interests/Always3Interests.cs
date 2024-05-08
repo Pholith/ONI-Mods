@@ -173,13 +173,13 @@ namespace Always3Interests
     [HarmonyPatch("GenerateTraits")]
     public class TraitPatch
     {
-        public static bool Prefix(MinionStartingStats __instance, bool is_starter_minion, List<ChoreGroup> disabled_chore_groups, string guaranteedAptitudeID = null, string guaranteedTraitID = null)
+        public static bool Prefix(MinionStartingStats __instance, bool is_starter_minion, List<ChoreGroup> disabled_chore_groups, string guaranteedAptitudeID = null, string guaranteedTraitID = null, bool isDebugMinion = false)
         {
             DUPLICANTSTATS.MAX_TRAITS = 10;
 
             int statDelta = 0;
             List<string> selectedTraits = new List<string>();
-            System.Random randSeed = new System.Random();
+            KRandom randSeed = new KRandom();
 
             Trait trait = Db.Get().traits.Get(__instance.personality.stresstrait);
             __instance.stressTrait = trait;
@@ -196,11 +196,8 @@ namespace Always3Interests
             {
                 __instance.joyTrait = Db.Get().traits.Get("None");
             }
+            __instance.stickerType = __instance.personality.stickerType;
 
-            Trait trait2 = Db.Get().traits.TryGet(__instance.personality.congenitaltrait);
-
-            if (trait2 == null || trait2.Name == "None")
-                __instance.stickerType = __instance.personality.stickerType;
             
             Trait trait3 = Db.Get().traits.TryGet(__instance.personality.congenitaltrait);
             if (trait3 == null || trait3.Name == "None")
@@ -286,55 +283,79 @@ namespace Always3Interests
                             global::Debug.LogWarning("Trying to add nonexistent trait: " + traitVal.id);
                             num6--;
                         }
-                        else if (is_starter_minion && !trait4.ValidStarterTrait)
+                        else if (!isDebugMinion || trait4.disabledChoreGroups == null || trait4.disabledChoreGroups.Length == 0)
                         {
-                            num6--;
-                        }
-                        else if ((bool)Traverse.Create(__instance).Method("AreTraitAndAptitudesExclusive", new object[] { traitVal, __instance.skillAptitudes }).GetValue())
-                        {
-                            num6--;
-                        }
-                        else if (is_starter_minion && guaranteedAptitudeID != null &&
-                            (bool)Traverse.Create(__instance).Method("AreTraitAndArchetypeExclusive", new object[] { traitVal, guaranteedAptitudeID }).GetValue())
-                        {
-                            num6--;
-                        }
-                        else
-                        {
-                            if (!(bool)Traverse.Create(__instance).Method("AreTraitsMutuallyExclusive", new object[] { traitVal, selectedTraits }).GetValue())
+                            if (is_starter_minion && !trait4.ValidStarterTrait)
                             {
-                                selectedTraits.Add(traitVal.id);
-                                statDelta += traitVal.statBonus;
-                                __instance.rarityBalance += (positiveTrait ? (-traitVal.rarity) : traitVal.rarity);
-                                __instance.Traits.Add(trait4);
-                                if (trait4.disabledChoreGroups != null)
-                                {
-                                    for (int j = 0; j < trait4.disabledChoreGroups.Length; j++)
-                                    {
-                                        disabled_chore_groups.Add(trait4.disabledChoreGroups[j]);
-                                    }
-                                }
-                                return true;
+                                num6--;
                             }
-                            num6--;
+                            else if (traitVal.doNotGenerateTrait)
+                            {
+                                num6--;
+                            }
+                            else if ((bool)Traverse.Create(__instance).Method("AreTraitAndAptitudesExclusive", new object[] { traitVal, __instance.skillAptitudes }).GetValue())
+                            {
+                                num6--;
+                            }
+                            else if (is_starter_minion && guaranteedAptitudeID != null &&
+                                (bool)Traverse.Create(__instance).Method("AreTraitAndArchetypeExclusive", new object[] { traitVal, guaranteedAptitudeID }).GetValue())
+                            {
+                                num6--;
+                            }
+                            else
+                            {
+                                if (!(bool)Traverse.Create(__instance).Method("AreTraitsMutuallyExclusive", new object[] { traitVal, selectedTraits }).GetValue())
+                                {
+                                    selectedTraits.Add(traitVal.id);
+                                    statDelta += traitVal.statBonus;
+                                    __instance.rarityBalance += (positiveTrait ? (-traitVal.rarity) : traitVal.rarity);
+                                    __instance.Traits.Add(trait4);
+                                    if (trait4.disabledChoreGroups != null)
+                                    {
+                                        for (int j = 0; j < trait4.disabledChoreGroups.Length; j++)
+                                        {
+                                            disabled_chore_groups.Add(trait4.disabledChoreGroups[j]);
+                                        }
+                                    }
+                                    return true;
+                                }
+                                num6--;
+                            }
                         }
                     }
                 }
                 return false;
             };
 
-
             int numberOfGoodTraits = Always3Interests.Settings.numberOfGoodTraits;
             int numberOfBadTraits = Always3Interests.Settings.numberOfBadTraits;
 
-            if (numberOfGoodTraits > 5)
+            if (numberOfGoodTraits > 5) numberOfGoodTraits = 5;
+            if (numberOfBadTraits > 5) numberOfBadTraits = 5;
+
+
+            if (!string.IsNullOrEmpty(guaranteedTraitID))
             {
-                numberOfGoodTraits = 5;
+                DUPLICANTSTATS.TraitVal traitVal = DUPLICANTSTATS.GetTraitVal(guaranteedTraitID);
+                if (traitVal.id == guaranteedTraitID)
+                {
+                    Trait trait4 = Db.Get().traits.TryGet(traitVal.id);
+                    bool positiveTrait2 = trait4.PositiveTrait;
+                    selectedTraits.Add(traitVal.id);
+                    statDelta += traitVal.statBonus;
+                    
+                    __instance.rarityBalance += (positiveTrait2 ? (-traitVal.rarity) : traitVal.rarity);
+                    __instance.Traits.Add(trait4);
+                    if (trait4.disabledChoreGroups != null)
+                    {
+                        for (int i = 0; i < trait4.disabledChoreGroups.Length; i++)
+                        {
+                            disabled_chore_groups.Add(trait4.disabledChoreGroups[i]);
+                        }
+                    }
+                }
             }
-            if (numberOfBadTraits > 5)
-            {
-                numberOfBadTraits = 5;
-            }
+
 
             for (int i = 0; i < numberOfBadTraits; i++)
             {
