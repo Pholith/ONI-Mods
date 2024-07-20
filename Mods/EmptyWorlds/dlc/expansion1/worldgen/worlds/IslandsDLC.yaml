@@ -35,7 +35,7 @@ subworldFiles:
   - name: subworlds/ocean/Ocean
     weight: 0.8
   - name: subworlds/rust/Rust
-  - name: expansion1::subworlds/wasteland/WasteLandBeetle
+  - name: expansion1::subworlds/wasteland/WastelandBeetle
   - name: subworlds/barren/BarrenGranite
     weight: 0.3
 
@@ -96,7 +96,7 @@ unknownCellsAllowedSubworlds:
       - subworlds/ocean/Ocean
       - subworlds/rust/Rust
       - subworlds/space/Space
-      - expansion1::subworlds/wasteland/WasteLandBeetle
+      - expansion1::subworlds/wasteland/WastelandBeetle
 
   - tagcommand: DistanceFromTag
     tag: AtStart

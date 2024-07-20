@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
+using static TUNING.DUPLICANTSTATS;
 
 namespace Always3Interests
 {
@@ -211,6 +212,7 @@ namespace Always3Interests
 
             Func<List<DUPLICANTSTATS.TraitVal>, bool, bool> func = delegate (List<DUPLICANTSTATS.TraitVal> traitPossibilities, bool positiveTrait)
             {
+
                 if (__instance.Traits.Count > DUPLICANTSTATS.MAX_TRAITS)
                 {
                     return false;
@@ -267,7 +269,8 @@ namespace Always3Interests
                 list2.ShuffleSeeded(new KRandom());
                 foreach (DUPLICANTSTATS.TraitVal traitVal in list2)
                 {
-                    if (!DlcManager.IsContentActive(traitVal.dlcId))
+				    global::Debug.Assert(SaveLoader.Instance != null, "IsDLCActiveForCurrentSave should not be called from the front end");
+                    if (!SaveLoader.Instance.IsDLCActiveForCurrentSave(traitVal.dlcId))
                     {
                         num6--;
                     }

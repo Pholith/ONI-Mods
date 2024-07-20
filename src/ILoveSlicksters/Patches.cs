@@ -319,6 +319,7 @@ namespace ILoveSlicksters
     {
         CO2 = SimHashes.CarbonDioxide,
         Oxygen = SimHashes.Oxygen,
+        OxyRock = SimHashes.OxyRock,
         Chlorine = SimHashes.ChlorineGas,
         Helium = SimHashes.Helium,
         Water = SimHashes.Water,

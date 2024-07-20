@@ -258,9 +258,9 @@ namespace Pholib
         public static void AddCarePackage(ref Immigration immigration, string objectId, float amount, Func<bool> requirement = null)
         {
             Traverse field = Traverse.Create(immigration).Field("carePackages");
-            List<CarePackageInfo> list = field.GetValue<CarePackageInfo[]>().ToList();
+            List<CarePackageInfo> list = field.GetValue<List<CarePackageInfo>>().ToList();
             list.Add(new CarePackageInfo(objectId, amount, requirement));
-            field.SetValue(list.ToArray());
+            field.SetValue(list);
         }
 
 

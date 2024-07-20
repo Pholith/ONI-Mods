@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using static CustomizeYourPaints.CustomizeYourPaints;
+using static STRINGS.UI.TOOLS;
 
 namespace CustomizeYourPaints
 {
@@ -129,6 +130,30 @@ namespace CustomizeYourPaints
             }
         }
     }
+
+    [HarmonyPatch(typeof(InventoryOrganization), "GenerateSubcategories")]
+    public class InventoryOrganization_GenerateSubcategories_Patch
+    {
+        public static void Postfix()
+        {
+            foreach (Tuple<string, CanvasSize> tuple in ArtableStages_Constructor_Patch.IdsToAdds)
+            {
+                switch (tuple.second)
+                {
+                    case CanvasSize.Normal:
+                        InventoryOrganization.subcategoryIdToPermitIdsMap[InventoryOrganization.PermitSubcategories.BUILDING_CANVAS_STANDARD].Add(tuple.first);
+                        break;
+                    case CanvasSize.Tall:
+                        InventoryOrganization.subcategoryIdToPermitIdsMap[InventoryOrganization.PermitSubcategories.BUILDING_CANVAS_PORTRAIT].Add(tuple.first);
+                        break;
+                    case CanvasSize.Wide:
+                        InventoryOrganization.subcategoryIdToPermitIdsMap[InventoryOrganization.PermitSubcategories.BUILDING_CANVAS_LANDSCAPE].Add(tuple.first);
+                        break;
+                }
+            }
+        }
+    }
+
     [HarmonyPatch(typeof(ArtableStages), MethodType.Constructor, typeof(ResourceSet))]
     public class ArtableStages_Constructor_Patch
     {
@@ -141,7 +166,7 @@ namespace CustomizeYourPaints
             {
                 Logs.Log("Adding " + tuple.first);
                 AddCustomPaint(__instance,
-                    tuple.first.Replace("_kanim", "").Replace($"{CUSTOM_PAINT_ID}_", "").Substring(2), 
+                    tuple.first.Replace("_kanim", "").Replace($"{CUSTOM_PAINT_ID}_", "").Substring(3), 
                     "A custom paint added using the CustomizeYourPaints mod.", 
                     tuple.first, tuple.first, tuple.second);
             }
@@ -177,7 +202,9 @@ namespace CustomizeYourPaints
                 decor,
                 true,
                 ArtableStatuses.ArtableStatusType.LookingGreat.ToString(),
-                targetPrefabId
+                targetPrefabId,
+                "",
+                new string[] { }
                 );
         }
     }
