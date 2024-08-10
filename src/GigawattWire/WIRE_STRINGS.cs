@@ -12,8 +12,6 @@ namespace GigaWattWire
             public static LocString EFFECT = string.Concat("Connects buildings to ", FormatAsLink("Power", "POWER"), " sources. \n\nCan be run through wall and floor tile.");
 
             public static LocString DESC = "By coating the wires in plastic they suddenly became much safer.";
-
-
         }
 
         public static class JACKETEDWIREBRIDGE
@@ -23,7 +21,6 @@ namespace GigaWattWire
             public static LocString EFFECT = string.Concat("Carries even more ", FormatAsLink("Wattage", "POWER"), " than a ", FormatAsLink("Conductive Wire Bridge", "WIREREFINEDBRIDGE"), " without overloading.");
 
             public static LocString DESC = "By coating the wires in plastic they suddenly became much safer.";
-
         }
         public static class MEGAWATTWIRE
         {
@@ -32,7 +29,6 @@ namespace GigaWattWire
             public static LocString EFFECT = string.Concat("Carries even more ", FormatAsLink("Wattage", "POWER"), " than a ", FormatAsLink("Jacked Wire", "WIREREFINEDHIGHWATTAGE"), " without overloading.\n\nCannot be run through wall and floor tile.");
 
             public static LocString DESC = "This one goes up to 1000 kW.";
-
         }
         public static class MEGAWATTWIREBRIDGE
         {
@@ -42,7 +38,6 @@ namespace GigaWattWire
                 "Allows ", FormatAsLink(" Mega-Watt Wire", "MEGAWATTWIRE"), " to be run through wall and floor tile.");
 
             public static LocString DESC = "Joint plates can run Mega-Watt wires through walls without leaking gas or liquid.";
-
         }
         public static class GIGAWATTWIRE
         {
@@ -51,7 +46,6 @@ namespace GigaWattWire
             public static LocString EFFECT = string.Concat("Carries even more ", FormatAsLink("Wattage", "POWER"), " than a ", FormatAsLink("Mega - Watt Wire", "MEGAWATTWIRE"), ".\n\nCannot be run through wall and floor tile.");
 
             public static LocString DESC = "By using special superconductive materials and low temperatures this wire can carry up to 1000 MW.";
-
         }
         public static class GIGAWATTWIREBRIDGE
         {
@@ -61,7 +55,6 @@ namespace GigaWattWire
                 "Allows ", FormatAsLink(" Mega-Watt Wire", "MEGAWATTWIRE"), " to be run through wall and floor tile.");
 
             public static LocString DESC = "Joint plates can run Giga-Watt wires through walls without leaking gas or liquid.";
-
         }
         public static class POWERTRANSFORMER100KW
         {
@@ -70,7 +63,6 @@ namespace GigaWattWire
             public static LocString EFFECT = string.Concat("Limits ", FormatAsLink("Power", "POWER"), " flowing through the Transformer to 100 kW");
 
             public static LocString DESC = "For those times you need a really big transformer.";
-
         }
 
         public static class POWERTRANSFORMER2MW
@@ -80,7 +72,6 @@ namespace GigaWattWire
             public static LocString EFFECT = string.Concat("Limits ", FormatAsLink("Power", "POWER"), " flowing through the Transformer to 2 MW");
 
             public static LocString DESC = "For those times you need an even bigger transformer.";
-
         }
 
         public static class UI
@@ -98,6 +89,11 @@ namespace GigaWattWire
 
         public static class MISC
         {
+            public static class TAGS
+            {
+                public static LocString CONDUCTOR = "Conductor";
+                public static LocString TEMPCONDUCTORSOLID= "Extreme Conductor";
+            }
             public static LocString CONDUCTOR = "Conductor";
         }
     }

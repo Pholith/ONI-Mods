@@ -21,9 +21,12 @@ namespace GigaWattWire
                 new POptions().RegisterOptions(this, typeof(WireOptions));
                 GameOnLoadPatch.ReadSettings();
 
+                Strings.Add($"STRINGS.MISC.TAGS.CONDUCTOR", WIRE_STRINGS.MISC.TAGS.CONDUCTOR);
+                Strings.Add($"STRINGS.MISC.TAGS.TEMPCONDUCTORSOLID", WIRE_STRINGS.MISC.TAGS.TEMPCONDUCTORSOLID);
+
                 new PLocalization().Register();
                 Utilities.GenerateStringsTemplate(typeof(WIRE_STRINGS));
-
+                
             }
         }
 
@@ -425,8 +428,8 @@ namespace GigaWattWire
                 Utilities.AddBuilding("Power", MegawattWireBridgeConfig.ID, WIRE_STRINGS.MEGAWATTWIREBRIDGE.NAME, WIRE_STRINGS.MEGAWATTWIREBRIDGE.DESC, WIRE_STRINGS.MEGAWATTWIREBRIDGE.EFFECT, GameOnLoadPatch.Settings.EnableMegaWattWire);
                 Utilities.AddBuilding("Power", GigawattWireConfig.ID, WIRE_STRINGS.GIGAWATTWIRE.NAME, WIRE_STRINGS.GIGAWATTWIRE.DESC, WIRE_STRINGS.GIGAWATTWIRE.EFFECT, GameOnLoadPatch.Settings.EnableGigaWattWire);
                 Utilities.AddBuilding("Power", GigawattWireBridgeConfig.ID, WIRE_STRINGS.GIGAWATTWIREBRIDGE.NAME, WIRE_STRINGS.GIGAWATTWIREBRIDGE.DESC, WIRE_STRINGS.GIGAWATTWIREBRIDGE.EFFECT, GameOnLoadPatch.Settings.EnableGigaWattWire);
-                Utilities.AddBuilding("Power", PowerTransformer100kWConfig.ID, WIRE_STRINGS.POWERTRANSFORMER100KW.NAME, WIRE_STRINGS.POWERTRANSFORMER100KW.DESC, WIRE_STRINGS.POWERTRANSFORMER100KW.EFFECT);
-                Utilities.AddBuilding("Power", PowerTransformer2MWConfig.ID, WIRE_STRINGS.POWERTRANSFORMER2MW.NAME, WIRE_STRINGS.POWERTRANSFORMER2MW.DESC, WIRE_STRINGS.POWERTRANSFORMER2MW.EFFECT);
+                Utilities.AddBuilding("Power", PowerTransformer100kWConfig.ID, WIRE_STRINGS.POWERTRANSFORMER100KW.NAME, WIRE_STRINGS.POWERTRANSFORMER100KW.DESC, WIRE_STRINGS.POWERTRANSFORMER100KW.EFFECT, GameOnLoadPatch.Settings.Enable100kWTransformer);
+                Utilities.AddBuilding("Power", PowerTransformer2MWConfig.ID, WIRE_STRINGS.POWERTRANSFORMER2MW.NAME, WIRE_STRINGS.POWERTRANSFORMER2MW.DESC, WIRE_STRINGS.POWERTRANSFORMER2MW.EFFECT, GameOnLoadPatch.Settings.Enable2MWTranformer);
             }
         }
 
@@ -449,7 +452,11 @@ namespace GigaWattWire
                     Utilities.AddBuildingTech("RenewableEnergy", MegawattWireConfig.ID);
                     Utilities.AddBuildingTech("RenewableEnergy", MegawattWireBridgeConfig.ID);
                 }
-                Utilities.AddBuildingTech("RenewableEnergy", PowerTransformer100kWConfig.ID);
+
+                if (GameOnLoadPatch.Settings.Enable100kWTransformer)
+                {
+                    Utilities.AddBuildingTech("RenewableEnergy", PowerTransformer100kWConfig.ID);
+                }
 
                 // CargoI doesn't work on Spaced Out 
                 string techId = DlcManager.IsExpansion1Active() ? "HighVelocityTransport" : "CargoI";
@@ -458,7 +465,10 @@ namespace GigaWattWire
                     Utilities.AddBuildingTech(techId, GigawattWireConfig.ID);
                     Utilities.AddBuildingTech(techId, GigawattWireBridgeConfig.ID);
                 }
-                Utilities.AddBuildingTech(techId, PowerTransformer2MWConfig.ID);
+                if (GameOnLoadPatch.Settings.Enable100kWTransformer)
+                {
+                    Utilities.AddBuildingTech(techId, PowerTransformer2MWConfig.ID);
+                }
             }
         }
 

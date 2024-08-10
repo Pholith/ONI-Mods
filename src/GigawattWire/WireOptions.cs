@@ -28,6 +28,14 @@ namespace GigaWattWire
         [JsonProperty]
         public bool EnableGigaWattWire { get; set; }
 
+        [Option("Enable 100kW Transformer", "Uncheck this box will remove the 100kW transformer from the mod. It will not remove existing wire in a game.")]
+        [JsonProperty]
+        public bool Enable100kWTransformer { get; set; }
+
+        [Option("Enable 2MW Transformer", "Uncheck this box will remove the 2MW transformer from the mod. It will not remove existing wire in a game.")]
+        [JsonProperty]
+        public bool Enable2MWTranformer { get; set; }
+
         public WireOptions()
         {
             EnableHighWattageWireToPassThroughtWall = false;
@@ -35,6 +43,8 @@ namespace GigaWattWire
             EnableMegaWattWire = true;
             EnableGigaWattWire = true;
             EnableJacketedWire = true;
+            Enable100kWTransformer = true;
+            Enable2MWTranformer = false;
         }
     }
 }
