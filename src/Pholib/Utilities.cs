@@ -7,8 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
-using YamlDotNet.Serialization;
-using YamlDotNet.Serialization.NamingConventions;
 
 namespace Pholib
 {

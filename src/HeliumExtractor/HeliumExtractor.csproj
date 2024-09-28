@@ -51,6 +51,11 @@
       <HintPath>..\packages\GameLibs\Assembly-CSharp-firstpass.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
     <Reference Include="UnityEngine">
       <HintPath>..\packages\GameLibs\UnityEngine.dll</HintPath>
       <Private>False</Private>
@@ -81,12 +86,14 @@
     <None Include="anim\buildings\helium_extractor\He_Extractor_build.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="app.config" />
     <None Include="mod.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="mod_info.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="anim\buildings\blu\He_Extractor.png" />

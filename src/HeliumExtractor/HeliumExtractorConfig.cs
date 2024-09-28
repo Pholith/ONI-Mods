@@ -23,6 +23,7 @@ namespace HeliumExtractor
             EffectorValues tier2 = NOISE_POLLUTION.NOISY.TIER3;
             BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, tier, all_METALS, melting_point, build_location_rule, BUILDINGS.DECOR.PENALTY.TIER2, tier2, 0.2f);
             buildingDef.RequiresPowerInput = true;
+            buildingDef.PermittedRotations = PermittedRotations.FlipH;
             buildingDef.PowerInputOffset = new CellOffset(0, 0);
             buildingDef.EnergyConsumptionWhenActive = 420f;
             buildingDef.SelfHeatKilowattsWhenActive = 12f;

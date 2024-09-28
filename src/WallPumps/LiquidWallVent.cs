@@ -53,6 +53,10 @@ namespace WallPumps
             def.ObjectLayer = ObjectLayer.Building;
             def.SceneLayer = Grid.SceneLayer.TileMain;
             def.ForegroundLayer = Grid.SceneLayer.TileMain;
+
+            // Insulated option
+            if (GameOnLoadPatch.Settings.AreTilesInsulated) def.ThermalConductivity = 0.01f;
+
             return def;
         }
 

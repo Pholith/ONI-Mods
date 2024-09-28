@@ -319,6 +319,37 @@
             The mod's current version.
             </summary>
         </member>
+        <member name="T:PeterHan.PLib.AVC.ModOutdatedWarning">
+            <summary>
+            Added to the main menu to warn users if mods are out of date.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.AVC.ModOutdatedWarning.Instance">
+            <summary>
+            The singleton (should be!) instance of this class.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.AVC.ModOutdatedWarning.modsButton">
+            <summary>
+            The button used to open the Mods screen.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.AVC.ModOutdatedWarning.FindModsButton(UnityEngine.Transform)">
+            <summary>
+            Finds the "Mods" button and stores it in the modsButton field.
+            </summary>
+            <param name="buttonParent">The parent of all the main menu buttons.</param>
+        </member>
+        <member name="M:PeterHan.PLib.AVC.ModOutdatedWarning.UpdateText">
+            <summary>
+            Updates the Mods button text.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.AVC.ModOutdatedWarning.UpdateTextThreaded">
+            <summary>
+            Updates the button text in a coroutine after one frame.
+            </summary>
+        </member>
         <member name="T:PeterHan.PLib.AVC.ModVersionCheckResults">
             <summary>
             The results of checking the mod version.
@@ -356,6 +387,12 @@
             <param name="result">The results of the check. If null, the check has failed,
             and the next version should be tried.</param>
         </member>
+        <member name="F:PeterHan.PLib.AVC.PVersionCheck.WORKING_VERSION">
+            <summary>
+            Versions of PVersionCheck older than this version are broken and do not pass the
+            linked list correctly.
+            </summary>
+        </member>
         <member name="P:PeterHan.PLib.AVC.PVersionCheck.Instance">
             <summary>
             The instantiated copy of this class.
@@ -390,9 +427,19 @@
             The mods whose version will be checked.
             </summary>
         </member>
+        <member name="P:PeterHan.PLib.AVC.PVersionCheck.OutdatedMods">
+            <summary>
+            The number of mods that appear to be outdated.
+            </summary>
+        </member>
         <member name="F:PeterHan.PLib.AVC.PVersionCheck.results">
             <summary>
             The location where the outcome of mod version checking will be stored.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.AVC.PVersionCheck.resultsByMod">
+            <summary>
+            Stores results by the mod static ID. Only populated in the active instance.
             </summary>
         </member>
         <member name="M:PeterHan.PLib.AVC.PVersionCheck.AddWarningIfOutdated(System.Object)">
@@ -466,6 +513,11 @@
         <member name="P:PeterHan.PLib.AVC.PVersionCheck.VersionCheckMethods.Methods">
             <summary>
             The methods which will be used to check.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.AVC.PVersionCheck.VersionCheckMethods.ModToCheck">
+            <summary>
+            The mod whose version will be checked.
             </summary>
         </member>
         <member name="T:PeterHan.PLib.AVC.SteamVersionChecker">
@@ -1884,6 +1936,12 @@
             </summary>
             <param name="value">The new value for the shared data.</param>
         </member>
+        <member name="T:PeterHan.PLib.Core.PForwardedComponent.PComponentComparator">
+            <summary>
+            Compares two forwarded components to each other. The latest versions will be
+            sorted first.
+            </summary>
+        </member>
         <member name="T:PeterHan.PLib.Core.PGameUtils">
             <summary>
             Utility and helper functions to perform common game-related (not UI) tasks.
@@ -1892,6 +1950,21 @@
         <member name="T:PeterHan.PLib.Core.PGameUtils.CreateSoundDelegate">
             <summary>
             Creates a new sound event in the audio sheets.
+            </summary>
+        </member>
+        <member name="T:PeterHan.PLib.Core.PGameUtils.InfoRefreshFunction">
+            <summary>
+            Refreshes the simple info screen.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.Core.PGameUtils.CHECK_SUBSCRIPTION">
+            <summary>
+            Checks to see if a DLC is subscribed on the platform (Steam/Epic).
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.Core.PGameUtils.IS_CONTENT_ENABLED">
+            <summary>
+            Checks to see if the DLC is turned on in the game options.
             </summary>
         </member>
         <member name="M:PeterHan.PLib.Core.PGameUtils.CenterAndSelect(KMonoBehaviour)">
@@ -1971,12 +2044,30 @@
             <param name="entity">The entity to highlight.</param>
             <param name="highlightColor">The color to highlight it.</param>
         </member>
+        <member name="M:PeterHan.PLib.Core.PGameUtils.IsDLCOwned(System.String)">
+            <summary>
+             Wraps the DLCManager class to see if a particular DLC is owned.
+            
+             Note that some DLC content is hot loaded only for individual saves, this method
+             should only be used to show or hide items that require a game restart to change
+             like the Spaced Out multi-planet/rocketry modes.
+             </summary>
+            <param name="name" />
+            <returns />
+        </member>
         <member name="M:PeterHan.PLib.Core.PGameUtils.PlaySound(System.String,UnityEngine.Vector3)">
             <summary>
             Plays a sound effect.
             </summary>
             <param name="name">The sound effect name to play.</param>
             <param name="position">The position where the sound is generated.</param>
+        </member>
+        <member name="M:PeterHan.PLib.Core.PGameUtils.RefreshInfoScreen(SimpleInfoScreen,System.Boolean)">
+            <summary>
+            Refreshes the info screen.
+            </summary>
+            <param name="screen">The info screen to refresh.</param>
+            <param name="force">If true, the refresh is forced.</param>
         </member>
         <member name="M:PeterHan.PLib.Core.PGameUtils.SaveMods">
             <summary>
@@ -2103,6 +2194,16 @@
         <member name="F:PeterHan.PLib.Core.PLibStrings.RESTART_OK">
             <summary>
             The OK button in the restart dialog.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.Core.PLibStrings.MAINMENU_UPDATE">
+            <summary>
+            Displayed in the menu when mods report as being outdated.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.Core.PLibStrings.MAINMENU_UPDATE_1">
+            <summary>
+            Displayed in the menu when a mod reports as being outdated.
             </summary>
         </member>
         <member name="F:PeterHan.PLib.Core.PLibStrings.OUTDATED_TOOLTIP">
@@ -2236,7 +2337,6 @@
             faster than reflection, so useful if called frequently on the same object.
             </summary>
             <typeparam name="T">A delegate type which matches the method signature.</typeparam>
-            <param name="type">The declaring type of the target method.</param>
             <param name="method">The target method.</param>
             <param name="caller">The object on which to call the method.</param>
             <returns>A delegate which calls this method, or null if the method was null or did
@@ -2372,6 +2472,20 @@
             argument types are matched, whereas no arguments match only void methods.</param>
             <returns>The method, or null if no such method could be found.</returns>
         </member>
+        <member name="M:PeterHan.PLib.Core.PPatchTools.GetOverloadWithMostArguments(System.Type,System.String,System.Boolean,System.Type[])">
+            <summary>
+            Retrieves the method matching the criteria that has the most arguments. Useful when
+            patching a base game overload is added with extra parameters (for binary
+            compatibility) where the shorter methods just call the longer one.
+            </summary>
+            <param name="type">The base type.</param>
+            <param name="methodName">The netgh</param>
+            <param name="isStatic">true to find static methods, or false to find instance
+            methods.</param>
+            <param name="arguments">The method argument types. If null is provided, any
+            argument types are matched, whereas no arguments match only void methods.</param>
+            <returns>The method, or null if no such method could be found.</returns>
+        </member>
         <member name="M:PeterHan.PLib.Core.PPatchTools.GetPropertySafe``1(System.Type,System.String,System.Boolean)">
             <summary>
             Retrieves a property using reflection, or returns null if it does not exist.
@@ -2445,6 +2559,14 @@
             Adds a logger to all failed assertions. The assertions will still fail, but a stack
             trace will be printed for each failed assertion.
             </summary>
+        </member>
+        <member name="M:PeterHan.PLib.Core.PPatchTools.ParametersMatch(System.Reflection.MethodBase,System.Type[])">
+            <summary>
+            Compares the method parameter list to the required parameters.
+            </summary>
+            <param name="method">The method to check.</param>
+            <param name="required">The types its parameters need to have.</param>
+            <returns>Negative if the method did not match, otherwise the total number of method parameters.</returns>
         </member>
         <member name="M:PeterHan.PLib.Core.PPatchTools.ReplaceConstant(System.Collections.Generic.IEnumerable{HarmonyLib.CodeInstruction},System.Double,System.Double,System.Boolean)">
             <summary>
@@ -3647,7 +3769,6 @@
             </summary>
             <param name="when">When to run the patch.</param>
             <param name="instance">The patch method instance to run.</param>
-            <param name="harmony">The Harmony instance to use for patching.</param>
         </member>
         <member name="M:PeterHan.PLib.PatchManager.PPatchManager.RegisterPatch(System.UInt32,PeterHan.PLib.PatchManager.IPatchMethodInstance)">
             <summary>
@@ -3668,8 +3789,6 @@
             not be recognized.
             </summary>
             <param name="type">The type to register.</param>
-            <param name="harmony">The Harmony instance to use for immediate patches. Use
-            the instance provided from UserMod2.OnLoad().</param>
         </member>
         <member name="T:PeterHan.PLib.PatchManager.RunAt">
             <summary>
@@ -3787,7 +3906,6 @@
             Patches TMP_InputField with fixes, but only if necessary.
             </summary>
             <param name="tmpType">The type of TMP_InputField.</param>
-            <param name="instance">The Harmony instance to use for patching.</param>
         </member>
         <member name="M:PeterHan.PLib.UI.TextMeshProPatcher.OnEnable_Postfix(UnityEngine.UI.Scrollbar,TMPro.TMP_Text)">
             <summary>
@@ -4083,6 +4201,31 @@
             <param name="category">The status item category.</param>
             <param name="name">The name to display in the UI.</param>
             <param name="desc">The description to display in the UI.</param>
+        </member>
+        <member name="M:PeterHan.PLib.Database.PDatabaseUtils.CreateAttributeModifier(System.String,System.Single,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Creates an attribute modifier using the attributes that work across multiple game
+            versions.
+            </summary>
+            <param name="attributeID">The attribute ID to modify.</param>
+            <param name="value">The amount to modify the attribute.</param>
+            <param name="description">The description to display for the attribute.</param>
+            <param name="multiplier">If true, the modifier is treated as a multiplier instead of an addition.</param>
+            <param name="uiOnly">If true, the modifier is only shown in the UI.</param>
+            <param name="readOnly">If true, the modifier value cannot be changed after creation.</param>
+            <returns>The created attribute modifier.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.Database.PDatabaseUtils.CreateAttributeModifier(System.String,System.Single,System.Func{System.String},System.Boolean,System.Boolean)">
+            <summary>
+            Creates an attribute modifier using the attributes that work across multiple game
+            versions.
+            </summary>
+            <param name="attributeID">The attribute ID to modify.</param>
+            <param name="value">The amount to modify the attribute.</param>
+            <param name="getDescription">A function to retrieve the descriptor string.</param>
+            <param name="multiplier">If true, the modifier is treated as a multiplier instead of an addition.</param>
+            <param name="uiOnly">If true, the modifier is only shown in the UI.</param>
+            <returns>The created attribute modifier.</returns>
         </member>
         <member name="M:PeterHan.PLib.Database.PDatabaseUtils.LogDatabaseDebug(System.String)">
             <summary>
@@ -9548,6 +9691,13 @@
             </summary>
             <param name="child">The child object.</param>
             <returns>The parent of that object, or null if it does not have a parent.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.UI.PUIUtils.GetSideScreenContent(DetailsScreen)">
+            <summary>
+            Retrieves the side screen content body in a way that works across game versions.
+            </summary>
+            <param name="screen">The current details screen instance.</param>
+            <returns>The content body where side screen content should be added.</returns>
         </member>
         <member name="M:PeterHan.PLib.UI.PUIUtils.InsetChild(UnityEngine.GameObject,UnityEngine.GameObject,UnityEngine.Vector2,UnityEngine.Vector2)">
             <summary>

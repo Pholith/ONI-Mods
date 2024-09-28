@@ -42,6 +42,8 @@ namespace WallPumps
         }
         public static class UI_ADD
         {
+            public static LocString TILES_INSULATED = "Make pumps and evacuations insulated";
+
             public static LocString ENABLED = "Enabled";
 
             public static LocString MAX_PRESSURE = "Max pressure";

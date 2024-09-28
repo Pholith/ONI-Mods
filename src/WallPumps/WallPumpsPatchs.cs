@@ -1,13 +1,8 @@
 ﻿using HarmonyLib;
-using KMod;
 using PeterHan.PLib.Core;
-using PeterHan.PLib.Database;
 using PeterHan.PLib.Options;
 using Pholib;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using static KAnim.Build;
 
 namespace WallPumps
 {
@@ -19,7 +14,7 @@ namespace WallPumps
             base.OnLoad(harmony);
             PUtil.InitLibrary();
 
-            modPath = this.path;
+            modPath = path;
             new POptions().RegisterOptions(this, typeof(WallPumpOptions));
             GameOnLoadPatch.ReadSettings();
         }
@@ -99,7 +94,7 @@ namespace WallPumps
         public static void Postfix(BuildingComplete __instance)
         {
             if (!__instance.gameObject.TryGetComponent(out KBatchedAnimController kAnim) || kAnim.name != "FairLiquidWallVentComplete") return;
-            
+
             Rotatable rotatable = __instance.gameObject.GetComponent<Rotatable>();
             if (rotatable.Orientation == Orientation.R180) // Bas
             {

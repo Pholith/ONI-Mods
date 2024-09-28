@@ -9,6 +9,10 @@ namespace WallPumps
     [ModInfo("https://github.com/Pholith/ONI-Mods", "preview.png")]
     public class WallPumpOptions
     {
+        [Option("STRINGS.UI_ADD.TILES_INSULATED")]
+        [JsonProperty]
+        public bool AreTilesInsulated { get; set; }
+
         [Option("STRINGS.UI_ADD.ENABLED", category: "STRINGS.BUILDINGS.PREFABS.FAIRGASWALLPUMP.NAME")]
         [JsonProperty]
         public bool GasWallPumpEnabled { get; set; }
@@ -68,6 +72,8 @@ namespace WallPumps
 
         public WallPumpOptions()
         {
+            AreTilesInsulated = false;
+
             GasWallPumpEnabled = true;
             GasWallPumpEnergyConsumption = 120;
             GasWallPumpRate = 0.2f;

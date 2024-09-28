@@ -114,6 +114,9 @@
     <None Include="texture\preview.psd" />
     <None Include="texture\wallpumps.psd" />
     <None Include="texture\wallvents.psd" />
+    <None Include="translations\es.po">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="translations\fr.po">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

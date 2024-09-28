@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using static GigaWattWire.WirePatchs;
 
 namespace GigaWattWire
 {
@@ -15,6 +16,10 @@ namespace GigaWattWire
             buildingDef.Mass = WirePatchs.JACKETED_WIRE_MASS_KG;
             buildingDef.MaterialCategory = WirePatchs.MEGAWATT_WIRE_MATERIALS;
             GeneratedBuildings.RegisterWithOverlay(OverlayScreen.WireIDs, ID);
+
+            // Insulated option
+            if (GameOnLoadPatch.Settings.MakeWireBridgeInsulated) buildingDef.ThermalConductivity = 0.01f;
+
             return buildingDef;
         }
 
