@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
+using static STRINGS.UI.FRONTEND.CUSTOMGAMESETTINGSSCREEN.SETTINGS.DLC_MIXING.LEVELS;
 
 namespace HDScreenShot
 {
@@ -34,6 +35,8 @@ namespace HDScreenShot
         public static void Prefix()
         {
             ReadSettings();
+            KPlayerPrefs.SetInt("ShowDevtools", 1);
+            DebugHandler.SetDebugEnabled(true);
         }
         public static void ReadSettings()
         {
@@ -49,7 +52,7 @@ namespace HDScreenShot
 
 
     [HarmonyPatch(typeof(PauseScreen))]
-    [HarmonyPatch("OnPrefabInit")]
+    [HarmonyPatch("ConfigureButtonInfos")]
     public static class PauseScreenOnPrefabInit
     {
         public static PauseScreen Instance;
@@ -57,9 +60,7 @@ namespace HDScreenShot
         public static void Postfix(PauseScreen __instance)
         {
 
-            var instance = Traverse.Create(__instance);
-            var buttons = instance.Field("buttons").GetValue<KButtonMenu.ButtonInfo[]>();
-            var buttonsList = buttons.ToList();
+            var buttonsList = Traverse.Create(__instance).Field("buttons").GetValue<KButtonMenu.ButtonInfo[]>().ToList();
             Instance = __instance;
 
             buttonsList.Insert(buttonsList.Count - 2,
@@ -70,8 +71,7 @@ namespace HDScreenShot
 
                     __instance.StartCoroutine(Screenshot());
                 })));
-
-            instance.Field("buttons").SetValue(buttonsList.ToArray());
+            __instance.SetButtons(buttonsList);
         }
 
         static Vector3 savedCameraPos;
@@ -106,10 +106,10 @@ namespace HDScreenShot
                 {
                     yield break;
                 }
-                yield return SequenceUtil.WaitForNextFrame;
-                yield return SequenceUtil.WaitForEndOfFrame;
-
-                CameraController.Instance.SetPosition(new Vector3((world.WorldOffset.x + world.WorldSize.x / 2), (world.WorldOffset.y + world.WorldSize.y / 2), CameraController.Instance.transform.position.z));
+                // yield return SequenceUtil.WaitForNextFrame; // DEBUG
+                // yield return SequenceUtil.WaitForEndOfFrame; // DEBUG
+                
+                CameraController.Instance.SetPosition(new Vector3(world.WorldOffset.x + (world.WorldSize.x / 2), world.WorldOffset.y + (world.WorldSize.y / 2), CameraController.Instance.transform.position.z));
                 // Traverse.Create(CameraController.Instance).Method("Update").GetValue();
                 CameraController.Instance.VisibleArea.Update();
 
@@ -128,9 +128,8 @@ namespace HDScreenShot
 
                 LayerMask mask = Traverse.Create(CameraController.Instance).Field<LayerMask>("timelapseCameraCullingMask").Value;
                 LayerMask mask2 = Traverse.Create(CameraController.Instance).Field<LayerMask>("timelapseOverlayCameraCullingMask").Value;
-
                 RenderCameraForTimelapse(CameraController.Instance.baseCamera, ref screenshotTexture, mask);
-                CustomWriteToFile(screenshotTexture);
+                // CustomWriteToFile(screenshotTexture); // DEBUG PURPOSE
                 CameraController.Instance.overlayCamera.clearFlags = CameraClearFlags.Nothing;
                 RenderCameraForTimelapse(CameraController.Instance.overlayCamera, ref screenshotTexture, mask2);
                 CustomWriteToFile(screenshotTexture);
@@ -155,7 +154,7 @@ namespace HDScreenShot
             int cullingMask = cam.cullingMask;
             RenderTexture targetTexture = cam.targetTexture;
             cam.targetTexture = tex;
-            cam.aspect = (float)tex.width / (float)tex.height;
+            cam.aspect = tex.width / (float)tex.height;
             if (overrideAspect != -1f)
             {
                 cam.aspect = overrideAspect;

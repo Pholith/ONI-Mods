@@ -294,7 +294,7 @@ namespace ILoveSlicksters
                     new Diet.Info(new HashSet<Tag>
                     {
                         SimHashes.Oxygen.CreateTag()
-                    }, ((SimHashes) ILoveSlicksters.Settings.LonghairElement).CreateTag(), Traverse.Create<OilFloaterDecorConfig>().Field<float>("CALORIES_PER_KG_OF_ORE").Value, TUNING.CREATURES.CONVERSION_EFFICIENCY.GOOD_1, null, 0, false, false)
+                    }, ((SimHashes) ILoveSlicksters.Settings.LonghairElement).CreateTag(), Traverse.Create<OilFloaterDecorConfig>().Field<float>("CALORIES_PER_KG_OF_ORE").Value, TUNING.CREATURES.CONVERSION_EFFICIENCY.GOOD_1, null, 0, false, Diet.Info.FoodType.EatSolid, false)
                 });
                 CreatureCalorieMonitor.Def def = __result.AddOrGetDef<CreatureCalorieMonitor.Def>();
                 def.diet = diet;

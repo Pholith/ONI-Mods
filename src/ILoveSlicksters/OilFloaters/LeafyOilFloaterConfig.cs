@@ -69,15 +69,15 @@ namespace ILoveSlicksters
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     SimHashes.CarbonDioxide.CreateTag()
-                }), SimHashes.LiquidOxygen.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+                }), SimHashes.LiquidOxygen.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false),
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     SimHashes.ChlorineGas.CreateTag()
-                }), SimHashes.Algae.CreateTag(), caloriesPerKg / 2, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+                }), SimHashes.Algae.CreateTag(), caloriesPerKg / 2, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false),
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     SimHashes.Oxygen.CreateTag()
-                }), SimHashes.SlimeMold.CreateTag(), caloriesPerKg / 2, producedConversionRate, diseaseId, diseasePerKgProduced, false, false)
+                }), SimHashes.SlimeMold.CreateTag(), caloriesPerKg / 2, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false)
             };
         }
 

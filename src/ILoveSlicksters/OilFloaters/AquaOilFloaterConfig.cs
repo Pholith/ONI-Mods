@@ -54,19 +54,19 @@ namespace ILoveSlicksters
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     SimHashes.Water.CreateTag()
-                }), SimHashes.Methane.CreateTag(), caloriesPerKg * 20, CONVERSION_EFFICIENCY.BAD_1, diseaseId, diseasePerKgProduced, false, false),
+                }), SimHashes.Methane.CreateTag(), caloriesPerKg * 20, CONVERSION_EFFICIENCY.BAD_1, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false),
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     SimHashes.SaltWater.CreateTag()
-                }), SimHashes.SedimentaryRock.CreateTag(), caloriesPerKg / 2, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+                }), SimHashes.SedimentaryRock.CreateTag(), caloriesPerKg / 2, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false),
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     SimHashes.DirtyWater.CreateTag()
-                }), SimHashes.Clay.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false),
+                }), SimHashes.Clay.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false),
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     Antigel.SimHash.CreateTag()
-                }), SimHashes.Wolframite.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, false)
+                }), SimHashes.Wolframite.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false)
 
             };
         }

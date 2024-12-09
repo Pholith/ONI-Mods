@@ -2,6 +2,7 @@
 using KMod;
 using PeterHan.PLib.Database;
 using PeterHan.PLib.Options;
+using PeterHan.PLib.UI;
 using Pholib;
 using System.Collections.Generic;
 using UnityEngine;
@@ -74,23 +75,7 @@ namespace Notepad
 
         public static void Postfix()
         {
-            List<DetailsScreen.SideScreenRef> sideScreens = Traverse.Create(DetailsScreen.Instance).Field("sideScreens").GetValue<List<DetailsScreen.SideScreenRef>>();
-            GameObject sideScreenContentBody = Traverse.Create(DetailsScreen.Instance).Field("sideScreenConfigContentBody").GetValue<GameObject>();
-
-            NotepadControl controller = new NotepadControl();
-            NotepadSideScreen screen = controller.RootPanel.AddComponent<NotepadSideScreen>();
-            screen.Control = controller;
-            screen.gameObject.transform.parent = sideScreenContentBody.transform;
-            screen.gameObject.transform.localScale = Vector3.one;
-
-            DetailsScreen.SideScreenRef myRef = new DetailsScreen.SideScreenRef
-            {
-                name = "NotepadSideScreen",
-                screenPrefab = screen,
-                offset = new Vector2(0f, 0f),
-                screenInstance = screen
-            };
-            sideScreens.Add(myRef);
+            PUIUtils.AddSideScreenContent<NotepadSideScreen>();
         }
     }
 
