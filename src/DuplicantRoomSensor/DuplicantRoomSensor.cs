@@ -6,7 +6,7 @@ using UnityEngine;
 namespace DuplicantRoomSensor
 {
     [SerializationConfig(MemberSerialization.OptIn)]
-    public class LogicDuplicantCountSensor : Switch, ISaveLoadable, IThresholdSwitch, ISim200ms
+    public class LogicDuplicantCountSensor : Switch, ISaveLoadable, IThresholdSwitch, ISim1000ms
     {
         protected override void OnPrefabInit()
         {
@@ -24,7 +24,7 @@ namespace DuplicantRoomSensor
             wasOn = switchedOn;
         }
 
-        public void Sim200ms(float dt)
+        public void Sim1000ms(float dt)
         {
             Room roomOfGameObject = Game.Instance.roomProber.GetRoomOfGameObject(gameObject);
             if (roomOfGameObject != null)

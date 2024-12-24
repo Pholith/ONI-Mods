@@ -35,8 +35,6 @@ namespace HDScreenShot
         public static void Prefix()
         {
             ReadSettings();
-            KPlayerPrefs.SetInt("ShowDevtools", 1);
-            DebugHandler.SetDebugEnabled(true);
         }
         public static void ReadSettings()
         {

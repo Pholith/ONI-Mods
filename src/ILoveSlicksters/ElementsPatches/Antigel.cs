@@ -1,4 +1,5 @@
 ﻿using ILoveSlicksters.elements;
+using System;
 using UnityEngine;
 
 namespace ILoveSlicksters
@@ -12,6 +13,7 @@ namespace ILoveSlicksters
         public static string Description = PHO_STRINGS.ELEMENTS.ANTIGEL.DESC;
         public static Color32 color = new Color32(190, 220, 160, 255);
 
+        [Obsolete]
         public static Substance CreateSubstance(Substance source)
         {
             return ModUtil.CreateSubstance(

@@ -28,9 +28,9 @@ namespace DuplicantRoomSensor
         public static Dictionary<CavityInfo, List<KPrefabID>> map = new Dictionary<CavityInfo, List<KPrefabID>>();
     }
 
-    [HarmonyPatch(typeof(MinionConfig))]
-    [HarmonyPatch("CreatePrefab")]
-    public static class MinionConfigPatch
+    [HarmonyPatch(typeof(BaseMinionConfig))]
+    [HarmonyPatch("BaseMinion")]
+    public static class DupRoomSensor_BaseMinionConfigPatch
     {
         public static void Postfix(GameObject __result)
         {

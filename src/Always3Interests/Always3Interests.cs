@@ -146,24 +146,29 @@ namespace Always3Interests
     {
         public static bool Prefix(MinionStartingStats __instance, string guaranteedAptitudeID)
         {
-            if (Always3Interests.Settings.randomNumberOfInterests)
+            if (!(__instance.personality.model == BionicMinionConfig.MODEL))
             {
-                return true;
-            }
 
-            int num = Always3Interests.Settings.numberOfInterests;
+                if (Always3Interests.Settings.randomNumberOfInterests)
+                {
+                    return true;
+                }
 
-            List<SkillGroup> list = new List<SkillGroup>(Db.Get().SkillGroups.resources);
-            list.Shuffle<SkillGroup>();
-            if (guaranteedAptitudeID != null)
-            {
-                __instance.skillAptitudes.Add(Db.Get().SkillGroups.Get(guaranteedAptitudeID), DUPLICANTSTATS.APTITUDE_BONUS);
-                list.Remove(Db.Get().SkillGroups.Get(guaranteedAptitudeID));
-                num--;
-            }
-            for (int i = 0; i < num; i++)
-            {
-                __instance.skillAptitudes.Add(list[i], DUPLICANTSTATS.APTITUDE_BONUS);
+                int num = Always3Interests.Settings.numberOfInterests;
+
+                List<SkillGroup> list = new List<SkillGroup>(Db.Get().SkillGroups.resources);
+                list.RemoveAll((SkillGroup match) => !match.allowAsAptitude);
+                list.Shuffle<SkillGroup>();
+                if (guaranteedAptitudeID != null)
+                {
+                    __instance.skillAptitudes.Add(Db.Get().SkillGroups.Get(guaranteedAptitudeID), DUPLICANTSTATS.APTITUDE_BONUS);
+                    list.Remove(Db.Get().SkillGroups.Get(guaranteedAptitudeID));
+                    num--;
+                }
+                for (int i = 0; i < num; i++)
+                {
+                    __instance.skillAptitudes.Add(list[i], DUPLICANTSTATS.APTITUDE_BONUS);
+                }
             }
             return false;
         }
@@ -174,11 +179,12 @@ namespace Always3Interests
     [HarmonyPatch("GenerateTraits")]
     public class TraitPatch
     {
-        public static bool Prefix(MinionStartingStats __instance, bool is_starter_minion, List<ChoreGroup> disabled_chore_groups, string guaranteedAptitudeID = null, string guaranteedTraitID = null, bool isDebugMinion = false)
+        public static bool Prefix(ref int __result, MinionStartingStats __instance, bool is_starter_minion, List<ChoreGroup> disabled_chore_groups, string guaranteedAptitudeID = null, string guaranteedTraitID = null, bool isDebugMinion = false)
         {
-            DUPLICANTSTATS.MAX_TRAITS = 10;
 
+            DUPLICANTSTATS.MAX_TRAITS = 10;
             int statDelta = 0;
+            __result = statDelta;
             List<string> selectedTraits = new List<string>();
             KRandom randSeed = new KRandom();
 
@@ -199,7 +205,7 @@ namespace Always3Interests
             }
             __instance.stickerType = __instance.personality.stickerType;
 
-            
+
             Trait trait3 = Db.Get().traits.TryGet(__instance.personality.congenitaltrait);
             if (trait3 == null || trait3.Name == "None")
             {
@@ -210,7 +216,18 @@ namespace Always3Interests
                 __instance.congenitaltrait = trait3;
             }
 
-            Func<List<DUPLICANTSTATS.TraitVal>, bool, bool> func = delegate (List<DUPLICANTSTATS.TraitVal> traitPossibilities, bool positiveTrait)
+            if (__instance.personality.model == GameTags.Minions.Models.Bionic)
+            {
+                DUPLICANTSTATS.TraitVal random = DUPLICANTSTATS.BIONICBUGTRAITS.GetRandom();
+                SelectTrait(random, Db.Get().traits.Get(random.id), isPositiveTrait: false);
+                DUPLICANTSTATS.TraitVal traitVal2 = (guaranteedAptitudeID == null) ? DUPLICANTSTATS.BIONICUPGRADETRAITS.GetRandom() : Traverse.Create(__instance).Method("GetBionicTraitsCompatibleWithArchetype", new object[] { guaranteedAptitudeID }).GetValue<List<DUPLICANTSTATS.TraitVal>>().GetRandom();
+                SelectTrait(traitVal2, Db.Get().traits.Get(traitVal2.id), isPositiveTrait: true);
+
+                __result = statDelta;
+                return false;
+            }
+
+            Func<List<TraitVal>, bool, bool> func = delegate (List<TraitVal> traitPossibilities, bool positiveTrait)
             {
 
                 if (__instance.Traits.Count > DUPLICANTSTATS.MAX_TRAITS)
@@ -269,7 +286,7 @@ namespace Always3Interests
                 list2.ShuffleSeeded(new KRandom());
                 foreach (DUPLICANTSTATS.TraitVal traitVal in list2)
                 {
-				    global::Debug.Assert(SaveLoader.Instance != null, "IsDLCActiveForCurrentSave should not be called from the front end");
+                    global::Debug.Assert(SaveLoader.Instance != null, "IsDLCActiveForCurrentSave should not be called from the front end");
                     if (!SaveLoader.Instance.IsDLCActiveForCurrentSave(traitVal.dlcId))
                     {
                         num6--;
@@ -309,17 +326,7 @@ namespace Always3Interests
                             {
                                 if (!(bool)Traverse.Create(__instance).Method("AreTraitsMutuallyExclusive", new object[] { traitVal, selectedTraits }).GetValue())
                                 {
-                                    selectedTraits.Add(traitVal.id);
-                                    statDelta += traitVal.statBonus;
-                                    __instance.rarityBalance += (positiveTrait ? (-traitVal.rarity) : traitVal.rarity);
-                                    __instance.Traits.Add(trait4);
-                                    if (trait4.disabledChoreGroups != null)
-                                    {
-                                        for (int j = 0; j < trait4.disabledChoreGroups.Length; j++)
-                                        {
-                                            disabled_chore_groups.Add(trait4.disabledChoreGroups[j]);
-                                        }
-                                    }
+                                    SelectTrait(traitVal, trait4, positiveTrait);
                                     return true;
                                 }
                                 num6--;
@@ -336,6 +343,20 @@ namespace Always3Interests
             if (numberOfGoodTraits > 5) numberOfGoodTraits = 5;
             if (numberOfBadTraits > 5) numberOfBadTraits = 5;
 
+            if (!is_starter_minion)
+            {
+                if (DUPLICANTSTATS.podTraitConfigurationsActive.Count < 1)
+                {
+                    DUPLICANTSTATS.podTraitConfigurationsActive.AddRange(DUPLICANTSTATS.POD_TRAIT_CONFIGURATIONS_DECK);
+                }
+
+                if (DUPLICANTSTATS.podTraitConfigurationsActive.Count == DUPLICANTSTATS.POD_TRAIT_CONFIGURATIONS_DECK.Count)
+                {
+                    DUPLICANTSTATS.podTraitConfigurationsActive.ShuffleSeeded(randSeed);
+                }
+
+                DUPLICANTSTATS.podTraitConfigurationsActive.RemoveAt(DUPLICANTSTATS.podTraitConfigurationsActive.Count - 1);
+            }
 
             if (!string.IsNullOrEmpty(guaranteedTraitID))
             {
@@ -346,8 +367,8 @@ namespace Always3Interests
                     bool positiveTrait2 = trait4.PositiveTrait;
                     selectedTraits.Add(traitVal.id);
                     statDelta += traitVal.statBonus;
-                    
-                    __instance.rarityBalance += (positiveTrait2 ? (-traitVal.rarity) : traitVal.rarity);
+
+                    __instance.rarityBalance += positiveTrait2 ? (-traitVal.rarity) : traitVal.rarity;
                     __instance.Traits.Add(trait4);
                     if (trait4.disabledChoreGroups != null)
                     {
@@ -359,6 +380,19 @@ namespace Always3Interests
                 }
             }
 
+            if (__instance.congenitaltrait != null)
+            {
+                DUPLICANTSTATS.TraitVal traitVal4;
+                if (__instance.congenitaltrait.PositiveTrait)
+                {
+                    traitVal4 = DUPLICANTSTATS.GOODTRAITS.Find((DUPLICANTSTATS.TraitVal match) => match.id == __instance.congenitaltrait.Id);
+                }
+                else
+                {
+                    traitVal4 = DUPLICANTSTATS.BADTRAITS.Find((DUPLICANTSTATS.TraitVal match) => match.id == __instance.congenitaltrait.Id);
+                }
+                SelectTrait(traitVal4, __instance.congenitaltrait, __instance.congenitaltrait.PositiveTrait);
+            }
 
             for (int i = 0; i < numberOfBadTraits; i++)
             {
@@ -376,8 +410,25 @@ namespace Always3Interests
                     isTraitAdded = func(DUPLICANTSTATS.GOODTRAITS, true);
                 }
             }
+            __instance.IsValid = true;
+            __result = statDelta;
 
             return false;
+
+            void SelectTrait(DUPLICANTSTATS.TraitVal traitVal, Trait trait2, bool isPositiveTrait)
+            {
+                selectedTraits.Add(traitVal.id);
+                statDelta += traitVal.statBonus;
+                __instance.rarityBalance += isPositiveTrait ? (-traitVal.rarity) : traitVal.rarity;
+                __instance.Traits.Add(trait2);
+                if (trait2.disabledChoreGroups != null)
+                {
+                    for (int k = 0; k < trait2.disabledChoreGroups.Length; k++)
+                    {
+                        disabled_chore_groups.Add(trait2.disabledChoreGroups[k]);
+                    }
+                }
+            }
         }
     }
 

@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using Pholib;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,15 +13,12 @@ namespace ILoveSlicksters.elements
         internal static Hashtable substanceList;
         internal static Dictionary<string, SubstanceTable> substanceTablesByDlc;
 
+        [Obsolete]
         public static void AddSubstance(Substance substance)
         {
             Assets.instance.substanceTable.GetList().Add(substance);
         }
 
-        public static Substance CreateSubstance(string name, Element.State state, KAnimFile kanim, Material material, Color32 colour)
-        {
-            return ModUtil.CreateSubstance(name, state, kanim, material, colour, colour, colour);
-        }
 
         // Note: As of 2021-03-14
         // Needed for vanilla as it does not map anims into a dictionary until after elements have been loaded
@@ -38,13 +36,27 @@ namespace ILoveSlicksters.elements
 
         public static Substance CreateRegisteredSubstance(string name, Element.State state, KAnimFile kanim, Material material, Color32 colour)
         {
-            Substance result = CreateSubstance(name, state, kanim, material, colour);
+            Substance result = ModUtil.CreateSubstance(name, state, kanim, material, colour, colour, colour);
             SimHashUtil.RegisterSimHash(result.elementID, name);
-            if (!substanceList.ContainsKey(result.elementID))
-            { substanceList.Add(result.elementID, result); }
+            if (!substanceTablesByDlc[DlcManager.VANILLA_ID].GetList().Contains(result))
+            { substanceTablesByDlc[DlcManager.VANILLA_ID].GetList().Add(result); }
+            /*
+            foreach (var item in substanceTablesByDlc)
+            {
+                Logs.Log(item.Key);
+                foreach (var item2 in item.Value.GetList())
+                {
+                    Logs.Log($" ===== {item2.name}");
+                    Logs.Log(item2.anim);
+                    Logs.Log(item2.anim.name);
+                }
+            }*/
+
             return result;
         }
     }
+
+
 
     public static class SimHashUtil
     {
@@ -58,6 +70,9 @@ namespace ILoveSlicksters.elements
         }
     }
 
+
+
+
     [HarmonyPatch(typeof(ElementLoader), nameof(ElementLoader.Load))]
     internal static class Patch_ElementLoader_Load
     {
@@ -68,8 +83,6 @@ namespace ILoveSlicksters.elements
             Antigel.RegisterSubstance();
         }
     }
-
-
 
     //// Patches
     [HarmonyPatch(typeof(Enum), nameof(Enum.GetValues), new Type[] { typeof(Type) })]
@@ -112,6 +125,5 @@ namespace ILoveSlicksters.elements
             return true;
         }
     }
-
 
 }

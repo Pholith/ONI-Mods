@@ -15,7 +15,7 @@ namespace DuplicantRoomSensor
                 action = new Action<Instance, float>(UpdateState);
             }
 
-            root.Update("DuplicantMonitor", action, UpdateRate.SIM_1000ms, true);
+            root.Update(nameof(DuplicantMonitor), action, UpdateRate.SIM_1000ms, true);
         }
 
         private static Action<Instance, float> action;
