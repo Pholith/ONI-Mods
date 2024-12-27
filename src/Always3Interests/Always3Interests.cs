@@ -70,7 +70,13 @@ namespace Always3Interests
         [JsonProperty]
         public int startingLevelOnPrintingPod { get; set; }
 
+        [Option("Don't print biologic duplicants", "The printing pod will never show you biologic duplicants if this option is checked.\nWill not do anything if Bionic Booster Pack is not owned or activated on your save.", "Bionic Booster Pack")]
+        [JsonProperty]
+        public bool DisableBiologicDuplicants { get; set; }
 
+        [Option("Don't print bionic duplicants", "The printing pod will never show you bionic duplicants if this option is checked.\nWill not do anything if Bionic Booster Pack is not owned or activated on your save.", "Bionic Booster Pack")]
+        [JsonProperty]
+        public bool DisableBionicDuplicants { get; set; }
 
         public Always3InterestsSettings()
         {
@@ -81,7 +87,7 @@ namespace Always3Interests
             pointsWhenMoreThan3Interest = 1;
 
             numberOfInterests = 3;
-            randomNumberOfInterests = false;
+            randomNumberOfInterests = true;
 
             numberOfGoodTraits = 1;
             numberOfBadTraits = 1;
@@ -89,6 +95,9 @@ namespace Always3Interests
             disableStressTrait = false;
 
             startingLevelOnPrintingPod = 1;
+
+            DisableBionicDuplicants = false;
+            DisableBiologicDuplicants = false;
         }
     }
 
@@ -445,6 +454,20 @@ namespace Always3Interests
 
             Telepad telepad = go.AddOrGet<Telepad>();
             telepad.startingSkillPoints = startingLevel;
+
+        }
+    }
+
+    [HarmonyPatch(typeof(CharacterContainer), "GenerateCharacter")]
+    public class CharacterContainer_GenerateCharacter_Patch
+    {
+        public static void Prefix(bool is_starter, ref List<Tag> ___permittedModels)
+        {
+            if (!is_starter && SaveLoader.Instance.IsDLCActiveForCurrentSave("DLC3_ID"))
+            {
+                if (Always3Interests.Settings.DisableBionicDuplicants) ___permittedModels.Remove(GameTags.Minions.Models.Bionic);
+                if (Always3Interests.Settings.DisableBiologicDuplicants) ___permittedModels.Remove(GameTags.Minions.Models.Standard);
+            };
 
         }
     }

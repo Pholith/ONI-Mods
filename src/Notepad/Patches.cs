@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using KMod;
 using PeterHan.PLib.Database;
+using PeterHan.PLib.Detours;
 using PeterHan.PLib.Options;
 using PeterHan.PLib.UI;
 using Pholib;
@@ -47,7 +48,7 @@ namespace Notepad
 
 
     [HarmonyPatch(typeof(GeneratedBuildings), "LoadGeneratedBuildings")]
-    public static class DupRoomSensorStringsPatch
+    public static class NotepadStringsPatch
     {
         public static void Prefix()
         {
@@ -57,7 +58,7 @@ namespace Notepad
 
 
     [HarmonyPatch(typeof(Db), "Initialize")]
-    public static class DupRoomSensorTechPatch
+    public static class NotepadTechPatch
     {
         public static void Postfix()
         {

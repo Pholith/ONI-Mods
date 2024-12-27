@@ -42,7 +42,7 @@ namespace ILoveSlicksters
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.deltaAttribute.Id, -OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / 600f, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.HitPoints.maxAttribute.Id, HITPOINTS.TIER1, name, false, false, true));
-            trait.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, LIFESPAN.TIER3, name, false, false, true));
+            trait.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, LIFESPAN.TIER2, name, false, false, true));
             List<Diet.Info> diet_infos = DietInfo(GameTags.AnyWater, CALORIES_PER_KG_OF_ORE, CONVERSION_EFFICIENCY.GOOD_1, null, 0f);
             return OilFloaters.SetupDiet(prefab, diet_infos, CALORIES_PER_KG_OF_ORE, MIN_POOP_SIZE_IN_KG, 15f * ILoveSlicksters.Settings.ConsumptionMultiplier);
 
@@ -82,7 +82,7 @@ namespace ILoveSlicksters
             gameObject.GetComponent<KPrefabID>().AddTag(GameTags.Creatures.Swimmer);
             gameObject.GetComponent<KPrefabID>().AddTag(GameTags.SwimmingCreature);
 
-            EntityTemplates.ExtendEntityToBasicCreature(gameObject, FactionManager.FactionID.Pest, traitId, "SwimmerNavGrid", NavType.Swim, 32, 3f, TUNING.FOOD.FOOD_TYPES.FISH_MEAT.Id, 2, false, false, warnLowTemp, warnHighTemp, warnLowTemp - 15f, warnHighTemp + 20f);
+            EntityTemplates.ExtendEntityToBasicCreature(gameObject, FactionManager.FactionID.Pest, traitId, "SwimmerNavGrid", NavType.Swim, 32, 3f, TUNING.FOOD.FOOD_TYPES.FISH_MEAT.Id, 3, false, false, warnLowTemp, warnHighTemp, warnLowTemp - 15f, warnHighTemp + 20f);
             if (!string.IsNullOrEmpty(symbolOverridePrefix))
             {
                 gameObject.AddOrGet<SymbolOverrideController>().ApplySymbolOverridesByAffix(Assets.GetAnim(anim_file), symbolOverridePrefix, null, 0);
