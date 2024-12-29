@@ -7,6 +7,7 @@ namespace Notepad
         protected override void OnSpawn()
         {
             base.OnSpawn();
+
             KBatchedAnimController animController = gameObject.AddOrGet<KBatchedAnimController>();
             animController.Play(activateText.IsNullOrWhiteSpace() ? "empty" : "full", KAnim.PlayMode.Paused);
         }

@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -213,8 +215,8 @@
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="PLib, Version=4.15.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PLib.4.15.0\lib\net471\PLib.dll</HintPath>
+    <Reference Include="PLib, Version=4.17.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PLib.4.17.1\lib\net471\PLib.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
     <Reference Include="UnityEngine">
@@ -241,4 +243,11 @@ xcopy "$(TargetDir.TrimEnd('\'))" "$(SolutionDir)\..\..\..\Klei\OxygenNotInclude
   <PropertyGroup>
     <PreBuildEvent>rmdir /Q/S $(TargetDir)</PreBuildEvent>
   </PropertyGroup>
+  <Import Project="..\packages\ILRepack.Lib.MSBuild.Task.2.0.34.2\build\ILRepack.Lib.MSBuild.Task.targets" Condition="Exists('..\packages\ILRepack.Lib.MSBuild.Task.2.0.34.2\build\ILRepack.Lib.MSBuild.Task.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\ILRepack.Lib.MSBuild.Task.2.0.34.2\build\ILRepack.Lib.MSBuild.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILRepack.Lib.MSBuild.Task.2.0.34.2\build\ILRepack.Lib.MSBuild.Task.targets'))" />
+  </Target>
 </Project>

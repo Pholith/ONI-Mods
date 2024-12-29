@@ -1,10 +1,8 @@
 ﻿using HarmonyLib;
 using KMod;
 using PeterHan.PLib.Database;
-using PeterHan.PLib.Detours;
 using PeterHan.PLib.Options;
 using PeterHan.PLib.UI;
-using Pholib;
 using System.Collections.Generic;
 using UnityEngine;
 using static Pholib.Utilities;
