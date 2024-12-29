@@ -51,7 +51,7 @@ Official documentation here:
 https://support.klei.com/hc/en-us/articles/360029555392-Logs-and-Useful-Information-for-Bug-Reports
 
 ## List of mods 
-| **Name**        | **Description**     | **Preview** | 
+| **Name**        | **Description**     | **Preview**  | 
 | :-------------- | :------ | :--------------------:|
 | Always 3 Interests  | Make the duplicants from the Printer always have 3 job interests.  You can config others starting stats. |<img src="/src/Always3Interests/screen.png" height="110" width="110" />
 | AllBiomesWorld - Fuleria| Fuleria is a small asteroid that contains all the biomes. This world will be pleasant and easy to live in for your duplicants. |<img src="/src/AllBiomesWorld/screen.png" height="110" width="110" />|
