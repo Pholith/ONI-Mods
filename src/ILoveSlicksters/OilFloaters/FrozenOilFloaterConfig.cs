@@ -20,7 +20,7 @@ namespace ILoveSlicksters
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
                 55, 35,
-                EGG_CHANCES_FROZEN,
+                EGG_CHANCES_FROZEN, new string[] { "" },
                 EGG_SORT_ORDER);
 
             return gameObject;

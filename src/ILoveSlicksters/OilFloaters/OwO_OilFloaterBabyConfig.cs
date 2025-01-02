@@ -8,8 +8,8 @@ namespace ILoveSlicksters
     {
         public GameObject CreatePrefab()
         {
-            GameObject gameObject = OwO_OilFloaterConfig.CreateOilFloater(ID, PHO_STRINGS.VARIANT_OWO.BABY.NAME, PHO_STRINGS.VARIANT_OWO.BABY.DESC, "custom_baby_oilfloater_kanim", true);
-            EntityTemplates.ExtendEntityToBeingABaby(gameObject, "OwO_Oilfloater", null);
+            GameObject gameObject = OwO_OilfloaterConfig.CreateOilFloater(ID, PHO_STRINGS.VARIANT_OWO.BABY.NAME, PHO_STRINGS.VARIANT_OWO.BABY.DESC, "custom_baby_oilfloater_kanim", true);
+            EntityTemplates.ExtendEntityToBeingABaby(gameObject, OwO_OilfloaterConfig.ID, null);
             return gameObject;
         }
 
@@ -25,7 +25,7 @@ namespace ILoveSlicksters
             return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
 
-        public const string ID = "OwO_OilfloaterBaby";
+        public const string ID = OwO_OilfloaterConfig.ID+"Baby";
 
     }
 }

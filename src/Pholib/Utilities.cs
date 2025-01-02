@@ -44,7 +44,6 @@ namespace Pholib
         }
 
 
-
         public static void LogIfDebugging(string informations)
         {
             InitIfNot();
@@ -98,8 +97,13 @@ namespace Pholib
 
     }
 
-    public class Utilities
+    public static class Utilities
     {
+        public static float CelciusToKelvin(this float celcius)
+        {
+            return celcius + 273.15f;
+        }
+
 
         public static string ModPath()
         {

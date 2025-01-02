@@ -40,32 +40,32 @@ namespace ILoveSlicksters
 
             // Egg Chance modifier
             Type[] parameters_type = new Type[] { typeof(string), typeof(Tag), typeof(float), typeof(float), typeof(float), typeof(bool) };
-            object[] paramaters = new object[] { "EthanolOilfloater", "EthanolOilfloaterEgg".ToTag(), 243.15f, 293.15f, PHO_TUNING.EGG_MODIFIER_PER_SECOND.NORMAL, false };
+            object[] paramaters = new object[] { EthanolOilfloaterConfig.ID, EthanolOilfloaterConfig.EGG_ID.ToTag(), 243.15f, 293.15f, PHO_TUNING.EGG_MODIFIER_PER_SECOND.NORMAL, false };
 
             CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
                 Traverse.Create<CREATURES.EGG_CHANCE_MODIFIERS>().Method("CreateTemperatureModifier", parameters_type).GetValue<System.Action>(paramaters)
             );
 
-            object[] paramaters2 = new object[] { "RobotOilfloater", "RobotOilfloaterEgg".ToTag(), 523.15f, 743.15f, PHO_TUNING.EGG_MODIFIER_PER_SECOND.NORMAL, false };
+            object[] paramaters2 = new object[] { RobotOilfloaterConfig.ID, RobotOilfloaterConfig.EGG_ID.ToTag(), 523.15f, 743.15f, PHO_TUNING.EGG_MODIFIER_PER_SECOND.NORMAL, false };
 
             CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
                 Traverse.Create<CREATURES.EGG_CHANCE_MODIFIERS>().Method("CreateTemperatureModifier", parameters_type).GetValue<System.Action>(paramaters2)
             );
 
-            object[] paramaters3 = new object[] { "FrozenOilfloater", "FrozenOilfloaterEgg".ToTag(), 210.15f, 273.15f, PHO_TUNING.EGG_MODIFIER_PER_SECOND.NORMAL, false };
+            object[] paramaters3 = new object[] { FrozenOilfloaterConfig.ID, FrozenOilfloaterConfig.EGG_ID.ToTag(), 210.15f, 273.15f, PHO_TUNING.EGG_MODIFIER_PER_SECOND.NORMAL, false };
 
             CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
                 Traverse.Create<CREATURES.EGG_CHANCE_MODIFIERS>().Method("CreateTemperatureModifier", parameters_type).GetValue<System.Action>(paramaters3)
             );
 
             CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
-                PHO_TUNING.CreateLightModifier("LeafyOilfloater", "LeafyOilfloaterEgg".ToTag(), PHO_TUNING.EGG_MODIFIER_PER_SECOND.NORMAL, true)
+                PHO_TUNING.CreateLightModifier(LeafyOilfloaterConfig.ID, LeafyOilfloaterConfig.EGG_ID.ToTag(), PHO_TUNING.EGG_MODIFIER_PER_SECOND.NORMAL, true)
             );
             CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
-                PHO_TUNING.CreateElementModifier("OwO_Oilfloater", "OwO_OilfloaterEgg".ToTag(), SimHashes.Hydrogen, PHO_TUNING.EGG_MODIFIER_PER_SECOND.FAST2, false)
+                PHO_TUNING.CreateElementModifier(OwO_OilfloaterConfig.ID, OwO_OilfloaterConfig.EGG_ID.ToTag(), SimHashes.Hydrogen, PHO_TUNING.EGG_MODIFIER_PER_SECOND.FAST2, false)
             );
             CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
-                PHO_TUNING.CreateElementModifier("AquaOilFloater", "AquaOilFloaterEgg".ToTag(), SimHashes.Water, PHO_TUNING.EGG_MODIFIER_PER_SECOND.FAST * 10, false)
+                PHO_TUNING.CreateElementModifier(AquaOilfloaterConfig.ID, AquaOilfloaterConfig.EGG_ID.ToTag(), SimHashes.Water, PHO_TUNING.EGG_MODIFIER_PER_SECOND.FAST * 10, false)
             );
 
             if (!Settings.DisableNewEggs)
@@ -75,25 +75,61 @@ namespace ILoveSlicksters
                 OilFloaterTuning.EGG_CHANCES_BASE.Add(
                 new FertilityMonitor.BreedingChance
                 {
-                    egg = "LeafyOilfloaterEgg".ToTag(),
+                    egg = LeafyOilfloaterConfig.EGG_ID.ToTag(),
                     weight = 0.02f
                 });
-                OilFloaterTuning.EGG_CHANCES_HIGHTEMP.Add(
+                OilFloaterTuning.EGG_CHANCES_BASE.Add(
                 new FertilityMonitor.BreedingChance
                 {
-                    egg = "RobotOilfloaterEgg".ToTag(),
+                    egg = RobotOilfloaterConfig.EGG_ID.ToTag(),
+                    weight = 0.02f
+                });
+                OilFloaterTuning.EGG_CHANCES_BASE.Add(
+                new FertilityMonitor.BreedingChance
+                {
+                    egg = EthanolOilfloaterConfig.EGG_ID.ToTag(),
+                    weight = 0.02f
+                });
+                OilFloaterTuning.EGG_CHANCES_BASE.Add(
+                new FertilityMonitor.BreedingChance
+                {
+                    egg = AquaOilfloaterConfig.EGG_ID.ToTag(),
                     weight = 0.02f
                 });
 
+
+                OilFloaterTuning.EGG_CHANCES_HIGHTEMP.Add(
+                new FertilityMonitor.BreedingChance
+                {
+                    egg = RobotOilfloaterConfig.EGG_ID.ToTag(),
+                    weight = 0.02f
+                });
+
+
                 OilFloaterTuning.EGG_CHANCES_DECOR[1] = new FertilityMonitor.BreedingChance
                 {
-                    egg = "EthanolOilfloaterEgg".ToTag(),
+                    egg = EthanolOilfloaterConfig.EGG_ID.ToTag(),
                     weight = 0.02f
                 };
                 OilFloaterTuning.EGG_CHANCES_DECOR.Add(new FertilityMonitor.BreedingChance
                 {
-                    egg = "OwO_OilfloaterEgg".ToTag(),
-                    weight = 0.20f
+                    egg = OwO_OilfloaterConfig.EGG_ID.ToTag(),
+                    weight = 0.02f
+                });
+                OilFloaterTuning.EGG_CHANCES_DECOR.Add(new FertilityMonitor.BreedingChance
+                {
+                    egg = AquaOilfloaterConfig.EGG_ID.ToTag(),
+                    weight = 0.02f
+                });
+                OilFloaterTuning.EGG_CHANCES_DECOR.Add(new FertilityMonitor.BreedingChance
+                {
+                    egg = LeafyOilfloaterConfig.EGG_ID.ToTag(),
+                    weight = 0.02f
+                }); 
+                OilFloaterTuning.EGG_CHANCES_DECOR.Add(new FertilityMonitor.BreedingChance
+                {
+                    egg = FrozenOilfloaterConfig.EGG_ID.ToTag(),
+                    weight = 0.02f
                 });
 
             }
@@ -236,7 +272,7 @@ namespace ILoveSlicksters
             //Utilities.AddWorldYaml("Asteroid_Slicksteria", typeof(PHO_STRINGS));
 
 
-            Effect OwO_Effect = new Effect("OwO_effect", " OwO Effect", "This duplicant saw something so cute that he can't think of anything else.", 300f, true, true, false, null, 10f, null, "");
+            Effect OwO_Effect = new Effect("OwOEffect", "OwO Effect", "This duplicant saw something so cute that he can't think of anything else.", 300f, true, true, false, null, 10f, null, "");
             OwO_Effect.Add(new AttributeModifier(Db.Get().Amounts.Stress.deltaAttribute.Id, -DUPLICANTSTATS.QOL_STRESS.BELOW_EXPECTATIONS.HARD, "OwO Effect"));
             __instance.effects.Add(OwO_Effect);
 
@@ -265,13 +301,13 @@ namespace ILoveSlicksters
         {
             if (!ILoveSlicksters.Settings.DisableSlickstersCarePackages)
             {
-                Utilities.AddCarePackage(ref __instance, LeafyOilfloaterConfig.EGG_ID, 2f, () => Utilities.CycleInRange(50, 600) && Utilities.IsTagDiscovered("LeafyOilfloater"));
-                Utilities.AddCarePackage(ref __instance, EthanolOilfloaterConfig.EGG_ID, 2f, () => Utilities.CycleInRange(50, 800) && Utilities.IsOilFieldDiscovered() && Utilities.IsSimHashesDiscovered(SimHashes.Ethanol) && Utilities.IsTagDiscovered("EthanolOilfloater"));
-                Utilities.AddCarePackage(ref __instance, OwO_OilFloaterConfig.EGG_ID, 2f, () => Utilities.CycleInRange(150, 700) && Utilities.IsOilFieldDiscovered() && Utilities.IsTagDiscovered("OwO_Oilfloater"));
-                Utilities.AddCarePackage(ref __instance, FrozenOilfloaterConfig.EGG_ID, 1f, () => Utilities.CycleCondition(500) && Utilities.IsOilFieldDiscovered() && Utilities.IsTagDiscovered("FrozenOilfloater"));
-                Utilities.AddCarePackage(ref __instance, AquaOilfloaterConfig.EGG_ID, 2f, () => Utilities.CycleCondition(500) && Utilities.IsTagDiscovered("AquaOilfloater"));
+                Utilities.AddCarePackage(ref __instance, LeafyOilfloaterConfig.EGG_ID, 2f, () => Utilities.CycleInRange(30, 600) && Utilities.IsTagDiscovered(LeafyOilfloaterConfig.ID));
+                Utilities.AddCarePackage(ref __instance, EthanolOilfloaterConfig.EGG_ID, 2f, () => Utilities.CycleInRange(50, 800) && Utilities.IsOilFieldDiscovered() && Utilities.IsSimHashesDiscovered(SimHashes.Ethanol) && Utilities.IsTagDiscovered(EthanolOilfloaterConfig.ID));
+                Utilities.AddCarePackage(ref __instance, OwO_OilfloaterConfig.EGG_ID, 2f, () => Utilities.CycleInRange(150, 700) && Utilities.IsOilFieldDiscovered() && Utilities.IsTagDiscovered(OwO_OilfloaterConfig.ID));
+                Utilities.AddCarePackage(ref __instance, FrozenOilfloaterConfig.EGG_ID, 1f, () => Utilities.CycleCondition(500) && Utilities.IsOilFieldDiscovered() && Utilities.IsTagDiscovered(FrozenOilfloaterConfig.ID));
+                Utilities.AddCarePackage(ref __instance, AquaOilfloaterConfig.EGG_ID, 2f, () => Utilities.CycleCondition(500) && Utilities.IsTagDiscovered(AquaOilfloaterConfig.ID));
                 Utilities.AddCarePackage(ref __instance, RobotOilfloaterConfig.EGG_ID, 1f, () => Utilities.CycleCondition(500) &&
-                    Utilities.IsOilFieldDiscovered() && Utilities.IsSimHashesDiscovered(SimHashes.Steel) && Utilities.IsTagDiscovered("RobotOilfloater"));
+                    Utilities.IsOilFieldDiscovered() && Utilities.IsSimHashesDiscovered(SimHashes.Steel) && Utilities.IsTagDiscovered(RobotOilfloaterConfig.ID));
 
             }
         }
@@ -302,11 +338,12 @@ namespace ILoveSlicksters
 
 
                 // Patch the dead drop
-                string[] loot = new string[4];
+                string[] loot = new string[5];
                 loot[0] = BasicFabricConfig.ID;
                 loot[1] = BasicFabricConfig.ID;
-                loot[2] = MeatConfig.ID;
+                loot[2] = BasicFabricConfig.ID;
                 loot[3] = MeatConfig.ID;
+                loot[4] = MeatConfig.ID;
 
                 __result.AddOrGet<Butcherable>().SetDrops(loot);
 

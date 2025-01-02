@@ -35,7 +35,7 @@ MobLookupTable:
         max: 0.1
       width: 1
       height: 1
-    OwO_Oilfloater:
+    OwOOilfloater:
       location: Floor
       selectMethod: Centroid
       density:
@@ -51,7 +51,7 @@ MobLookupTable:
         max: 0.1
       width: 1
       height: 1
-    OwO_OilfloaterEgg:
+    OwOOilfloaterEgg:
       location: Floor
       selectMethod: Centroid
       density:

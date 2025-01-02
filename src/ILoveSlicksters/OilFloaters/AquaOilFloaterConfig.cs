@@ -19,8 +19,8 @@ namespace ILoveSlicksters
                 egg_kanim_id,
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
-                55f, 15f,
-                EGG_CHANCES_AQUA,
+                40f, 10f,
+                EGG_CHANCES_AQUA, new string[] { "" },
                 EGG_SORT_ORDER);
 
             return gameObject;
@@ -40,7 +40,7 @@ namespace ILoveSlicksters
             EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
-            trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.deltaAttribute.Id, -OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / 300f, name, false, false, true));
+            trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.deltaAttribute.Id, -OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / 450f, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.HitPoints.maxAttribute.Id, HITPOINTS.TIER1, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, LIFESPAN.TIER2, name, false, false, true));
             List<Diet.Info> diet_infos = DietInfo(GameTags.AnyWater, CALORIES_PER_KG_OF_ORE, CONVERSION_EFFICIENCY.GOOD_1, null, 0f);
@@ -159,14 +159,19 @@ namespace ILoveSlicksters
         {
             new FertilityMonitor.BreedingChance
             {
-                egg = "AquaOilfloaterEgg".ToTag(),
+                egg = EGG_ID.ToTag(),
                 weight = 0.66f
             },
             new FertilityMonitor.BreedingChance
             {
-                egg = "EthanolOilfloaterEgg".ToTag(),
+                egg = EthanolOilfloaterConfig.EGG_ID.ToTag(),
                 weight = 0.33f
-            }
+            },
+            new FertilityMonitor.BreedingChance
+            {
+                egg = OwO_OilfloaterConfig.EGG_ID.ToTag(),
+                weight = 0.2f
+            },
         };
         public const string base_kanim_id = "aqua_oilfloater_kanim";
         public const string egg_kanim_id = "egg_aqua_oilfloater_kanim";

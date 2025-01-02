@@ -20,7 +20,7 @@ namespace ILoveSlicksters
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
                 55, 40f,
-                EGG_CHANCES_ROBOT,
+                EGG_CHANCES_ROBOT, new string[] { "" },
                 EGG_SORT_ORDER);
 
             return gameObject;
@@ -32,7 +32,7 @@ namespace ILoveSlicksters
 
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 523.15f + 30, 743.15f - 30, 523.15f, 743.15f, is_baby, variantSprite);
+            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 493.15f + 30, 743.15f - 30, 493.15f, 743.15f, is_baby, variantSprite);
             EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
             int count = (int) prefab.AddOrGet<PrimaryElement>().Mass;
 

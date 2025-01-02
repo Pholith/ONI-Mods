@@ -58,7 +58,7 @@
     <Compile Include="OilFloaters\FrozenOilFloaterConfig.cs" />
     <Compile Include="OilFloaters\LeafyOilFloaterBabyConfig.cs" />
     <Compile Include="OilFloaters\OwO_OilFloaterBabyConfig.cs" />
-    <Compile Include="OilFloaters\OwO_OilFloaterConfig.cs" />
+    <Compile Include="OilFloaters\OwO_OilfloaterConfig.cs" />
     <Compile Include="Patches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PHO_STRINGS.cs" />

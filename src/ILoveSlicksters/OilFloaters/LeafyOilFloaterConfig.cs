@@ -12,9 +12,7 @@ namespace ILoveSlicksters
         {
             GameObject gameObject = CreateOilfloater(ID, PHO_STRINGS.VARIANT_LEAFY.NAME, PHO_STRINGS.VARIANT_LEAFY.DESC, base_kanim_id, false);
 
-            Logs.Log(gameObject);
             gameObject.AddOrGetDef<CreatureLightMonitor.Def>();
-            Logs.Log(gameObject);
 
             EntityTemplates.ExtendEntityToFertileCreature(
                 gameObject, 
@@ -24,17 +22,16 @@ namespace ILoveSlicksters
                 egg_kanim_id, 
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
-                40f, 15f, 
-                EGG_CHANCES_LEAFY, 
+                40f, 10f, 
+                EGG_CHANCES_LEAFY, new string[] { "" },
                 EGG_SORT_ORDER);
 
-            Logs.Log(gameObject);
             return gameObject;
         }
 
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 283.15f + 3, 298.15f - 3, 283.15f, 298.15f, is_baby, variantSprite);
+            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID,  12f.CelciusToKelvin(), 35f.CelciusToKelvin(), 1f.CelciusToKelvin(), 45f.CelciusToKelvin(), is_baby, variantSprite);
             EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
             int count = 3;
             string[] loot = new string[count];
@@ -43,7 +40,7 @@ namespace ILoveSlicksters
                 loot[i] = TUNING.FOOD.FOOD_TYPES.PRICKLEFRUIT.Id;
             }
             prefab.AddOrGet<Butcherable>().SetDrops(loot);
-            prefab.AddOrGet<Navigator>().defaultSpeed = 1f;
+            prefab.AddOrGet<Navigator>().defaultSpeed = 1.5f;
             DiseaseDropper.Def def = prefab.AddOrGetDef<DiseaseDropper.Def>();
             def.diseaseIdx = Db.Get().Diseases.GetIndex(Db.Get().Diseases.PollenGerms.id);
             def.emitFrequency = 1f;
@@ -54,7 +51,7 @@ namespace ILoveSlicksters
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.deltaAttribute.Id, -OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / 600f, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.HitPoints.maxAttribute.Id, HITPOINTS.TIER1, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, LIFESPAN.TIER2, name, false, false, true));
-            List<Diet.Info> diet_infos = DietInfo(GameTags.Steel, CALORIES_PER_KG_OF_ORE, CONVERSION_EFFICIENCY.GOOD_1, null, 0f);
+            List<Diet.Info> diet_infos = DietInfo(GameTags.Steel, CALORIES_PER_KG_OF_ORE, CONVERSION_EFFICIENCY.GOOD_2, null, 0f);
             return OilFloaters.SetupDiet(prefab, diet_infos, CALORIES_PER_KG_OF_ORE, MIN_POOP_SIZE_IN_KG, 5 * ILoveSlicksters.Settings.ConsumptionMultiplier);
         }
         public string[] GetDlcIds()
@@ -69,14 +66,14 @@ namespace ILoveSlicksters
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     SimHashes.CarbonDioxide.CreateTag()
-                }), SimHashes.LiquidOxygen.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false),
+                }), SimHashes.Oxygen.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false),
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     SimHashes.ChlorineGas.CreateTag()
                 }), SimHashes.Algae.CreateTag(), caloriesPerKg / 2, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false),
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
-                    SimHashes.Oxygen.CreateTag()
+                    SimHashes.ContaminatedOxygen.CreateTag()
                 }), SimHashes.SlimeMold.CreateTag(), caloriesPerKg / 2, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false)
             };
         }
@@ -101,6 +98,16 @@ namespace ILoveSlicksters
             {
                 egg = OilFloaterConfig.EGG_ID.ToTag(),
                 weight = 0.34f
+            },
+            new FertilityMonitor.BreedingChance
+            {
+                egg = EthanolOilfloaterConfig.EGG_ID.ToTag(),
+                weight = 0.02f
+            },
+            new FertilityMonitor.BreedingChance
+            {
+                egg = OwO_OilfloaterConfig.EGG_ID.ToTag(),
+                weight = 0.02f
             }
         };
 

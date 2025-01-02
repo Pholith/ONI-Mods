@@ -16,8 +16,8 @@ namespace ILoveSlicksters
             Effect notInAquariumEffect = new Effect("NotInAquarium", PHO_STRINGS.NOTINAQUARIUM.NAME, "This creature must be in an aquarium to be tame.\nAn aquarium is a closed room with any water.", 0f, true, true, true);
 
 
-            satisfiedState.Transition(notSatisfiedState, (Instance smi) => smi.IsInAquarium(), UpdateRate.SIM_1000ms);
-            notSatisfiedState.Transition(satisfiedState, (Instance smi) => !smi.IsInAquarium(), UpdateRate.SIM_1000ms);
+            satisfiedState.Transition(notSatisfiedState, (Instance smi) => smi.IsInAquarium(), UpdateRate.SIM_4000ms);
+            notSatisfiedState.Transition(satisfiedState, (Instance smi) => !smi.IsInAquarium(), UpdateRate.SIM_4000ms);
 
             satisfiedState.Enter(delegate (Instance smi)
             {

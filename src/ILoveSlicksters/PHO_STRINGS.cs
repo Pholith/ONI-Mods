@@ -40,7 +40,9 @@ namespace ILoveSlicksters
                 UI.FormatAsLink("Oxygen", "OXYGEN"),
                 " and exude ",
                 UI.FormatAsLink("Hydrogen", "HYDROGEN"),
-                ".\n\nThe OwO Slicksters are extremely cute creatures that will delight your duplicants."
+                ".\nThe OwO Slicksters are extremely cute creatures that will delight your duplicants.\n Duplicants passing near an OwO Slickster earn the ",
+                UI.FormatAsLink("OwO effect", "OWOEFFECT"), " reducing the stress.\n",
+
             });
 
             public static LocString EGG_NAME = UI.FormatAsLink("OwO Slickster Egg", "OWO_OILFLOATER");

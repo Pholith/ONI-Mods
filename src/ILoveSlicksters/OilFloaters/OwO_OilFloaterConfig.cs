@@ -6,7 +6,7 @@ using static TUNING.CREATURES;
 
 namespace ILoveSlicksters
 {
-    public class OwO_OilFloaterConfig : IEntityConfig
+    public class OwO_OilfloaterConfig : IEntityConfig
     {
 
         public GameObject CreatePrefab()
@@ -18,7 +18,7 @@ namespace ILoveSlicksters
 
 
             EffectArea owoEffect = gameObject.AddComponent<EffectArea>();
-            owoEffect.EffectName = "OwO_effect";
+            owoEffect.EffectName = "OwOEffect";
             owoEffect.Area = 5;
 
 
@@ -30,7 +30,7 @@ namespace ILoveSlicksters
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
                 45, 20f,
-                EGG_CHANCES_OWO,
+                EGG_CHANCES_OWO, new string[] { "" },
                 EGG_SORT_ORDER,
                 true, false, true, 1f);
             return gameObject;
@@ -65,14 +65,30 @@ namespace ILoveSlicksters
             },
             new FertilityMonitor.BreedingChance
             {
-                egg = "OwO_OilfloaterEgg".ToTag(),
+                egg = EGG_ID.ToTag(),
                 weight = 0.66f
             },
             new FertilityMonitor.BreedingChance
             {
                 egg = "OilfloaterEgg".ToTag(),
                 weight = 0.02f
-            }
+            },
+            new FertilityMonitor.BreedingChance
+            {
+                egg = LeafyOilfloaterConfig.EGG_ID.ToTag(),
+                weight = 0.02f
+            },
+            new FertilityMonitor.BreedingChance
+            {
+                egg = FrozenOilfloaterConfig.EGG_ID.ToTag(),
+                weight = 0.02f
+            },
+            new FertilityMonitor.BreedingChance
+            {
+                egg = EthanolOilfloaterConfig.EGG_ID.ToTag(),
+                weight = 0.02f
+            },
+
         };
         public string[] GetDlcIds()
         {
@@ -84,15 +100,15 @@ namespace ILoveSlicksters
         public const string variantSprite = null;
 
 
-        public const string ID = "OwO_Oilfloater";
+        public const string ID = "OwOOilfloater";
 
-        public const string BASE_TRAIT_ID = "OwO_OilfloaterBaseTrait";
+        public const string BASE_TRAIT_ID = OwO_OilfloaterConfig.ID+"BaseTrait";
 
-        public const string EGG_ID = "OwO_OilfloaterEgg";
+        public const string EGG_ID = OwO_OilfloaterConfig.ID+"Egg";
 
         public const SimHashes CONSUME_ELEMENT = SimHashes.Oxygen;
 
-        public const SimHashes EMIT_ELEMENT = SimHashes.LiquidHydrogen;
+        public const SimHashes EMIT_ELEMENT = SimHashes.Hydrogen;
 
         private static readonly float KG_ORE_EATEN_PER_CYCLE = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2 * ILoveSlicksters.Settings.ConsumptionMultiplier;
 

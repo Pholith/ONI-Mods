@@ -10,8 +10,8 @@ biomes:
   - name: biomes/HydrogenOcean/Basic
     weight: 2
     tags:
-      - OwO_Oilfloater
-      - OwO_OilfloaterEgg
+      - OwOOilfloater
+      - OwOOilfloaterEgg
       - SeaLettuce
       - SpiceVine
       - SeaLettuceSeed

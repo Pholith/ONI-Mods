@@ -18,7 +18,7 @@ namespace ILoveSlicksters
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
                 45f, 20f,
-                EGG_CHANCES_ETHANOL,
+                EGG_CHANCES_ETHANOL, new string[] { "" },
                 EGG_SORT_ORDER,
                 true, false, true, 1f);
 
@@ -27,14 +27,14 @@ namespace ILoveSlicksters
 
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 243.15f+20, 293.15f-20, 243.15f, 293.15f, is_baby, variantSprite);
+            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 243.15f + 20, 293.15f - 20, 243.15f, 293.15f, is_baby, variantSprite);
             EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.deltaAttribute.Id, -OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / 600f, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.HitPoints.maxAttribute.Id, HITPOINTS.TIER1, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, LIFESPAN.TIER2, name, false, false, true));
-            return BaseOilFloaterConfig.SetupDiet(prefab, CONSUME_ELEMENT.CreateTag(), EMIT_ELEMENT.CreateTag(), CALORIES_PER_KG_OF_ORE, 
+            return BaseOilFloaterConfig.SetupDiet(prefab, CONSUME_ELEMENT.CreateTag(), EMIT_ELEMENT.CreateTag(), CALORIES_PER_KG_OF_ORE,
                 CONVERSION_EFFICIENCY.GOOD_2, null, 0f, MIN_POOP_SIZE_IN_KG);
         }
 
@@ -58,7 +58,7 @@ namespace ILoveSlicksters
             },
             new FertilityMonitor.BreedingChance
             {
-                egg = "EthanolOilfloaterEgg".ToTag(),
+                egg = EGG_ID.ToTag(),
                 weight = 0.66f
             },
             new FertilityMonitor.BreedingChance
@@ -68,12 +68,17 @@ namespace ILoveSlicksters
             },
             new FertilityMonitor.BreedingChance
             {
-                egg = "FrozenOilfloaterEgg".ToTag(),
+                egg = FrozenOilfloaterConfig.EGG_ID.ToTag(),
                 weight = 0.02f
             },
             new FertilityMonitor.BreedingChance
             {
-                egg = "AquaOilfloaterEgg".ToTag(),
+                egg = AquaOilfloaterConfig.EGG_ID.ToTag(),
+                weight = 0.02f
+            },
+            new FertilityMonitor.BreedingChance
+            {
+                egg = OwO_OilfloaterConfig.EGG_ID.ToTag(),
                 weight = 0.02f
             }
 
