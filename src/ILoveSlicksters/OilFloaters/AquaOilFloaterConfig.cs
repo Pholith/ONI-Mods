@@ -40,7 +40,7 @@ namespace ILoveSlicksters
             EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
-            trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.deltaAttribute.Id, -OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / 450f, name, false, false, true));
+            trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.deltaAttribute.Id, -OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / 400f, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.HitPoints.maxAttribute.Id, HITPOINTS.TIER1, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, LIFESPAN.TIER2, name, false, false, true));
             List<Diet.Info> diet_infos = DietInfo(GameTags.AnyWater, CALORIES_PER_KG_OF_ORE, CONVERSION_EFFICIENCY.GOOD_1, null, 0f);
@@ -57,16 +57,16 @@ namespace ILoveSlicksters
                 }), SimHashes.Methane.CreateTag(), caloriesPerKg * 20, CONVERSION_EFFICIENCY.BAD_1, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false),
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
-                    SimHashes.SaltWater.CreateTag()
-                }), SimHashes.SedimentaryRock.CreateTag(), caloriesPerKg / 2, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false),
-                new Diet.Info(new HashSet<Tag>(new Tag[]
-                {
                     SimHashes.DirtyWater.CreateTag()
-                }), SimHashes.Clay.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false),
+                }), SimHashes.SlimeMold.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false),
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     Antigel.SimHash.CreateTag()
-                }), SimHashes.Wolframite.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false)
+                }), SimHashes.Wolframite.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false),
+                new Diet.Info(new HashSet<Tag>(new Tag[]
+                {
+                    SimHashes.SaltWater.CreateTag(), SimHashes.Brine.CreateTag()
+                }), SimHashes.SedimentaryRock.CreateTag(), caloriesPerKg / 2, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false),
 
             };
         }

@@ -33,6 +33,10 @@ namespace ILoveSlicksters
         [JsonProperty]
         public bool DisableNewEggs { get; set; }
 
+        [Option("Disable Robot Slickster spore", "Prevents robots slicksters from spawning zombie spores.")]
+        [JsonProperty]
+        public bool DisableRobotSlicksterSpore { get; set; }
+
         [Option("Longhair element conversion", "Set the element the longhair slickster will produce. Don't works if you disabled the longhair buff.")]
         [JsonProperty]
         public LonghairElementList LonghairElement { get; set; }
@@ -46,6 +50,7 @@ namespace ILoveSlicksters
             DisableSlickstersCarePackages = false;
             DisableLonghairSlicksters = false;
             DisableNewEggs = false;
+            DisableRobotSlicksterSpore = false;
             LonghairElement = LonghairElementList.Oxygen;
         }
     }

@@ -63,7 +63,7 @@ namespace ILoveSlicksters
 
             public static LocString DESC = string.Concat(new string[]
             {
-                "Leafy Slicksters are leafy critters that consume air.\n\nThe leafy slickster has adapted to its environment and uses photosynthesis to feed on carbon.\nLeafy Slicksters need light to live."
+                "Leafy Slicksters are leafy critters that consume impur air.\n\nThe leafy slickster has adapted to its environment and uses photosynthesis to feed on carbon.\nLeafy Slicksters need light to live.\n\nLeafy slicksters are loved by duplicants for their air-depolluting properties, while providing a sweet ", UI.FormatAsLink("Floral Scent", "POLLENGERMS"),"."
             });
 
             public static LocString EGG_NAME = UI.FormatAsLink("Leafy Slickster Egg", "LEAFYOILFLOATER");

@@ -34,7 +34,7 @@ namespace ILoveSlicksters
         {
             GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 493.15f + 30, 743.15f - 30, 493.15f, 743.15f, is_baby, variantSprite);
             EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
-            int count = (int) prefab.AddOrGet<PrimaryElement>().Mass;
+            int count = (int)prefab.AddOrGet<PrimaryElement>().Mass;
 
             string[] loot = new string[count];
             for (int i = 0; i < count; i++)
@@ -43,17 +43,20 @@ namespace ILoveSlicksters
             }
             prefab.AddOrGet<Butcherable>().SetDrops(loot);
 
-            DiseaseDropper.Def def = prefab.AddOrGetDef<DiseaseDropper.Def>();
-            def.diseaseIdx = Db.Get().Diseases.GetIndex(Db.Get().Diseases.ZombieSpores.id);
-            def.emitFrequency = 1f;
-            def.averageEmitPerSecond = 200;
-            def.singleEmitQuantity = 10000;
+            if (!ILoveSlicksters.Settings.DisableRobotSlicksterSpore)
+            {
+                DiseaseDropper.Def def = prefab.AddOrGetDef<DiseaseDropper.Def>();
+                def.diseaseIdx = Db.Get().Diseases.GetIndex(Db.Get().Diseases.ZombieSpores.id);
+                def.emitFrequency = 1f;
+                def.averageEmitPerSecond = 200;
+                def.singleEmitQuantity = 10000;
+            }
 
 
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.deltaAttribute.Id, -OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / 600f, name, false, false, true));
-            trait.Add(new AttributeModifier(Db.Get().Amounts.HitPoints.maxAttribute.Id, HITPOINTS.TIER1, name, false, false, true));
+            trait.Add(new AttributeModifier(Db.Get().Amounts.HitPoints.maxAttribute.Id, HITPOINTS.TIER2, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, LIFESPAN.TIER3, name, false, false, true));
             List<Diet.Info> diet_infos = DietInfo(GameTags.Steel, CALORIES_PER_KG_OF_ORE, CONVERSION_EFFICIENCY.GOOD_1, null, 0f);
             return OilFloaters.SetupDiet(prefab, diet_infos, CALORIES_PER_KG_OF_ORE, MIN_POOP_SIZE_IN_KG, 5 * ILoveSlicksters.Settings.ConsumptionMultiplier);
@@ -90,7 +93,7 @@ namespace ILoveSlicksters
             },
             new FertilityMonitor.BreedingChance
             {
-                egg = "RobotOilfloaterEgg".ToTag(),
+                egg = EGG_ID.ToTag(),
                 weight = 0.66f
             },
             new FertilityMonitor.BreedingChance

@@ -46,7 +46,7 @@ namespace ILoveSlicksters
                 Traverse.Create<CREATURES.EGG_CHANCE_MODIFIERS>().Method("CreateTemperatureModifier", parameters_type).GetValue<System.Action>(paramaters)
             );
 
-            object[] paramaters2 = new object[] { RobotOilfloaterConfig.ID, RobotOilfloaterConfig.EGG_ID.ToTag(), 523.15f, 743.15f, PHO_TUNING.EGG_MODIFIER_PER_SECOND.NORMAL, false };
+            object[] paramaters2 = new object[] { RobotOilfloaterConfig.ID, RobotOilfloaterConfig.EGG_ID.ToTag(), 503.15f, 743.15f, PHO_TUNING.EGG_MODIFIER_PER_SECOND.NORMAL, false };
 
             CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
                 Traverse.Create<CREATURES.EGG_CHANCE_MODIFIERS>().Method("CreateTemperatureModifier", parameters_type).GetValue<System.Action>(paramaters2)
@@ -65,7 +65,7 @@ namespace ILoveSlicksters
                 PHO_TUNING.CreateElementModifier(OwO_OilfloaterConfig.ID, OwO_OilfloaterConfig.EGG_ID.ToTag(), SimHashes.Hydrogen, PHO_TUNING.EGG_MODIFIER_PER_SECOND.FAST2, false)
             );
             CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
-                PHO_TUNING.CreateElementModifier(AquaOilfloaterConfig.ID, AquaOilfloaterConfig.EGG_ID.ToTag(), SimHashes.Water, PHO_TUNING.EGG_MODIFIER_PER_SECOND.FAST * 10, false)
+                PHO_TUNING.CreateElementModifier(AquaOilfloaterConfig.ID, AquaOilfloaterConfig.EGG_ID.ToTag(), SimHashes.Water, PHO_TUNING.EGG_MODIFIER_PER_SECOND.NORMAL * 10, false)
             );
 
             if (!Settings.DisableNewEggs)

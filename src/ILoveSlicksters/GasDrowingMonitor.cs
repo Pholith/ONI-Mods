@@ -39,7 +39,7 @@ namespace ILoveSlicksters
             if (NeedLiquid == null)
             {
                 NeedLiquid = new StatusItem("NeedLiquid", "CREATURES", "status_item_plant_liquid", StatusItem.IconType.Custom, NotificationType.BadMinor, false, OverlayModes.None.ID, true, StatusItem.ALL_OVERLAYS);
-                Strings.Add($"STRINGS.CREATURES.STATUSITEMS.NEEDLIQUID.NAME", "NeedLiquid");
+                Strings.Add($"STRINGS.CREATURES.STATUSITEMS.NEEDLIQUID.NAME", "Need Liquid");
                 Strings.Add($"STRINGS.CREATURES.STATUSITEMS.NEEDLIQUID.TOOLTIP", "This creature must be in water to survive !");
                 NeedLiquid.resolveStringCallback = ((string str, object data) => str);
             }
