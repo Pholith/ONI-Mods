@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using static TUNING.CREATURES;
+using Pholib;
 
 namespace ILoveSlicksters
 {
@@ -27,7 +28,7 @@ namespace ILoveSlicksters
 
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 243.15f + 20, 293.15f - 20, 243.15f, 293.15f, is_baby, variantSprite);
+            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, (-10f).CelciusToKelvin(), 10f.CelciusToKelvin(), (-30f).CelciusToKelvin(), 20f.CelciusToKelvin(), is_baby, variantSprite);
             EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
@@ -53,7 +54,7 @@ namespace ILoveSlicksters
         {
             new FertilityMonitor.BreedingChance
             {
-                egg = "OilfloaterDecorEgg".ToTag(),
+                egg = OilFloaterDecorConfig.EGG_ID.ToTag(),
                 weight = 0.33f
             },
             new FertilityMonitor.BreedingChance
@@ -63,7 +64,7 @@ namespace ILoveSlicksters
             },
             new FertilityMonitor.BreedingChance
             {
-                egg = "OilfloaterEgg".ToTag(),
+                egg = OilFloaterConfig.EGG_ID.ToTag(),
                 weight = 0.02f
             },
             new FertilityMonitor.BreedingChance

@@ -1,4 +1,5 @@
 ﻿using Klei.AI;
+using Pholib;
 using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
@@ -38,7 +39,7 @@ namespace ILoveSlicksters
 
         public static GameObject CreateOilFloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 263.15f + 20, 313.15f - 20, 263.15f, 313.15f, is_baby, variantSprite);
+            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 0f.CelciusToKelvin(), 45f.CelciusToKelvin(), (-15f).CelciusToKelvin(), 60f.CelciusToKelvin(), is_baby, variantSprite);
             EntityTemplates.ExtendEntityToWildCreature(prefab, CREATURES.SPACE_REQUIREMENTS.TIER4);
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
@@ -60,8 +61,8 @@ namespace ILoveSlicksters
         {
             new FertilityMonitor.BreedingChance
             {
-                egg = "OilfloaterDecorEgg".ToTag(),
-                weight = 0.33f
+                egg = OilFloaterDecorConfig.EGG_ID.ToTag(),
+                weight = 0.20f
             },
             new FertilityMonitor.BreedingChance
             {
@@ -70,7 +71,7 @@ namespace ILoveSlicksters
             },
             new FertilityMonitor.BreedingChance
             {
-                egg = "OilfloaterEgg".ToTag(),
+                egg = OilFloaterConfig.EGG_ID.ToTag(),
                 weight = 0.02f
             },
             new FertilityMonitor.BreedingChance
@@ -86,6 +87,11 @@ namespace ILoveSlicksters
             new FertilityMonitor.BreedingChance
             {
                 egg = EthanolOilfloaterConfig.EGG_ID.ToTag(),
+                weight = 0.02f
+            },
+            new FertilityMonitor.BreedingChance
+            {
+                egg = AquaOilfloaterConfig.EGG_ID.ToTag(),
                 weight = 0.02f
             },
 

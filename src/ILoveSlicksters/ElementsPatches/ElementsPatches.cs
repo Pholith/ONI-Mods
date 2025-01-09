@@ -37,6 +37,8 @@ namespace ILoveSlicksters.elements
         public static Substance CreateRegisteredSubstance(string name, Element.State state, KAnimFile kanim, Material material, Color32 colour)
         {
             Substance result = ModUtil.CreateSubstance(name, state, kanim, material, colour, colour, colour);
+            Traverse.Create(result).Field("anims").SetValue(new KAnimFile[] { kanim });
+
             SimHashUtil.RegisterSimHash(result.elementID, name);
             if (!substanceTablesByDlc[DlcManager.VANILLA_ID].GetList().Contains(result))
             { substanceTablesByDlc[DlcManager.VANILLA_ID].GetList().Add(result); }

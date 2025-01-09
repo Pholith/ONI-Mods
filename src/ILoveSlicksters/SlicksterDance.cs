@@ -10,7 +10,7 @@ namespace ILoveSlicksters
             default_state = normal;
 
             normal.Enter("SetNavType", delegate (Instance smi) { })
-                .Update("SetNavType", delegate (Instance smi, float dt) { }, UpdateRate.SIM_1000ms, false).Transition(dancing, (Instance smi) => smi.MustDance(), UpdateRate.SIM_1000ms);
+                .Update("SetNavType", delegate (Instance smi, float dt) { }, UpdateRate.SIM_4000ms, false).Transition(dancing, (Instance smi) => smi.MustDance(), UpdateRate.SIM_4000ms);
 
 
             dancing.Enter("SetNavType", delegate (Instance smi)

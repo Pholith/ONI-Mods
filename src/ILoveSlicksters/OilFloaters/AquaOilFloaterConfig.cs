@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using static TUNING.CREATURES;
+using Pholib;
 
 namespace ILoveSlicksters
 {
@@ -19,7 +20,7 @@ namespace ILoveSlicksters
                 egg_kanim_id,
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
-                40f, 10f,
+                30f, 10f,
                 EGG_CHANCES_AQUA, new string[] { "" },
                 EGG_SORT_ORDER);
 
@@ -33,7 +34,7 @@ namespace ILoveSlicksters
 
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = AquaticOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 263.15f, 323.15f, is_baby, variantSprite);
+            GameObject prefab = AquaticOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, (-10f).CelciusToKelvin(), 50f.CelciusToKelvin(), is_baby, variantSprite);
             //prefab.RemoveDef<SubmergedMonitor.Def>();
             //prefab.AddOrGetDef<CreatureFallMonitor.Def>().canSwim = false;
 
@@ -92,6 +93,7 @@ namespace ILoveSlicksters
             gameObject.AddOrGetDef<ThreatMonitor.Def>();
             gameObject.AddOrGet<GasDrowningMonitor>();
             gameObject.AddOrGetDef<CreatureAquaticGroomingMonitor.Def>();
+            gameObject.AddOrGet<LightVulnerable>();
 
             gameObject.AddOrGetDef<CreatureFallMonitor.Def>().canSwim = true;
             gameObject.AddOrGetDef<CreatureFallMonitor.Def>().checkHead = false;
@@ -165,12 +167,17 @@ namespace ILoveSlicksters
             new FertilityMonitor.BreedingChance
             {
                 egg = EthanolOilfloaterConfig.EGG_ID.ToTag(),
-                weight = 0.33f
+                weight = 0.1f
             },
             new FertilityMonitor.BreedingChance
             {
                 egg = OwO_OilfloaterConfig.EGG_ID.ToTag(),
                 weight = 0.2f
+            },
+            new FertilityMonitor.BreedingChance
+            {
+                egg = LeafyOilfloaterConfig.EGG_ID.ToTag(),
+                weight = 0.02f
             },
         };
         public const string base_kanim_id = "aqua_oilfloater_kanim";

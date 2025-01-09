@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using static TUNING.CREATURES;
+using Pholib;
 
 namespace ILoveSlicksters
 {
@@ -28,7 +29,7 @@ namespace ILoveSlicksters
 
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 210.15f + 20, 273.15f - 20, 210.15f, 273.15f, is_baby, variantSprite);
+            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, (-40f).CelciusToKelvin(), (-20f).CelciusToKelvin(), (-60f).CelciusToKelvin(), 0f.CelciusToKelvin(), is_baby, variantSprite);
             EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
@@ -70,14 +71,24 @@ namespace ILoveSlicksters
         {
             new FertilityMonitor.BreedingChance
             {
-                egg = "FrozenOilfloaterEgg".ToTag(),
+                egg = EGG_ID.ToTag(),
                 weight = 0.66f
             },
             new FertilityMonitor.BreedingChance
             {
-                egg = "EthanolOilfloaterEgg".ToTag(),
+                egg = EthanolOilfloaterConfig.EGG_ID.ToTag(),
                 weight = 0.34f
-            }
+            },
+            new FertilityMonitor.BreedingChance
+            {
+                egg = AquaOilfloaterConfig.EGG_ID.ToTag(),
+                weight = 0.02f
+            },
+            new FertilityMonitor.BreedingChance
+            {
+                egg = OwO_OilfloaterConfig.EGG_ID.ToTag(),
+                weight = 0.02f
+            },
         };
 
         public const string base_kanim_id = "custom_oilfloater2_kanim";
