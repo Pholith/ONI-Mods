@@ -8,11 +8,15 @@ namespace GigaWattWire
     [RestartRequired]
     public class WireOptions
     {
-        [Option("Make wire bridge insulated", "If the box is checked, Wire bridges will be insulated.")]
+        [Option("Make vanilla wire bridge insulated", "If the box is checked, Base game Wire bridges will be insulated.")]
+        [JsonProperty]
+        public bool MakeVanillaWireBridgeInsulated { get; set; }
+
+        [Option("Make mod wire bridge insulated", "If the box is checked, Modded Wire bridges will be insulated.")]
         [JsonProperty]
         public bool MakeWireBridgeInsulated { get; set; }
 
-        [Option("Enable game wire throught wall", "If the box is checked, You will be able to build the vanilla High-wattage and Refined high-wattage wire throught wall.")]
+        [Option("Enable vanilla wire throught wall", "If the box is checked, You will be able to build the vanilla High-wattage and Refined high-wattage wire throught wall.")]
         [JsonProperty]
         public bool EnableHighWattageWireToPassThroughtWall { get; set; }
 
@@ -42,6 +46,7 @@ namespace GigaWattWire
 
         public WireOptions()
         {
+            MakeVanillaWireBridgeInsulated = false;
             MakeWireBridgeInsulated = false;
             EnableHighWattageWireToPassThroughtWall = false;
             EnableBigWireToPassThroughtWall = false;

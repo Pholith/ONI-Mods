@@ -479,6 +479,7 @@ namespace GigaWattWire
             public static void Postfix(ref BuildingDef __result)
             {
                 if (GameOnLoadPatch.Settings.EnableHighWattageWireToPassThroughtWall) __result.BuildLocationRule = BuildLocationRule.Anywhere;
+                if (GameOnLoadPatch.Settings.MakeVanillaWireBridgeInsulated) __result.ThermalConductivity = 0.01f;
             }
         }
         [HarmonyPatch(typeof(WireRefinedHighWattageConfig), nameof(WireRefinedHighWattageConfig.CreateBuildingDef))]
@@ -487,6 +488,7 @@ namespace GigaWattWire
             public static void Postfix(ref BuildingDef __result)
             {
                 if (GameOnLoadPatch.Settings.EnableHighWattageWireToPassThroughtWall) __result.BuildLocationRule = BuildLocationRule.Anywhere;
+                if (GameOnLoadPatch.Settings.MakeVanillaWireBridgeInsulated) __result.ThermalConductivity = 0.01f;
             }
         }
     }

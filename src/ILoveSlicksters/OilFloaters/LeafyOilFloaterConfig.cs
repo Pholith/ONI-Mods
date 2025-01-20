@@ -31,7 +31,7 @@ namespace ILoveSlicksters
 
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID,  12f.CelciusToKelvin(), 35f.CelciusToKelvin(), 1f.CelciusToKelvin(), 45f.CelciusToKelvin(), is_baby, variantSprite);
+            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID,  12f.CelciusToKelvin(), 35f.CelciusToKelvin(), 1f.CelciusToKelvin(), 49f.CelciusToKelvin(), is_baby, variantSprite);
             EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
             int count = 3;
             string[] loot = new string[count];
@@ -96,7 +96,7 @@ namespace ILoveSlicksters
             new FertilityMonitor.BreedingChance
             {
                 egg = EGG_ID.ToTag(),
-                weight = 0.66f
+                weight = 0.8f
             },
             new FertilityMonitor.BreedingChance
             {
