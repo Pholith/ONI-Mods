@@ -12,7 +12,7 @@ namespace Pholib
 {
     public class Logs
     {
-        private static readonly string version = "1.5";
+        private static readonly string version = "1.6";
 
         public static bool DebugLog = false;
         private static bool initiated = false;
@@ -104,6 +104,14 @@ namespace Pholib
             return celcius + 273.15f;
         }
 
+        public static string FormatColored(this string text, Color color, bool bold = true)
+        {
+            return FormatColored(text, color.ToHexString(), bold);
+        }        
+        public static string FormatColored(this string text, string HexaColor, bool bold = true)
+        {
+            return $"{(bold ? "<b>" : "")}<color=#{HexaColor}>{text}</color>{(bold ? "</b>" : "")}";
+        }
 
         public static string ModPath()
         {

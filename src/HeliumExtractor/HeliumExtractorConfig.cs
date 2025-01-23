@@ -1,4 +1,6 @@
-﻿using TUNING;
+﻿using Pholib;
+using System.Collections.Generic;
+using TUNING;
 using UnityEngine;
 
 namespace HeliumExtractor
@@ -25,7 +27,7 @@ namespace HeliumExtractor
             buildingDef.RequiresPowerInput = true;
             buildingDef.PermittedRotations = PermittedRotations.FlipH;
             buildingDef.PowerInputOffset = new CellOffset(0, 0);
-            buildingDef.EnergyConsumptionWhenActive = 420f;
+            buildingDef.EnergyConsumptionWhenActive = GameOnLoadPatch.Settings.PowerConsumption;
             buildingDef.SelfHeatKilowattsWhenActive = 12f;
             buildingDef.AudioCategory = "HollowMetal";
             buildingDef.ViewMode = OverlayModes.GasConduits.ID;
@@ -40,11 +42,13 @@ namespace HeliumExtractor
         //ConfigureBuildingTemplate from rafinnery example
         public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
         {
-            
+
             go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
-            go.AddOrGet<BuildingComplete>().isManuallyOperated = true;
-            HeliumExtractor heliumExtractor = go.AddOrGet<HeliumExtractor>();
-            heliumExtractor.overpressureMass = 10f;
+
+            Storage storage = go.AddOrGet<Storage>();
+            storage.showInUI = true;
+            storage.capacityKg = 10;
+
             ConduitConsumer conduitConsumer = go.AddOrGet<ConduitConsumer>();
             conduitConsumer.conduitType = ConduitType.Gas;
             conduitConsumer.consumptionRate = totalConversion;
@@ -53,24 +57,43 @@ namespace HeliumExtractor
             conduitConsumer.capacityKG = 10f;
             conduitConsumer.forceAlwaysSatisfied = true;
 
-            
+            DropAllWorkable dropAllWorkable = go.AddOrGet<DropAllWorkable>();
+            dropAllWorkable.removeTags = new List<Tag>
+        {
+            GameTags.GasSource, SimHashes.Sulfur.CreateTag(),
+        };
+            dropAllWorkable.resetTargetWorkableOnCompleteWork = true;
+
+
+            // Automatic patch
+            var buildingComplete = go.AddOrGet<BuildingComplete>();
+            if (GameOnLoadPatch.Settings.DisableDuplicantOperation)
+            {
+                buildingComplete.isManuallyOperated = false;
+                go.AddOrGet<WaterPurifier>();
+                conduitConsumer.capacityKG = 1f;
+                storage.capacityKg = 1;
+            }
+            else
+            {
+                buildingComplete.isManuallyOperated = true;
+                HeliumExtractor heliumExtractor = go.AddOrGet<HeliumExtractor>();
+                heliumExtractor.overpressureMass = 15f;
+            }
+
             ConduitDispenser conduitDispenser = go.AddOrGet<ConduitDispenser>();
             conduitDispenser.conduitType = ConduitType.Gas;
             conduitDispenser.blocked = true;
-            conduitDispenser.invertElementFilter = true;
             conduitDispenser.elementFilter = new SimHashes[]
             {
-                SimHashes.Methane,
-                SimHashes.Propane
+                SimHashes.Helium,
             };
 
             ConduitDispenser conduitDispenser2 = go.AddComponent<ConduitDispenser>();
             conduitDispenser2.conduitType = ConduitType.Gas;
-            conduitDispenser2.invertElementFilter = true;
             conduitDispenser2.elementFilter = new SimHashes[]
             {
-                SimHashes.Methane,
-                SimHashes.Helium
+                SimHashes.Propane,
             };
             conduitDispenser2.useSecondaryOutput = true;
 
@@ -78,9 +101,6 @@ namespace HeliumExtractor
             ConduitSecondaryOutput secondOutput = go.AddOrGet<ConduitSecondaryOutput>();
             secondOutput.portInfo = secondaryPort;
 
-            Storage storage = go.AddOrGet<Storage>();
-            storage.showInUI = true;
-            storage.capacityKg = 10;
 
             ElementConverter elementConverter = go.AddOrGet<ElementConverter>();
             elementConverter.consumedElements = new ElementConverter.ConsumedElement[]
@@ -89,9 +109,9 @@ namespace HeliumExtractor
             };
             elementConverter.outputElements = new ElementConverter.OutputElement[]
             {
-                new ElementConverter.OutputElement(heliumConversionRate, SimHashes.Sulfur, 350.15f, false, false),
-                new ElementConverter.OutputElement(heliumConversionRate, SimHashes.Helium, 80.15f, false, true),
-                new ElementConverter.OutputElement(propaneConversionRate, SimHashes.Propane, 81.15f, false, true)
+                new ElementConverter.OutputElement(sulfureConversionRate, SimHashes.Sulfur, 60f.CelciusToKelvin(), false, false),
+                new ElementConverter.OutputElement(heliumConversionRate, SimHashes.Helium, (-80f).CelciusToKelvin(), false, true),
+                new ElementConverter.OutputElement(propaneConversionRate, SimHashes.Propane, (-80f).CelciusToKelvin(), false, true)
             };
             Prioritizable.AddRef(go);
         }
@@ -99,10 +119,24 @@ namespace HeliumExtractor
         public override void DoPostConfigureComplete(GameObject go)
         {
             AttachPort(go);
+            /*HeliumExtractor heliumExtractor = go.AddOrGet<HeliumExtractor>();
+            heliumExtractor.overpressureMass = 15f;
+            Logs.Log("test 4");
+            Logs.Log(heliumExtractor?.smi?.sm.GetState("root.ready").transitions.Dump());
+            Logs.Log(heliumExtractor?.smi?.sm.GetState("root.ready").enterActions.Dump());
+            Logs.Log(heliumExtractor?.smi?.sm.masterTarget.GetType());
+            //heliumExtractor.smi.sm.GetState("root.ready").enterActions[1] = new OilRefinery.States.Action("", (object) new OilRefinery.States.WorkingState.Callback((smi) =>Traverse.Create(heliumExtractor).Field<Operational>("operational").Value.SetActive(true)));
+            Logs.Log(heliumExtractor?.smi?.sm.GetState("root.ready").enterActions.Dump());*/
+
         }
         public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
         {
             AttachPort(go);
+        }
+
+        public void Test()
+        {
+
         }
 
         public override void DoPostConfigureUnderConstruction(GameObject go)
@@ -117,12 +151,11 @@ namespace HeliumExtractor
         }
 
 
-
         private readonly ConduitPortInfo secondaryPort = new ConduitPortInfo(ConduitType.Gas, new CellOffset(-1, 2));
 
-        public static float totalConversion = 0.5f; // 500 g (input of pipes)
-        public static float heliumConversionRate = 0.05f / 2; // 5% of 1kg
-        public static float sulfureConversionRate = 0.05f / 2; // 5% of 1kg
+        public static float totalConversion = GameOnLoadPatch.Settings.MethaneConversionPerSeconds; // 500 g (input of pipes)
+        public static float heliumConversionRate = 0.05f * totalConversion; // 5% of 1kg
+        public static float sulfureConversionRate = 0.05f * totalConversion; // 5% of 1kg
         public static float propaneConversionRate = totalConversion - heliumConversionRate - sulfureConversionRate; // the rest
 
 

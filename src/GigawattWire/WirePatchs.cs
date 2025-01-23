@@ -479,7 +479,6 @@ namespace GigaWattWire
             public static void Postfix(ref BuildingDef __result)
             {
                 if (GameOnLoadPatch.Settings.EnableHighWattageWireToPassThroughtWall) __result.BuildLocationRule = BuildLocationRule.Anywhere;
-                if (GameOnLoadPatch.Settings.MakeVanillaWireBridgeInsulated) __result.ThermalConductivity = 0.01f;
             }
         }
         [HarmonyPatch(typeof(WireRefinedHighWattageConfig), nameof(WireRefinedHighWattageConfig.CreateBuildingDef))]
@@ -488,6 +487,21 @@ namespace GigaWattWire
             public static void Postfix(ref BuildingDef __result)
             {
                 if (GameOnLoadPatch.Settings.EnableHighWattageWireToPassThroughtWall) __result.BuildLocationRule = BuildLocationRule.Anywhere;
+            }
+        }
+        [HarmonyPatch(typeof(WireRefinedBridgeConfig), nameof(WireRefinedBridgeConfig.CreateBuildingDef))]
+        public static class WireRefinedBridgeConfig_CreateBuildingDef_GigaWattWire_Patch
+        {
+            public static void Postfix(ref BuildingDef __result)
+            {
+                if (GameOnLoadPatch.Settings.MakeVanillaWireBridgeInsulated) __result.ThermalConductivity = 0.01f;
+            }
+        }
+        [HarmonyPatch(typeof(WireBridgeHighWattageConfig), nameof(WireBridgeHighWattageConfig.CreateBuildingDef))]
+        public static class WireBridgeHighWattageConfig_CreateBuildingDef_GigaWattWire_Patch
+        {
+            public static void Postfix(ref BuildingDef __result)
+            {
                 if (GameOnLoadPatch.Settings.MakeVanillaWireBridgeInsulated) __result.ThermalConductivity = 0.01f;
             }
         }

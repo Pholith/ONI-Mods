@@ -1,7 +1,5 @@
-﻿using Database;
-using HarmonyLib;
+﻿using HarmonyLib;
 using Pholib;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,27 +15,9 @@ namespace HeliumExtractor
         [HarmonyPatch(nameof(GeneratedBuildings.LoadGeneratedBuildings))]
         public class ImplementationPatch
         {
-            public static LocString NAME = new LocString("Helium Extractor",
-                "STRINGS.BUILDINGS.PREFABS." + HeliumExtractorConfig.ID.ToUpper() + ".NAME");
-
-            public static LocString DESC = new LocString("Helium can only be produced from the extration of Natural gas.",
-                "STRINGS.BUILDINGS.PREFABS." + HeliumExtractorConfig.ID.ToUpper() + ".DESC");
-
-            public static LocString EFFECT = new LocString("Transforms "
-                + STRINGS.UI.FormatAsLink("natural gas", "METHANE")
-                + " into "
-                + STRINGS.UI.FormatAsLink("helium", "HELIUM") + ", "
-                + STRINGS.UI.FormatAsLink("propane", "PROPANE") + " and "
-                + STRINGS.UI.FormatAsLink("sulfur", "SULFUR") + "."
-                + "\n\n" + STRINGS.UI.FormatAsLink("Helium", "HELIUM") + " is a useful gas with interesting physical properties.\nPropane can be used the same way than Natural gas.",
-                "STRINGS.BUILDINGS.PREFABS." + HeliumExtractorConfig.ID.ToUpper() + ".EFFECT");
-
             private static void Prefix()
             {
-                Strings.Add(NAME.key.String, NAME.text);
-                Strings.Add(DESC.key.String, DESC.text);
-                Strings.Add(EFFECT.key.String, EFFECT.text);
-                ModUtil.AddBuildingToPlanScreen("Refining", HeliumExtractorConfig.ID);
+                Utilities.AddBuilding("Refining", HeliumExtractorConfig.ID, PHO_STRINGS.HELIUMEXTRACTOR.NAME, PHO_STRINGS.HELIUMEXTRACTOR.DESC, PHO_STRINGS.HELIUMEXTRACTOR.EFFECT);
             }
 
         }
@@ -48,35 +28,34 @@ namespace HeliumExtractor
             public static void Postfix()
             {
                 Utilities.AddBuildingTech("HighTempForging", HeliumExtractorConfig.ID);
+                Strings.Add("STRINGS.MISC.TAGS.COMBUSTIBLEGAS", PHO_STRINGS.COMBUSTIBLEGAS);
             }
         }
 
-        // Add CombustibleGas tag to Propane
+        //public static readonly Tag ConductorTag = TagManager.Create(COMBUSTIBLEGAS, PHO_STRINGS.COMBUSTIBLEGAS);
+
         [HarmonyPatch(typeof(ElementLoader), "CopyEntryToElement")]
         public class PropaneCombustibleAdder
         {
             public static void Postfix(Element elem)
             {
-                if (elem.id == SimHashes.Propane)
+                // Enable helium and propane
+                if (elem.id == SimHashes.Helium || elem.id == SimHashes.LiquidHelium || elem.id == SimHashes.Propane || elem.id == SimHashes.LiquidPropane || elem.id == SimHashes.SolidPropane)
+                {
+                    elem.disabled = false;
+                    elem.oreTags = elem.oreTags.Except(new Tag[] { GameTags.HideFromCodex, GameTags.HideFromSpawnTool }).Cast<Tag>().ToArray(); // Remove Propane Hide tags
+                }
+
+                // Add CombustibleGas tag to Propane
+                if (elem.id == SimHashes.Propane && !elem.oreTags.Contains(GameTags.CombustibleGas))
                 {
                     IEnumerable list = elem.oreTags.AddItem(GameTags.CombustibleGas);
                     elem.oreTags = list.Cast<Tag>().ToArray();
                 }
+
             }
         }
-        // Enable helium and propane
-        [HarmonyPatch(typeof(ElementLoader), "CopyEntryToElement")]
-        public class HeliumEnablePatch
-        {
-            public static void Postfix(Element elem)
-            {
-                if (elem.id == SimHashes.Helium || elem.id == SimHashes.LiquidHelium || elem.id == SimHashes.Propane || elem.id == SimHashes.LiquidPropane || elem.id == SimHashes.SolidPropane)
-                {
-                    elem.disabled = false;
-                }
-            }
-        }
-    
+
         // Add propane in the MethaneGeneratorConfig element list
         [HarmonyPatch(typeof(MethaneGeneratorConfig), "DoPostConfigureComplete")]
         public class MethaneGeneratorPropanePatch
@@ -84,18 +63,10 @@ namespace HeliumExtractor
             public static void Postfix(GameObject go)
             {
                 EnergyGenerator energyGenerator = go.AddOrGet<EnergyGenerator>();
-                energyGenerator.formula = new EnergyGenerator.Formula
-                {
-                    inputs = new EnergyGenerator.InputItem[]
+                energyGenerator.formula.inputs = new EnergyGenerator.InputItem[]
                     {
                 new EnergyGenerator.InputItem(GameTags.CombustibleGas, 0.09f, 0.90000004f)
-                    },
-                    outputs = new EnergyGenerator.OutputItem[]
-                    {
-                new EnergyGenerator.OutputItem(SimHashes.DirtyWater, 0.0675f, false, new CellOffset(1, 1), 313.15f),
-                new EnergyGenerator.OutputItem(SimHashes.CarbonDioxide, 0.0225f, true, new CellOffset(0, 2), 383.15f)
-                    }
-                };
+                    };
 
 
                 ConduitDispenser conduitDispenser = go.AddOrGet<ConduitDispenser>();
@@ -103,6 +74,8 @@ namespace HeliumExtractor
 
             }
         }
+
+
         // Change the GourmetCookingStationConfig fuel tag from Methane to CombustibleGas
         [HarmonyPatch(typeof(GourmetCookingStationConfig), nameof(GourmetCookingStationConfig.ConfigureBuildingTemplate))]
         public class GourmetCookingStationPropanePatch
@@ -110,6 +83,15 @@ namespace HeliumExtractor
             public static void Prefix(GourmetCookingStationConfig __instance, GameObject go)
             {
                 Traverse.Create(__instance).Field("FUEL_TAG").SetValue(GameTags.CombustibleGas);
+            }
+        }
+        // Change the FoodDehydratorConfig fuel tag from Methane to CombustibleGas
+        [HarmonyPatch(typeof(FoodDehydratorConfig), nameof(FoodDehydratorConfig.ConfigureBuildingTemplate))]
+        public class FoodDehydratorConfig_Propane_Patch
+        {
+            public static void Prefix(FoodDehydratorConfig __instance, GameObject go)
+            {
+                FOODDEHYDRATORTUNING.FUEL_TAG = GameTags.CombustibleGas;
             }
         }
 
@@ -146,7 +128,7 @@ namespace HeliumExtractor
                         if (!(component == null) && (!__instance.keepExcessLiquids || !component.Element.IsLiquid))
                         {
                             KPrefabID component2 = gameObject.GetComponent<KPrefabID>();
-                            if (!(component2.HasTag(__instance.keepAdditionalTag)) && component2 && !hashSet.Contains(component2.PrefabID())) // My change here 
+                            if (!component2.HasTag(__instance.keepAdditionalTag) && component2 && !hashSet.Contains(component2.PrefabID())) // My change here 
                             {
                                 storage.Drop(gameObject, true);
                             }

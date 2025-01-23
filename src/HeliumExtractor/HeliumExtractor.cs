@@ -1,15 +1,17 @@
 ﻿using HarmonyLib;
+using Pholib;
 using static OilRefinery;
 
 namespace HeliumExtractor
 {
-    class HeliumExtractor : OilRefinery
+
+    public class HeliumExtractor : OilRefinery
     {
     }
 
     [HarmonyPatch(typeof(WorkableTarget))]
     [HarmonyPatch("OnPrefabInit")]
-    public class AnimationPatch
+    public class HeliumExtractor_Animation_Patch
     {
         public static void Postfix(WorkableTarget __instance)
         {
