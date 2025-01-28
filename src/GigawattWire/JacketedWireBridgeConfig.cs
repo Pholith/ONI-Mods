@@ -22,6 +22,11 @@ namespace GigaWattWire
 
             return buildingDef;
         }
+        public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
+        {
+            base.ConfigureBuildingTemplate(go, prefab_tag);
+            if (GameOnLoadPatch.Settings.MakeWireBridgeInsulated) go.AddOrGet<Insulator>();
+        }
 
         protected override WireUtilityNetworkLink AddNetworkLink(GameObject go)
         {

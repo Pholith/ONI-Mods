@@ -52,8 +52,8 @@ msgstr ""
 "\n"
 "Le <b><color=#7990D1>Propane</color></b> peut être utilisé de la même façon "
 "que le <b><color=#FF6E0F>Gaz Naturel</color></b>, dans un "
-"<link=\"GOURMETCOOKINGSTATION\">Fourneau à Gaz</link>, "
-"un<link=\"METHANEGENERATOR\">Générateur à Gaz Naturel</link> ou dans un "
+"<link=\"GOURMETCOOKINGSTATION\">Fourneau à Gaz</link>, un "
+"<link=\"METHANEGENERATOR\">Générateur à Gaz Naturel</link> ou dans un "
 "<link=\"FOODDEHYDRATOR\">Déhydrateur</link>."
 
 #. HeliumExtractor.PHO_STRINGS.HELIUMEXTRACTOR.NAME

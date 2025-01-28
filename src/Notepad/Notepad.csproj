@@ -47,6 +47,12 @@
     <Compile Include="NotepadConfig.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="anim\notepad\notepad2\notepad_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\notepad\notepad2\notepad_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="anim\notepad\notepad\notepad_anim.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -115,6 +121,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="anim\notepad\notepad2\notepad.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="anim\notepad\notepad\notepad.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

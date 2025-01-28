@@ -107,7 +107,7 @@ namespace Pholib
         public static string FormatColored(this string text, Color color, bool bold = true)
         {
             return FormatColored(text, color.ToHexString(), bold);
-        }        
+        }
         public static string FormatColored(this string text, string HexaColor, bool bold = true)
         {
             return $"{(bold ? "<b>" : "")}<color=#{HexaColor}>{text}</color>{(bold ? "</b>" : "")}";
@@ -116,6 +116,30 @@ namespace Pholib
         public static string ModPath()
         {
             return Directory.GetParent(Assembly.GetExecutingAssembly().Location) + Path.DirectorySeparatorChar.ToString();
+        }
+
+        /// <summary>
+        /// Create a subcategory for plan skins.
+        /// </summary>
+        /// Inspired from SGT Closet utilityLib (Thanks)
+        public static void AddSkinSubcategory(string mainCategory, string subcategoryID, Sprite icon, int sortkey, string[] permitIDs)
+        {
+            if (!InventoryOrganization.categoryIdToSubcategoryIdsMap.ContainsKey(mainCategory))
+            {
+                Logs.Log($"Category {mainCategory} not found");
+                return;
+            }
+            if (InventoryOrganization.subcategoryIdToPermitIdsMap.ContainsKey(subcategoryID))
+            {
+                return;
+            }
+            InventoryOrganization.subcategoryIdToPresentationDataMap.Add(subcategoryID, new InventoryOrganization.SubcategoryPresentationData(subcategoryID, icon, sortkey));
+            InventoryOrganization.subcategoryIdToPermitIdsMap.Add(subcategoryID, new HashSet<string>());
+            InventoryOrganization.categoryIdToSubcategoryIdsMap[mainCategory].Add(subcategoryID);
+            for (int i = 0; i < permitIDs.Length; i++)
+            {
+                InventoryOrganization.subcategoryIdToPermitIdsMap[subcategoryID].Add(permitIDs[i]);
+            }
         }
 
         /// <summary>

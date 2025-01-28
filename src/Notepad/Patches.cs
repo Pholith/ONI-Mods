@@ -1,8 +1,11 @@
-﻿using HarmonyLib;
+﻿using Database;
+using HarmonyLib;
 using KMod;
 using PeterHan.PLib.Database;
 using PeterHan.PLib.Options;
 using PeterHan.PLib.UI;
+using Pholib;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static Pholib.Utilities;
@@ -64,6 +67,7 @@ namespace Notepad
 
             GameObject o = new GameObject();
             o.AddComponent<NotepadSideScreen>();
+
         }
     }
 
@@ -120,4 +124,33 @@ namespace Notepad
 
         }
     }
+
+    // Skin patchs
+    [HarmonyPatch(typeof(InventoryOrganization))]
+    [HarmonyPatch("GenerateSubcategories")]
+    public static class InventoryOrganization_GenerateSubcategories_NotepadPatch
+    {
+        public static readonly string[] SkinIDs = new string[]
+{
+            "Notepad",
+            "Notepad_2",
+};
+
+        public static void Postfix()
+        {
+            Utilities.AddSkinSubcategory("BUILDINGS", "BUILDING_NOTEPAD", Def.GetUISprite("Notepad", "ui", false).first, 130, SkinIDs);
+        }
+    }
+
+    // Skin patchs
+    [HarmonyPatch(typeof(BuildingFacades), MethodType.Constructor, new Type[] { typeof(ResourceSet) })]
+    public static class BuildingFacades_Constructor_NotepadPatch
+    {
+        public static void Postfix(ResourceSet<BuildingFacadeResource> __instance)
+        {
+            __instance.Add(new BuildingFacadeResource("Notepad", PHO_STRINGS.NOTEPAD_B.NAME, PHO_STRINGS.NOTEPAD_B.DESC, PermitRarity.Universal, NotepadConfig.ID, "notepad_kanim", DlcManager.AVAILABLE_ALL_VERSIONS, null));
+            __instance.Add(new BuildingFacadeResource("Notepad_2", PHO_STRINGS.NOTEPAD_B.NAME, PHO_STRINGS.NOTEPAD_B.DESC, PermitRarity.Universal, NotepadConfig.ID, "notepad2_kanim", DlcManager.AVAILABLE_ALL_VERSIONS, null));
+        }
+    }
+
 }

@@ -2,7 +2,7 @@
 
 namespace ILoveSlicksters
 {
-    public class PHO_STRINGS
+    public static class PHO_STRINGS
     {
 
         public static class VARIANT_ETHANOL

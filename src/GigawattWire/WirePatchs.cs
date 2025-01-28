@@ -26,7 +26,7 @@ namespace GigaWattWire
 
                 new PLocalization().Register();
                 Utilities.GenerateStringsTemplate(typeof(WIRE_STRINGS));
-                
+
             }
         }
 
@@ -405,7 +405,7 @@ namespace GigaWattWire
                 }
                 else
                 {
-                    ___timeOverloaded = Mathf.Max(0f, ___timeOverloaded - dt * 0.95f);
+                    ___timeOverloaded = Mathf.Max(0f, ___timeOverloaded - (dt * 0.95f));
                     ___timeOverloadNotificationDisplayed += dt;
                     if (___timeOverloadNotificationDisplayed > 5f)
                     {
@@ -489,7 +489,7 @@ namespace GigaWattWire
                 if (GameOnLoadPatch.Settings.EnableHighWattageWireToPassThroughtWall) __result.BuildLocationRule = BuildLocationRule.Anywhere;
             }
         }
-        [HarmonyPatch(typeof(WireRefinedBridgeConfig), nameof(WireRefinedBridgeConfig.CreateBuildingDef))]
+        [HarmonyPatch(typeof(WireRefinedBridgeHighWattageConfig), nameof(WireRefinedBridgeHighWattageConfig.CreateBuildingDef))]
         public static class WireRefinedBridgeConfig_CreateBuildingDef_GigaWattWire_Patch
         {
             public static void Postfix(ref BuildingDef __result)
@@ -497,12 +497,12 @@ namespace GigaWattWire
                 if (GameOnLoadPatch.Settings.MakeVanillaWireBridgeInsulated) __result.ThermalConductivity = 0.01f;
             }
         }
-        [HarmonyPatch(typeof(WireBridgeHighWattageConfig), nameof(WireBridgeHighWattageConfig.CreateBuildingDef))]
-        public static class WireBridgeHighWattageConfig_CreateBuildingDef_GigaWattWire_Patch
+        [HarmonyPatch(typeof(WireBridgeHighWattageConfig), nameof(WireBridgeHighWattageConfig.ConfigureBuildingTemplate))]
+        public static class WireBridgeHighWattageConfig_ConfigureBuildingTemplate_GigaWattWire_Patch
         {
-            public static void Postfix(ref BuildingDef __result)
+            public static void Postfix(GameObject go, Tag prefab_tag)
             {
-                if (GameOnLoadPatch.Settings.MakeVanillaWireBridgeInsulated) __result.ThermalConductivity = 0.01f;
+                if (GameOnLoadPatch.Settings.MakeVanillaWireBridgeInsulated) go.AddOrGet<Insulator>();
             }
         }
     }
