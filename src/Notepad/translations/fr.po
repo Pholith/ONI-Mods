@@ -1,17 +1,41 @@
 msgid ""
 msgstr ""
-"Application: Oxygen Not IncludedPOT Version: 2.0\n"
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
+"Last-Translator: Pholith\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
-"Last-Translator: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"Language: fr\n"
+"Application: Oxygen Not IncludedPOT Version: 2.0\n"
+"X-Generator: Poedit 3.5\n"
+
+#. Notepad.PHO_STRINGS.BLACKBOARD.DESC
+msgctxt "Notepad.PHO_STRINGS.BLACKBOARD.DESC"
+msgid ""
+"This board is perfect for remembering complicated calculations ... But how "
+"did the dups get chalk?"
+msgstr ""
+"Ce tableau est parfait pour retenir les calculs compliqués … mais comment "
+"les dups ont eu de la craie ?"
+
+#. Notepad.PHO_STRINGS.BLACKBOARD.NAME
+msgctxt "Notepad.PHO_STRINGS.BLACKBOARD.NAME"
+msgid "Blackboard"
+msgstr "Tableau à craie"
+
+#. Notepad.PHO_STRINGS.BLUEPRINT.DESC
+msgctxt "Notepad.PHO_STRINGS.BLUEPRINT.DESC"
+msgid "Plan your setups"
+msgstr "Planifiez vos setups"
+
+#. Notepad.PHO_STRINGS.BLUEPRINT.NAME
+msgctxt "Notepad.PHO_STRINGS.BLUEPRINT.NAME"
+msgid "Blueprint"
+msgstr "Plan"
 
 #. Notepad.PHO_STRINGS.NOTEPAD.DESC
 msgctxt "Notepad.PHO_STRINGS.NOTEPAD.DESC"
@@ -20,10 +44,91 @@ msgstr "Vos dup n'ont pas de memoire? Laissez leur un pense bête!"
 
 #. Notepad.PHO_STRINGS.NOTEPAD.EFFECT
 msgctxt "Notepad.PHO_STRINGS.NOTEPAD.EFFECT"
-msgid "Rating and commenting on your setups will help you a lot!"
+msgid "Note and commenting on your setups will help you a lot!"
 msgstr "Notez et commentez vos installations vous aidera beaucoup !"
 
 #. Notepad.PHO_STRINGS.NOTEPAD.NAME
 msgctxt "Notepad.PHO_STRINGS.NOTEPAD.NAME"
 msgid "Notepad"
-msgstr "Notepad"
+msgstr "Bloc-notes"
+
+#. Notepad.PHO_STRINGS.POSTIT.DESC
+msgctxt "Notepad.PHO_STRINGS.POSTIT.DESC"
+msgid "Stick it everywhere !"
+msgstr "Collez en partout !"
+
+#. Notepad.PHO_STRINGS.POSTIT.NAME
+msgctxt "Notepad.PHO_STRINGS.POSTIT.NAME"
+msgid "Post-It"
+msgstr "Post-It"
+
+#. Notepad.PHO_STRINGS.STONKS.DESC
+msgctxt "Notepad.PHO_STRINGS.STONKS.DESC"
+msgid "Track your production"
+msgstr "Suivez votre production"
+
+#. Notepad.PHO_STRINGS.STONKS.NAME
+msgctxt "Notepad.PHO_STRINGS.STONKS.NAME"
+msgid "Stonks"
+msgstr "Stonks"
+
+#. Notepad.PHO_STRINGS.TV.DESC
+msgctxt "Notepad.PHO_STRINGS.TV.DESC"
+msgid ""
+"There's no cable here, instead the dupes look at pictures of cute kittens."
+msgstr ""
+"Ici il n'y a pas le câble, à la place les dups y regardent des photos de "
+"chatons mignons."
+
+#. Notepad.PHO_STRINGS.TV.NAME
+msgctxt "Notepad.PHO_STRINGS.TV.NAME"
+msgid "Tv"
+msgstr "Tv"
+
+#. Notepad.PHO_STRINGS.WARNING.DESC
+msgctxt "Notepad.PHO_STRINGS.WARNING.DESC"
+msgid "Better safe than sorry"
+msgstr "Mieux vaut prévenir que guérir"
+
+#. Notepad.PHO_STRINGS.WARNING.NAME
+msgctxt "Notepad.PHO_STRINGS.WARNING.NAME"
+msgid "Warning Sign"
+msgstr "Panneau d'Avertissement"
+
+#~ msgctxt "Notepad.PHO_STRINGS.BLACKBOARD.DESC"
+#~ msgid "Really practical but ... how did the dups get chalk?"
+#~ msgstr ""
+#~ "Ce tableau est parfait pour retenir les calculs compliqués … mais comment "
+#~ "les dups ont eu de la craie ?"
+
+#~ msgctxt "Notepad.PHO_STRINGS.BLUEPRINT.DESC"
+#~ msgid "Your dupes have no memory? Let them have a silly thought!"
+#~ msgstr "Vos dups n'ont pas de memoire? Laissez leur un pense bête!"
+
+#, fuzzy
+#~| msgctxt "Notepad.PHO_STRINGS.NOTEPAD.DESC"
+#~| msgid "Your dupes have no memory? Let them have a silly thought!"
+#~ msgctxt "Notepad.PHO_STRINGS.POSTIT.DESC"
+#~ msgid "Your dupes have no memory? Let them have a silly thought!"
+#~ msgstr "Vos dup n'ont pas de memoire? Laissez leur un pense bête!"
+
+#, fuzzy
+#~| msgctxt "Notepad.PHO_STRINGS.NOTEPAD.DESC"
+#~| msgid "Your dupes have no memory? Let them have a silly thought!"
+#~ msgctxt "Notepad.PHO_STRINGS.STONKS.DESC"
+#~ msgid "Your dupes have no memory? Let them have a silly thought!"
+#~ msgstr "Vos dup n'ont pas de memoire? Laissez leur un pense bête!"
+
+#, fuzzy
+#~| msgctxt "Notepad.PHO_STRINGS.NOTEPAD.DESC"
+#~| msgid "Your dupes have no memory? Let them have a silly thought!"
+#~ msgctxt "Notepad.PHO_STRINGS.TV.DESC"
+#~ msgid "Your dupes have no memory? Let them have a silly thought!"
+#~ msgstr "Vos dup n'ont pas de memoire? Laissez leur un pense bête!"
+
+#, fuzzy
+#~| msgctxt "Notepad.PHO_STRINGS.NOTEPAD.DESC"
+#~| msgid "Your dupes have no memory? Let them have a silly thought!"
+#~ msgctxt "Notepad.PHO_STRINGS.WARNING.DESC"
+#~ msgid "Your dupes have no memory? Let them have a silly thought!"
+#~ msgstr "Vos dup n'ont pas de memoire? Laissez leur un pense bête!"

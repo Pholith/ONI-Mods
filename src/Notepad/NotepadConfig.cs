@@ -12,7 +12,7 @@ namespace Notepad
             int height = 1;
             string anim = "notepad_kanim";
             int hitpoints = 10;
-            float construction_time = 10f;
+            float construction_time = 5f;
             float[] tier = BUILDINGS.CONSTRUCTION_MASS_KG.TIER1;
             string[] all_METALS = MATERIALS.ANY_BUILDABLE;
             float melting_point = 800f;
@@ -21,7 +21,9 @@ namespace Notepad
             BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, tier, all_METALS, melting_point, build_location_rule, BUILDINGS.DECOR.NONE, none, 0.2f);
             buildingDef.ViewMode = OverlayModes.Decor.ID;
             buildingDef.Floodable = false;
+            buildingDef.CanMove = true;
             buildingDef.Overheatable = false;
+            buildingDef.DefaultAnimState = "empty";
             buildingDef.AudioCategory = "Metal";
             return buildingDef;
         }

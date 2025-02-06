@@ -9,7 +9,7 @@ namespace Notepad
             base.OnSpawn();
 
             KBatchedAnimController animController = gameObject.AddOrGet<KBatchedAnimController>();
-            animController.Play(activateText.IsNullOrWhiteSpace() ? "empty" : "full", KAnim.PlayMode.Paused);
+            animController.Play(contentText.IsNullOrWhiteSpace() ? "empty" : "full", KAnim.PlayMode.Paused);
         }
         protected override void OnCleanUp()
         {
@@ -17,6 +17,13 @@ namespace Notepad
         }
 
         [Serialize]
-        public string activateText = "";
+        public string contentText = "";
+
+        [Serialize]
+        public int tooltipFontSize = 20;
+
+        [Serialize]
+        public string iconName = "icon_category_furniture";
+
     }
 }

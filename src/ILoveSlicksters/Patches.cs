@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
+using static TUNING.CREATURES;
 
 namespace ILoveSlicksters
 {
@@ -144,7 +145,16 @@ namespace ILoveSlicksters
             }
         }
     }
-
+    [HarmonyPatch(typeof(EGG_CHANCE_MODIFIERS))]
+    [HarmonyPatch("CreateTemperatureModifier")]
+    public class CREATURES_CreateTemperatureModifier_ILoveSlickster
+    {
+        public static void Postfix(Tag eggTag, ref float modifierPerSecond)
+        {
+            if (ILoveSlicksters.Settings.ReduceLonghairEggChance && eggTag == OilFloaterDecorConfig.EGG_ID) modifierPerSecond = PHO_TUNING.EGG_MODIFIER_PER_SECOND.SLOW;
+            return;
+        }
+    }
     [HarmonyPatch(typeof(BaseOilFloaterConfig))]
     [HarmonyPatch("SetupDiet")]
     internal class BiggerConsumptionRatePatch

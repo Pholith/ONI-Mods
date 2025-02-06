@@ -19,10 +19,10 @@ namespace ILoveSlicksters
         }
         public static class EGG_MODIFIER_PER_SECOND
         {
-            private static float EGG_CONVERTER = 600 * 100;
-            public static float SLOW = 2f / EGG_CONVERTER;
-            public static float NORMAL = 5f / EGG_CONVERTER;
-            public static float FAST = 10f / EGG_CONVERTER;
+            private static float EGG_CONVERTER = 600 * 100; // 600 seconds * 100 = 100 cycles
+            public static float SLOW = 3f / EGG_CONVERTER; // Need 33 cycles to go from 0 to 100
+            public static float NORMAL = 5f / EGG_CONVERTER; // Need 25 cycles... (Base game modifier for DecorOilFloiter)
+            public static float FAST = 10f / EGG_CONVERTER; // Need 10 cycles
             public static float FAST2 = 20f / EGG_CONVERTER;
             public static float FAST3 = 40f / EGG_CONVERTER;
         }

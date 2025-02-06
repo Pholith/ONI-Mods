@@ -12,35 +12,36 @@ namespace Pholib
 {
     public class Logs
     {
-        private static readonly string version = "1.6";
+        private static readonly string version = "1.7";
 
         public static bool DebugLog = false;
         private static bool initiated = false;
-
+        private static string modName = "";
         public static void InitIfNot()
         {
             if (initiated)
             {
                 return;
             }
-            Debug.Log("== Game Launched with Pholib " + version + "  " + System.DateTime.Now);
+            modName = Assembly.GetExecutingAssembly().GetName().Name;
+            Debug.Log($"== Game Launched with Pholib {version} [{modName}] {System.DateTime.Now}");
+            
             initiated = true;
         }
-
         public static void Error(string informations)
         {
             InitIfNot();
-            Debug.Log("Pholib: [ERROR] " + informations);
+            Debug.Log($"Pholib: [{modName}][ERROR] " + informations);
         }
         public static void Log(string informations)
         {
             InitIfNot();
-            Debug.Log("Pholib: " + informations);
+            Debug.Log($"Pholib: [{modName}] " + informations);
         }
         public static void Log(object informations)
         {
             InitIfNot();
-            Debug.Log("Pholib: " + (informations == null ? "null" : informations.ToString()));
+            Debug.Log($"Pholib: [{modName}] " + (informations == null ? "null" : informations.ToString()));
         }
 
 
@@ -129,17 +130,18 @@ namespace Pholib
                 Logs.Log($"Category {mainCategory} not found");
                 return;
             }
+            InventoryOrganization.categoryIdToSubcategoryIdsMap[mainCategory].Add(subcategoryID);
+            
             if (InventoryOrganization.subcategoryIdToPermitIdsMap.ContainsKey(subcategoryID))
             {
                 return;
             }
-            InventoryOrganization.subcategoryIdToPresentationDataMap.Add(subcategoryID, new InventoryOrganization.SubcategoryPresentationData(subcategoryID, icon, sortkey));
             InventoryOrganization.subcategoryIdToPermitIdsMap.Add(subcategoryID, new HashSet<string>());
-            InventoryOrganization.categoryIdToSubcategoryIdsMap[mainCategory].Add(subcategoryID);
             for (int i = 0; i < permitIDs.Length; i++)
             {
                 InventoryOrganization.subcategoryIdToPermitIdsMap[subcategoryID].Add(permitIDs[i]);
             }
+            InventoryOrganization.subcategoryIdToPresentationDataMap.Add(subcategoryID, new InventoryOrganization.SubcategoryPresentationData(subcategoryID, icon, sortkey));
         }
 
         /// <summary>

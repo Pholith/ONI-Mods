@@ -1,4 +1,6 @@
-﻿using STRINGS;
+﻿using Pholib;
+using STRINGS;
+using UnityEngine;
 
 namespace ILoveSlicksters
 {
@@ -58,12 +60,13 @@ namespace ILoveSlicksters
 
         public static class VARIANT_LEAFY
         {
-
+            public static Color LeafyColor = new Color(0.04f, 0.74f, 0.07f);
+            public static Color LightColor = new Color(0.85f, 0.72f, 0f);
             public static LocString NAME = UI.FormatAsLink("Leafy Slickster", "LEAFYOILFLOATER");
 
             public static LocString DESC = string.Concat(new string[]
             {
-                "Leafy Slicksters are leafy critters that consume impur air.\n\nThe leafy slickster has adapted to its environment and uses photosynthesis to feed on carbon.\nLeafy Slicksters need light to live.\n\nLeafy slicksters are loved by duplicants for their air-depolluting properties, while providing a sweet ", UI.FormatAsLink("Floral Scent", "POLLENGERMS"),"."
+                "Leafy Slicksters".FormatColored(LeafyColor)," are leafy critters that consume impur air.\n\nThe ", "leafy slickster".FormatColored(LeafyColor)," has adapted to its environment and uses photosynthesis to feed on carbon.\n", "Leafy Slicksters".FormatColored(LeafyColor), " need ","light".FormatColored(LightColor), " to live.\n\n", "Leafy slicksters".FormatColored(LeafyColor)," are loved by duplicants for their air-depolluting properties, while providing a sweet ", UI.FormatAsLink("Floral Scent", "POLLENGERMS"),"."
             });
 
             public static LocString EGG_NAME = UI.FormatAsLink("Leafy Slickster Egg", "LEAFYOILFLOATER");
@@ -103,12 +106,13 @@ namespace ILoveSlicksters
         public static class VARIANT_FROZEN
         {
 
+            public static Color FrozenColor = new Color(0.44f, 0.71f, 0.98f);
             public static LocString NAME = UI.FormatAsLink("Frozen Slickster", "FROZENOILFLOATER");
 
             public static LocString DESC = string.Concat(new string[]
             {
-                "Frozen Slicksters are slimy critters that consume air to reject ", UI.FormatAsLink("Water", "WATER"), " or ", UI.FormatAsLink("Antigel", "ANTIGEL"),
-                ".\n\nThe Frozen slickster is a distant variant of the slickster in a very cold environment, it produces a liquid appreciated by our engineers."
+                "Frozen Slicksters".FormatColored(FrozenColor) ," are slimy critters that consume air to reject ", UI.FormatAsLink("Oxyrock", "OXYROCK"), " or ", UI.FormatAsLink("Antigel", "ANTIGEL"),
+                ".\n\nThe ", "Frozen slickster".FormatColored(FrozenColor)," is a distant variant of the slickster in a ", "very cold".FormatColored(FrozenColor)," environment, it produces a liquid appreciated by our engineers."
             });
 
             public static LocString EGG_NAME = UI.FormatAsLink("Frozen Slickster Egg", "FROZENOILFLOATER");
@@ -122,13 +126,14 @@ namespace ILoveSlicksters
         }
         public static class VARIANT_AQUA
         {
+            public static Color AquaColor = new Color(0.15f, 0.19f, 0.83f);
 
             public static LocString NAME = UI.FormatAsLink("Aqua Slickster", "AQUAOILFLOATER");
 
             public static LocString DESC = string.Concat(new string[]
             {
-                "Aqua Slicksters are aquatic critters that live in any water and consume any water.",
-                "\n\nThe Aqua slickster is a prehistoric strain of slickster when it was still living underwater. It is appreciated by the duplicants because it requires little maintenance of its aquarium."
+                "Aqua Slicksters".FormatColored(AquaColor), " are aquatic critters that live in any water and consume any water.",
+                "\n\nThe ","Aqua slickster".FormatColored(AquaColor)," is a prehistoric strain of slickster when it was still living underwater. It is appreciated by the duplicants because it requires little maintenance of its ", "aquarium".FormatColored(AquaColor),"."
             });
 
             public static LocString EGG_NAME = UI.FormatAsLink("Aqua Slickster Egg", "AQUAOILFLOATER");

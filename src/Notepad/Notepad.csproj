@@ -47,18 +47,24 @@
     <Compile Include="NotepadConfig.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="anim\notepad\notepad2\notepad_anim.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="anim\notepad\notepad2\notepad_build.bytes">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="anim\notepad\blackboard\notepad_anim.bytes" />
+    <None Include="anim\notepad\blackboard\notepad_build.bytes" />
+    <None Include="anim\notepad\blueprint\notepad_anim.bytes" />
+    <None Include="anim\notepad\blueprint\notepad_build.bytes" />
     <None Include="anim\notepad\notepad\notepad_anim.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="anim\notepad\notepad\notepad_build.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="anim\notepad\postit\notepad_anim.bytes" />
+    <None Include="anim\notepad\postit\notepad_build.bytes" />
+    <None Include="anim\notepad\stonks\notepad_anim.bytes" />
+    <None Include="anim\notepad\stonks\notepad_build.bytes" />
+    <None Include="anim\notepad\tv\notepad_anim.bytes" />
+    <None Include="anim\notepad\tv\notepad_build.bytes" />
+    <None Include="anim\notepad\warning\notepad_anim.bytes" />
+    <None Include="anim\notepad\warning\notepad_build.bytes" />
     <None Include="app.config" />
     <None Include="mod.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -95,6 +101,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xaml" />
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\packages\GameLibs\Unity.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\packages\GameLibs\UnityEngine.dll</HintPath>
       <Private>False</Private>
@@ -121,12 +131,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="anim\notepad\notepad2\notepad.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="anim\notepad\blackboard\notepad_0.png" />
+    <Content Include="anim\notepad\blueprint\notepad_0.png" />
     <Content Include="anim\notepad\notepad\notepad.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="anim\notepad\postit\notepad_0.png" />
+    <Content Include="anim\notepad\stonks\notepad_0.png" />
+    <Content Include="anim\notepad\tv\notepad_0.png" />
+    <Content Include="anim\notepad\warning\notepad_0.png" />
     <Content Include="screen1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
