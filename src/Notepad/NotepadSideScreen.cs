@@ -7,6 +7,7 @@ namespace Notepad
 {
     public class NotepadSideScreen : SideScreenContent
     {
+#pragma warning disable IDE1006 // Styles d'affectation de noms
         private const string TEXT_FIELD_NAME = "Notepad text field";
         private const string SIDE_SCREEN_PANEL_NAME = "NotepadSideScreenPanel";
         private const string TOOLTIP_PANEL_NAME = "tooltip panel";
@@ -14,12 +15,13 @@ namespace Notepad
 
         private static readonly RectOffset OUTER_MARGIN = new RectOffset(6, 10, 6, 14);
         private const int ROW_SPACING = 2;
-        private const bool DEBUG_GRID = false;
+        private const bool DEBUG_GRID = false                                                                                                                                                                                                         ;
         private const int GRID_ROW_SIZE = 30;
         private const int GRID_ICON_SIZE = 29;
         private const int GRID_COLUMN_NB = 9;
         private RectOffset GRID_ICON_MARGIN = new RectOffset();
 
+#pragma warning restore IDE1006 // Styles d'affectation de noms
 
         public Notepad currentTarget;
         private PTextArea descriptionField;
@@ -172,7 +174,9 @@ namespace Notepad
                 FlexSize = Vector2.zero,
                 Margin = new RectOffset(1, 1, -30, 1),
             };
+#pragma warning disable CS0162 // Code inaccessible détecté
             if (DEBUG_GRID) panelIconSelection.BackColor = Color.yellow;
+#pragma warning restore CS0162 // Code inaccessible détecté
             for (int i = 0; i < GRID_COLUMN_NB; i++)
             {
                 panelIconSelection.AddColumn(new GridColumnSpec(flex: 100f / GRID_COLUMN_NB));

@@ -40,7 +40,9 @@ namespace CustomizeYourPaints
     [HarmonyPatch(typeof(Manager), nameof(Manager.Load))]
     public class ModManager_Load_AnimPatch
     {
+#pragma warning disable IDE1006 // Styles d'affectation de noms
         private static readonly string ORIGINALS_PATH = Path.Combine("src", "originals");
+#pragma warning restore IDE1006 // Styles d'affectation de noms
 
         public static void Prefix(Content content)
         {
@@ -204,8 +206,8 @@ namespace CustomizeYourPaints
                 ArtableStatuses.ArtableStatusType.LookingGreat.ToString(),
                 targetPrefabId,
                 "",
-                new string[] { }
-                );
+                new string[] { },
+                new string[] { });
         }
     }
 }

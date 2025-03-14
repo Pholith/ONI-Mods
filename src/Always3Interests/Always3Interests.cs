@@ -20,55 +20,55 @@ namespace Always3Interests
         [Option("Number of interests", "The number of interests.")]
         [Limit(0, 6)]
         [JsonProperty]
-        public int numberOfInterests { get; set; }
+        public int NumberOfInterests { get; set; }
 
         [Option("Random number of interests", "Active it to disable the interest modification.")]
         [JsonProperty]
-        public bool randomNumberOfInterests { get; set; }
+        public bool RandomNumberOfInterests { get; set; }
 
 
         [Option("Points when 1 interest", "")]
         [Limit(0, 50)]
         [JsonProperty]
-        public int pointsWhen1Interest { get; set; }
+        public int PointsWhen1Interest { get; set; }
 
         [Option("Points when 2 interest", "")]
         [Limit(0, 50)]
         [JsonProperty]
-        public int pointsWhen2Interest { get; set; }
+        public int PointsWhen2Interest { get; set; }
 
         [Option("Points when 3 interest", "")]
         [Limit(0, 50)]
         [JsonProperty]
-        public int pointsWhen3Interest { get; set; }
+        public int PointsWhen3Interest { get; set; }
 
         [Option("Points when more than 3 interest", "")]
         [Limit(0, 50)]
         [JsonProperty]
-        public int pointsWhenMoreThan3Interest { get; set; }
+        public int PointsWhenMoreThan3Interest { get; set; }
 
         [Option("Number of Good traits", "")]
         [Limit(0, 5)]
         [JsonProperty]
-        public int numberOfGoodTraits { get; set; }
+        public int NumberOfGoodTraits { get; set; }
 
         [Option("Number of Bad traits", "")]
         [Limit(0, 5)]
         [JsonProperty]
-        public int numberOfBadTraits { get; set; }
+        public int NumberOfBadTraits { get; set; }
 
         [Option("Disable joy trait", "")]
         [JsonProperty]
-        public bool disableJoyTrait { get; set; }
+        public bool DisableJoyTrait { get; set; }
 
         [Option("Disable stress trait", "")]
         [JsonProperty]
-        public bool disableStressTrait { get; set; }
+        public bool DisableStressTrait { get; set; }
 
         [Option("Starting level on printing pod", "Set the experience of in game printed dups.")]
         [Limit(0, 5)]
         [JsonProperty]
-        public int startingLevelOnPrintingPod { get; set; }
+        public int StartingLevelOnPrintingPod { get; set; }
 
         [Option("Don't print biologic duplicants", "The printing pod will never show you biologic duplicants if this option is checked.\nWill not do anything if Bionic Booster Pack is not owned or activated on your save.", "Bionic Booster Pack")]
         [JsonProperty]
@@ -80,21 +80,21 @@ namespace Always3Interests
 
         public Always3InterestsSettings()
         {
-            pointsWhen1Interest = 9;
-            pointsWhen2Interest = 5;
-            pointsWhen3Interest = 1;
+            PointsWhen1Interest = 9;
+            PointsWhen2Interest = 5;
+            PointsWhen3Interest = 1;
 
-            pointsWhenMoreThan3Interest = 1;
+            PointsWhenMoreThan3Interest = 1;
 
-            numberOfInterests = 3;
-            randomNumberOfInterests = true;
+            NumberOfInterests = 3;
+            RandomNumberOfInterests = true;
 
-            numberOfGoodTraits = 1;
-            numberOfBadTraits = 1;
-            disableJoyTrait = false;
-            disableStressTrait = false;
+            NumberOfGoodTraits = 1;
+            NumberOfBadTraits = 1;
+            DisableJoyTrait = false;
+            DisableStressTrait = false;
 
-            startingLevelOnPrintingPod = 1;
+            StartingLevelOnPrintingPod = 1;
 
             DisableBionicDuplicants = false;
             DisableBiologicDuplicants = false;
@@ -122,17 +122,17 @@ namespace Always3Interests
             }
 
             int[] customAttributes = new int[] {
-                Settings.pointsWhen1Interest,
-                Settings.pointsWhen2Interest,
-                Settings.pointsWhen3Interest,
-                Settings.pointsWhenMoreThan3Interest,
-                Settings.pointsWhenMoreThan3Interest,
-                Settings.pointsWhenMoreThan3Interest,
-                Settings.pointsWhenMoreThan3Interest,
-                Settings.pointsWhenMoreThan3Interest,
-                Settings.pointsWhenMoreThan3Interest,
-                Settings.pointsWhenMoreThan3Interest,
-                Settings.pointsWhenMoreThan3Interest
+                Settings.PointsWhen1Interest,
+                Settings.PointsWhen2Interest,
+                Settings.PointsWhen3Interest,
+                Settings.PointsWhenMoreThan3Interest,
+                Settings.PointsWhenMoreThan3Interest,
+                Settings.PointsWhenMoreThan3Interest,
+                Settings.PointsWhenMoreThan3Interest,
+                Settings.PointsWhenMoreThan3Interest,
+                Settings.PointsWhenMoreThan3Interest,
+                Settings.PointsWhenMoreThan3Interest,
+                Settings.PointsWhenMoreThan3Interest
             };
 
             Traverse.Create<DUPLICANTSTATS>().Field<int[]>("APTITUDE_ATTRIBUTE_BONUSES").Value = customAttributes;
@@ -158,12 +158,12 @@ namespace Always3Interests
             if (!(__instance.personality.model == BionicMinionConfig.MODEL))
             {
 
-                if (Always3Interests.Settings.randomNumberOfInterests)
+                if (Always3Interests.Settings.RandomNumberOfInterests)
                 {
                     return true;
                 }
 
-                int num = Always3Interests.Settings.numberOfInterests;
+                int num = Always3Interests.Settings.NumberOfInterests;
 
                 List<SkillGroup> list = new List<SkillGroup>(Db.Get().SkillGroups.resources);
                 list.RemoveAll((SkillGroup match) => !match.allowAsAptitude);
@@ -200,7 +200,7 @@ namespace Always3Interests
             Trait trait = Db.Get().traits.Get(__instance.personality.stresstrait);
             __instance.stressTrait = trait;
 
-            if (Always3Interests.Settings.disableStressTrait)
+            if (Always3Interests.Settings.DisableStressTrait)
             {
                 __instance.stressTrait = Db.Get().traits.Get("None");
             }
@@ -208,7 +208,7 @@ namespace Always3Interests
             // set joy trait if it is not disable
             Trait joytrait = Db.Get().traits.Get(__instance.personality.joyTrait);
             __instance.joyTrait = joytrait;
-            if (Always3Interests.Settings.disableJoyTrait)
+            if (Always3Interests.Settings.DisableJoyTrait)
             {
                 __instance.joyTrait = Db.Get().traits.Get("None");
             }
@@ -296,7 +296,7 @@ namespace Always3Interests
                 foreach (DUPLICANTSTATS.TraitVal traitVal in list2)
                 {
                     global::Debug.Assert(SaveLoader.Instance != null, "IsDLCActiveForCurrentSave should not be called from the front end");
-                    if (!SaveLoader.Instance.IsDLCActiveForCurrentSave(traitVal.dlcId))
+                    if (!Game.IsCorrectDlcActiveForCurrentSave(traitVal))
                     {
                         num6--;
                     }
@@ -346,8 +346,8 @@ namespace Always3Interests
                 return false;
             };
 
-            int numberOfGoodTraits = Always3Interests.Settings.numberOfGoodTraits;
-            int numberOfBadTraits = Always3Interests.Settings.numberOfBadTraits;
+            int numberOfGoodTraits = Always3Interests.Settings.NumberOfGoodTraits;
+            int numberOfBadTraits = Always3Interests.Settings.NumberOfBadTraits;
 
             if (numberOfGoodTraits > 5) numberOfGoodTraits = 5;
             if (numberOfBadTraits > 5) numberOfBadTraits = 5;
@@ -450,7 +450,7 @@ namespace Always3Interests
         {
             Always3Interests.ReadSettings();
             //Debug.Log("telepad");
-            int startingLevel = Always3Interests.Settings.startingLevelOnPrintingPod;
+            int startingLevel = Always3Interests.Settings.StartingLevelOnPrintingPod;
 
             Telepad telepad = go.AddOrGet<Telepad>();
             telepad.startingSkillPoints = startingLevel;
@@ -463,7 +463,7 @@ namespace Always3Interests
     {
         public static void Prefix(bool is_starter, ref List<Tag> ___permittedModels)
         {
-            if (!is_starter && SaveLoader.Instance.IsDLCActiveForCurrentSave("DLC3_ID"))
+            if (!is_starter && Game.IsDlcActiveForCurrentSave("DLC3_ID"))
             {
                 if (Always3Interests.Settings.DisableBionicDuplicants) ___permittedModels.Remove(GameTags.Minions.Models.Bionic);
                 if (Always3Interests.Settings.DisableBiologicDuplicants) ___permittedModels.Remove(GameTags.Minions.Models.Standard);
