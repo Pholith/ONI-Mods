@@ -15,6 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeliumExtractor", "HeliumEx
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{88231F22-E76E-4B32-A8DF-4E64723C0FC3}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		..\.gitignore = ..\.gitignore
 		HarmonyTemplate.snippet = HarmonyTemplate.snippet
 		..\..\..\Klei\OxygenNotIncluded\mods\mods.json = ..\..\..\Klei\OxygenNotIncluded\mods\mods.json

@@ -3,7 +3,7 @@
 namespace ILoveSlicksters
 {
     [EntityConfigOrder(2)]
-    public class FrozenOilfloaterBabyConfig : IEntityConfig
+    public class FrozenOilfloaterBabyConfig : IEntityConfig, IHasDlcRestrictions
     {
         public GameObject CreatePrefab()
         {
@@ -19,9 +19,20 @@ namespace ILoveSlicksters
         public void OnSpawn(GameObject inst)
         {
         }
+
         public string[] GetDlcIds()
         {
             return DlcManager.AVAILABLE_ALL_VERSIONS;
+        }
+
+        public string[] GetRequiredDlcIds()
+        {
+            return new string[0];
+        }
+
+        public string[] GetForbiddenDlcIds()
+        {
+            return new string[0];
         }
 
         private const string kanim_id = "custom_baby_oilfloater2_kanim";

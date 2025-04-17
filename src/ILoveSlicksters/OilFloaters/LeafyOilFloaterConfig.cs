@@ -6,8 +6,23 @@ using static TUNING.CREATURES;
 
 namespace ILoveSlicksters
 {
-    public class LeafyOilfloaterConfig : IEntityConfig
+    public class LeafyOilfloaterConfig : IEntityConfig, IHasDlcRestrictions
     {
+        public string[] GetDlcIds()
+        {
+            return DlcManager.AVAILABLE_ALL_VERSIONS;
+        }
+
+        public string[] GetRequiredDlcIds()
+        {
+            return new string[0];
+        }
+
+        public string[] GetForbiddenDlcIds()
+        {
+            return new string[0];
+        }
+
         public GameObject CreatePrefab()
         {
             GameObject gameObject = CreateOilfloater(ID, PHO_STRINGS.VARIANT_LEAFY.NAME, PHO_STRINGS.VARIANT_LEAFY.DESC, base_kanim_id, false);
@@ -15,15 +30,15 @@ namespace ILoveSlicksters
             gameObject.AddOrGetDef<CreatureLightMonitor.Def>();
 
             EntityTemplates.ExtendEntityToFertileCreature(
-                gameObject, 
+                gameObject, this as IHasDlcRestrictions,
                 EGG_ID, 
                 PHO_STRINGS.VARIANT_LEAFY.EGG_NAME, 
                 PHO_STRINGS.VARIANT_LEAFY.DESC,
                 egg_kanim_id, 
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
-                40f, 10f, 
-                EGG_CHANCES_LEAFY, new string[] { "" },
+                40f, 20-10, 
+                EGG_CHANCES_LEAFY,
                 EGG_SORT_ORDER);
 
             return gameObject;
@@ -53,10 +68,6 @@ namespace ILoveSlicksters
             trait.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, LIFESPAN.TIER2, name, false, false, true));
             List<Diet.Info> diet_infos = DietInfo(GameTags.Steel, CALORIES_PER_KG_OF_ORE, CONVERSION_EFFICIENCY.GOOD_2, null, 0f);
             return OilFloaters.SetupDiet(prefab, diet_infos, CALORIES_PER_KG_OF_ORE, MIN_POOP_SIZE_IN_KG, 5 * ILoveSlicksters.Settings.ConsumptionMultiplier);
-        }
-        public string[] GetDlcIds()
-        {
-            return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
 
         public static List<Diet.Info> DietInfo(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)

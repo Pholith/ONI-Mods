@@ -6,22 +6,22 @@ using static TUNING.CREATURES;
 
 namespace ILoveSlicksters
 {
-    public class RobotOilfloaterConfig : IEntityConfig
+    public class RobotOilfloaterConfig : IEntityConfig, IHasDlcRestrictions
     {
         public GameObject CreatePrefab()
         {
             GameObject gameObject = CreateOilfloater(ID, PHO_STRINGS.VARIANT_ROBOT.NAME, PHO_STRINGS.VARIANT_ROBOT.DESC, base_kanim_id, false);
 
             EntityTemplates.ExtendEntityToFertileCreature(
-                gameObject,
+                gameObject, this as IHasDlcRestrictions,
                 EGG_ID,
                 PHO_STRINGS.VARIANT_ROBOT.EGG_NAME,
                 PHO_STRINGS.VARIANT_ROBOT.DESC,
                 egg_kanim_id,
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
-                55, 40f,
-                EGG_CHANCES_ROBOT, new string[] { "" },
+                55, 20+10,
+                EGG_CHANCES_ROBOT,
                 EGG_SORT_ORDER);
 
             return gameObject;
@@ -31,9 +31,18 @@ namespace ILoveSlicksters
             return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
 
+        public string[] GetRequiredDlcIds()
+        {
+            return new string[0];
+        }
+
+        public string[] GetForbiddenDlcIds()
+        {
+            return new string[0];
+        }
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 230f.CelciusToKelvin(), 450f.CelciusToKelvin(), 200f.CelciusToKelvin(), 500f.CelciusToKelvin(), is_baby, variantSprite);
+            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 230f.CelciusToKelvin(), 500f.CelciusToKelvin(), 200f.CelciusToKelvin(), 600f.CelciusToKelvin(), is_baby, variantSprite);
             EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
             int count = (int)prefab.AddOrGet<PrimaryElement>().Mass;
 
@@ -49,8 +58,8 @@ namespace ILoveSlicksters
                 DiseaseDropper.Def def = prefab.AddOrGetDef<DiseaseDropper.Def>();
                 def.diseaseIdx = Db.Get().Diseases.GetIndex(Db.Get().Diseases.ZombieSpores.id);
                 def.emitFrequency = 1f;
-                def.averageEmitPerSecond = 200;
-                def.singleEmitQuantity = 10000;
+                def.averageEmitPerSecond = 10;
+                def.singleEmitQuantity = 500;
             }
 
 

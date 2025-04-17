@@ -155,6 +155,41 @@ namespace ILoveSlicksters
             return;
         }
     }
+    [HarmonyPatch(typeof(WildnessMonitor))]
+    [HarmonyPatch("IsWild")]
+    public class ILoveSlicksters_ShowModifiersIfSandbox_Path
+    {
+        private static bool showed = false;
+        public static void Postfix(WildnessMonitor.Instance smi)
+        {
+            if (!Game.Instance.SandboxModeActive && !showed) return;
+            showed = true;
+            smi.wildness.hide = false;
+
+            AttributeInstance attributeInstance = Db.Get().CritterAttributes.Happiness.Lookup(smi.gameObject);
+            if (attributeInstance != null) attributeInstance.hide = false;
+
+            AttributeInstance attributeInstance2 = Db.Get().CritterAttributes.Metabolism.Lookup(smi.gameObject);
+            if (attributeInstance2 != null) attributeInstance2.hide = false;
+
+            AmountInstance amountInstance = Db.Get().Amounts.Calories.Lookup(smi.gameObject);
+            if (amountInstance != null) amountInstance.hide = false;
+
+            AmountInstance amountInstance2 = Db.Get().Amounts.Temperature.Lookup(smi.gameObject);
+            if (amountInstance2 != null) amountInstance2.hide = false;
+
+            AmountInstance amountInstance3 = Db.Get().Amounts.Fertility.Lookup(smi.gameObject);
+            if (amountInstance3 != null) amountInstance3.hide = false;
+
+            AmountInstance amountInstance4 = Db.Get().Amounts.MilkProduction.Lookup(smi.gameObject);
+            if (amountInstance4 != null) amountInstance4.hide = false;
+
+            AmountInstance amountInstance5 = Db.Get().Amounts.Beckoning.Lookup(smi.gameObject);
+            if (amountInstance5 != null) amountInstance5.hide = false;
+            return;
+        }
+    }
+
     [HarmonyPatch(typeof(BaseOilFloaterConfig))]
     [HarmonyPatch("SetupDiet")]
     internal class BiggerConsumptionRatePatch

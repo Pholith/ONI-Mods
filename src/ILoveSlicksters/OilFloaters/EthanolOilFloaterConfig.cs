@@ -6,22 +6,39 @@ using Pholib;
 
 namespace ILoveSlicksters
 {
-    public class EthanolOilfloaterConfig : IEntityConfig
+    public class EthanolOilfloaterConfig : IEntityConfig, IHasDlcRestrictions
     {
+
+        public string[] GetDlcIds()
+        {
+            return DlcManager.AVAILABLE_ALL_VERSIONS;
+        }
+
+        public string[] GetRequiredDlcIds()
+        {
+            return new string[0];
+        }
+
+        public string[] GetForbiddenDlcIds()
+        {
+            return new string[0];
+        }
+
         public GameObject CreatePrefab()
         {
             GameObject gameObject = CreateOilfloater(ID, PHO_STRINGS.VARIANT_ETHANOL.NAME, PHO_STRINGS.VARIANT_ETHANOL.DESC, base_kanim_id, false);
-            EntityTemplates.ExtendEntityToFertileCreature(gameObject,
+            EntityTemplates.ExtendEntityToFertileCreature(
+                gameObject, this as IHasDlcRestrictions,
                 EGG_ID,
                 PHO_STRINGS.VARIANT_ETHANOL.EGG_NAME,
                 PHO_STRINGS.VARIANT_ETHANOL.DESC,
                 egg_kanim_id,
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
-                45f, 20f,
-                EGG_CHANCES_ETHANOL, new string[] { "" },
+                45f, 20,
+                EGG_CHANCES_ETHANOL,
                 EGG_SORT_ORDER,
-                true, false, true, 1f);
+                true, false);
 
             return gameObject;
         }
@@ -45,10 +62,6 @@ namespace ILoveSlicksters
 
         public void OnSpawn(GameObject inst)
         {
-        }
-        public string[] GetDlcIds()
-        {
-            return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
         public static List<FertilityMonitor.BreedingChance> EGG_CHANCES_ETHANOL = new List<FertilityMonitor.BreedingChance>
         {

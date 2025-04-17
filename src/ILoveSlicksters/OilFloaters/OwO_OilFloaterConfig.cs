@@ -7,7 +7,7 @@ using static TUNING.CREATURES;
 
 namespace ILoveSlicksters
 {
-    public class OwO_OilfloaterConfig : IEntityConfig
+    public class OwO_OilfloaterConfig : IEntityConfig, IHasDlcRestrictions
     {
 
         public GameObject CreatePrefab()
@@ -23,7 +23,8 @@ namespace ILoveSlicksters
             owoEffect.Area = 5;
 
 
-            EntityTemplates.ExtendEntityToFertileCreature(gameObject,
+            EntityTemplates.ExtendEntityToFertileCreature(
+                gameObject, this as IHasDlcRestrictions,
                 EGG_ID,
                 PHO_STRINGS.VARIANT_OWO.EGG_NAME,
                 PHO_STRINGS.VARIANT_OWO.DESC,
@@ -31,9 +32,9 @@ namespace ILoveSlicksters
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
                 45, 20f,
-                EGG_CHANCES_OWO, new string[] { "" },
+                EGG_CHANCES_OWO,
                 EGG_SORT_ORDER,
-                true, false, true, 1f);
+                true, false);
             return gameObject;
         }
 
@@ -101,6 +102,15 @@ namespace ILoveSlicksters
             return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
 
+        public string[] GetRequiredDlcIds()
+        {
+            return new string[0];
+        }
+
+        public string[] GetForbiddenDlcIds()
+        {
+            return new string[0];
+        }
         public const string base_kanim_id = "custom_oilfloater_kanim";
         public const string egg_kanim_id = "custom_egg_oilfloater_kanim";
         public const string variantSprite = null;

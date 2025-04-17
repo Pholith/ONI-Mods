@@ -6,31 +6,41 @@ using Pholib;
 
 namespace ILoveSlicksters
 {
-    public class AquaOilfloaterConfig : IEntityConfig
+    public class AquaOilfloaterConfig : IEntityConfig, IHasDlcRestrictions
     {
+        public string[] GetDlcIds()
+        {
+            return DlcManager.AVAILABLE_ALL_VERSIONS;
+        }
+
+        public string[] GetRequiredDlcIds()
+        {
+            return new string[0];
+        }
+
+        public string[] GetForbiddenDlcIds()
+        {
+            return new string[0];
+        }
         public GameObject CreatePrefab()
         {
             GameObject gameObject = CreateOilfloater(ID, PHO_STRINGS.VARIANT_AQUA.NAME, PHO_STRINGS.VARIANT_AQUA.DESC, base_kanim_id, false);
 
             EntityTemplates.ExtendEntityToFertileCreature(
-                gameObject,
+                gameObject, this as IHasDlcRestrictions,
                 EGG_ID,
                 PHO_STRINGS.VARIANT_AQUA.EGG_NAME,
                 PHO_STRINGS.VARIANT_AQUA.DESC,
                 egg_kanim_id,
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
-                30f, 10f,
-                EGG_CHANCES_AQUA, new string[] { "" },
-                EGG_SORT_ORDER);
+                50f, 20 - 5,
+                EGG_CHANCES_AQUA,
+                EGG_SORT_ORDER, true, true);
 
             return gameObject;
         }
 
-        public string[] GetDlcIds()
-        {
-            return DlcManager.AVAILABLE_ALL_VERSIONS;
-        }
 
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {

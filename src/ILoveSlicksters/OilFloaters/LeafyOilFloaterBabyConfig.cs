@@ -3,8 +3,22 @@
 namespace ILoveSlicksters
 {
     [EntityConfigOrder(2)]
-    public class LeafyOilfloaterBabyConfig : IEntityConfig
+    public class LeafyOilfloaterBabyConfig : IEntityConfig, IHasDlcRestrictions
     {
+        public string[] GetDlcIds()
+        {
+            return DlcManager.AVAILABLE_ALL_VERSIONS;
+        }
+
+        public string[] GetRequiredDlcIds()
+        {
+            return new string[0];
+        }
+
+        public string[] GetForbiddenDlcIds()
+        {
+            return new string[0];
+        }
         public GameObject CreatePrefab()
         {
             GameObject gameObject = LeafyOilfloaterConfig.CreateOilfloater(ID, PHO_STRINGS.VARIANT_LEAFY.BABY.NAME, PHO_STRINGS.VARIANT_LEAFY.BABY.DESC, kanim_id, true);
@@ -18,10 +32,6 @@ namespace ILoveSlicksters
 
         public void OnSpawn(GameObject inst)
         {
-        }
-        public string[] GetDlcIds()
-        {
-            return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
 
         public const string ID = LeafyOilfloaterConfig.ID + "Baby";

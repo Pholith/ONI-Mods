@@ -4,7 +4,7 @@ namespace ILoveSlicksters
 {
 
     [EntityConfigOrder(2)]
-    public class OwO_OilFloaterBabyConfig : IEntityConfig
+    public class OwO_OilFloaterBabyConfig : IEntityConfig, IHasDlcRestrictions
     {
         public GameObject CreatePrefab()
         {
@@ -25,6 +25,15 @@ namespace ILoveSlicksters
             return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
 
+        public string[] GetRequiredDlcIds()
+        {
+            return new string[0];
+        }
+
+        public string[] GetForbiddenDlcIds()
+        {
+            return new string[0];
+        }
         public const string ID = OwO_OilfloaterConfig.ID+"Baby";
 
     }

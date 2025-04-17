@@ -6,22 +6,37 @@ using Pholib;
 
 namespace ILoveSlicksters
 {
-    public class FrozenOilfloaterConfig : IEntityConfig
+    public class FrozenOilfloaterConfig : IEntityConfig, IHasDlcRestrictions
     {
+        public string[] GetDlcIds()
+        {
+            return DlcManager.AVAILABLE_ALL_VERSIONS;
+        }
+
+        public string[] GetRequiredDlcIds()
+        {
+            return new string[0];
+        }
+
+        public string[] GetForbiddenDlcIds()
+        {
+            return new string[0];
+        }
+
         public GameObject CreatePrefab()
         {
             GameObject gameObject = CreateOilfloater(ID, PHO_STRINGS.VARIANT_FROZEN.NAME, PHO_STRINGS.VARIANT_FROZEN.DESC, base_kanim_id, false);
 
             EntityTemplates.ExtendEntityToFertileCreature(
-                gameObject,
+                gameObject, this as IHasDlcRestrictions,
                 EGG_ID,
                 PHO_STRINGS.VARIANT_FROZEN.EGG_NAME,
                 PHO_STRINGS.VARIANT_FROZEN.DESC,
                 egg_kanim_id,
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
-                55, 35,
-                EGG_CHANCES_FROZEN, new string[] { "" },
+                50, 20 + 5,
+                EGG_CHANCES_FROZEN,
                 EGG_SORT_ORDER);
 
             return gameObject;
@@ -29,7 +44,7 @@ namespace ILoveSlicksters
 
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, (-40f).CelciusToKelvin(), (-20f).CelciusToKelvin(), (-60f).CelciusToKelvin(), 0f.CelciusToKelvin(), is_baby, variantSprite);
+            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, (-50f).CelciusToKelvin(), (-20f).CelciusToKelvin(), (-80f).CelciusToKelvin(), 0f.CelciusToKelvin(), is_baby, variantSprite);
             EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
@@ -38,10 +53,6 @@ namespace ILoveSlicksters
             trait.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, LIFESPAN.TIER3, name, false, false, true));
             List<Diet.Info> diet_infos = DietInfo(GameTags.Steel, CALORIES_PER_KG_OF_ORE, CONVERSION_EFFICIENCY.GOOD_1, null, 0f);
             return OilFloaters.SetupDiet(prefab, diet_infos, CALORIES_PER_KG_OF_ORE, MIN_POOP_SIZE_IN_KG, 5 * ILoveSlicksters.Settings.ConsumptionMultiplier);
-        }
-        public string[] GetDlcIds()
-        {
-            return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
         public static List<Diet.Info> DietInfo(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
         {
