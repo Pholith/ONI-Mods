@@ -44,7 +44,7 @@ namespace ILoveSlicksters
 
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = AquaticOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, (-10f).CelciusToKelvin(), 50f.CelciusToKelvin(), is_baby, variantSprite);
+            GameObject prefab = AquaticOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, (-20f).CelciusToKelvin(), 50f.CelciusToKelvin(), is_baby, variantSprite);
             //prefab.RemoveDef<SubmergedMonitor.Def>();
             //prefab.AddOrGetDef<CreatureFallMonitor.Def>().canSwim = false;
 
@@ -93,7 +93,7 @@ namespace ILoveSlicksters
             gameObject.GetComponent<KPrefabID>().AddTag(GameTags.Creatures.Swimmer);
             gameObject.GetComponent<KPrefabID>().AddTag(GameTags.SwimmingCreature);
 
-            EntityTemplates.ExtendEntityToBasicCreature(gameObject, FactionManager.FactionID.Pest, traitId, "SwimmerNavGrid", NavType.Swim, 32, 3f, TUNING.FOOD.FOOD_TYPES.FISH_MEAT.Id, 3, false, false, warnLowTemp, warnHighTemp, warnLowTemp - 15f, warnHighTemp + 20f);
+            EntityTemplates.ExtendEntityToBasicCreature(gameObject, FactionManager.FactionID.Pest, traitId, "SwimmerNavGrid", NavType.Swim, 32, 3f, TUNING.FOOD.FOOD_TYPES.FISH_MEAT.Id, 3, false, false, warnLowTemp, warnHighTemp, warnLowTemp - 20f, warnHighTemp + 20f);
             if (!string.IsNullOrEmpty(symbolOverridePrefix))
             {
                 gameObject.AddOrGet<SymbolOverrideController>().ApplySymbolOverridesByAffix(Assets.GetAnim(anim_file), symbolOverridePrefix, null, 0);
