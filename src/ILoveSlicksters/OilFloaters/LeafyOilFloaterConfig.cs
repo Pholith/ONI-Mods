@@ -37,7 +37,7 @@ namespace ILoveSlicksters
                 egg_kanim_id, 
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
-                40f, 20-10, 
+                45f, 20-10, 
                 EGG_CHANCES_LEAFY,
                 EGG_SORT_ORDER);
 
@@ -59,7 +59,7 @@ namespace ILoveSlicksters
             DiseaseDropper.Def def = prefab.AddOrGetDef<DiseaseDropper.Def>();
             def.diseaseIdx = Db.Get().Diseases.GetIndex(Db.Get().Diseases.PollenGerms.id);
             def.emitFrequency = 1f;
-            def.averageEmitPerSecond = 1000;
+            def.averageEmitPerSecond = 2000;
             def.singleEmitQuantity = 100000;
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
@@ -89,7 +89,19 @@ namespace ILoveSlicksters
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
                     SimHashes.Methane.CreateTag()
-                }), SimHashes.Carbon.CreateTag(), caloriesPerKg / 2, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false)
+                }), SimHashes.Carbon.CreateTag(), caloriesPerKg / 2, CONVERSION_EFFICIENCY.GOOD_1, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false),
+                new Diet.Info(new HashSet<Tag>(new Tag[]
+                {
+                    SimHashes.Propane.CreateTag()
+                }), SimHashes.Carbon.CreateTag(), caloriesPerKg / 2, CONVERSION_EFFICIENCY.GOOD_1, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false),
+                new Diet.Info(new HashSet<Tag>(new Tag[]
+                {
+                    SimHashes.Hydrogen.CreateTag()
+                }), SimHashes.Carbon.CreateTag(), caloriesPerKg / 2, CONVERSION_EFFICIENCY.GOOD_1, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false),
+                new Diet.Info(new HashSet<Tag>(new Tag[]
+                {
+                    SimHashes.SourGas.CreateTag()
+                }), SimHashes.Carbon.CreateTag(), caloriesPerKg / 2, CONVERSION_EFFICIENCY.BAD_1, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false)
             };
         }
 
