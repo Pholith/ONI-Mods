@@ -1,6 +1,8 @@
-﻿using Pholib;
+﻿using Klei.AI;
+using Pholib;
 using STRINGS;
 using UnityEngine;
+using static STRINGS.BUILDING.STATUSITEMS;
 
 namespace ILoveSlicksters
 {
@@ -112,7 +114,8 @@ namespace ILoveSlicksters
             public static LocString DESC = string.Concat(new string[]
             {
                 "Frozen Slicksters".FormatColored(FrozenColor) ," are slimy critters that consume air to reject ", UI.FormatAsLink("Oxyrock", "OXYROCK"), " or ", UI.FormatAsLink("Antigel", "ANTIGEL"),
-                ".\n\nThe ", "Frozen slickster".FormatColored(FrozenColor)," is a distant variant of the slickster in a ", "very cold".FormatColored(FrozenColor)," environment, it produces a liquid appreciated by our engineers."
+                ".\n\nThe ", "Frozen slickster".FormatColored(FrozenColor)," is a distant variant of the slickster in a ", "very cold".FormatColored(FrozenColor)," environment, it produces a liquid appreciated by our engineers.\n\n" +
+                "The ", "Frozen slickster".FormatColored(FrozenColor), "also has a slight cooling effect in its environment"
             });
 
             public static LocString EGG_NAME = UI.FormatAsLink("Frozen Slickster Egg", "FROZENOILFLOATER");

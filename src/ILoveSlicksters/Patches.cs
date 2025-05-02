@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
+using static LogicGate.LogicGateDescriptions;
 using static TUNING.CREATURES;
 
 namespace ILoveSlicksters
@@ -60,7 +61,7 @@ namespace ILoveSlicksters
             );
 
             CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
-                PHO_TUNING.CreateLightModifier(LeafyOilfloaterConfig.ID, LeafyOilfloaterConfig.EGG_ID.ToTag(), PHO_TUNING.EGG_MODIFIER_PER_SECOND.FAST , true)
+                PHO_TUNING.CreateLightModifier(LeafyOilfloaterConfig.ID, LeafyOilfloaterConfig.EGG_ID.ToTag(), PHO_TUNING.EGG_MODIFIER_PER_SECOND.FAST, true)
             );
             CREATURES.EGG_CHANCE_MODIFIERS.MODIFIER_CREATORS.Add(
                 PHO_TUNING.CreateElementModifier(OwO_OilfloaterConfig.ID, OwO_OilfloaterConfig.EGG_ID.ToTag(), SimHashes.Hydrogen, PHO_TUNING.EGG_MODIFIER_PER_SECOND.FAST3, false)
@@ -126,7 +127,7 @@ namespace ILoveSlicksters
                 {
                     egg = LeafyOilfloaterConfig.EGG_ID.ToTag(),
                     weight = 0.02f
-                }); 
+                });
                 OilFloaterTuning.EGG_CHANCES_DECOR.Add(new FertilityMonitor.BreedingChance
                 {
                     egg = FrozenOilfloaterConfig.EGG_ID.ToTag(),
@@ -235,6 +236,23 @@ namespace ILoveSlicksters
     {
         public static void Postfix()
         {
+            float massOfFullerene = 0.005f; // 500g
+            float remaindingMass = (1f - 0.01f) * 0.5f;
+
+            Utilities.AddComplexRecipe(
+                input: new[] {
+                    new ComplexRecipe.RecipeElement(SimHashes.Fullerene.CreateTag(), 100f * massOfFullerene),
+                    new ComplexRecipe.RecipeElement(SimHashes.Gold.CreateTag(), 100f * remaindingMass),
+                    new ComplexRecipe.RecipeElement(Antigel.SimHash.CreateTag(), 100f * remaindingMass)
+                },
+                output: new[] { new ComplexRecipe.RecipeElement(SimHashes.SuperCoolant.CreateTag(), 100f, temperatureOperation: ComplexRecipe.RecipeElement.TemperatureOperation.AverageTemperature) },
+                fabricatorId: SupermaterialRefineryConfig.ID,
+                productionTime: 60f,
+                recipeDescription: STRINGS.BUILDINGS.PREFABS.SUPERMATERIALREFINERY.SUPERCOOLANT_RECIPE_DESCRIPTION,
+                nameDisplayType: ComplexRecipe.RecipeNameDisplay.Result,
+                sortOrder: 970
+            );
+
             if (!ILoveSlicksters.Settings.DisableSlickstersRecipes)
             {
                 Utilities.AddComplexRecipe(
@@ -252,7 +270,7 @@ namespace ILoveSlicksters
                 );
                 Utilities.AddComplexRecipe(
                     input: new[] {
-                        new ComplexRecipe.RecipeElement(EthanolOilfloaterConfig.EGG_ID.ToTag(), 2f),
+                        new ComplexRecipe.RecipeElement(OilFloaterDecorConfig.EGG_ID.ToTag(), 2f),
                         new ComplexRecipe.RecipeElement(SimHashes.Algae.CreateTag(), 50f),
                         new ComplexRecipe.RecipeElement(SimHashes.Water.CreateTag(), 10f),
                         new ComplexRecipe.RecipeElement(SimHashes.SaltWater.CreateTag(), 10f),
@@ -279,19 +297,6 @@ namespace ILoveSlicksters
                 );
                 Utilities.AddComplexRecipe(
                     input: new[] {
-                        new ComplexRecipe.RecipeElement(OilFloaterConfig.EGG_ID.ToTag(), 2f),
-                        new ComplexRecipe.RecipeElement(SimHashes.Steel.CreateTag(), 20f),
-                        new ComplexRecipe.RecipeElement(SimHashes.Iron.CreateTag(), 50f),
-                    },
-                    output: new[] { new ComplexRecipe.RecipeElement(TagManager.Create(RobotOilfloaterConfig.EGG_ID), 1f) },
-                    fabricatorId: SupermaterialRefineryConfig.ID,
-                    productionTime: 20f,
-                    recipeDescription: PHO_STRINGS.VARIANT_ROBOT.DESC,
-                    nameDisplayType: ComplexRecipe.RecipeNameDisplay.Result,
-                    sortOrder: 990
-                );
-                Utilities.AddComplexRecipe(
-                    input: new[] {
                         new ComplexRecipe.RecipeElement(OilFloaterDecorConfig.EGG_ID.ToTag(), 2f),
                         new ComplexRecipe.RecipeElement(SimHashes.Ice.CreateTag(), 20f),
                         new ComplexRecipe.RecipeElement(SimHashes.CarbonDioxide.CreateTag(), 50f),
@@ -299,9 +304,22 @@ namespace ILoveSlicksters
                     output: new[] { new ComplexRecipe.RecipeElement(TagManager.Create(FrozenOilfloaterConfig.EGG_ID), 1f) },
                     fabricatorId: SupermaterialRefineryConfig.ID,
                     productionTime: 20f,
+                    recipeDescription: PHO_STRINGS.VARIANT_FROZEN.DESC,
+                    nameDisplayType: ComplexRecipe.RecipeNameDisplay.Result,
+                    sortOrder: 987
+                );
+                Utilities.AddComplexRecipe(
+                    input: new[] {
+                        new ComplexRecipe.RecipeElement(OilFloaterConfig.EGG_ID.ToTag(), 2f),
+                        new ComplexRecipe.RecipeElement(SimHashes.Steel.CreateTag(), 20f),
+                        new ComplexRecipe.RecipeElement(SimHashes.Iron.CreateTag(), 40f),
+                    },
+                    output: new[] { new ComplexRecipe.RecipeElement(TagManager.Create(RobotOilfloaterConfig.EGG_ID), 1f) },
+                    fabricatorId: SupermaterialRefineryConfig.ID,
+                    productionTime: 20f,
                     recipeDescription: PHO_STRINGS.VARIANT_ROBOT.DESC,
                     nameDisplayType: ComplexRecipe.RecipeNameDisplay.Result,
-                    sortOrder: 986
+                    sortOrder: 990
                 );
             }
         }

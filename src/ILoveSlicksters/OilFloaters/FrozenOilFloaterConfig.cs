@@ -1,8 +1,8 @@
 ﻿using Klei.AI;
+using Pholib;
 using System.Collections.Generic;
 using UnityEngine;
 using static TUNING.CREATURES;
-using Pholib;
 
 namespace ILoveSlicksters
 {
@@ -28,7 +28,7 @@ namespace ILoveSlicksters
             GameObject gameObject = CreateOilfloater(ID, PHO_STRINGS.VARIANT_FROZEN.NAME, PHO_STRINGS.VARIANT_FROZEN.DESC, base_kanim_id, false);
 
             EntityTemplates.ExtendEntityToFertileCreature(
-                gameObject, this as IHasDlcRestrictions,
+                gameObject, this,
                 EGG_ID,
                 PHO_STRINGS.VARIANT_FROZEN.EGG_NAME,
                 PHO_STRINGS.VARIANT_FROZEN.DESC,
@@ -44,7 +44,7 @@ namespace ILoveSlicksters
 
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, (-50f).CelciusToKelvin(), (-20f).CelciusToKelvin(), (-80f).CelciusToKelvin(), 0f.CelciusToKelvin(), is_baby, variantSprite);
+            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, (-50f).CelciusToKelvin(), (-20f).CelciusToKelvin(), (-90f).CelciusToKelvin(), 0f.CelciusToKelvin(), is_baby, variantSprite);
             EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
@@ -52,8 +52,25 @@ namespace ILoveSlicksters
             trait.Add(new AttributeModifier(Db.Get().Amounts.HitPoints.maxAttribute.Id, HITPOINTS.TIER1, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, LIFESPAN.TIER3, name, false, false, true));
             List<Diet.Info> diet_infos = DietInfo(GameTags.Steel, CALORIES_PER_KG_OF_ORE, CONVERSION_EFFICIENCY.GOOD_2, null, 0f);
+
+            if (!ILoveSlicksters.Settings.DisableFrozenSlicksterCold)
+            {
+                var primaryElement = prefab.GetComponent<PrimaryElement>();
+                primaryElement.setTemperatureCallback = (PrimaryElement primary_element, float temperature) =>
+                {
+                    Debug.Assert(!float.IsNaN(temperature));
+                    if (temperature <= 0f)
+                    {
+                        DebugUtil.LogErrorArgs(primary_element.gameObject, primary_element.gameObject.name + " has a temperature of zero which has always been an error in my experience.");
+                    }
+
+                    primary_element.Temperature = Mathf.Max((-40f).CelciusToKelvin(), temperature - ILoveSlicksters.Settings.FrozenSlicksterColdEffectDelta);
+                };
+            }
             return OilFloaters.SetupDiet(prefab, diet_infos, CALORIES_PER_KG_OF_ORE, MIN_POOP_SIZE_IN_KG, 5 * ILoveSlicksters.Settings.ConsumptionMultiplier);
         }
+
+
         public static List<Diet.Info> DietInfo(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
         {
             return new List<Diet.Info>
@@ -72,6 +89,8 @@ namespace ILoveSlicksters
 
         public void OnPrefabInit(GameObject inst)
         {
+            if (!ILoveSlicksters.Settings.DisableFrozenSlicksterCold)
+                inst.AddOrGet<EntityCellVisualizer>().AddPort(EntityCellVisualizer.Ports.HeatSink, default(CellOffset));
         }
 
         public void OnSpawn(GameObject inst)

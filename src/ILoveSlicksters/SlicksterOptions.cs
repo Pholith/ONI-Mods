@@ -41,6 +41,15 @@ namespace ILoveSlicksters
         [JsonProperty]
         public bool DisableRobotSlicksterSpore { get; set; }
 
+        [Option("Disable Frozen Slickster cold effect", "Prevents frozen slicksters from colding the environement.")]
+        [JsonProperty]
+        public bool DisableFrozenSlicksterCold { get; set; }
+
+        [Option("Frozen Slickster cold effect delta", "The value of the temperature decrease of the frozen slickster relative to its environment.")]
+        [Limit(1, 30)]
+        [JsonProperty]
+        public int FrozenSlicksterColdEffectDelta { get; set; }
+
         [Option("Longhair element conversion", "Set the element the longhair slickster will produce. Don't works if you disabled the longhair buff.")]
         [JsonProperty]
         public LonghairElementList LonghairElement { get; set; }
@@ -56,6 +65,8 @@ namespace ILoveSlicksters
             ReduceLonghairEggChance = true;
             DisableNewEggs = false;
             DisableRobotSlicksterSpore = false;
+            DisableFrozenSlicksterCold = false;
+            FrozenSlicksterColdEffectDelta = 10;
             LonghairElement = LonghairElementList.Oxygen;
         }
     }

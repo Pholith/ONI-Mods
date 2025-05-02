@@ -73,7 +73,7 @@ namespace ILoveSlicksters
             new FertilityMonitor.BreedingChance
             {
                 egg = OilFloaterConfig.EGG_ID.ToTag(),
-                weight = 0.02f
+                weight = 0.2f
             },
             new FertilityMonitor.BreedingChance
             {
