@@ -25,7 +25,7 @@ namespace Pholib
             }
             modName = Assembly.GetExecutingAssembly().GetName().Name;
             Debug.Log($"== Game Launched with Pholib {version} [{modName}] {System.DateTime.Now}");
-            
+
             initiated = true;
         }
         public static void Error(string informations)
@@ -131,7 +131,7 @@ namespace Pholib
                 return;
             }
             InventoryOrganization.categoryIdToSubcategoryIdsMap[mainCategory].Add(subcategoryID);
-            
+
             if (InventoryOrganization.subcategoryIdToPermitIdsMap.ContainsKey(subcategoryID))
             {
                 return;

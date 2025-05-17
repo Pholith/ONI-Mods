@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="notepadempty_0.png" width="278" height="319" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="notepadfull_0.png" width="278" height="319" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="place_0.png" width="278" height="319" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="ui_0.png" width="117" height="144" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="TileSize_0.png" width="101" height="101" pivot_x="0.5" pivot_y="0"/>
+    </folder>
+    <entity id="0" name="notepad">
+        <animation id="0" name="empty" length="33" interval="33">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="notepadempty_0">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-54.818891" y="105.915194" angle="0" scale_x="0.399761" scale_y="0.387321"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="full" length="33" interval="33">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="notepadempty_0">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-54.818891" y="105.915194" angle="0" scale_x="0.399761" scale_y="0.387321"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="place" length="33" interval="33">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="notepadempty_0">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-54.818891" y="105.915194" angle="0" scale_x="0.399761" scale_y="0.387321"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="ui" length="165" interval="33">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="33">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="66">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                </key>
+                <key id="3" time="99">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                </key>
+                <key id="4" time="132">
+                    <object_ref id="0" timeline="0" key="4" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="ui_0">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-46.270161" y="105.141129" angle="0" scale_x="0.312407" scale_y="0.307916"/>
+                </key>
+                <key id="1" time="33" spin="0">
+                    <object folder="0" file="3" x="-46.270161" y="105.141129" angle="0" scale_x="0.312407" scale_y="0.307916"/>
+                </key>
+                <key id="2" time="66" spin="0">
+                    <object folder="0" file="3" x="-46.270161" y="105.141129" angle="0" scale_x="0.312407" scale_y="0.307916"/>
+                </key>
+                <key id="3" time="99" spin="0">
+                    <object folder="0" file="3" x="-46.270161" y="105.141129" angle="0" scale_x="0.312407" scale_y="0.307916"/>
+                </key>
+                <key id="4" time="132" spin="0">
+                    <object folder="0" file="3" x="-46.270161" y="105.141129" angle="0" scale_x="0.312407" scale_y="0.307916"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
