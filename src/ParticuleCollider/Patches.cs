@@ -1,7 +1,5 @@
 ﻿using HarmonyLib;
 using Pholib;
-using System.Collections.Generic;
-using System;
 
 namespace ParticleCollider
 {
