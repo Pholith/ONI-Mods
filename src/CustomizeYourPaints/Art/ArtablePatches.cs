@@ -24,15 +24,15 @@ namespace CustomizeYourPaints.Art
             }
         }
 
-        [HarmonyPatch(typeof(Artable), "OnDeserialized")]
+        [HarmonyPatch(typeof(Artable), nameof(Artable.OnDeserialized))]
         public class Artable_OnDeserialized_Patch
         {
             // prevent invalid stages
-            public static void Postfix(string ___defaultArtworkId, ref string ___currentStage)
+            public static void Postfix(ref string ___currentStage)
             {
                 if (Db.GetArtableStages().TryGet(___currentStage) == null)
                 {
-                    ___currentStage = ___defaultArtworkId;
+                    ___currentStage = Artable.defaultArtworkId;
                 }
             }
         }

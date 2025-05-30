@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using static CustomizeYourPaints.CustomizeYourPaints;
-using static STRINGS.UI.TOOLS;
 
 namespace CustomizeYourPaints
 {
@@ -71,7 +70,7 @@ namespace CustomizeYourPaints
             foreach (string filePath in Directory.EnumerateFiles(customPaintsPath))
             {
                 counter++;
-                string[] splitedFile = Path.GetFileNameWithoutExtension(filePath).Split('_','-');
+                string[] splitedFile = Path.GetFileNameWithoutExtension(filePath).Split('_', '-');
 
                 if (splitedFile.Length < 2) continue;
 
@@ -168,8 +167,8 @@ namespace CustomizeYourPaints
             {
                 Logs.Log("Adding " + tuple.first);
                 AddCustomPaint(__instance,
-                    tuple.first.Replace("_kanim", "").Replace($"{CUSTOM_PAINT_ID}_", "").Substring(3), 
-                    "A custom paint added using the CustomizeYourPaints mod.", 
+                    tuple.first.Replace("_kanim", "").Replace($"{CUSTOM_PAINT_ID}_", "").Substring(3),
+                    "A custom paint added using the CustomizeYourPaints mod.",
                     tuple.first, tuple.first, tuple.second);
             }
 

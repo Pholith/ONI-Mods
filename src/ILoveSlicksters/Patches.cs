@@ -156,6 +156,7 @@ namespace ILoveSlicksters
             return;
         }
     }
+
     [HarmonyPatch(typeof(WildnessMonitor))]
     [HarmonyPatch("IsWild")]
     public class ILoveSlicksters_ShowModifiersIfSandbox_Path

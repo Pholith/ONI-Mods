@@ -38,8 +38,8 @@
     <Compile Include="..\Pholib\Utilities.cs">
       <Link>Utilities.cs</Link>
     </Compile>
+    <Compile Include="ColliderRecipe.cs" />
     <Compile Include="ParticleCollider.cs" />
-    <Compile Include="ComplexChemicalFabricatorConfig.cs" />
     <Compile Include="ParticleColliderConfig.cs" />
     <Compile Include="Patches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
