@@ -39,7 +39,6 @@ namespace ParticleCollider
             buildingDef.UtilityInputOffset = new CellOffset(-1, 0);
             buildingDef.OutputConduitType = ConduitType.Liquid;
             buildingDef.UtilityInputOffset = new CellOffset(-1, 0);
-
             buildingDef.RequiredSkillPerkID = Db.Get().SkillPerks.AllowNuclearResearch.Id;
             buildingDef.DiseaseCellVisName = RadiationPoisoning.ID;
             buildingDef.LogicOutputPorts = new List<LogicPorts.Port>
@@ -153,11 +152,13 @@ namespace ParticleCollider
         }
         public void SetRecipes()
         {
+            float recipeBaseAmount = 200f;
+
 
             ColliderRecipe dataCreation = ColliderRecipe.AddRecipe(
             new ColliderRecipe.RecipeElement[]
             {
-                new ColliderRecipe.RecipeElement(SimHashes.Hydrogen.CreateTag(), 200f + ColliderRecipe.ProtonSourceUse),
+                new ColliderRecipe.RecipeElement(SimHashes.Hydrogen.CreateTag(), recipeBaseAmount + ColliderRecipe.ProtonSourceUse),
             },
             new ColliderRecipe.RecipeElement[]
             {
@@ -169,10 +170,10 @@ namespace ParticleCollider
             dataCreation.nameDisplay = ColliderRecipe.RecipeNameDisplay.Result;
             dataCreation.consumedHEP = 50;
 
-            ColliderRecipe HydrogenToHelium = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Hydrogen.CreateTag(), 200f + ColliderRecipe.ProtonSourceUse),
+            ColliderRecipe HydrogenToHelium = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Hydrogen.CreateTag(), recipeBaseAmount + ColliderRecipe.ProtonSourceUse),
             new ColliderRecipe.RecipeElement[]
             {
-                new ColliderRecipe.RecipeElement(SimHashes.Helium.CreateTag(), 200f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
+                new ColliderRecipe.RecipeElement(SimHashes.Helium.CreateTag(), recipeBaseAmount, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
                 new ColliderRecipe.RecipeElement(SimHashes.NuclearWaste.CreateTag(), ColliderRecipe.GenericTotalWaste, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, true)
             }, 800, true);
             HydrogenToHelium.time = 60f;
@@ -182,7 +183,7 @@ namespace ParticleCollider
 
             // nuclear fusion
             //https://fr.wikipedia.org/wiki/R%C3%A9action_triple_alpha
-            /*ColliderRecipe heliumToCarbon = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Helium.CreateTag(), 200f),
+            /*ColliderRecipe heliumToCarbon = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Helium.CreateTag(), recipeBaseAmount),
             new ColliderRecipe.RecipeElement[]
             {
                 new ColliderRecipe.RecipeElement(SimHashes.RefinedCarbon.CreateTag(), 160f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
@@ -194,7 +195,7 @@ namespace ParticleCollider
             heliumToCarbon.consumedHEP = 50;*/
 
 
-            ColliderRecipe carbonToOxygen = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.RefinedCarbon.CreateTag(), 200f),
+            ColliderRecipe carbonToOxygen = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.RefinedCarbon.CreateTag(), recipeBaseAmount),
             new ColliderRecipe.RecipeElement[]
             {
                 new ColliderRecipe.RecipeElement(SimHashes.Oxygen.CreateTag(), 180f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
@@ -206,7 +207,7 @@ namespace ParticleCollider
             carbonToOxygen.nameDisplay = ColliderRecipe.RecipeNameDisplay.IngredientToResult;
             carbonToOxygen.consumedHEP = 50;
 
-            ColliderRecipe sodiumToAluminium = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Salt.CreateTag(), 200f),
+            ColliderRecipe sodiumToAluminium = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Salt.CreateTag(), recipeBaseAmount),
             new ColliderRecipe.RecipeElement[]
             {
                 new ColliderRecipe.RecipeElement(SimHashes.Aluminum.CreateTag(), 90f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
@@ -217,7 +218,7 @@ namespace ParticleCollider
             sodiumToAluminium.nameDisplay = ColliderRecipe.RecipeNameDisplay.IngredientToResult;
             sodiumToAluminium.consumedHEP = 50;
 
-            ColliderRecipe aluminiumToPhosphore = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Aluminum.CreateTag(), 200f),
+            ColliderRecipe aluminiumToPhosphore = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Aluminum.CreateTag(), recipeBaseAmount),
             new ColliderRecipe.RecipeElement[]
             {
                 new ColliderRecipe.RecipeElement(SimHashes.Sand.CreateTag(), 40f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
@@ -230,7 +231,7 @@ namespace ParticleCollider
             aluminiumToPhosphore.nameDisplay = ColliderRecipe.RecipeNameDisplay.IngredientToResult;
             aluminiumToPhosphore.consumedHEP = 50;
 
-            ColliderRecipe siliconToPhosphorus = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Sand.CreateTag(), 200f),
+            ColliderRecipe siliconToPhosphorus = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Sand.CreateTag(), recipeBaseAmount),
             new ColliderRecipe.RecipeElement[]
             {
                 new ColliderRecipe.RecipeElement(SimHashes.Phosphorus.CreateTag(), 100f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
@@ -243,7 +244,7 @@ namespace ParticleCollider
             siliconToPhosphorus.consumedHEP = 50;
 
 
-            ColliderRecipe sulfurToPhosphorus = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Sulfur.CreateTag(), 200f),
+            ColliderRecipe sulfurToPhosphorus = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Sulfur.CreateTag(), recipeBaseAmount),
             new ColliderRecipe.RecipeElement[]
             {
                 new ColliderRecipe.RecipeElement(SimHashes.Phosphorus.CreateTag(), 150f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
@@ -256,7 +257,7 @@ namespace ParticleCollider
             sulfurToPhosphorus.consumedHEP = 50;
 
 
-            ColliderRecipe ironToCobalt = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Iron.CreateTag(), 200f),
+            ColliderRecipe ironToCobalt = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Iron.CreateTag(), recipeBaseAmount),
             new ColliderRecipe.RecipeElement[]
             {
                 new ColliderRecipe.RecipeElement(SimHashes.Cobalt.CreateTag(), 160f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
@@ -267,7 +268,7 @@ namespace ParticleCollider
             ironToCobalt.nameDisplay = ColliderRecipe.RecipeNameDisplay.IngredientToResult;
             ironToCobalt.consumedHEP = 100;
 
-            ColliderRecipe cobaltToNickel = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Cobalt.CreateTag(), 200f),
+            ColliderRecipe cobaltToNickel = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Cobalt.CreateTag(), recipeBaseAmount),
             new ColliderRecipe.RecipeElement[]
             {
                 new ColliderRecipe.RecipeElement(SimHashes.Nickel.CreateTag(), 150f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
@@ -278,7 +279,7 @@ namespace ParticleCollider
             cobaltToNickel.nameDisplay = ColliderRecipe.RecipeNameDisplay.IngredientToResult;
             cobaltToNickel.consumedHEP = 100;
 
-            ColliderRecipe nickelToCopper = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Nickel.CreateTag(), 200f),
+            ColliderRecipe nickelToCopper = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Nickel.CreateTag(), recipeBaseAmount),
             new ColliderRecipe.RecipeElement[]
             {
                 new ColliderRecipe.RecipeElement(SimHashes.Copper.CreateTag(), 150f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
@@ -289,32 +290,68 @@ namespace ParticleCollider
             nickelToCopper.nameDisplay = ColliderRecipe.RecipeNameDisplay.IngredientToResult;
             nickelToCopper.consumedHEP = 100;
 
-            ColliderRecipe mercuryToGold = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Mercury.CreateTag(), 200f),
-            new ColliderRecipe.RecipeElement[]
+            // Compatibility with Chemical Processing: Industrial Overhaul Edition
+            Element zinc = ElementLoader.FindElementByName("SolidZinc") ?? ElementLoader.FindElementByName("Silver");
+            if (zinc != null)
             {
-                new ColliderRecipe.RecipeElement(SimHashes.Gold.CreateTag(), 20f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
-                new ColliderRecipe.RecipeElement(SimHashes.Lead.CreateTag(), 40f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
-                new ColliderRecipe.RecipeElement(SimHashes.NuclearWaste.CreateTag(), 200f-20f-40f + ColliderRecipe.GenericTotalWaste, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, true)
-            }, 2400);
-            mercuryToGold.time = 60f;
-            mercuryToGold.description = STRINGS.BUILDINGS.PREFABS.SUPERMATERIALREFINERY.SUPERCOOLANT_RECIPE_DESCRIPTION;
-            mercuryToGold.nameDisplay = ColliderRecipe.RecipeNameDisplay.Composite;
-            mercuryToGold.consumedHEP = 100;
+                ColliderRecipe copperToNickelAndZinc = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Copper.CreateTag(), recipeBaseAmount),
+                new ColliderRecipe.RecipeElement[]
+                {
+                    new ColliderRecipe.RecipeElement(SimHashes.Nickel.CreateTag(), 140f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
+                    new ColliderRecipe.RecipeElement(zinc.id.CreateTag(), 60f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, true),
+                    new ColliderRecipe.RecipeElement(SimHashes.NuclearWaste.CreateTag(), ColliderRecipe.GenericTotalWaste, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, true)
+                }, 1200);
+
+                copperToNickelAndZinc.time = 60f;
+                copperToNickelAndZinc.description = STRINGS.BUILDINGS.PREFABS.SUPERMATERIALREFINERY.SUPERCOOLANT_RECIPE_DESCRIPTION;
+                copperToNickelAndZinc.nameDisplay = ColliderRecipe.RecipeNameDisplay.IngredientToResult;
+                copperToNickelAndZinc.consumedHEP = 50;
 
 
-            ColliderRecipe tungstenToIridium = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Tungsten.CreateTag(), 200f),
+                ColliderRecipe zincToCopper = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(zinc.id.CreateTag(), recipeBaseAmount),
+                new ColliderRecipe.RecipeElement[]
+                {
+                    new ColliderRecipe.RecipeElement(SimHashes.Copper.CreateTag(), recipeBaseAmount / 2, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
+                    new ColliderRecipe.RecipeElement(zinc.id.CreateTag(), recipeBaseAmount / 2, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
+                    new ColliderRecipe.RecipeElement(SimHashes.NuclearWaste.CreateTag(), ColliderRecipe.GenericTotalWaste, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, true)
+                }, 1200);
+                zincToCopper.time = 60f;
+                zincToCopper.description = STRINGS.BUILDINGS.PREFABS.SUPERMATERIALREFINERY.SUPERCOOLANT_RECIPE_DESCRIPTION;
+                zincToCopper.nameDisplay = ColliderRecipe.RecipeNameDisplay.IngredientToResult;
+                zincToCopper.consumedHEP = 50;
+            }
+
+            nickelToCopper.time = 60f;
+            nickelToCopper.description = STRINGS.BUILDINGS.PREFABS.SUPERMATERIALREFINERY.SUPERCOOLANT_RECIPE_DESCRIPTION;
+            nickelToCopper.nameDisplay = ColliderRecipe.RecipeNameDisplay.IngredientToResult;
+            nickelToCopper.consumedHEP = 100;
+
+            ColliderRecipe tungstenToIridium = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Tungsten.CreateTag(), recipeBaseAmount),
             new ColliderRecipe.RecipeElement[]
             {
                 new ColliderRecipe.RecipeElement(SimHashes.Iridium.CreateTag(), 20f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
                 new ColliderRecipe.RecipeElement(SimHashes.Lead.CreateTag(), 40f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
-                new ColliderRecipe.RecipeElement(SimHashes.NuclearWaste.CreateTag(), 200f-40f-20f + ColliderRecipe.GenericTotalWaste, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, true),
+                new ColliderRecipe.RecipeElement(SimHashes.NuclearWaste.CreateTag(), recipeBaseAmount-40f-20f + ColliderRecipe.GenericTotalWaste, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, true),
             }, 2400);
             tungstenToIridium.time = 60f;
             tungstenToIridium.description = STRINGS.BUILDINGS.PREFABS.SUPERMATERIALREFINERY.SUPERCOOLANT_RECIPE_DESCRIPTION;
             tungstenToIridium.nameDisplay = ColliderRecipe.RecipeNameDisplay.Composite;
             tungstenToIridium.consumedHEP = 200;
 
-            ColliderRecipe mercuryToLead = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Mercury.CreateTag(), 200f),
+            ColliderRecipe mercuryToGold = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Mercury.CreateTag(), recipeBaseAmount),
+            new ColliderRecipe.RecipeElement[]
+            {
+                new ColliderRecipe.RecipeElement(SimHashes.Gold.CreateTag(), 20f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
+                new ColliderRecipe.RecipeElement(SimHashes.Lead.CreateTag(), 40f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
+                new ColliderRecipe.RecipeElement(SimHashes.Mercury.CreateTag(), 40f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
+                new ColliderRecipe.RecipeElement(SimHashes.NuclearWaste.CreateTag(), recipeBaseAmount-20f-40-40f + ColliderRecipe.GenericTotalWaste, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, true)
+            }, 1800);
+            mercuryToGold.time = 60f;
+            mercuryToGold.description = STRINGS.BUILDINGS.PREFABS.SUPERMATERIALREFINERY.SUPERCOOLANT_RECIPE_DESCRIPTION;
+            mercuryToGold.nameDisplay = ColliderRecipe.RecipeNameDisplay.Composite;
+            mercuryToGold.consumedHEP = 100;
+
+            ColliderRecipe mercuryToLead = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Mercury.CreateTag(), recipeBaseAmount),
             new ColliderRecipe.RecipeElement[]
             {
                 new ColliderRecipe.RecipeElement(SimHashes.Lead.CreateTag(), 150f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
@@ -328,7 +365,7 @@ namespace ParticleCollider
         }
 
 
-   
+
         public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
         {
         }

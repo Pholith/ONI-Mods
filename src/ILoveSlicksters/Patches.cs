@@ -9,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
-using static LogicGate.LogicGateDescriptions;
 using static TUNING.CREATURES;
 
 namespace ILoveSlicksters
@@ -430,7 +429,8 @@ namespace ILoveSlicksters
         Snow = SimHashes.Snow,
         Carbon = SimHashes.Carbon,
         Phosphorite = SimHashes.Phosphorite,
-        Rust = SimHashes.Rust
+        Rust = SimHashes.Rust,
+        Peat = SimHashes.Peat,
     }
 
 }

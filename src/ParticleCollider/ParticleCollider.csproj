@@ -42,6 +42,7 @@
     <Compile Include="ParticleCollider.cs" />
     <Compile Include="ParticleColliderConfig.cs" />
     <Compile Include="Patches.cs" />
+    <Compile Include="PHO_STRINGS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

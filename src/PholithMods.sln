@@ -55,7 +55,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GigawattWire", "GigawattWir
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WallPumps", "WallPumps\WallPumps.csproj", "{40F24E73-E83E-4E8D-B919-63AAADE1BA09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParticuleCollider", "ParticuleCollider\ParticuleCollider.csproj", "{B08F4B0D-227A-4A20-985D-2803444744E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParticleCollider", "ParticleCollider\ParticleCollider.csproj", "{B08F4B0D-227A-4A20-985D-2803444744E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

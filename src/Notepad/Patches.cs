@@ -23,7 +23,7 @@ namespace Notepad
             GameOnLoadPatch.ReadSettings(); // Read settings early for the notepad description setting.
 
             new PLocalization().Register();
-            GenerateStringsTemplate(typeof(PHO_STRINGS));
+            Utilities.GenerateStringsTemplate(typeof(PHO_STRINGS));
         }
     }
 

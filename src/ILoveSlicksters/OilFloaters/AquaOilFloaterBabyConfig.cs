@@ -7,7 +7,7 @@ namespace ILoveSlicksters
         public GameObject CreatePrefab()
         {
             GameObject gameObject = AquaOilfloaterConfig.CreateOilfloater(ID, PHO_STRINGS.VARIANT_AQUA.BABY.NAME, PHO_STRINGS.VARIANT_AQUA.BABY.DESC, "baby_aqua_oilfloater_kanim", true);
-            EntityTemplates.ExtendEntityToBeingABaby(gameObject, "AquaOilfloater");
+            EntityTemplates.ExtendEntityToBeingABaby(gameObject, AquaOilfloaterConfig.ID);
             return gameObject;
         }
 
@@ -34,7 +34,7 @@ namespace ILoveSlicksters
         {
             return new string[0];
         }
-        public const string ID = "AquaOilfloaterBaby";
+        public const string ID = AquaOilfloaterConfig.ID+"Baby";
 
     }
 }

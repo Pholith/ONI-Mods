@@ -44,14 +44,10 @@
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\packages\GameLibs\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\packages\GameLibs\Assembly-CSharp-firstpass.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\GameLibs\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\packages\GameLibs\UnityEngine.dll</HintPath>
@@ -71,9 +67,6 @@
     <Compile Include="JsonReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

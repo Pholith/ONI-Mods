@@ -1,7 +1,7 @@
 ---
 elements:
   - elementId: Antigel
-    maxMass: 1000
+    maxMass: 900
     liquidCompression: 1.01
     speed: 125
     minHorizontalFlow: 0.1

@@ -1,12 +1,30 @@
 ﻿using HarmonyLib;
 using Klei.AI;
+using KMod;
+using PeterHan.PLib.Database;
+using PeterHan.PLib.Options;
 using Pholib;
 using STRINGS;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ParticleCollider
 {
+
+    public class HighTechMod : UserMod2
+    {
+        public override void OnLoad(Harmony harmony)
+        {
+            base.OnLoad(harmony);
+            //new POptions().RegisterOptions(this, typeof(NotepadOptions));
+            //GameOnLoadPatch.ReadSettings(); // Read settings early for the notepad description setting.
+
+            new PLocalization().Register();
+            Utilities.GenerateStringsTemplate(typeof(PHO_STRINGS));
+        }
+    }
+
     public static class Patches
     {
         [HarmonyPatch(typeof(GeneratedBuildings))]
@@ -24,6 +42,13 @@ namespace ParticleCollider
         [HarmonyPatch(nameof(UraniumCentrifugeConfig.ConfigureBuildingTemplate))]
         public static class NuclearWasteRecyclePatch
         {
+
+            public static Element silver = ElementLoader.FindElementByName("SolidSilver") ?? ElementLoader.FindElementByName("Silver");
+            public static Element palladium = ElementLoader.FindElementByName("Palladium");
+            public static Element helium = ElementLoader.FindElementByHash(SimHashes.Helium);
+            public static Element uranium = ElementLoader.FindElementByHash(SimHashes.EnrichedUranium);
+            public static Element depletedUranium = ElementLoader.FindElementByHash(SimHashes.DepletedUranium);
+
             private static void Postfix()
             {
                 float powerToGasAmount = 10f;
@@ -53,27 +78,24 @@ namespace ParticleCollider
                     }, ChemicalRefineryConfig.ID, 40, STRINGS.BUILDINGS.PREFABS.SUPERMATERIALREFINERY.SUPERCOOLANT_RECIPE_DESCRIPTION, ComplexRecipe.RecipeNameDisplay.Result, 150);
 
 
-                Element silver = ElementLoader.FindElementByName("Silver");
-                Element palladium = ElementLoader.FindElementByName("Palladium");
-                Element helium = ElementLoader.FindElementByHash(SimHashes.Helium);
-                Element uranium = ElementLoader.FindElementByHash(SimHashes.EnrichedUranium);
-
                 float recipeAmount = 1000; // 1000 kg
                 var results = new ComplexRecipe.RecipeElement[] {
-                    new ComplexRecipe.RecipeElement(uranium.id.CreateTag(), recipeAmount / 100 / 2) // 1kg of enriched uranium gives 100 kg of waste
+                    new ComplexRecipe.RecipeElement(depletedUranium.id.CreateTag(), 50f / 100f * recipeAmount), // 1kg of enriched uranium gives 100 kg of waste
+                    new ComplexRecipe.RecipeElement(uranium.id.CreateTag(), recipeAmount / 100f / 2f) // 1kg of enriched uranium gives 100 kg of waste
                     };
 
                 if (silver != null)
                 {
-                    results = results.Append(new ComplexRecipe.RecipeElement(silver.id.CreateTag(), 1 / 100 * recipeAmount));
+                    // Compatibility with Chemical Processing: Industrial Overhaul Edition
+                    results = results.Append(new ComplexRecipe.RecipeElement(silver.id.CreateTag(), 1f / 100f * recipeAmount));
                 }
                 if (palladium != null)
                 {
-                    results = results.Append(new ComplexRecipe.RecipeElement(palladium.id.CreateTag(), 8 / 100 * recipeAmount));
+                    results = results.Append(new ComplexRecipe.RecipeElement(palladium.id.CreateTag(), 8f / 100f * recipeAmount));
                 }
                 if (helium != null)
                 {
-                    results = results.Append(new ComplexRecipe.RecipeElement(helium.id.CreateTag(), 0.4f / 100 * recipeAmount));
+                    results = results.Append(new ComplexRecipe.RecipeElement(helium.id.CreateTag(), 0.2f / 100f * recipeAmount));
                 }
 
                 if (results.Length > 0)
@@ -82,7 +104,7 @@ namespace ParticleCollider
                         new ComplexRecipe.RecipeElement[] { new ComplexRecipe.RecipeElement(SimHashes.NuclearWaste.CreateTag(), recipeAmount) },
                         results,
                         UraniumCentrifugeConfig.ID,
-                        200f, "", ComplexRecipe.RecipeNameDisplay.Custom, 200);
+                        150f, "", ComplexRecipe.RecipeNameDisplay.Custom, 200);
                     recipe.customName = "Nuclear Waste Recycling";
                     recipe.customSpritePrefabID = SimHashes.NuclearWaste.CreateTag().ToString();
                     //recipe.customSpritePrefabID = ElementLoader.FindElementByHash(SimHashes.NuclearWaste).
@@ -91,7 +113,55 @@ namespace ParticleCollider
             }
 
         }
+        // Make Centrifuger drop output
+        [HarmonyPatch(typeof(UraniumCentrifuge))]
+        [HarmonyPatch("DropEnrichedProducts")]
+        public static class UraniumCentrifugeConfig_DropPatch
+        {
+            private static void Postfix(UraniumCentrifuge __instance)
+            {
+                Storage[] components = __instance.GetComponents<Storage>();
+                foreach (Storage storage in components)
+                {
+                    if (NuclearWasteRecyclePatch.silver != null) storage.Drop(NuclearWasteRecyclePatch.silver.tag);
+                    if (NuclearWasteRecyclePatch.palladium != null) storage.Drop(NuclearWasteRecyclePatch.palladium.tag);
+                    if (NuclearWasteRecyclePatch.helium != null) storage.Drop(NuclearWasteRecyclePatch.helium.tag);
+                    if (NuclearWasteRecyclePatch.depletedUranium != null) storage.Drop(NuclearWasteRecyclePatch.depletedUranium.tag);
+                }
+            }
+        }
+        // Make Centrifuger sealed for nuclear waste
+        [HarmonyPatch(typeof(UraniumCentrifugeConfig))]
+        [HarmonyPatch(nameof(UraniumCentrifugeConfig.ConfigureBuildingTemplate))]
+        public static class UraniumCentrifugeConfig_SealPatch
+        {
+            private static void Prefix(GameObject go, Tag prefab_tag, ref List<Storage.StoredItemModifier> ___storedItemModifiers)
+            {
+                Logs.Log(___storedItemModifiers);
+                ___storedItemModifiers.Add(Storage.StoredItemModifier.Seal);
+            }
+        }
 
+        // Patch helium wrong values
+        [HarmonyPatch(typeof(ElementLoader))]
+        [HarmonyPatch("CopyEntryToElement")]
+        public static class ElementLoader_PatchHeliumValues
+        {
+            private static void Postfix(ElementLoader.ElementEntry entry, Element elem)
+            {
+                if (elem.id == SimHashes.Helium)
+                {
+                    elem.thermalConductivity = 0.15f;
+                    elem.specificHeatCapacity = 5.193f;
+                }
+                if (elem.id == SimHashes.Helium || elem.id == SimHashes.LiquidHelium)
+                {
+                    elem.disabled = false;
+                    elem.oreTags = elem.oreTags.Except(new Tag[] { GameTags.HideFromCodex, GameTags.HideFromSpawnTool }).Cast<Tag>().ToArray(); // Remove Propane Hide tags
+                }
+
+            }
+        }
         ////// ColliderRecipe patchs
         [HarmonyPatch(typeof(SelectedRecipeQueueScreen))]
         [HarmonyPatch(nameof(SelectedRecipeQueueScreen.SetRecipeCategory))]
