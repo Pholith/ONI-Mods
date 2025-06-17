@@ -1,13 +1,10 @@
-﻿using Database;
-using HarmonyLib;
+﻿using HarmonyLib;
+using High_Pressure_Applications.BuildingConfigs;
+using High_Pressure_Applications.Components;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
 using UnityEngine;
-using System.Linq;
-using STRINGS;
-using High_Pressure_Applications.BuildingConfigs;
-using High_Pressure_Applications.Components;
 
 namespace High_Pressure_Applications
 {
@@ -142,7 +139,7 @@ namespace High_Pressure_Applications
                     //Integrate patch when the following line is called:
                     //  ConduitFlow.ConduitContents contents = conduit.GetContents(flowManager)
                     //Utilize the contents value to determine if overpressure damage is necessary
-                    if (original.opcode == OpCodes.Call && original.operand as MethodInfo == conduitGetContents)
+                    if (original.opcode == OpCodes.Call && (original.operand as MethodInfo) == conduitGetContents)
                     {
                         yield return original; //ConduitFlow.ConduitContents contents
                         yield return new CodeInstruction(OpCodes.Ldarg_0); //this (ValveBase)
@@ -190,7 +187,7 @@ namespace High_Pressure_Applications
                 bridgeOutputCell = AccessTools.Field(typeof(ConduitBridge), "outputCell");
                 foreach (CodeInstruction original in instructions)
                 {
-                    if (original.opcode == OpCodes.Callvirt && original.operand as MethodInfo == flowManagerGetContents)
+                    if (original.opcode == OpCodes.Callvirt && (original.operand as MethodInfo) == flowManagerGetContents)
                     {
                         yield return original; //flowManager.GetContents(inputCell)
                         yield return new CodeInstruction(OpCodes.Ldarg_0); //this
@@ -230,7 +227,7 @@ namespace High_Pressure_Applications
                     float initial = contents.mass;
                     float removed = contents.RemoveMass(initial - capacity);
                     float ratio = removed / initial;
-                    contents.diseaseCount = (int)((float)contents.diseaseCount * ratio);
+                    contents.diseaseCount = (int)(contents.diseaseCount * ratio);
                 }
 
 

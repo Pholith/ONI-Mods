@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using High_Pressure_Applications.Components;
+using PeterHan.PLib.Options;
 using STRINGS;
 using TUNING;
 using UnityEngine;
-using PeterHan.PLib.Options;
-using High_Pressure_Applications.Components;
 using BUILDINGS = TUNING.BUILDINGS;
 
 namespace High_Pressure_Applications.BuildingConfigs
@@ -14,7 +12,7 @@ namespace High_Pressure_Applications.BuildingConfigs
         public const string Id = "PressureLiquidPump";
 
         public const string DisplayName = "High Pressure Liquid Pump";
-        public static string Description = string.Concat(new string[] { "An advanced pump that perform mechanical work to compress and move fluids. More powerful than the standard pump, this one is capable of moving large amounts of liquids, although this is only archived through the ", UI.FormatAsLink("High Pressure Liquid Pipe", HighPressureLiquidConduitConfig.Id),"." });
+        public static string Description = string.Concat(new string[] { "An advanced pump that perform mechanical work to compress and move fluids. More powerful than the standard pump, this one is capable of moving large amounts of liquids, although this is only archived through the ", UI.FormatAsLink("High Pressure Liquid Pipe", HighPressureLiquidConduitConfig.Id), "." });
         public static string Effect = string.Concat(new string[]
                 {
                     "Draws in ",
@@ -34,7 +32,7 @@ namespace High_Pressure_Applications.BuildingConfigs
             BuildingDef def1 = BuildingTemplates.CreateBuildingDef("PressureLiquidPump", 2, 3, "pressure_liquid_pump_kanim", 240, 120f, quantity1, materials1, 1600f, BuildLocationRule.Anywhere, BUILDINGS.DECOR.PENALTY.TIER1, nONE, 0.2f);
             def1.RequiresPowerInput = true;
             def1.Overheatable = false;
-            def1.EnergyConsumptionWhenActive = ((float)SingletonOptions<HPA_ModSettings>.Instance.HPLiquid * 240f) / 10f;
+            def1.EnergyConsumptionWhenActive = SingletonOptions<HPA_ModSettings>.Instance.HPLiquid * 240f / 10f;
             def1.ExhaustKilowattsWhenActive = 0f;
             def1.SelfHeatKilowattsWhenActive = 2f;
             def1.OutputConduitType = ConduitType.Liquid;
@@ -56,10 +54,10 @@ namespace High_Pressure_Applications.BuildingConfigs
             go.AddOrGet<LoopingSounds>();
             go.AddOrGet<EnergyConsumer>();
             go.AddOrGet<Pump>();
-            go.AddOrGet<Storage>().capacityKg = (float)SingletonOptions<HPA_ModSettings>.Instance.HPLiquid;
+            go.AddOrGet<Storage>().capacityKg = SingletonOptions<HPA_ModSettings>.Instance.HPLiquid;
             ElementConsumer local1 = go.AddOrGet<ElementConsumer>();
             local1.configuration = ElementConsumer.Configuration.AllLiquid;
-            local1.consumptionRate = (float)SingletonOptions<HPA_ModSettings>.Instance.HPLiquid;
+            local1.consumptionRate = SingletonOptions<HPA_ModSettings>.Instance.HPLiquid;
             local1.storeOnConsume = true;
             local1.showInStatusPanel = false;
             local1.consumptionRadius = 8;

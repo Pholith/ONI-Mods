@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Newtonsoft.Json;
-using PeterHan.PLib;
+﻿using Newtonsoft.Json;
 using PeterHan.PLib.Options;
 
 //This mod uses PLib library by Peter Han to create in-game Option menus.

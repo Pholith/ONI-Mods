@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using HarmonyLib;
 using System.Reflection;
-using HarmonyLib;
 
 namespace High_Pressure_Applications
 {
@@ -13,7 +9,7 @@ namespace High_Pressure_Applications
 
         public static float MaxMass(this ConduitFlow manager)
         {
-            if(manager == null)
+            if (manager == null)
                 throw new System.ArgumentNullException("manager");
             return (float)maxMass.GetValue(manager);
         }
