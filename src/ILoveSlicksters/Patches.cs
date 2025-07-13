@@ -243,22 +243,33 @@ namespace ILoveSlicksters
                 input: new[] {
                     new ComplexRecipe.RecipeElement(SimHashes.Fullerene.CreateTag(), 100f * massOfFullerene),
                     new ComplexRecipe.RecipeElement(SimHashes.Gold.CreateTag(), 100f * remaindingMass),
-                    new ComplexRecipe.RecipeElement(Antigel.SimHash.CreateTag(), 100f * remaindingMass)
+                    new ComplexRecipe.RecipeElement(Antigel.SimHash.CreateTag(), 100f * remaindingMass + massOfFullerene)
                 },
                 output: new[] { new ComplexRecipe.RecipeElement(SimHashes.SuperCoolant.CreateTag(), 100f, temperatureOperation: ComplexRecipe.RecipeElement.TemperatureOperation.AverageTemperature) },
-                fabricatorId: SupermaterialRefineryConfig.ID,
-                productionTime: 60f,
+                fabricatorId: ChemicalRefineryConfig.ID,
+                productionTime: 80f,
                 recipeDescription: STRINGS.BUILDINGS.PREFABS.SUPERMATERIALREFINERY.SUPERCOOLANT_RECIPE_DESCRIPTION,
                 nameDisplayType: ComplexRecipe.RecipeNameDisplay.Result,
-                sortOrder: 970
+                requiredTech: Db.Get().TechItems.superLiquids.parentTechId,
+                sortOrder: 1
             );
 
             if (!ILoveSlicksters.Settings.DisableSlickstersRecipes)
             {
+                Tag[] oilfloaterEggs = new Tag[] {
+                    OilFloaterDecorConfig.EGG_ID.ToTag(),
+                    OilFloaterConfig.EGG_ID.ToTag(),
+                    OilFloaterHighTempConfig.EGG_ID.ToTag(),
+                    EthanolOilfloaterConfig.EGG_ID.ToTag(),
+                    AquaOilfloaterConfig.EGG_ID.ToTag(),
+                    LeafyOilfloaterConfig.EGG_ID.ToTag(),
+                    FrozenOilfloaterConfig.EGG_ID.ToTag(),
+                    OwO_OilfloaterConfig.EGG_ID.ToTag(),
+                };
                 Utilities.AddComplexRecipe(
                     input: new[] {
+                        new ComplexRecipe.RecipeElement(oilfloaterEggs, 2f),
                         new ComplexRecipe.RecipeElement(SimHashes.Ethanol.CreateTag(), 50f),
-                        new ComplexRecipe.RecipeElement(SimHashes.Lime.CreateTag(), 3f),
                         new ComplexRecipe.RecipeElement(SimHashes.CarbonDioxide.CreateTag(), 10f),
                     },
                     output: new[] { new ComplexRecipe.RecipeElement(TagManager.Create(EthanolOilfloaterConfig.EGG_ID), 1f) },
@@ -270,7 +281,7 @@ namespace ILoveSlicksters
                 );
                 Utilities.AddComplexRecipe(
                     input: new[] {
-                        new ComplexRecipe.RecipeElement(OilFloaterDecorConfig.EGG_ID.ToTag(), 2f),
+                        new ComplexRecipe.RecipeElement(oilfloaterEggs, 2f),
                         new ComplexRecipe.RecipeElement(SimHashes.Algae.CreateTag(), 50f),
                         new ComplexRecipe.RecipeElement(SimHashes.Water.CreateTag(), 10f),
                         new ComplexRecipe.RecipeElement(SimHashes.SaltWater.CreateTag(), 10f),
@@ -284,7 +295,7 @@ namespace ILoveSlicksters
                 );
                 Utilities.AddComplexRecipe(
                     input: new[] {
-                        new ComplexRecipe.RecipeElement(PrickleFlowerConfig.SEED_ID.ToTag(), 10f),
+                        new ComplexRecipe.RecipeElement(oilfloaterEggs, 10f),
                         new ComplexRecipe.RecipeElement(SimHashes.Algae.CreateTag(), 50f),
                         new ComplexRecipe.RecipeElement(SimHashes.SlimeMold.CreateTag(), 50f),
                     },
@@ -297,7 +308,7 @@ namespace ILoveSlicksters
                 );
                 Utilities.AddComplexRecipe(
                     input: new[] {
-                        new ComplexRecipe.RecipeElement(OilFloaterDecorConfig.EGG_ID.ToTag(), 2f),
+                        new ComplexRecipe.RecipeElement(oilfloaterEggs, 2f),
                         new ComplexRecipe.RecipeElement(SimHashes.Ice.CreateTag(), 20f),
                         new ComplexRecipe.RecipeElement(SimHashes.CarbonDioxide.CreateTag(), 50f),
                     },
@@ -310,7 +321,7 @@ namespace ILoveSlicksters
                 );
                 Utilities.AddComplexRecipe(
                     input: new[] {
-                        new ComplexRecipe.RecipeElement(OilFloaterConfig.EGG_ID.ToTag(), 2f),
+                        new ComplexRecipe.RecipeElement(oilfloaterEggs, 2f),
                         new ComplexRecipe.RecipeElement(SimHashes.Steel.CreateTag(), 20f),
                         new ComplexRecipe.RecipeElement(SimHashes.Iron.CreateTag(), 40f),
                     },

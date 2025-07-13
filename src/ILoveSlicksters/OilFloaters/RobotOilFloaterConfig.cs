@@ -58,8 +58,8 @@ namespace ILoveSlicksters
                 DiseaseDropper.Def def = prefab.AddOrGetDef<DiseaseDropper.Def>();
                 def.diseaseIdx = Db.Get().Diseases.GetIndex(Db.Get().Diseases.ZombieSpores.id);
                 def.emitFrequency = 1f;
-                def.averageEmitPerSecond = 10;
-                def.singleEmitQuantity = 500;
+                def.averageEmitPerSecond = 5;
+                def.singleEmitQuantity = 50;
             }
 
 
