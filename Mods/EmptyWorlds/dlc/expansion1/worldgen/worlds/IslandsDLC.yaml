@@ -10,6 +10,50 @@ worldsize:
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
 
+
+defaultsOverrides:
+  data:
+    DrawWorldBorderBottom: true
+    WorldBorderRange: 4
+    WorldBorderThickness: 6
+    POIPadding: 1
+  startingWorldElements: [] # remove the algae check
+
+worldTraitScale: 0.30 # Adjust with worldSize. Traits are tuned to base game world sizes.
+worldTraitRules: 
+  - min: 0
+  - max: 1
+  
+fixedTraits:
+  - sunlightMed
+  - cosmicRadiationVeryLow
+
+seasons:
+  - ClassicStyleStartMeteorShowers
+  - VanillaForestDefaultMeteorShowers # unused
+
+
+subworldMixingRules:
+ - name: (Mixing1)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing2)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing3)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing4)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing5)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing6)
+   minCount: 2
+   maxCount: 4
+
+
 # List all the zone files to load
 subworldFiles:
   - name: subworlds/forest/ForestStartModified
@@ -39,26 +83,12 @@ subworldFiles:
   - name: subworlds/barren/BarrenGranite
     weight: 0.3
 
-defaultsOverrides:
-  data:
-    DrawWorldBorderBottom: true
-    WorldBorderRange: 4
-    WorldBorderThickness: 6
-    POIPadding: 1
-  startingWorldElements: [] # remove the algae check
-
-worldTraitScale: 0.30 # Adjust with worldSize. Traits are tuned to base game world sizes.
-worldTraitRules: 
-  - min: 0
-  - max: 1
-
 
 startSubworldName: subworlds/forest/ForestStartModified
 startingBaseTemplate: bases/forestBase
 
 #globalFeatureTemplates:
 #  feature_geyser_generic: 12
-
 
 # When we are converting unknown cells, this will give us the options, processed in this order, the effects are cumlative
 unknownCellsAllowedSubworlds: 
@@ -97,6 +127,12 @@ unknownCellsAllowedSubworlds:
       - subworlds/rust/Rust
       - subworlds/space/Space
       - expansion1::subworlds/wasteland/WastelandBeetle
+      - (Mixing1)
+      - (Mixing2)
+      - (Mixing3)
+      - (Mixing4)
+      - (Mixing5)
+      - (Mixing6)
 
   - tagcommand: DistanceFromTag
     tag: AtStart
@@ -111,6 +147,12 @@ unknownCellsAllowedSubworlds:
       - subworlds/jungle/Jungle
       - subworlds/space/Space
       - subworlds/magma/Bottom
+      - (Mixing1)
+      - (Mixing2)
+      - (Mixing3)
+      - (Mixing4)
+      - (Mixing5)
+      - (Mixing6)
 
   - tagcommand: DistanceFromTag
     tag: AtSurface

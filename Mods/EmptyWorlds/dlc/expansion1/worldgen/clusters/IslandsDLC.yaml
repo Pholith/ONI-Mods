@@ -1,15 +1,18 @@
 name: EmptyWorlds.PHO_STRINGS.I_NAME
 description: EmptyWorlds.PHO_STRINGS.I_DESCRIPTION
-requiredDlcId: EXPANSION1_ID
 coordinatePrefix: ISD-PHO
-menuOrder: 2
-clusterCategory: 2
+requiredDlcIds: [EXPANSION1_ID]
+
+menuOrder: 3
+clusterCategory: Special
+difficulty: 2
 
 startWorldIndex: 0
 numRings: 12
 worldPlacements:
 - world: expansion1::worlds/IslandsDLC
   buffer: 2
+  locationType: StartWorld
   allowedRings:
     min: 0
     max: 0

@@ -9,6 +9,16 @@ worldsize:
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
 
+
+fixedTraits:
+  - sunlightMed
+  - cosmicRadiationVeryLow
+
+seasons:
+  - ClassicStyleStartMeteorShowers
+  - VanillaForestDefaultMeteorShowers # unused
+
+
 # List all the zone files to load
 subworldFiles:
   - name: subworlds/forest/ForestStartModified

@@ -1,15 +1,18 @@
 name: EmptyWorlds.PHO_STRINGS.E_NAME
 description: EmptyWorlds.PHO_STRINGS.E_DESCRIPTION
-requiredDlcId: EXPANSION1_ID
 coordinatePrefix: EMP-PHO
-menuOrder: 3
-clusterCategory: 2
+requiredDlcIds: [EXPANSION1_ID]
+
+menuOrder: 4
+clusterCategory: Special
+difficulty: 5
 
 startWorldIndex: 0
 numRings: 12
 worldPlacements:
 - world: expansion1::worlds/EmpteraDLC
   buffer: 2
+  locationType: StartWorld
   allowedRings:
     min: 0
     max: 0

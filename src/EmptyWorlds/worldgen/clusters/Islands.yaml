@@ -1,8 +1,9 @@
 name: STRINGS.CLUSTER_NAMES.DEFAULT.NAME
 description: STRINGS.CLUSTER_NAMES.DEFAULT.DESCRIPTION
 coordinatePrefix: ISD-PHO
-forbiddenDlcId: EXPANSION1_ID
+forbiddenDlcIds: [EXPANSION1_ID]
 
+clusterCategory: Special
 difficulty: 4
 menuOrder: 4
 

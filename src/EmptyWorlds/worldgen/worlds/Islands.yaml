@@ -10,6 +10,42 @@ worldsize:
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
 
+defaultsOverrides:
+  data:
+    DrawWorldBorderBottom: true
+    WorldBorderRange: 4
+    WorldBorderThickness: 6
+  
+  startingWorldElements: [] # remove the algae check
+
+
+worldTraitRules: 
+  - min: 0
+  - max: 1
+
+seasons:
+  - MeteorShowers
+
+subworldMixingRules:
+ - name: (Mixing1)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing2)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing3)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing4)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing5)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing6)
+   minCount: 2
+   maxCount: 4
+
 # List all the zone files to load
 subworldFiles:
   - name: subworlds/forest/ForestStartModified
@@ -33,22 +69,6 @@ subworldFiles:
   - name: subworlds/rust/Rust
   - name: subworlds/barren/BarrenGranite
     weight: 0.3
-
-defaultsOverrides:
-  data:
-    DrawWorldBorderBottom: true
-    WorldBorderRange: 4
-    WorldBorderThickness: 6
-  
-  startingWorldElements: [] # remove the algae check
-
-
-worldTraitRules: 
-  - min: 0
-  - max: 1
-
-seasons:
-  - MeteorShowers
 
 startSubworldName: subworlds/forest/ForestStartModified
 startingBaseTemplate: bases/forestBase
@@ -109,6 +129,12 @@ unknownCellsAllowedSubworlds:
 	  - subworlds/ocean/Ocean
 	  - subworlds/rust/Rust
       - subworlds/space/Space
+      - (Mixing1)
+      - (Mixing2)
+      - (Mixing3)
+      - (Mixing4)
+      - (Mixing5)
+      - (Mixing6)
 
   - tagcommand: DistanceFromTag
     tag: AtStart
@@ -123,7 +149,13 @@ unknownCellsAllowedSubworlds:
 	  - subworlds/jungle/Jungle
       - subworlds/space/Space
       - subworlds/magma/Bottom
-	  	  
+      - (Mixing1)
+      - (Mixing2)
+      - (Mixing3)
+      - (Mixing4)
+      - (Mixing5)
+      - (Mixing6)
+
   - tagcommand: DistanceFromTag
     tag: AtSurface
     minDistance: 1
