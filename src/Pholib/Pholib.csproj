@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\packages\GameLibs\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\GameLibs\Newtonsoft.Json.dll</HintPath>

@@ -2,12 +2,16 @@ name: STRINGS.WORLDS.FULERIA.NAME
 description: STRINGS.WORLDS.FULERIA.DESCRIPTION
 asteroidIcon: asteroid_fuleria_kanim
 
-worldTraitScale: 0.6 # Adjust with worldSize. Traits are tuned to base game world sizes.
+worldTraitScale: 0.8 # Adjust with worldSize. Traits are tuned to base game world sizes.
 worldsize:
   X: 256
-  Y: 288
+  Y: 360
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
+
+defaultsOverrides:
+  startingWorldElements: [] # remove the algae check
+
 
 # List all the zone files to load
 subworldFiles:
@@ -37,16 +41,33 @@ subworldFiles:
 
 worldTraitRules: 
   - min: 0
-  - max: 1
+  - max: 2
 
 startSubworldName: subworlds/forest/ForestStart
 startingBaseTemplate: bases/forestBase
 
-defaultsOverrides:
-  startingWorldElements: [] # remove the algae check
-
 seasons:
   - MeteorShowers
+
+subworldMixingRules:
+ - name: (Mixing1)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing2)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing3)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing4)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing5)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing6)
+   minCount: 2
+   maxCount: 4
 
 
 # Specify where subworlds can spawn. These rules are processed in order and their effects are cumulative.
@@ -84,6 +105,13 @@ unknownCellsAllowedSubworlds:
       - subworlds/rust/Rust
       - subworlds/barren/BarrenGranite
       - subworlds/space/Space
+      - (Mixing1)
+      - (Mixing2)
+      - (Mixing3)
+      - (Mixing4)
+      - (Mixing5)
+      - (Mixing6)
+
 
   - tagcommand: DistanceFromTag
     tag: AtStart
@@ -94,6 +122,12 @@ unknownCellsAllowedSubworlds:
       - subworlds/rust/Rust
       - subworlds/frozen/Frozen
       - subworlds/sandstone/Desert
+      - (Mixing1)
+      - (Mixing2)
+      - (Mixing3)
+      - (Mixing4)
+      - (Mixing5)
+      - (Mixing6)
 
 
   - tagcommand: AtTag
@@ -131,13 +165,6 @@ unknownCellsAllowedSubworlds:
 
 worldTemplateRules:
   # Jungle
-  - names:
-      - poi/jungle/geyser_steam
-    listRule: GuaranteeOne
-    priority: 100
-    allowedCellsFilter:
-      - command: Replace
-        zoneTypes: [ToxicJungle]
   - names:
       - poi/jungle/geyser_methane
       - poi/jungle/geyser_chlorine
@@ -211,16 +238,6 @@ worldTemplateRules:
       - command: Replace
         zoneTypes: [FrozenWastes]
 
-  # Gravitas
-  - names:
-    - poi/poi_gravitas
-    listRule: GuaranteeOne
-    priority: 500
-    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
-    allowedCellsFilter:
-      - command: Replace
-        subworldNames:
-          - subworlds/space/Surface
   # Generic Geysers
   - names:
     - geysers/generic

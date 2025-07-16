@@ -1,55 +1,190 @@
 name: STRINGS.WORLDS.FULERIA.NAME
 description: STRINGS.WORLDS.FULERIA.DESCRIPTION
-requiredDlcId: EXPANSION1_ID
+requiredDlcIds: [EXPANSION1_ID]
 coordinatePrefix: FULC-PHO
 menuOrder: 1
-clusterCategory: 1
+clusterCategory: Special
 
 startWorldIndex: 0
 numRings: 12
 worldPlacements:
 - world: expansion1::worlds/FuleriaDLC
+  locationType: StartWorld
   buffer: 2
   allowedRings:
     min: 0
     max: 0
-- world: expansion1::worlds/MediumSandyRadioactiveVanillaWarpPlanet # Rocket world
-  buffer: 2
-  allowedRings:
-    min: 3
-    max: 3
+# -----------------------------------------------------------------------------------------
 # Outer Worlds
+# -----------------------------------------------------------------------------------------
 - world: expansion1::worlds/TundraMoonlet # Fullerene renewable
   buffer: 4
   allowedRings:
     min: 5
     max: 5
+  worldMixing:
+    requiredTags:
+      - Mixing
+      - SmallWorld
+    additionalWorldTemplateRules:
+      - names:
+          - expansion1::poi/poi_temporal_tear_opener_lab # temporal tear opener
+        listRule: GuaranteeAll
+        priority: 201
+        allowedCellsFilter:
+          - command: Replace
+            tagcommand: DistanceFromTag
+            tag: AtSurface
+            minDistance: 2
+            maxDistance: 3
+          - command: ExceptWith
+            tagcommand: AtTag
+            tag: NoGlobalFeatureSpawning
+          - command: ExceptWith
+            tagcommand: AtTag
+            tag: NoMixingTemplateSpawning
+      - names:
+          - expansion1::poi/genericGravitas/poi_gift_shop # artifacts
+        listRule: GuaranteeAll
+        priority: 200
+        allowedCellsFilter:
+          - command: All
+          - command: ExceptWith
+            tagcommand: AtTag
+            tag: NoGlobalFeatureSpawning
+          - command: ExceptWith
+            tagcommand: AtTag
+            tag: NoMixingTemplateSpawning
+# -----------------------------------------------------------------------------------------
+
 - world: expansion1::worlds/MarshyMoonlet # Isoresin renewable
   buffer: 4
   allowedRings:
     min: 5
     max: 6
+  worldMixing:
+    requiredTags:
+      - Mixing
+      - SmallWorld
+    forbiddenTags:
+      - Challenge
+    additionalWorldTemplateRules:
+      - names:
+        - expansion1::poi/worldmixing/sap_tree_room # Experiment 52B
+        listRule: GuaranteeAll
+        priority: 500
+        allowExtremeTemperatureOverlap: true # has Abyssalite border
+        allowedCellsFilter:
+          - command: All
+          - command: ExceptWith
+            tagcommand: AtTag
+            tag: NoGlobalFeatureSpawning
+          - command: ExceptWith
+            tagcommand: AtTag
+            tag: NoMixingTemplateSpawning
+      - names:
+        - expansion1::geysers/molten_tungsten_compact
+        listRule: GuaranteeAll
+        priority: 150
+        allowedCellsFilter:
+          - command: All
+          - command: ExceptWith
+            tagcommand: AtTag
+            tag: NoGlobalFeatureSpawning
+          - command: ExceptWith
+            tagcommand: AtTag
+            tag: NoMixingTemplateSpawning            
+# -----------------------------------------------------------------------------------------
 - world: expansion1::worlds/NiobiumMoonlet # Niobium renewable
   buffer: 3
   allowedRings:
     min: 5
     max: 6
+  worldMixing:
+    requiredTags:
+      - Mixing
+      - SmallWorld
+      - Challenge
+    forbiddenTags:
+      - AboveCoreSubworldReserved
+    additionalSubworldFiles:
+      - name: expansion1::subworlds/niobium/NiobiumPatch
+        minCount: 2
+        maxCount: 3
+    additionalUnknownCellFilters:
+      - tagcommand: DistanceFromTag
+        tag: AtDepths
+        minDistance: 1
+        maxDistance: 1 
+        command: Replace
+        sortOrder: 1000 # apply last so world traits and subworld mixing do not override it
+        subworldNames:
+          - expansion1::subworlds/niobium/NiobiumPatch
+    additionalWorldTemplateRules:
+      - names:
+          - expansion1::geysers/molten_niobium
+        listRule: GuaranteeAll
+        allowExtremeTemperatureOverlap: true # has Abyssalite border
+        priority: 150
+        allowedCellsFilter:
+          - command: Replace
+            subworldNames:
+              - expansion1::subworlds/niobium/NiobiumPatch
+      - names:
+        - expansion1::poi/genericGravitas/poi_mining_room # artifacts
+        listRule: GuaranteeAll
+        priority: 150
+        allowedCellsFilter:
+          - command: All
+          - command: ExceptWith
+            tagcommand: AtTag
+            tag: NoGlobalFeatureSpawning
+          - command: ExceptWith
+            tagcommand: AtTag
+            tag: NoMixingTemplateSpawning  
+# -----------------------------------------------------------------------------------------
 - world: expansion1::worlds/MooMoonlet
   buffer: 3
   allowedRings:
     min: 6
     max: 7
-- world: expansion1::worlds/WaterMoonlet # Fullerene (max allows for Petro roundtrip)
-  buffer: 4
-  allowedRings:
-    min: 5
-    max: 7
-- world: expansion1::worlds/MiniRegolithMoonlet # Meteors, voles, regolith
-  buffer: 4
-  allowedRings:
-    min: 5
-    max: 8
-    
+  worldMixing:
+    requiredTags:
+      - Mixing
+      - SmallWorld
+    forbiddenTags:
+      - NoExtraSeasons
+      - ModifiedSurfaceHeight
+      - SurfaceSubworldReserved
+    additionalSubworldFiles:
+      - name: expansion1::subworlds/moo/MooCaverns
+        minCount: 2
+    additionalUnknownCellFilters:
+      - tagcommand: DistanceFromTag # surface
+        tag: AtSurface
+        minDistance: 2
+        maxDistance: 2 
+        command: Replace
+        sortOrder: 1000 # apply last so world traits and subworld mixing do not override it
+        subworldNames:
+          - expansion1::subworlds/moo/MooCaverns
+    additionalSeasons:
+      - GassyMooteorShowers
+    additionalWorldTemplateRules:
+      - names:
+        - expansion1::poi/genericGravitas/poi_genetics_lab # artifacts
+        - geysers/chlorine_gas
+        listRule: GuaranteeAll
+        priority: 150
+        allowedCellsFilter:
+          - command: All
+          - command: ExceptWith
+            tagcommand: AtTag
+            tag: NoGlobalFeatureSpawning
+          - command: ExceptWith
+            tagcommand: AtTag
+            tag: NoMixingTemplateSpawning    
+# -----------------------------------------------------------------------------------------
 poiPlacements:
   - pois:
       - TemporalTear
@@ -70,8 +205,8 @@ poiPlacements:
       - HarvestableSpacePOI_OrganicMassField
     numToSpawn: 1
     allowedRings:
-      min: 5
-      max: 7
+      min: 3
+      max: 5
       
   - pois: # spawn all of these
       - HarvestableSpacePOI_GildedAsteroidField
@@ -81,8 +216,8 @@ poiPlacements:
       - HarvestableSpacePOI_FrozenOreField
     numToSpawn: 5
     allowedRings:
-      min: 8
-      max: 11
+      min: 5
+      max: 8
   
   - pois:  # spawn all of these
       - HarvestableSpacePOI_RadioactiveGasCloud
@@ -90,7 +225,7 @@ poiPlacements:
     numToSpawn: 2
     avoidClumping: true
     allowedRings:
-      min: 10
+      min: 8
       max: 11
   
   - pois:
@@ -100,10 +235,10 @@ poiPlacements:
       - HarvestableSpacePOI_SandyOreField
       - HarvestableSpacePOI_SwampyOreField
       - HarvestableSpacePOI_OrganicMassField
-    numToSpawn: 5
-    canSpawnDuplicates: true
+    numToSpawn: 6
+    canSpawnDuplicates: false
     allowedRings:
-      min: 5
+      min: 4
       max: 7
       
   - pois:
@@ -123,10 +258,10 @@ poiPlacements:
       - HarvestableSpacePOI_FrozenOreField
       - HarvestableSpacePOI_RadioactiveGasCloud
       - HarvestableSpacePOI_RadioactiveAsteroidField
-    numToSpawn: 10
-    canSpawnDuplicates: true
+    numToSpawn: 14
+    canSpawnDuplicates: false
     allowedRings:
-      min: 7
+      min: 5
       max: 11
       
   # artifact POIs
@@ -145,7 +280,7 @@ poiPlacements:
     numToSpawn: 1
     avoidClumping: true
     allowedRings:
-      min: 9
+      min: 7
       max: 11
       
   - pois:

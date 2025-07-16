@@ -1,20 +1,56 @@
 name: STRINGS.WORLDS.FULERIA.NAME # Verdante
 description: STRINGS.WORLDS.FULERIA.DESCRIPTION
-nameTable: FOREST
+nameTables: [ FOREST ]
 asteroidIcon: asteroid_fuleria_kanim
 
+# Based on VanillaForestDefault
 worldsize:
   X: 260
-  Y: 350
+  Y: 380
 layoutMethod: PowerTree # Note: We need to add weights to the items in the layer
 #                                in order to use this.
 
+worldTraitRules: 
+  - min: 1
+  - max: 2
+    forbiddenTags:
+      - Surface # due to classic worlds having a different surface location
+      - NonStartWorld
+
+subworldMixingRules:
+ - name: (Mixing1)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing2)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing3)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing4)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing5)
+   minCount: 2
+   maxCount: 4
+ - name: (Mixing6)
+   minCount: 2
+   maxCount: 4
+
+
+startSubworldName: subworlds/forest/ForestStart
+startingBaseTemplate: bases/forestBase
+
+fixedTraits:
+  - sunlightMed
+  - cosmicRadiationVeryLow
+
+seasons:
+  - ClassicStyleStartMeteorShowers
+  - VanillaForestDefaultMeteorShowers # unused
+
 defaultsOverrides:
   startingWorldElements: [] # remove the algae check
-
-worldTraitRules: 
-  - min: 0
-  - max: 1
 
 # List all the subworld files to load
 subworldFiles:
@@ -62,7 +98,7 @@ subworldFiles:
     minCount: 1
     maxCount: 3
   - name: subworlds/space/Space
-    weight: 0.6
+    weight: 0.5
   - name: expansion1::subworlds/aquatic/OpenWater  
     minCount: 1
     maxCount: 2
@@ -76,16 +112,11 @@ subworldFiles:
     minCount: 1
     maxCount: 2
   - name: subworlds/magma/VolcanoHole
+  - name: expansion1::subworlds/aquatic/GraphiteCaves
   - name: subworlds/sandstone/Desert
     weight: 0.5
     maxCount: 2
 
-
-startSubworldName: subworlds/forest/ForestStart
-startingBaseTemplate: bases/forestBase
-
-#seasons:
-#  - MeteorShowers
 
 # Specify where subworlds can spawn. These rules are processed in order and their effects are cumulative.
 unknownCellsAllowedSubworlds: 
@@ -125,6 +156,13 @@ unknownCellsAllowedSubworlds:
       - expansion1::subworlds/swamp/Swamp
       - subworlds/space/Space
       - expansion1::subworlds/aquatic/OpenWater
+      - (Mixing1)
+      - (Mixing2)
+      - (Mixing3)
+      - (Mixing4)
+      - (Mixing5)
+      - (Mixing6)
+
   # Ring-3
   - tagcommand: DistanceFromTag
     tag: AtStart
@@ -138,6 +176,13 @@ unknownCellsAllowedSubworlds:
       - subworlds/space/Space
       - expansion1::subworlds/radioactive/UraniumSprinkles
       - expansion1::subworlds/swamp/Swamp
+      - (Mixing1)
+      - (Mixing2)
+      - (Mixing3)
+      - (Mixing4)
+      - (Mixing5)
+      - (Mixing6)
+
   - tagcommand: DistanceFromTag
     tag: AtStart
     minDistance: 5
@@ -166,6 +211,7 @@ unknownCellsAllowedSubworlds:
     subworldNames:
       - subworlds/oil/OilPockets
       - subworlds/sandstone/Desert
+      - expansion1::subworlds/aquatic/GraphiteCaves
 
   # Space
   - tagcommand: DistanceFromTag
@@ -183,6 +229,10 @@ unknownCellsAllowedSubworlds:
     command: Replace
     subworldNames:
       - expansion1::subworlds/space/HospitableClassicSurface
+
+
+
+
 
 worldTemplateRules:
   # Jungle
@@ -202,13 +252,6 @@ worldTemplateRules:
       - command: Replace
         zoneTypes: [ToxicJungle]
   # Marsh
-  - names:
-      - poi/hotmarsh/geyser_steam
-    listRule: GuaranteeOne
-    priority: 100
-    allowedCellsFilter:
-      - command: Replace
-        zoneTypes: [BoggyMarsh]
   - names:
       - poi/hotmarsh/geyser_methane
     listRule: GuaranteeOne
@@ -238,42 +281,25 @@ worldTemplateRules:
     - poi/oil/small_oilpockets_geyser_h
     listRule: GuaranteeOne
     times: 3
+    useRelaxedFiltering: true
     allowDuplicates: true # be more flexible due to high temperature borders
     priority: 100
     allowedCellsFilter:
       - command: Replace
-        zoneTypes: [OilField]
+        zoneTypes: [OilField, Swamp, Sandstone]
 
   # Frozen
   - names:
-      - poi/frozen/heatsink_a
-      - poi/frozen/heatsink_b
-      - poi/frozen/heatsink_c
-      - poi/frozen/heatsink_d
+    - poi/frozen/heatsink_a
+    - poi/frozen/heatsink_b
+    - poi/frozen/heatsink_c
+    - poi/frozen/heatsink_d
     listRule: GuaranteeOne
     priority: 300 
     allowedCellsFilter:
       - command: Replace
         zoneTypes: [FrozenWastes]
 
-  # Gravitas
-  - names:
-    - expansion1::poi/warp/sender
-    - expansion1::poi/warp/receiver
-    - expansion1::poi/warp/teleporter
-    listRule: GuaranteeAll
-    priority: 500
-    allowedCellsFilter:
-      - command: Replace
-        tagcommand: DistanceFromTag
-        tag: AtStart
-        minDistance: 2
-        maxDistance: 3
-      - command: IntersectWith
-        zoneTypes: [ Ocean, BoggyMarsh, ToxicJungle, Swamp, Rust ]
-      - command: ExceptWith
-        tagcommand: AtTag
-        tag: NoGravitasFeatures
   - names:
       - expansion1::poi/genericGravitas/poi_office
     listRule: GuaranteeAll
@@ -302,7 +328,6 @@ worldTemplateRules:
   - names: 
     - expansion1::geysers/liquid_sulfur
     - geysers/liquid_co2
-    - geysers/small_volcano
     listRule: TrySome
     someCount: 2
     priority: 50
@@ -331,7 +356,7 @@ worldTemplateRules:
     - geysers/molten_iron
     listRule: TryOne
     times: 3
-    allowDuplicates: true
+    allowDuplicates: false
     priority: 50
     allowedCellsFilter:
     - command: Replace
@@ -387,8 +412,8 @@ worldTemplateRules:
     - geysers/hot_hydrogen
     - geysers/hot_po2
     listRule: TryOne
-    times: 4
-    allowDuplicates: true
+    times: 5
+    allowDuplicates: false
     priority: 50
     allowedCellsFilter:
     - command: Replace
@@ -406,14 +431,26 @@ worldTemplateRules:
       tag: AtSurface
       minDistance: 0
       maxDistance: 2
-# Frozen
+
+  # Gravitas
+  - names:
+    - poi/poi_gravitas
+    listRule: TryOne
+    priority: 50
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
+    allowedCellsFilter:
+      - command: Replace
+        subworldNames:
+          - subworlds/space/Surface
+
+  # Frozen
   - names:
       - poi/frozen/heatsink_a
       - poi/frozen/heatsink_b
       - poi/frozen/heatsink_c
       - poi/frozen/heatsink_d
     listRule: GuaranteeSomeTryMore
-    someCount: 2
+    someCount: 1
     moreCount: 2
     priority: 100 
     allowedCellsFilter:
@@ -421,3 +458,42 @@ worldTemplateRules:
         subworldNames:
           - subworlds/rust/RustFrozen
           - subworlds/frozen/Frozen
+  # Uranium Geode
+  - names:
+    - expansion1::poi/radioactive/uranium_geode1
+    listRule: GuaranteeOne
+    useRelaxedFiltering: true
+    allowExtremeTemperatureOverlap: true # has Abyssalite border
+    priority: 200
+    allowedCellsFilter:
+      - command: Replace
+        tagcommand: DistanceFromTag
+        tag: AtStart
+        minDistance: 1
+        maxDistance: 1
+  # Magma
+  - names:
+    - geysers/volcanohole
+    listRule: GuaranteeOne
+    times: 2
+    allowDuplicates: true
+    allowExtremeTemperatureOverlap: true # ignore temperature differences on the surface
+    priority: 200
+    allowedCellsFilter:
+      - command: Replace
+        tagcommand: DistanceFromTag
+        tag: AtDepths
+        minDistance: 1
+        maxDistance: 1
+
+  # Gravitas Artifact POI
+  - names:
+    - expansion1::poi/genericGravitas/poi_office
+    - expansion1::poi/genericGravitas/poi_thermo_building
+    - expansion1::poi/regolith/bunker_lab
+    listRule: GuaranteeAll
+    priority: 90
+    allowedCellsFilter:
+      - command: Replace
+        tagcommand: NotAtTag
+        tag: NoGlobalFeatureSpawning

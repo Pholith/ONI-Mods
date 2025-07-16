@@ -183,6 +183,9 @@
     <None Include="translations\fr.po">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="translations\zh_CN.po">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="worldgen\clusters\Slicksteria.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
