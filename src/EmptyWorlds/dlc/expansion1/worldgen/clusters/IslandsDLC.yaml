@@ -18,6 +18,7 @@ worldPlacements:
     max: 0
 - world: expansion1::worlds/SwampyLandingSite #rocket destination
   buffer: 2
+  locationType: InnerCluster
   allowedRings:
     min: 3
     max: 3
@@ -25,6 +26,7 @@ worldPlacements:
 # Emptera others planets 
 - world: expansion1::worlds/EmpteraDLC
   buffer: 2
+  locationType: InnerCluster
   allowedRings:
     min: 2
     max: 3

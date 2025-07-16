@@ -18,6 +18,7 @@ worldPlacements:
     max: 0
 - world: expansion1::worlds/SwampyLandingSite #rocket destination
   buffer: 2
+  locationType: InnerCluster
   allowedRings:
     min: 3
     max: 3
@@ -29,6 +30,7 @@ worldPlacements:
 #    max: 5
 - world: expansion1::worlds/IslandsDLC # NO portal destination
   buffer: 2
+  locationType: InnerCluster
   allowedRings:
     min: 2
     max: 4
