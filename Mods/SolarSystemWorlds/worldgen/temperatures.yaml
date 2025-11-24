@@ -1,8 +1,0 @@
-# keys to remove from in-memory structure when this file is loaded
-remove: [ExtremelyCold2] 
-# elements to add from in-memory structure when this file is loaded
-add:
-#between very hot and extremely hot
-  ExtremelyCold2:
-    min: 40
-    max: 90

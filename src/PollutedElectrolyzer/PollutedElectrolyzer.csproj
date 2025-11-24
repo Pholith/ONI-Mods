@@ -54,6 +54,9 @@
       <HintPath>..\packages\GameLibs\Assembly-CSharp-firstpass.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\GameLibs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>..\packages\GameLibs\Unity.TextMeshPro.dll</HintPath>
       <Private>False</Private>

@@ -1,0 +1,193 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Application: Oxygen Not IncludedPOT Version: 2.0\n"
+"X-Generator: Poedit 3.6\n"
+
+#. GigaWattWire.WIRE_STRINGS.GIGAWATTWIRE.DESC
+msgctxt "GigaWattWire.WIRE_STRINGS.GIGAWATTWIRE.DESC"
+msgid "By using special superconductive materials and low temperatures this wire can carry up to 1000 MW."
+msgstr "通过特殊超导材料与低温环境，该导线可承载高达1000兆瓦的电力传输。"
+
+#. GigaWattWire.WIRE_STRINGS.GIGAWATTWIRE.EFFECT
+msgctxt "GigaWattWire.WIRE_STRINGS.GIGAWATTWIRE.EFFECT"
+msgid ""
+"Carries even more <link=\"POWER\">Wattage</link> than a <link=\"MEGAWATTWIRE\">Mega - Watt Wire</link>.\n"
+"\n"
+"Cannot be run through wall and floor tile."
+msgstr ""
+"比<link=\"MEGAWATTWIRE\">兆瓦极导线</link>承载更高的<link=\"POWER\">功率</link>。\n"
+"\n"
+"不可穿过墙体和地面。"
+
+#. GigaWattWire.WIRE_STRINGS.GIGAWATTWIRE.NAME
+msgctxt "GigaWattWire.WIRE_STRINGS.GIGAWATTWIRE.NAME"
+msgid "<link=\"GIGAWATTWIRE\">Giga-Watt Wire</link>"
+msgstr "<link=\"GIGAWATTWIRE\">吉瓦级导线</link>"
+
+#. GigaWattWire.WIRE_STRINGS.GIGAWATTWIREBRIDGE.DESC
+msgctxt "GigaWattWire.WIRE_STRINGS.GIGAWATTWIREBRIDGE.DESC"
+msgid "Joint plates can run Giga-Watt wires through walls without leaking gas or liquid."
+msgstr "该接合板可让吉瓦级导线穿墙而过，而不会泄露气体和液体。"
+
+#. GigaWattWire.WIRE_STRINGS.GIGAWATTWIREBRIDGE.EFFECT
+msgctxt "GigaWattWire.WIRE_STRINGS.GIGAWATTWIREBRIDGE.EFFECT"
+msgid ""
+"Carries even more <link=\"POWER\">Wattage</link> than a <link=\"MEGAWATTWIREBRIDGE\">Mega - Watt Conductive Joint Plate</link>.\n"
+"\n"
+"Allows <link=\"MEGAWATTWIRE\"> Mega-Watt Wire</link> to be run through wall and floor tile."
+msgstr ""
+"比<link=\"MEGAWATTWIREBRIDGE\">兆瓦级导线接合板</link>承载更高的<link=\"POWER\">功率</link>。\n"
+"\n"
+"允许<link=\"MEGAWATTWIRE\">兆瓦级导线</link>穿过墙体和地面。"
+
+#. GigaWattWire.WIRE_STRINGS.GIGAWATTWIREBRIDGE.NAME
+msgctxt "GigaWattWire.WIRE_STRINGS.GIGAWATTWIREBRIDGE.NAME"
+msgid "<link=\"GIGAWATTWIREBRIDGE\">Giga-Watt Joint Plate</link>"
+msgstr "<link=\"GIGAWATTWIREBRIDGE\">吉瓦级接合板</link>"
+
+#. GigaWattWire.WIRE_STRINGS.JACKETED_WIRE.DESC
+msgctxt "GigaWattWire.WIRE_STRINGS.JACKETED_WIRE.DESC"
+msgid "By coating the wires in plastic they suddenly became much safer."
+msgstr "通过塑料涂层包裹导线，其安全性得到显著提升。"
+
+#. GigaWattWire.WIRE_STRINGS.JACKETED_WIRE.EFFECT
+msgctxt "GigaWattWire.WIRE_STRINGS.JACKETED_WIRE.EFFECT"
+msgid ""
+"Connects buildings to <link=\"POWER\">Power</link> sources. \n"
+"\n"
+"Can be run through wall and floor tile."
+msgstr ""
+"连接建筑物和<link=\"POWER\">电源</link>。\n"
+"\n"
+"可穿过墙体和地面。"
+
+#. GigaWattWire.WIRE_STRINGS.JACKETED_WIRE.NAME
+msgctxt "GigaWattWire.WIRE_STRINGS.JACKETED_WIRE.NAME"
+msgid "<link=\"JACKETEDWIRE\">Insulated Wire</link>"
+msgstr "<link=\"JACKETEDWIRE\">绝缘导线</link>"
+
+#. GigaWattWire.WIRE_STRINGS.JACKETEDWIREBRIDGE.DESC
+msgctxt "GigaWattWire.WIRE_STRINGS.JACKETEDWIREBRIDGE.DESC"
+msgid "By coating the wires in plastic they suddenly became much safer."
+msgstr "通过塑料涂层包裹导线，其安全性得到显著提升。"
+
+#. GigaWattWire.WIRE_STRINGS.JACKETEDWIREBRIDGE.EFFECT
+msgctxt "GigaWattWire.WIRE_STRINGS.JACKETEDWIREBRIDGE.EFFECT"
+msgid "Carries even more <link=\"POWER\">Wattage</link> than a <link=\"WIREREFINEDBRIDGE\">Conductive Wire Bridge</link> without overloading."
+msgstr "比<link=\"WIREREFINEDBRIDGE\">导线桥</link>承载更高<link=\"POWER\">功率</link>而不会过载。"
+
+#. GigaWattWire.WIRE_STRINGS.JACKETEDWIREBRIDGE.NAME
+msgctxt "GigaWattWire.WIRE_STRINGS.JACKETEDWIREBRIDGE.NAME"
+msgid "<link=\"JACKETEDWIREBRIDGE\">Insulated Wire Bridge</link>"
+msgstr "<link=\"JACKETEDWIREBRIDGE\">绝缘导线桥</link>"
+
+#. GigaWattWire.WIRE_STRINGS.MEGAWATTWIRE.DESC
+msgctxt "GigaWattWire.WIRE_STRINGS.MEGAWATTWIRE.DESC"
+msgid "This one goes up to 1000 kW."
+msgstr "这种线材可以承载 1000 千瓦的功率。"
+
+#. GigaWattWire.WIRE_STRINGS.MEGAWATTWIRE.EFFECT
+msgctxt "GigaWattWire.WIRE_STRINGS.MEGAWATTWIRE.EFFECT"
+msgid ""
+"Carries even more <link=\"POWER\">Wattage</link> than a <link=\"WIREREFINEDHIGHWATTAGE\">Jacked Wire</link> without overloading.\n"
+"\n"
+"Cannot be run through wall and floor tile."
+msgstr ""
+"比<link=\"WIREREFINEDHIGHWATTAGE\">绝缘导线</link>承载更高<link=\"POWER\">功率</link>而不会过载。\n"
+"\n"
+"不可穿过墙体和地面。"
+
+#. GigaWattWire.WIRE_STRINGS.MEGAWATTWIRE.NAME
+msgctxt "GigaWattWire.WIRE_STRINGS.MEGAWATTWIRE.NAME"
+msgid "<link=\"MEGAWATTWIRE\">Mega-Watt Wire</link>"
+msgstr "<link=\"MEGAWATTWIRE\">兆瓦级导线</link>"
+
+#. GigaWattWire.WIRE_STRINGS.MEGAWATTWIREBRIDGE.DESC
+msgctxt "GigaWattWire.WIRE_STRINGS.MEGAWATTWIREBRIDGE.DESC"
+msgid "Joint plates can run Mega-Watt wires through walls without leaking gas or liquid."
+msgstr "该接合板可让兆瓦级导线穿墙而过，而不会泄露气体和液体。"
+
+#. GigaWattWire.WIRE_STRINGS.MEGAWATTWIREBRIDGE.EFFECT
+msgctxt "GigaWattWire.WIRE_STRINGS.MEGAWATTWIREBRIDGE.EFFECT"
+msgid ""
+"Carries even more <link=\"POWER\">Wattage</link> than a <link=\"WIREREFINEDBRIDGEHIGHWATTAGE\">Jacked Wire</link> without overloading.\n"
+"\n"
+"Allows <link=\"MEGAWATTWIRE\"> Mega-Watt Wire</link> to be run through wall and floor tile."
+msgstr ""
+"比<link=\"WIREREFINEDHIGHWATTAGE\">绝缘导线</link>承载更高<link=\"POWER\">功率</link>而不会过载。\n"
+"\n"
+"允许<link=\"MEGAWATTWIRE\">兆瓦级导线</link>穿过墙体和地面。"
+
+#. GigaWattWire.WIRE_STRINGS.MEGAWATTWIREBRIDGE.NAME
+msgctxt "GigaWattWire.WIRE_STRINGS.MEGAWATTWIREBRIDGE.NAME"
+msgid "<link=\"MEGAWATTWIREBRIDGE\">Mega-Watt Joint Plate</link>"
+msgstr "<link=\"MEGAWATTWIREBRIDGE\">兆瓦级接合板</link>"
+
+#. GigaWattWire.WIRE_STRINGS.MISC.CONDUCTOR
+msgctxt "GigaWattWire.WIRE_STRINGS.MISC.CONDUCTOR"
+msgid "Conductor"
+msgstr "导体"
+
+#. GigaWattWire.WIRE_STRINGS.MISC.TAGS.CONDUCTOR
+msgctxt "GigaWattWire.WIRE_STRINGS.MISC.TAGS.CONDUCTOR"
+msgid "Conductor"
+msgstr "导体"
+
+#. GigaWattWire.WIRE_STRINGS.MISC.TAGS.TEMPCONDUCTORSOLID
+msgctxt "GigaWattWire.WIRE_STRINGS.MISC.TAGS.TEMPCONDUCTORSOLID"
+msgid "Extreme Conductor"
+msgstr "导热质"
+
+#. GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER100KW.DESC
+msgctxt "GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER100KW.DESC"
+msgid "For those times you need a really big transformer."
+msgstr "用于那些你需要超大型的变压器的场景。"
+
+#. GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER100KW.EFFECT
+msgctxt "GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER100KW.EFFECT"
+msgid "Limits <link=\"POWER\">Power</link> flowing through the Transformer to 100 kW"
+msgstr "限制流过变压器的<link=\"POWER\">电力</link>为 100 千瓦"
+
+#. GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER100KW.NAME
+msgctxt "GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER100KW.NAME"
+msgid "<link=\"POWERTRANSFORMER100KW\">100 kW Power Transformer</link>"
+msgstr "<link=\"POWERTRANSFORMER100KW\">100千瓦变压器</link>"
+
+#. GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER2MW.DESC
+msgctxt "GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER2MW.DESC"
+msgid "For those times you need an even bigger transformer."
+msgstr "用于那些你需要比超大型还大型的变压器的场景。"
+
+#. GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER2MW.EFFECT
+msgctxt "GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER2MW.EFFECT"
+msgid "Limits <link=\"POWER\">Power</link> flowing through the Transformer to 2 MW"
+msgstr "限制流过变压器的<link=\"POWER\">电力</link>为 2000 千瓦"
+
+#. GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER2MW.NAME
+msgctxt "GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER2MW.NAME"
+msgid "<link=\"POWERTRANSFORMER2MW\">2 MW Power Transformer</link>"
+msgstr "<link=\"POWERTRANSFORMER2MW\">2兆瓦变压器</link>"
+
+#. GigaWattWire.WIRE_STRINGS.UI.UNITSUFFIXES.ELECTRICAL.GIGAWATT
+msgctxt "GigaWattWire.WIRE_STRINGS.UI.UNITSUFFIXES.ELECTRICAL.GIGAWATT"
+msgid "GW"
+msgstr "吉瓦"
+
+#. GigaWattWire.WIRE_STRINGS.UI.UNITSUFFIXES.ELECTRICAL.MEGAWATT
+msgctxt "GigaWattWire.WIRE_STRINGS.UI.UNITSUFFIXES.ELECTRICAL.MEGAWATT"
+msgid "MW"
+msgstr "兆瓦"
+
+#. GigaWattWire.WIRE_STRINGS.UI.UNITSUFFIXES.ELECTRICAL.TERAWATT
+msgctxt "GigaWattWire.WIRE_STRINGS.UI.UNITSUFFIXES.ELECTRICAL.TERAWATT"
+msgid "TW"
+msgstr "太瓦"

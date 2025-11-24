@@ -381,7 +381,7 @@ namespace GigaWattWire
                     }
                     if (___targetOverloadedWire != null)
                     {
-                        ___targetOverloadedWire.Trigger(-794517298, new BuildingHP.DamageSourceInfo
+                        ___targetOverloadedWire.BoxingTrigger(-794517298, new BuildingHP.DamageSourceInfo
                         {
                             damage = 1,
                             source = STRINGS.BUILDINGS.DAMAGESOURCES.CIRCUIT_OVERLOADED,
@@ -440,7 +440,7 @@ namespace GigaWattWire
             {
                 for (int i = 0; i < Db.Get().Techs.Count; i++)
                 {
-                    Logs.Log(Db.Get().Techs[i].Id);
+                    //Logs.Log(Db.Get().Techs[i].Id);
                 }
                 if (GameOnLoadPatch.Settings.EnableJacketedWire)
                 {

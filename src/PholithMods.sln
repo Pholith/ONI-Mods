@@ -30,6 +30,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILoveSlicksters", "ILoveSlicksters\ILoveSlicksters.csproj", "{9045D35E-DD73-4462-B9C7-50E91F737544}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fuleria", "AllBiomesWorld\Fuleria.csproj", "{B26EF9D9-018D-422B-9D73-6308AA31AA38}"
+	ProjectSection(ProjectDependencies) = postProject
+		{93619BC2-E4E6-4B15-937C-7548A9ADA084} = {93619BC2-E4E6-4B15-937C-7548A9ADA084}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AchievementReEnabler", "AchievementReEnabler\AchievementReEnabler.csproj", "{A34620F3-66BF-4228-BBFE-358E74A09008}"
 EndProject

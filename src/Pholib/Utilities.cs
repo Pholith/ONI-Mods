@@ -136,7 +136,7 @@ namespace Pholib
             {
                 return;
             }
-            InventoryOrganization.subcategoryIdToPermitIdsMap.Add(subcategoryID, new HashSet<string>());
+            InventoryOrganization.subcategoryIdToPermitIdsMap.Add(subcategoryID, new List<string>());
             for (int i = 0; i < permitIDs.Length; i++)
             {
                 InventoryOrganization.subcategoryIdToPermitIdsMap[subcategoryID].Add(permitIDs[i]);

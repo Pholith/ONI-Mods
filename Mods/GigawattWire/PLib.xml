@@ -681,6 +681,11 @@
             previewed.
             </summary>
         </member>
+        <member name="T:PeterHan.PLib.Buildings.ColoredRangeVisualizer.RegisterCellChangedHandlerNew">
+            <summary>
+            TODO Remove when versions prior to U57-699077 no longer need to be supported
+            </summary>
+        </member>
         <member name="F:PeterHan.PLib.Buildings.ColoredRangeVisualizer.ANIM_NAME">
             <summary>
             The anim name to use when visualizing.
@@ -706,12 +711,17 @@
             The cells where animations are being displayed.
             </summary>
         </member>
+        <member name="F:PeterHan.PLib.Buildings.ColoredRangeVisualizer.handlerID">
+            <summary>
+            More efficiently unregister handles to events.
+            </summary>
+        </member>
         <member name="M:PeterHan.PLib.Buildings.ColoredRangeVisualizer.CreateVisualizers">
             <summary>
             Creates or updates the visualizers as necessary.
             </summary>
         </member>
-        <member name="M:PeterHan.PLib.Buildings.ColoredRangeVisualizer.OnCellChange">
+        <member name="M:PeterHan.PLib.Buildings.ColoredRangeVisualizer.OnCellChange(System.Object)">
             <summary>
             Called when cells are changed in the building radius.
             </summary>
@@ -727,6 +737,11 @@
             </summary>
             <param name="data">true if selected, or false if deselected.</param>
         </member>
+        <member name="M:PeterHan.PLib.Buildings.ColoredRangeVisualizer.RegisterCellChangedHandler">
+            <summary>
+            Adds the cell changed handler.
+            </summary>
+        </member>
         <member name="M:PeterHan.PLib.Buildings.ColoredRangeVisualizer.RemoveVisualizers">
             <summary>
             Removes all of the visualizers.
@@ -740,6 +755,11 @@
             <param name="baseCell">The starting cell.</param>
             <param name="offset">The offset if the building had its default rotation.</param>
             <returns>The computed destination cell.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.Buildings.ColoredRangeVisualizer.UnregisterCellChangedHandler">
+            <summary>
+            Removes the cell changed handler.
+            </summary>
         </member>
         <member name="M:PeterHan.PLib.Buildings.ColoredRangeVisualizer.VisualizeCells(System.Collections.Generic.ICollection{PeterHan.PLib.Buildings.ColoredRangeVisualizer.VisCellData})">
             <summary>
@@ -1242,329 +1262,36 @@
             The location of the plug related to the foundation tile.
             </summary>
         </member>
-        <member name="T:PeterHan.PLib.Detours.DetouredField`2">
+        <member name="T:PeterHan.PLib.Core.AutoUnbox`1">
             <summary>
-            Stores delegates used to read and write fields or properties.
+            A helper class for migrating to boxed event types.
             </summary>
-            <typeparam name="P">The containing type of the field or property.</typeparam>
-            <typeparam name="T">The element type of the field or property.</typeparam>
+            <typeparam name="T">The value type to be unboxed.</typeparam>
         </member>
-        <member name="P:PeterHan.PLib.Detours.DetouredField`2.Get">
+        <member name="F:PeterHan.PLib.Core.AutoUnbox`1.DATA_BOX">
             <summary>
-            Invoke to get the field/property value.
-            </summary>
-        </member>
-        <member name="P:PeterHan.PLib.Detours.DetouredField`2.Name">
-            <summary>
-            The field name.
+            If boxing is required, gets the data from the object.
             </summary>
         </member>
-        <member name="P:PeterHan.PLib.Detours.DetouredField`2.Set">
+        <member name="F:PeterHan.PLib.Core.AutoUnbox`1.DATA_UNBOX">
             <summary>
-            Invoke to set the field/property value. Null if the field is const or readonly.
+            If unboxing is required, gets the data from the object.
             </summary>
         </member>
-        <member name="T:PeterHan.PLib.Detours.DetouredMethod`1">
+        <member name="M:PeterHan.PLib.Core.AutoUnbox`1.Box(`0)">
             <summary>
-            Stores a detoured method, only performing the expensive reflection when the detour is
-            first used.
-            
-            This class is not thread safe.
-            <typeparam name="D">The delegate type to be used to call the detour.</typeparam></summary>
-        </member>
-        <member name="P:PeterHan.PLib.Detours.DetouredMethod`1.Invoke">
-            <summary>
-            Emulates the ability of Delegate.Invoke to actually call the method.
+            Boxes the specified object.
             </summary>
+            <param name="data">The data to box.</param>
+            <returns>The boxed data for the Trigger method.</returns>
         </member>
-        <member name="P:PeterHan.PLib.Detours.DetouredMethod`1.Name">
+        <member name="M:PeterHan.PLib.Core.AutoUnbox`1.Unbox(System.Object,`0@)">
             <summary>
-            The method name.
+            Unboxes the specified object.
             </summary>
-        </member>
-        <member name="F:PeterHan.PLib.Detours.DetouredMethod`1.delg">
-            <summary>
-            The delegate method which will be called.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.Detours.DetouredMethod`1.type">
-            <summary>
-            The target type.
-            </summary>
-        </member>
-        <member name="M:PeterHan.PLib.Detours.DetouredMethod`1.Initialize">
-            <summary>
-            Initializes the getter and setter functions immediately if necessary.
-            </summary>
-        </member>
-        <member name="T:PeterHan.PLib.Detours.DetourException">
-            <summary>
-            An exception thrown when constructing a detour.
-            </summary>
-        </member>
-        <member name="T:PeterHan.PLib.Detours.IDetouredField`2">
-            <summary>
-            An interface that describes a detoured field, which stores delegates used to read and
-            write fields or properties.
-            </summary>
-            <typeparam name="P">The containing type of the field or property.</typeparam>
-            <typeparam name="T">The element type of the field or property.</typeparam>
-        </member>
-        <member name="P:PeterHan.PLib.Detours.IDetouredField`2.Get">
-            <summary>
-            Invoke to get the field/property value.
-            </summary>
-        </member>
-        <member name="P:PeterHan.PLib.Detours.IDetouredField`2.Name">
-            <summary>
-            The field name.
-            </summary>
-        </member>
-        <member name="P:PeterHan.PLib.Detours.IDetouredField`2.Set">
-            <summary>
-            Invoke to set the field/property value.
-            </summary>
-        </member>
-        <member name="T:PeterHan.PLib.Detours.LazyDetouredField`2">
-            <summary>
-            Stores delegates used to read and write fields or properties. This version is lazy and
-            only calculates the destination when it is first used.
-            
-            This class is not thread safe.
-            </summary>
-            <typeparam name="P">The containing type of the field or property.</typeparam>
-            <typeparam name="T">The element type of the field or property.</typeparam>
-        </member>
-        <member name="P:PeterHan.PLib.Detours.LazyDetouredField`2.Get">
-            <summary>
-            Invoke to get the field/property value.
-            </summary>
-        </member>
-        <member name="P:PeterHan.PLib.Detours.LazyDetouredField`2.Name">
-            <summary>
-            The field name.
-            </summary>
-        </member>
-        <member name="P:PeterHan.PLib.Detours.LazyDetouredField`2.Set">
-            <summary>
-            Invoke to set the field/property value.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.Detours.LazyDetouredField`2.getter">
-            <summary>
-            The function to get the field value.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.Detours.LazyDetouredField`2.setter">
-            <summary>
-            The function to set the field value.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.Detours.LazyDetouredField`2.type">
-            <summary>
-            The target type.
-            </summary>
-        </member>
-        <member name="M:PeterHan.PLib.Detours.LazyDetouredField`2.Initialize">
-            <summary>
-            Initializes the getter and setter functions immediately if necessary.
-            </summary>
-        </member>
-        <member name="T:PeterHan.PLib.Detours.PDetours">
-            <summary>
-            Efficiently detours around many changes in the game by creating detour methods and
-            accessors which are resilient against many types of source compatible but binary
-            incompatible changes.
-            </summary>
-        </member>
-        <member name="M:PeterHan.PLib.Detours.PDetours.Detour``1(System.Type)">
-            <summary>
-            Creates a dynamic detour method of the specified delegate type to wrap a base game
-            method with the same name as the delegate type. The dynamic method will
-            automatically adapt if optional parameters are added, filling in their default
-            values.
-            </summary>
-            <typeparam name="D">The delegate type to be used to call the detour.</typeparam>
-            <param name="type">The target type.</param>
-            <returns>The detour that will call the method with the name of the delegate type.</returns>
-            <exception cref="T:PeterHan.PLib.Detours.DetourException">If the delegate does not match any valid target method.</exception>
-        </member>
-        <member name="M:PeterHan.PLib.Detours.PDetours.Detour``1(System.Type,System.String)">
-            <summary>
-            Creates a dynamic detour method of the specified delegate type to wrap a base game
-            method with the specified name. The dynamic method will automatically adapt if
-            optional parameters are added, filling in their default values.
-            </summary>
-            <typeparam name="D">The delegate type to be used to call the detour.</typeparam>
-            <param name="type">The target type.</param>
-            <param name="name">The method name.</param>
-            <returns>The detour that will call that method.</returns>
-            <exception cref="T:PeterHan.PLib.Detours.DetourException">If the delegate does not match any valid target method.</exception>
-        </member>
-        <member name="M:PeterHan.PLib.Detours.PDetours.DetourConstructor``1(System.Type)">
-            <summary>
-            Creates a dynamic detour method of the specified delegate type to wrap a base game
-            constructor. The dynamic method will automatically adapt if optional parameters
-            are added, filling in their default values.
-            </summary>
-            <typeparam name="D">The delegate type to be used to call the detour.</typeparam>
-            <param name="type">The target type.</param>
-            <returns>The detour that will call that type's constructor.</returns>
-            <exception cref="T:PeterHan.PLib.Detours.DetourException">If the delegate does not match any valid target method.</exception>
-        </member>
-        <member name="M:PeterHan.PLib.Detours.PDetours.DetourLazy``1(System.Type,System.String)">
-            <summary>
-            Creates a dynamic detour method of the specified delegate type to wrap a base game
-            method with the specified name. The dynamic method will automatically adapt if
-            optional parameters are added, filling in their default values.
-            
-            This overload creates a lazy detour that only performs the expensive reflection
-            when it is first used.
-            </summary>
-            <typeparam name="D">The delegate type to be used to call the detour.</typeparam>
-            <param name="type">The target type.</param>
-            <param name="name">The method name.</param>
-            <returns>The detour that will call that method.</returns>
-            <exception cref="T:PeterHan.PLib.Detours.DetourException">If the delegate does not match any valid target method.</exception>
-        </member>
-        <member name="M:PeterHan.PLib.Detours.PDetours.Detour``1(System.Reflection.MethodInfo)">
-            <summary>
-            Creates a dynamic detour method of the specified delegate type to wrap a base game
-            method with the specified name. The dynamic method will automatically adapt if
-            optional parameters are added, filling in their default values.
-            </summary>
-            <typeparam name="D">The delegate type to be used to call the detour.</typeparam>
-            <param name="target">The target method to be called.</param>
-            <returns>The detour that will call that method.</returns>
-            <exception cref="T:PeterHan.PLib.Detours.DetourException">If the delegate does not match the target.</exception>
-        </member>
-        <member name="M:PeterHan.PLib.Detours.PDetours.Detour``1(System.Reflection.ConstructorInfo)">
-            <summary>
-            Creates a dynamic detour method of the specified delegate type to wrap a base game
-            constructor. The dynamic method will automatically adapt if optional parameters
-            are added, filling in their default values.
-            </summary>
-            <typeparam name="D">The delegate type to be used to call the detour.</typeparam>
-            <param name="target">The target constructor to be called.</param>
-            <returns>The detour that will call that constructor.</returns>
-            <exception cref="T:PeterHan.PLib.Detours.DetourException">If the delegate does not match the target.</exception>
-        </member>
-        <member name="M:PeterHan.PLib.Detours.PDetours.DetourField``2(System.String)">
-            <summary>
-            Creates dynamic detour methods to wrap a base game field or property with the
-            specified name. The detour will still work even if the field is converted to a
-            source compatible property and vice versa.
-            </summary>
-            <typeparam name="P">The type of the parent class.</typeparam>
-            <typeparam name="T">The type of the field or property element.</typeparam>
-            <param name="name">The name of the field or property to be accessed.</param>
-            <returns>A detour element that wraps the field or property with common getter and
-            setter delegates which will work on both types.</returns>
-        </member>
-        <member name="M:PeterHan.PLib.Detours.PDetours.DetourFieldLazy``2(System.String)">
-            <summary>
-            Creates dynamic detour methods to wrap a base game field or property with the
-            specified name. The detour will still work even if the field is converted to a
-            source compatible property and vice versa.
-            
-            This overload creates a lazy detour that only performs the expensive reflection
-            when it is first used.
-            </summary>
-            <typeparam name="P">The type of the parent class.</typeparam>
-            <typeparam name="T">The type of the field or property element.</typeparam>
-            <param name="name">The name of the field or property to be accessed.</param>
-            <returns>A detour element that wraps the field or property with common getter and
-            setter delegates which will work on both types.</returns>
-        </member>
-        <member name="M:PeterHan.PLib.Detours.PDetours.DetourField``2(System.Reflection.FieldInfo)">
-            <summary>
-            Creates dynamic detour methods to wrap a base game field with the specified name.
-            </summary>
-            <typeparam name="P">The type of the parent class.</typeparam>
-            <typeparam name="T">The type of the field element.</typeparam>
-            <param name="target">The field which will be accessed.</param>
-            <returns>A detour element that wraps the field with a common interface matching
-            that of a detoured property.</returns>
-        </member>
-        <member name="M:PeterHan.PLib.Detours.PDetours.DetourProperty``2(System.Reflection.PropertyInfo)">
-            <summary>
-            Creates dynamic detour methods to wrap a base game property with the specified name.
-            </summary>
-            <typeparam name="P">The type of the parent class.</typeparam>
-            <typeparam name="T">The type of the property element.</typeparam>
-            <param name="target">The property which will be accessed.</param>
-            <returns>A detour element that wraps the property with a common interface matching
-            that of a detoured field.</returns>
-            <exception cref="T:PeterHan.PLib.Detours.DetourException">If the property has indexers.</exception>
-        </member>
-        <member name="M:PeterHan.PLib.Detours.PDetours.DetourStructField``1(System.Type,System.String)">
-            <summary>
-            Creates dynamic detour methods to wrap a base game struct field with the specified
-            name. For static struct fields, use the regular DetourField.
-            </summary>
-            <typeparam name="T">The type of the field element.</typeparam>
-            <param name="parentType">The struct type which will be accessed.</param>
-            <param name="name">The name of the struct field to be accessed.</param>
-            <returns>A detour element that wraps the field with a common interface matching
-            that of a detoured property.</returns>
-        </member>
-        <member name="M:PeterHan.PLib.Detours.PDetours.FinishDynamicMethod(System.Reflection.Emit.DynamicMethod,System.Reflection.ParameterInfo[],System.Type[],System.Int32)">
-            <summary>
-            Generates the required method parameters for the dynamic detour method.
-            </summary>
-            <param name="caller">The method where the parameters will be defined.</param>
-            <param name="actualParams">The actual parameters required.</param>
-            <param name="expectedParams">The parameters provided.</param>
-            <param name="offset">The offset to start loading (0 = static, 1 = instance).</param>
-        </member>
-        <member name="M:PeterHan.PLib.Detours.PDetours.LoadParameters(System.Reflection.Emit.ILGenerator,System.Reflection.ParameterInfo[],System.Type[],System.Int32)">
-            <summary>
-            Generates instructions to load arguments or default values onto the stack in a
-            detour method.
-            </summary>
-            <param name="generator">The method where the calls will be added.</param>
-            <param name="actualParams">The actual parameters required.</param>
-            <param name="expectedParams">The parameters provided.</param>
-            <param name="offset">The offset to start loading (0 = static, 1 = instance).</param>
-        </member>
-        <member name="M:PeterHan.PLib.Detours.PDetours.ValidateDelegate(PeterHan.PLib.Detours.PDetours.DelegateInfo,System.Reflection.MethodBase,System.Type)">
-            <summary>
-            Verifies that the delegate signature provided in dst can be dynamically mapped to
-            the method provided by src, with the possible addition of optional parameters set
-            to their default values.
-            </summary>
-            <param name="expected">The method return type and parameter types expected.</param>
-            <param name="actual">The method to be called.</param>
-            <param name="actualReturn">The type of the method or constructor's return value.</param>
-            <returns>The parameters used in the call to the actual method.</returns>
-            <exception cref="T:PeterHan.PLib.Detours.DetourException">If the delegate does not match the target.</exception>
-        </member>
-        <member name="T:PeterHan.PLib.Detours.PDetours.DelegateInfo">
-            <summary>
-            Stores information about a delegate.
-            </summary>
-        </member>
-        <member name="M:PeterHan.PLib.Detours.PDetours.DelegateInfo.Create(System.Type)">
-            <summary>
-            Creates delegate information on the specified delegate type.
-            </summary>
-            <param name="delegateType">The delegate type to wrap.</param>
-            <returns>Information about that delegate's return and parameter types.</returns>
-        </member>
-        <member name="F:PeterHan.PLib.Detours.PDetours.DelegateInfo.delegateType">
-            <summary>
-            The delegate's type.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.Detours.PDetours.DelegateInfo.parameterTypes">
-            <summary>
-            The delegate's parameter types.
-            </summary>
-        </member>
-        <member name="F:PeterHan.PLib.Detours.PDetours.DelegateInfo.returnType">
-            <summary>
-            The delegate's return types.
-            </summary>
+            <param name="data">The data or boxed data.</param>
+            <param name="result">The result of unboxing. Only valid if true is returned.</param>
+            <returns>true if the data could be unboxed or directly converted, or false otherwise.</returns>
         </member>
         <member name="T:PeterHan.PLib.Core.ExtensionMethods">
             <summary>
@@ -3460,6 +3187,397 @@
             </summary>
             <param name="instance">The PRegistryComponent instance to wrap.</param>
         </member>
+        <member name="T:PeterHan.PLib.Detours.DetouredField`2">
+            <summary>
+            Stores delegates used to read and write fields or properties.
+            </summary>
+            <typeparam name="P">The containing type of the field or property.</typeparam>
+            <typeparam name="T">The element type of the field or property.</typeparam>
+        </member>
+        <member name="P:PeterHan.PLib.Detours.DetouredField`2.Get">
+            <summary>
+            Invoke to get the field/property value.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.Detours.DetouredField`2.Name">
+            <summary>
+            The field name.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.Detours.DetouredField`2.Set">
+            <summary>
+            Invoke to set the field/property value. Null if the field is const or readonly.
+            </summary>
+        </member>
+        <member name="T:PeterHan.PLib.Detours.DetouredMethod`1">
+            <summary>
+            Stores a detoured method, only performing the expensive reflection when the detour is
+            first used.
+            
+            This class is not thread safe.
+            <typeparam name="D">The delegate type to be used to call the detour.</typeparam></summary>
+        </member>
+        <member name="P:PeterHan.PLib.Detours.DetouredMethod`1.Invoke">
+            <summary>
+            Emulates the ability of Delegate.Invoke to actually call the method.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.Detours.DetouredMethod`1.Name">
+            <summary>
+            The method name.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.Detours.DetouredMethod`1.delg">
+            <summary>
+            The delegate method which will be called.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.Detours.DetouredMethod`1.type">
+            <summary>
+            The target type.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.DetouredMethod`1.Initialize">
+            <summary>
+            Initializes the getter and setter functions immediately if necessary.
+            </summary>
+        </member>
+        <member name="T:PeterHan.PLib.Detours.DetourException">
+            <summary>
+            An exception thrown when constructing a detour.
+            </summary>
+        </member>
+        <member name="T:PeterHan.PLib.Detours.IDetouredField`2">
+            <summary>
+            An interface that describes a detoured field, which stores delegates used to read and
+            write fields or properties.
+            </summary>
+            <typeparam name="P">The containing type of the field or property.</typeparam>
+            <typeparam name="T">The element type of the field or property.</typeparam>
+        </member>
+        <member name="P:PeterHan.PLib.Detours.IDetouredField`2.Get">
+            <summary>
+            Invoke to get the field/property value.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.Detours.IDetouredField`2.Name">
+            <summary>
+            The field name.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.Detours.IDetouredField`2.Set">
+            <summary>
+            Invoke to set the field/property value.
+            </summary>
+        </member>
+        <member name="T:PeterHan.PLib.Detours.LazyDetouredField`2">
+            <summary>
+            Stores delegates used to read and write fields or properties. This version is lazy and
+            only calculates the destination when it is first used.
+            
+            This class is not thread safe.
+            </summary>
+            <typeparam name="P">The containing type of the field or property.</typeparam>
+            <typeparam name="T">The element type of the field or property.</typeparam>
+        </member>
+        <member name="P:PeterHan.PLib.Detours.LazyDetouredField`2.Get">
+            <summary>
+            Invoke to get the field/property value.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.Detours.LazyDetouredField`2.Name">
+            <summary>
+            The field name.
+            </summary>
+        </member>
+        <member name="P:PeterHan.PLib.Detours.LazyDetouredField`2.Set">
+            <summary>
+            Invoke to set the field/property value.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.Detours.LazyDetouredField`2.getter">
+            <summary>
+            The function to get the field value.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.Detours.LazyDetouredField`2.setter">
+            <summary>
+            The function to set the field value.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.Detours.LazyDetouredField`2.type">
+            <summary>
+            The target type.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.LazyDetouredField`2.Initialize">
+            <summary>
+            Initializes the getter and setter functions immediately if necessary.
+            </summary>
+        </member>
+        <member name="T:PeterHan.PLib.Detours.PDetours">
+            <summary>
+            Efficiently detours around many changes in the game by creating detour methods and
+            accessors which are resilient against many types of source compatible but binary
+            incompatible changes.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.Detour``1(System.Type)">
+            <summary>
+            Creates a dynamic detour method of the specified delegate type to wrap a base game
+            method with the same name as the delegate type. The dynamic method will
+            automatically adapt if optional parameters are added, filling in their default
+            values.
+            </summary>
+            <typeparam name="D">The delegate type to be used to call the detour.</typeparam>
+            <param name="type">The target type.</param>
+            <returns>The detour that will call the method with the name of the delegate type.</returns>
+            <exception cref="T:PeterHan.PLib.Detours.DetourException">If the delegate does not match any valid target method.</exception>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.Detour``1(System.Type,System.String)">
+            <summary>
+            Creates a dynamic detour method of the specified delegate type to wrap a base game
+            method with the specified name. The dynamic method will automatically adapt if
+            optional parameters are added, filling in their default values.
+            </summary>
+            <typeparam name="D">The delegate type to be used to call the detour.</typeparam>
+            <param name="type">The target type.</param>
+            <param name="name">The method name.</param>
+            <returns>The detour that will call that method.</returns>
+            <exception cref="T:PeterHan.PLib.Detours.DetourException">If the delegate does not match any valid target method.</exception>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.DetourConstructor``1(System.Type)">
+            <summary>
+            Creates a dynamic detour method of the specified delegate type to wrap a base game
+            constructor. The dynamic method will automatically adapt if optional parameters
+            are added, filling in their default values.
+            </summary>
+            <typeparam name="D">The delegate type to be used to call the detour.</typeparam>
+            <param name="type">The target type.</param>
+            <returns>The detour that will call that type's constructor.</returns>
+            <exception cref="T:PeterHan.PLib.Detours.DetourException">If the delegate does not match any valid target method.</exception>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.DetourLazy``1(System.Type,System.String)">
+            <summary>
+            Creates a dynamic detour method of the specified delegate type to wrap a base game
+            method with the specified name. The dynamic method will automatically adapt if
+            optional parameters are added, filling in their default values.
+            
+            This overload creates a lazy detour that only performs the expensive reflection
+            when it is first used.
+            </summary>
+            <typeparam name="D">The delegate type to be used to call the detour.</typeparam>
+            <param name="type">The target type.</param>
+            <param name="name">The method name.</param>
+            <returns>The detour that will call that method.</returns>
+            <exception cref="T:PeterHan.PLib.Detours.DetourException">If the delegate does not match any valid target method.</exception>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.Detour``1(System.Reflection.MethodInfo)">
+            <summary>
+            Creates a dynamic detour method of the specified delegate type to wrap a base game
+            method with the specified name. The dynamic method will automatically adapt if
+            optional parameters are added, filling in their default values.
+            </summary>
+            <typeparam name="D">The delegate type to be used to call the detour.</typeparam>
+            <param name="target">The target method to be called.</param>
+            <returns>The detour that will call that method.</returns>
+            <exception cref="T:PeterHan.PLib.Detours.DetourException">If the delegate does not match the target.</exception>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.Detour``1(System.Reflection.ConstructorInfo)">
+            <summary>
+            Creates a dynamic detour method of the specified delegate type to wrap a base game
+            constructor. The dynamic method will automatically adapt if optional parameters
+            are added, filling in their default values.
+            </summary>
+            <typeparam name="D">The delegate type to be used to call the detour.</typeparam>
+            <param name="target">The target constructor to be called.</param>
+            <returns>The detour that will call that constructor.</returns>
+            <exception cref="T:PeterHan.PLib.Detours.DetourException">If the delegate does not match the target.</exception>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.DetourField``2(System.String)">
+            <summary>
+            Creates dynamic detour methods to wrap a base game field or property with the
+            specified name. The detour will still work even if the field is converted to a
+            source compatible property and vice versa.
+            </summary>
+            <typeparam name="P">The type of the parent class.</typeparam>
+            <typeparam name="T">The type of the field or property element.</typeparam>
+            <param name="name">The name of the field or property to be accessed.</param>
+            <returns>A detour element that wraps the field or property with common getter and
+            setter delegates which will work on both types.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.DetourFieldLazy``2(System.String)">
+            <summary>
+            Creates dynamic detour methods to wrap a base game field or property with the
+            specified name. The detour will still work even if the field is converted to a
+            source compatible property and vice versa.
+            
+            This overload creates a lazy detour that only performs the expensive reflection
+            when it is first used.
+            </summary>
+            <typeparam name="P">The type of the parent class.</typeparam>
+            <typeparam name="T">The type of the field or property element.</typeparam>
+            <param name="name">The name of the field or property to be accessed.</param>
+            <returns>A detour element that wraps the field or property with common getter and
+            setter delegates which will work on both types.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.DetourField``2(System.Reflection.FieldInfo)">
+            <summary>
+            Creates dynamic detour methods to wrap a base game field with the specified name.
+            </summary>
+            <typeparam name="P">The type of the parent class.</typeparam>
+            <typeparam name="T">The type of the field element.</typeparam>
+            <param name="target">The field which will be accessed.</param>
+            <returns>A detour element that wraps the field with a common interface matching
+            that of a detoured property.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.DetourProperty``2(System.Reflection.PropertyInfo)">
+            <summary>
+            Creates dynamic detour methods to wrap a base game property with the specified name.
+            </summary>
+            <typeparam name="P">The type of the parent class.</typeparam>
+            <typeparam name="T">The type of the property element.</typeparam>
+            <param name="target">The property which will be accessed.</param>
+            <returns>A detour element that wraps the property with a common interface matching
+            that of a detoured field.</returns>
+            <exception cref="T:PeterHan.PLib.Detours.DetourException">If the property has indexers.</exception>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.DetourStructField``1(System.Type,System.String)">
+            <summary>
+            Creates dynamic detour methods to wrap a base game struct field with the specified
+            name. For static struct fields, use the regular DetourField.
+            </summary>
+            <typeparam name="T">The type of the field element.</typeparam>
+            <param name="parentType">The struct type which will be accessed.</param>
+            <param name="name">The name of the struct field to be accessed.</param>
+            <returns>A detour element that wraps the field with a common interface matching
+            that of a detoured property.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.FinishDynamicMethod(System.Reflection.Emit.DynamicMethod,System.Reflection.ParameterInfo[],System.Type[],System.Int32)">
+            <summary>
+            Generates the required method parameters for the dynamic detour method.
+            </summary>
+            <param name="caller">The method where the parameters will be defined.</param>
+            <param name="actualParams">The actual parameters required.</param>
+            <param name="expectedParams">The parameters provided.</param>
+            <param name="offset">The offset to start loading (0 = static, 1 = instance).</param>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.LoadParameters(System.Reflection.Emit.ILGenerator,System.Reflection.ParameterInfo[],System.Type[],System.Int32)">
+            <summary>
+            Generates instructions to load arguments or default values onto the stack in a
+            detour method.
+            </summary>
+            <param name="generator">The method where the calls will be added.</param>
+            <param name="actualParams">The actual parameters required.</param>
+            <param name="expectedParams">The parameters provided.</param>
+            <param name="offset">The offset to start loading (0 = static, 1 = instance).</param>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.TryDetour``1(System.Type,System.String)">
+            <summary>
+            Creates a dynamic detour method of the specified delegate type to wrap a base game
+            method with the specified name. The dynamic method will automatically adapt if
+            optional parameters are added, filling in their default values.
+            </summary>
+            <typeparam name="D">The delegate type to be used to call the detour.</typeparam>
+            <param name="type">The target type.</param>
+            <param name="name">The method name.</param>
+            <returns>The detour that will call that method.</returns>
+            <exception cref="T:PeterHan.PLib.Detours.DetourException">If the delegate does not match any valid target method.</exception>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.TryDetourConstructor``1(System.Type)">
+            <summary>
+            Creates a dynamic detour method of the specified delegate type to wrap a base game
+            constructor. The dynamic method will automatically adapt if optional parameters
+            are added, filling in their default values.
+            </summary>
+            <typeparam name="D">The delegate type to be used to call the detour.</typeparam>
+            <param name="type">The target type.</param>
+            <returns>The detour that will call that type's constructor, or null if the
+            delegate does not match any valid target method.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.TryDetour``1(System.Reflection.MethodInfo)">
+            <summary>
+            Creates a dynamic detour method of the specified delegate type to wrap a base game
+            method with the specified name. The dynamic method will automatically adapt if
+            optional parameters are added, filling in their default values.
+            </summary>
+            <typeparam name="D">The delegate type to be used to call the detour.</typeparam>
+            <param name="target">The target method to be called.</param>
+            <returns>The detour that will call that method, or null if the delegate does
+            not match the target.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.TryDetour``1(System.Reflection.ConstructorInfo)">
+            <summary>
+            Creates a dynamic detour method of the specified delegate type to wrap a base game
+            constructor. The dynamic method will automatically adapt if optional parameters
+            are added, filling in their default values.
+            </summary>
+            <typeparam name="D">The delegate type to be used to call the detour.</typeparam>
+            <param name="target">The target constructor to be called.</param>
+            <returns>The detour that will call that constructor, or null if the delegate does
+            not match the target.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.TryDetourField``2(System.String)">
+            <summary>
+            Creates dynamic detour methods to wrap a base game field or property with the
+            specified name. The detour will still work even if the field is converted to a
+            source compatible property and vice versa.
+            </summary>
+            <typeparam name="P">The type of the parent class.</typeparam>
+            <typeparam name="T">The type of the field or property element.</typeparam>
+            <param name="name">The name of the field or property to be accessed.</param>
+            <returns>A detour element that wraps the field or property with common getter and
+            setter delegates, or null if the field cannot be found.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.TryDetourStructField``1(System.Type,System.String)">
+            <summary>
+            Creates dynamic detour methods to wrap a base game struct field with the specified
+            name. For static struct fields, use the regular DetourField.
+            </summary>
+            <typeparam name="T">The type of the field element.</typeparam>
+            <param name="parentType">The struct type which will be accessed.</param>
+            <param name="name">The name of the struct field to be accessed.</param>
+            <returns>A detour element that wraps the field, or null if the field cannot be found.</returns>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.ValidateDelegate(PeterHan.PLib.Detours.PDetours.DelegateInfo,System.Reflection.MethodBase,System.Type)">
+            <summary>
+            Verifies that the delegate signature provided in dst can be dynamically mapped to
+            the method provided by src, with the possible addition of optional parameters set
+            to their default values.
+            </summary>
+            <param name="expected">The method return type and parameter types expected.</param>
+            <param name="actual">The method to be called.</param>
+            <param name="actualReturn">The type of the method or constructor's return value.</param>
+            <returns>The parameters used in the call to the actual method.</returns>
+            <exception cref="T:PeterHan.PLib.Detours.DetourException">If the delegate does not match the target.</exception>
+        </member>
+        <member name="T:PeterHan.PLib.Detours.PDetours.DelegateInfo">
+            <summary>
+            Stores information about a delegate.
+            </summary>
+        </member>
+        <member name="M:PeterHan.PLib.Detours.PDetours.DelegateInfo.Create(System.Type)">
+            <summary>
+            Creates delegate information on the specified delegate type.
+            </summary>
+            <param name="delegateType">The delegate type to wrap.</param>
+            <returns>Information about that delegate's return and parameter types.</returns>
+        </member>
+        <member name="F:PeterHan.PLib.Detours.PDetours.DelegateInfo.delegateType">
+            <summary>
+            The delegate's type.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.Detours.PDetours.DelegateInfo.parameterTypes">
+            <summary>
+            The delegate's parameter types.
+            </summary>
+        </member>
+        <member name="F:PeterHan.PLib.Detours.PDetours.DelegateInfo.returnType">
+            <summary>
+            The delegate's return types.
+            </summary>
+        </member>
         <member name="T:PeterHan.PLib.PatchManager.IPatchMethodInstance">
             <summary>
             Refers to a single instance of the annotation, with its annotated method.
@@ -5119,6 +5237,11 @@
             All options handlers, including user dynamic option handlers, implement this type.
             </summary>
         </member>
+        <member name="P:PeterHan.PLib.Options.IOptionsEntry.RestartRequired">
+            <summary>
+            Stores whether changing this option requires a restart.
+            </summary>
+        </member>
         <member name="M:PeterHan.PLib.Options.IOptionsEntry.CreateUIEntry(PeterHan.PLib.UI.PGridPanel,System.Int32@)">
             <summary>
             Creates UI components that will present this option.
@@ -5138,6 +5261,7 @@
             Writes the option value from the UI into the provided settings object.
             </summary>
             <param name="settings">The settings object.</param>
+            <returns>true if the value changed, or false otherwise.</returns>
         </member>
         <member name="T:PeterHan.PLib.Options.IOptionSpec">
             <summary>
@@ -5528,12 +5652,6 @@
             </summary>
             <param name="optionsDialog">The dialog to populate.</param>
         </member>
-        <member name="M:PeterHan.PLib.Options.OptionsDialog.CheckForRestart">
-            <summary>
-            Checks the mod config class for the [RestartRequired] attribute, and brings up a
-            restart dialog if necessary.
-            </summary>
-        </member>
         <member name="M:PeterHan.PLib.Options.OptionsDialog.CloseDialog">
             <summary>
             Closes the current dialog.
@@ -5561,6 +5679,11 @@
             Invoked when the reset to default button is pressed.
             </summary>
         </member>
+        <member name="M:PeterHan.PLib.Options.OptionsDialog.PromptForRestart">
+            <summary>
+            Brings up a restart dialog.
+            </summary>
+        </member>
         <member name="M:PeterHan.PLib.Options.OptionsDialog.ShowDialog">
             <summary>
             Triggered when the Mod Options button is clicked.
@@ -5586,6 +5709,7 @@
             <summary>
             Writes the mod options to its config file.
             </summary>
+            <returns>true if a restart is requested, or false otherwise.</returns>
         </member>
         <member name="T:PeterHan.PLib.Options.OptionsEntry">
             <summary>
@@ -5671,7 +5795,7 @@
             <param name="depth">The current depth of iteration to avoid infinite loops.</param>
             <returns>The OptionsEntry created, or null if none was.</returns>
         </member>
-        <member name="M:PeterHan.PLib.Options.OptionsEntry.TryCreateEntry(System.Attribute,System.Reflection.PropertyInfo,System.Int32)">
+        <member name="M:PeterHan.PLib.Options.OptionsEntry.TryCreateEntry(System.Attribute,System.Reflection.PropertyInfo,System.Int32,System.Boolean)">
             <summary>
             Creates an options entry if an attribute is a valid IOptionSpec or
             DynamicOptionAttribute.
@@ -5679,6 +5803,7 @@
             <param name="attribute">The attribute to parse.</param>
             <param name="prop">The property to inspect.</param>
             <param name="depth">The current depth of iteration to avoid infinite loops.</param>
+            <param name="restart">true if the options class requests a restart for value changes.</param>
             <returns>The OptionsEntry created from the attribute, or null if none was.</returns>
         </member>
         <member name="P:PeterHan.PLib.Options.OptionsEntry.Category">
@@ -5986,8 +6111,15 @@
         <member name="T:PeterHan.PLib.Options.RestartRequiredAttribute">
             <summary>
             An empty marker attribute. If applied to an options class, PLib will notify the user
-            that the game must be restarted to apply the options. This attribute will not work if
-            it is applied to an individual option, only if applied to the class as a whole.
+            that the game must be restarted to apply the options.
+            
+            This attribute now works if it is applied to an individual option; PLib will attempt
+            to compare the old and new value using the Equals method and only prompt if the value
+            appears to be different. If this attribute is applied to a custom type (especially a
+            value type), Equals and preferably all of IEquatable must be implemented for it to work
+            properly.
+            
+            Custom dynamic option handlers also need to handle this attribute.
             </summary>
         </member>
         <member name="T:PeterHan.PLib.Options.SelectOneOptionsEntry">
