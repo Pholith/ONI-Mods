@@ -1,0 +1,29 @@
+msgid ""
+msgstr ""
+"Application: Oxygen Not IncludedPOT Version: 2.0\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: zh_TW\n"
+
+#. Notepad.PHO_STRINGS.NOTEPAD.DESC
+msgctxt "Notepad.PHO_STRINGS.NOTEPAD.DESC"
+msgid "Your dupes have no memory? Let them have a silly thought!"
+msgstr "您的複製人很健忘嗎？寫點蠢事給他們去思考人生吧！"
+
+#. Notepad.PHO_STRINGS.NOTEPAD.EFFECT
+msgctxt "Notepad.PHO_STRINGS.NOTEPAD.EFFECT"
+msgid "Note and commenting on your setups will help you a lot!"
+msgstr "對您的裝置加上註解與評論將會對您日後很有幫助！"
+
+#. Notepad.PHO_STRINGS.NOTEPAD.NAME
+msgctxt "Notepad.PHO_STRINGS.NOTEPAD.NAME"
+msgid "Notepad"
+msgstr "記事本"

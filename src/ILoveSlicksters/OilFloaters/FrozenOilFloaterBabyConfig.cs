@@ -19,6 +19,10 @@ namespace ILoveSlicksters
         public void OnSpawn(GameObject inst)
         {
         }
+        public string[] GetAnyRequiredDlcIds()
+        {
+            return null;
+        }
 
         public string[] GetDlcIds()
         {

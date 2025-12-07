@@ -12,6 +12,10 @@ namespace ILoveSlicksters
             EntityTemplates.ExtendEntityToBeingABaby(gameObject, OwO_OilfloaterConfig.ID, null);
             return gameObject;
         }
+        public string[] GetAnyRequiredDlcIds()
+        {
+            return null;
+        }
 
         public void OnPrefabInit(GameObject prefab)
         {

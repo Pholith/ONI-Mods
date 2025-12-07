@@ -1,6 +1,4 @@
 ﻿using PeterHan.PLib.UI;
-using Pholib;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Notepad
@@ -15,7 +13,7 @@ namespace Notepad
 
         private static readonly RectOffset OUTER_MARGIN = new RectOffset(6, 10, 6, 14);
         private const int ROW_SPACING = 2;
-        private const bool DEBUG_GRID = false                                                                                                                                                                                                         ;
+        private const bool DEBUG_GRID = false;
         private const int GRID_ROW_SIZE = 30;
         private const int GRID_ICON_SIZE = 29;
         private const int GRID_COLUMN_NB = 9;
@@ -121,7 +119,8 @@ namespace Notepad
         private void AddIconButton(PGridPanel parentPanel, string spriteName)
         {
             PButton button = new PButton();
-            button.OnClick += (go) => { 
+            button.OnClick += (go) =>
+            {
                 currentTarget.iconName = spriteName;
                 UpdatePanels();
             };
@@ -152,7 +151,7 @@ namespace Notepad
                 SpriteSize = new Vector2(50, 40),
                 MaintainSpriteAspect = true,
                 Margin = new RectOffset(15, 10, 15, 10),
-                
+
             };
             PLabel descriptionLabel = new PLabel("description label")
             {

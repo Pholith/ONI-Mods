@@ -47,8 +47,8 @@ namespace ILoveSlicksters
             public bool IsInAquarium()
             {
                 CavityInfo cavityForCell = Game.Instance.roomProber.GetCavityForCell(Grid.PosToCell(gameObject));
-                if (cavityForCell == null || cavityForCell.numCells > 120) return false;
-                return cavityForCell.numCells > 20;
+                if (cavityForCell == null || cavityForCell.NumCells > 120) return false;
+                return cavityForCell.NumCells > 20;
             }
 
         }

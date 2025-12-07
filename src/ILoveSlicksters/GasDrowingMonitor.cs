@@ -2,6 +2,7 @@
 using KSerialization;
 using STRINGS;
 using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace ILoveSlicksters
@@ -52,6 +53,7 @@ namespace ILoveSlicksters
             }
         }
 
+
         protected override void OnSpawn()
         {
             base.OnSpawn();
@@ -63,7 +65,8 @@ namespace ILoveSlicksters
             SlicedUpdaterSim1000ms<GasDrowningMonitor>.instance.RegisterUpdate1000ms(this);
             OnMove();
             CheckDrowning();
-            Singleton<CellChangeMonitor>.Instance.RegisterCellChangedHandler(transform, new System.Action(OnMove), "GasDrowningMonitor.OnSpawn");
+            this.cellChangedHandlerID = Singleton<CellChangeMonitor>.Instance.RegisterCellChangedHandler(transform, new System.Action<object>(OnMoveDispatcher), "GasDrowningMonitor.OnSpawn");
+
         }
 
         private void OnMove()
@@ -71,7 +74,7 @@ namespace ILoveSlicksters
             if (partitionerEntry.IsValid())
             {
                 Extents extents = occupyArea.GetExtents();
-                GameScenePartitioner.Instance.UpdatePosition(partitionerEntry, extents.x, extents.y);
+                GameScenePartitioner.Instance.UpdatePosition(partitionerEntry, extents);
             }
             else
             {
@@ -82,7 +85,7 @@ namespace ILoveSlicksters
 
         protected override void OnCleanUp()
         {
-            Singleton<CellChangeMonitor>.Instance.UnregisterCellChangedHandler(transform, new System.Action(OnMove));
+            Singleton<CellChangeMonitor>.Instance.UnregisterCellChangedHandler(ref this.cellChangedHandlerID);
             GameScenePartitioner.Instance.Free(ref partitionerEntry);
             SlicedUpdaterSim1000ms<GasDrowningMonitor>.instance.UnregisterUpdate1000ms(this);
             base.OnCleanUp();
@@ -203,6 +206,11 @@ namespace ILoveSlicksters
             }
         }
 
+        private static readonly Action<object> OnMoveDispatcher = delegate (object obj)
+        {
+            Unsafe.As<GasDrowningMonitor>(obj).OnMove();
+        };
+
         [MyCmpReq]
         private readonly KSelectable selectable;
 
@@ -219,6 +227,8 @@ namespace ILoveSlicksters
         private bool drowned;
 
         private bool drowning;
+
+        private ulong cellChangedHandlerID;
 
         public bool canDrownToDeath = true;
         public SimHashes[] liquidsLivable = null;

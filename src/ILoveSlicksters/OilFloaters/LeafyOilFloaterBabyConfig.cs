@@ -19,6 +19,11 @@ namespace ILoveSlicksters
         {
             return new string[0];
         }
+        public string[] GetAnyRequiredDlcIds()
+        {
+            return null;
+        }
+
         public GameObject CreatePrefab()
         {
             GameObject gameObject = LeafyOilfloaterConfig.CreateOilfloater(ID, PHO_STRINGS.VARIANT_LEAFY.BABY.NAME, PHO_STRINGS.VARIANT_LEAFY.BABY.DESC, kanim_id, true);

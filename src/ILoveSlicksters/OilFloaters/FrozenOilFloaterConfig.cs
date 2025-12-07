@@ -22,6 +22,10 @@ namespace ILoveSlicksters
         {
             return new string[0];
         }
+        public string[] GetAnyRequiredDlcIds()
+        {
+            return null;
+        }
 
         public GameObject CreatePrefab()
         {

@@ -23,6 +23,10 @@ namespace ILoveSlicksters
         {
             return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
+        public string[] GetAnyRequiredDlcIds()
+        {
+            return null;
+        }
 
         public string[] GetRequiredDlcIds()
         {

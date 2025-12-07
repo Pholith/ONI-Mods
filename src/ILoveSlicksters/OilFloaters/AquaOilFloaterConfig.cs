@@ -1,8 +1,8 @@
 ﻿using Klei.AI;
+using Pholib;
 using System.Collections.Generic;
 using UnityEngine;
 using static TUNING.CREATURES;
-using Pholib;
 
 namespace ILoveSlicksters
 {
@@ -16,6 +16,10 @@ namespace ILoveSlicksters
         public string[] GetRequiredDlcIds()
         {
             return new string[0];
+        }
+        public string[] GetAnyRequiredDlcIds()
+        {
+            return null;
         }
 
         public string[] GetForbiddenDlcIds()
@@ -102,6 +106,8 @@ namespace ILoveSlicksters
             gameObject.AddOrGet<LoopingSounds>();
             gameObject.AddOrGetDef<ThreatMonitor.Def>();
             gameObject.AddOrGet<GasDrowningMonitor>();
+
+
             gameObject.AddOrGetDef<CreatureAquaticGroomingMonitor.Def>();
             gameObject.AddOrGet<LightVulnerable>();
 
@@ -141,6 +147,7 @@ namespace ILoveSlicksters
                 GameTags.Creatures.FlyersLure
             };
 
+            OccupyArea component2 = gameObject.GetComponent<OccupyArea>();
 
             EntityTemplates.AddCreatureBrain(gameObject, chore_table, GameTags.Creatures.Species.OilFloaterSpecies, symbolOverridePrefix);
             //string sound = "OilFloater_move_LP";

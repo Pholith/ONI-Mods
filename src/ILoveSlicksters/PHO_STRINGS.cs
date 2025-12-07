@@ -1,8 +1,6 @@
-﻿using Klei.AI;
-using Pholib;
+﻿using Pholib;
 using STRINGS;
 using UnityEngine;
-using static STRINGS.BUILDING.STATUSITEMS;
 
 namespace ILoveSlicksters
 {
