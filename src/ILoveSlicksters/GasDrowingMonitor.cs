@@ -18,17 +18,6 @@ namespace ILoveSlicksters
 
     public class GasDrowningMonitor : KMonoBehaviour, IWiltCause, ISlicedSim1000ms
     {
-        private OccupyArea occupyArea
-        {
-            get
-            {
-                if (_occupyArea == null)
-                {
-                    _occupyArea = GetComponent<OccupyArea>();
-                }
-                return _occupyArea;
-            }
-        }
 
         public bool Drowning => drowning;
 
@@ -54,6 +43,8 @@ namespace ILoveSlicksters
         }
 
 
+        private bool initialized = false;
+        
         protected override void OnSpawn()
         {
             base.OnSpawn();
@@ -61,32 +52,23 @@ namespace ILoveSlicksters
             {
                 Game.Instance.gameObject.AddOrGet<GasDrowningMonitorUpdater>();
             }
-
             SlicedUpdaterSim1000ms<GasDrowningMonitor>.instance.RegisterUpdate1000ms(this);
-            OnMove();
-            CheckDrowning();
-            this.cellChangedHandlerID = Singleton<CellChangeMonitor>.Instance.RegisterCellChangedHandler(transform, new System.Action<object>(OnMoveDispatcher), "GasDrowningMonitor.OnSpawn");
-
+            // Don't access any components here - defer to first SlicedSim1000ms call
+            // Unity equality checks on OccupyArea can hang during spawn for swimming creatures
         }
 
         private void OnMove()
         {
-            if (partitionerEntry.IsValid())
-            {
-                Extents extents = occupyArea.GetExtents();
-                GameScenePartitioner.Instance.UpdatePosition(partitionerEntry, extents);
-            }
-            else
-            {
-                partitionerEntry = GameScenePartitioner.Instance.Add("GasDrowningMonitor.OnSpawn", gameObject, occupyArea.GetExtents(), GameScenePartitioner.Instance.liquidChangedLayer, new Action<object>(OnLiquidChanged));
-            }
+            // Only check drowning - partitioner removed because GetExtents() hangs on swimming creatures
             CheckDrowning();
         }
 
         protected override void OnCleanUp()
         {
-            Singleton<CellChangeMonitor>.Instance.UnregisterCellChangedHandler(ref this.cellChangedHandlerID);
-            GameScenePartitioner.Instance.Free(ref partitionerEntry);
+            if (cellChangedHandlerID != 0)
+            {
+                Singleton<CellChangeMonitor>.Instance.UnregisterCellChangedHandler(ref this.cellChangedHandlerID);
+            }
             SlicedUpdaterSim1000ms<GasDrowningMonitor>.instance.UnregisterUpdate1000ms(this);
             base.OnCleanUp();
         }
@@ -98,46 +80,57 @@ namespace ILoveSlicksters
             {
                 return;
             }
-            int cell = Grid.PosToCell(gameObject.transform.GetPosition());
-            if (!IsCellSafe(cell))
+            // Skip if OccupyArea component isn't available (use ReferenceEquals to avoid Unity's == operator)
+            if (ReferenceEquals(occupyArea, null))
             {
-                if (!drowning)
+                return;
+            }
+            try
+            {
+                int cell = Grid.PosToCell(gameObject.transform.GetPosition());
+                if (!IsCellSafe(cell))
                 {
-                    drowning = true;
-                    Trigger((int)GameHashes.Drowning);
-                    GetComponent<KPrefabID>().AddTag(GameTags.Creatures.Drowning, false);
-                }
-                if (timeToDrown <= 0f && canDrownToDeath)
-                {
-                    DeathMonitor.Instance smi = this.GetSMI<DeathMonitor.Instance>();
-                    if (smi != null)
+                    if (!drowning)
                     {
-                        smi.Kill(Db.Get().Deaths.Drowned);
+                        drowning = true;
+                        Trigger((int)GameHashes.Drowning);
+                        GetComponent<KPrefabID>().AddTag(GameTags.Creatures.Drowning, false);
                     }
-                    Trigger((int)GameHashes.Drowned);
-                    drowned = true;
+                    if (timeToDrown <= 0f && canDrownToDeath)
+                    {
+                        DeathMonitor.Instance smi = this.GetSMI<DeathMonitor.Instance>();
+                        if (smi != null)
+                        {
+                            smi.Kill(Db.Get().Deaths.Drowned);
+                        }
+                        Trigger((int)GameHashes.Drowned);
+                        drowned = true;
+                    }
+                }
+                else if (drowning)
+                {
+                    drowning = false;
+                    GetComponent<KPrefabID>().RemoveTag(GameTags.Creatures.Drowning);
+                    Trigger((int)GameHashes.EnteredBreathableArea);
+                }
+                drowningStatusGuid = selectable.ToggleStatusItem(NeedLiquid, drowningStatusGuid, drowning, this);
+
+                if (effects != null)
+                {
+                    if (drowning)
+                    {
+                        effects.Add(drowningEffect, false);
+                        return;
+                    }
+                    else
+                    {
+                        effects.Remove(drowningEffect);
+                    }
                 }
             }
-            else if (drowning)
+            catch
             {
-                drowning = false;
-                GetComponent<KPrefabID>().RemoveTag(GameTags.Creatures.Drowning);
-                Trigger((int)GameHashes.EnteredBreathableArea);
-
-            }
-            drowningStatusGuid = selectable.ToggleStatusItem(NeedLiquid, drowningStatusGuid, drowning, this);
-
-            if (effects != null)
-            {
-                if (drowning)
-                {
-                    effects.Add(drowningEffect, false);
-                    return;
-                }
-                else
-                {
-                    effects.Remove(drowningEffect);
-                }
+                // If anything fails, just skip this check
             }
         }
 
@@ -168,7 +161,19 @@ namespace ILoveSlicksters
 
         public bool IsCellSafe(int cell)
         {
-            return occupyArea.TestArea(cell, this, CellSafeTestDelegate);
+            // Use ReferenceEquals to avoid Unity's == operator which can hang
+            if (ReferenceEquals(occupyArea, null))
+            {
+                return false;
+            }
+            try
+            {
+                return occupyArea.TestArea(cell, this, CellSafeTestDelegate);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         WiltCondition.Condition[] IWiltCause.Conditions => new WiltCondition.Condition[]
@@ -179,13 +184,16 @@ namespace ILoveSlicksters
         public string WiltStateString => CREATURES.STATUSITEMS.DROWNING.NAME;
 
 
-        private void OnLiquidChanged(object data)
-        {
-            CheckDrowning();
-        }
 
         public void SlicedSim1000ms(float dt)
         {
+            // Deferred initialization - OccupyArea component should be ready by now
+            if (!initialized)
+            {
+                initialized = true;
+                this.cellChangedHandlerID = Singleton<CellChangeMonitor>.Instance.RegisterCellChangedHandler(transform, new System.Action<object>(OnMoveDispatcher), "GasDrowningMonitor.SlicedSim1000ms");
+            }
+            
             CheckDrowning();
             if (drowning)
             {
@@ -217,7 +225,8 @@ namespace ILoveSlicksters
         [MyCmpGet]
         private readonly Effects effects;
 
-        private OccupyArea _occupyArea;
+        [MyCmpGet]
+        private OccupyArea occupyArea;
 
         [Serialize]
         [SerializeField]
@@ -235,7 +244,6 @@ namespace ILoveSlicksters
 
         private Guid drowningStatusGuid;
 
-        private HandleVector<int>.Handle partitionerEntry;
 
         public static Effect drowningEffect;
 

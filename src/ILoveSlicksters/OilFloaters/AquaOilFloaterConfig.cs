@@ -147,7 +147,11 @@ namespace ILoveSlicksters
                 GameTags.Creatures.FlyersLure
             };
 
-            OccupyArea component2 = gameObject.GetComponent<OccupyArea>();
+            // Ensure OccupyArea component exists (should be added by ExtendEntityToBasicCreature)
+            if (gameObject.GetComponent<OccupyArea>() == null)
+            {
+                gameObject.AddComponent<OccupyArea>();
+            }
 
             EntityTemplates.AddCreatureBrain(gameObject, chore_table, GameTags.Creatures.Species.OilFloaterSpecies, symbolOverridePrefix);
             //string sound = "OilFloater_move_LP";

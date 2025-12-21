@@ -252,15 +252,15 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\packages\GameLibs\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\ONI Miserable Mods\lib\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\packages\GameLibs\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\..\..\ONI Miserable Mods\lib\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\packages\GameLibs\Assembly-CSharp-firstpass.dll</HintPath>
+      <HintPath>..\..\..\ONI Miserable Mods\lib\Assembly-CSharp-firstpass.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -277,39 +277,39 @@
     </Reference>
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>..\packages\GameLibs\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>..\..\..\ONI Miserable Mods\lib\Unity.TextMeshPro.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\packages\GameLibs\UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\ONI Miserable Mods\lib\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\packages\GameLibs\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\..\..\ONI Miserable Mods\lib\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>..\packages\GameLibs\UnityEngine.ImageConversionModule.dll</HintPath>
+      <HintPath>..\..\..\ONI Miserable Mods\lib\UnityEngine.ImageConversionModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>..\packages\GameLibs\UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath>G:\SteamLibrary\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>..\packages\GameLibs\UnityEngine.TextRenderingModule.dll</HintPath>
+      <HintPath>..\..\..\ONI Miserable Mods\lib\UnityEngine.TextRenderingModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>..\packages\GameLibs\UnityEngine.UI.dll</HintPath>
+      <HintPath>G:\SteamLibrary\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UIModule">
-      <HintPath>..\packages\GameLibs\UnityEngine.UIModule.dll</HintPath>
+      <HintPath>G:\SteamLibrary\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.UIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestModule">
-      <HintPath>..\packages\GameLibs\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <HintPath>G:\SteamLibrary\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

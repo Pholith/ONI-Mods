@@ -16,8 +16,8 @@ namespace ILoveSlicksters
             Effect notInAquariumEffect = new Effect("NotInAquarium", PHO_STRINGS.NOTINAQUARIUM.NAME, "This creature must be in an aquarium to be tame.\nAn aquarium is a closed room that is between 20 and 120 tiles with any water.", 0f, true, true, true);
 
 
-            satisfiedState.Transition(notSatisfiedState, (Instance smi) => smi.IsInAquarium(), UpdateRate.SIM_4000ms);
-            notSatisfiedState.Transition(satisfiedState, (Instance smi) => !smi.IsInAquarium(), UpdateRate.SIM_4000ms);
+            satisfiedState.Transition(notSatisfiedState, (Instance smi) => !smi.IsInAquarium(), UpdateRate.SIM_4000ms);
+            notSatisfiedState.Transition(satisfiedState, (Instance smi) => smi.IsInAquarium(), UpdateRate.SIM_4000ms);
 
             satisfiedState.Enter(delegate (Instance smi)
             {
@@ -27,8 +27,8 @@ namespace ILoveSlicksters
             {
             });
 
-            notSatisfiedState.ToggleEffect((Instance smi) => aquariumEffect);
-            satisfiedState.ToggleEffect((Instance smi) => notInAquariumEffect);
+            satisfiedState.ToggleEffect((Instance smi) => aquariumEffect);
+            notSatisfiedState.ToggleEffect((Instance smi) => notInAquariumEffect);
         }
 
         public State notSatisfiedState;
@@ -46,7 +46,16 @@ namespace ILoveSlicksters
 
             public bool IsInAquarium()
             {
-                CavityInfo cavityForCell = Game.Instance.roomProber.GetCavityForCell(Grid.PosToCell(gameObject));
+                int cell = Grid.PosToCell(gameObject);
+                
+                // Must be in liquid (water) to be considered in an aquarium
+                if (!Grid.IsLiquid(cell) || !Grid.Element[cell].HasTag(GameTags.AnyWater))
+                {
+                    return false;
+                }
+                
+                // Check room size (20-120 tiles)
+                CavityInfo cavityForCell = Game.Instance.roomProber.GetCavityForCell(cell);
                 if (cavityForCell == null || cavityForCell.NumCells > 120) return false;
                 return cavityForCell.NumCells > 20;
             }
