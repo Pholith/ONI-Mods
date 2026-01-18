@@ -6,6 +6,7 @@ using static TUNING.CREATURES;
 
 namespace ILoveSlicksters
 {
+    [EntityConfigOrder(2)]
     public class LeafyOilfloaterConfig : IEntityConfig, IHasDlcRestrictions
     {
         public string[] GetDlcIds()

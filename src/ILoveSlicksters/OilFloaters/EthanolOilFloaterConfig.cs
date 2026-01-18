@@ -1,11 +1,13 @@
 ﻿using Klei.AI;
+using Pholib;
 using System.Collections.Generic;
 using UnityEngine;
+using UtilLibs;
 using static TUNING.CREATURES;
-using Pholib;
 
 namespace ILoveSlicksters
 {
+    [EntityConfigOrder(2)]
     public class EthanolOilfloaterConfig : IEntityConfig, IHasDlcRestrictions
     {
 
@@ -49,8 +51,17 @@ namespace ILoveSlicksters
 
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, (-10f).CelciusToKelvin(), 10f.CelciusToKelvin(), (-30f).CelciusToKelvin(), 20f.CelciusToKelvin(), is_baby, variantSprite);
-            EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
+
+            ///"anim" - kanim should be the vanilla one, except for babies atm
+            string vanillaAnimationKanimId = is_baby ? anim_file : "oilfloater_kanim";
+            string symbol_override_prefix = is_baby ? "oxy_" : variantSprite;
+
+            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, (-10f).CelciusToKelvin(), 10f.CelciusToKelvin(), (-30f).CelciusToKelvin(), 20f.CelciusToKelvin(), is_baby, symbol_override_prefix);
+            GameObject wildCreature = EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
+            if (is_baby == false)
+                NewCritterSystemUtility.FixCritterAnimationOverrides(wildCreature, anim_file, vanillaAnimationKanimId, symbol_override_prefix);
+
+
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.deltaAttribute.Id, -OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / 600f, name, false, false, true));
@@ -104,7 +115,7 @@ namespace ILoveSlicksters
 
         public const string base_kanim_id = "custom_oilfloater_kanim";
         public const string egg_kanim_id = "custom_egg_oilfloater_kanim";
-        public const string variantSprite = "oxy_";
+        public const string variantSprite = "cold_";
 
 
         public const string ID = "EthanolOilfloater";

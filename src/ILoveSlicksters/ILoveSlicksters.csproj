@@ -40,6 +40,7 @@
       <Link>Utilities.cs</Link>
     </Compile>
     <Compile Include="ElementsPatches\ElementsPatches.cs" />
+    <Compile Include="NewCritterSystemUtility.cs" />
     <Compile Include="SlicksterDance.cs" />
     <Compile Include="CreatureAquaticGroomingMonitor.cs" />
     <Compile Include="GasDrowingMonitor.cs" />
@@ -87,7 +88,7 @@
     <Content Include="anim\slicksters\custom_oilfloater2\oilfloater_1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="anim\slicksters\custom_oilfloater\oilfloater_0.png">
+    <Content Include="anim\slicksters\custom_oilfloater\oilFloater_build_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="anim\slicksters\egg_aqua_oilfloater\egg_oilFloater.png">
@@ -141,10 +142,10 @@
     <None Include="anim\slicksters\custom_oilfloater2\oilfloater_build.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="anim\slicksters\custom_oilfloater\oilfloater_anim.bytes">
+    <None Include="anim\slicksters\custom_oilfloater\oilFloater_build_anim.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="anim\slicksters\custom_oilfloater\oilfloater_build.bytes">
+    <None Include="anim\slicksters\custom_oilfloater\oilFloater_build_build.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="anim\slicksters\egg_aqua_oilfloater\egg_oilFloater_anim.bytes">
@@ -183,7 +184,7 @@
     <None Include="translations\fr.po">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="translations\zh_CN.po">
+    <None Include="translations\zh.po">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="worldgen\clusters\Slicksteria.yaml">

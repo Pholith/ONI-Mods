@@ -2,7 +2,7 @@
 
 namespace ILoveSlicksters
 {
-    [EntityConfigOrder(2)]
+    [EntityConfigOrder(4)]
     public class EthanolOilfloaterBabyConfig : IEntityConfig, IHasDlcRestrictions
     {
         public GameObject CreatePrefab()

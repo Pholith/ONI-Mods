@@ -1,11 +1,13 @@
 ﻿using Klei.AI;
+using Pholib;
 using System.Collections.Generic;
 using UnityEngine;
-using Pholib;
+using UtilLibs;
 using static TUNING.CREATURES;
 
 namespace ILoveSlicksters
 {
+    [EntityConfigOrder(2)]
     public class RobotOilfloaterConfig : IEntityConfig, IHasDlcRestrictions
     {
         public GameObject CreatePrefab()
@@ -20,7 +22,7 @@ namespace ILoveSlicksters
                 egg_kanim_id,
                 OilFloaterTuning.EGG_MASS,
                 ID + "Baby",
-                55, 20+5,
+                55, 20 + 5,
                 EGG_CHANCES_ROBOT,
                 EGG_SORT_ORDER);
 
@@ -46,8 +48,19 @@ namespace ILoveSlicksters
         }
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 230f.CelciusToKelvin(), 500f.CelciusToKelvin(), 200f.CelciusToKelvin(), 600f.CelciusToKelvin(), is_baby, variantSprite);
-            EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
+            ///"anim" - kanim should be the vanilla one, except for babies atm
+            string vanillaAnimationKanimId = is_baby ? anim_file : "oilfloater_kanim";
+            string symbol_override_prefix = is_baby ? "hot_" : variantSprite;
+
+
+            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 230f.CelciusToKelvin(), 500f.CelciusToKelvin(), 200f.CelciusToKelvin(), 600f.CelciusToKelvin(), is_baby, symbol_override_prefix);
+
+            GameObject wildCreature = EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
+
+            if (is_baby == false)
+                NewCritterSystemUtility.FixCritterAnimationOverrides(wildCreature, anim_file, vanillaAnimationKanimId, symbol_override_prefix);
+
+
             int count = (int)prefab.AddOrGet<PrimaryElement>().Mass;
 
             string[] loot = new string[count];
@@ -118,7 +131,7 @@ namespace ILoveSlicksters
         };
         public const string base_kanim_id = "custom_oilfloater_kanim";
         public const string egg_kanim_id = "custom_egg_oilfloater_kanim";
-        public const string variantSprite = "hot_";
+        public const string variantSprite = "robo_";
 
 
         public const string ID = "RobotOilfloater";
