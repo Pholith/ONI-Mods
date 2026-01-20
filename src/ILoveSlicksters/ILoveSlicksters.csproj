@@ -73,7 +73,7 @@
     <Content Include="anim\slicksters\baby_aqua_oilfloater\baby_oilFloater.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="anim\slicksters\custom_baby_oilfloater2\baby_oilfloater_1.png">
+    <Content Include="anim\slicksters\custom_baby_oilfloater2\baby_oilfloater_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="anim\slicksters\custom_baby_oilfloater\baby_oilfloater_0.png">
@@ -82,10 +82,10 @@
     <Content Include="anim\slicksters\custom_egg_oilfloater\egg_oilfloater_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="anim\slicksters\custom_egg_oilfloater2\egg_oilfloater_1.png">
+    <Content Include="anim\slicksters\custom_egg_oilfloater2\egg_oilfloater_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="anim\slicksters\custom_oilfloater2\oilfloater_1.png">
+    <Content Include="anim\slicksters\custom_oilfloater2\oilFloater_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="anim\slicksters\custom_oilfloater\oilFloater_build_0.png">

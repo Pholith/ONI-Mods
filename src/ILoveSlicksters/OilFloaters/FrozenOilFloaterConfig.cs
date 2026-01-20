@@ -50,17 +50,16 @@ namespace ILoveSlicksters
 
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, (-50f).CelciusToKelvin(), (-20f).CelciusToKelvin(), (-90f).CelciusToKelvin(), 0f.CelciusToKelvin(), is_baby, variantSprite);
-
             ///"anim" - kanim should be the vanilla one, except for babies atm
             string vanillaAnimationKanimId = is_baby ? anim_file : "oilfloater_kanim";
-            string symbol_override_prefix = is_baby ? null : variantSprite;
+            string symbol_override_prefix = is_baby ? "oxy_" : variantSprite;
 
+            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, (-50f).CelciusToKelvin(), (-20f).CelciusToKelvin(), (-90f).CelciusToKelvin(), 0f.CelciusToKelvin(), is_baby, symbol_override_prefix);
             GameObject wildCreature = EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
 
-            /*if (is_baby == false)
+            if (is_baby == false)
                 NewCritterSystemUtility.FixCritterAnimationOverrides(wildCreature, anim_file, vanillaAnimationKanimId, symbol_override_prefix);
-            */
+            
             Trait trait = Db.Get().CreateTrait(BASE_TRAIT_ID, name, name, null, false, null, true, true);
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.maxAttribute.Id, OilFloaterTuning.STANDARD_STOMACH_SIZE, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.deltaAttribute.Id, -OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / 600f, name, false, false, true));
@@ -138,7 +137,7 @@ namespace ILoveSlicksters
 
         public const string base_kanim_id = "custom_oilfloater2_kanim";
         public const string egg_kanim_id = "custom_egg_oilfloater2_kanim";
-        public const string variantSprite = "oxy_";
+        public const string variantSprite = "froz_";
 
 
         public const string ID = "FrozenOilfloater";

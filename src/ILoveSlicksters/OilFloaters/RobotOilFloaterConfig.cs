@@ -138,7 +138,7 @@ namespace ILoveSlicksters
 
         public const string BASE_TRAIT_ID = "RobotOilfloaterBaseTrait";
 
-        public const string EGG_ID = "RobotOilfloaterEgg";
+        public const string EGG_ID = ID+"Egg";
 
         private static float KG_ORE_EATEN_PER_CYCLE = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2 * ILoveSlicksters.Settings.ConsumptionMultiplier;
 

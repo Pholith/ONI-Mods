@@ -2,6 +2,7 @@
 using Pholib;
 using System.Collections.Generic;
 using UnityEngine;
+using UtilLibs;
 using static TUNING.CREATURES;
 
 namespace ILoveSlicksters
@@ -51,8 +52,17 @@ namespace ILoveSlicksters
 
         public static GameObject CreateOilfloater(string id, string name, string desc, string anim_file, bool is_baby)
         {
-            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID,  12f.CelciusToKelvin(), 35f.CelciusToKelvin(), 1f.CelciusToKelvin(), 55f.CelciusToKelvin(), is_baby, variantSprite);
-            EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
+            ///"anim" - kanim should be the vanilla one, except for babies atm
+            string vanillaAnimationKanimId = is_baby ? anim_file : "oilfloater_kanim";
+            string symbol_override_prefix = is_baby ? "hot_" : variantSprite;
+
+
+            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID,  12f.CelciusToKelvin(), 35f.CelciusToKelvin(), 1f.CelciusToKelvin(), 55f.CelciusToKelvin(), is_baby, symbol_override_prefix);
+            GameObject wildCreature = EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
+            if (is_baby == false)
+                NewCritterSystemUtility.FixCritterAnimationOverrides(wildCreature, anim_file, vanillaAnimationKanimId, symbol_override_prefix);
+
+
             int count = 3;
             string[] loot = new string[count];
             for (int i = 0; i < count; i++)
@@ -150,7 +160,7 @@ namespace ILoveSlicksters
 
         public const string base_kanim_id = "custom_oilfloater2_kanim";
         public const string egg_kanim_id = "custom_egg_oilfloater2_kanim";
-        public const string variantSprite = "hot_";
+        public const string variantSprite = "leaf_";
 
 
         public const string ID = "LeafyOilfloater";
