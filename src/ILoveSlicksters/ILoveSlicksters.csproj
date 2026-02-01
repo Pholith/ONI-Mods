@@ -67,7 +67,7 @@
     <Compile Include="WorldGenPatches.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="anim\slicksters\aqua_oilfloater\oilFloater.png">
+    <Content Include="anim\slicksters\aqua_oilfloater\oilFloater_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="anim\slicksters\baby_aqua_oilfloater\baby_oilFloater.png">

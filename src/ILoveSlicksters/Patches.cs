@@ -24,10 +24,11 @@ namespace ILoveSlicksters
         public override void OnLoad(Harmony harmony)
         {
             base.OnLoad(harmony);
-            new POptions().RegisterOptions(this, typeof(SlicksterOptions));
 
             // Init PLib and settings
             PUtil.InitLibrary();
+            new POptions().RegisterOptions(this, typeof(SlicksterOptions));
+
             Utilities.GenerateStringsTemplate(typeof(PHO_STRINGS));
 
             Settings = POptions.ReadSettings<SlicksterOptions>();

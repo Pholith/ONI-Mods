@@ -33,7 +33,7 @@ namespace ILoveSlicksters
         public bool Drowning => drowning;
 
         private StatusItem NeedLiquid;
-
+        
         protected override void OnPrefabInit()
         {
             base.OnPrefabInit();
@@ -65,7 +65,7 @@ namespace ILoveSlicksters
             SlicedUpdaterSim1000ms<GasDrowningMonitor>.instance.RegisterUpdate1000ms(this);
             OnMove();
             CheckDrowning();
-            this.cellChangedHandlerID = Singleton<CellChangeMonitor>.Instance.RegisterCellChangedHandler(transform, new System.Action<object>(OnMoveDispatcher), "GasDrowningMonitor.OnSpawn");
+            this.cellChangedHandlerID = Singleton<CellChangeMonitor>.Instance.RegisterCellChangedHandler(transform, OnMoveDispatcher, this,  "GasDrowningMonitor.OnSpawn");
 
         }
 
@@ -82,7 +82,7 @@ namespace ILoveSlicksters
             }
             CheckDrowning();
         }
-
+        
         protected override void OnCleanUp()
         {
             Singleton<CellChangeMonitor>.Instance.UnregisterCellChangedHandler(ref this.cellChangedHandlerID);
