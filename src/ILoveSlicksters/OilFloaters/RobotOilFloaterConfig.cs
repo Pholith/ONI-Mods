@@ -63,12 +63,13 @@ namespace ILoveSlicksters
 
             int count = (int)prefab.AddOrGet<PrimaryElement>().Mass;
 
-            string[] loot = new string[count];
-            for (int i = 0; i < count; i++)
+            // Klei changed how they handle drops, need to do that now.
+            prefab.GetComponent<KPrefabID>().prefabInitFn += (GameObject go) =>
             {
-                loot[i] = "Steel";
-            }
-            prefab.AddOrGet<Butcherable>().SetDrops(loot);
+                var drops = new Dictionary<string, float>();
+                drops[SimHashes.Steel.ToString()] = 50;
+                go.AddOrGet<Butcherable>().SetDrops(drops);
+            };
 
             if (!ILoveSlicksters.Settings.DisableRobotSlicksterSpore)
             {

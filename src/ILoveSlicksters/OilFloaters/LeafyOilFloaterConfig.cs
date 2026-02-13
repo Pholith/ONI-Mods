@@ -63,13 +63,14 @@ namespace ILoveSlicksters
                 NewCritterSystemUtility.FixCritterAnimationOverrides(wildCreature, anim_file, vanillaAnimationKanimId, symbol_override_prefix);
 
 
-            int count = 3;
-            string[] loot = new string[count];
-            for (int i = 0; i < count; i++)
+
+            prefab.GetComponent<KPrefabID>().prefabInitFn += (GameObject go) =>
             {
-                loot[i] = TUNING.FOOD.FOOD_TYPES.PRICKLEFRUIT.Id;
-            }
-            prefab.AddOrGet<Butcherable>().SetDrops(loot);
+                var drops = new Dictionary<string, float>();
+                drops[TUNING.FOOD.FOOD_TYPES.PRICKLEFRUIT.Id] = 3;
+                go.AddOrGet<Butcherable>().SetDrops(drops);
+            };
+
             prefab.AddOrGet<Navigator>().defaultSpeed = 1.5f;
             DiseaseDropper.Def def = prefab.AddOrGetDef<DiseaseDropper.Def>();
             def.diseaseIdx = Db.Get().Diseases.GetIndex(Db.Get().Diseases.PollenGerms.id);

@@ -7,6 +7,7 @@ using PeterHan.PLib.Options;
 using Pholib;
 using System;
 using System.Collections.Generic;
+using TemplateClasses;
 using TUNING;
 using UnityEngine;
 using static TUNING.CREATURES;
@@ -413,15 +414,13 @@ namespace ILoveSlicksters
 
 
                 // Patch the dead drop
-                string[] loot = new string[5];
-                loot[0] = BasicFabricConfig.ID;
-                loot[1] = BasicFabricConfig.ID;
-                loot[2] = BasicFabricConfig.ID;
-                loot[3] = MeatConfig.ID;
-                loot[4] = MeatConfig.ID;
-
-                __result.AddOrGet<Butcherable>().SetDrops(loot);
-
+                __result.GetComponent<KPrefabID>().prefabInitFn += (GameObject go) =>
+                {
+                    var drops = new Dictionary<string, float>();
+                    drops[BasicFabricConfig.ID] = 3;
+                    drops[MeatConfig.ID] = 2;
+                    go.AddOrGet<Butcherable>().SetDrops(drops);
+                };
 
             }
         }
