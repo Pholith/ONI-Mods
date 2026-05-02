@@ -7,7 +7,6 @@ using PeterHan.PLib.Options;
 using Pholib;
 using System;
 using System.Collections.Generic;
-using TemplateClasses;
 using TUNING;
 using UnityEngine;
 using static TUNING.CREATURES;
@@ -37,8 +36,8 @@ namespace ILoveSlicksters
             {
                 Settings = new SlicksterOptions();
             }
-            //new PLocalization().Register();
-
+            // new PLocalization().Register();
+            
             WorldGenPatches.VeryHot2_patch.OnLoad();
 
             // Egg Chance modifier

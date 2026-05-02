@@ -8,7 +8,7 @@ namespace GigaWattWire
         public new const string ID = "JacketedWireBridge";
 
         protected override string GetID() => ID;
-        
+
         public override BuildingDef CreateBuildingDef()
         {
             BuildingDef buildingDef = base.CreateBuildingDef();
@@ -41,7 +41,7 @@ namespace GigaWattWire
             Constructable component = go.GetComponent<Constructable>();
             component.requiredSkillPerk = Db.Get().SkillPerks.CanPowerTinker.Id;
         }
-        
+
     }
 
 }
