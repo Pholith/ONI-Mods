@@ -1,0 +1,25 @@
+{
+  "Pholith": {
+    "Printable": true,
+    "Model": "BionicMinion",
+    "Name": "Pholith",
+    "Description": "This {0} could hear a pin drop from halfway across the asteroid.",
+    "Gender": "Female",
+    "StressTrait": "UglyCrier",
+    "JoyTrait": "DataRainer",
+    "HeadShape": "1",
+    "Mouth": "1",
+    "Neck": "5",
+    "Eyes": "11",
+    "Hair": "hair_lynk",
+    "Body": "5",
+    "Belt": "5",
+    "Cuff": "5",
+    "Foot": "5",
+    "Hand": "5",
+    "Pelvis": "5",
+    "Leg": "5",
+    "LegSkin": "1",
+    "ArmSkin": "1"
+  }
+}

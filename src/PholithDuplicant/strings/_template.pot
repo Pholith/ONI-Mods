@@ -1,0 +1,14 @@
+msgid ""
+msgstr ""
+"Application: Oxygen Not Included"
+"POT Version: 2.0"
+
+#. PHOLITH.NAME
+msgctxt "PHOLITH.NAME"
+msgid "Cassidy"
+msgstr ""
+
+#. PHOLITH.DESCRIPTION
+msgctxt "PHOLITH.DESCRIPTION"
+msgid "This {0} doesn't understand right angles."
+msgstr ""

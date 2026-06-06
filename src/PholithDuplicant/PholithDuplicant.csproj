@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{014C80FB-9E3A-44F7-9ED9-B724D183CDC0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PholithDuplicant</RootNamespace>
+    <AssemblyName>PholithDuplicant</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Mods\PholithDuplicant\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Mods\PholithDuplicant\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\packages\GameLibs\0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\packages\GameLibs\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\packages\GameLibs\Assembly-CSharp-firstpass.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DuperyFixed">
+      <HintPath>..\packages\GameLibs\DuperyFixed.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\GameLibs\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Reflection.Emit.ILGeneration" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\packages\GameLibs\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\packages\GameLibs\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Pholib\Utilities.cs">
+      <Link>Utilities.cs</Link>
+    </Compile>
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Compile Include="PholithDuplicant.cs" />
+    <Compile Include="PholithOption.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="anim\assets\anim_mouth_morose_flap\anim_mouth_flap_0.png" />
+    <Content Include="anim\assets\antona_accesories\antona_accesories.png" />
+    <Content Include="anim\assets\cooler_accesories\cooler_accesories.png" />
+    <Content Include="anim\assets\greasy_accesories\greasy_accesories.png" />
+    <Content Include="anim\assets\hailey_accesories\hailey_accesories.png" />
+    <Content Include="anim\assets\headshape_morose\headshape_morose.png" />
+    <Content Include="anim\assets\leanne_accesories\leanne_accesories.png" />
+    <Content Include="anim\assets\lynk_accesories\lynk_accesories.png" />
+    <Content Include="anim\assets\mouth_morose\mouth_morose_0.png" />
+    <Content Include="anim\assets\none_accesories\none_accesories.png" />
+    <Content Include="anim\assets\ribby_accesories\ribby_accesories.png" />
+    <Content Include="anim\assets\tarp_accesories\tarp_accesories.png" />
+    <Content Include="dreamicons\dreamicon_antona.png" />
+    <Content Include="dreamicons\dreamicon_cooler.png" />
+    <Content Include="dreamicons\dreamicon_greasy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="dreamicons\dreamicon_haileywatt.png" />
+    <Content Include="dreamicons\dreamicon_leanne.png" />
+    <Content Include="dreamicons\dreamicon_lynk.png" />
+    <Content Include="dreamicons\dreamicon_morose.png" />
+    <Content Include="dreamicons\dreamicon_ribby.png" />
+    <Content Include="dreamicons\dreamicon_tarp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="anim\assets\anim_mouth_morose_flap\anim_mouth_flap_anim.bytes" />
+    <None Include="anim\assets\anim_mouth_morose_flap\anim_mouth_flap_build.bytes" />
+    <None Include="anim\assets\antona_accesories\antona_accesories_anim.bytes" />
+    <None Include="anim\assets\antona_accesories\antona_accesories_build.bytes" />
+    <None Include="anim\assets\cooler_accesories\cooler_accesories_anim.bytes" />
+    <None Include="anim\assets\cooler_accesories\cooler_accesories_build.bytes" />
+    <None Include="anim\assets\greasy_accesories\greasy_accesories_anim.bytes" />
+    <None Include="anim\assets\greasy_accesories\greasy_accesories_build.bytes" />
+    <None Include="anim\assets\hailey_accesories\hailey_accesories_anim.bytes" />
+    <None Include="anim\assets\hailey_accesories\hailey_accesories_build.bytes" />
+    <None Include="anim\assets\headshape_morose\headshape_morose_anim.bytes" />
+    <None Include="anim\assets\headshape_morose\headshape_morose_build.bytes" />
+    <None Include="anim\assets\leanne_accesories\leanne_accesories_anim.bytes" />
+    <None Include="anim\assets\leanne_accesories\leanne_accesories_build.bytes" />
+    <None Include="anim\assets\lynk_accesories\lynk_accesories_anim.bytes" />
+    <None Include="anim\assets\lynk_accesories\lynk_accesories_build.bytes" />
+    <None Include="anim\assets\mouth_morose\mouth_morose_anim.bytes" />
+    <None Include="anim\assets\mouth_morose\mouth_morose_build.bytes" />
+    <None Include="anim\assets\none_accesories\none_accesories_anim.bytes" />
+    <None Include="anim\assets\none_accesories\none_accesories_build.bytes" />
+    <None Include="anim\assets\ribby_accesories\ribby_accesories_anim.bytes" />
+    <None Include="anim\assets\ribby_accesories\ribby_accesories_build.bytes" />
+    <None Include="anim\assets\tarp_accesories\tarp_accesories_anim.bytes" />
+    <None Include="anim\assets\tarp_accesories\tarp_accesories_build.bytes" />
+    <None Include="mod.yaml" />
+    <None Include="mod_info.yaml" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\PholithDuplicant.csproj.AssemblyReference.cache" />
+    <None Include="packages.config" />
+    <None Include="PERSONALITIES.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="strings\_template.pot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>echo ====== Copy mods anim and files...
+
+xcopy /E /I /Q "$(ProjectDir)\anim" "$(OutDir)\anim" /y
+xcopy /E /I /Q "$(ProjectDir)\translations" "$(OutDir)\translations" /y
+copy "$(ProjectDir)\screen1.png" "$(OutDir)\screen1.png" /y &gt; nul
+copy "$(ProjectDir)\mod_info.yaml" "$(OutDir)\mod_info.yaml" /y &gt; nul
+copy "$(ProjectDir)\mod.yaml" "$(OutDir)\mod.yaml" /y &gt; nul
+
+echo ======  Clean and Copy to /Dev ...
+rmdir /Q /S "$(SolutionDir)\..\..\..\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)"
+xcopy "$(TargetDir.TrimEnd('\'))" "$(SolutionDir)\..\..\..\Klei\OxygenNotIncluded\mods\dev\$(ProjectName)" /E /I /Q
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>
