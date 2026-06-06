@@ -1,0 +1,29 @@
+tags:
+  - AllowExceedNodeBorders
+shape: ShortWide
+borders:
+  - 1
+blobSize:
+  min: 8
+  max: 12
+internalMobs:
+  - type: OilWell
+    count:
+      min: 1
+      max: 1
+ElementChoiceGroups:
+  RoomCenterElements:
+    selectionMethod: WeightedResample
+    choices:
+      - element: CrudeOil
+        weight: 1        
+      - element: CarbonDioxide
+        weight: 3        
+  RoomBorderChoices0:
+    selectionMethod: WeightedResample
+    choices:
+      - element: Obsidian
+        weight: 2
+      - element: Granite
+        weight: 1
+

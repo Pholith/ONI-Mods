@@ -1,0 +1,32 @@
+biomeNoise: noise/subworldForest
+temperatureRange: Room
+pdWeight: 0.5
+density:
+  min: 20
+  max: 25
+avoidRadius: 10
+minChildCount: 2
+sampleBehaviour: PoissonDisk
+borderOverride: rocky
+biomes:
+  - name: biomes/CustomForest/Basic
+    weight: 2
+    tags:
+      - Oxyfern
+      - ForestTree     
+      - BasicSingleHarvestPlant
+      - BasicSingleHarvestPlantSeed
+      - ForestForagePlantPlanted
+      - LightBug
+      - LeafyPlant        
+      - LeafyPlantSeed
+      - Squirrel
+
+tags:
+  - IgnoreCaveOverride
+  - NoGlobalFeatureSpawning
+
+centralFeature:
+  type: features/forest/SmallLake
+features: []
+zoneType: Forest

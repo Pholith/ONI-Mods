@@ -14,15 +14,7 @@ namespace GigaWattWire
         {
             BuildingDef buildingDef = base.CreateBuildingDef();
 
-            Logs.Log("ICIII");
-            Logs.Log(buildingDef.IsTilePiece);
-            Logs.Log(buildingDef.TileLayer);
-
-
             buildingDef.AnimFiles = new KAnimFile[1] { Assets.GetAnim("gigawatt_wire_bridge_kanim") };
-
-            Logs.Log(buildingDef.IsTilePiece);
-            Logs.Log(buildingDef.TileLayer);
 
             buildingDef.Mass = WirePatchs.GIGAWATT_WIRE_MASS_KG;
             buildingDef.MaterialCategory = WirePatchs.GIGAWATT_WIRE_MATERIALS;

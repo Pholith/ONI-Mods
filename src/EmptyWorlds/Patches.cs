@@ -83,11 +83,11 @@ namespace EmptyWorlds
             }
         }
     }
-
+    /* I don't remember the purpose of that and now it seems changing nothing ?
     [HarmonyPatch(typeof(WorldGen), "DrawWorldBorder")]
     public class WorldGen_DrawWorldBorder
     {
-        private static void Prefix(WorldGen __instance, Sim.Cell[] cells, Chunk world, SeededRandom rnd, ref HashSet<int> borderCells, ref List<RectInt> poiBounds, WorldGen.OfflineCallbackFunction updateProgressFn)
+        public static void Prefix(WorldGen __instance, ref WorldgenSimData simData, Chunk world, SeededRandom rnd, ref HashSet<int> borderCells, ref List<RectInt> poiBounds, WorldGen.OfflineCallbackFunction updateProgressFn)
         {
             bool boolSetting = __instance.Settings.GetBoolSetting("DrawWorldBorderForce");
             int intSetting = __instance.Settings.GetIntSetting("WorldBorderThickness");
@@ -96,6 +96,8 @@ namespace EmptyWorlds
             byte new_elem_idx = (byte)ElementLoader.elements.IndexOf(WorldGen.unobtaniumElement);
             float temperature = WorldGen.unobtaniumElement.defaultValues.temperature;
             float mass = WorldGen.unobtaniumElement.defaultValues.mass;
+
+
             try
             {
                 for (int l = 0; l < world.size.x; l++)
@@ -108,7 +110,7 @@ namespace EmptyWorlds
                         if (boolSetting)
                         {
                             borderCells.Add(num13);
-                            cells[num13].SetValues(new_elem_idx, temperature, mass);
+                            simData.cells[num13].SetValues(new_elem_idx, temperature, mass);
                         }
                     }
 
@@ -121,7 +123,7 @@ namespace EmptyWorlds
             }
 
         }
-    }
+    }*/
 
 
 }

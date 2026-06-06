@@ -354,8 +354,8 @@ xcopy "$(TargetDir.TrimEnd('\'))" "$(SolutionDir)\..\..\..\Klei\OxygenNotInclude
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\MSBuild.ILMerge.Task.2.0.0-pre501\build\MSBuild.ILMerge.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSBuild.ILMerge.Task.2.0.0-pre501\build\MSBuild.ILMerge.Task.targets'))" />
     <Error Condition="!Exists('..\packages\ILMerge.3.0.41\build\ILMerge.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILMerge.3.0.41\build\ILMerge.props'))" />
-    <Error Condition="!Exists('..\packages\ILRepack.Lib.MSBuild.Task.2.0.44.2\build\ILRepack.Lib.MSBuild.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILRepack.Lib.MSBuild.Task.2.0.44.2\build\ILRepack.Lib.MSBuild.Task.targets'))" />
+    <Error Condition="!Exists('..\packages\ILRepack.Lib.MSBuild.Task.2.0.45\build\ILRepack.Lib.MSBuild.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILRepack.Lib.MSBuild.Task.2.0.45\build\ILRepack.Lib.MSBuild.Task.targets'))" />
   </Target>
   <Import Project="..\packages\MSBuild.ILMerge.Task.2.0.0-pre501\build\MSBuild.ILMerge.Task.targets" Condition="Exists('..\packages\MSBuild.ILMerge.Task.2.0.0-pre501\build\MSBuild.ILMerge.Task.targets')" />
-  <Import Project="..\packages\ILRepack.Lib.MSBuild.Task.2.0.44.2\build\ILRepack.Lib.MSBuild.Task.targets" Condition="Exists('..\packages\ILRepack.Lib.MSBuild.Task.2.0.44.2\build\ILRepack.Lib.MSBuild.Task.targets')" />
+  <Import Project="..\packages\ILRepack.Lib.MSBuild.Task.2.0.45\build\ILRepack.Lib.MSBuild.Task.targets" Condition="Exists('..\packages\ILRepack.Lib.MSBuild.Task.2.0.45\build\ILRepack.Lib.MSBuild.Task.targets')" />
 </Project>
