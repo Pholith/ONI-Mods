@@ -1,9 +1,9 @@
 {
-  "Pholith": {
+  "PHOLITH": {
     "Printable": true,
     "Model": "BionicMinion",
     "Name": "Pholith",
-    "Description": "This {0} could hear a pin drop from halfway across the asteroid.",
+    "Description": "{0} only regrets of becoming an android is that she can't eat her favorite ice cream anymore.",
     "Gender": "Female",
     "StressTrait": "UglyCrier",
     "JoyTrait": "DataRainer",
@@ -11,7 +11,7 @@
     "Mouth": "1",
     "Neck": "5",
     "Eyes": "11",
-    "Hair": "hair_lynk",
+    "Hair": "hair_pholith",
     "Body": "5",
     "Belt": "5",
     "Cuff": "5",

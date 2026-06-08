@@ -7,18 +7,18 @@ namespace PholithDuplicant
     [ModInfo("https://github.com/Pholith/ONI-Mods", "screen1.png")]
     public class PholithOptions
     {
-        [Option("Guarantee Pholith", "If the box is checked, ")]
+        [Option("Guarantee Pholith", "If the box is checked, Pholith is garanteed to spawn at each print.")]
         [JsonProperty]
         public bool GuaranteePholith { get; set; }
 
-        [Option("Guarantee Pholith", "If the box is checked, ")]
+        [Option("Use Pholith real first name", "If the box is checked, use the real first name of Pholith as default name (Victoire).")]
         [JsonProperty]
-        public bool GuaranteePholith2 { get; set; }
+        public bool UsePholithFirstName { get; set; }
 
         public PholithOptions()
         {
-            GuaranteePholith = true;
-            GuaranteePholith2 = false;
+            GuaranteePholith = false;
+            UsePholithFirstName = false;
         }
     }
 }

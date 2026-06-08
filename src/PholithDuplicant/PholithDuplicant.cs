@@ -1,8 +1,10 @@
 ﻿using HarmonyLib;
 using KMod;
+using Newtonsoft.Json;
 using PeterHan.PLib.Options;
 using Pholib;
 using System.Collections.Generic;
+using System.IO;
 
 namespace PholithDuplicant
 {
@@ -11,19 +13,19 @@ namespace PholithDuplicant
 
         public static PholithOptions Settings;
 
+        public static string modPath;
+
         public override void OnLoad(Harmony harmony)
         {
             base.OnLoad(harmony);
+            modPath = path;
+
             new POptions().RegisterOptions(this, typeof(PholithOptions));
 
             // Init PLib and settings
             ///PUtil.InitLibrary();
 
-            Settings = POptions.ReadSettings<PholithOptions>();
-            if (Settings == null)
-            {
-                Settings = new PholithOptions();
-            }
+            ReadSettings();
         }
 
         public static void ReadSettings()
@@ -34,21 +36,52 @@ namespace PholithDuplicant
             {
                 Settings = new PholithOptions();
             }
+
+            // Read and write personalities
+            string personalitiesPath = Path.Combine(modPath, "PERSONALITIES.json");
+            if (!string.IsNullOrWhiteSpace(modPath))
+            {
+                try
+                {
+                    Dictionary<string, PersonalityOutline> readedPersonalities = default;
+                    using (StreamReader streamReader = new StreamReader(personalitiesPath))
+                    {
+                        readedPersonalities = JsonConvert.DeserializeObject<Dictionary<string, PersonalityOutline>>(streamReader.ReadToEnd());
+                        if (readedPersonalities == null || !readedPersonalities.ContainsKey("PHOLITH"))
+                        {
+                            Logs.Log($"Couldn't load Pholith dup in {personalitiesPath}");
+                            return;
+                        }
+                        readedPersonalities["PHOLITH"].Name = Settings.UsePholithFirstName ? "Victoire" : "Pholith";
+                    }
+
+                    using (StreamWriter streamWriter = new StreamWriter(personalitiesPath))
+                    {
+                        streamWriter.Write(JsonConvert.SerializeObject(readedPersonalities));
+                    }
+                }
+                catch (System.Exception e)
+                {
+                    Logs.Log(e.ToString());
+                }
+                Settings = POptions.ReadSettings<PholithOptions>();
+            }
+
         }
     }
 
-       
-    [HarmonyPatch("PersonalityManager", "ReadPersonalities")]
-    public class Dupery_ReadPersonalities_Patch
-    {
-        public static void Postfix()
-        {
+    /*
+ [HarmonyPatch("PersonalityManager", "ReadPersonalities")]
+ public class Dupery_ReadPersonalities_Patch
+ {
+     public static void Postfix()
+     {
 
-            Logs.Log("test");
-            //Dictionary<string, dynamic> test = __result;
+         Logs.Log("test");
+         //Dictionary<string, dynamic> test = __result;
 
-        }
-    }
+     }
+ }*/
 
     [HarmonyPatch(typeof(CharacterSelectionController), "InitializeContainers")]
     public class CharacterSelectionController_InitializeContainers_Patch
@@ -75,7 +108,7 @@ namespace PholithDuplicant
             if (PholithDuplicant.Settings.GuaranteePholith && __instance == CharacterSelectionController_InitializeContainers_Patch.firstCharContainer)
             {
                 ___stats = new MinionStartingStats(Db.Get().Personalities.GetPersonalityFromNameStringKey("PHOLITH"));
-                
+
                 // Logs.Log(Traverse.Create(__instance).Method("IsCharacterInvalid").GetValue());
 
                 Traverse.Create(__instance).Method("SetAnimator").GetValue();

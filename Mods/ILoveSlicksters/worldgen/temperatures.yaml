@@ -1,8 +1,0 @@
-# keys to remove from in-memory structure when this file is loaded
-remove: [] 
-# elements to add from in-memory structure when this file is loaded
-add:
-#between very hot and extremely hot
-  VeryHot2:
-    min: 650.0
-    max: 740.0
