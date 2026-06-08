@@ -3,22 +3,22 @@ using PeterHan.PLib.Options;
 
 namespace PholithDuplicant
 {
-    [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptIn), RestartRequired]
     [ModInfo("https://github.com/Pholith/ONI-Mods", "screen1.png")]
     public class PholithOptions
     {
-        [Option("Instant Build", "If the box is checked, there's no need for a duplicant to come and build the notepad. It builds itself instantly.")]
+        [Option("Guarantee Pholith", "If the box is checked, ")]
         [JsonProperty]
-        public bool InstantBuild { get; set; }
+        public bool GuaranteePholith { get; set; }
 
-        [Option("Number of text lines", "Number of lines in the notepad side screen.")]
+        [Option("Guarantee Pholith", "If the box is checked, ")]
         [JsonProperty]
-        public int LineNumber { get; set; }
+        public bool GuaranteePholith2 { get; set; }
 
         public PholithOptions()
         {
-            InstantBuild = false;
-            LineNumber = 6;
+            GuaranteePholith = true;
+            GuaranteePholith2 = false;
         }
     }
 }

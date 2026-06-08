@@ -79,18 +79,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="anim\assets\anim_mouth_morose_flap\anim_mouth_flap_0.png" />
-    <Content Include="anim\assets\antona_accesories\antona_accesories.png" />
-    <Content Include="anim\assets\cooler_accesories\cooler_accesories.png" />
-    <Content Include="anim\assets\greasy_accesories\greasy_accesories.png" />
-    <Content Include="anim\assets\hailey_accesories\hailey_accesories.png" />
-    <Content Include="anim\assets\headshape_morose\headshape_morose.png" />
-    <Content Include="anim\assets\leanne_accesories\leanne_accesories.png" />
-    <Content Include="anim\assets\lynk_accesories\lynk_accesories.png" />
-    <Content Include="anim\assets\mouth_morose\mouth_morose_0.png" />
-    <Content Include="anim\assets\none_accesories\none_accesories.png" />
-    <Content Include="anim\assets\ribby_accesories\ribby_accesories.png" />
-    <Content Include="anim\assets\tarp_accesories\tarp_accesories.png" />
+    <Content Include="anim\assets\pholith_accesories\lynk_accesories_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="dreamicons\dreamicon_antona.png" />
     <Content Include="dreamicons\dreamicon_cooler.png" />
     <Content Include="dreamicons\dreamicon_greasy.png">
@@ -104,30 +95,12 @@
     <Content Include="dreamicons\dreamicon_tarp.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="anim\assets\anim_mouth_morose_flap\anim_mouth_flap_anim.bytes" />
-    <None Include="anim\assets\anim_mouth_morose_flap\anim_mouth_flap_build.bytes" />
-    <None Include="anim\assets\antona_accesories\antona_accesories_anim.bytes" />
-    <None Include="anim\assets\antona_accesories\antona_accesories_build.bytes" />
-    <None Include="anim\assets\cooler_accesories\cooler_accesories_anim.bytes" />
-    <None Include="anim\assets\cooler_accesories\cooler_accesories_build.bytes" />
-    <None Include="anim\assets\greasy_accesories\greasy_accesories_anim.bytes" />
-    <None Include="anim\assets\greasy_accesories\greasy_accesories_build.bytes" />
-    <None Include="anim\assets\hailey_accesories\hailey_accesories_anim.bytes" />
-    <None Include="anim\assets\hailey_accesories\hailey_accesories_build.bytes" />
-    <None Include="anim\assets\headshape_morose\headshape_morose_anim.bytes" />
-    <None Include="anim\assets\headshape_morose\headshape_morose_build.bytes" />
-    <None Include="anim\assets\leanne_accesories\leanne_accesories_anim.bytes" />
-    <None Include="anim\assets\leanne_accesories\leanne_accesories_build.bytes" />
-    <None Include="anim\assets\lynk_accesories\lynk_accesories_anim.bytes" />
-    <None Include="anim\assets\lynk_accesories\lynk_accesories_build.bytes" />
-    <None Include="anim\assets\mouth_morose\mouth_morose_anim.bytes" />
-    <None Include="anim\assets\mouth_morose\mouth_morose_build.bytes" />
-    <None Include="anim\assets\none_accesories\none_accesories_anim.bytes" />
-    <None Include="anim\assets\none_accesories\none_accesories_build.bytes" />
-    <None Include="anim\assets\ribby_accesories\ribby_accesories_anim.bytes" />
-    <None Include="anim\assets\ribby_accesories\ribby_accesories_build.bytes" />
-    <None Include="anim\assets\tarp_accesories\tarp_accesories_anim.bytes" />
-    <None Include="anim\assets\tarp_accesories\tarp_accesories_build.bytes" />
+    <None Include="anim\assets\pholith_accesories\lynk_accesories_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\assets\pholith_accesories\lynk_accesories_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="mod.yaml" />
     <None Include="mod_info.yaml" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />

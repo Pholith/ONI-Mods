@@ -2,6 +2,7 @@
 using KMod;
 using PeterHan.PLib.Options;
 using Pholib;
+using System.Collections.Generic;
 
 namespace PholithDuplicant
 {
@@ -35,13 +36,54 @@ namespace PholithDuplicant
             }
         }
     }
-    /*
+
+       
     [HarmonyPatch("PersonalityManager", "ReadPersonalities")]
     public class Dupery_ReadPersonalities_Patch
     {
-        public static void Postfix(Dictionary<string, PersonalityOutline> __result)
+        public static void Postfix()
         {
 
+            Logs.Log("test");
+            //Dictionary<string, dynamic> test = __result;
+
         }
-    }*/
+    }
+
+    [HarmonyPatch(typeof(CharacterSelectionController), "InitializeContainers")]
+    public class CharacterSelectionController_InitializeContainers_Patch
+    {
+
+        public static CharacterContainer firstCharContainer;
+        public static void Postfix(MinionSelectScreen __instance, List<ITelepadDeliverableContainer> ___containers)
+        {
+            foreach (ITelepadDeliverableContainer container in ___containers)
+            {
+                if (container is CharacterContainer charContainer)
+                {
+                    firstCharContainer = charContainer;
+                    break;
+                }
+            }
+        }
+    }
+    [HarmonyPatch(typeof(CharacterContainer), "GenerateCharacter")]
+    public class CharacterContainer_GenerateCharacter_Patch
+    {
+        public static void Postfix(CharacterContainer __instance, ref MinionStartingStats ___stats)
+        {
+            if (PholithDuplicant.Settings.GuaranteePholith && __instance == CharacterSelectionController_InitializeContainers_Patch.firstCharContainer)
+            {
+                ___stats = new MinionStartingStats(Db.Get().Personalities.GetPersonalityFromNameStringKey("PHOLITH"));
+                
+                // Logs.Log(Traverse.Create(__instance).Method("IsCharacterInvalid").GetValue());
+
+                Traverse.Create(__instance).Method("SetAnimator").GetValue();
+                Traverse.Create(__instance).Method("SetInfoText").GetValue();
+
+                __instance.StartCoroutine("SetAttributes");
+
+            }
+        }
+    }
 }

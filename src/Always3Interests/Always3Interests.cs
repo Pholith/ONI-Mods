@@ -384,8 +384,6 @@ namespace Always3Interests
                 if (Always3Interests.Settings.DisableBionicDuplicants) ___permittedModels.Remove(GameTags.Minions.Models.Bionic);
                 if (Always3Interests.Settings.DisableBiologicDuplicants) ___permittedModels.Remove(GameTags.Minions.Models.Standard);
             }
-            ;
-
         }
     }
 }
