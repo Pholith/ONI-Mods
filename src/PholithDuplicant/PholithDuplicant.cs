@@ -64,7 +64,6 @@ namespace PholithDuplicant
                 {
                     Logs.Log(e.ToString());
                 }
-                Settings = POptions.ReadSettings<PholithOptions>();
             }
 
         }
@@ -105,7 +104,7 @@ namespace PholithDuplicant
     {
         public static void Postfix(CharacterContainer __instance, ref MinionStartingStats ___stats)
         {
-            if (PholithDuplicant.Settings.GuaranteePholith && __instance == CharacterSelectionController_InitializeContainers_Patch.firstCharContainer)
+            if (PholithDuplicant.Settings != null && PholithDuplicant.Settings.GuaranteePholith && __instance == CharacterSelectionController_InitializeContainers_Patch.firstCharContainer)
             {
                 ___stats = new MinionStartingStats(Db.Get().Personalities.GetPersonalityFromNameStringKey("PHOLITH"));
 
