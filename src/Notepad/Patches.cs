@@ -188,12 +188,12 @@ namespace Notepad
     {
         public static void Postfix(ResourceSet<BuildingFacadeResource> __instance)
         {
-            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[0], PHO_STRINGS.BLACKBOARD.NAME, PHO_STRINGS.BLACKBOARD.DESC,    PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[0] + "_kanim", null, null, null));
-            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[1], PHO_STRINGS.BLUEPRINT.NAME, PHO_STRINGS.BLUEPRINT.DESC,      PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[1] + "_kanim", null, null, null));
-            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[2], PHO_STRINGS.POSTIT.NAME, PHO_STRINGS.POSTIT.DESC,            PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[2] + "_kanim", null, null, null));
-            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[3], PHO_STRINGS.STONKS.NAME, PHO_STRINGS.STONKS.DESC,            PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[3] + "_kanim", null, null, null));
-            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[4], PHO_STRINGS.TV.NAME, PHO_STRINGS.TV.DESC,                    PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[4] + "_kanim", null, null, null));
-            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[5], PHO_STRINGS.WARNING.NAME, PHO_STRINGS.WARNING.DESC,          PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[5] + "_kanim", null, null, null));
+            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[0], PHO_STRINGS.BLACKBOARD.NAME, PHO_STRINGS.BLACKBOARD.DESC,    PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[0] + "_kanim", null, null, null, null));
+            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[1], PHO_STRINGS.BLUEPRINT.NAME, PHO_STRINGS.BLUEPRINT.DESC,      PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[1] + "_kanim", null, null, null, null));
+            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[2], PHO_STRINGS.POSTIT.NAME, PHO_STRINGS.POSTIT.DESC,            PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[2] + "_kanim", null, null, null, null));
+            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[3], PHO_STRINGS.STONKS.NAME, PHO_STRINGS.STONKS.DESC,            PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[3] + "_kanim", null, null, null, null));
+            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[4], PHO_STRINGS.TV.NAME, PHO_STRINGS.TV.DESC,                    PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[4] + "_kanim", null, null, null, null));
+            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[5], PHO_STRINGS.WARNING.NAME, PHO_STRINGS.WARNING.DESC,          PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[5] + "_kanim", null, null, null, null));
         }
     }
 

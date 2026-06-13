@@ -57,9 +57,10 @@ namespace GigaWattWire
             Max2kW,
             Max20kW,
             Max50kW,
+            Max4kW,
+            Max5kW,
             Max1MW,
             Max1GW,
-            Max5kW,
             NumRatings
         }
 
@@ -85,6 +86,7 @@ namespace GigaWattWire
                 case WattageRating.Max500W:
                 case WattageRating.Max1kW:
                 case WattageRating.Max2kW:
+                case WattageRating.Max4kW:
                 case WattageRating.Max5kW:
                     return GameUtil.WattageFormatterUnit.Watts;
                 case WattageRating.Max20kW:

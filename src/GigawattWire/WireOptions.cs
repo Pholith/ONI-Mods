@@ -52,7 +52,7 @@ namespace GigaWattWire
             EnableBigWireToPassThroughtWall = false;
             EnableMegaWattWire = true;
             EnableGigaWattWire = true;
-            EnableJacketedWire = true;
+            EnableJacketedWire = false;
             Enable100kWTransformer = true;
             Enable2MWTranformer = false;
         }
