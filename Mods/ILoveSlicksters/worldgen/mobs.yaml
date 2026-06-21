@@ -1,0 +1,109 @@
+MobLookupTable:
+   #keys to remove from in-memory structure when this file is loaded
+  remove: []
+  #elements to add from in-memory structure when this file is loaded
+  add:
+    LeafyOilfloater:
+      location: Floor
+      selectMethod: Centroid
+      density:
+        min: 0.05
+        max: 0.2
+      width: 1
+      height: 1
+    LeafyOilfloaterEgg:
+      location: Floor
+      selectMethod: Centroid
+      density:
+        min: 0.05
+        max: 0.1
+      width: 1
+      height: 1
+    EthanolOilfloater:
+      location: Floor
+      selectMethod: Centroid
+      density:
+        min: 0.1
+        max: 0.2
+      width: 1
+      height: 1
+    EthanolOilfloaterEgg:
+      location: Floor
+      selectMethod: Centroid
+      density:
+        min: 0.05
+        max: 0.1
+      width: 1
+      height: 1
+    OwOOilfloater:
+      location: Floor
+      selectMethod: Centroid
+      density:
+        min: 0.05
+        max: 0.1
+      width: 1
+      height: 1
+    OilFloaterDecor:
+      location: Floor
+      selectMethod: Centroid
+      density:
+        min: 0.02
+        max: 0.1
+      width: 1
+      height: 1
+    OwOOilfloaterEgg:
+      location: Floor
+      selectMethod: Centroid
+      density:
+        min: 0.05
+        max: 0.2
+      width: 1
+      height: 1
+    RobotOilfloater:
+      location: Floor
+      selectMethod: Centroid
+      density:
+        min: 0.1
+        max: 0.2
+      width: 1
+      height: 1
+    RobotOilfloaterEgg:
+      location: Floor
+      selectMethod: Centroid
+      density:
+        min: 0.1
+        max: 0.2
+      width: 1
+      height: 1
+    FrozenOilfloater:
+      location: Floor
+      selectMethod: Centroid
+      density:
+        min: 0.1
+        max: 0.2
+      width: 1
+      height: 1
+    FrozenOilfloaterEgg:
+      location: Floor
+      selectMethod: Centroid
+      density:
+        min: 0.05
+        max: 0.1
+      width: 1
+      height: 1
+    OilFloaterHighTemp:
+      location: Floor
+      selectMethod: Centroid
+      density:
+        min: 0.1
+        max: 0.2
+      width: 1
+      height: 1
+    AquaOilFloater:
+      location: ShallowLiquid
+      selectMethod: Centroid
+      density:
+        min: 0.01
+        max: 0.03
+      width: 1
+      height: 1

@@ -1,0 +1,32 @@
+biomeNoise: noise/subworldFrozen
+temperatureRange: Cold
+minChildCount: 4
+density:
+  min: 10
+  max: 20
+avoidRadius: 20.0
+sampleBehaviour: PoissonDisk
+biomes:
+  - name: biomes/NotSoFrozen/Basic
+    tags:
+      - FrozenOilfloater
+      - FrozenOilfloaterEgg
+      - ColdWheat
+      - ColdWheatSeed
+      - ColdBreather
+
+features:
+  - type: features/AntigelBubble
+  - type: features/frozen/SandGeode
+tags:
+  - IgnoreCaveOverride
+subworldTemplateRules:
+  - names:
+      - poi/frozen/lab_basement
+      - poi/frozen/lab_splitroom
+      - poi/frozen/frag_vendingmachine
+      - poi/frozen/frag_lockers
+    listRule: TrySome
+    someCount: 3
+
+zoneType: FrozenWastes

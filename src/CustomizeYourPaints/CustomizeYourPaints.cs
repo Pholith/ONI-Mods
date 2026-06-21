@@ -25,7 +25,7 @@ namespace CustomizeYourPaints
         public override void OnLoad(Harmony harmony)
         {
             base.OnLoad(harmony);
-
+            Logs.DebugLog = true;
         }
 
         public static Components.Cmps<ArtOverrideRestorer> artRestorers = new Components.Cmps<ArtOverrideRestorer>();
@@ -41,7 +41,7 @@ namespace CustomizeYourPaints
     {
 #pragma warning disable IDE1006 // Styles d'affectation de noms
         private static readonly string ORIGINALS_PATH = Path.Combine("src", "originals");
-#pragma warning restore IDE1006 // Styles d'affectation de noms
+#pragma warning restore IDE1006
 
         public static void Prefix(Content content)
         {
@@ -57,8 +57,9 @@ namespace CustomizeYourPaints
             byte[] wide_painting_build = File.ReadAllBytes(Path.Combine(Utilities.ModPath(), ORIGINALS_PATH, "painting_wide_art_a_build.bytes"));
 
             ArtableStages_Constructor_Patch.IdsToAdds = new List<Tuple<string, CanvasSize>>();
-            string customPaintsPath = FileSystem.Normalize(Path.Combine(Path.Combine(Manager.GetDirectory(), "config"), "CustomizeYourPaints"));
+            string customPaintsPath = FileSystem.Normalize(Path.Combine(Manager.GetDirectory(), "config", "CustomizeYourPaints"));
 
+            // Autimaticly move sample image to the good folder.
             if (!Directory.Exists(customPaintsPath))
             {
                 Directory.CreateDirectory(customPaintsPath);
@@ -74,13 +75,13 @@ namespace CustomizeYourPaints
 
                 if (splitedFile.Length < 2) continue;
 
-                string prefix = splitedFile[0].ToLower();
+                string prefix = splitedFile[0].ToLowerInvariant();
                 string suffix = counter.ToString("00") + "_" + splitedFile[1];
                 CanvasSize canvasSize = CanvasSize.Normal;
                 if (prefix.Contains("wide")) canvasSize = CanvasSize.Wide;
                 if (prefix.Contains("tall")) canvasSize = CanvasSize.Tall;
 
-                var anim = new KAnimFile.Mod
+                KAnimFile.Mod anim = new KAnimFile.Mod
                 {
                     textures = new List<Texture2D>()
                 };
@@ -122,11 +123,20 @@ namespace CustomizeYourPaints
 
                 anim.textures.Add(normalPainting2);
 
-                //File.WriteAllBytes(Path.Combine(ImageUtil.ModPath(), ORIGINALS_PATH, $"image{suffix}.png"), normalPainting2.EncodeToPNG());
+                if (Logs.DebugLog)
+                    File.WriteAllBytes(Path.Combine(Utilities.ModPath(), ORIGINALS_PATH, $"image{suffix}.png"), normalPainting2.EncodeToPNG());
 
                 string kanimId = $"{CUSTOM_PAINT_ID}_{suffix}_kanim";
-                //Logs.Log("Adding " + kanimId);
-                ModUtil.AddKAnimMod(kanimId, anim);
+
+                var r = ModUtil.AddKAnimMod(kanimId, anim);
+
+                if (Logs.DebugLog)
+                    foreach (var tex in r.textureList)
+                    {
+                        File.WriteAllBytes(Path.Combine(Utilities.ModPath(), ORIGINALS_PATH, $"image{tex}.png"), tex.EncodeToPNG());
+                    }
+
+
                 ArtableStages_Constructor_Patch.IdsToAdds.Add(new Tuple<string, CanvasSize>(kanimId, canvasSize));
             }
         }
@@ -165,7 +175,7 @@ namespace CustomizeYourPaints
         {
             foreach (Tuple<string, CanvasSize> tuple in IdsToAdds)
             {
-                Logs.Log("Adding " + tuple.first);
+                Logs.Log("Adding to ArtableStages " + tuple.first);
                 AddCustomPaint(__instance,
                     tuple.first.Replace("_kanim", "").Replace($"{CUSTOM_PAINT_ID}_", "").Substring(3),
                     "A custom paint added using the CustomizeYourPaints mod.",
@@ -193,13 +203,13 @@ namespace CustomizeYourPaints
                 Logs.Error($"Paint with id {id} is already loaded. Check your images names.");
             }
             myOverrides.Add(id);
-            __instance.Add(
+            ArtableStage addedArt = __instance.Add(
                 id,
                 name,
                 description,
                 PermitRarity.Universal,
                 kanim,
-                "art_b", // leftover from when these were one merged animation file
+                canvasSize == CanvasSize.Normal ? "art_b" : "art_a",
                 decor,
                 true,
                 ArtableStatuses.ArtableStatusType.LookingGreat.ToString(),
@@ -207,6 +217,7 @@ namespace CustomizeYourPaints
                 "",
                 new string[] { },
                 new string[] { });
+            Logs.LogIfDebugging(addedArt.Dump());
         }
     }
 }

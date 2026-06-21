@@ -1,0 +1,28 @@
+biomeNoise: noise/subworldForest
+temperatureRange: Room
+pdWeight: 0.5
+density:
+  min: 10
+  max: 15
+avoidRadius: 5
+minChildCount: 4
+sampleBehaviour: PoissonDisk
+borderOverride: hardToDig
+biomes:
+  - name: biomes/Forest/Metal
+    weight: 2
+    tags:
+      - LeafyOilfloater
+      - LeafyOilfloaterEgg
+      - ForestTree     
+      - BasicSingleHarvestPlant
+      - BasicSingleHarvestPlantSeed
+      - ForestForagePlantPlanted
+      - LightBug
+tags:
+  - StartWorld
+  - IgnoreCaveOverride
+  - NoGlobalFeatureSpawning
+centralFeature:
+features: []
+zoneType: Forest

@@ -113,7 +113,7 @@ namespace ILoveSlicksters
             gameObject.AddOrGet<LightVulnerable>();
 
             gameObject.AddOrGetDef<CreatureFallMonitor.Def>().canSwim = true;
-            gameObject.AddOrGetDef<CreatureFallMonitor.Def>().checkHead = false;
+            gameObject.AddOrGetDef<FishOvercrowdingMonitor.Def>();
 
             gameObject.AddWeapon(1f, 1f, AttackProperties.DamageType.Standard, AttackProperties.TargetType.Single, 1, 0f);
             EntityTemplates.CreateAndRegisterBaggedCreature(gameObject, false, true, false);
@@ -123,18 +123,36 @@ namespace ILoveSlicksters
                 inhaleSound = "OilFloaterBaby_intake_air";
             }
 
+            KAnimFile anim2 = Assets.GetAnim("oilfloater_emotes_kanim");
             IdleStates.Def idleState = new IdleStates.Def();
             idleState.customIdleAnim = new IdleStates.Def.IdleAnimCallback(AquaOilfloaterConfig.CustomIdleAnim);
 
-            ChoreTable.Builder chore_table = new ChoreTable.Builder().Add(new DeathStates.Def()).Add(new AnimInterruptStates.Def())
-                .Add(new GrowUpStates.Def(), is_baby).Add(new TrappedStates.Def()).Add(new IncubatingStates.Def(), is_baby)
-                .Add(new BaggedStates.Def()).Add(new FallStates.Def()).Add(new StunnedStates.Def())
-                /*.Add(new DrowningStates.Def())*/.Add(new DebugGoToStates.Def()).PushInterruptGroup()//.Add(new GasDrowningStates.Def())
-                .Add(new CreatureSleepStates.Def()).Add(new FixedCaptureStates.Def())
-                .Add(new RanchedStates.Def(), !is_baby).Add(new LayEggStates.Def(), !is_baby).Add(new InhaleStates.Def
+            ChoreTable.Builder chore_table = new ChoreTable.Builder()
+                .Add(new DeathStates.Def())
+                .Add(new AnimInterruptStates.Def())
+                .Add(new GrowUpStates.Def(), is_baby)
+                .Add(new TrappedStates.Def())
+                .Add(new IncubatingStates.Def(), is_baby)
+                .Add(new BaggedStates.Def())
+                .Add(new FallStates.Def())
+                .Add(new StunnedStates.Def())
+                /*.Add(new DrowningStates.Def())*/
+                .Add(new DebugGoToStates.Def())
+                .PushInterruptGroup()//.Add(new GasDrowningStates.Def())
+                .Add(new CreatureSleepStates.Def())
+                .Add(new FixedCaptureStates.Def())
+                .Add(new RanchedStates.Def(), !is_baby)
+                .Add(new LayEggStates.Def(), !is_baby)
+                .Add(new InhaleStates.Def
                 {
                     inhaleSound = inhaleSound
-                }).Add(new SameSpotPoopStates.Def()).Add(new MoveToLureStates.Def()).Add(new CritterCondoStates.Def()).Add(new CallAdultStates.Def(), is_baby).PopInterruptGroup()
+                }).Add(new DrinkMilkStates.Def())
+                .Add(new SameSpotPoopStates.Def())
+                .Add(new MoveToLureStates.Def())
+                .Add(new CritterCondoStates.Def())
+                .Add(new CritterEmoteStates.Def(anim2))
+                .Add(new CallAdultStates.Def(), is_baby)
+                .PopInterruptGroup()
                 .Add(idleState);
 
             CritterCondoInteractMontior.Def def2 = gameObject.AddOrGetDef<CritterCondoInteractMontior.Def>();
@@ -151,6 +169,7 @@ namespace ILoveSlicksters
             OccupyArea component2 = gameObject.GetComponent<OccupyArea>();
 
             EntityTemplates.AddCreatureBrain(gameObject, chore_table, GameTags.Creatures.Species.OilFloaterSpecies, symbolOverridePrefix);
+            // I don't know why I would need this, it already makes sounds in game.
             //string sound = "OilFloater_move_LP";
             //if (is_baby)
             //{

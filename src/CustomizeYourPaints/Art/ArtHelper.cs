@@ -1,7 +1,4 @@
-﻿using HarmonyLib;
-using Pholib;
-
-namespace CustomizeYourPaints.Art
+﻿namespace CustomizeYourPaints.Art
 {
     public class ArtHelper
     {
@@ -10,7 +7,7 @@ namespace CustomizeYourPaints.Art
             ArtOverride artOverride;
             if (instance.TryGetComponent<ArtOverride>(out artOverride) && !artOverride.overrideStage.IsNullOrWhiteSpace()) // test if mod is active
             {
-                if (CustomizeYourPaints.myOverrides.Contains(artOverride.overrideStage)) 
+                if (CustomizeYourPaints.myOverrides.Contains(artOverride.overrideStage))
                     currentStage = artOverride.overrideStage;
                 else if (CustomizeYourPaints.myOverrides.Count > 0)
                 {
@@ -18,7 +15,7 @@ namespace CustomizeYourPaints.Art
                     //Logs.Log("search name = " + searchName);
                     currentStage = CustomizeYourPaints.myOverrides.Find((txt) => txt == searchName);
 
-                    if (currentStage == null )
+                    if (currentStage == null)
                     {
                         currentStage = CustomizeYourPaints.myOverrides.GetRandom();
                     }
