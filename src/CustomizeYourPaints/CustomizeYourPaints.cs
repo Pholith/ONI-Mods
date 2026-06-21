@@ -25,7 +25,6 @@ namespace CustomizeYourPaints
         public override void OnLoad(Harmony harmony)
         {
             base.OnLoad(harmony);
-            Logs.DebugLog = true;
         }
 
         public static Components.Cmps<ArtOverrideRestorer> artRestorers = new Components.Cmps<ArtOverrideRestorer>();
@@ -128,14 +127,7 @@ namespace CustomizeYourPaints
 
                 string kanimId = $"{CUSTOM_PAINT_ID}_{suffix}_kanim";
 
-                var r = ModUtil.AddKAnimMod(kanimId, anim);
-
-                if (Logs.DebugLog)
-                    foreach (var tex in r.textureList)
-                    {
-                        File.WriteAllBytes(Path.Combine(Utilities.ModPath(), ORIGINALS_PATH, $"image{tex}.png"), tex.EncodeToPNG());
-                    }
-
+                ModUtil.AddKAnimMod(kanimId, anim);
 
                 ArtableStages_Constructor_Patch.IdsToAdds.Add(new Tuple<string, CanvasSize>(kanimId, canvasSize));
             }
