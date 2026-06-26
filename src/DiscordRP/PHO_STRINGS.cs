@@ -1,4 +1,4 @@
-﻿namespace DiscordRP
+﻿namespace DiscordRPMod
 {
     public static class PHO_STRINGS
     {

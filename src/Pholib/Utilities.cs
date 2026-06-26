@@ -43,6 +43,12 @@ namespace Pholib
             InitIfNot();
             Debug.Log($"Pholib: [{modName}] " + (informations == null ? "null" : informations.ToString()));
         }
+        public static void LogFormat(string message, params object[] args)
+        {
+            InitIfNot();
+            string msg = $"Pholib: [{modName}] {message}";
+            Debug.LogFormat(msg, args);
+        }
 
 
         public static void LogIfDebugging(string informations)

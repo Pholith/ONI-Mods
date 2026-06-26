@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using PeterHan.PLib.Options;
 
-namespace DiscordRP
+namespace DiscordRPMod
 {
     [JsonObject(MemberSerialization.OptIn)]
     [ModInfo("https://github.com/Pholith/ONI-Mods", "screen1.png")]

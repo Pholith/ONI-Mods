@@ -79,5 +79,32 @@ namespace Pholib
             background.Apply();
             return background;
         }
+
+
+        public static Texture2D RenderSprite(Sprite sprite)
+        {
+            int width = Mathf.CeilToInt(sprite.rect.width);
+            int height = Mathf.CeilToInt(sprite.rect.height);
+
+            var rt = RenderTexture.GetTemporary(width, height, 0, RenderTextureFormat.ARGB32);
+
+            var previous = RenderTexture.active;
+            RenderTexture.active = rt;
+
+            GL.Clear(true, true, Color.clear);
+
+            Material mat = new Material(Shader.Find("Sprites/Default"));
+
+            Graphics.Blit(sprite.texture, rt, mat);
+
+            Texture2D tex = new Texture2D(width, height, TextureFormat.RGBA32, false);
+            tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+            tex.Apply();
+
+            RenderTexture.active = previous;
+            RenderTexture.ReleaseTemporary(rt);
+
+            return tex;
+        }
     }
 }
