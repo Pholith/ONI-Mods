@@ -64,6 +64,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "High Pressure Applications"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PholithDuplicant", "PholithDuplicant\PholithDuplicant.csproj", "{014C80FB-9E3A-44F7-9ED9-B724D183CDC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordRP", "DiscordRP\DiscordRP.csproj", "{65A22A71-CDB1-4A00-8371-052000789044}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -158,6 +160,10 @@ Global
 		{014C80FB-9E3A-44F7-9ED9-B724D183CDC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{014C80FB-9E3A-44F7-9ED9-B724D183CDC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{014C80FB-9E3A-44F7-9ED9-B724D183CDC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65A22A71-CDB1-4A00-8371-052000789044}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65A22A71-CDB1-4A00-8371-052000789044}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65A22A71-CDB1-4A00-8371-052000789044}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65A22A71-CDB1-4A00-8371-052000789044}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

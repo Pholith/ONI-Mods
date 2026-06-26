@@ -26,8 +26,14 @@ namespace AchievementReEnabler
 
         public static void Postfix(ColonyAchievementTracker __instance)
         {
+
+
             foreach (KeyValuePair<string, ColonyAchievementStatus> keyValuePair in __instance.achievements)
             {
+
+                // Reable reviously failed achievements.
+                // __instance.achievements[keyValuePair.Key].failed = false;
+
                 if (keyValuePair.Value.success && !keyValuePair.Value.failed)
                 {
 
