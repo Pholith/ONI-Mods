@@ -36,8 +36,7 @@ namespace ILoveSlicksters
             {
                 Settings = new SlicksterOptions();
             }
-            // new PLocalization().Register();
-            // new PLocalization().Register();
+            new PLocalization().RegisterFromCallingClass();
 
             WorldGenPatches.VeryHot2_patch.OnLoad();
 
