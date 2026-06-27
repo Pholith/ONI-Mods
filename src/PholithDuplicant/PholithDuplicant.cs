@@ -53,6 +53,7 @@ namespace PholithDuplicant
                             return;
                         }
                         readedPersonalities["PHOLITH"].Name = Settings.UsePholithFirstName ? "Victoire" : "Pholith";
+                        readedPersonalities["PHOLITH"].Hair = !Settings.AlternativePurpleHair ? "hair_pholith" : "hair_pholith_purple";
                     }
 
                     using (StreamWriter streamWriter = new StreamWriter(personalitiesPath))
@@ -66,6 +67,16 @@ namespace PholithDuplicant
                 }
             }
 
+        }
+    }
+
+    // Read settings on launching a game (mostly for GuaranteePholith option)
+    [HarmonyPatch(typeof(Game), "Load")]
+    public static class GameOnLoadPatch
+    {
+        public static void Prefix()
+        {
+            PholithDuplicant.ReadSettings();
         }
     }
 

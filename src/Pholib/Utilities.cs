@@ -77,6 +77,19 @@ namespace Pholib
                 //defType.Configure(stateMachineController.gameObject);
             }
         }
+
+        public static bool ChangeKey<TKey, TValue>(this IDictionary<TKey, TValue> dict,
+                                           TKey oldKey, TKey newKey)
+        {
+            TValue value;
+            if (!dict.TryGetValue(oldKey, out value))
+                return false;
+
+            dict.Remove(oldKey);
+            dict[newKey] = value;  // or dict.Add(newKey, value) depending on ur comfort
+            return true;
+        }
+
         /// <summary>
         /// Convert an object in a yaml readable string.
         /// </summary>

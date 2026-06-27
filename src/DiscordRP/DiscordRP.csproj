@@ -40,7 +40,6 @@
     </Compile>
     <Compile Include="DiscordRPOptions.cs" />
     <Compile Include="Patches.cs" />
-    <Compile Include="PHO_STRINGS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnityLogger.cs" />
   </ItemGroup>
@@ -49,10 +48,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="mod_info.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="packages.config" />
-    <None Include="translations\fr.po">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -67,11 +62,6 @@
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>..\packages\GameLibs\Assembly-CSharp-firstpass.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\GameLibs\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System">
@@ -118,7 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DiscordRichPresence">
-      <Version>1.6.1.70</Version>
+      <Version>1.5.0.51</Version>
     </PackageReference>
     <PackageReference Include="PLib">
       <Version>4.24.0</Version>
@@ -129,6 +119,7 @@
     <PostBuildEvent>echo ======  Repacking PLib ...
 ilrepack /out:./$(TargetFileName) .\*.dll /wildcards /lib:"E:\SteamLibrary\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed"
 del /Q *PLib.*
+del /Q Newtonsoft.Json.dll
 
 echo ====== Copy mods anim and files...
 

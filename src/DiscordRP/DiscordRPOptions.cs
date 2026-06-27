@@ -7,18 +7,28 @@ namespace DiscordRPMod
     [ModInfo("https://github.com/Pholith/ONI-Mods", "screen1.png")]
     public class DiscordRPOptions
     {
-        [Option("Instant Build", "If the box is checked, there's no need for a duplicant to come and build the notepad. It builds itself instantly.")]
+        [Option("Enabled", "If the box is unchecked, disable the discord presence.")]
         [JsonProperty]
-        public bool InstantBuild { get; set; }
+        public bool ModEnabled { get; set; }
 
-        [Option("Number of text lines", "Number of lines in the notepad side screen.")]
+        [Option("Show save name", "If the box is checked, rich presence will show the game name.")]
         [JsonProperty]
-        public int LineNumber { get; set; }
+        public bool ShowGameName { get; set; }
+
+        [Option("Show cycle and dups", "If the box is checked, rich presence will show the cycle and the number of dups.")]
+        [JsonProperty]
+        public bool ShowCycleAndDups{ get; set; }
+
+        [Option("Show asteroid", "If the box is checked, rich presence will show the worldgen asteroid.")]
+        [JsonProperty]
+        public bool ShowAsteroid{ get; set; }
 
         public DiscordRPOptions()
         {
-            InstantBuild = false;
-            LineNumber = 6;
+            ModEnabled = true;
+            ShowGameName = true;
+            ShowCycleAndDups = true;
+            ShowAsteroid = true;
         }
     }
 }

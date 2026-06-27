@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="kanimAL" generator_version="v1">
+  <folder id="0">
+    <file id="0" name="hair_pholith_purple_0.png" width="199" height="199" pivot_x="0.616438" pivot_y="0.62390995" />
+    <file id="1" name="hair_pholith_purple_1.png" width="199" height="199" pivot_x="0.616438" pivot_y="0.62390995" />
+    <file id="2" name="hair_pholith_purple_2.png" width="199" height="199" pivot_x="0.616438" pivot_y="0.62390995" />
+    <file id="3" name="hat_hair_pholith_purple_0.png" width="199" height="199" pivot_x="0.616438" pivot_y="0.62390995" />
+    <file id="4" name="hat_hair_pholith_purple_1.png" width="199" height="199" pivot_x="0.616438" pivot_y="0.62390995" />
+    <file id="5" name="hat_hair_pholith_purple_2.png" width="199" height="199" pivot_x="0.616438" pivot_y="0.62390995" />
+  </folder>
+  <entity id="0" name="pholith_accesories" />
+</spriter_data>

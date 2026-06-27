@@ -81,6 +81,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="anim\assets\pholith_accesories2\pholith_accesories_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="anim\assets\pholith_accesories\pholith_accesories_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -92,6 +95,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="anim\assets\pholith_accesories2\pholith_accesories_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\assets\pholith_accesories2\pholith_accesories_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="anim\assets\pholith_accesories\pholith_accesories_anim.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
