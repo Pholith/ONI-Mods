@@ -14,15 +14,15 @@ namespace HDScreenShot
             jpg
         }
 
-        [Option("Screenshot width", "Width of the screenshot in pixels.")]
+        [Option("HDScreenShot.HD_STRINGS.OPTIONS.WIDTH", "HDScreenShot.HD_STRINGS.OPTIONS.WIDTH_TOOLTIP")]
         [JsonProperty]
         public int ScreenshotWidth { get; set; }
 
-        [Option("Screenshot height", "Height of the screenshot in pixels.")]
+        [Option("HDScreenShot.HD_STRINGS.OPTIONS.HEIGHT", "HDScreenShot.HD_STRINGS.OPTIONS.HEIGHT_TOOLTIP")]
         [JsonProperty]
         public int ScreenshotHeight { get; set; }
 
-        [Option("Screenshot image format")]
+        [Option("HDScreenShot.HD_STRINGS.OPTIONS.FORMAT")]
         [JsonProperty]
         public ImageFormat SavedImageFormat { get; set; }
 

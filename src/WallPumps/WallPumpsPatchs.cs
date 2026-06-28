@@ -67,8 +67,6 @@ namespace WallPumps
         {
             Utilities.LoadTranslations(typeof(WALLPUMP_STRINGS), WallPumpsPatchs.modPath);
             LocString.CreateLocStringKeys(typeof(WALLPUMP_STRINGS.UI_ADD));
-            Pholib.Utilities.GenerateStringsTemplate(typeof(WALLPUMP_STRINGS));
-
         }
     }
     [HarmonyPatch(typeof(Db))]

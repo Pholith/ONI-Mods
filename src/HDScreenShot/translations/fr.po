@@ -1,0 +1,78 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Pholith\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Application: Oxygen Not IncludedPOT Version: 2.0\n"
+"X-Generator: Poedit 3.9\n"
+
+#. HDScreenShot.HD_STRINGS.OPTIONS.FORMAT
+msgctxt "HDScreenShot.HD_STRINGS.OPTIONS.FORMAT"
+msgid "Screenshot image format"
+msgstr "Format de la capture d'écran"
+
+#. HDScreenShot.HD_STRINGS.OPTIONS.HEIGHT
+msgctxt "HDScreenShot.HD_STRINGS.OPTIONS.HEIGHT"
+msgid "Screenshot height"
+msgstr "Hauteur de la capture d'écran"
+
+#. HDScreenShot.HD_STRINGS.OPTIONS.HEIGHT_TOOLTIP
+msgctxt "HDScreenShot.HD_STRINGS.OPTIONS.HEIGHT_TOOLTIP"
+msgid "Height of the screenshot in pixels."
+msgstr "Hauteur de la capture d'écran en pixels."
+
+#. HDScreenShot.HD_STRINGS.OPTIONS.WIDTH
+msgctxt "HDScreenShot.HD_STRINGS.OPTIONS.WIDTH"
+msgid "Screenshot width"
+msgstr "Largeur de la capture d'écran"
+
+#. HDScreenShot.HD_STRINGS.OPTIONS.WIDTH_TOOLTIP
+msgctxt "HDScreenShot.HD_STRINGS.OPTIONS.WIDTH_TOOLTIP"
+msgid "Width of the screenshot in pixels."
+msgstr "Largeur de la capture d'écran en pixels."
+
+#. HDScreenShot.HD_STRINGS.UI.BUTTON_TEXT
+msgctxt "HDScreenShot.HD_STRINGS.UI.BUTTON_TEXT"
+msgid "Take a HD Screenshot"
+msgstr "Prendre une capture d'écran HD"
+
+#. HDScreenShot.HD_STRINGS.UI.CLOSE
+msgctxt "HDScreenShot.HD_STRINGS.UI.CLOSE"
+msgid "CLOSE"
+msgstr "FERMER"
+
+#. HDScreenShot.HD_STRINGS.UI.SAVED_AT
+msgctxt "HDScreenShot.HD_STRINGS.UI.SAVED_AT"
+msgid "Screenshot saved at: \n"
+msgstr "Capture d'écran sauvegardé: \n"
+
+#. HDScreenShot.HD_STRINGS.UI.TIPS
+msgctxt "HDScreenShot.HD_STRINGS.UI.TIPS"
+msgid ""
+"<color=#adadad>TIPS: To take a screenshot of a layer, select the layer in-"
+"game and then open the menu by clicking the button rather than pressing "
+"‘ESC'.</color>"
+msgstr ""
+"<color=#adadad>TIPS: Pour prendre une capture d'écran d'un calque, activez "
+"le calque en jeu puis ouvrez le menu en cliquant sur le bouton plutôt qu'en "
+"appuyant sur \"ECHAP\"</color>"
+
+#. HDScreenShot.HD_STRINGS.UI.WARNING
+msgctxt "HDScreenShot.HD_STRINGS.UI.WARNING"
+msgid ""
+"<color=#adadad>Sometimes on the screenshot tiles may be blured or "
+"\"molting\".\n"
+"To prevent that, before your screenshot: Press Alt+S and unzoom at maximum.\n"
+"</color>"
+msgstr ""
+"<color=#adadad>Il arrive parfois que, sur les captures d'écran, certaines "
+"tuiles apparaissent floues ou « coulantes ».\n"
+"Pour éviter cela, avant de faire votre capture d'écran : appuyez sur Alt+S "
+"et dézoomez au maximum.\n"
+"</color>"
