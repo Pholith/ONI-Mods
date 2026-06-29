@@ -26,11 +26,16 @@ namespace HDScreenShot
         [JsonProperty]
         public ImageFormat SavedImageFormat { get; set; }
 
+        [Option("HDScreenShot.HD_STRINGS.OPTIONS.HIDE_TIPS")]
+        [JsonProperty]
+        public bool HideTipsTextOnScreenshot { get; set; }
+
         public HDScreenshotOptions()
         {
             ScreenshotWidth = 6144;
             ScreenshotHeight = 8192;
             SavedImageFormat = ImageFormat.jpg;
+            HideTipsTextOnScreenshot = false;
         }
     }
 }

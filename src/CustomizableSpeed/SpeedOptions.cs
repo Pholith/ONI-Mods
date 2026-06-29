@@ -7,6 +7,7 @@ namespace CustomizableSpeed
     [ModInfo("https://github.com/Pholith/ONI-Mods")]
     public class SpeedOptions
     {
+
         [Option("Slow speed", "")]
         [Limit(0, 10)]
         [JsonProperty]

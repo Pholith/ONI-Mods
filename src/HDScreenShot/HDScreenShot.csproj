@@ -37,7 +37,8 @@
   <ItemGroup>
     <Compile Include="HDScreenshotOptions.cs" />
     <Compile Include="HD_STRINGS.cs" />
-    <Compile Include="Patchs.cs" />
+    <Compile Include="PopupPatchs.cs" />
+    <Compile Include="ScreenPatchs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

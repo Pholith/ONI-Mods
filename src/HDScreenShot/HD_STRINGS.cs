@@ -30,6 +30,8 @@ namespace HDScreenShot
             
             public static LocString FORMAT = "Screenshot image format";
 
+            public static LocString HIDE_TIPS = "Hide tips info on popup";
+
         }
     }
 }

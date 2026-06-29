@@ -27,6 +27,11 @@ msgctxt "HDScreenShot.HD_STRINGS.OPTIONS.HEIGHT_TOOLTIP"
 msgid "Height of the screenshot in pixels."
 msgstr "Hauteur de la capture d'écran en pixels."
 
+#. HDScreenShot.HD_STRINGS.OPTIONS.HIDE_TIPS
+msgctxt "HDScreenShot.HD_STRINGS.OPTIONS.HIDE_TIPS"
+msgid "Hide tips info on popup"
+msgstr "Cacher les tips de la fenêtre popup"
+
 #. HDScreenShot.HD_STRINGS.OPTIONS.WIDTH
 msgctxt "HDScreenShot.HD_STRINGS.OPTIONS.WIDTH"
 msgid "Screenshot width"
@@ -68,7 +73,8 @@ msgctxt "HDScreenShot.HD_STRINGS.UI.WARNING"
 msgid ""
 "<color=#adadad>Sometimes on the screenshot tiles may be blured or "
 "\"molting\".\n"
-"To prevent that, before your screenshot: Press Alt+S and unzoom at maximum.\n"
+"To prevent that, before your screenshot: Press Alt+S and unzoom at "
+"maximum.\n"
 "</color>"
 msgstr ""
 "<color=#adadad>Il arrive parfois que, sur les captures d'écran, certaines "
