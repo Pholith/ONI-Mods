@@ -59,6 +59,10 @@ namespace Pholib
                 Debug.Log("Pholib: " + informations);
             }
         }
+        public static void LogIfDebugging(object informations)
+        {
+            LogIfDebugging(informations.ToString());
+        }
     }
 
     public static class Extensions
@@ -119,6 +123,25 @@ namespace Pholib
 
     public static class Utilities
     {
+
+        /// <summary>
+        /// Check if an element is added by another mod and not disabled.
+        /// </summary>
+        /// <param name="id"> The Id of the element to check. E.g. "SolidSilver" </param>
+        /// <returns> True if the element exists and is enabled. </returns>
+        public static bool ElementExistsAndIsActive(string id)
+        {
+            return ElementExistsAndIsActive(ElementLoader.FindElementByName(id));
+        }
+        /// <summary>
+        /// Check if an element is added by another mod and not disabled.
+        /// </summary>
+        public static bool ElementExistsAndIsActive(this Element element)
+        {
+            return element != null && !element.disabled && !element.HasTag(GameTags.HideFromCodex);
+        }
+
+
         public static float CelciusToKelvin(this float celcius)
         {
             return celcius + 273.15f;

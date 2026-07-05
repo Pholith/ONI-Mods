@@ -93,7 +93,14 @@ namespace DiscordRPMod
         // Manage multiple discord clients 
         public static int GetDiscordProcessCount()
         {
-            return Mathf.Max(Process.GetProcesses().Count(p => p.ProcessName.ToLower().Contains("discord") && p.MainWindowHandle != IntPtr.Zero), 1);
+            try
+            {
+                return Mathf.Max(Process.GetProcesses().Count(p => p != null && !p.HasExited && p.ProcessName.ToLowerInvariant().Contains("discord") && p.MainWindowHandle != IntPtr.Zero), 1);
+            }
+            catch (Exception e) // Some people getting that here: System.InvalidOperationException: Process has exited or is inaccessible, so the requested information is not available
+            {
+                return 1;
+            }
         }
 
 

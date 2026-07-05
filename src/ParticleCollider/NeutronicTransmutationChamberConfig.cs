@@ -1,0 +1,386 @@
+﻿using Klei.AI;
+using Pholib;
+using System.Collections.Generic;
+using TUNING;
+using UnityEngine;
+using static ComplexRecipe;
+using static HighTechIndustry.Patches;
+
+namespace HighTechIndustry
+{
+    public class NeutronicTransmutationChamberConfig : IBuildingConfig
+    {
+        public override string[] GetRequiredDlcIds()
+        {
+            return DlcManager.EXPANSION1;
+        }
+
+        // Buildingdef from SupermaterialRefineryConfig example
+        public override BuildingDef CreateBuildingDef()
+        {
+            string id = ID;
+            int width = 5;
+            int height = 3;
+            string anim = "supermaterial_refinery_kanim";
+            int hitpoints = 30;
+            float construction_time = 240f;
+            float[] tier = BUILDINGS.CONSTRUCTION_MASS_KG.TIER5;
+            string[] all_METALS = MATERIALS.REFINED_METALS;
+            float melting_point = 2400f;
+            BuildLocationRule build_location_rule = BuildLocationRule.OnFloor;
+            EffectorValues tier2 = NOISE_POLLUTION.NOISY.TIER6;
+            BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, tier, all_METALS, melting_point, build_location_rule, BUILDINGS.DECOR.PENALTY.TIER2, tier2, 0.2f);
+            buildingDef.RequiresPowerInput = true;
+            buildingDef.EnergyConsumptionWhenActive = BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER4;
+            buildingDef.SelfHeatKilowattsWhenActive = 24f;
+            buildingDef.UseHighEnergyParticleInputPort = true;
+            buildingDef.HighEnergyParticleInputOffset = new CellOffset(0, 2);
+            buildingDef.ViewMode = OverlayModes.Power.ID;
+            buildingDef.AudioCategory = "HollowMetal";
+            buildingDef.AudioSize = "large";
+            buildingDef.InputConduitType = ConduitType.Gas;
+            buildingDef.UtilityInputOffset = new CellOffset(-1, 0);
+            buildingDef.OutputConduitType = ConduitType.Liquid;
+            buildingDef.UtilityInputOffset = new CellOffset(-1, 0);
+            buildingDef.RequiredSkillPerkID = Db.Get().SkillPerks.AllowNuclearResearch.Id;
+            buildingDef.DiseaseCellVisName = RadiationPoisoning.ID;
+            buildingDef.LogicOutputPorts = new List<LogicPorts.Port>
+            {
+                LogicPorts.Port.OutputPort("HEP_STORAGE", new CellOffset(0, 2), STRINGS.BUILDINGS.PREFABS.HEPENGINE.LOGIC_PORT_STORAGE, STRINGS.BUILDINGS.PREFABS.HEPENGINE.LOGIC_PORT_STORAGE_ACTIVE, STRINGS.BUILDINGS.PREFABS.HEPENGINE.LOGIC_PORT_STORAGE_INACTIVE, false, false)
+            };
+
+            return buildingDef;
+        }
+
+        //ConfigureBuildingTemplate from SupermaterialRefineryConfig example
+        public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
+        {
+		    go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
+
+            HighEnergyParticleStorage highEnergyParticleStorage = go.AddOrGet<HighEnergyParticleStorage>();
+            highEnergyParticleStorage.capacity = 3000f;
+            highEnergyParticleStorage.autoStore = true;
+            highEnergyParticleStorage.PORT_ID = "HEP_STORAGE";
+            highEnergyParticleStorage.showCapacityStatusItem = true;
+            ComplexFabricatorWorkable component = go.AddOrGet<ComplexFabricatorWorkable>();
+            /*MeterController meter = new MeterController(component.GetAnimController(), "meter_target", "meter", Meter.Offset.Infront, Grid.SceneLayer.NoLayer, new string[]
+            {
+                "meter_target",
+                "meter_fill",
+                "meter_frame",
+                "meter_OL"
+            });*/
+
+            DropAllWorkable dropper = go.AddOrGet<DropAllWorkable>();
+            dropper.requiredSkillPerk = Db.Get().SkillPerks.AllowNuclearResearch.Id; 
+
+            NeutronicTransmutationChamber neutronicChamber = go.AddOrGet<NeutronicTransmutationChamber>();
+            BuildingTemplates.CreateComplexFabricatorStorage(go, neutronicChamber);
+            neutronicChamber.heatedTemperature = 313.15f;
+            neutronicChamber.sideScreenStyle = ComplexFabricatorSideScreen.StyleSetting.ListQueueHybrid;
+            neutronicChamber.duplicantOperated = false;
+            neutronicChamber.outputOffset = new Vector3(3, 1);
+
+            ConduitConsumer conduitConsumer = go.AddOrGet<ConduitConsumer>();
+            conduitConsumer.conduitType = ConduitType.Gas;
+            conduitConsumer.capacityTag = SimHashes.Hydrogen.CreateTag();
+            conduitConsumer.wrongElementResult = ConduitConsumer.WrongElementResult.Dump;
+            conduitConsumer.capacityKG = 400f;
+            conduitConsumer.forceAlwaysSatisfied = true;
+            conduitConsumer.storage = neutronicChamber.inStorage;
+
+            ConduitDispenser conduitDispenser = go.AddOrGet<ConduitDispenser>();
+            conduitDispenser.conduitType = ConduitType.Liquid;
+            conduitDispenser.alwaysDispense = true;
+            conduitDispenser.elementFilter = new SimHashes[] { SimHashes.NuclearWaste };
+            conduitDispenser.storage = neutronicChamber.outStorage;
+
+            go.AddOrGet<BuildingComplete>().isManuallyOperated = false;
+            go.AddOrGet<FabricatorIngredientStatusManager>();
+            go.AddOrGet<CopyBuildingSettings>();
+            Prioritizable.AddRef(go);
+
+
+            SetRecipes();
+        }
+        public override void DoPostConfigureComplete(GameObject go)
+        {
+            go.GetComponent<HighEnergyParticlePort>().requireOperational = false; // Radbolts don't enter the machine if true (diamond press don't have it so I don't really understand why)
+            HighEnergyParticleStorage hepStorage = go.GetComponent<HighEnergyParticleStorage>();
+            /*component.Subscribe(-1837862626, delegate (object data)
+            {
+                //meter.SetPositionPercent(hepStorage.Particles / hepStorage.Capacity());
+            });*/
+            //meter.SetPositionPercent(hepStorage.Particles / hepStorage.Capacity());
+
+
+            go.GetComponent<KPrefabID>().prefabSpawnFn += delegate (GameObject game_object)
+            {
+                ComplexFabricatorWorkable component = game_object.GetComponent<ComplexFabricatorWorkable>();
+                component.requiredSkillPerk = Db.Get().SkillPerks.AllowNuclearResearch.Id;
+                component.WorkerStatusItem = Db.Get().DuplicantStatusItems.Processing;
+                component.AttributeConverter = Db.Get().AttributeConverters.MachinerySpeed;
+                component.AttributeExperienceMultiplier = DUPLICANTSTATS.ATTRIBUTE_LEVELING.PART_DAY_EXPERIENCE;
+                component.SkillExperienceSkillGroup = Db.Get().SkillGroups.Research.Id;
+                component.SkillExperienceMultiplier = SKILLS.PART_DAY_EXPERIENCE;
+                KAnimFile anim = Assets.GetAnim("anim_interacts_supermaterial_refinery_kanim");
+                KAnimFile[] overrideAnims = new KAnimFile[]
+                {
+                    anim
+                };
+                component.overrideAnims = overrideAnims;
+                component.workAnims = new HashedString[]
+                {
+                    "working_pre",
+                    "working_loop"
+                };
+                component.synchronizeAnims = false;
+                KAnimFileData data = anim.GetData();
+                int animCount = data.animCount;
+                dupeInteractAnims = new HashedString[animCount - 2];
+                int i = 0;
+                int num = 0;
+                while (i < animCount)
+                {
+                    HashedString hashedString = data.GetAnim(i).name;
+                    if (hashedString != "working_pre" && hashedString != "working_pst")
+                    {
+                        dupeInteractAnims[num] = hashedString;
+                        num++;
+                    }
+                    i++;
+                }
+                component.GetDupeInteract = () => new HashedString[]
+                {
+                    "working_loop",
+                    dupeInteractAnims.GetRandom<HashedString>()
+                };
+            };
+        }
+        public void SetRecipes()
+        {
+            float recipeBaseAmount = 200f;
+            float standardTimeAmount = 1800f; // 600 is a cycle
+
+            NeutronicTransmutationRecipe HydrogenToHelium = NeutronicTransmutationRecipe.AddRecipe(new RecipeElement(SimHashes.Hydrogen.CreateTag(), recipeBaseAmount),
+            new RecipeElement[]
+            {
+                new RecipeElement(SimHashes.Helium.CreateTag(), recipeBaseAmount, RecipeElement.TemperatureOperation.Heated, false),
+            }, BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER4, true);
+            HydrogenToHelium.time = standardTimeAmount;
+            HydrogenToHelium.description = PHO_STRINGS.RECIPE.HYDROGEN_TO_HELIUM;
+            HydrogenToHelium.nameDisplay = RecipeNameDisplay.IngredientToResult;
+            HydrogenToHelium.consumedHEP = 200;
+
+            // nuclear fusion
+            //https://fr.wikipedia.org/wiki/R%C3%A9action_triple_alpha
+            /*ColliderRecipe heliumToCarbon = ColliderRecipe.AddRecipe(new ColliderRecipe.RecipeElement(SimHashes.Helium.CreateTag(), recipeBaseAmount),
+            new ColliderRecipe.RecipeElement[]
+            {
+                new ColliderRecipe.RecipeElement(SimHashes.RefinedCarbon.CreateTag(), 160f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false),
+                new ColliderRecipe.RecipeElement(SimHashes.Oxygen.CreateTag(), 40f, ColliderRecipe.RecipeElement.TemperatureOperation.Heated, false)
+            }, 1200);
+            heliumToCarbon.time = 60f;
+            heliumToCarbon.description = PHO_STRINGS.RECIPE.;
+            heliumToCarbon.nameDisplay = ColliderRecipe.RecipeNameDisplay.IngredientToResult;
+            heliumToCarbon.consumedHEP = 50;*/
+
+
+            NeutronicTransmutationRecipe carbonToOxygen = NeutronicTransmutationRecipe.AddRecipe(new RecipeElement(SimHashes.RefinedCarbon.CreateTag(), recipeBaseAmount),
+            new RecipeElement[]
+            {
+                new RecipeElement(SimHashes.Oxygen.CreateTag(), 180f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.NuclearWaste.CreateTag(), 20f, RecipeElement.TemperatureOperation.Heated, true)
+            }, BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER4);
+
+            carbonToOxygen.time = standardTimeAmount;
+            carbonToOxygen.description = PHO_STRINGS.RECIPE.CARBON_TO_OXYGEN;
+            carbonToOxygen.nameDisplay = RecipeNameDisplay.IngredientToResult;
+            carbonToOxygen.consumedHEP = 300;
+
+            if (HighTechIndustry_NuclearWasteRecyclePatch.nitrogen.ElementExistsAndIsActive())
+            {
+                NeutronicTransmutationRecipe carbonToNitrogen = NeutronicTransmutationRecipe.AddRecipe(new RecipeElement(SimHashes.RefinedCarbon.CreateTag(), recipeBaseAmount),
+                new RecipeElement[]
+                {
+                    new RecipeElement(HighTechIndustry_NuclearWasteRecyclePatch.nitrogen.id.CreateTag(), 180f, RecipeElement.TemperatureOperation.Heated, false),
+                    new RecipeElement(SimHashes.NuclearWaste.CreateTag(), 20f, RecipeElement.TemperatureOperation.Heated, true)
+                }, BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER4);
+                carbonToOxygen.time = standardTimeAmount;
+                carbonToOxygen.description = PHO_STRINGS.RECIPE.CARBON_TO_NITROGEN;
+                carbonToOxygen.nameDisplay = RecipeNameDisplay.IngredientToResult;
+                carbonToOxygen.consumedHEP = 200;
+
+                NeutronicTransmutationRecipe nitrogenToOxygen = NeutronicTransmutationRecipe.AddRecipe(new RecipeElement(HighTechIndustry_NuclearWasteRecyclePatch.nitrogen.id.CreateTag(), recipeBaseAmount),
+                new RecipeElement[]
+                {
+                    new RecipeElement(SimHashes.Oxygen.CreateTag(), 180f, RecipeElement.TemperatureOperation.Heated, false),
+                    new RecipeElement(SimHashes.NuclearWaste.CreateTag(), 20f, RecipeElement.TemperatureOperation.Heated, true)
+                }, BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER4);
+                carbonToOxygen.time = standardTimeAmount;
+                carbonToOxygen.description = PHO_STRINGS.RECIPE.NITROGEN_TO_OXYGEN;
+                carbonToOxygen.nameDisplay = RecipeNameDisplay.IngredientToResult;
+                carbonToOxygen.consumedHEP = 200;
+            }
+
+            NeutronicTransmutationRecipe sodiumToAluminium = NeutronicTransmutationRecipe.AddRecipe(new RecipeElement(SimHashes.Salt.CreateTag(), recipeBaseAmount),
+            new RecipeElement[]
+            {
+                new RecipeElement(SimHashes.Aluminum.CreateTag(), 90f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.NuclearWaste.CreateTag(), 110f, RecipeElement.TemperatureOperation.Heated, true)
+            }, BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER4);
+            sodiumToAluminium.time = standardTimeAmount;
+            sodiumToAluminium.description = PHO_STRINGS.RECIPE.SODIUM_TO_ALUMINIUM;
+            sodiumToAluminium.nameDisplay = RecipeNameDisplay.IngredientToResult;
+            sodiumToAluminium.consumedHEP = 200;
+
+            NeutronicTransmutationRecipe aluminiumToPhosphore = NeutronicTransmutationRecipe.AddRecipe(new RecipeElement(SimHashes.Aluminum.CreateTag(), recipeBaseAmount),
+            new RecipeElement[]
+            {
+                new RecipeElement(SimHashes.Sand.CreateTag(), 40f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.Phosphorus.CreateTag(), 120f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.Sulfur.CreateTag(), 40f, RecipeElement.TemperatureOperation.Heated, false),
+            }, BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER4);
+            aluminiumToPhosphore.time = standardTimeAmount;
+            aluminiumToPhosphore.description = PHO_STRINGS.RECIPE.ALUMINIUM_TO_PHOSPHORUS;
+            aluminiumToPhosphore.nameDisplay = RecipeNameDisplay.IngredientToResult;
+            aluminiumToPhosphore.consumedHEP = 200;
+
+            NeutronicTransmutationRecipe siliconToPhosphorus = NeutronicTransmutationRecipe.AddRecipe(new RecipeElement(SimHashes.Sand.CreateTag(), recipeBaseAmount),
+            new RecipeElement[]
+            {
+                new RecipeElement(SimHashes.Phosphorus.CreateTag(), 100f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.Sulfur.CreateTag(), 60f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.NuclearWaste.CreateTag(), 40f, RecipeElement.TemperatureOperation.Heated, true)
+            }, BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER4);
+            siliconToPhosphorus.time = standardTimeAmount;
+            siliconToPhosphorus.description = PHO_STRINGS.RECIPE.SILICON_TO_PHOSPHORUS;
+            siliconToPhosphorus.nameDisplay = RecipeNameDisplay.Composite;
+            siliconToPhosphorus.consumedHEP = 200;
+
+
+            NeutronicTransmutationRecipe sulfurToPhosphorus = NeutronicTransmutationRecipe.AddRecipe(new RecipeElement(SimHashes.Sulfur.CreateTag(), recipeBaseAmount),
+            new RecipeElement[]
+            {
+                new RecipeElement(SimHashes.Phosphorus.CreateTag(), 150f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.ChlorineGas.CreateTag(), 30f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.NuclearWaste.CreateTag(), 20f, RecipeElement.TemperatureOperation.Heated, true)
+            }, BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER4);
+            sulfurToPhosphorus.time = standardTimeAmount;
+            sulfurToPhosphorus.description = PHO_STRINGS.RECIPE.SULFUR_TO_PHOSPHORUS;
+            sulfurToPhosphorus.nameDisplay = RecipeNameDisplay.IngredientToResult;
+            sulfurToPhosphorus.consumedHEP = 200;
+
+
+            NeutronicTransmutationRecipe ironToCobalt = NeutronicTransmutationRecipe.AddRecipe(new RecipeElement(SimHashes.Iron.CreateTag(), recipeBaseAmount),
+            new RecipeElement[]
+            {
+                new RecipeElement(SimHashes.Cobalt.CreateTag(), 160f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.NuclearWaste.CreateTag(), 40f, RecipeElement.TemperatureOperation.Heated, true)
+            }, BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER5);
+            ironToCobalt.time = standardTimeAmount;
+            ironToCobalt.description = PHO_STRINGS.RECIPE.IRON_TO_COBALT;
+            ironToCobalt.nameDisplay = RecipeNameDisplay.IngredientToResult;
+            ironToCobalt.consumedHEP = 400;
+
+            NeutronicTransmutationRecipe cobaltToNickel = NeutronicTransmutationRecipe.AddRecipe(new RecipeElement(SimHashes.Cobalt.CreateTag(), recipeBaseAmount),
+            new RecipeElement[]
+            {
+                new RecipeElement(SimHashes.Nickel.CreateTag(), 150f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.NuclearWaste.CreateTag(), 50f, RecipeElement.TemperatureOperation.Heated, true)
+            }, BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER5);
+            cobaltToNickel.time = standardTimeAmount;
+            cobaltToNickel.description = PHO_STRINGS.RECIPE.COBALT_TO_NICKEL;
+            cobaltToNickel.nameDisplay = RecipeNameDisplay.IngredientToResult;
+            cobaltToNickel.consumedHEP = 400;
+
+            NeutronicTransmutationRecipe nickelToCopper = NeutronicTransmutationRecipe.AddRecipe(new RecipeElement(SimHashes.Nickel.CreateTag(), recipeBaseAmount),
+            new RecipeElement[]
+            {
+                new RecipeElement(SimHashes.Copper.CreateTag(), 150f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.NuclearWaste.CreateTag(), 50f, RecipeElement.TemperatureOperation.Heated, true)
+            }, BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER5);
+            nickelToCopper.time = standardTimeAmount;
+            nickelToCopper.description = PHO_STRINGS.RECIPE.NICKEL_TO_COPPER;
+            nickelToCopper.nameDisplay = RecipeNameDisplay.IngredientToResult;
+            nickelToCopper.consumedHEP = 400;
+
+            NeutronicTransmutationRecipe copperToNickelAndZinc = NeutronicTransmutationRecipe.AddRecipe(new RecipeElement(SimHashes.Copper.CreateTag(), recipeBaseAmount),
+            new RecipeElement[]
+            {
+                    new RecipeElement(SimHashes.Nickel.CreateTag(), 140f, RecipeElement.TemperatureOperation.Heated, false),
+                    new RecipeElement(SimHashes.Zinc.CreateTag(), 60f, RecipeElement.TemperatureOperation.Heated, true),
+            }, BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER4);
+
+            copperToNickelAndZinc.time = standardTimeAmount;
+            copperToNickelAndZinc.description = PHO_STRINGS.RECIPE.COPPER_TO_NICKEL_AND_ZINC;
+            copperToNickelAndZinc.nameDisplay = RecipeNameDisplay.IngredientToResult;
+            copperToNickelAndZinc.consumedHEP = 200;
+
+
+            NeutronicTransmutationRecipe zincToCopper = NeutronicTransmutationRecipe.AddRecipe(new RecipeElement(SimHashes.Zinc.CreateTag(), recipeBaseAmount),
+            new RecipeElement[]
+            {
+                    new RecipeElement(SimHashes.Copper.CreateTag(), recipeBaseAmount / 2, RecipeElement.TemperatureOperation.Heated, false),
+                    new RecipeElement(SimHashes.Zinc.CreateTag(), recipeBaseAmount / 2, RecipeElement.TemperatureOperation.Heated, false),
+            }, BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER4);
+            zincToCopper.time = standardTimeAmount;
+            zincToCopper.description = PHO_STRINGS.RECIPE.ZINC_TO_COPPER;
+            zincToCopper.nameDisplay = RecipeNameDisplay.IngredientToResult;
+            zincToCopper.consumedHEP = 200;
+
+
+            NeutronicTransmutationRecipe tungstenToIridium = NeutronicTransmutationRecipe.AddRecipe(new RecipeElement(SimHashes.Tungsten.CreateTag(), recipeBaseAmount),
+            new RecipeElement[]
+            {
+                new RecipeElement(SimHashes.Iridium.CreateTag(), 20f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.Lead.CreateTag(), 40f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.NuclearWaste.CreateTag(), recipeBaseAmount-40f-20f, RecipeElement.TemperatureOperation.Heated, true),
+            }, BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER5);
+            tungstenToIridium.time = standardTimeAmount;
+            tungstenToIridium.description = PHO_STRINGS.RECIPE.TUNGSTENE_TO_IRIDIUM;
+            tungstenToIridium.nameDisplay = RecipeNameDisplay.Composite;
+            tungstenToIridium.consumedHEP = 800;
+
+            NeutronicTransmutationRecipe mercuryToGold = NeutronicTransmutationRecipe.AddRecipe(new RecipeElement(SimHashes.Mercury.CreateTag(), recipeBaseAmount),
+            new RecipeElement[]
+            {
+                new RecipeElement(SimHashes.Gold.CreateTag(), 20f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.Lead.CreateTag(), 40f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.Mercury.CreateTag(), 40f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.NuclearWaste.CreateTag(), recipeBaseAmount-20f-40-40f, RecipeElement.TemperatureOperation.Heated, true)
+            }, BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER5);
+            mercuryToGold.time = standardTimeAmount;
+            mercuryToGold.description = PHO_STRINGS.RECIPE.MERCURY_TO_GOLD;
+            mercuryToGold.nameDisplay = RecipeNameDisplay.Composite;
+            mercuryToGold.consumedHEP = 400;
+
+            NeutronicTransmutationRecipe mercuryToLead = NeutronicTransmutationRecipe.AddRecipe(new RecipeElement(SimHashes.Mercury.CreateTag(), recipeBaseAmount),
+            new RecipeElement[]
+            {
+                new RecipeElement(SimHashes.Lead.CreateTag(), 150f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.NuclearWaste.CreateTag(), 50f, RecipeElement.TemperatureOperation.Heated, true),
+            }, BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER5);
+            mercuryToLead.time = standardTimeAmount;
+            mercuryToLead.description = PHO_STRINGS.RECIPE.MERCURY_TO_LEAD;
+            mercuryToLead.nameDisplay = RecipeNameDisplay.IngredientToResult;
+            mercuryToLead.consumedHEP = 400;
+
+        }
+
+
+
+        public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
+        {
+        }
+
+        public override void DoPostConfigureUnderConstruction(GameObject go)
+        {
+        }
+
+
+        private HashedString[] dupeInteractAnims;
+
+        public const string ID = "NeutronicTransmutationChamber";
+    }
+}
