@@ -24,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		StaticMethod.snippet = StaticMethod.snippet
 	EndProjectSection
 	ProjectSection(FolderGlobals) = preProject
-		C_5_4Users_4Vincent Buisset_4Documents_4Klei_4OxygenNotIncluded_4mods_4mods_1json__JsonSchema = http://json.schemastore.org/babelrc
+		
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILoveSlicksters", "ILoveSlicksters\ILoveSlicksters.csproj", "{9045D35E-DD73-4462-B9C7-50E91F737544}"

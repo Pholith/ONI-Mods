@@ -8,6 +8,13 @@
             public static LocString NAME = "Neutronic transmutation chamber";
             public static LocString DESC = "DESC";
             public static LocString EFFECT = "EFFECT";
+
+
+            public static LocString PORT_NAME = "Operating";
+            public static LocString PORT_ACTIVE = "This is active";
+            public static LocString PORT_INACTIVE = "This is inactive";
+
+
         }
 
         public static class RECIPE

@@ -15,6 +15,13 @@ namespace HighTechIndustry
             return DlcManager.EXPANSION1;
         }
 
+        private HashedString[] dupeInteractAnims;
+
+        public const string ID = "NeutronicTransmutationChamber";
+        public const string HEP_STORAGE_ID = "HEP_STORAGE";
+        public const string OPERATING_PORT_ID = "OPERATING";
+
+
         // Buildingdef from SupermaterialRefineryConfig example
         public override BuildingDef CreateBuildingDef()
         {
@@ -32,7 +39,7 @@ namespace HighTechIndustry
             BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(id, width, height, anim, hitpoints, construction_time, tier, all_METALS, melting_point, build_location_rule, BUILDINGS.DECOR.PENALTY.TIER2, tier2, 0.2f);
             buildingDef.RequiresPowerInput = true;
             buildingDef.EnergyConsumptionWhenActive = BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER4;
-            buildingDef.SelfHeatKilowattsWhenActive = 24f;
+            buildingDef.SelfHeatKilowattsWhenActive = BUILDINGS.EXHAUST_ENERGY_ACTIVE.TIER8;
             buildingDef.UseHighEnergyParticleInputPort = true;
             buildingDef.HighEnergyParticleInputOffset = new CellOffset(0, 2);
             buildingDef.ViewMode = OverlayModes.Power.ID;
@@ -42,11 +49,12 @@ namespace HighTechIndustry
             buildingDef.UtilityInputOffset = new CellOffset(-1, 0);
             buildingDef.OutputConduitType = ConduitType.Liquid;
             buildingDef.UtilityInputOffset = new CellOffset(-1, 0);
-            buildingDef.RequiredSkillPerkID = Db.Get().SkillPerks.AllowNuclearResearch.Id;
+            // buildingDef.RequiredSkillPerkID = Db.Get().SkillPerks.AllowNuclearResearch.Id; // To test
             buildingDef.DiseaseCellVisName = RadiationPoisoning.ID;
             buildingDef.LogicOutputPorts = new List<LogicPorts.Port>
             {
-                LogicPorts.Port.OutputPort("HEP_STORAGE", new CellOffset(0, 2), STRINGS.BUILDINGS.PREFABS.HEPENGINE.LOGIC_PORT_STORAGE, STRINGS.BUILDINGS.PREFABS.HEPENGINE.LOGIC_PORT_STORAGE_ACTIVE, STRINGS.BUILDINGS.PREFABS.HEPENGINE.LOGIC_PORT_STORAGE_INACTIVE, false, false)
+                LogicPorts.Port.OutputPort(HEP_STORAGE_ID, new CellOffset(0, 2), STRINGS.BUILDINGS.PREFABS.HEPENGINE.LOGIC_PORT_STORAGE, STRINGS.BUILDINGS.PREFABS.HEPENGINE.LOGIC_PORT_STORAGE_ACTIVE, STRINGS.BUILDINGS.PREFABS.HEPENGINE.LOGIC_PORT_STORAGE_INACTIVE),
+                LogicPorts.Port.OutputPort(OPERATING_PORT_ID, new CellOffset(-2, 1), PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.PORT_NAME, PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.PORT_ACTIVE, PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.PORT_INACTIVE)
             };
 
             return buildingDef;
@@ -60,7 +68,7 @@ namespace HighTechIndustry
             HighEnergyParticleStorage highEnergyParticleStorage = go.AddOrGet<HighEnergyParticleStorage>();
             highEnergyParticleStorage.capacity = 3000f;
             highEnergyParticleStorage.autoStore = true;
-            highEnergyParticleStorage.PORT_ID = "HEP_STORAGE";
+            highEnergyParticleStorage.PORT_ID = HEP_STORAGE_ID;
             highEnergyParticleStorage.showCapacityStatusItem = true;
             ComplexFabricatorWorkable component = go.AddOrGet<ComplexFabricatorWorkable>();
             /*MeterController meter = new MeterController(component.GetAnimController(), "meter_target", "meter", Meter.Offset.Infront, Grid.SceneLayer.NoLayer, new string[]
@@ -75,6 +83,8 @@ namespace HighTechIndustry
             dropper.requiredSkillPerk = Db.Get().SkillPerks.AllowNuclearResearch.Id; 
 
             NeutronicTransmutationChamber neutronicChamber = go.AddOrGet<NeutronicTransmutationChamber>();
+            neutronicChamber.IsWorking = OPERATING_PORT_ID;
+
             BuildingTemplates.CreateComplexFabricatorStorage(go, neutronicChamber);
             neutronicChamber.heatedTemperature = 313.15f;
             neutronicChamber.sideScreenStyle = ComplexFabricatorSideScreen.StyleSetting.ListQueueHybrid;
@@ -117,12 +127,14 @@ namespace HighTechIndustry
             go.GetComponent<KPrefabID>().prefabSpawnFn += delegate (GameObject game_object)
             {
                 ComplexFabricatorWorkable component = game_object.GetComponent<ComplexFabricatorWorkable>();
-                component.requiredSkillPerk = Db.Get().SkillPerks.AllowNuclearResearch.Id;
+                // component.requiredSkillPerk = Db.Get().SkillPerks.AllowNuclearResearch.Id; // That doesn't affect filling chore
+                /*
                 component.WorkerStatusItem = Db.Get().DuplicantStatusItems.Processing;
                 component.AttributeConverter = Db.Get().AttributeConverters.MachinerySpeed;
                 component.AttributeExperienceMultiplier = DUPLICANTSTATS.ATTRIBUTE_LEVELING.PART_DAY_EXPERIENCE;
                 component.SkillExperienceSkillGroup = Db.Get().SkillGroups.Research.Id;
                 component.SkillExperienceMultiplier = SKILLS.PART_DAY_EXPERIENCE;
+                */
                 KAnimFile anim = Assets.GetAnim("anim_interacts_supermaterial_refinery_kanim");
                 KAnimFile[] overrideAnims = new KAnimFile[]
                 {
@@ -379,8 +391,5 @@ namespace HighTechIndustry
         }
 
 
-        private HashedString[] dupeInteractAnims;
-
-        public const string ID = "NeutronicTransmutationChamber";
     }
 }
