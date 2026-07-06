@@ -18,7 +18,7 @@ namespace HighTechIndustry
         public NeutronicTransmutationRecipe(string id, RecipeElement[] ingredients, RecipeElement[] results, float energyRequired) : base(id, ingredients, results)
         {
             this.energyRequired = energyRequired;
-            radiationCreated = 2000;
+            radiationCreated = 20000;
         }
 
         public static NeutronicTransmutationRecipe AddRecipe(NeutronicTransmutationRecipe.RecipeElement ingredient, NeutronicTransmutationRecipe.RecipeElement[] results, float energyRequired, bool containHydrogen = false)

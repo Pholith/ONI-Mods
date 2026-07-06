@@ -27,22 +27,22 @@
             public static LocString NUCLEAR_WASTE_RECYCLING_DESC = "Nuclear Waste Recycling description";
 
 
-            public static LocString HYDROGEN_TO_HELIUM = "";
-            public static LocString CARBON_TO_OXYGEN = "";
-            public static LocString CARBON_TO_NITROGEN = "";
-            public static LocString NITROGEN_TO_OXYGEN = "";
-            public static LocString SODIUM_TO_ALUMINIUM = "";
-            public static LocString ALUMINIUM_TO_PHOSPHORUS = "";
-            public static LocString SILICON_TO_PHOSPHORUS = "";
-            public static LocString SULFUR_TO_PHOSPHORUS = "";
-            public static LocString IRON_TO_COBALT = "";
-            public static LocString COBALT_TO_NICKEL = "";
-            public static LocString NICKEL_TO_COPPER = "";
-            public static LocString COPPER_TO_NICKEL_AND_ZINC = "";
-            public static LocString ZINC_TO_COPPER = "";
-            public static LocString TUNGSTENE_TO_IRIDIUM = "";
-            public static LocString MERCURY_TO_GOLD = "";
-            public static LocString MERCURY_TO_LEAD = "";
+            public static LocString HYDROGEN_TO_HELIUM = "Transmute <sup>2</sup>H to Helium by β− decay.";
+            public static LocString CARBON_TO_OXYGEN = "Transmute <sup>12</sup>C to Oxygen by β− decay and filter Nitrogen.";
+            public static LocString CARBON_TO_NITROGEN = "Transmute <sup>12</sup>C to Nitrogen by β− decay.";
+            public static LocString NITROGEN_TO_OXYGEN = "Transmute <sup>14</sup>N to Oxygen by β− decay.";
+            public static LocString SODIUM_TO_ALUMINIUM = "Transmute <sup>23</sup>Na (Sodium) to Aluminium by β− decay and filter Magnesium.";
+            public static LocString ALUMINIUM_TO_PHOSPHORUS = "Transmute <sup>27</sup>Al (Aluminium) to Phosphorus and Silicon by β− decay.";
+            public static LocString SILICON_TO_PHOSPHORUS = "Transmute Silicon in the sand to Phosphorus by β− decay. Results a bit of Sulfur in the process.";
+            public static LocString SULFUR_TO_CHLORINE = "Transmute Sulfur to Chlorine by β− decay and filter residual Argon.";
+            public static LocString IRON_TO_COBALT = "Transmute Iron to cobalt by β− decay. Results a bit of Nickel in the process.";
+            public static LocString COBALT_TO_NICKEL = "Transmute <sup>59</sup>Co (Cobalt) to Nickel by β− decay.";
+            public static LocString NICKEL_TO_COPPER = "Transmute Nickel to Copper by β− decay. Results a bit of Zinc in the process.";
+            public static LocString COPPER_TO_NICKEL_AND_ZINC = "Transmute <sup>63</sup>Cu (Copper) to <sup>62</sup>Ni (Nickel) by β+ decay. Some <sup>65</sup>Cu will transmute to Zn<sup>66</sup> by β+ decay.";
+            public static LocString ZINC_TO_COPPER = "Transmute <sup>64</sup>Zn (zinc) to <sup>63</sup>Cu (Copper) by β+ decay and filter Galium.";
+            public static LocString TUNGSTENE_TO_IRIDIUM = "Transmute Tungstene to Iridium by multiple β+ decay and filter a lot of unwanted outputs.";
+            public static LocString MERCURY_TO_GOLD = "Transmute extra rare <sup>196</sup>Hg (Mercury) to Gold by β+ decay and filter some Platinium. Results contains others Mercury isotopes and Lead.";
+            public static LocString MERCURY_TO_LEAD = "Transmute Mercury to Lead by β- decay.";
         }
     }
 }

@@ -14,8 +14,10 @@
 
         public override void Sim1000ms(float dt)
         {
-            ports.SendSignal(IsWorking, operational.IsOperational ? 1 : 0);
+            base.Sim1000ms(dt);
+            ports.SendSignal(IsWorking, operational.IsActive ? 1 : 0);
         }
 
     }
 }
+    
