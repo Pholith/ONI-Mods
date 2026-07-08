@@ -38,6 +38,7 @@
     <Compile Include="..\Pholib\Utilities.cs">
       <Link>Utilities.cs</Link>
     </Compile>
+    <Compile Include="CentrifugerPatchs.cs" />
     <Compile Include="NeutronicTransmutationRecipe.cs" />
     <Compile Include="NeutronicTransmutationChamber.cs" />
     <Compile Include="NeutronicTransmutationChamberConfig.cs" />
