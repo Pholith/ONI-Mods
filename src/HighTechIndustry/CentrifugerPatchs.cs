@@ -2,6 +2,7 @@
 using Pholib;
 using System.Collections.Generic;
 using UnityEngine;
+using static STRINGS.BUILDINGS.PREFABS;
 
 namespace HighTechIndustry
 {
@@ -37,9 +38,10 @@ namespace HighTechIndustry
                         new ComplexRecipe.RecipeElement(SimHashes.Methane.CreateTag(), 0.11199999f * powerToGasAmount, ComplexRecipe.RecipeElement.TemperatureOperation.Heated, false),
                         new ComplexRecipe.RecipeElement(SimHashes.Oxygen.CreateTag(), 0.888f * powerToGasAmount, ComplexRecipe.RecipeElement.TemperatureOperation.Heated, false),
                         new ComplexRecipe.RecipeElement(SimHashes.Water.CreateTag(), powerToGasAmount, ComplexRecipe.RecipeElement.TemperatureOperation.Heated, true),
-                }, ChemicalRefineryConfig.ID, 60, PHO_STRINGS.RECIPE.POWER_TO_METHANE_DESC, ComplexRecipe.RecipeNameDisplay.Custom, 200, Db.Get().TechItems.superLiquids.parentTechId);
+                }, ChemicalRefineryConfig.ID, 60, PHO_STRINGS.RECIPE.POWER_TO_METHANE_DESC, ComplexRecipe.RecipeNameDisplay.Custom, 200);
             powerToGas.customName = PHO_STRINGS.RECIPE.POWER_TO_METHANE_NAME;
             powerToGas.customSpritePrefabID = ElementLoader.FindElementByHash(SimHashes.Methane).id.ToString();
+            powerToGas.requiredTech = Db.Get().TechItems.disposableElectrobankUraniumOre.parentTechId;
             //powerToGas.customSpritePrefabID = SimHashes.Methane.CreateTag().ToString();
 
 
@@ -98,6 +100,7 @@ namespace HighTechIndustry
                     UraniumCentrifugeConfig.ID,
                     150f, PHO_STRINGS.RECIPE.NUCLEAR_WASTE_RECYCLING_DESC, ComplexRecipe.RecipeNameDisplay.Custom, 200);
                 recipe.customName = PHO_STRINGS.RECIPE.NUCLEAR_WASTE_RECYCLING_NAME;
+                recipe.requiredTech = "NuclearPropulsion";
                 recipe.customSpritePrefabID = SimHashes.NuclearWaste.CreateTag().ToString();
                 //recipe.customSpritePrefabID = ElementLoader.FindElementByHash(SimHashes.NuclearWaste).
             }
@@ -136,16 +139,43 @@ namespace HighTechIndustry
             go.AddTag(GameTags.CorrosionProof);
 
         }
+        private static void Postfix(GameObject go)
+        {
+            // Make it accept nuclear waste
+            UraniumCentrifuge uraniumCentrifuge = go.GetComponent<UraniumCentrifuge>();
 
+            ConduitConsumer conduitConsumer = go.AddOrGet<ConduitConsumer>();
+            conduitConsumer.alwaysConsume = true;
+            conduitConsumer.wrongElementResult = ConduitConsumer.WrongElementResult.Dump;
+            conduitConsumer.conduitType = ConduitType.Liquid;
+            conduitConsumer.capacityTag = SimHashes.NuclearWaste.CreateTag();
+            conduitConsumer.storage = uraniumCentrifuge.inStorage;
+        }
     }
-    // Add radiation source icon for centrifuger
+
+    [HarmonyPatch(typeof(UraniumCentrifugeConfig))]
+    [HarmonyPatch(nameof(UraniumCentrifugeConfig.DoPostConfigureComplete))]
+    public static class HighTechIndustry_DoPostConfigureComplete_WarningPatch
+    {
+        private static void Postfix(GameObject go)
+        {
+            // Remove the not connected pipe warning
+            go.GetComponent<RequireInputs>().SetRequirements(true, false);
+        }
+    }
+
     [HarmonyPatch(typeof(UraniumCentrifugeConfig))]
     [HarmonyPatch(nameof(UraniumCentrifugeConfig.CreateBuildingDef))]
     public static class HighTechIndustry_UraniumCentrifugeConfig_CreateBuildingDef
     {
         private static void Postfix(BuildingDef __result)
         {
+            // Add radiation source icon for centrifuger
             __result.DiseaseCellVisName = "RadiationSickness";
+
+            // Make it accept nuclear waste
+            __result.InputConduitType = ConduitType.Liquid;
+            __result.UtilityInputOffset = new CellOffset(-1, 3);
         }
     }
 

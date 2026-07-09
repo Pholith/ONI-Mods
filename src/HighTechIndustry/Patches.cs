@@ -2,26 +2,37 @@
 using Klei.AI;
 using KMod;
 using PeterHan.PLib.Database;
+using PeterHan.PLib.Options;
 using Pholib;
 using STRINGS;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 
 namespace HighTechIndustry
 {
-
     public class HighTechMod : UserMod2
     {
+        public static HighTechOption Settings = null;
 
         public override void OnLoad(Harmony harmony)
         {
             base.OnLoad(harmony);
-            //new POptions().RegisterOptions(this, typeof(NotepadOptions));
-            //GameOnLoadPatch.ReadSettings(); // Read settings early for the notepad description setting.
+            new POptions().RegisterOptions(this, typeof(HighTechOption));
+            ReadSettings();
 
             new PLocalization().Register();
             Utilities.GenerateStringsTemplate(typeof(PHO_STRINGS));
+        }
+
+        public static void ReadSettings()
+        {
+            Settings = POptions.ReadSettings<HighTechOption>();
+            if (Settings == null)
+            {
+                Settings = new HighTechOption();
+            }
         }
     }
 
@@ -31,7 +42,7 @@ namespace HighTechIndustry
     {
         public static void Postfix()
         {
-            Utilities.AddBuildingTech("NuclearPropulsion", NeutronicTransmutationChamberConfig.ID);
+            Utilities.AddBuildingTech("NuclearRefinement", NeutronicTransmutationChamberConfig.ID);
         }
     }
 
@@ -41,19 +52,24 @@ namespace HighTechIndustry
     {
         private static void Prefix()
         {
-            Utilities.AddBuilding("Refining", NeutronicTransmutationChamberConfig.ID, PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.NAME, PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.DESC, PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.EFFECT);
+            Utilities.AddBuilding("HEP", NeutronicTransmutationChamberConfig.ID,
+                PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.NAME,
+                PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.DESC,
+                PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.EFFECT,
+                TUNING.BUILDINGS.PlanSubcategoryName.producers,
+                UraniumCentrifugeConfig.ID);
         }
     }
 
 
-    // Patch HighTechIndustry_NuclearWasteRecyclePatch.helium wrong values and enable it
+    // Patch Helium wrong values and enable it
     [HarmonyPatch(typeof(ElementLoader))]
     [HarmonyPatch("CopyEntryToElement")]
     public static class HighTechIndustry_ElementLoader_PatchHelium
     {
         public static void Postfix(ElementData.ElementEntry entry, Element elem)
         {
-            if (elem.id == SimHashes.Helium)
+            if (HighTechMod.Settings.RestoreHeliumTrueProperty && elem.id == SimHashes.Helium)
             {
                 elem.thermalConductivity = 0.15f;
                 elem.specificHeatCapacity = 5.193f;
@@ -63,7 +79,6 @@ namespace HighTechIndustry
                 elem.disabled = false;
                 elem.oreTags = elem.oreTags.Except(new Tag[] { GameTags.HideFromCodex, GameTags.HideFromSpawnTool }).Cast<Tag>().ToArray(); // Remove Propane Hide tags
             }
-
         }
     }
     ////// NeutronicTransmutationRecipe add wattage patchs
@@ -76,8 +91,23 @@ namespace HighTechIndustry
             ComplexRecipe selectedRecipe = Traverse.Create(__instance)?.Property("firstSelectedRecipe")?.GetValue<ComplexRecipe>();
             if (selectedRecipe != null && selectedRecipe is NeutronicTransmutationRecipe colliderRecipe)
             {
-                string text = selectedRecipe.time.ToString() + " " + UI.UNITSUFFIXES.SECONDS.ToString().ToLower() + "                                     " + Utilities.FormatColored(colliderRecipe.energyRequired + " " + UI.UNITSUFFIXES.ELECTRICAL.WATT.ToString(), "c08210");
-                __instance.recipeDuration.SetText(text);
+                StringBuilder stringBuilder = new StringBuilder();
+                if (selectedRecipe.time >= 600)
+                {
+                    stringBuilder.Append(selectedRecipe.time / 600);
+                    stringBuilder.Append(" ");
+                    stringBuilder.Append(UI.ASTEROIDCLOCK.CYCLE.ToString().ToLower());
+                }
+                else
+                {
+                    stringBuilder.Append(selectedRecipe.time);
+                    stringBuilder.Append(" ");
+                    stringBuilder.Append(UI.UNITSUFFIXES.SECONDS.ToString().ToLower());
+                }
+                stringBuilder.Append("\t");
+                stringBuilder.Append(Utilities.FormatColored(colliderRecipe.energyRequired + " " + UI.UNITSUFFIXES.ELECTRICAL.WATT.ToString(), "c08210"));
+
+                __instance.recipeDuration.SetText(stringBuilder.ToString());
             }
         }
     }
@@ -139,7 +169,7 @@ namespace HighTechIndustry
                 {
                     PrimaryElement primaryElement = recipeResult.GetComponent<PrimaryElement>();
                     // primaryElement.SetUseSimDiseaseInfo(false);
-                    primaryElement.AddDisease(Db.Get().Diseases.GetIndex(RadiationPoisoning.ID), 2000, "UraniumCentrifuge.Emit");
+                    primaryElement.AddDisease(Db.Get().Diseases.GetIndex(RadiationPoisoning.ID), 20000, "UraniumCentrifuge.Emit");
                 }
             }
         }

@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using static TUNING.BUILDINGS;
 
 namespace Pholib
 {
@@ -383,11 +384,12 @@ namespace Pholib
         }
         /// <summary>
         /// Add building strings and add building to Plan screen.
+        /// <paramref name="previousBuildingId"/> Is the building just before the order we want to add. Can be found in BUILDINGS.PLANORDER.
         /// </summary>
-        public static void AddBuilding(string category, string id, string name, string desc, string effect, bool addBuildintToPlanScreen = true)
+        public static void AddBuilding(string category, string id, string name, string desc, string effect, PlanSubcategoryName subcategory, string previousBuildingId, bool addBuildintToPlanScreen = true)
         {
             AddBuildingStrings(id, name, desc, effect);
-            if (addBuildintToPlanScreen) ModUtil.AddBuildingToPlanScreen(category, id);
+            if (addBuildintToPlanScreen) ModUtil.AddBuildingToPlanScreen(category, id, subcategory.ToString(), previousBuildingId, ModUtil.BuildingOrdering.After);
         }
 
         /// <summary>

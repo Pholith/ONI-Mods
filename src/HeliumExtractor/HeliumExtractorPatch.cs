@@ -17,7 +17,13 @@ namespace HeliumExtractor
         {
             private static void Prefix()
             {
-                Utilities.AddBuilding("Refining", HeliumExtractorConfig.ID, PHO_STRINGS.HELIUMEXTRACTOR.NAME, PHO_STRINGS.HELIUMEXTRACTOR.DESC, PHO_STRINGS.HELIUMEXTRACTOR.EFFECT);
+                Utilities.AddBuilding("Refining",
+                    HeliumExtractorConfig.ID,
+                    PHO_STRINGS.HELIUMEXTRACTOR.NAME,
+                    PHO_STRINGS.HELIUMEXTRACTOR.DESC,
+                    PHO_STRINGS.HELIUMEXTRACTOR.EFFECT,
+                    TUNING.BUILDINGS.PlanSubcategoryName.organic,
+                    EthanolDistilleryConfig.ID);
             }
 
         }
@@ -31,8 +37,6 @@ namespace HeliumExtractor
                 Strings.Add("STRINGS.MISC.TAGS.COMBUSTIBLEGAS", PHO_STRINGS.COMBUSTIBLEGAS);
             }
         }
-
-        //public static readonly Tag ConductorTag = TagManager.Create(COMBUSTIBLEGAS, PHO_STRINGS.COMBUSTIBLEGAS);
 
         [HarmonyPatch(typeof(ElementLoader), "CopyEntryToElement")]
         public class PropaneCombustibleAdder
@@ -53,6 +57,12 @@ namespace HeliumExtractor
                     elem.oreTags = list.Cast<Tag>().ToArray();
                 }
 
+                // Restore true values of helium IRL.
+                if (GameOnLoadPatch.Settings.RestoreHeliumTrueProperty && elem.id == SimHashes.Helium)
+                {
+                    elem.thermalConductivity = 0.15f;
+                    elem.specificHeatCapacity = 5.193f;
+                }
             }
         }
 
@@ -65,7 +75,7 @@ namespace HeliumExtractor
                 EnergyGenerator energyGenerator = go.AddOrGet<EnergyGenerator>();
                 energyGenerator.formula.inputs = new EnergyGenerator.InputItem[]
                     {
-                new EnergyGenerator.InputItem(GameTags.CombustibleGas, 0.09f, 0.90000004f)
+                    new EnergyGenerator.InputItem(GameTags.CombustibleGas, 0.09f, 0.90000004f)
                     };
 
 
@@ -138,5 +148,6 @@ namespace HeliumExtractor
                 return false;
             }
         }
+
     }
 }

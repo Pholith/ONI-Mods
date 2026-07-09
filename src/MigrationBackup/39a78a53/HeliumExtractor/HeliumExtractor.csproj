@@ -55,6 +55,9 @@
       <HintPath>..\packages\GameLibs\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="PLib, Version=4.25.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PLib.4.25.0\lib\net48\PLib.dll</HintPath>
+    </Reference>
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Reflection.Emit.ILGeneration" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
@@ -91,12 +94,14 @@
     <None Include="anim\buildings\helium_extractor\He_Extractor_build.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="app.config" />
     <None Include="mod.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="mod_info.yaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="anim\buildings\blu\He_Extractor.png" />
@@ -108,11 +113,6 @@
   <ItemGroup>
     <Folder Include="translations\" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="PLib">
-      <Version>4.25.0</Version>
-    </PackageReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo ======  Repacking PLib ...
@@ -123,7 +123,7 @@ echo ====== Copy mods anim and files...
 
 xcopy /E /I /Q "$(ProjectDir)\anim" "$(OutDir)\anim" /y
 xcopy /E /I /Q "$(ProjectDir)\translations" "$(OutDir)\translations" /y
-copy "$(ProjectDir)\screen1.png" "$(OutDir)\screen1.png" /y &gt; nul
+copy "$(ProjectDir)\screen.png" "$(OutDir)\screen.png" /y &gt; nul
 copy "$(ProjectDir)\mod_info.yaml" "$(OutDir)\mod_info.yaml" /y &gt; nul
 copy "$(ProjectDir)\mod.yaml" "$(OutDir)\mod.yaml" /y &gt; nul
 
@@ -133,6 +133,13 @@ xcopy "$(TargetDir.TrimEnd('\'))" "$(SolutionDir)\..\..\..\Klei\OxygenNotInclude
 </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>rmdir /Q/S $(TargetDir)</PreBuildEvent>
+    <PreBuildEvent>del /Q *</PreBuildEvent>
   </PropertyGroup>
+  <Import Project="..\packages\ILRepack.Lib.MSBuild.Task.2.0.45\build\ILRepack.Lib.MSBuild.Task.targets" Condition="Exists('..\packages\ILRepack.Lib.MSBuild.Task.2.0.45\build\ILRepack.Lib.MSBuild.Task.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\ILRepack.Lib.MSBuild.Task.2.0.45\build\ILRepack.Lib.MSBuild.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILRepack.Lib.MSBuild.Task.2.0.45\build\ILRepack.Lib.MSBuild.Task.targets'))" />
+  </Target>
 </Project>
