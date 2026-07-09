@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using TUNING;
 using UnityEngine;
 using static ComplexRecipe;
-using static STRINGS.BUILDINGS.PREFABS;
 
 namespace HighTechIndustry
 {
@@ -14,8 +13,6 @@ namespace HighTechIndustry
         {
             return DlcManager.EXPANSION1;
         }
-
-        private HashedString[] dupeInteractAnims;
 
         public const string ID = "NeutronicTransmutationChamber";
         public const string HEP_STORAGE_ID = "HEP_STORAGE";
@@ -69,7 +66,7 @@ namespace HighTechIndustry
         //ConfigureBuildingTemplate from SupermaterialRefineryConfig example
         public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
         {
-		    go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
+            go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery, false);
             go.AddTag(GameTags.CorrosionProof);
 
             HighEnergyParticleStorage highEnergyParticleStorage = go.AddOrGet<HighEnergyParticleStorage>();
@@ -87,7 +84,7 @@ namespace HighTechIndustry
             radiationEmitter.emitRads = 100;
 
             DropAllWorkable dropper = go.AddOrGet<DropAllWorkable>();
-            dropper.requiredSkillPerk = Db.Get().SkillPerks.AllowNuclearResearch.Id; 
+            dropper.requiredSkillPerk = Db.Get().SkillPerks.AllowNuclearResearch.Id;
 
             NeutronicTransmutationChamber neutronicChamber = go.AddOrGet<NeutronicTransmutationChamber>();
             neutronicChamber.IsWorking = OPERATING_PORT_ID;
@@ -215,7 +212,7 @@ namespace HighTechIndustry
             {
                 new RecipeElement(SimHashes.Sand.CreateTag(), 200f, RecipeElement.TemperatureOperation.Heated, false),
             }, BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER2);
-            aluminiumToSand.time = timeDecayMinuteMedium * 2 ; // 157min
+            aluminiumToSand.time = timeDecayMinuteMedium * 2; // 157min
             aluminiumToSand.description = PHO_STRINGS.RECIPE.ALUMINIUM_TO_SAND;
             aluminiumToSand.nameDisplay = RecipeNameDisplay.IngredientToResult;
             aluminiumToSand.consumedHEP = 200;

@@ -2,7 +2,6 @@
 using Pholib;
 using System.Collections.Generic;
 using UnityEngine;
-using static STRINGS.BUILDINGS.PREFABS;
 
 namespace HighTechIndustry
 {
@@ -30,14 +29,14 @@ namespace HighTechIndustry
             var powerToGas = Utilities.AddComplexRecipe(
                 new ComplexRecipe.RecipeElement[]
                 {
-                        new ComplexRecipe.RecipeElement(SimHashes.CarbonDioxide.CreateTag(), powerToGasAmount, ComplexRecipe.RecipeElement.TemperatureOperation.Heated, false),
-                        new ComplexRecipe.RecipeElement(SimHashes.Water.CreateTag(), powerToGasAmount, ComplexRecipe.RecipeElement.TemperatureOperation.Heated, true),
+                    new ComplexRecipe.RecipeElement(SimHashes.CarbonDioxide.CreateTag(), powerToGasAmount, ComplexRecipe.RecipeElement.TemperatureOperation.Heated, false),
+                    new ComplexRecipe.RecipeElement(SimHashes.Water.CreateTag(), powerToGasAmount, ComplexRecipe.RecipeElement.TemperatureOperation.Heated, true),
                 },
                 new ComplexRecipe.RecipeElement[]
                 {
-                        new ComplexRecipe.RecipeElement(SimHashes.Methane.CreateTag(), 0.11199999f * powerToGasAmount, ComplexRecipe.RecipeElement.TemperatureOperation.Heated, false),
-                        new ComplexRecipe.RecipeElement(SimHashes.Oxygen.CreateTag(), 0.888f * powerToGasAmount, ComplexRecipe.RecipeElement.TemperatureOperation.Heated, false),
-                        new ComplexRecipe.RecipeElement(SimHashes.Water.CreateTag(), powerToGasAmount, ComplexRecipe.RecipeElement.TemperatureOperation.Heated, true),
+                    new ComplexRecipe.RecipeElement(SimHashes.Methane.CreateTag(), 0.11199999f * powerToGasAmount, ComplexRecipe.RecipeElement.TemperatureOperation.Heated, false),
+                    new ComplexRecipe.RecipeElement(SimHashes.Oxygen.CreateTag(), 0.888f * powerToGasAmount, ComplexRecipe.RecipeElement.TemperatureOperation.Heated, false),
+                    new ComplexRecipe.RecipeElement(SimHashes.Water.CreateTag(), powerToGasAmount, ComplexRecipe.RecipeElement.TemperatureOperation.Heated, true),
                 }, ChemicalRefineryConfig.ID, 60, PHO_STRINGS.RECIPE.POWER_TO_METHANE_DESC, ComplexRecipe.RecipeNameDisplay.Custom, 200);
             powerToGas.customName = PHO_STRINGS.RECIPE.POWER_TO_METHANE_NAME;
             powerToGas.customSpritePrefabID = ElementLoader.FindElementByHash(SimHashes.Methane).id.ToString();
@@ -102,7 +101,6 @@ namespace HighTechIndustry
                 recipe.customName = PHO_STRINGS.RECIPE.NUCLEAR_WASTE_RECYCLING_NAME;
                 recipe.requiredTech = "NuclearPropulsion";
                 recipe.customSpritePrefabID = SimHashes.NuclearWaste.CreateTag().ToString();
-                //recipe.customSpritePrefabID = ElementLoader.FindElementByHash(SimHashes.NuclearWaste).
             }
 
         }

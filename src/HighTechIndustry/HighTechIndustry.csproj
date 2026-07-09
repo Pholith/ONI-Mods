@@ -39,6 +39,7 @@
       <Link>Utilities.cs</Link>
     </Compile>
     <Compile Include="CentrifugerPatchs.cs" />
+    <Compile Include="HighTechOption.cs" />
     <Compile Include="NeutronicTransmutationRecipe.cs" />
     <Compile Include="NeutronicTransmutationChamber.cs" />
     <Compile Include="NeutronicTransmutationChamberConfig.cs" />
