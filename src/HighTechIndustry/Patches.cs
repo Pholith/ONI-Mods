@@ -96,7 +96,7 @@ namespace HighTechIndustry
                 {
                     stringBuilder.Append(selectedRecipe.time / 600);
                     stringBuilder.Append(" ");
-                    stringBuilder.Append(UI.ASTEROIDCLOCK.CYCLE.ToString().ToLower());
+                    stringBuilder.Append(UI.RETIRED_COLONY_INFO_SCREEN.CYCLES.ToString().ToLower());
                 }
                 else
                 {

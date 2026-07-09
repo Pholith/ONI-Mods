@@ -347,7 +347,7 @@ namespace HighTechIndustry
             depletedUraniumToPlutoniumSurgeneration.time = timeDecayCycle;
             depletedUraniumToPlutoniumSurgeneration.description = PHO_STRINGS.RECIPE.URANIUM_SURGENERATION;
             depletedUraniumToPlutoniumSurgeneration.nameDisplay = RecipeNameDisplay.IngredientToResult;
-            depletedUraniumToPlutoniumSurgeneration.consumedHEP = 600;
+            depletedUraniumToPlutoniumSurgeneration.consumedHEP = 400;
             depletedUraniumToPlutoniumSurgeneration.requiredTech = "NuclearPropulsion";
 
         }
