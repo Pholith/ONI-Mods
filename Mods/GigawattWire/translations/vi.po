@@ -1,0 +1,155 @@
+msgid ""
+msgstr ""
+"Application: Oxygen Not Included\n"
+"POT Version: 2.0\n"
+"Language: vi\n"
+
+#. GigaWattWire.WIRE_STRINGS.GIGAWATTWIRE.DESC
+msgctxt "GigaWattWire.WIRE_STRINGS.GIGAWATTWIRE.DESC"
+msgid "By using special superconductive materials and low temperatures this wire can carry up to 1000 MW."
+msgstr "Nhờ sử dụng vật liệu siêu dẫn đặc biệt cùng nhiệt độ thấp, loại dây này có thể tải tới 1000 MW."
+
+#. GigaWattWire.WIRE_STRINGS.GIGAWATTWIRE.EFFECT
+msgctxt "GigaWattWire.WIRE_STRINGS.GIGAWATTWIRE.EFFECT"
+msgid "Carries even more <link=\"POWER\">Wattage</link> than a <link=\"MEGAWATTWIRE\">Mega - Watt Wire</link>.\n\nCannot be run through wall and floor tile."
+msgstr "Truyền tải <link=\"POWER\">điện năng</link> lớn hơn cả <link=\"MEGAWATTWIRE\">Dây Mega-Watt</link>.\n\nKhông thể chạy ngầm trong gạch."
+
+#. GigaWattWire.WIRE_STRINGS.GIGAWATTWIRE.NAME
+msgctxt "GigaWattWire.WIRE_STRINGS.GIGAWATTWIRE.NAME"
+msgid "<link=\"GIGAWATTWIRE\">Giga-Watt Wire</link>"
+msgstr "<link=\"GIGAWATTWIRE\">Dây Giga-Watt</link>"
+
+#. GigaWattWire.WIRE_STRINGS.GIGAWATTWIREBRIDGE.DESC
+msgctxt "GigaWattWire.WIRE_STRINGS.GIGAWATTWIREBRIDGE.DESC"
+msgid "Joint plates can run Giga-Watt wires through walls without leaking gas or liquid."
+msgstr "Cho phép Dây Giga-Watt bắc cầu chạy xuyên tường mà không làm rò rỉ khí hay chất lỏng."
+
+#. GigaWattWire.WIRE_STRINGS.GIGAWATTWIREBRIDGE.EFFECT
+msgctxt "GigaWattWire.WIRE_STRINGS.GIGAWATTWIREBRIDGE.EFFECT"
+msgid "Carries even more <link=\"POWER\">Wattage</link> than a <link=\"MEGAWATTWIREBRIDGE\">Mega - Watt Conductive Joint Plate</link>.\n\nAllows <link=\"MEGAWATTWIRE\"> Mega-Watt Wire</link> to be run through wall and floor tile."
+msgstr "Truyền tải <link=\"POWER\">điện năng</link> lớn hơn cả <link=\"MEGAWATTWIREBRIDGE\">Dây Mega-Watt Bắc Cầu</link>.\n\nCho phép <link=\"MEGAWATTWIRE\"> Dây Mega-Watt</link> chạy ngầm trong gạch."
+
+#. GigaWattWire.WIRE_STRINGS.GIGAWATTWIREBRIDGE.NAME
+msgctxt "GigaWattWire.WIRE_STRINGS.GIGAWATTWIREBRIDGE.NAME"
+msgid "<link=\"GIGAWATTWIREBRIDGE\">Giga-Watt Joint Plate</link>"
+msgstr "<link=\"GIGAWATTWIREBRIDGE\">Dây Giga-Watt Bắc Cầu</link>"
+
+#. GigaWattWire.WIRE_STRINGS.JACKETED_WIRE.DESC
+msgctxt "GigaWattWire.WIRE_STRINGS.JACKETED_WIRE.DESC"
+msgid "By coating the wires in plastic they suddenly became much safer."
+msgstr "Bọc nhựa quanh dây điện giúp chúng an toàn hơn hẳn."
+
+#. GigaWattWire.WIRE_STRINGS.JACKETED_WIRE.EFFECT
+msgctxt "GigaWattWire.WIRE_STRINGS.JACKETED_WIRE.EFFECT"
+msgid "Connects buildings to <link=\"POWER\">Power</link> sources. \n\nCan be run through wall and floor tile."
+msgstr "Kết nối các công trình với nguồn <link=\"POWER\">điện</link>. \n\nCó thể chạy ngầm trong gạch."
+
+#. GigaWattWire.WIRE_STRINGS.JACKETED_WIRE.NAME
+msgctxt "GigaWattWire.WIRE_STRINGS.JACKETED_WIRE.NAME"
+msgid "<link=\"JACKETEDWIRE\">Insulated Wire</link>"
+msgstr "<link=\"JACKETEDWIRE\">Dây Điện Cách Điện</link>"
+
+#. GigaWattWire.WIRE_STRINGS.JACKETEDWIREBRIDGE.DESC
+msgctxt "GigaWattWire.WIRE_STRINGS.JACKETEDWIREBRIDGE.DESC"
+msgid "By coating the wires in plastic they suddenly became much safer."
+msgstr "Bọc nhựa quanh dây điện giúp chúng an toàn hơn hẳn."
+
+#. GigaWattWire.WIRE_STRINGS.JACKETEDWIREBRIDGE.EFFECT
+msgctxt "GigaWattWire.WIRE_STRINGS.JACKETEDWIREBRIDGE.EFFECT"
+msgid "Carries even more <link=\"POWER\">Wattage</link> than a <link=\"WIREREFINEDBRIDGE\">Conductive Wire Bridge</link> without overloading."
+msgstr "Truyền tải <link=\"POWER\">điện năng</link> lớn hơn cả <link=\"WIREREFINEDBRIDGE\">Dây Điện Tinh Chế Bắc Cầu</link> mà không bị quá tải."
+
+#. GigaWattWire.WIRE_STRINGS.JACKETEDWIREBRIDGE.NAME
+msgctxt "GigaWattWire.WIRE_STRINGS.JACKETEDWIREBRIDGE.NAME"
+msgid "<link=\"JACKETEDWIREBRIDGE\">Insulated Wire Bridge</link>"
+msgstr "<link=\"JACKETEDWIREBRIDGE\">Dây Cách Điện Bắc Cầu</link>"
+
+#. GigaWattWire.WIRE_STRINGS.MEGAWATTWIRE.DESC
+msgctxt "GigaWattWire.WIRE_STRINGS.MEGAWATTWIRE.DESC"
+msgid "This one goes up to 1000 kW."
+msgstr "Loại dây này có thể tải tới 1000 kW."
+
+#. GigaWattWire.WIRE_STRINGS.MEGAWATTWIRE.EFFECT
+msgctxt "GigaWattWire.WIRE_STRINGS.MEGAWATTWIRE.EFFECT"
+msgid "Carries even more <link=\"POWER\">Wattage</link> than a <link=\"WIREREFINEDHIGHWATTAGE\">Jacked Wire</link> without overloading.\n\nCannot be run through wall and floor tile."
+msgstr "Truyền tải <link=\"POWER\">điện năng</link> lớn hơn cả <link=\"WIREREFINEDHIGHWATTAGE\">Dây Điện Cao Áp</link> mà không bị quá tải.\n\nKhông thể chạy ngầm trong gạch."
+
+#. GigaWattWire.WIRE_STRINGS.MEGAWATTWIRE.NAME
+msgctxt "GigaWattWire.WIRE_STRINGS.MEGAWATTWIRE.NAME"
+msgid "<link=\"MEGAWATTWIRE\">Mega-Watt Wire</link>"
+msgstr "<link=\"MEGAWATTWIRE\">Dây Mega-Watt</link>"
+
+#. GigaWattWire.WIRE_STRINGS.MEGAWATTWIREBRIDGE.DESC
+msgctxt "GigaWattWire.WIRE_STRINGS.MEGAWATTWIREBRIDGE.DESC"
+msgid "Joint plates can run Mega-Watt wires through walls without leaking gas or liquid."
+msgstr "Cho phép Dây Mega-Watt bắc cầu chạy xuyên tường mà không làm rò rỉ khí hay chất lỏng."
+
+#. GigaWattWire.WIRE_STRINGS.MEGAWATTWIREBRIDGE.EFFECT
+msgctxt "GigaWattWire.WIRE_STRINGS.MEGAWATTWIREBRIDGE.EFFECT"
+msgid "Carries even more <link=\"POWER\">Wattage</link> than a <link=\"WIREREFINEDBRIDGEHIGHWATTAGE\">Jacked Wire</link> without overloading.\n\nAllows <link=\"MEGAWATTWIRE\"> Mega-Watt Wire</link> to be run through wall and floor tile."
+msgstr "Truyền tải <link=\"POWER\">điện năng</link> lớn hơn cả <link=\"WIREREFINEDBRIDGEHIGHWATTAGE\">Dây Điện Cao Áp</link> mà không bị quá tải.\n\nCho phép <link=\"MEGAWATTWIRE\"> Dây Mega-Watt</link> chạy ngầm trong gạch."
+
+#. GigaWattWire.WIRE_STRINGS.MEGAWATTWIREBRIDGE.NAME
+msgctxt "GigaWattWire.WIRE_STRINGS.MEGAWATTWIREBRIDGE.NAME"
+msgid "<link=\"MEGAWATTWIREBRIDGE\">Mega-Watt Joint Plate</link>"
+msgstr "<link=\"MEGAWATTWIREBRIDGE\">Dây Mega-Watt Bắc Cầu</link>"
+
+#. GigaWattWire.WIRE_STRINGS.MISC.CONDUCTOR
+msgctxt "GigaWattWire.WIRE_STRINGS.MISC.CONDUCTOR"
+msgid "Conductor"
+msgstr "Chất dẫn điện"
+
+#. GigaWattWire.WIRE_STRINGS.MISC.TAGS.CONDUCTOR
+msgctxt "GigaWattWire.WIRE_STRINGS.MISC.TAGS.CONDUCTOR"
+msgid "Conductor"
+msgstr "Chất dẫn điện"
+
+#. GigaWattWire.WIRE_STRINGS.MISC.TAGS.TEMPCONDUCTORSOLID
+msgctxt "GigaWattWire.WIRE_STRINGS.MISC.TAGS.TEMPCONDUCTORSOLID"
+msgid "Extreme Conductor"
+msgstr "Chất dẫn điện cực mạnh"
+
+#. GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER100KW.DESC
+msgctxt "GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER100KW.DESC"
+msgid "For those times you need a really big transformer."
+msgstr "Dành cho những lúc bạn cần một chiếc máy biến áp thật lớn."
+
+#. GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER100KW.EFFECT
+msgctxt "GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER100KW.EFFECT"
+msgid "Limits <link=\"POWER\">Power</link> flowing through the Transformer to 100 kW"
+msgstr "Giới hạn <link=\"POWER\">Công suất</link> chạy qua Máy biến áp là 100 kW"
+
+#. GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER100KW.NAME
+msgctxt "GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER100KW.NAME"
+msgid "<link=\"POWERTRANSFORMER100KW\">100 kW Power Transformer</link>"
+msgstr "<link=\"POWERTRANSFORMER100KW\">Máy Biến Áp 100 kW</link>"
+
+#. GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER2MW.DESC
+msgctxt "GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER2MW.DESC"
+msgid "For those times you need an even bigger transformer."
+msgstr "Dành cho những lúc bạn cần một chiếc máy biến áp còn lớn hơn nữa."
+
+#. GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER2MW.EFFECT
+msgctxt "GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER2MW.EFFECT"
+msgid "Limits <link=\"POWER\">Power</link> flowing through the Transformer to 2 MW"
+msgstr "Giới hạn <link=\"POWER\">Công suất</link> chạy qua Máy biến áp là 2 MW"
+
+#. GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER2MW.NAME
+msgctxt "GigaWattWire.WIRE_STRINGS.POWERTRANSFORMER2MW.NAME"
+msgid "<link=\"POWERTRANSFORMER2MW\">2 MW Power Transformer</link>"
+msgstr "<link=\"POWERTRANSFORMER2MW\">Máy Biến Áp 2 MW</link>"
+
+#. GigaWattWire.WIRE_STRINGS.UI.UNITSUFFIXES.ELECTRICAL.GIGAWATT
+msgctxt "GigaWattWire.WIRE_STRINGS.UI.UNITSUFFIXES.ELECTRICAL.GIGAWATT"
+msgid "GW"
+msgstr "GW"
+
+#. GigaWattWire.WIRE_STRINGS.UI.UNITSUFFIXES.ELECTRICAL.MEGAWATT
+msgctxt "GigaWattWire.WIRE_STRINGS.UI.UNITSUFFIXES.ELECTRICAL.MEGAWATT"
+msgid "MW"
+msgstr "MW"
+
+#. GigaWattWire.WIRE_STRINGS.UI.UNITSUFFIXES.ELECTRICAL.TERAWATT
+msgctxt "GigaWattWire.WIRE_STRINGS.UI.UNITSUFFIXES.ELECTRICAL.TERAWATT"
+msgid "TW"
+msgstr "TW"
