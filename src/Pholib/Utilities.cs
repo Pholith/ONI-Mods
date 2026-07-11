@@ -393,6 +393,17 @@ namespace Pholib
         }
 
         /// <summary>
+        /// Add building strings and add building to Plan screen.
+        /// <paramref name="previousBuildingId"/> Is the building just before the order we want to add. Can be found in BUILDINGS.PLANORDER.
+        /// </summary>
+        [Obsolete("Use AddBuilding instead.")]
+        public static void AddBuildingWithoutSorting(string category, string id, string name, string desc, string effect, bool addBuildintToPlanScreen = true)
+        {
+            AddBuildingStrings(id, name, desc, effect);
+            if (addBuildintToPlanScreen) ModUtil.AddBuildingToPlanScreen(category, id);
+        }
+
+        /// <summary>
         /// Add building tech. Must be called using a postfix on Db.Init.
         /// Tech id can be found in Database.Techs class.
         /// </summary>

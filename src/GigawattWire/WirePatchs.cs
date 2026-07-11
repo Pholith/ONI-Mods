@@ -424,14 +424,14 @@ namespace GigaWattWire
         {
             public static void Prefix()
             {
-                Utilities.AddBuilding("Power", JacketedWireConfig.ID, WIRE_STRINGS.JACKETED_WIRE.NAME, WIRE_STRINGS.JACKETED_WIRE.DESC, WIRE_STRINGS.JACKETED_WIRE.EFFECT, GameOnLoadPatch.Settings.EnableJacketedWire);
-                Utilities.AddBuilding("Power", JacketedWireBridgeConfig.ID, WIRE_STRINGS.JACKETEDWIREBRIDGE.NAME, WIRE_STRINGS.JACKETEDWIREBRIDGE.DESC, WIRE_STRINGS.JACKETEDWIREBRIDGE.EFFECT, GameOnLoadPatch.Settings.EnableJacketedWire);
-                Utilities.AddBuilding("Power", MegawattWireConfig.ID, WIRE_STRINGS.MEGAWATTWIRE.NAME, WIRE_STRINGS.MEGAWATTWIRE.DESC, WIRE_STRINGS.MEGAWATTWIRE.EFFECT, GameOnLoadPatch.Settings.EnableMegaWattWire);
-                Utilities.AddBuilding("Power", MegawattWireBridgeConfig.ID, WIRE_STRINGS.MEGAWATTWIREBRIDGE.NAME, WIRE_STRINGS.MEGAWATTWIREBRIDGE.DESC, WIRE_STRINGS.MEGAWATTWIREBRIDGE.EFFECT, GameOnLoadPatch.Settings.EnableMegaWattWire);
-                Utilities.AddBuilding("Power", GigawattWireConfig.ID, WIRE_STRINGS.GIGAWATTWIRE.NAME, WIRE_STRINGS.GIGAWATTWIRE.DESC, WIRE_STRINGS.GIGAWATTWIRE.EFFECT, GameOnLoadPatch.Settings.EnableGigaWattWire);
-                Utilities.AddBuilding("Power", GigawattWireBridgeConfig.ID, WIRE_STRINGS.GIGAWATTWIREBRIDGE.NAME, WIRE_STRINGS.GIGAWATTWIREBRIDGE.DESC, WIRE_STRINGS.GIGAWATTWIREBRIDGE.EFFECT, GameOnLoadPatch.Settings.EnableGigaWattWire);
-                Utilities.AddBuilding("Power", PowerTransformer100kWConfig.ID, WIRE_STRINGS.POWERTRANSFORMER100KW.NAME, WIRE_STRINGS.POWERTRANSFORMER100KW.DESC, WIRE_STRINGS.POWERTRANSFORMER100KW.EFFECT, GameOnLoadPatch.Settings.Enable100kWTransformer);
-                Utilities.AddBuilding("Power", PowerTransformer2MWConfig.ID, WIRE_STRINGS.POWERTRANSFORMER2MW.NAME, WIRE_STRINGS.POWERTRANSFORMER2MW.DESC, WIRE_STRINGS.POWERTRANSFORMER2MW.EFFECT, GameOnLoadPatch.Settings.Enable2MWTranformer);
+                Utilities.AddBuildingWithoutSorting("Power", JacketedWireConfig.ID, WIRE_STRINGS.JACKETED_WIRE.NAME, WIRE_STRINGS.JACKETED_WIRE.DESC, WIRE_STRINGS.JACKETED_WIRE.EFFECT, GameOnLoadPatch.Settings.EnableJacketedWire);
+                Utilities.AddBuildingWithoutSorting("Power", JacketedWireBridgeConfig.ID, WIRE_STRINGS.JACKETEDWIREBRIDGE.NAME, WIRE_STRINGS.JACKETEDWIREBRIDGE.DESC, WIRE_STRINGS.JACKETEDWIREBRIDGE.EFFECT, GameOnLoadPatch.Settings.EnableJacketedWire);
+                Utilities.AddBuildingWithoutSorting("Power", MegawattWireConfig.ID, WIRE_STRINGS.MEGAWATTWIRE.NAME, WIRE_STRINGS.MEGAWATTWIRE.DESC, WIRE_STRINGS.MEGAWATTWIRE.EFFECT, GameOnLoadPatch.Settings.EnableMegaWattWire);
+                Utilities.AddBuildingWithoutSorting("Power", MegawattWireBridgeConfig.ID, WIRE_STRINGS.MEGAWATTWIREBRIDGE.NAME, WIRE_STRINGS.MEGAWATTWIREBRIDGE.DESC, WIRE_STRINGS.MEGAWATTWIREBRIDGE.EFFECT, GameOnLoadPatch.Settings.EnableMegaWattWire);
+                Utilities.AddBuildingWithoutSorting("Power", GigawattWireConfig.ID, WIRE_STRINGS.GIGAWATTWIRE.NAME, WIRE_STRINGS.GIGAWATTWIRE.DESC, WIRE_STRINGS.GIGAWATTWIRE.EFFECT, GameOnLoadPatch.Settings.EnableGigaWattWire);
+                Utilities.AddBuildingWithoutSorting("Power", GigawattWireBridgeConfig.ID, WIRE_STRINGS.GIGAWATTWIREBRIDGE.NAME, WIRE_STRINGS.GIGAWATTWIREBRIDGE.DESC, WIRE_STRINGS.GIGAWATTWIREBRIDGE.EFFECT, GameOnLoadPatch.Settings.EnableGigaWattWire);
+                Utilities.AddBuildingWithoutSorting("Power", PowerTransformer100kWConfig.ID, WIRE_STRINGS.POWERTRANSFORMER100KW.NAME, WIRE_STRINGS.POWERTRANSFORMER100KW.DESC, WIRE_STRINGS.POWERTRANSFORMER100KW.EFFECT, GameOnLoadPatch.Settings.Enable100kWTransformer);
+                Utilities.AddBuildingWithoutSorting("Power", PowerTransformer2MWConfig.ID, WIRE_STRINGS.POWERTRANSFORMER2MW.NAME, WIRE_STRINGS.POWERTRANSFORMER2MW.DESC, WIRE_STRINGS.POWERTRANSFORMER2MW.EFFECT, GameOnLoadPatch.Settings.Enable2MWTranformer);
             }
         }
 

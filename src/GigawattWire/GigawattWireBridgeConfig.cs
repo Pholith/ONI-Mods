@@ -1,5 +1,4 @@
-﻿using Pholib;
-using UnityEngine;
+﻿using UnityEngine;
 using static GigaWattWire.WirePatchs;
 
 namespace GigaWattWire
