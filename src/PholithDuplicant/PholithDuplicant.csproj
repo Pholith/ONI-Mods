@@ -74,17 +74,26 @@
     <Compile Include="..\Pholib\Utilities.cs">
       <Link>Utilities.cs</Link>
     </Compile>
-    <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="PersonalityOutline.cs" />
     <Compile Include="PholithDuplicant.cs" />
     <Compile Include="PholithOption.cs" />
+    <Compile Include="STRINGS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="anim\assets\booster_degausser_coil\upgrade_disc_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="anim\assets\hat_degausser_coil\hat_degausser_coil_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="anim\assets\pholith_accesories2\pholith_accesories_0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="anim\assets\pholith_accesories\pholith_accesories_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\hat_degausser_coil.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="dreamicons\dreamicon_pholith.png">
@@ -95,6 +104,18 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="anim\assets\booster_degausser_coil\upgrade_disc_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\assets\booster_degausser_coil\upgrade_disc_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\assets\hat_degausser_coil\hat_degausser_coil_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\assets\hat_degausser_coil\hat_degausser_coil_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="anim\assets\pholith_accesories2\pholith_accesories_anim.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -109,8 +130,6 @@
     </None>
     <None Include="mod.yaml" />
     <None Include="mod_info.yaml" />
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Debug\PholithDuplicant.csproj.AssemblyReference.cache" />
     <None Include="PERSONALITIES.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

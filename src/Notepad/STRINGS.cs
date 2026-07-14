@@ -1,6 +1,6 @@
 ﻿namespace Notepad
 {
-    public static class PHO_STRINGS
+    public static class STRINGS
     {
         public static class NOTEPAD
         {

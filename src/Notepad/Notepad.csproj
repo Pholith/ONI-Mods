@@ -41,7 +41,7 @@
     <Compile Include="NotepadOptions.cs" />
     <Compile Include="NotepadSideScreen.cs" />
     <Compile Include="Patches.cs" />
-    <Compile Include="PHO_STRINGS.cs" />
+    <Compile Include="STRINGS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Notepad.cs" />
     <Compile Include="NotepadConfig.cs" />

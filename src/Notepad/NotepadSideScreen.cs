@@ -29,7 +29,7 @@ namespace Notepad
         {
             BuildPanel();
             base.OnPrefabInit();
-            titleKey = PHO_STRINGS.NOTEPAD.NAME.key.String;
+            titleKey = STRINGS.NOTEPAD.NAME.key.String;
             activateOnSpawn = true;
         }
 

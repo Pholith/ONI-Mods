@@ -22,7 +22,7 @@ namespace Notepad
             GameOnLoadPatch.ReadSettings(); // Read settings early for the notepad description setting.
 
             new PLocalization().Register();
-            Utilities.GenerateStringsTemplate(typeof(PHO_STRINGS));
+            Utilities.GenerateStringsTemplate(typeof(STRINGS));
         }
     }
 
@@ -36,7 +36,7 @@ namespace Notepad
             GameObject o = new GameObject();
             o.AddComponent<NotepadSideScreen>();
 
-            Strings.Add(new string[] { "STRINGS.UI.KLEI_INVENTORY_SCREEN.SUBCATEGORIES.BUILDING_NOTEPAD", PHO_STRINGS.NOTEPAD.NAME });
+            Strings.Add(new string[] { "STRINGS.UI.KLEI_INVENTORY_SCREEN.SUBCATEGORIES.BUILDING_NOTEPAD", STRINGS.NOTEPAD.NAME });
         }
     }
 
@@ -67,7 +67,7 @@ namespace Notepad
     {
         public static void Prefix()
         {
-            AddBuilding("Furniture", NotepadConfig.ID, PHO_STRINGS.NOTEPAD.NAME, PHO_STRINGS.NOTEPAD.DESC, PHO_STRINGS.NOTEPAD.EFFECT);
+            AddBuilding("Furniture", NotepadConfig.ID, STRINGS.NOTEPAD.NAME, STRINGS.NOTEPAD.DESC, STRINGS.NOTEPAD.EFFECT);
         }
     }
 
@@ -188,12 +188,12 @@ namespace Notepad
     {
         public static void Postfix(ResourceSet<BuildingFacadeResource> __instance)
         {
-            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[0], PHO_STRINGS.BLACKBOARD.NAME, PHO_STRINGS.BLACKBOARD.DESC,    PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[0] + "_kanim", null, null, null, null));
-            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[1], PHO_STRINGS.BLUEPRINT.NAME, PHO_STRINGS.BLUEPRINT.DESC,      PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[1] + "_kanim", null, null, null, null));
-            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[2], PHO_STRINGS.POSTIT.NAME, PHO_STRINGS.POSTIT.DESC,            PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[2] + "_kanim", null, null, null, null));
-            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[3], PHO_STRINGS.STONKS.NAME, PHO_STRINGS.STONKS.DESC,            PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[3] + "_kanim", null, null, null, null));
-            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[4], PHO_STRINGS.TV.NAME, PHO_STRINGS.TV.DESC,                    PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[4] + "_kanim", null, null, null, null));
-            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[5], PHO_STRINGS.WARNING.NAME, PHO_STRINGS.WARNING.DESC,          PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[5] + "_kanim", null, null, null, null));
+            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[0], STRINGS.BLACKBOARD.NAME, STRINGS.BLACKBOARD.DESC,    PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[0] + "_kanim", null, null, null, null));
+            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[1], STRINGS.BLUEPRINT.NAME, STRINGS.BLUEPRINT.DESC,      PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[1] + "_kanim", null, null, null, null));
+            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[2], STRINGS.POSTIT.NAME, STRINGS.POSTIT.DESC,            PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[2] + "_kanim", null, null, null, null));
+            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[3], STRINGS.STONKS.NAME, STRINGS.STONKS.DESC,            PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[3] + "_kanim", null, null, null, null));
+            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[4], STRINGS.TV.NAME, STRINGS.TV.DESC,                    PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[4] + "_kanim", null, null, null, null));
+            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[5], STRINGS.WARNING.NAME, STRINGS.WARNING.DESC,          PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[5] + "_kanim", null, null, null, null));
         }
     }
 

@@ -337,12 +337,12 @@ namespace HighTechIndustry
             mercuryToLead.nameDisplay = RecipeNameDisplay.IngredientToResult;
             mercuryToLead.consumedHEP = 400;
 
-            NeutronicTransmutationRecipe depletedUraniumToPlutoniumSurgeneration = NeutronicTransmutationRecipe.AddRecipe(new RecipeElement(SimHashes.DepletedUranium.CreateTag(), 100),
+            NeutronicTransmutationRecipe depletedUraniumToPlutoniumSurgeneration = NeutronicTransmutationRecipe.AddRecipe(new RecipeElement(SimHashes.DepletedUranium.CreateTag(), 200),
             new RecipeElement[]
             {
-                new RecipeElement(SimHashes.EnrichedUranium.CreateTag(), 5f, RecipeElement.TemperatureOperation.Heated, false),
-                new RecipeElement(SimHashes.DepletedUranium.CreateTag(), 90f, RecipeElement.TemperatureOperation.Heated, false),
-                new RecipeElement(SimHashes.NuclearWaste.CreateTag(), 5f, RecipeElement.TemperatureOperation.Heated, true),
+                new RecipeElement(SimHashes.EnrichedUranium.CreateTag(), 10f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.DepletedUranium.CreateTag(), 180f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.NuclearWaste.CreateTag(), 10f, RecipeElement.TemperatureOperation.Heated, true),
             }, BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER3);
             depletedUraniumToPlutoniumSurgeneration.time = timeDecayCycle;
             depletedUraniumToPlutoniumSurgeneration.description = PHO_STRINGS.RECIPE.URANIUM_SURGENERATION;

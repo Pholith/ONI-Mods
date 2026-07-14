@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="mod_degausser_coil_0.png" width="71" height="66" pivot_x="0.508042" pivot_y="0.42016417" />
+        <file id="1" name="mod_degausser_coil_1.png" width="69" height="24" pivot_x="0.49964026" pivot_y="0.49843746" />
+        <file id="2" name="mod_degausser_coil_2.png" width="73" height="25" pivot_x="0.49948627" pivot_y="0.49699998" />
+        <file id="3" name="ui_mod_degausser_coil_0.png" width="136" height="131" pivot_x="0.48188686" pivot_y="0.07281178" />
+    </folder>
+    <entity id="0" name="upgrade_disc">
+        <animation id="0" name="mod_degausser_coil" length="132" interval="33">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="33">
+                    <object_ref id="0" timeline="0" key="1" z_index="1"/>
+                </key>
+                <key id="2" time="66">
+                    <object_ref id="0" timeline="0" key="2" z_index="1"/>
+                </key>
+                <key id="3" time="99">
+                    <object_ref id="0" timeline="0" key="3" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="mod_degausser_coil_0">
+                <key id="0" time="0">
+                    <object folder="0" file="0" x="-0.5" y="0.875"/>
+                </key>
+                <key id="1" time="33">
+                    <object folder="0" file="0" x="-0.5" y="0.875"/>
+                </key>
+                <key id="2" time="66">
+                    <object folder="0" file="0" x="-0.5" y="0.875"/>
+                </key>
+                <key id="3" time="99">
+                    <object folder="0" file="0" x="-0.5" y="0.875"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="ui_mod_degausser_coil" length="132" interval="33">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="33">
+                    <object_ref id="0" timeline="0" key="1" z_index="1"/>
+                </key>
+                <key id="2" time="66">
+                    <object_ref id="0" timeline="0" key="2" z_index="1"/>
+                </key>
+                <key id="3" time="99">
+                    <object_ref id="0" timeline="0" key="3" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="ui_mod_degausser_coil_0">
+                <key id="0">
+                    <object folder="0" file="3" x="-1.725" y="3.7"/>
+                </key>
+                <key id="1" time="33">
+                    <object folder="0" file="3" x="-1.725" y="3.7"/>
+                </key>
+                <key id="2" time="66">
+                    <object folder="0" file="3" x="-1.725" y="3.7"/>
+                </key>
+                <key id="3" time="99">
+                    <object folder="0" file="3" x="-1.725" y="3.7"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

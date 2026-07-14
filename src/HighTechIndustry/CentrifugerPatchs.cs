@@ -97,7 +97,7 @@ namespace HighTechIndustry
                     new ComplexRecipe.RecipeElement[] { new ComplexRecipe.RecipeElement(SimHashes.NuclearWaste.CreateTag(), recipeAmount) },
                     results,
                     UraniumCentrifugeConfig.ID,
-                    150f, PHO_STRINGS.RECIPE.NUCLEAR_WASTE_RECYCLING_DESC, ComplexRecipe.RecipeNameDisplay.Custom, 200);
+                    120f, PHO_STRINGS.RECIPE.NUCLEAR_WASTE_RECYCLING_DESC, ComplexRecipe.RecipeNameDisplay.Custom, 200);
                 recipe.customName = PHO_STRINGS.RECIPE.NUCLEAR_WASTE_RECYCLING_NAME;
                 recipe.requiredTech = "NuclearPropulsion";
                 recipe.customSpritePrefabID = SimHashes.NuclearWaste.CreateTag().ToString();
