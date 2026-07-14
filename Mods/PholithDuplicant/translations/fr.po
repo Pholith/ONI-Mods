@@ -12,15 +12,6 @@ msgstr ""
 "Application: Oxygen Not IncludedPOT Version: 2.0\n"
 "X-Generator: Poedit 3.9\n"
 
-#. PHOLITH.DESCRIPTION
-msgctxt "PHOLITH.DESCRIPTION"
-msgid ""
-"{0} only regrets of becoming an android is that she can't eat her favorite "
-"ice cream anymore."
-msgstr ""
-"Le seul regret de {0} depuis qu'elle est devenue un androïde, c'est de ne "
-"plus pouvoir manger sa glace préférée."
-
 #. PholithDuplicant.PHO_STRINGS.BOOSTER_DEGAUSSER_COIL.NAME
 msgctxt "PholithDuplicant.PHO_STRINGS.BOOSTER_DEGAUSSER_COIL.NAME"
 msgid "<link=BOOSTER_DEGAUSSER_COIL\>Degausser Coil Booster</link>"

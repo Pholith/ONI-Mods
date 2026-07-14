@@ -8,13 +8,13 @@ msgctxt "PHOLITH.DESCRIPTION"
 msgid "{0} only regrets of becoming an android is that she can't eat her favorite ice cream anymore."
 msgstr ""
 
-#. PholithDuplicant.STRINGS.ITEMS.BIONIC_BOOSTERS.BOOSTER_DEGAUSSER_COIL.NAME
-msgctxt "PholithDuplicant.STRINGS.ITEMS.BIONIC_BOOSTERS.BOOSTER_DEGAUSSER_COIL.NAME"
+#. PholithDuplicant.PHO_STRINGS.BOOSTER_DEGAUSSER_COIL.NAME
+msgctxt "PholithDuplicant.PHO_STRINGS.BOOSTER_DEGAUSSER_COIL.NAME"
 msgid "<link=BOOSTER_DEGAUSSER_COIL\>Degausser Coil Booster</link>"
 msgstr ""
 
-#. PholithDuplicant.STRINGS.ITEMS.BIONIC_BOOSTERS.BOOSTER_DEGAUSSER_COIL.DESC
-msgctxt "PholithDuplicant.STRINGS.ITEMS.BIONIC_BOOSTERS.BOOSTER_DEGAUSSER_COIL.DESC"
+#. PholithDuplicant.PHO_STRINGS.BOOSTER_DEGAUSSER_COIL.DESC
+msgctxt "PholithDuplicant.PHO_STRINGS.BOOSTER_DEGAUSSER_COIL.DESC"
 msgid "Overrides a Bionic Duplicant's safety protocols to reduce stress.\n\n<b>WARNING:</b>\nUsage reduce bionic system capacity."
 msgstr ""
 

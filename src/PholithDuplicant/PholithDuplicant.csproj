@@ -77,7 +77,7 @@
     <Compile Include="PersonalityOutline.cs" />
     <Compile Include="PholithDuplicant.cs" />
     <Compile Include="PholithOption.cs" />
-    <Compile Include="STRINGS.cs" />
+    <Compile Include="PHO_STRINGS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -139,7 +139,11 @@
     <None Include="strings\_template.pot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="translations\fr.po">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo ====== Copy mods anim and files...

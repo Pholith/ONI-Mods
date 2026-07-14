@@ -295,8 +295,11 @@ namespace Pholib
         /// Thanks exnihilo to helping making translations
         public static void LoadTranslations(Type locStringRoot, string modPath, string translationsDir = "translations")
         {
+            Logs.Log(modPath);
             // you still need to call this
             Localization.RegisterForTranslation(locStringRoot);
+            // Register without the namespace as a prefix, so Strings.get("STRINGS...") will work
+            LocString.CreateLocStringKeys(locStringRoot, null);
 
             Localization.Locale locale = Localization.GetLocale();
             if (locale == null)
@@ -304,24 +307,21 @@ namespace Pholib
                 // english language is selected, so no action is needed
                 return;
             }
-
             if (string.IsNullOrEmpty(modPath))
             {
-                Debug.LogError("modPath is empty");
+                Logs.Log("modPath is empty");
                 return;
             }
 
             string stringsPath = Path.Combine(modPath, translationsDir ?? "");
             string translationsPath = Path.Combine(stringsPath, locale.Code + ".po");
 
-            Debug.Log($"Loading translation file for {locale.Lang} ({locale.Code}) language: '{translationsPath}'");
-
+            Logs.Log($"Loading translation file for {locale.Lang} ({locale.Code}) language: '{translationsPath}'");
             if (!File.Exists(translationsPath))
             {
-                Debug.LogWarning($"Translation file not found: '{translationsPath}'");
+                Logs.Log($"Translation file not found: '{translationsPath}'");
                 return;
             }
-
             try
             {
                 Dictionary<string, string> translations = Localization.LoadStringsFile(translationsPath, false);
@@ -329,8 +329,8 @@ namespace Pholib
             }
             catch (Exception ex)
             {
-                Debug.LogError($"Unexpected error while loading translation file: '{translationsPath}'");
-                Debug.LogError(ex);
+                Logs.Log($"Unexpected error while loading translation file: '{translationsPath}'");
+                Logs.Log(ex);
             }
         }
 

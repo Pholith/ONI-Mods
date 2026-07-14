@@ -3,8 +3,10 @@ using HarmonyLib;
 using Klei.AI;
 using KMod;
 using Newtonsoft.Json;
+using PeterHan.PLib.Database;
 using PeterHan.PLib.Options;
 using Pholib;
+using STRINGS;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,10 +30,10 @@ namespace PholithDuplicant
         {
             base.OnLoad(harmony);
             ModPath = path;
-
-            new POptions().RegisterOptions(this, typeof(PholithOptions));
-            ModUtil.RegisterForTranslation(typeof(STRINGS));
+            //new POptions().RegisterOptions(this, typeof(PholithOptions));
             ReadSettings();
+
+            new PLocalization().Register(typeof(PHO_STRINGS).Assembly);
         }
 
         public static void ReadSettings()
@@ -75,14 +77,6 @@ namespace PholithDuplicant
 
         }
     }
-    [HarmonyPatch(typeof(Localization), nameof(Localization.Initialize))]
-    public static class PholithDup_Localization_Initialize
-    {
-        public static void Postfix()
-        {
-            Utilities.LoadTranslations(typeof(STRINGS), PholithDuplicant.ModPath);
-        }
-    }
 
     // Read settings on launching a game (mostly for GuaranteePholith option)
     [HarmonyPatch(typeof(Game), "Load")]
@@ -94,12 +88,23 @@ namespace PholithDuplicant
         }
     }
 
-    // Patch the hat
     [HarmonyPatch(typeof(Db), "Initialize")]
     public class Db_Initialize_Patch
     {
         public static void Postfix(Db __instance)
         {
+            // Patch the modifier strings (Should be called in Db.Initialize Postfix)
+            Strings.Add(new string[] {
+                "STRINGS.ITEMS.BIONIC_BOOSTERS.BOOSTER_DEGAUSSER_COIL.NAME",
+                PHO_STRINGS.BOOSTER_DEGAUSSER_COIL.NAME,
+            });
+
+            Strings.Add(new string[] {
+                "STRINGS.ITEMS.BIONIC_BOOSTERS.BOOSTER_DEGAUSSER_COIL.DESC",
+                PHO_STRINGS.BOOSTER_DEGAUSSER_COIL.DESC,
+            });
+
+            // Patch the hat
             WAccessories.Register(__instance.AccessorySlots, __instance.Accessories);
         }
     }
@@ -200,10 +205,8 @@ namespace PholithDuplicant
         {
             string directory = Path.Combine(PholithDuplicant.ModPath, "assets");
             Texture2D texture2D = AssetUtils.LoadTexture(spriteid, directory);
-            Logs.Log(texture2D);
             texture2D.wrapMode = mode;
             Sprite sprite = Sprite.Create(texture2D, new Rect(0f, 0f, texture2D.width, texture2D.height), Vector3.zero);
-            Logs.Log(sprite);
             sprite.name = spriteid;
             if (!overrideExisting && instance.SpriteAssets.Any((Sprite spritef) => spritef != null && spritef.name == spriteid))
             {
