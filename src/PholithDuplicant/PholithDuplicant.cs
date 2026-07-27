@@ -30,7 +30,7 @@ namespace PholithDuplicant
         {
             base.OnLoad(harmony);
             ModPath = path;
-            //new POptions().RegisterOptions(this, typeof(PholithOptions));
+            new POptions().RegisterOptions(this, typeof(PholithOptions));
             ReadSettings();
 
             new PLocalization().Register(typeof(PHO_STRINGS).Assembly);
