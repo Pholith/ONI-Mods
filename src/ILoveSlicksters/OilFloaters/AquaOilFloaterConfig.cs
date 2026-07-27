@@ -81,9 +81,8 @@ namespace ILoveSlicksters
                 }), SimHashes.Wolframite.CreateTag(), caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false),
                 new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
-                    SimHashes.SaltWater.CreateTag(), SimHashes.Brine.CreateTag()
+                    SimHashes.SaltWater.CreateTag(), SimHashes.Brine.CreateTag(), SimHashes.MurkyBrine.CreateTag(),
                 }), SimHashes.SedimentaryRock.CreateTag(), caloriesPerKg / 2, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false),
-
             };
         }
 

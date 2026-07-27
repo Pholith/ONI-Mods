@@ -30,7 +30,7 @@ msgstr "Смесь воды (H<sub>2</sub>O) и этиленгликоля (C<su
 
 #. ILoveSlicksters.PHO_STRINGS.ELEMENTS.ANTIGEL.NAME
 msgctxt "ILoveSlicksters.PHO_STRINGS.ELEMENTS.ANTIGEL.NAME"
-msgid "<link=\"ANTIGEL\">Antigel</link>"
+msgid "<link=\"ANTIGEL\">Antifreeze</link>"
 msgstr "<link=\"ANTIGEL\">Антифриз</link>"
 
 #. ILoveSlicksters.PHO_STRINGS.FERTILITY_MODIFIERS.ELEMENT.DESC

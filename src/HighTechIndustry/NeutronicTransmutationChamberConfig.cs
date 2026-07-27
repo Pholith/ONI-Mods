@@ -340,8 +340,8 @@ namespace HighTechIndustry
             NeutronicTransmutationRecipe depletedUraniumToPlutoniumSurgeneration = NeutronicTransmutationRecipe.AddRecipe(new RecipeElement(SimHashes.DepletedUranium.CreateTag(), 200),
             new RecipeElement[]
             {
-                new RecipeElement(SimHashes.EnrichedUranium.CreateTag(), 10f, RecipeElement.TemperatureOperation.Heated, false),
-                new RecipeElement(SimHashes.DepletedUranium.CreateTag(), 180f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.EnrichedUranium.CreateTag(), 6f, RecipeElement.TemperatureOperation.Heated, false),
+                new RecipeElement(SimHashes.DepletedUranium.CreateTag(), 184f, RecipeElement.TemperatureOperation.Heated, false),
                 new RecipeElement(SimHashes.NuclearWaste.CreateTag(), 10f, RecipeElement.TemperatureOperation.Heated, true),
             }, BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER3);
             depletedUraniumToPlutoniumSurgeneration.time = timeDecayCycle;

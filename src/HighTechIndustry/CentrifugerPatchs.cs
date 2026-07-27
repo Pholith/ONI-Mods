@@ -72,7 +72,8 @@ namespace HighTechIndustry
             float recipeAmount = 200;
             var results = new ComplexRecipe.RecipeElement[] {
                     new ComplexRecipe.RecipeElement(HighTechIndustry_NuclearWasteRecyclePatch.uranium.id.CreateTag(), recipeAmount / 100f / 2f), // 1kg of enriched uranium gives 100 kg of waste
-                    new ComplexRecipe.RecipeElement(HighTechIndustry_NuclearWasteRecyclePatch.depletedUranium.id.CreateTag(), 50f / 100f * recipeAmount), // 1kg of enriched uranium gives 100 kg of waste
+                    //new ComplexRecipe.RecipeElement(HighTechIndustry_NuclearWasteRecyclePatch.depletedUranium.id.CreateTag(), 50f / 100f * recipeAmount), // 1kg of enriched uranium gives 100 kg of waste
+                    new ComplexRecipe.RecipeElement(SimHashes.MoltenUranium.CreateTag(), 50f / 100f * recipeAmount), // 1kg of enriched uranium gives 100 kg of waste
                     };
 
 

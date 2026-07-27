@@ -41,7 +41,7 @@ msgstr ""
 
 #. ILoveSlicksters.PHO_STRINGS.ELEMENTS.ANTIGEL.NAME
 msgctxt "ILoveSlicksters.PHO_STRINGS.ELEMENTS.ANTIGEL.NAME"
-msgid "<link=\"ANTIGEL\">Antigel</link>"
+msgid "<link=\"ANTIGEL\">Antifreeze</link>"
 msgstr "<link=\"ANTIGEL\">Antigel</link>"
 
 #. ILoveSlicksters.PHO_STRINGS.FERTILITY_MODIFIERS.ELEMENT.DESC

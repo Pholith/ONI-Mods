@@ -197,7 +197,7 @@ namespace ILoveSlicksters
         {
             public static class ANTIGEL
             {
-                public static LocString NAME = UI.FormatAsLink("Antigel", Antigel.Id.ToUpper());
+                public static LocString NAME = UI.FormatAsLink("Antifreeze", Antigel.Id.ToUpper());
                 public static LocString DESC = $"A mixture of water(H<sub>2</sub>O) and Ethylen Glycol (C<sub>2</sub>H<sub>6</sub>O<sub>2</sub>).\n\nIt has been designed by engineers to be a good heat transfer fluid that does not freeze or vaporize easily.";
 
             }
