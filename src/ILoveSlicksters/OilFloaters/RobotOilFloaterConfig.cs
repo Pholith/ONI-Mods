@@ -53,8 +53,7 @@ namespace ILoveSlicksters
             string symbol_override_prefix = is_baby ? "hot_" : variantSprite;
 
 
-            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 230f.CelciusToKelvin(), 500f.CelciusToKelvin(), 200f.CelciusToKelvin(), 600f.CelciusToKelvin(), is_baby, symbol_override_prefix);
-
+            GameObject prefab = BaseOilFloaterConfig.BaseOilFloater(id, name, desc, anim_file, BASE_TRAIT_ID, 220f.CelciusToKelvin(), 600f.CelciusToKelvin(), 200f.CelciusToKelvin(), 700f.CelciusToKelvin(), is_baby, symbol_override_prefix);
             GameObject wildCreature = EntityTemplates.ExtendEntityToWildCreature(prefab, OilFloaterTuning.PEN_SIZE_PER_CREATURE);
 
             if (is_baby == false)
@@ -76,7 +75,7 @@ namespace ILoveSlicksters
                 DiseaseDropper.Def def = prefab.AddOrGetDef<DiseaseDropper.Def>();
                 def.diseaseIdx = Db.Get().Diseases.GetIndex(Db.Get().Diseases.ZombieSpores.id);
                 def.emitFrequency = 1f;
-                def.averageEmitPerSecond = 5;
+                def.averageEmitPerSecond = 10;
                 def.singleEmitQuantity = 50;
             }
 
@@ -86,21 +85,29 @@ namespace ILoveSlicksters
             trait.Add(new AttributeModifier(Db.Get().Amounts.Calories.deltaAttribute.Id, -OilFloaterTuning.STANDARD_CALORIES_PER_CYCLE / 600f, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.HitPoints.maxAttribute.Id, HITPOINTS.TIER2, name, false, false, true));
             trait.Add(new AttributeModifier(Db.Get().Amounts.Age.maxAttribute.Id, LIFESPAN.TIER3, name, false, false, true));
-            List<Diet.Info> diet_infos = DietInfo(GameTags.Steel, CALORIES_PER_KG_OF_ORE, CONVERSION_EFFICIENCY.GOOD_1, null, 0f);
+            List<Diet.Info> diet_infos = DietInfo(GameTags.Steel, CALORIES_PER_KG_OF_ORE, CONVERSION_EFFICIENCY.GOOD_0, null, 0f);
             return OilFloaters.SetupDiet(prefab, diet_infos, CALORIES_PER_KG_OF_ORE, MIN_POOP_SIZE_IN_KG, 5 * ILoveSlicksters.Settings.ConsumptionMultiplier);
         }
         public static List<Diet.Info> DietInfo(Tag poopTag, float caloriesPerKg, float producedConversionRate, string diseaseId, float diseasePerKgProduced)
         {
-            HashSet<Tag> hashSet = new HashSet<Tag>
+            List<Diet.Info> dietInfos = new List<Diet.Info>
             {
-                SimHashes.Steam.CreateTag(),
-                SimHashes.CarbonDioxide.CreateTag(),
-                SimHashes.SourGas.CreateTag()
+                new Diet.Info(new HashSet<Tag>
+                {
+                    SimHashes.Steam.CreateTag(),
+                    SimHashes.CarbonDioxide.CreateTag(),
+                    SimHashes.SourGas.CreateTag()
+                }, poopTag, caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false)
             };
-            return new List<Diet.Info>
-        {
-            new Diet.Info(hashSet, poopTag, caloriesPerKg, producedConversionRate, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false)
-        };
+            if (DlcManager.FeatureRadiationEnabled())
+            {
+                dietInfos.Add(new Diet.Info(new HashSet<Tag>(new Tag[]
+                {
+                }), SimHashes.EnrichedUranium.CreateTag(), caloriesPerKg * 2, CONVERSION_EFFICIENCY.BAD_2, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false)
+                );
+            }
+
+            return dietInfos;
         }
 
 
@@ -139,7 +146,7 @@ namespace ILoveSlicksters
 
         public const string BASE_TRAIT_ID = "RobotOilfloaterBaseTrait";
 
-        public const string EGG_ID = ID+"Egg";
+        public const string EGG_ID = ID + "Egg";
 
         private static float KG_ORE_EATEN_PER_CYCLE = PHO_TUNING.OILFLOATER.KG_ORE_EATEN_PER_CYCLE.HIGH2 * ILoveSlicksters.Settings.ConsumptionMultiplier;
 
