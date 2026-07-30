@@ -1,15 +1,13 @@
-﻿using Database;
-using HarmonyLib;
+﻿using HarmonyLib;
 using KMod;
 using PeterHan.PLib.Database;
 using PeterHan.PLib.Options;
 using PeterHan.PLib.UI;
 using Pholib;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using static Pholib.Utilities;
+using static TUNING.BUILDINGS;
 
 namespace Notepad
 {
@@ -22,7 +20,7 @@ namespace Notepad
             GameOnLoadPatch.ReadSettings(); // Read settings early for the notepad description setting.
 
             new PLocalization().Register();
-            Utilities.GenerateStringsTemplate(typeof(STRINGS));
+            Utilities.GenerateStringsTemplate(typeof(PHO_STRINGS));
         }
     }
 
@@ -32,11 +30,14 @@ namespace Notepad
         public static void Postfix()
         {
             AddBuildingTech("InteriorDecor", NotepadConfig.ID);
+            AddBuildingTech("PowerRegulation", LEDConfig.ID);
+
 
             GameObject o = new GameObject();
             o.AddComponent<NotepadSideScreen>();
 
-            Strings.Add(new string[] { "STRINGS.UI.KLEI_INVENTORY_SCREEN.SUBCATEGORIES.BUILDING_NOTEPAD", STRINGS.NOTEPAD.NAME });
+            Strings.Add(new string[] { "STRINGS.UI.KLEI_INVENTORY_SCREEN.SUBCATEGORIES.BUILDING_NOTEPAD", PHO_STRINGS.NOTEPAD.NAME });
+            Strings.Add(new string[] { "STRINGS.UI.KLEI_INVENTORY_SCREEN.SUBCATEGORIES.BUILDING_LED", PHO_STRINGS.LED.NAME });
         }
     }
 
@@ -58,7 +59,6 @@ namespace Notepad
             {
                 Settings = new NotepadOptions();
             }
-
         }
     }
 
@@ -67,20 +67,23 @@ namespace Notepad
     {
         public static void Prefix()
         {
-            AddBuilding("Furniture", NotepadConfig.ID, STRINGS.NOTEPAD.NAME, STRINGS.NOTEPAD.DESC, STRINGS.NOTEPAD.EFFECT);
+            AddBuilding("Furniture", NotepadConfig.ID, PHO_STRINGS.NOTEPAD.NAME, PHO_STRINGS.NOTEPAD.DESC, PHO_STRINGS.NOTEPAD.EFFECT,
+                PlanSubcategoryName.decor, WoodSculptureConfig.ID);
+
+            AddBuilding("Automation", LEDConfig.ID, PHO_STRINGS.LED.NAME, PHO_STRINGS.LED.DESC, PHO_STRINGS.LED.EFFECT,
+                PlanSubcategoryName.logicmanager, LogicAlarmConfig.ID);
         }
     }
-
+    // Initiate NotepadSideScreen
     [HarmonyPatch(typeof(DetailsScreen), "OnPrefabInit")]
     public class DetailsScreen_OnPrefabInit_Patch
     {
-
         public static void Postfix()
         {
             PUIUtils.AddSideScreenContent<NotepadSideScreen>();
         }
     }
-
+    // Show text when hovering the notepad
     [HarmonyPatch(typeof(SelectToolHoverTextCard))]
     [HarmonyPatch("UpdateHoverElements")]
     public class HoverText_ConfigureTitlePatch
@@ -126,75 +129,6 @@ namespace Notepad
                 __instance.Build(Grid.PosToCell(pos), orientation, null, selected_elements, 293.15f, playsound: false, GameClock.Instance.GetTime());
                 return false;
             }
-
         }
     }
-
-
-    // Patch the background of the Anywhere building location
-    [HarmonyPatch(typeof(KleiPermitDioramaVis))]
-    [HarmonyPatch("GetPermitVisTarget")]
-    public static class KleiPermitDioramaVis_GetPermitVisTarget_NotepadPatch
-    {
-        public static void Postfix(KleiPermitDioramaVis __instance, PermitResource permit, ref IKleiPermitDioramaVisTarget __result, KleiPermitDioramaVis_Fallback ___fallbackVis, KleiPermitDioramaVis_AutomationGates ___buildingAutomationGatesVis)
-        {
-            if ((object) __result == ___fallbackVis && permit.Category == PermitCategory.Building && KleiPermitVisUtil.GetBuildLocationRule(permit) == BuildLocationRule.Anywhere)
-            {
-                __result = ___buildingAutomationGatesVis;
-            }
-        }
-    }
-
-    // Patch this background to make the Notepad bigger
-    [HarmonyPatch(typeof(KleiPermitDioramaVis_AutomationGates))]
-    [HarmonyPatch(nameof(KleiPermitDioramaVis_AutomationGates.ConfigureWith))]
-    public static class KleiPermitDioramaVis_AutomationGates_NotepadPatch
-    {
-        public static void Postfix(PermitResource permit, KBatchedAnimController ___buildingKAnim)
-        {
-            if (Inventory_GenSubcats_Notepad.SkinIDs.Contains(permit.Id))
-            {
-                ___buildingKAnim.rectTransform().localScale = Vector3.one * 1.3f;
-                ___buildingKAnim.rectTransform().anchoredPosition -= new Vector2(0f, 26f); // 16 was too high and 32 too low
-            }
-        }
-    }
-
-
-    // Skin patchs
-    [HarmonyPatch(typeof(InventoryOrganization))]
-    [HarmonyPatch("GenerateSubcategories")]
-    public static class Inventory_GenSubcats_Notepad
-    {
-        public static readonly string[] SkinIDs = new string[]
-    {
-            "blackboard",
-            "blueprint",
-            "postit",
-            "stonks",
-            "tv",
-            "warning",
-    };
-
-        public static void Postfix()
-        {
-            Utilities.AddSkinSubcategory("BUILDINGS", "BUILDING_NOTEPAD", Def.GetUISprite("Notepad", "ui", false).first, 130, SkinIDs);
-        }
-    }
-
-    // Skin patchs
-    [HarmonyPatch(typeof(BuildingFacades), MethodType.Constructor, new Type[] { typeof(ResourceSet) })]
-    public static class BuildingFacades_Constructor_NotepadPatch
-    {
-        public static void Postfix(ResourceSet<BuildingFacadeResource> __instance)
-        {
-            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[0], STRINGS.BLACKBOARD.NAME, STRINGS.BLACKBOARD.DESC,    PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[0] + "_kanim", null, null, null, null));
-            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[1], STRINGS.BLUEPRINT.NAME, STRINGS.BLUEPRINT.DESC,      PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[1] + "_kanim", null, null, null, null));
-            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[2], STRINGS.POSTIT.NAME, STRINGS.POSTIT.DESC,            PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[2] + "_kanim", null, null, null, null));
-            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[3], STRINGS.STONKS.NAME, STRINGS.STONKS.DESC,            PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[3] + "_kanim", null, null, null, null));
-            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[4], STRINGS.TV.NAME, STRINGS.TV.DESC,                    PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[4] + "_kanim", null, null, null, null));
-            __instance.Add(new BuildingFacadeResource(Inventory_GenSubcats_Notepad.SkinIDs[5], STRINGS.WARNING.NAME, STRINGS.WARNING.DESC,          PermitRarity.Universal, NotepadConfig.ID, Inventory_GenSubcats_Notepad.SkinIDs[5] + "_kanim", null, null, null, null));
-        }
-    }
-
 }

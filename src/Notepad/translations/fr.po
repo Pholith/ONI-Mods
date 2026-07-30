@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Application: Oxygen Not IncludedPOT Version: 2.0\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.9\n"
 
 #. Notepad.PHO_STRINGS.BLACKBOARD.DESC
 msgctxt "Notepad.PHO_STRINGS.BLACKBOARD.DESC"
@@ -29,13 +29,61 @@ msgstr "Tableau à craie"
 
 #. Notepad.PHO_STRINGS.BLUEPRINT.DESC
 msgctxt "Notepad.PHO_STRINGS.BLUEPRINT.DESC"
-msgid "Plan your setups"
-msgstr "Planifiez vos setups"
+msgid "Plan your setups."
+msgstr "Planifiez vos setups."
 
 #. Notepad.PHO_STRINGS.BLUEPRINT.NAME
 msgctxt "Notepad.PHO_STRINGS.BLUEPRINT.NAME"
 msgid "Blueprint"
 msgstr "Plan"
+
+#. Notepad.PHO_STRINGS.DIODE.DESC
+msgctxt "Notepad.PHO_STRINGS.DIODE.DESC"
+msgid "A diode."
+msgstr "Une diode."
+
+#. Notepad.PHO_STRINGS.DIODE.NAME
+msgctxt "Notepad.PHO_STRINGS.DIODE.NAME"
+msgid "Diode"
+msgstr "Diode"
+
+#. Notepad.PHO_STRINGS.INFO.DESC
+msgctxt "Notepad.PHO_STRINGS.INFO.DESC"
+msgid ""
+"This floating text is created directly by the imagination of the duplicants."
+msgstr "Ce texte flottant est le fruit direct de l'imagination des duplicants."
+
+#. Notepad.PHO_STRINGS.INFO.NAME
+msgctxt "Notepad.PHO_STRINGS.INFO.NAME"
+msgid "Floating Info"
+msgstr "Info flottante"
+
+#. Notepad.PHO_STRINGS.LED.DESC
+msgctxt "Notepad.PHO_STRINGS.LED.DESC"
+msgid "A green led to show logic port states."
+msgstr "Une LED verte qui affiche l'état d'un circuit logique."
+
+#. Notepad.PHO_STRINGS.LED.EFFECT
+msgctxt "Notepad.PHO_STRINGS.LED.EFFECT"
+msgid "LEDs are directly powered by the logic circuit, they don't need power."
+msgstr ""
+"Les LED sont alimentées directement par le circuit logique, elles n'ont pas "
+"besoin d'alimentation."
+
+#. Notepad.PHO_STRINGS.LED.NAME
+msgctxt "Notepad.PHO_STRINGS.LED.NAME"
+msgid "LED"
+msgstr "LED"
+
+#. Notepad.PHO_STRINGS.LED_RED_GREEN.DESC
+msgctxt "Notepad.PHO_STRINGS.LED_RED_GREEN.DESC"
+msgid "A red-green LED that shows the logic cable state."
+msgstr "Une LED rouge-verte qui affiche l'état d'un circuit logique."
+
+#. Notepad.PHO_STRINGS.LED_RED_GREEN.NAME
+msgctxt "Notepad.PHO_STRINGS.LED_RED_GREEN.NAME"
+msgid "Red-green LED"
+msgstr "LED Rouge-verte"
 
 #. Notepad.PHO_STRINGS.NOTEPAD.DESC
 msgctxt "Notepad.PHO_STRINGS.NOTEPAD.DESC"
@@ -52,6 +100,16 @@ msgctxt "Notepad.PHO_STRINGS.NOTEPAD.NAME"
 msgid "Notepad"
 msgstr "Bloc-notes"
 
+#. Notepad.PHO_STRINGS.PIXEL.DESC
+msgctxt "Notepad.PHO_STRINGS.PIXEL.DESC"
+msgid "A big square pixel."
+msgstr "Un gros pixel carré."
+
+#. Notepad.PHO_STRINGS.PIXEL.NAME
+msgctxt "Notepad.PHO_STRINGS.PIXEL.NAME"
+msgid "Pixel"
+msgstr ""
+
 #. Notepad.PHO_STRINGS.POSTIT.DESC
 msgctxt "Notepad.PHO_STRINGS.POSTIT.DESC"
 msgid "Stick it everywhere !"
@@ -64,8 +122,8 @@ msgstr "Post-It"
 
 #. Notepad.PHO_STRINGS.STONKS.DESC
 msgctxt "Notepad.PHO_STRINGS.STONKS.DESC"
-msgid "Track your production"
-msgstr "Suivez votre production"
+msgid "Track your production."
+msgstr "Suivez votre production."
 
 #. Notepad.PHO_STRINGS.STONKS.NAME
 msgctxt "Notepad.PHO_STRINGS.STONKS.NAME"
@@ -87,8 +145,8 @@ msgstr "Tv"
 
 #. Notepad.PHO_STRINGS.WARNING.DESC
 msgctxt "Notepad.PHO_STRINGS.WARNING.DESC"
-msgid "Better safe than sorry"
-msgstr "Mieux vaut prévenir que guérir"
+msgid "Better safe than sorry."
+msgstr "Mieux vaut prévenir que guérir."
 
 #. Notepad.PHO_STRINGS.WARNING.NAME
 msgctxt "Notepad.PHO_STRINGS.WARNING.NAME"

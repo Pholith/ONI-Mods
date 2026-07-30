@@ -38,19 +38,52 @@
     <Compile Include="..\Pholib\Utilities.cs">
       <Link>Utilities.cs</Link>
     </Compile>
+    <Compile Include="LEDConfig.cs" />
+    <Compile Include="LEDController.cs" />
     <Compile Include="NotepadOptions.cs" />
     <Compile Include="NotepadSideScreen.cs" />
     <Compile Include="Patches.cs" />
-    <Compile Include="STRINGS.cs" />
+    <Compile Include="SkinUtils.cs" />
+    <Compile Include="PHO_STRINGS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Notepad.cs" />
     <Compile Include="NotepadConfig.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="anim\led\black_green_led\led_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\led\black_green_led\led_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\led\diode\led_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\led\diode\led_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\led\pixel\led_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\led\pixel\led_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\led\red_green_led\led_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\led\red_green_led\led_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="anim\notepad\blackboard\notepad_anim.bytes" />
     <None Include="anim\notepad\blackboard\notepad_build.bytes" />
     <None Include="anim\notepad\blueprint\notepad_anim.bytes" />
     <None Include="anim\notepad\blueprint\notepad_build.bytes" />
+    <None Include="anim\notepad\info\notepad_anim.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="anim\notepad\info\notepad_build.bytes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="anim\notepad\notepad\notepad_anim.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -74,6 +107,9 @@
     </None>
     <None Include="packages.config" />
     <None Include="translations\fr.po">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="translations\zh_TW.po">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -131,8 +167,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="anim\led\black_green_led\led_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="anim\led\diode\led_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="anim\led\pixel\led_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="anim\led\red_green_led\led_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="anim\notepad\blackboard\notepad_0.png" />
     <Content Include="anim\notepad\blueprint\notepad_0.png" />
+    <Content Include="anim\notepad\info\notepad_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="anim\notepad\notepad\notepad.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

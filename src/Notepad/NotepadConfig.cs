@@ -23,7 +23,7 @@ namespace Notepad
             buildingDef.Floodable = false;
             buildingDef.CanMove = true;
             buildingDef.Overheatable = false;
-            buildingDef.DefaultAnimState = "empty";
+            buildingDef.DefaultAnimState = "off";
             buildingDef.AudioCategory = "Metal";
             return buildingDef;
         }
@@ -32,16 +32,15 @@ namespace Notepad
             base.ConfigureBuildingTemplate(go, prefab_tag);
             go.AddOrGet<Notepad>();
         }
-
-        public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
-        {
-            base.DoPostConfigurePreview(def, go);
-        }
-
         public override void DoPostConfigureComplete(GameObject go)
         {
         }
 
+        public override void DoPostConfigurePreview(BuildingDef def, GameObject go)
+        {
+            base.DoPostConfigurePreview(def, go);
+
+        }
         public const string ID = "Notepad";
     }
 }
