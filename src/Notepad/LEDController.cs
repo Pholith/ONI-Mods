@@ -7,22 +7,11 @@
             default_state = this.off;
             off.PlayAnim("off").EventTransition(GameHashes.OperationalChanged, on, (Instance smi) => OnCondition(smi));
 
-            /*off.PlayAnim("off").EventTransition(GameHashes.LogicEvent, on, (Instance smi) =>
-            {
-                return OnCondition(smi);
-            });*/
-
             on.PlayAnim("on").EventTransition(GameHashes.OperationalChanged, off, (Instance smi) => !OnCondition(smi))
                 .Enter("SetActive", delegate (Instance smi)
                 {
                     smi.Operational.SetActive(true);
                 });
-            /*
-            on.PlayAnim("on").EventTransition(GameHashes.LogicEvent, off, (Instance smi) => !OnCondition(smi))
-                .Enter("SetActive", delegate (Instance smi)
-                {
-                    smi.Operational.SetActive(true);
-                });*/
         }
 
         private bool OnCondition(Instance smi)
