@@ -30,7 +30,7 @@ namespace Notepad
         public static void Postfix()
         {
             AddBuildingTech("InteriorDecor", NotepadConfig.ID);
-            AddBuildingTech("PowerRegulation", LEDConfig.ID);
+            AddBuildingTech("LogicControl", LEDConfig.ID);
 
 
             GameObject o = new GameObject();

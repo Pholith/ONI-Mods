@@ -47,6 +47,17 @@ msgctxt "Notepad.PHO_STRINGS.DIODE.NAME"
 msgid "Diode"
 msgstr "Diode"
 
+#. Notepad.PHO_STRINGS.INFO.DESC
+msgctxt "Notepad.PHO_STRINGS.INFO.DESC"
+msgid ""
+"This floating text is created directly by the imagination of the duplicants."
+msgstr "Ce texte flottant est le fruit direct de l'imagination des duplicants."
+
+#. Notepad.PHO_STRINGS.INFO.NAME
+msgctxt "Notepad.PHO_STRINGS.INFO.NAME"
+msgid "Floating Info"
+msgstr "Info flottante"
+
 #. Notepad.PHO_STRINGS.LED.DESC
 msgctxt "Notepad.PHO_STRINGS.LED.DESC"
 msgid "A green led to show logic port states."
