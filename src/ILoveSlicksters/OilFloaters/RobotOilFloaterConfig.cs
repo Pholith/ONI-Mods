@@ -103,8 +103,8 @@ namespace ILoveSlicksters
             {
                 dietInfos.Add(new Diet.Info(new HashSet<Tag>(new Tag[]
                 {
-                    SimHashes.Fallout.CreateTag(),
-                }), SimHashes.EnrichedUranium.CreateTag(), caloriesPerKg * 2, CONVERSION_EFFICIENCY.BAD_2, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false)
+                    SimHashes.Fallout.CreateTag(), // Very bad conversion to counter the x100 factor of the nuclear reactor
+                }), SimHashes.EnrichedUranium.CreateTag(), caloriesPerKg * 2, CONVERSION_EFFICIENCY.BAD_2 * 0.05f, diseaseId, diseasePerKgProduced, false, Diet.Info.FoodType.EatSolid, false)
                 );
             }
 
