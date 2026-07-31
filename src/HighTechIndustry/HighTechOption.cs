@@ -17,7 +17,7 @@ namespace HighTechIndustry
 
         public HighTechOption()
         {
-            RestoreHeliumTrueProperty = false;
+            RestoreHeliumTrueProperty = true;
         }
 
     }

@@ -69,11 +69,11 @@ namespace HighTechIndustry
                 }, ChemicalRefineryConfig.ID, 40, STRINGS.ELEMENTS.MURKYBRINE.DESC, ComplexRecipe.RecipeNameDisplay.Result, 150);
 
 
-            float recipeAmount = 200;
+            float recipeAmount = 100;
             var results = new ComplexRecipe.RecipeElement[] {
                     new ComplexRecipe.RecipeElement(HighTechIndustry_NuclearWasteRecyclePatch.uranium.id.CreateTag(), recipeAmount / 100f / 2f), // 1kg of enriched uranium gives 100 kg of waste
                     //new ComplexRecipe.RecipeElement(HighTechIndustry_NuclearWasteRecyclePatch.depletedUranium.id.CreateTag(), 50f / 100f * recipeAmount), // 1kg of enriched uranium gives 100 kg of waste
-                    new ComplexRecipe.RecipeElement(SimHashes.MoltenUranium.CreateTag(), 50f / 100f * recipeAmount), // 1kg of enriched uranium gives 100 kg of waste
+                    new ComplexRecipe.RecipeElement(SimHashes.MoltenUranium.CreateTag(), 50f / 100f * recipeAmount, ComplexRecipe.RecipeElement.TemperatureOperation.Melted), // 1kg of enriched uranium gives 100 kg of waste
                     };
 
 
@@ -98,12 +98,11 @@ namespace HighTechIndustry
                     new ComplexRecipe.RecipeElement[] { new ComplexRecipe.RecipeElement(SimHashes.NuclearWaste.CreateTag(), recipeAmount) },
                     results,
                     UraniumCentrifugeConfig.ID,
-                    120f, PHO_STRINGS.RECIPE.NUCLEAR_WASTE_RECYCLING_DESC, ComplexRecipe.RecipeNameDisplay.Custom, 200);
+                    50f, PHO_STRINGS.RECIPE.NUCLEAR_WASTE_RECYCLING_DESC, ComplexRecipe.RecipeNameDisplay.Custom, 200);
                 recipe.customName = PHO_STRINGS.RECIPE.NUCLEAR_WASTE_RECYCLING_NAME;
                 recipe.requiredTech = "NuclearPropulsion";
                 recipe.customSpritePrefabID = SimHashes.NuclearWaste.CreateTag().ToString();
             }
-
         }
 
     }
