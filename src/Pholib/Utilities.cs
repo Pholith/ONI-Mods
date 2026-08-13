@@ -433,6 +433,40 @@ namespace Pholib
             };
         }
 
+
+        /// <summary>
+        /// Makes the kbac render above liquids for buildings that are meant to show up in front of them, like conveyortiles
+        /// </summary>
+        /// <param name="go"></param>
+        public static void RenderAboveLiquids(GameObject go, bool mainLayerOnly = false)
+        {
+            //mirrored from Fake tile buildings like storage tile and farm tiles
+            if (go.TryGetComponent<KBatchedAnimController>(out var kbac))
+            {
+                //main kbac (non-foreground) of the building
+                kbac.initialBlendParameters = (int) KBatchedAnimInstanceData.BlendActiveOptions.WaterProof;
+            }
+            else
+                Debug.LogError("KBatchedAnimController not found on " + go.name + ", cannot mark to render above liquids!");
+
+            if (mainLayerOnly)
+                return;
+
+            //sets all other kbacs (bloom, foreground, etc) to render above liquids as well
+            if (go.TryGetComponent<KPrefabID>(out var kPrefabID))
+            {
+                kPrefabID.prefabInitFn += new KPrefabID.PrefabFn(SetAllKBACsAboveWater);
+            }
+        }
+        private static void SetAllKBACsAboveWater(GameObject instance)
+        {
+            foreach (KBatchedAnimController kbatchedAnimController in instance.GetComponentsInChildrenOnly<KBatchedAnimController>())
+            {
+                kbatchedAnimController.SetBlendValue(KBatchedAnimInstanceData.BlendActiveOptions.LiquidVisibilityLayer, false);
+                kbatchedAnimController.SetBlendValue(KBatchedAnimInstanceData.BlendActiveOptions.WaterProof, true);
+            }
+        }
+
     }
 
 }

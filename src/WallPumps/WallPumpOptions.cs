@@ -21,10 +21,10 @@ namespace WallPumps
         public float GasWallPumpEnergyConsumption { get; set; }
         [Option("STRINGS.UI_ADD.PUMP_RATE", category: "STRINGS.BUILDINGS.PREFABS.FAIRGASWALLPUMP.NAME")]
         [JsonProperty]
-        public float GasWallPumpRate{ get; set; }
+        public float GasWallPumpRate { get; set; }
         [Option("STRINGS.UI_ADD.THERMAL_CONDUCTIVITY", category: "STRINGS.BUILDINGS.PREFABS.FAIRGASWALLPUMP.NAME")]
         [JsonProperty]
-        public float GasWallPumpThermalConductivity{ get; set; }
+        public float GasWallPumpThermalConductivity { get; set; }
 
         [Option("STRINGS.UI_ADD.ENABLED", category: "STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLPUMP.NAME")]
         [JsonProperty]
@@ -44,7 +44,7 @@ namespace WallPumps
         public bool GasWallVentEnabled { get; set; }
         [Option("STRINGS.UI_ADD.MAX_PRESSURE", category: "STRINGS.BUILDINGS.PREFABS.FAIRGASWALLVENT.NAME")]
         [JsonProperty]
-        public float GasWallVentMaxPressure{ get; set; }
+        public float GasWallVentMaxPressure { get; set; }
         [Option("STRINGS.UI_ADD.THERMAL_CONDUCTIVITY", category: "STRINGS.BUILDINGS.PREFABS.FAIRGASWALLVENT.NAME")]
         [JsonProperty]
         public float GasWallVentThermalConductivity { get; set; }
@@ -64,7 +64,7 @@ namespace WallPumps
         public bool LiquidWallVentEnabled { get; set; }
         [Option("STRINGS.UI_ADD.MAX_PRESSURE", category: "STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLVENT.NAME")]
         [JsonProperty]
-        public float LiquidWallVentMaxPressure{ get; set; }
+        public float LiquidWallVentMaxPressure { get; set; }
         [Option("STRINGS.UI_ADD.THERMAL_CONDUCTIVITY", category: "STRINGS.BUILDINGS.PREFABS.FAIRLIQUIDWALLVENT.NAME")]
         [JsonProperty]
         public float LiquidWallVentThermalConductivity { get; set; }

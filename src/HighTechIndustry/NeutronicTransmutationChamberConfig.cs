@@ -31,8 +31,8 @@ namespace HighTechIndustry
         {
             string id = ID;
             int width = 5;
-            int height = 3;
-            string anim = "supermaterial_refinery_kanim";
+            int height = 4;
+            string anim = "transmutation_chamber_kanim";
             int hitpoints = 30;
             float construction_time = 240f;
             float[] tier = BUILDINGS.CONSTRUCTION_MASS_KG.TIER5;
@@ -45,7 +45,7 @@ namespace HighTechIndustry
             buildingDef.EnergyConsumptionWhenActive = BUILDINGS.ENERGY_CONSUMPTION_WHEN_ACTIVE.TIER2;
             buildingDef.SelfHeatKilowattsWhenActive = BUILDINGS.EXHAUST_ENERGY_ACTIVE.TIER8;
             buildingDef.UseHighEnergyParticleInputPort = true;
-            buildingDef.HighEnergyParticleInputOffset = new CellOffset(0, 2);
+            buildingDef.HighEnergyParticleInputOffset = new CellOffset(-2, 2);
             buildingDef.ViewMode = OverlayModes.Power.ID;
             buildingDef.AudioCategory = "HollowMetal";
             buildingDef.AudioSize = "large";

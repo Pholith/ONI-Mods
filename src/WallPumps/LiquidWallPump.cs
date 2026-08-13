@@ -1,14 +1,13 @@
-﻿using UnityEngine;
+﻿using FairONI;
+using Pholib;
 using TUNING;
-using FairONI;
-using STRINGS;
+using UnityEngine;
 
 namespace WallPumps
 {
     public class LiquidWallPump : IBuildingConfig
     {
         public const string ID = "FairLiquidWallPump";
-       
 
         public static void AddToMenus()
         {
@@ -54,7 +53,7 @@ namespace WallPumps
             def.Entombable = false;
             def.BaseTimeUntilRepair = -1f;
             def.ObjectLayer = ObjectLayer.Building;
-            def.SceneLayer = Grid.SceneLayer.TileMain;
+            def.SceneLayer = Grid.SceneLayer.WireBridgesFront;
             def.ForegroundLayer = Grid.SceneLayer.TileMain;
 
             // Insulated option
@@ -108,6 +107,8 @@ namespace WallPumps
             AddVisualizer(go, false);
 
             GeneratedBuildings.RemoveLoopingSounds(go);
+
+            Utilities.RenderAboveLiquids(go);
         }
 
         private static void AddVisualizer(GameObject go, bool movable)

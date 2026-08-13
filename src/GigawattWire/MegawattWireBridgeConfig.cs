@@ -37,6 +37,10 @@ namespace GigaWattWire
             wireUtilityNetworkLink.maxWattageRating = WirePatchs.WattageRating.Max1MW.ToWireWattageRating();
             return wireUtilityNetworkLink;
         }
+        public override void DoPostConfigureComplete(GameObject go)
+        {
+            base.DoPostConfigureComplete(go);
+        }
 
         public override void DoPostConfigureUnderConstruction(GameObject go)
         {
