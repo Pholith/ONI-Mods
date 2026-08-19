@@ -50,22 +50,6 @@ You can also find me on the [official Oxygen Not Included discord server](https:
 Official documentation here:     
 https://support.klei.com/hc/en-us/articles/360029555392-Logs-and-Useful-Information-for-Bug-Reports
 
-## List of mods 
-| **Name**        | **Description**     | **Preview**  | 
-| :-------------- | :------ | :--------------------:|
-| Always 3 Interests  | Make the duplicants from the Printer always have 3 job interests.  You can config others starting stats. |<img src="/src/Always3Interests/screen.png" height="110" width="110" />
-| AllBiomesWorld - Fuleria| Fuleria is a small asteroid that contains all the biomes. This world will be pleasant and easy to live in for your duplicants. |<img src="/src/AllBiomesWorld/screen.png" height="110" width="110" />|
-| Helium Extractor | This mod adds a helium extractor that transforms natural gas into helium, propane and sulphur.     |<img src="/src/HeliumExtractor/screen.png" height="110" width="110" />|
-| EmptyWorlds (Skyblock)| Emptera is a difficult empty asteroid. Resources are limited and you will have to take advantage of your geysers to get them.     |<img src="/src/EmptyWorlds/screen1.png" height="110" width="110" />|
-| I Love Slicksters - Variants | Add Slicksters variant and increase base slicksters consumption.    |<img src="/src/ILoveSlicksters/screen1.png" height="110" width="110" />|
-| AchievementReEnabler | Reenable achievement on map loading and unlock you your map achievements			||
-| Customize Your Paints | Enable the user to use custom textures for paintings							|<img src="/src/CustomizeYourPaints/screen1.png" height="110" width="110" />|
-| Duplicant Room Sensor | Add a sensor to count duplicants					|<img src="/src/DuplicantRoomSensor/screen1.png" height="110" width="110" />|
-| Solar System Worlds |Add more worlds based on the solar system planets and moons   |<img src="/src/SolarSystemWorlds/screen1.png" height="110" width="110" />|
-| Notepad |Add a notepad that allows you to note texts in your databases    |<img src="/src/Notepad/screen1.png" height="110" width="110" />|
-| CustomizableSpeed | Tired of needed to switch between mods or restart the game to change the speed ? This mod is for you !|<img src="/src/CustomizableSpeed/screen1.png" height="110" width="110" />
-| HD Screenshot | Take a big screenshot of you game and share it easily with friends. |<img src="/src/HDScreenShot/screen1.png" height="110" width="110" />
-
 # Support me / Donations 💜
 <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Patreon_logo_with_wordmark.svg" width="110" />
 
