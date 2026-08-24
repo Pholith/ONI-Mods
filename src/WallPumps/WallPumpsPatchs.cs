@@ -130,11 +130,20 @@ namespace WallPumps
 
             Color? substanceColor = Assets.instance.substanceTable.GetSubstance(__instance.lastConsumedElement)?.colour;
             Color finalSubstanceColor = substanceColor.HasValue ? substanceColor.Value : Color.white;
+
             kAnim.SetSymbolTint("leak_side", finalSubstanceColor);
             kAnim.SetSymbolTint("leak_side_b", finalSubstanceColor);
             kAnim.SetSymbolTint("leak_ceiling", finalSubstanceColor);
             kAnim.SetSymbolTint("leak_floor", finalSubstanceColor);
             kAnim.SetSymbolTint("liquid", finalSubstanceColor);
+
+            // Also apply for foreground part which is a child.
+            KBatchedAnimController foregroundKanim = __instance.gameObject.GetComponentInChildrenOnly<KBatchedAnimController>();
+            if (foregroundKanim != null)
+            {
+                foregroundKanim.SetSymbolTint("liquid", finalSubstanceColor);
+            }
+
         }
     }
     [HarmonyPatch(typeof(ConduitDispenser), "FindSuitableElement")]
@@ -147,7 +156,17 @@ namespace WallPumps
             if (!__instance.gameObject.TryGetComponent(out KBatchedAnimController kAnim) || kAnim.name != "FairLiquidWallPumpComplete") return;
 
             Color? substanceColor = Assets.instance.substanceTable.GetSubstance(__result.ElementID)?.colour;
-            kAnim.SetSymbolTint("liquid", substanceColor.HasValue ? substanceColor.Value : Color.white);
+            Color finalSubstanceColor = substanceColor.HasValue ? substanceColor.Value : Color.white;
+            
+            kAnim.SetSymbolTint("liquid", finalSubstanceColor);
+
+            // Also apply for foreground part which is a child.
+            KBatchedAnimController foregroundKanim = __instance.gameObject.GetComponentInChildrenOnly<KBatchedAnimController>();
+            if (foregroundKanim != null)
+            {
+                foregroundKanim.SetSymbolTint("liquid", finalSubstanceColor);
+            }
+
         }
     }
 }
