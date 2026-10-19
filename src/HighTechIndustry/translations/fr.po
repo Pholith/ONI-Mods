@@ -1,0 +1,200 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Pholith\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Application: Oxygen Not IncludedPOT Version: 2.0\n"
+"X-Generator: Poedit 3.9\n"
+
+#. HighTechIndustry.PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.DESC
+msgctxt "HighTechIndustry.PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.DESC"
+msgid ""
+"A highly experimental nuclear device capable of rearranging matter at the atomic "
+"level through controlled neutron bombardment"
+msgstr ""
+"Un dispositif nucléaire hautement expérimental capable de réarranger la matière à "
+"l'échelle atomique grâce à un bombardement neutronique contrôlé"
+
+#. HighTechIndustry.PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.EFFECT
+msgctxt "HighTechIndustry.PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.EFFECT"
+msgid "Uses high-energy particles to convince atoms to become something more useful."
+msgstr ""
+"Utilise des particules de haute énergie pour convaincre les atomes de devenir "
+"quelque chose de plus utile."
+
+#. HighTechIndustry.PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.NAME
+msgctxt "HighTechIndustry.PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.NAME"
+msgid "Neutronic transmutation chamber"
+msgstr "Chambre de transmutation neutronique"
+
+#. HighTechIndustry.PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.PORT_ACTIVE
+msgctxt "HighTechIndustry.PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.PORT_ACTIVE"
+msgid ""
+"Sends a <b><style=\"logic_on\">Green Signal</style></b> if the building is active"
+msgstr ""
+"Envoie un <b><style=\"logic_on\">Signal vert</style></b> si le bâtiment est actif"
+
+#. HighTechIndustry.PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.PORT_INACTIVE
+msgctxt "HighTechIndustry.PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.PORT_INACTIVE"
+msgid "Otherwise, sends a <b><style=\"logic_off\">Red Signal</style></b>"
+msgstr "Sinon, envoie un <b><style=\"logic_off\">Signal rouge</style></b>"
+
+#. HighTechIndustry.PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.PORT_NAME
+msgctxt "HighTechIndustry.PHO_STRINGS.NEUTRONIC_TRANSMUTATION_CHAMBER.PORT_NAME"
+msgid "Operating"
+msgstr "En fonctionnement"
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.ALUMINIUM_TO_SAND
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.ALUMINIUM_TO_SAND"
+msgid "Transmute <sup>27</sup>Al (Aluminium) to Silicon by β− decay."
+msgstr "Transmute l'<sup>27</sup>Al (Aluminium) en Silicium par désintégration β−."
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.CARBON_TO_NITROGEN
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.CARBON_TO_NITROGEN"
+msgid "Transmute <sup>12</sup>C to Nitrogen by β− decay."
+msgstr "Transmute le <sup>12</sup>C en Azote par désintégration β−."
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.CARBON_TO_OXYGEN
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.CARBON_TO_OXYGEN"
+msgid ""
+"Attempts to transmute Carbon to Oxygen by neutron bombardment. This is a highly "
+"inefficient pathway, mostly yielding Nuclear Waste."
+msgstr ""
+"Tente de transmuter le Carbone en Oxygène par bombardement neutronique. Cette voie "
+"est très inefficace et produit principalement des Déchets nucléaires."
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.COBALT_TO_NICKEL
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.COBALT_TO_NICKEL"
+msgid "Transmute <sup>59</sup>Co (Cobalt) to Nickel by β− decay."
+msgstr "Transmute le <sup>59</sup>Co (Cobalt) en Nickel par désintégration β−."
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.COPPER_TO_NICKEL_AND_ZINC
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.COPPER_TO_NICKEL_AND_ZINC"
+msgid ""
+"Transmute <sup>63</sup>Cu (Copper) to <sup>62</sup>Ni (Nickel) by β+ decay. Some "
+"<sup>65</sup>Cu will transmute to Zn<sup>66</sup> by β- decay."
+msgstr ""
+"Transmute le <sup>63</sup>Cu (Cuivre) en <sup>62</sup>Ni (Nickel) par "
+"désintégration β+. Une partie du <sup>65</sup>Cu sera transmutée en <sup>66</sup>Zn "
+"par désintégration β-."
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.HYDROGEN_TO_HELIUM
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.HYDROGEN_TO_HELIUM"
+msgid "Transmute <sup>2</sup>H to Helium by β− decay."
+msgstr "Transmute le <sup>2</sup>H en Hélium par désintégration β−."
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.IRON_TO_COBALT
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.IRON_TO_COBALT"
+msgid "Transmute Iron to cobalt by β− decay. Results a bit of Nickel in the process."
+msgstr ""
+"Transmute le Fer en Cobalt par désintégration β−. Produit un peu de Nickel au "
+"passage."
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.MERCURY_TO_GOLD
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.MERCURY_TO_GOLD"
+msgid ""
+"Transmute extra rare <sup>196</sup>Hg (Mercury) to Gold by β+ decay and filter some "
+"Platinium. Results contains others Mercury isotopes and Lead."
+msgstr ""
+"Transmute le <sup>196</sup>Hg (Mercure), extrêmement rare, en Or par désintégration "
+"β+ et filtre un peu de Platine. Les résultats contiennent d'autres isotopes du "
+"Mercure ainsi que du Plomb."
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.MERCURY_TO_LEAD
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.MERCURY_TO_LEAD"
+msgid "Transmute Mercury to Lead by β- decay."
+msgstr "Transmute le Mercure en Plomb par désintégration β-."
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.NICKEL_TO_COPPER
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.NICKEL_TO_COPPER"
+msgid "Transmute Nickel to Copper by β− decay. Results a bit of Zinc in the process."
+msgstr ""
+"Transmute le Nickel en Cuivre par désintégration β−. Produit un peu de Zinc au "
+"passage."
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.NITROGEN_TO_OXYGEN
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.NITROGEN_TO_OXYGEN"
+msgid "Transmute <sup>14</sup>N to Oxygen by β− decay."
+msgstr "Transmute le <sup>14</sup>N en Oxygène par désintégration β−."
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.NUCLEAR_WASTE_RECYCLING_DESC
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.NUCLEAR_WASTE_RECYCLING_DESC"
+msgid ""
+"Separates mixed fission products into their constituent elements, producing "
+"individual elemental streams according to their fission yields."
+msgstr ""
+"Sépare les produits de fission mélangés en leurs éléments constitutifs, produisant "
+"des flux élémentaires distincts selon leurs rendements de fission."
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.NUCLEAR_WASTE_RECYCLING_NAME
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.NUCLEAR_WASTE_RECYCLING_NAME"
+msgid "Nuclear Waste Recycling"
+msgstr "Recyclage des déchets nucléaires"
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.POWER_TO_METHANE_DESC
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.POWER_TO_METHANE_DESC"
+msgid ""
+"A power-to-methane system combines hydrogen from an electrolysis system with "
+"<link=\"CARBONDIOXIDE\">Carbon Dioxide</link> to produce <link=\"METHANE\">Natural "
+"Gas</link> using a methanation reaction such as the Sabatier reaction"
+msgstr ""
+"Un système de power-to-methane combine l'hydrogène issu d'un système d'électrolyse "
+"avec du <link=\"CARBONDIOXIDE\">Dioxyde de carbone</link> pour produire du "
+"<link=\"METHANE\">Gaz naturel</link> grâce à une réaction de méthanation, comme la "
+"réaction de Sabatier"
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.POWER_TO_METHANE_NAME
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.POWER_TO_METHANE_NAME"
+msgid "Power-to-methane"
+msgstr "Power-to-methane"
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.SILICON_TO_PHOSPHORUS
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.SILICON_TO_PHOSPHORUS"
+msgid ""
+"Transmute Silicon in the sand to Phosphorus by β− decay. Results a bit of Sulfur in "
+"the process."
+msgstr ""
+"Transmute le Silicium du sable en Phosphore par désintégration β−. Produit un peu "
+"de Soufre au passage."
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.SODIUM_TO_ALUMINIUM
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.SODIUM_TO_ALUMINIUM"
+msgid ""
+"Transmute <sup>23</sup>Na (Sodium) to Aluminium by β− decay and filter Magnesium."
+msgstr ""
+"Transmute le <sup>23</sup>Na (Sodium) en Aluminium par désintégration β− et filtre "
+"le Magnésium."
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.SULFUR_TO_CHLORINE
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.SULFUR_TO_CHLORINE"
+msgid "Transmute Sulfur to Chlorine by β− decay."
+msgstr "Transmute le Soufre en Chlore par désintégration β−."
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.TUNGSTENE_TO_IRIDIUM
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.TUNGSTENE_TO_IRIDIUM"
+msgid ""
+"Transmute Tungstene to Iridium by multiple β- decay and filter a lot of unwanted "
+"outputs."
+msgstr ""
+"Transmute le Tungstène en Iridium par plusieurs désintégrations β- et filtre de "
+"nombreux produits indésirables."
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.URANIUM_SURGENERATION
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.URANIUM_SURGENERATION"
+msgid "Surgenerate Uranium to Plutonium. (A fissible element like Uranium235)"
+msgstr "Surgénère de l'Uranium en Plutonium. (Un élément fissile comme l'Uranium 235)"
+
+#. HighTechIndustry.PHO_STRINGS.RECIPE.ZINC_TO_COPPER
+msgctxt "HighTechIndustry.PHO_STRINGS.RECIPE.ZINC_TO_COPPER"
+msgid ""
+"Transmute <sup>64</sup>Zn (zinc) to <sup>63</sup>Cu (Copper) by β+ decay and filter "
+"Galium."
+msgstr ""
+"Transmute le <sup>64</sup>Zn (Zinc) en <sup>63</sup>Cu (Cuivre) par désintégration "
+"β+ et filtre le Gallium."

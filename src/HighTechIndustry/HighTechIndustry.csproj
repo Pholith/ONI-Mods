@@ -39,6 +39,7 @@
       <Link>Utilities.cs</Link>
     </Compile>
     <Compile Include="CentrifugerPatchs.cs" />
+    <Compile Include="HEPStorageMeterHandler.cs" />
     <Compile Include="HighTechOption.cs" />
     <Compile Include="NeutronicTransmutationRecipe.cs" />
     <Compile Include="NeutronicTransmutationChamber.cs" />
@@ -58,6 +59,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="mod_info.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="translations\fr.po">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

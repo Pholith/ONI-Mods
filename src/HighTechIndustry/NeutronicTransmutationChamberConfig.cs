@@ -99,7 +99,7 @@ namespace HighTechIndustry
             neutronicChamber.sideScreenStyle = ComplexFabricatorSideScreen.StyleSetting.ListQueueHybrid;
             neutronicChamber.duplicantOperated = false;
             neutronicChamber.showProgressBar = true;
-            neutronicChamber.outputOffset = new Vector3(3, 1);
+            neutronicChamber.outputOffset = new Vector3(2, 1);
 
             ConduitDispenser conduitDispenser = go.AddOrGet<ConduitDispenser>();
             conduitDispenser.conduitType = ConduitType.Liquid;
@@ -112,18 +112,14 @@ namespace HighTechIndustry
             go.AddOrGet<CopyBuildingSettings>();
             Prioritizable.AddRef(go);
 
-
             SetRecipes();
         }
         public override void DoPostConfigureComplete(GameObject go)
         {
             go.GetComponent<HighEnergyParticlePort>().requireOperational = false; // Radbolts don't enter the machine if true (diamond press don't have it so I don't really understand why)
             HighEnergyParticleStorage hepStorage = go.GetComponent<HighEnergyParticleStorage>();
-            /*component.Subscribe(-1837862626, delegate (object data)
-            {
-                //meter.SetPositionPercent(hepStorage.Particles / hepStorage.Capacity());
-            });*/
-            //meter.SetPositionPercent(hepStorage.Particles / hepStorage.Capacity());
+
+            go.AddOrGet<HEPStorageMeterHandler>();
 
         }
         public void SetRecipes()

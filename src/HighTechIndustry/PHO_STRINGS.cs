@@ -45,13 +45,13 @@ namespace HighTechIndustry
             public static LocString IRON_TO_COBALT = "Transmute Iron to cobalt by β− decay. Results a bit of Nickel in the process.";
             public static LocString COBALT_TO_NICKEL = "Transmute <sup>59</sup>Co (Cobalt) to Nickel by β− decay.";
             public static LocString NICKEL_TO_COPPER = "Transmute Nickel to Copper by β− decay. Results a bit of Zinc in the process.";
-            public static LocString COPPER_TO_NICKEL_AND_ZINC = "Transmute <sup>63</sup>Cu (Copper) to <sup>62</sup>Ni (Nickel) by β+ decay. Some <sup>65</sup>Cu will transmute to Zn<sup>66</sup> by β- decay.";
-            public static LocString ZINC_TO_COPPER = "Transmute <sup>64</sup>Zn (zinc) to <sup>63</sup>Cu (Copper) by β+ decay and filter Galium.";
+            public static LocString COPPER_TO_NICKEL_AND_ZINC = "Transmute <sup>63</sup>Cu (Copper) to <sup>62</sup>Ni (Nickel) by β+ decay. Some <sup>65</sup>Cu will transmute to <sup>66</sup>Zn by β- decay.";
+            public static LocString ZINC_TO_COPPER = "Transmute <sup>64</sup>Zn (zinc) to <sup>63</sup>Cu (Copper) by β+ decay and filter Gallium.";
             public static LocString TUNGSTENE_TO_IRIDIUM = "Transmute Tungstene to Iridium by multiple β- decay and filter a lot of unwanted outputs.";
-            public static LocString MERCURY_TO_GOLD = "Transmute extra rare <sup>196</sup>Hg (Mercury) to Gold by β+ decay and filter some Platinium. Results contains others Mercury isotopes and Lead.";
+            public static LocString MERCURY_TO_GOLD = "Transmute extra rare <sup>196</sup>Hg (Mercury) to Gold by β+ decay and filter some Platinum. Results contains others Mercury isotopes and Lead.";
             public static LocString MERCURY_TO_LEAD = "Transmute Mercury to Lead by β- decay.";
             
-            public static LocString URANIUM_SURGENERATION = "Surgenerate Uranium to Plutonium. (A fissible element like Uranium235)";
+            public static LocString URANIUM_SURGENERATION = "Surgenerate Uranium to Plutonium. (A fissile element like Uranium235)";
         }
     }
 }
