@@ -40,7 +40,7 @@ namespace HighTechIndustry
                 }, ChemicalRefineryConfig.ID, 60, PHO_STRINGS.RECIPE.POWER_TO_METHANE_DESC, ComplexRecipe.RecipeNameDisplay.Custom, 200);
             powerToGas.customName = PHO_STRINGS.RECIPE.POWER_TO_METHANE_NAME;
             powerToGas.customSpritePrefabID = ElementLoader.FindElementByHash(SimHashes.Methane).id.ToString();
-            powerToGas.requiredTech = Db.Get().TechItems.disposableElectrobankUraniumOre.parentTechId;
+            powerToGas.requiredTech = "NuclearPropulsion";
             //powerToGas.customSpritePrefabID = SimHashes.Methane.CreateTag().ToString();
 
 
